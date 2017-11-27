@@ -1,0 +1,24 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 針對復原而設計
+  items:
+    - name: 設計復原應用程式
+      href: index.md
+    - name: 復原檢查清單
+      href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: 失敗模式分析
+      href: failure-mode-analysis.md
+    - name: 其他的指導方針
+      items:
+        - name: 災害復原
+          href: disaster-recovery-azure-applications.md
+        - name: 高可用性
+          href: high-availability-azure-applications.md
+        - name: 從資料損毀或意外刪除復原
+          href: recovery-data-corruption.md
+        - name: 從本機失敗復原
+          href: recovery-local-failures.md
+        - name: 從區域全面性服務中斷復原
+          href: recovery-loss-azure-region.md
+        - name: 從內部部署復原到 Azure
+          href: recovery-on-premises-azure.md

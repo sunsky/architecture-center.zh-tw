@@ -1,0 +1,21 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 效能反模式
+  href: index.md
+  items:
+    - name: 忙碌資料庫
+      href: busy-database/index.md
+    - name: 忙碌前端
+      href: busy-front-end/index.md
+    - name: 多對話 I/O
+      href: chatty-io/index.md
+    - name: 沒有直接關聯的擷取
+      href: extraneous-fetching/index.md
+    - name: 不適當的具現化
+      href: improper-instantiation/index.md
+    - name: 整合的持續性
+      href: monolithic-persistence/index.md
+    - name: 無快取
+      href: no-caching/index.md
+    - name: 同步 I/O
+      href: synchronous-io/index.md

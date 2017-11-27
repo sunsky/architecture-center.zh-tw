@@ -1,0 +1,75 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 參考架構
+  href: index.md
+  items:
+    - name: App Service Web 應用程式
+      href: app-service-web-app/index.md
+      items:
+        - name: 基本 Web 應用程式
+          href: app-service-web-app/basic-web-app.md
+        - name: 改善的延展性
+          href: app-service-web-app/scalable-web-app.md
+        - name: 多重區域部署
+          href: app-service-web-app/multi-region.md
+    - name: 身分識別管理
+      href: identity/index.md
+      items:
+        - name: 應選取哪個？
+          href: identity/considerations.md
+        - name: 整合內部部署 AD 與 Azure AD
+          href: identity/azure-ad.md
+        - name: 將 AD DS 擴充至 Azure
+          href: identity/adds-extend-domain.md
+        - name: 在 Azure 中建立 AD DS 樹系
+          href: identity/adds-forest.md
+        - name: 將 AD FS 擴充至 Azure
+          href: identity/adfs.md
+    - name: 混合式網路
+      href: hybrid-networking/index.md
+      items:
+        - name: 應選取哪個？
+          href: hybrid-networking/considerations.md
+        - name: VPN
+          href: hybrid-networking/vpn.md
+        - name: ExpressRoute
+          href: hybrid-networking/expressroute.md
+        - name: 含 VPN 容錯移轉的 ExpressRoute
+          href: hybrid-networking/expressroute-vpn-failover.md
+        - name: 中樞輪輻拓撲
+          href: hybrid-networking/hub-spoke.md
+    - name: 網路 DMZ
+      href: dmz/index.md
+      items:
+        - name: Azure 和內部部署之間的 DMZ
+          href: dmz/secure-vnet-hybrid.md
+        - name: Azure 和網際網路之間的 DMZ
+          href: dmz/secure-vnet-dmz.md
+        - name: 高可用性的網路虛擬設備
+          href: dmz/nva-ha.md
+    - name: VM 工作負載 (Linux)
+      href: virtual-machines-linux/index.md
+      items:
+        - name: 單一 VM
+          href: virtual-machines-linux/single-vm.md
+        - name: 負載平衡的 VM
+          href: virtual-machines-linux/multi-vm.md
+        - name: 多層式架構的應用程式
+          href: virtual-machines-linux/n-tier.md
+        - name: 多重區域應用程式
+          href: virtual-machines-linux/multi-region-application.md
+    - name: VM 工作負載 (Windows)
+      href: virtual-machines-windows/index.md
+      items:
+        - name: 單一 VM
+          href: virtual-machines-windows/single-vm.md
+        - name: 負載平衡的 VM
+          href: virtual-machines-windows/multi-vm.md
+        - name: 多層式架構的應用程式
+          href: virtual-machines-windows/n-tier.md
+        - name: 多重區域應用程式
+          href: virtual-machines-windows/multi-region-application.md
+    - name: SAP NetWeaver 和 SAP HANA
+      href: sap/index.md
+    - name: SharePoint Server 2016
+      href: sharepoint/index.md

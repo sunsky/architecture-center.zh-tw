@@ -1,0 +1,86 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 雲端設計模式
+  href: index.md
+- name: 類別
+  items:
+    - name: Availability
+      href: category/availability.md
+    - name: 資料管理
+      href: category/data-management.md
+    - name: 設計與實作
+      href: category/design-implementation.md
+    - name: 訊息
+      href: category/messaging.md
+    - name: 管理與監視
+      href: category/management-monitoring.md
+    - name: 效能和延展性
+      href: category/performance-scalability.md
+    - name: 復原功能
+      href: category/resiliency.md
+    - name: 安全性
+      href: category/security.md
+- name: 外交官
+  href: ambassador.md
+- name: 防損毀層
+  href: anti-corruption-layer.md
+- name: 前端的後端
+  href: backends-for-frontends.md
+- name: 隔艙
+  href: bulkhead.md
+- name: 另行快取
+  href: cache-aside.md
+- name: 斷路器
+  href: circuit-breaker.md
+- name: 命令與查詢責任隔離 (CQRS)
+  href: cqrs.md
+- name: 補償交易
+  href: compensating-transaction.md
+- name: 競爭取用者
+  href: competing-consumers.md
+- name: 計算資源彙總
+  href: compute-resource-consolidation.md
+- name: 事件來源
+  href: event-sourcing.md
+- name: 外部組態存放區
+  href: external-configuration-store.md
+- name: 同盟身分識別
+  href: federated-identity.md
+- name: 閘道管理員
+  href: gatekeeper.md
+- name: 閘道彙總
+  href: gateway-aggregation.md
+- name: 閘道卸載
+  href: gateway-offloading.md
+- name: 閘道路由
+  href: gateway-routing.md
+- name: 健康情況端點監視
+  href: health-endpoint-monitoring.md
+- name: 索引資料表
+  href: index-table.md
+- name: 選出領導者
+  href: leader-election.md
+- name: 具體化檢視模式
+  href: materialized-view.md
+- name: 管道與篩選器
+  href: pipes-and-filters.md
+- name: 優先順序佇列
+  href: priority-queue.md
+- name: 佇列型負載調節
+  href: queue-based-load-leveling.md
+- name: Retry
+  href: retry.md
+- name: 排程器代理程式監督員
+  href: scheduler-agent-supervisor.md
+- name: 分區化
+  href: sharding.md
+- name: 側車
+  href: sidecar.md
+- name: 靜態內容裝載
+  href: static-content-hosting.md
+- name: Strangler
+  href: strangler.md
+- name: 節流
+  href: throttling.md
+- name: Valet 金鑰
+  href: valet-key.md
