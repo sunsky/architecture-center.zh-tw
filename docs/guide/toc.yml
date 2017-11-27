@@ -1,0 +1,60 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 應用程式架構指南
+  href: index.md
+  items:
+    - name: 架構樣式
+      href: architecture-styles/index.md
+      items:
+        - name: 多層式架構 (N-tier) 的應用程式
+          href: architecture-styles/n-tier.md
+        - name: Web 佇列背景工作角色 (Web-Queue-Worker)
+          href: architecture-styles/web-queue-worker.md
+        - name: 微服務
+          href: architecture-styles/microservices.md
+        - name: CQRS
+          href: architecture-styles/cqrs.md
+        - name: 事件驅動架構
+          href: architecture-styles/event-driven.md
+        - name: 巨量資料
+          href: architecture-styles/big-data.md
+        - name: 大量計算
+          href: architecture-styles/big-compute.md
+    - name: 技術選擇
+      href: technology-choices/index.md
+      items:
+        - name: 計算選項概觀
+          href: technology-choices/compute-overview.md
+        - name: 計算的比較
+          href: technology-choices/compute-comparison.md
+        - name: 資料存放區概觀
+          href: technology-choices/data-store-overview.md
+        - name: 資料存放區的比較
+          href: technology-choices/data-store-comparison.md
+    - name: 設計原則
+      href: design-principles/index.md
+      items:
+        - name: 自我修復設計
+          href: design-principles/self-healing.md
+        - name: 讓各個項目都有備援
+          href: design-principles/redundancy.md
+        - name: 最小化協調
+          href: design-principles/minimize-coordination.md
+        - name: 相應放大的設計
+          href: design-principles/scale-out.md
+        - name: 在限制中使用分割
+          href: design-principles/partition.md
+        - name: 作業的設計
+          href: design-principles/design-for-operations.md
+        - name: 使用受管理的服務
+          href: design-principles/managed-services.md
+        - name: 使用作業的最佳資料存放區
+          href: design-principles/use-the-best-data-store.md
+        - name: 進化的設計
+          href: design-principles/design-for-evolution.md
+        - name: 針對企業的需求而建置
+          href: design-principles/build-for-business.md
+    - name: 軟體品質的要件
+      href: pillars.md
+    - name: 設計模式
+      href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json

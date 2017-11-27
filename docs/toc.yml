@@ -1,0 +1,145 @@
+- name: Azure Architecture Center
+  href: index.md
+- name: 應用程式架構指南
+  href: guide/index.md
+  items:
+    - name: 架構樣式
+      href: guide/architecture-styles/index.md
+    - name: 技術選擇
+      href: guide/technology-choices/index.md
+      items: null
+    - name: 設計原則
+      href: guide/design-principles/index.md
+    - name: 軟體品質的要件
+      href: guide/pillars.md
+    - name: 設計模式
+      href: patterns/index.md?toc=/azure/architecture/guide/toc.json
+- name: 參考架構
+  href: reference-architectures/index.md
+  items:
+    - name: 身分識別管理
+      href: reference-architectures/identity/index.md
+    - name: 混合式網路
+      href: reference-architectures/hybrid-networking/index.md
+    - name: App Service Web 應用程式
+      href: reference-architectures/app-service-web-app/index.md
+    - name: 網路 DMZ
+      href: reference-architectures/dmz/index.md
+    - name: SAP NetWeaver 和 SAP HANA
+      href: reference-architectures/sap/index.md
+    - name: SharePoint Server 2016
+      href: reference-architectures/sharepoint/index.md
+    - name: VM 工作負載 (Linux)
+      href: reference-architectures/virtual-machines-linux/index.md
+    - name: VM 工作負載 (Windows)
+      href: reference-architectures/virtual-machines-windows/index.md
+- name: 雲端設計模式
+  href: patterns/index.md
+  items:
+    - name: 可用性模式
+      href: patterns/category/availability.md
+    - name: 資料管理模式
+      href: patterns/category/data-management.md
+    - name: 設計與實作模式
+      href: patterns/category/design-implementation.md
+    - name: 管理與監視模式
+      href: patterns/category/management-monitoring.md
+    - name: 訊息模式
+      href: patterns/category/messaging.md
+    - name: 效能和延展性模式
+      href: patterns/category/performance-scalability.md
+    - name: 復原模式
+      href: patterns/category/resiliency.md
+    - name: 安全性模式
+      href: patterns/category/security.md
+- name: 最佳做法
+  items:
+    - name: API 設計
+      href: best-practices/api-design.md
+    - name: API 實作
+      href: best-practices/api-implementation.md
+    - name: 自動調整
+      href: best-practices/auto-scaling.md
+    - name: 背景作業
+      href: best-practices/background-jobs.md
+    - name: 快取
+      href: best-practices/caching.md
+    - name: 內容傳遞網路
+      href: best-practices/cdn.md
+    - name: 資料分割
+      href: best-practices/data-partitioning.md
+    - name: 監視和診斷
+      href: best-practices/monitoring.md
+    - name: 命名慣例
+      href: best-practices/naming-conventions.md
+    - name: 暫時性錯誤處理
+      href: best-practices/transient-faults.md
+    - name: 重試特定服務的指引
+      href: best-practices/retry-service-specific.md
+- name: 效能反模式
+  href: antipatterns/index.md
+  items:
+    - name: 忙碌資料庫
+      href: antipatterns/busy-database/index.md
+    - name: 忙碌前端
+      href: antipatterns/busy-front-end/index.md
+    - name: 多對話 I/O
+      href: antipatterns/chatty-io/index.md
+    - name: 沒有直接關聯的擷取
+      href: antipatterns/extraneous-fetching/index.md
+    - name: 不適當的具現化
+      href: antipatterns/improper-instantiation/index.md
+    - name: 整合的持續性
+      href: antipatterns/monolithic-persistence/index.md
+    - name: 無快取
+      href: antipatterns/no-caching/index.md
+    - name: 同步 I/O
+      href: antipatterns/synchronous-io/index.md
+- name: 設計檢閱檢查清單
+  items:
+    - name: Availability
+      href: checklist/availability.md
+    - name: DevOps
+      href: checklist/dev-ops.md
+    - name: 復原功能
+      href: checklist/resiliency.md
+    - name: 延展性
+      href: checklist/scalability.md
+- name: 針對復原而設計
+  items:
+    - name: 設計復原應用程式
+      href: resiliency/index.md
+    - name: 復原檢查清單
+      href: checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: 失敗模式分析
+      href: resiliency/failure-mode-analysis.md
+- name: 案例指南
+  items:
+    - name: Azure for AWS 專業人員
+      href: aws-professional/index.md
+    - name: 管理多租用戶應用程式中的身分識別
+      href: multitenant-identity/index.md
+    - name: 從雲端服務移轉至 Service Fabric
+      href: service-fabric/migrate-from-cloud-services.md
+    - name: 在 Azure 上執行 Elasticsearch
+      href: elasticsearch/index.md
+    - name: 擴充 Azure Resource Manager 範本功能
+      href: building-blocks/extending-templates/index.md
+- name: 資源
+  items:
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/'
+    - name: 適用於 Azure 的 Microsoft 信任中心
+      href: 'https://www.microsoft.com/en-us/trustcenter/cloudservices/azure'
+    - name: 圖示和圖表
+      href: resources/diagrams.md
+    - name: Azure 更新的行事曆
+      href: 'https://azure.microsoft.com/updates/'
+    - name: 訓練
+      href: 'https://azure.microsoft.com/community/training/'
+    - name: SQLCAT 部落格
+      href: 'https://blogs.msdn.microsoft.com/sqlcat/'
+    - name: AzureCAT 部落格
+      href: 'https://blogs.msdn.microsoft.com/azurecat/'
+    - name: 白皮書
+      href: 'https://azure.microsoft.com/resources/whitepapers/'
