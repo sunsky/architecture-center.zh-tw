@@ -5,11 +5,11 @@ keywords: "AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, 
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 251489e7a6d78d82f3ed70ca2df6c88f8759f9a5
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="azure-for-aws-professionals"></a>Azure for AWS 專業人員
 
@@ -21,7 +21,7 @@ ms.lasthandoff: 11/16/2017
 * Azure 中可用解決方案的結構方式。
 * 主要 Azure 服務與 AWS 服務有何差異。
 
- Azure 和 AWS 會隨時間獨立建置其功能，讓每個都有重要實作和設計的差異。
+Azure 和 AWS 會隨時間獨立建置其功能，讓每個都有重要實作和設計的差異。
 
 ## <a name="overview"></a>概觀
 
@@ -62,7 +62,7 @@ ms.lasthandoff: 11/16/2017
 
 Azure 中的「資源」一詞與 AWS 中的使用方式相同，這表示您可以在平台內建立或設定的任何計算執行個體、儲存物件、網路裝置或其他實體。
 
-會使用下列兩個模型其中之一來部署及管理 Azure 資源：Azure Resource Manager 或較舊的 Azure[傳統部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
+會使用下列兩個模型其中之一來部署及管理 Azure 資源：[Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) 或較舊的 Azure [傳統部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
 使用 Resource Manager 模型來建立任何新的資源。
 
 ### <a name="resource-groups"></a>資源群組
@@ -166,7 +166,7 @@ Azure [異地備援儲存體](https://azure.microsoft.com/documentation/articles
 
 不同於 AWS 的每個第二個計費，Azure 隨選 VM 會依分鐘計費。
 
-Azure 與 EC2 Spot 執行個體、保留的執行個體或專用主機並沒有對等項目。
+Azure 與 EC2 Spot 執行個體或專用主機並沒有對等項目。
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>適用於 VM 磁碟的 EBS 和 Azure 儲存體
 
@@ -232,16 +232,18 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 在 Azure 儲存體中，訂用帳戶繫結的[儲存體帳戶](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/)可讓您建立及管理下列儲存體服務：
 
 -   [Blob 儲存體](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/) - 儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。 您可以設定私人存取的 Blob 儲存體或公開共用內容到網際網路。 Blob 儲存體與 AWS S3 和 EBS 有相同的用途。
-
 -   [表格儲存體](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/) - 可儲存結構化資料集。 表格儲存體屬於 NoSQL 索引鍵屬性資料儲存，可允許快速開發和迅速存取大量資料。 類似於 AWS 的 SimpleDB 和 DynamoDB 服務。
 
 -   [佇列儲存體](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/) - 可為工作流程處理及雲端服務元件間的通訊，提供訊息服務。
 
 -   [檔案儲存體](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/) - 標準使用伺服器訊息區 (SMB) 通訊協定為繼承應用程式提供共用儲存體。 檔案儲存體會以類似的方式在 AWS 平台用於 EFS。
 
-#### <a name="glacier-and-azure-storage"></a>Glacier 與 Azure 儲存體
 
-Azure 儲存體不提供 AWS 長期保存 Glacier 儲存體的直接對等項目。 針對不常存取且長期存留的資料，Azure 提供了 [Azure 非經常性存取 blob 儲存層](https://azure.microsoft.com/documentation/articles/storage-blob-storage-tiers/)。
+
+
+ 
+#### <a name="glacier-and-azure-storage"></a>Glacier 與 Azure 儲存體 
+[Azure 儲存體標準封存](/azure/storage/blobs/storage-blob-storage-tiers)會提供 AWS 長期保存 Glacier 儲存體的直接對等項目。 針對不常存取且長期存留的資料，Azure 提供了 [Azure 非經常性存取 blob 儲存層](/azure/storage/blobs/storage-blob-storage-tiers)。
 非經常性存取儲存體提供 blob 儲存體更便宜且較低效能儲存體，且相當於 AWS 的 S3 - 不頻繁的存取。
 
 #### <a name="see-also"></a>另請參閱
@@ -284,13 +286,17 @@ Azure 會透過其 [ExpressRoute](https://azure.microsoft.com/documentation/serv
 
 ### <a name="database-services"></a>資料庫服務
 
-#### <a name="rds-and-azure-sql-database-service"></a>RDS 和 Azure SQL Database 服務
+#### <a name="rds-and-azure-relational-database-services"></a>RDS 和 Azure 關聯式資料庫服務
 
-AWS 和 Azure 在雲端中具有不同的關聯式資料庫供應項目方法。 AWS 的關聯式資料庫服務 (RDS) 支援使用多個不同的資料庫引擎 (例如 Oracle 和 MySQL) 來建立執行個體。
+Azure 會提供與 AWS 關聯式資料庫服務 (RDS) 對等的幾種不同關聯式資料庫服務。
 
-[SQL Database](https://azure.microsoft.com/documentation/articles/sql-database-technical-overview/) 是 Azure 的雲端資料庫供應項目。 它透過受管理的服務提供高度可調整的關聯式資料存放區。 SQL Database 會使用它自己的引擎，且不支援建立其他的資料庫類型。 可以使用 Azure VM 執行個體部署諸如 [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)、[Oracle](https://azure.microsoft.com/campaigns/oracle/) 或 [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) 等其他資料庫引擎。
+-   [SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+-   [適用於 MySQL 的 Azure 資料庫](https://docs.microsoft.com/azure/mysql/overview)
+-   [適用於 PostgreSQL 的 Azure 資料庫](https://docs.microsoft.com/azure/postgresql/overview)
 
-AWS RDS 的成本取決於您執行個體所使用的硬體資源，例如 CPU、RAM、儲存體和網路頻寬。 在 SQL Database 服務中，成本取決於您的資料庫大小、並行連線及輸送量層級。
+可以使用 Azure VM 執行個體部署諸如 [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)、[Oracle](https://azure.microsoft.com/campaigns/oracle/) 和 [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) 等其他資料庫引擎。
+
+AWS RDS 的成本取決於您執行個體所使用的硬體資源，例如 CPU、RAM、儲存體和網路頻寬。 在 Azure 資料庫服務中，成本取決於您的資料庫大小、並行連線及輸送量層級。
 
 #### <a name="see-also"></a>另請參閱
 
