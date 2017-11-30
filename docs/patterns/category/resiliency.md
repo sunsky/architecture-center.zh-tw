@@ -1,0 +1,27 @@
+---
+title: "復原模式"
+description: "恢復是指系統正常處理並從失敗中復原的能力。 雲端裝載的本質，其中的應用程式通常是多租用戶、使用共用平台服務、爭用資源和頻寬、透過網際網路通訊，而採用商用硬體表示將引發暫時性和更永久性錯誤的可能性會同時增加。 必須偵測失敗並快速而有效地復原，才能保有恢復功能。"
+keywords: "設計模式"
+author: dragon119
+ms.date: 06/23/2017
+pnp.series.title: Cloud Design Patterns
+ms.openlocfilehash: a3b9d72989e0de57c689bcec51e20653d0441d31
+ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 11/14/2017
+---
+# <a name="resiliency-patterns"></a><span data-ttu-id="23623-106">復原模式</span><span class="sxs-lookup"><span data-stu-id="23623-106">Resiliency patterns</span></span>
+
+<span data-ttu-id="23623-107">恢復是指系統正常處理並從失敗中復原的能力。</span><span class="sxs-lookup"><span data-stu-id="23623-107">Resiliency is the ability of a system to gracefully handle and recover from failures.</span></span> <span data-ttu-id="23623-108">雲端裝載的本質，其中的應用程式通常是多租用戶、使用共用平台服務、爭用資源和頻寬、透過網際網路通訊，而採用商用硬體表示將引發暫時性和更永久性錯誤的可能性會同時增加。</span><span class="sxs-lookup"><span data-stu-id="23623-108">The nature of cloud hosting, where applications are often multi-tenant, use shared platform services, compete for resources and bandwidth, communicate over the Internet, and run on commodity hardware means there is an increased likelihood that both transient and more permanent faults will arise.</span></span> <span data-ttu-id="23623-109">必須偵測失敗並快速而有效地復原，才能保有恢復功能。</span><span class="sxs-lookup"><span data-stu-id="23623-109">Detecting failures, and recovering quickly and efficiently, is necessary to maintain resiliency.</span></span>
+
+| <span data-ttu-id="23623-110">模式</span><span class="sxs-lookup"><span data-stu-id="23623-110">Pattern</span></span> | <span data-ttu-id="23623-111">摘要</span><span class="sxs-lookup"><span data-stu-id="23623-111">Summary</span></span> |
+| ------- | ------- |
+| [<span data-ttu-id="23623-112">隔艙</span><span class="sxs-lookup"><span data-stu-id="23623-112">Bulkhead</span></span>](../bulkhead.md) | <span data-ttu-id="23623-113">將應用程式的元素隔離到集區中，以便其中一個元素失敗時，其他元素可以繼續運作。</span><span class="sxs-lookup"><span data-stu-id="23623-113">Isolate elements of an application into pools so that if one fails, the others will continue to function.</span></span> |
+| [<span data-ttu-id="23623-114">斷路器</span><span class="sxs-lookup"><span data-stu-id="23623-114">Circuit Breaker</span></span>](../circuit-breaker.md) | <span data-ttu-id="23623-115">在連線到遠端服務或資源時，處理可能需要不同時間來修復的錯誤。</span><span class="sxs-lookup"><span data-stu-id="23623-115">Handle faults that might take a variable amount of time to fix when connecting to a remote service or resource.</span></span> |
+| [<span data-ttu-id="23623-116">補償交易</span><span class="sxs-lookup"><span data-stu-id="23623-116">Compensating Transaction</span></span>](../compensating-transaction.md) | <span data-ttu-id="23623-117">復原由一系列步驟執行的工作，這些步驟共同定義最終一致的作業。</span><span class="sxs-lookup"><span data-stu-id="23623-117">Undo the work performed by a series of steps, which together define an eventually consistent operation.</span></span> |
+| [<span data-ttu-id="23623-118">健康情況端點監視</span><span class="sxs-lookup"><span data-stu-id="23623-118">Health Endpoint Monitoring</span></span>](../health-endpoint-monitoring.md) | <span data-ttu-id="23623-119">實作應用程式中的功能檢查，而外部工具可透過公開的端點定期存取此應用程式。</span><span class="sxs-lookup"><span data-stu-id="23623-119">Implement functional checks in an application that external tools can access through exposed endpoints at regular intervals.</span></span> |
+| [<span data-ttu-id="23623-120">選出領導者</span><span class="sxs-lookup"><span data-stu-id="23623-120">Leader Election</span></span>](../leader-election.md) | <span data-ttu-id="23623-121">選取一個執行個體作為領導者，負責管理其他執行個體，協調分散式應用程式中共同作業工作執行個體集合執行的動作。</span><span class="sxs-lookup"><span data-stu-id="23623-121">Coordinate the actions performed by a collection of collaborating task instances in a distributed application by electing one instance as the leader that assumes responsibility for managing the other instances.</span></span> |
+| [<span data-ttu-id="23623-122">佇列型負載調節</span><span class="sxs-lookup"><span data-stu-id="23623-122">Queue-Based Load Leveling</span></span>](../queue-based-load-leveling.md) | <span data-ttu-id="23623-123">使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。</span><span class="sxs-lookup"><span data-stu-id="23623-123">Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads.</span></span> |
+| [<span data-ttu-id="23623-124">重試</span><span class="sxs-lookup"><span data-stu-id="23623-124">Retry</span></span>](../retry.md) | <span data-ttu-id="23623-125">讓應用程式可以在嘗試連線到服務或網路資源時，藉由明確地重試先前失敗的作業，處理預期的暫時性失敗。</span><span class="sxs-lookup"><span data-stu-id="23623-125">Enable an application to handle anticipated, temporary failures when it tries to connect to a service or network resource by transparently retrying an operation that's previously failed.</span></span> |
+| [<span data-ttu-id="23623-126">排程器代理程式監督員</span><span class="sxs-lookup"><span data-stu-id="23623-126">Scheduler Agent Supervisor</span></span>](../scheduler-agent-supervisor.md) | <span data-ttu-id="23623-127">在一組分散式服務和其他遠端資源中協調一組動作。</span><span class="sxs-lookup"><span data-stu-id="23623-127">Coordinate a set of actions across a distributed set of services and other remote resources.</span></span> |
