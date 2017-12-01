@@ -2,15 +2,15 @@
 title: "在 Azure 上執行適用於多層式架構應用程式的 Linux VM"
 description: "如何在 Microsoft Azure 上執行適用於多層式架構的 Linux VM。"
 author: MikeWasson
-ms.date: 11/22/2016
+ms.date: 11/22/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: 673e090e306ffc421603371658c8273b10b980d4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 98814685e0f33f2a1258bf8307a86f92d8a81968
+ms.sourcegitcommit: 583e54a1047daa708a9b812caafb646af4d7607b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/28/2017
 ---
 # <a name="run-linux-vms-for-an-n-tier-application"></a>執行適用於多層式架構應用程式的 Linux VM
 
@@ -24,7 +24,7 @@ ms.lasthandoff: 11/14/2017
 
 有許多方式可實作多層式架構。 下圖顯示典型的 3 層式架構 Web 應用程式。 此架構是根據[執行負載平衡的 VM 以獲得延展性和可用性][multi-vm]建置的。 Web 及 Business 層會使用負載平衡的 VM。
 
-* **可用性設定組。** 針對每一層建立[可用性設定組][azure-availability-sets]，並且在每一層中至少佈建兩個 VM。  這讓 VM 能夠符合適用於 VM 之較高[服務等級協定 (SLA)][vm-sla] 的資格。
+* **可用性設定組。** 針對每一層建立[可用性設定組][azure-availability-sets]，並且在每一層中至少佈建兩個 VM。  這讓 VM 能夠符合適用於 VM 之較高[服務等級協定 (SLA)][vm-sla] 的資格。 您可以在可用性設定組中部署單一 VM，但該單一 VM 無法當做 SLA 保證使用，除非該單一 VM 的所有作業系統及資料磁碟是使用 Azure 進階儲存體。  
 * **子網路。** 針對每一層建立不同的子網路。 使用 [CIDR] 標記法來指定位址範圍和子網路遮罩。 
 * **負載平衡器。** 使用[網際網路面向的負載平衡器][load-balancer-external]，將連入的網際網路流量散發到 Web 層，並使用[內部負載平衡器][load-balancer-internal]，將來自 Web 層的網路流量散發到 Business 層。
 * **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，只允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許安全殼層 (SSH) 流量。
@@ -34,7 +34,7 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能不同於這裡所述的架構。 請使用以下建議作為起點。 
+您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。 
 
 ### <a name="vnet--subnets"></a>VNet / 子網路
 
@@ -113,31 +113,59 @@ Jumpbox 將具備最低效能需求，因此，請針對 Jumpbox 選取較小的
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-適用於此架構的部署可在 [GitHub][github-folder] 上取得。 架構會以三個階段來部署。 若要部署架構，請依照下列步驟執行： 
+此參考架構的部署可在 [GitHub][github-folder] 上取得。 
 
-1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-linux%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. 在 Azure 入口網站中開啟連結之後，輸入下列值： 
-   * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-ntier-cassandra-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
-3. 檢查 Azure 入口網站通知，以取得部署已完成的訊息。
-4. 參數檔包含硬式編碼的系統管理員使用者名稱和密碼，強烈建議您立即在所有 VM 上變更這兩者。 按一下 Azure 入口網站中的每個 VM，然後按一下 [支援與疑難排解] 刀鋒視窗中的 [重設密碼]。 選取 [模式] 下拉式清單方塊中的 [重設密碼]，然後選取新的**使用者名稱**和**密碼**。 按一下 [更新] 按鈕，保存新的使用者名稱和密碼。
+### <a name="prerequisites"></a>必要條件
+
+在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
+
+1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+
+2. 確定您已在電腦上安裝 Azure CLI 2.0。 若要安裝 CLI，請依照[安裝 Azure CLI 2.0][azure-cli-2] 中的指示進行。
+
+3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
+
+  ```bash
+  npm install -g @mspnp/azure-building-blocks
+  ```
+
+4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
+
+  ```bash
+  az login
+  ```
+
+### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
+
+若要以多層式架構 (N-Tier) 應用程式參考架構部署 Linux VM，請依以下步驟進行：
+
+1. 瀏覽至您在上述必要條件步驟 1 中複製存放庫的 `virtual-machines\n-tier-linux` 資料夾。
+
+2. 參數檔案會指定部署中每個 VM 的預設管理員使用者名稱及密碼。 您必須在部署參考架構前先變更這些內容。 開啟 `n-tier-linux.json` 檔案，並用新設定取代每個 **adminUsername** 和 **adminPassword** 欄位。   儲存檔案。
+
+3. 使用如下所示的 **azbb** 命令列來部署參考架構。
+
+  ```bash
+  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
+  ```
+
+如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
 
 <!-- links -->
 [multi-dc]: multi-region-application.md
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
-
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-linux-manage-availability
+[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [防禦主機]: https://en.wikipedia.org/wiki/Bastion_host
 [cassandra-in-azure]: https://docs.datastax.com/en/datastax_enterprise/4.5/datastax_enterprise/install/installAzure.html
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
 [chef]: https://www.chef.io/solutions/azure/
 [datastax]: http://www.datastax.com/products/datastax-enterprise
+[git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-linux
 [lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
 [lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
@@ -150,6 +178,7 @@ Jumpbox 將具備最低效能需求，因此，請針對 Jumpbox 選取較小的
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [公用 IP 位址]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
+[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
