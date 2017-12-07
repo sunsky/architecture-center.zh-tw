@@ -4,11 +4,11 @@ description: "暫時性錯誤處理重試指引。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 05558abad8938788d09caa5df8b1f088ce3b5bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="transient-fault-handling"></a>暫時性錯誤處理
 
@@ -93,7 +93,7 @@ ms.lasthandoff: 11/14/2017
 * **其他考量**
   
   * 決定重試次數的值和原則的重試間隔時，請考慮服務或資源的作業是否是長時間執行或多步驟作業的一部分。 當某個作業步驟失敗時，若要補償所有其他的作業步驟，可能會很困難或昂貴。 在此情況下，可接受很長的間隔及大量的重試次數，只要不會因為保留或鎖定稀少的資源，而封鎖其他的作業。
-  * 請思考一下重試相同的作業是否會導致資料不一致。 如果多步驟程序中有某些部分是重複的，且作業不具有等冪性，則可能會導致不一致的問題。 例如，會累加值的作業如果重複，則會產生無效的結果。 重複執行將訊息傳送至佇列的作業，如果無法偵測到重複訊息的話，則可能會在訊息取用者中造成不一致的狀況。 若要避免這個問題，請確定將每個步驟設計成等冪作業。 如需有關等冪性的詳細資訊，請參閱＜ [等冪性模式](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/)＞。
+  * 請思考一下重試相同的作業是否會導致資料不一致。 如果多步驟程序中有某些部分是重複的，且作業不具有等冪性，則可能會導致不一致的問題。 例如，會累加值的作業如果重複，則會產生無效的結果。 重複執行將訊息傳送至佇列的作業，如果無法偵測到重複訊息的話，則可能會在訊息取用者中造成不一致的狀況。 若要避免這個問題，請確定將每個步驟設計成等冪作業。 如需有關冪等性的詳細資訊，請參閱[冪等性模式][idempotency-patterns]。
   * 請思考一下作業將重試的範圍。 例如，很容易在包含數個作業的層級實作重試程式碼，如果其中一個失敗，也很容易重試所有的作業。 不過，這樣可能會導致等冪性問題或不必要的回復作業。
   * 如果您選擇的重試範圍包含數個作業，當決定重試間隔時、監視花費時間時，以及因失敗而引發警示前，請考慮所有作業的延遲總和。
   * 請思考一下您的重試策略如何影響共用應用程式中的芳鄰或其他租用戶，以及何時使用共用資源與服務。 積極重試原則會導致其他的使用者，以及共用資源與服務的應用程式，發生越來越多的暫時性錯誤。 同樣的，您的應用程式可能會受到由資源與服務的其他使用者所實作的重試原則影響。 對於關鍵任務應用程式，您可以決定使用非共用的高階服務。 這可讓您更能控制這些資源與服務的負載與後續節流，進而有助於調整額外的成本。
@@ -102,6 +102,8 @@ ms.lasthandoff: 11/14/2017
 * [Azure 服務特定重試方針](./retry-service-specific.md)
 * [暫時性錯誤處理應用程式區塊](http://msdn.microsoft.com/library/hh680934.aspx)
 * [斷路器模式](http://msdn.microsoft.com/library/dn589784.aspx)
-* [補償交易模式](http://msdn.microsoft.com/library/dn589804.aspx)
-* [等冪性模式](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/)
+* [補償交易模式 (英文)](http://msdn.microsoft.com/library/dn589804.aspx)
+* [冪等性模式][idempotency-patterns]
+
+[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
 

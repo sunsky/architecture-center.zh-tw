@@ -2,37 +2,37 @@
 title: "在 Azure 上執行 Linux VM"
 description: "如何在 Azure 上執行 Linux VM，並注意延展性、恢復能力、管理性和安全性。"
 author: telmosampaio
-ms.date: 09/06/2017
+ms.date: 11/16/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: f38c53db5df1681a1abc926df9f0b7f929ceb76b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f538958be934ad2e9ea8d53791814b1e963c1a20
+ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/17/2017
 ---
 # <a name="run-a-linux-vm-on-azure"></a>在 Azure 上執行 Linux VM
 
-此參考架構顯示一組經過證實的作法，可用來在 Azure 上執行 Linux 虛擬機器 (VM)。 其中包括適用於佈建 VM，以及網路和存放元件的建議。 此架構可用來執行單一執行個體，而且是適用於更複雜架構 (例如多層式架構應用程式) 的基礎。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構顯示一組經過證實的作法，可用來在 Azure 上執行 Linux 虛擬機器 (VM)。 其中包括適用於佈建 VM，以及網路和存放元件的建議。 此架構可用來執行單一 VM 執行個體，而且是適用於更複雜架構 (例如多層式架構應用程式) 的基礎。 [**部署這個解決方案。**](#deploy-the-solution)
 
 ![[0]][0]
 
-下載這個架構的 [Visio 檔案][visio-download]。
+*下載包含此架構圖表的 [Visio 檔案][visio-download]。*
 
 ## <a name="architecture"></a>架構
 
-在 Azure 中佈建 VM 牽涉的移動組建比 VM 本身更多。 您需要考量一些計算、網路及儲存體元素。
+佈建 Azure VM 需要額外的元件，例如計算、網路功能和儲存體資源。
 
-* **資源群組。** [*資源群組*][resource-manager-overview]是保存相關資源的容器。 您通常會在解決方案中，根據資源的存留期以及將管理資源的人員，針對不同的資源建立資源群組。 對於單一 VM 工作負載，您可以針對所有資源建立單一資源群組。
-* **VM**。 Azure 支援執行各種受歡迎的 Linux 散發套件，包括 CentOS、Debian、Red Hat Enterprise、Ubuntu 和 FreeBSD。 如需詳細資訊，請參閱 [Azure 和 Linux][azure-linux]。 您可以從已發佈的映像清單，或從您上傳至 Azure Blob 儲存體的虛擬硬碟 (VHD) 檔案佈建 VM。
-* **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD。 這表示即使主機電腦關閉，它仍持續存在。 作業系統磁碟為 `/dev/sda1`。
-* **暫存磁碟。** VM 是使用暫存磁碟來建立。 此磁碟會儲存在主機電腦的實體磁碟機上。 它不會儲存於 Azure 儲存體，而且可能在重新開機期間和其他 VM 生命週期事件中遭到刪除。 僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。 暫存磁碟為 `/dev/sdb1` 且掛接於 `/mnt/resource` 或 `/mnt`。
+* **資源群組。** [*資源群組*][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
+* **VM**。 您可以從已發佈的映像清單、自訂的受控映像或您上傳至 Azure Blob 儲存體的虛擬硬碟 (VHD) 檔案佈建 VM。 Azure 支援執行各種受歡迎的 Linux 散發套件，包括 CentOS、Debian、Red Hat Enterprise、Ubuntu 和 FreeBSD。 如需詳細資訊，請參閱 [Azure 和 Linux][azure-linux]。
+* **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD，因此即使主機電腦已關閉仍會保存下來。 對於 Linux VM，作業系統磁碟是 `/dev/sda1`。
+* **暫存磁碟。** VM 是使用暫存磁碟來建立。 此磁碟會儲存在主機電腦的實體磁碟機上。 它「不會」儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中遭到刪除。 僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。 對於 Linux VM，暫存磁碟為 `/dev/sdb1` 且掛接於 `/mnt/resource` 或 `/mnt`。
 * **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。 資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
-* **虛擬網路 (VNet) 和子網路。** 在 Azure 中的每個 VM 都會部署到 VNet 中，而虛擬網路會進一步分成數個子網路。
+* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
 * **公用 IP 位址。** 需要有公用 IP 位址才能與 VM 通訊 &mdash; 例如透過 SSH。
-* **網路介面 (NIC)**。 NIC 可讓 VM 與虛擬網路通訊。
-* **網路安全性群組 (NSG)**。 [NSG][nsg] 是用來允許/拒絕對子網路的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
+* **網路介面 (NIC)**。 指派的 NIC 可讓 VM 與虛擬網路通訊。
+* **網路安全性群組 (NSG)**。 [NSGs][nsg] 可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
 * **診斷。** 診斷記錄對於管理和針對 VM 進行疑難排解十分重要。
 
 ## <a name="recommendations"></a>建議
@@ -41,29 +41,31 @@ ms.lasthandoff: 11/14/2017
 
 ### <a name="vm-recommendations"></a>VM 建議
 
-Azure 提供許多不同的虛擬機器大小，但是我們建議使用 DS 和 GS 系列，因為這些機器大小支援[進階儲存體][premium-storage]。 選取其中一個機器大小，除非您有高效能運算等特殊工作負載。 如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。
+Azure 提供許多不同的虛擬機器大小。 建議使用[進階儲存體][premium-storage]，因為具有高效能、低延遲，而且[可支援特定的 VM 大小][premium-storage-supported]。 除非您有高效能運算等特殊工作負載，否則請選取其中一種大小。 如需詳細資訊，請參閱[虛擬機器大小][virtual-machine-sizes]。
 
-如果您將現有的工作負載移至 Azure，則從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和每秒的磁碟輸入/輸出作業 (IOPS) 測量您的實際工作負載效能，並視需要調整大小。 如果您的 VM 需要多個 NIC，請注意 NIC 的最大數目是 [VM 大小][vm-size-tables]的函式。
+如果您將現有的工作負載移至 Azure，則從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和每秒的磁碟輸入/輸出作業 (IOPS) 測量您的實際工作負載效能，並視需要調整大小。 如果您的 VM 需要多個 NIC，請注意每種 [VM 大小][vm-size-tables]都有定義 NIC 的數目上限。
 
-當您佈建 VM 和其他資源時，必須指定一個區域。 一般而言，選擇最接近您的內部使用者或客戶的區域。 不過，並非所有 VM 大小都可使用於所有區域。 如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。 若要列出特定區域中可用的 VM 大小，請執行下列 Azure 命令列介面 (CLI) 命令：
+當您佈建 Azure 資源時，必須指定一個區域。 一般而言，選擇最接近您的內部使用者或客戶的區域。 不過，並非所有 VM 大小在所有區域都可供使用。 如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。 如需特定區域中可用的 VM 大小清單，請從 Azure 命令列介面 (CLI) 執行下列命令：
 
 ```
 az vm list-sizes --location <location>
 ```
 
-如需選擇已發佈 VM 映像的相關資訊，請參閱[透過 Azure CLI 選取 Linux VM 映像][select-vm-image]。
+如需選擇已發佈 VM 映像的相關資訊，請參閱[尋找 Linux VM 映像][select-vm-image]。
 
 啟用監視和診斷，包括基本健全狀況度量、診斷基礎結構記錄檔及[開機診斷][boot-diagnostics]。 如果您的 VM 進入無法開機的狀態，開機診斷能協助您診斷開機失敗。 如需詳細資訊，請參閱[啟用監視和診斷][enable-monitoring]。  
 
 ### <a name="disk-and-storage-recommendations"></a>磁碟和儲存體建議
 
-為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。 成本是依佈建的磁碟大小而定。 IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
+為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。 成本是依佈建的磁碟容量而定。 IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
 
-我們也建議使用[受控磁碟](/azure/storage/storage-managed-disks-overview)。 受控磁碟不需要儲存體帳戶。 您只需指定磁碟的大小和類型，並以高度可用的方式來部署它。
+我們也建議使用[受控磁碟](/azure/storage/storage-managed-disks-overview)。 受控磁碟不需要儲存體帳戶。 您只需指定磁碟的大小和類型，它就會以高度可用的資源方式進行部署。
 
-如果您未使用受控磁碟，請針對每個 VM 建立個別的 Azure 儲存體帳戶來保存虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 IOPS 限制。
+若您使用的是非受控的磁碟，請針對每個 VM 建立個別的 Azure 儲存體帳戶來保存虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 [(IOPS) 限制][vm-disk-limits]。
 
-新增一或多個資料磁碟。 當您建立 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 在 Linux 殼層中，資料磁碟會顯示為`/dev/sdc``/dev/sdd` 等等。 您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。 若要使用資料磁碟，請建立磁碟分割和檔案系統，並掛接該磁碟。 例如：
+新增一或多個資料磁碟。 當您建立 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 如果您未使用受控磁碟且具有大量的資料磁碟，請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
+
+在 Linux 殼層中，資料磁碟會顯示為`/dev/sdc``/dev/sdd` 等等。 您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。 若要使用資料磁碟，請建立磁碟分割和檔案系統，並掛接該磁碟。 例如：
 
 ```bat
 # Create a partition.
@@ -77,13 +79,11 @@ sudo mkdir /data1
 sudo mount /dev/sdc1 /data1
 ```
 
-如果您未使用[受控磁碟](/azure/storage/storage-managed-disks-overview)且具有大量的資料磁碟，請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
-
 當您新增資料磁碟時，會指派邏輯單元編號 (LUN) 識別碼給磁碟。 或者，您可以指定 LUN 識別碼 &mdash; 例如，如果您要更換磁碟，而且想要保留相同的 LUN 識別碼，或者您有會查看特定 LUN 識別碼的應用程式。 不過，請記住，每個磁碟的 LUN 識別碼不能重複。
 
 您可能會想變更 I/O 排程器以將 SSD 上的效能最佳化，因為具有進階儲存體帳戶的 VM 磁碟為 SSD。 一般建議是使用適用於 SSD 的 NOOP 排程器，但您應該使用 [iostat] 之類的工具，來監視工作負載的磁碟 I/O 效能。
 
-為了達到最佳效能，請建立個別的儲存體帳戶來保存診斷記錄。 標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
+為求最佳效能，請建立個別的儲存體帳戶來保存診斷記錄。 標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
 
 ### <a name="network-recommendations"></a>網路建議
 
@@ -94,7 +94,7 @@ sudo mount /dev/sdc1 /data1
 
 所有 NSG 都包含一組[預設規則][nsg-default-rules]，包括一個封鎖所有網際網路輸入流量的規則。 預設的規則不能刪除，但其他規則可以覆寫它們。 若要啟用網際網路流量，請建立允許輸入流量輸入特定連接埠的規則 &mdash; 例如，允許連接埠 80 用於 HTTP。
 
-若要啟用 SSH，請新增一個規則，以允許將輸入流量輸入至 TCP 連接埠 22。
+若要啟用 SSH，請新增一個 NSG 規則，以允許將輸入流量輸入至 TCP 連接埠 22。
 
 ## <a name="scalability-considerations"></a>延展性考量
 
@@ -106,19 +106,19 @@ sudo mount /dev/sdc1 /data1
 
 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。 您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
-VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲存體來提供持久性和可用性。
+VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure 儲存體來提供持久性和可用性。
 
 為了防止在正常作業期間意外遺失資料 (例如，因使用者錯誤而造成)，您也應該使用 [Blob 快照][blob-snapshot]或其他工具來實作時間點備份。
 
 ## <a name="manageability-considerations"></a>管理性考量
 
-**資源群組。** 將關係密切且共用相同生命週期的資源置於同一個[資源群組][resource-manager-overview]。 資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組列出帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。 為資源提供有意義的名稱。 這樣能更容易找到特定資源及了解其角色。 請參閱 [Azure 資源的建議命名慣例][naming conventions]。
+**資源群組。** 請將關係密切且具有相同生命週期的資源置於同一個[資源群組][resource-manager-overview]中。 資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組追蹤帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。 請指派有意義的資源名稱，以簡化尋找特定資源及了解其角色的程序。 如需詳細資訊，請參閱[建議的 Azure 資源命名慣例][naming-conventions]。
 
 **SSH**。 在您建立 VM 之前，先產生 2048 位元 RSA 公開-私密金鑰組。 建立 VM 的時候使用公開金鑰檔案。 如需詳細資訊，請參閱[如何在 Azure 上搭配 Linux 與 Mac 使用 SSH][ssh-linux]。
 
-**停止 VM。** Azure 會區分「已停止」和「已解除配置」狀態。 您需要在 VM 狀態停止時支付費用，而不是在取消配置 VM 時支付。 
+**停止 VM。** Azure 會區分「已停止」和「已解除配置」狀態。 您需要在 VM 狀態停止時支付費用，而不是在取消配置 VM 時支付。
 
-在 Azure 入口網站中，[停止] 按鈕會取消配置 VM。 如果您已在登入時透過 OS 關閉，則會停止 VM，但不會取消配置，因此您仍需付費。 
+在 Azure 入口網站中，[停止] 按鈕會取消配置 VM。 如果您已在登入時透過 OS 關閉，則會停止 VM，但不會取消配置，因此您仍需付費。
 
 **刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。 這表示您可以放心地刪除 VM，而不會遺失任何資料。 不過，您仍需支付儲存體費用。 若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]中刪除。
 
@@ -126,13 +126,13 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 
 ## <a name="security-considerations"></a>安全性考量
 
-使用 [Azure 資訊安全中心][security-center]來集中檢視 Azure 資源的安全性狀態。 資訊安全中心會監視潛在的安全性問題，並提供全面性的部署安全性健康狀態。 資訊安全中心是依每個 Azure 訂用帳戶設定。 按照 [Azure 資訊安全中心快速入門指南][security-center-get-started]所述來啟用安全性資料收集。 啟用資料收集時，資訊安全性中心就會自動掃描任何該訂用帳戶建立的 VM。
+使用 [Azure 資訊安全中心][security-center]來集中檢視 Azure 資源的安全性狀態。 資訊安全中心會監視潛在的安全性問題，並提供全面性的部署安全性健康狀態。 資訊安全中心是依每個 Azure 訂用帳戶設定。 請按照 [Azure 資訊安全中心快速入門指南][security-center-get-started]中所述的方式，來啟用安全性資料收集。 啟用資料收集時，資訊安全性中心就會自動掃描任何該訂用帳戶建立的 VM。
 
-**修補程式管理。** 如果啟用，資訊安全性中心會檢查是否遺失安全性或重要更新。 
+**修補程式管理。** 若已啟用，資訊安全性中心會檢查是否遺漏了任何安全性或重要更新。 
 
 **反惡意程式碼。** 如果啟用，資訊安全性中心會檢查是已安裝反惡意程式碼軟體。 您也可以使用資訊安全中心來從 Azure 入口網站內安裝反惡意程式碼軟體。
 
-**作業。** 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署 Azure 資源的存取。 RBAC 可讓您指派授權角色給您 DevOps 小組的成員。 例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。 某些角色專門用於特定的 Azure 資源類型。 例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。 其他對此架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Labs 使用者][rbac-devtest]和[網路參與者][rbac-network]。 使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+**作業。** 請使用[角色型存取控制 (RBAC)][rbac] 來控制對您所部署 Azure 資源的存取。 RBAC 可讓您指派授權角色給您 DevOps 小組的成員。 例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。 某些角色專門用於特定的 Azure 資源類型。 例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。 其他對此架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Labs 使用者][rbac-devtest]和[網路參與者][rbac-network]。 使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
 > [!NOTE]
 > RBAC 不會限制使用者登入 VM 可執行的動作。 這些權限是由客體 OS上的帳戶類型來決定。   
@@ -156,7 +156,7 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 
 1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
-2. 確定您已在電腦上安裝 Azure CLI 2.0。 若要安裝 CLI，請依照[安裝 Azure CLI 2.0][azure-cli-2] 中的指示進行。
+2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
 
 3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
 
@@ -172,11 +172,11 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 
 1. 瀏覽至您在上述必要條件步驟中所下載存放庫的 `virtual-machines\single-vm\parameters\linux` 資料夾。
 
-2. 開啟 `single-vm-v2.json` 檔案，然後在引號之間輸入使用者名稱和 SSH 金鑰，如下所示，然後儲存檔案。
+2. 開啟 `single-vm-v2.json` 檔案，然後在引號之間輸入使用者名稱和 SSH 公開金鑰，如下所示，然後儲存檔案。
 
   ```bash
   "adminUsername": "",
-  "adminsshPublicKey": "",
+  "sshPublicKey": "",
   ```
 
 3. 執行 `azbb` 以部署範例 VM，如下所示。
@@ -193,9 +193,6 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 - 在 Azure 中部署[多個 VM][multi-vm]。
 
 <!-- links -->
-[git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
-[multi-vm]: ../virtual-machines-linux/multi-vm.md
-[naming conventions]: ../../best-practices/naming-conventions.md
 [audit-logs]: https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/
 [availability-set]: /azure/virtual-machines/virtual-machines-linux-manage-availability
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
@@ -211,14 +208,17 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
+[git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
+[multi-vm]: multi-vm.md
+[naming-conventions]: /azure/architecture/best-practices/naming-conventions.md
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [nsg-default-rules]: /azure/virtual-network/virtual-networks-nsg#default-rules
-[OSPatching]: https://github.com/Azure/azure-linux-extensions/tree/master/OSPatching
 [planned-maintenance]: /azure/virtual-machines/virtual-machines-linux-planned-maintenance
-[premium-storage]: /azure/storage/storage-premium-storage
+[premium-storage]: /azure/virtual-machines/linux/premium-storage
+[premium-storage-supported]: /azure/virtual-machines/linux/premium-storage#supported-vms
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [rbac-roles]: /azure/active-directory/role-based-access-built-in-roles
 [rbac-devtest]: /azure/active-directory/role-based-access-built-in-roles#devtest-labs-user
@@ -227,7 +227,7 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [resource-lock]: /azure/resource-group-lock-resources
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
-[security-center]: /azure/security-center/
+[security-center]: /azure/security-center/security-center-intro
 [security-center-get-started]: /azure/security-center/security-center-get-started
 [select-vm-image]: /azure/virtual-machines/virtual-machines-linux-cli-ps-findimage
 [services-by-region]: https://azure.microsoft.com/regions/#services
@@ -239,6 +239,4 @@ VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲
 [vm-resize]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [vm-size-tables]: /azure/virtual-machines/virtual-machines-linux-sizes
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[readme]: https://github.com/mspnp/reference-architectures/blob/master/virtual-machines/single-vm/README.md
 [0]: ./images/single-vm-diagram.png "Azure 中的單一 Linux VM 架構"
-
