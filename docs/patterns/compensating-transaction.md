@@ -1,16 +1,16 @@
 ---
 title: "補償交易"
-description: "復原由一系列步驟執行的工作，這些步驟共同定義最終的一致作業。"
+description: "復原由一系列步驟執行的工作，這些步驟共同定義最終一致的作業。"
 keywords: "設計模式"
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories: resiliency
-ms.openlocfilehash: f8337717c4afd6b558f0da8e1ded3a8071340db7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="compensating-transaction-pattern"></a>補償交易模式
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 11/14/2017
 
 並非受到實作最終一致性的作業影響的所有資料都會保留在資料庫中。 在服務導向架構 (SOA) 環境中，作業會叫用服務中的動作並造成該服務的狀態變更。 若要復原作業，也必須復原此狀態變更。 這可能涉及再次叫用服務，以及執行另一個動作以反轉第一個動作的效果。
 
-## <a name="solution"></a>解決方式
+## <a name="solution"></a>解決方法
 
 解決方式就是實作補償交易。 補償交易中的步驟必須將原始作業中的步驟效果復原。 因為補償交易會覆寫應用程式之其他並行執行個體所做的變更，所以這種方法可能無法以作業之初的系統狀態取代目前的狀態。 相反地，必須採用考慮到並行執行個體所完成之任何工作的智慧型程序。 此程序通常是應用程式特有，受到原始作業所執行工作的本質驅動。
 
@@ -38,7 +38,7 @@ ms.lasthandoff: 11/14/2017
 
 > 這種方法類似於 [Clemens Vasters 部落格](http://vasters.com/clemensv/2012/09/01/Sagas.aspx) \(英文\) 中所述的 Sagas 策略。
 
-補償交易也是最終一致性作業，而且也可能會失敗。 系統應能夠在失敗時恢復補償交易並繼續。 因為可能需要重複失敗的步驟，所以應將補償交易中的步驟定義為等冪命令。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/) \(英文\)。
+補償交易也是最終一致性作業，而且也可能會失敗。 系統應能夠在失敗時恢復補償交易並繼續。 因為可能需要重複失敗的步驟，所以應將補償交易中的步驟定義為等冪命令。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/idempotency-patterns/) \(英文\)。
 
 在某些情況下，可能無法從失敗的步驟復原，除了手動介入，別無他法。 在這些情況下，系統應會引發警示，並儘可能提供失敗原因的詳細資訊。
 
@@ -93,7 +93,7 @@ ms.lasthandoff: 11/14/2017
 
 實作此模式時，下列模式和指導方針可能也相關：
 
-- [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx) \(英文\)。 補償交易模式通常用來復原實作最終一致性模型的作業。 此入門提供最終一致性優缺點的相關資訊。
+- [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 補償交易模式通常用來復原實作最終一致性模型的作業。 此入門提供最終一致性優缺點的相關資訊。
 
 - [Scheduler-Agent-Supervisor 模式](scheduler-agent-supervisor.md)。 描述如何實作使用分散式服務與資源執行商務作業且具復原功能的系統。 有時候，可能有必要使用補償交易來復原由作業所執行的工作。
 

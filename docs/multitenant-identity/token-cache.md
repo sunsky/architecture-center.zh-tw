@@ -6,19 +6,19 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: ed0def244f3229bbd3fdd0976574d13a345f9aee
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: cffc15686ef9d77fafb40982efdbcd4a79f5aaf2
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="cache-access-tokens"></a>快取存取權杖
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 相對於取得 OAuth 存取權杖，它的成本較高，因為它需要向權杖端點進行 HTTP 要求。 因此，盡可能地快取權杖是不錯的做法。 [Azure AD 驗證程式庫][ADAL] (ADAL) 會自動快取取自 Azure AD 的權杖，包括重新整理權杖。
 
-ADAL 提供預設的權杖快取實作。 不過，此權杖快取是適用於原生用戶端應用程式，而*不*適用於 Web 應用程式：
+ADAL 提供預設的權杖快取實作。 不過，此權杖快取是適用於原生用戶端應用程式，而**不**適用於 Web 應用程式：
 
 * 它是靜態的執行個體，且不具備執行緒安全。
 * 它不適用於大量的使用者，因為所有使用者的權杖都會移入相同的字典。
@@ -135,7 +135,7 @@ TokenCache 會傳送兩個其他事件：
 * 針對並行存取，以最後寫入者為準。 這是可行的，因為存取是針對每個使用者+用戶端獨立儲存，因此只有在同一使用者擁有兩個並行登入工作階段時才會發生衝突。
 * 針對讀取，我們會在每次要求時載入快取。 要求是短時間的。 若快取在該時間內遭到修改，下一個要求將會挑選新的值。
 
-[**下一步**][client-assertion]
+[**下一主題**][client-assertion]
 
 <!-- links -->
 [ADAL]: https://msdn.microsoft.com/library/azure/jj573266.aspx

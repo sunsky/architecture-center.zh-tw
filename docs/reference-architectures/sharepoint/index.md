@@ -3,11 +3,11 @@ title: "在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣�
 description: "在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。"
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: a3d47eea15f1e7e8cecf2bf1be55d8c3a9bb9bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0c0e9a7b2ae12a2d12919548f91304e6cbd2d8a6
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -15,7 +15,7 @@ ms.lasthandoff: 11/14/2017
 
 ![](./images/sharepoint-ha.png)
 
-*下載這個架構的 [Visio 檔案][visio-download]。*
+下載這個架構的 [Visio 檔案][visio-download]。
 
 ## <a name="architecture"></a>架構
 
@@ -49,7 +49,7 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能不同於這裡所述的架構。 請使用以下建議作為起點。
+您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。
 
 ### <a name="resource-group-recommendations"></a>資源群組建議
 
@@ -169,11 +169,11 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署指令碼可在[Github][github] 上取得。 
+此參考架構的部署指令碼可在 [GitHub][github] 上取得。 
 
 您可以以累加方式或一次全部部署此架構。 第一次，建議您使用累加式部署，以便您看到每個部署的執行方式。 使用下列其中一個 mode 參數來指定增量。
 
-| 模式           | 作用                                                                                                            |
+| Mode           | 作用                                                                                                            |
 |----------------|-------------------------------------------------------------------------------------------------------------------------|
 | onprem         | (選擇性) 部署模擬的內部部署網路環境以用於測試或評估。 這個步驟不會連線到實際的內部部署網路。 |
 | infrastructure | 將 SharePoint 2016 網路基礎結構和 jumpbox 部署到 Azure。                                                |
@@ -199,7 +199,7 @@ ms.lasthandoff: 11/14/2017
 
 若要在一個步驟中部署所有項目，請使用 `all`。 請注意，整個程序可能需費時數小時。
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 * 安裝最新版的 [Azure PowerShell][azure-ps]。
 
