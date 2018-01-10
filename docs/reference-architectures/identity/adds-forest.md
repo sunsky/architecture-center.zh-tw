@@ -7,11 +7,11 @@ pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: bb7e57af2afacf1faa7679c854bf49217918eba8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
@@ -89,7 +89,7 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
 部署此參考架構的解決方案可在 [GitHub][github] 上取得。 您需要最新版的 Azure CLI，才能執行可部署解決方案的 PowerShell 指令碼。 若要部署參考架構，請依照下列步驟執行：
 
-1. 將解決方案資料夾從 [Github][github] 下載或複製到本機電腦。
+1. 將解決方案資料夾從 [GitHub][github] 下載或複製到本機電腦。
 
 2. 開啟 Azure CLI，並瀏覽至本機解決方案資料夾。
 

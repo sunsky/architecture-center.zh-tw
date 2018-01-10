@@ -3,21 +3,30 @@ title: "Azure 應用程式的災害復原"
 description: "在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。"
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: d415b27dd7928996e2a6dc7fd8fcf6a77c835768
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5ed6e2cec149571724f1545b40f628d6bbe1ad71
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
-[!INCLUDE [header](../_includes/header.md)]
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 應用程式的災害復原
-復原功能和高可用性策略的目的是要處理暫時性的失敗狀況。 災害復原 (DR) 著重在從應用程式功能的重大損失中復原。 例如，如果裝載您應用程式的 Azure 區域變得無法使用，您必須有在其他區域執行應用程式或存取資料的計劃。 執行此計劃會涉及人員、程序，以及可讓系統繼續運作的支援應用程式。 您的計劃應該包括演練失敗和測試資料庫的復原，以確保計劃可靠無虞。 業務和技術擁有者 (負責定義系統的災害作業模式) 也會決定災害期間所需的服務功能等級。 此功能等級可能有一些形式：完全無法使用、部分可用 (透過降級的功能或延遲處理)，或完全可用。
+
+災害復原 (DR) 著重在從應用程式功能的重大損失中復原。 例如，如果裝載您應用程式的 Azure 區域變得無法使用，您必須有在其他區域執行應用程式或存取資料的計劃。 
+
+企業和技術擁有者必須決定災害發生期間需要多少功能。 此功能等級可能有一些形式：完全無法使用、部分可用 (透過降級的功能或延遲處理)，或完全可用。
+
+復原功能和高可用性策略的目的是要處理暫時性的失敗狀況。  執行此計劃會涉及人員、程序，以及可讓系統繼續運作的支援應用程式。 您的計劃應該包括演練失敗和測試資料庫的復原，以確保計劃可靠無虞。 
 
 ## <a name="azure-disaster-recovery-features"></a>Azure 災害復原功能
+
 和可用性考量一樣，Azure 提供了[復原功能技術指引](./index.md)，以便支援災害復原。 Azure 可用性功能與災害復原之間也有關聯性。 例如，各容錯網域的角色管理會增加應用程式的可用性。 如果沒有該管理功能，未經處理的硬體故障就會變成「災害」案例。 利用這些可用性功能和策略是防範您的應用程式發生災害的重要部分。 不過，本文不僅討論一般可用性問題，還會討論更嚴重 (和更罕見) 的災害事件。
 
 ## <a name="multiple-datacenter-regions"></a>多個資料中心區域
 Azure 會維護世界各地許多區域的資料中心。 此基礎結構可支援數個災害復原案例，例如系統提供的 Azure 儲存體異地複寫到次要地區。 您也可以輕鬆且低廉地將雲端服務部署到全世界的多個位置。 將在多個區域中建置和維護自有資料中心的成本與困難度與此做比較。 將資料和服務部署至多個區域，有助於防止您的應用程式在單一區域中面臨嚴重中斷。 在設計災害復原計劃時，請務必了解配對區域的概念。 如需詳細資訊，請參閱[商務持續性和災害復原 (BCDR)：Azure 配對的區域](/azure/best-practices-availability-paired-regions)。
+
+## <a name="azure-site-recovery"></a>Azure Site Recovery
+
+[Azure Site Recovery](/azure/site-recovery/) 提供在區域之間複寫 Azure VM 的簡易方式。 其管理負擔最小，因為您不需要在次要地區中佈建任何其他資源。 當您啟用複寫時，Site Recovery 會根據來源 VM 設定，在目標區域中自動建立所需的資源。 並提供自動化連續複寫，讓您只要按一下即可執行應用程式容錯移轉。 您也可藉由測試容錯移轉來執行災害復原演練，完全不影響生產工作負載或進行中的複寫。 
 
 ## <a name="azure-traffic-manager"></a>Azure 流量管理員
 發生特定區域的失敗時，您必須將流量重新導向至其他區域中的服務或部署。 透過 Azure 流量管理員等服務來處理是最有效的方式，如果主要區域失敗，其可自動將使用者的流量容錯移轉至另一個區域。 在設計有效的 DR 策略時，請務必了解流量管理員的基本概念。
@@ -69,9 +78,7 @@ Azure Redis 快取從可提供災害復原優點的雲端服務部署，提供�
 上述失敗主要是可在相同的 Azure 區域內管理的失敗。 不過，您還必須對整個區域發生服務中斷的可能性有所準備。 如果發生全區域服務中斷，則無法使用您的資料的本機備援複本。 如已啟用異地複寫，則您的 Blob 和資料表在不同的區域中有額外三份複本。 如果 Microsoft 宣告此區域遺失，Azure 會將所有的 DNS 項目重新對應至異地複寫的區域。
 
 > [!NOTE]
-> 請注意，您完全無法控制這個程序，而且它只有在全區域服務中斷時才會發生。 因此，您必須依賴其他的應用程式特定備份策略，以達到最高層級的可用性。 如需詳細資訊，請參閱 [災害復原的資料策略](#data-strategies-for-disaster-recovery)一節。
-> 
-> 
+> 請注意，您完全無法控制這個程序，而且它只有在全區域服務中斷時才會發生。 請考慮使用 [Azure Site Recovery](/azure/site-recovery/) 來達成更好的 RPO 和 RTO。 Site Recovery 可讓應用程式決定可接受的中斷狀況為何，以及何時要容錯移轉至複寫的 VM。
 
 ### <a name="azure-wide-service-disruption"></a>全 Azure 服務中斷
 在災害規劃中，您必須考量各種可能的災害。 其中一種最嚴重的服務中斷可能會同時涉及所有的 Azure 區域。 如同其他服務中斷，您可以決定在該事件中接受暫時停機的風險。 相較於涉及相依服務或單一區域的獨立服務中斷，跨區域的大規模服務中斷極為罕見。
@@ -179,6 +186,18 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 
 我們現在來看看可支援跨不同區域容錯移轉的特定方法。 這些範例全都使用兩個區域來描述此程序。
 
+### <a name="failover-using-azure-site-recovery"></a>使用 Azure Site Recovery 進行容錯移轉
+
+當您使用 Azure Site Recovery 啟用 Azure VM 複寫時，它會在次要地區中建立數個資源：
+
+- 資源群組。
+- 虛擬網路 (VNet)。
+- 儲存體帳戶。 
+- 容錯移轉後要保存 VM 的可用性設定組。
+
+主要區域中 VM 磁碟上的資料寫入會持續傳送到次要地區中的儲存體帳戶。 目標儲存體帳戶會每隔幾分鐘產生復原點。 當您起始容錯移轉時，系統會在目標資源群組、VNet 和可用性設定組中建立已復原的 VM。 在容錯移轉時，您可以選擇任何可用的復原點。
+
+
 ### <a name="redeployment-to-a-secondary-azure-region"></a>重新部署到次要 Azure 區域
 對於重新部署到次要區域的方法，只有主要區域會有應用程式和資料庫在執行。 次要地區並未設定為自動容錯移轉。 因此當災害發生時，您必須在新的區域中加快服務的所有組件。 這包括將雲端服務上傳至 Azure、部署雲端服務、還原資料，以及變更 DNS 以重新路由傳送流量。
 
@@ -269,16 +288,18 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 模擬會反白顯示任何處理不當的問題。 模擬案例必須可完全控制。 這表示，即使復原計畫似乎失敗，您可以讓情況還原到正常狀態，而不會造成任何重大損害。 此外，您也一定要知會管理高層何時及如何執行模擬演習。 此計劃應詳述模擬期間受到影響的時間和資源。 也要定義測試災害復原計劃時的成功量值。
 
+如果您使用 Azure Site Recovery，您可以執行移轉至 Azure 的測試容錯移轉，以驗證您的複寫策略，或在沒有資料遺失或停機的情況下執行災害復原演練。 測試容錯移轉不會影響正在進行的 VM 複寫或您的生產環境。
+
 其他幾項技術可以測試災害復原計劃。 不過，其中大部分都只是這些基本技巧的變更版本。 這項側是的目的是要評估復原計劃的可行性。 災害復原測試著重於詳細資訊，以在基本復原計劃中找出漏洞。
 
 ## <a name="service-specific-guidance"></a>服務特有的指引
 
 下列主題會說明災害復原特有的 Azure 服務：
 
-| 服務 | 主題 |
+| 服務 | 話題 |
 |---------|-------|
 | 雲端服務 | [發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
-| 金鑰保存庫 | [Azure Key Vault 的可用性與備援](/azure/key-vault/key-vault-disaster-recovery-guidance) |
+| Key Vault | [Azure Key Vault 的可用性與備援](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |儲存體 | [如果 Azure 儲存體發生中斷怎麼辦](/azure/storage/storage-disaster-recovery-guidance) |
 | SQL Database | [還原 Azure SQL Database 或容錯移轉到次要資料庫](/azure/sql-database/sql-database-disaster-recovery) |
 | 虛擬機器 | [發生影響 Azure 虛擬機器的 Azure 服務中斷事件時該怎麼辦](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |

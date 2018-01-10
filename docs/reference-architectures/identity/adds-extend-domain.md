@@ -6,11 +6,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 7f771f77c7fa7f266dcce9f5b45e5be658213b8d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 216c59a0a5912d0fe90011e49ad20eb017ada6be
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -102,7 +102,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 部署此參考架構的解決方案可在 [GitHub][github] 上取得。 您需要最新版的 [Azure CLI][azure-powershell]，才能執行可部署解決方案的 Powershell 指令碼。 若要部署參考架構，請依照下列步驟執行：
 
-1. 將解決方案資料夾從 [Github][github] 下載或複製到本機電腦。
+1. 將解決方案資料夾從 [GitHub][github] 下載或複製到本機電腦。
 
 2. 開啟 Azure CLI，並瀏覽至本機解決方案資料夾。
 

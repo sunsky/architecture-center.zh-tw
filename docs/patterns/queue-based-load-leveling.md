@@ -1,6 +1,6 @@
 ---
 title: "佇列型負載調節"
-description: "使用佇列來作為工作與其所叫用服務之間的緩衝區，以緩和間歇性的繁重負載。"
+description: "使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。"
 keywords: "設計模式"
 author: dragon119
 ms.date: 06/23/2017
@@ -10,11 +10,11 @@ pnp.pattern.categories:
 - availability
 - performance-scalability
 - resiliency
-ms.openlocfilehash: d8b010648d4ec0edcfbb24f9b03243a79a34a40b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="queue-based-load-leveling-pattern"></a>佇列型負載調節模式
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 11/14/2017
 
 服務可能會經歷造成它多載的需求尖峰，而無法及時回應要求。 讓大量的並行要求湧入服務時，如果服務無法處理這些要求所造成的爭用，就也可能導致服務失敗。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 重構解決方案並在工作與服務之間導入佇列。 工作與服務會以非同步方式執行。 工作會將包含服務所需資料的訊息張貼至佇列。 佇列會作為緩衝區來儲存訊息，直到服務擷取該訊息為止。 服務會從佇列擷取訊息，然後處理這些訊息。 來自一些工作的要求 (可能以高變動的速率產生) 可以透過相同的訊息佇列傳遞給服務。 下圖顯示如何使用佇列來調節服務上的負載。
 
@@ -75,7 +75,7 @@ Microsoft Azure Web 角色會使用個別的儲存體服務來儲存資料。 �
 
 實作此模式時，下列模式和指導方針可能也相關：
 
-- [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx) \(英文\)。 訊息佇列原本就是非同步的。 如果將工作從與服務直接通訊改成使用訊息佇列，可能就必須重新設計工作中的應用程式邏輯。 同樣地，可能必須重構服務以從訊息佇列接受要求。 或者，也可以實作 Proxy 服務，如範例中所述。
+- [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)。 訊息佇列原本就是非同步的。 如果將工作從與服務直接通訊改成使用訊息佇列，可能就必須重新設計工作中的應用程式邏輯。 同樣地，可能必須重構服務以從訊息佇列接受要求。 或者，也可以實作 Proxy 服務，如範例中所述。
 - [競爭取用者模式](competing-consumers.md)。 您可以執行多個服務執行個體，每個執行個體都作為來自負載調節佇列的訊息取用者。 您可以使用此方法來調整接收訊息並將訊息傳遞給服務的速率。
 - [節流模式](throttling.md)。 有一個搭配服務實作節流的簡單方式，就是使用佇列型負載調節，然後透過訊息佇列將所有要求路由傳送至服務。 服務可以用確保服務所需資源不會耗盡且可減少可能發生之爭用情況的速率來處理要求。
 - [佇列服務概念](https://msdn.microsoft.com/library/azure/dd179353.aspx) \(英文\)。 有關 Azure 應用程式中選擇傳訊和佇列機制的資訊。

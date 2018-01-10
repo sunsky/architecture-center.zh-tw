@@ -1,11 +1,11 @@
 ---
 title: "適用於架構圖表的圖示和其他資產"
 description: "適合用來產生您自己之架構圖表的圖示、Viso 範本、PNG 檔案和 SVG 檔案"
-ms.openlocfilehash: d02e2ddcb4068ac1656fd848d14e162aecb8543c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 863c5cd479e6c4b6d57299176b80d02661e5466b
+ms.sourcegitcommit: 662f27f37d45f778ad1b6355fb6fb66e3c65558c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/11/2017
 ---
 # <a name="icons-and-diagrams"></a>圖示和圖表
 
@@ -14,7 +14,7 @@ ms.lasthandoff: 11/14/2017
 ## <a name="microsoft-azure-cloud-and-enterprise-symbolicon-set"></a>Microsoft Azure、雲端和企業符號/圖示集
 
 符號/圖示集是您可用來產生自訂技術內容之 Visio、PowerPoint、PNG 和 SVG 資產的集合。
-[檢視訓練影片](http://aka.ms/CnESymbolsVideo) \(英文\) 和[下載符號/圖示集](http://aka.ms/CnESymbols)。 
+[檢視訓練影片](http://aka.ms/CnESymbolsVideo)\(英文)\ 和[下載符號/圖示集](http://aka.ms/CnESymbols)。 
 
 ![雲端和企業符號/圖示集](./_images/CnESymbols.png)
 

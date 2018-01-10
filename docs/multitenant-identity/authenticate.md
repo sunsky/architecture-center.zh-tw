@@ -6,15 +6,15 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 74f4e85e282799b7eee92caf2da083fb264f8733
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 進行驗證
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 Surveys 應用程式會使用 OpenID Connect (OIDC) 通訊協定，透過 Azure Active Directory (Azure AD) 驗證使用者。 Surveys 應用程式會使用 ASP.NET Core，其具有內建的 OIDC 中介軟體。 下圖概括顯示使用者登入時會發生什麼情況。
 
@@ -170,7 +170,7 @@ Azure AD 支援 [OpenID Connect 探索](https://openid.net/specs/openid-connect-
 * response_type  = "code id_token"。 這會指定混合式流程。
 * response_mode = "form_post"。 這會指定表單 POST 回應。
 
-若要指定不同的流程，請設定選項的 **ResponseType** 屬性。 例如：
+若要指定不同的流程，請設定選項的 **ResponseType** 屬性。 例如︰
 
 ```csharp
 app.UseOpenIdConnectAuthentication(options =>
@@ -181,7 +181,7 @@ app.UseOpenIdConnectAuthentication(options =>
 }
 ```
 
-[**下一步**][claims]
+[**下一主題**][claims]
 
 [claims]: claims.md
 [cookie-options]: /aspnet/core/security/authentication/cookie#controlling-cookie-options
