@@ -3,17 +3,17 @@ title: "在 Azure 上使用 Kubernetes 設計、建置及操作微服務"
 description: "在 Azure 上設計、建置及操作微服務"
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: c279546552d731a01ed970e7942ad7d4a56157da
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>在 Azure 上設計、建置及操作微服務
 
 ![](./images/drone.svg)
 
-微服務已成為熱門的架構樣式，用於建置可復原、高延展性，以及能夠快速發展的雲端應用程式。 不過，微服務需要不同的方法來設計和建置應用程式，而不僅僅是現今流行的用語。 
+微服務已成為熱門的架構樣式，用於建置可復原、高延展性、可獨立部署，以及能夠快速發展的雲端應用程式。 不過，微服務需要不同的方法來設計和建置應用程式，而不僅僅是現今流行的用語。 
 
 在這一系列文章中，我們會探討如何在 Azure 上建置和執行微服務架構。 主題包括：
 
@@ -35,7 +35,7 @@ ms.lasthandoff: 12/13/2017
 在微服務架構中，應用程式是由數個小型、獨立的服務所組成。 以下是微服務的一些定義特性：
 
 - 每個微服務服務會實作單一商務功能。
-- 微服務夠小，只要一小組開發人員 (通常 5 &ndash; 10 個人) 即可進行撰寫和維護。
+- 微服務夠小，只要一小組開發人員即可進行撰寫和維護。
 - 微服務會在個別的程序中執行，並透過定義完善的 API 或傳訊模式進行通訊。 
 - 微服務不會共用資料存放區或資料結構描述。 每個微服務負責維護自己的資料。 
 - 微服務具有不同的程式碼基底，而且不會共用原始程式碼。 不過會使用共同的公用程式庫。
