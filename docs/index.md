@@ -2,11 +2,11 @@
 title: Azure Architecture Center
 description: "Azure Architecture Center 是官方中心，在其中可找到使用 Microsoft Azure 建立解決方案的指引、藍圖、模式和最佳做法。 此中心是由 Microsoft 模式與做法小組所策劃。"
 layout: LandingPage
-ms.openlocfilehash: 3afe907b8ea1fe59d6c2eb9505ddb34775fdcd62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d48861a1001c9bef8cad152a3664077f2ad915c6
+ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/29/2017
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -84,20 +84,20 @@ ms.lasthandoff: 11/14/2017
             </div>
         </a>
     </li>
-    <!-- Performance anti-practices -->
+    <!-- Microservices -->
     <li>
-        <a href="/azure/architecture/antipatterns">
+        <a href="/azure/architecture/microservices">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
                         <div class="cardImageOuter">
                             <div class="cardImage">
-                                <img src="_images/performance.svg" alt="Performance antipatterns" />
+                                <img src="_images/new-content.svg" alt="Designing, building, and operating microservices on Azure" />
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>效能反模式</h3>
-                            <p>如何偵測及修正雲端應用程式中一些效能和延展性相關問題的原因。</p>
+                            <h3>在 Azure 上建置微服務</h3>
+                            <p>這個有多個組件的系列會帶領您完成在 Azure 上設計和建置微服務架構的程序。 參考實作也會包含在其中。</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,27 @@ ms.lasthandoff: 11/14/2017
             </div>
         </a>
     </li>
-    <!-- Azure for AWS Professionals -->
+    <!-- Azure Virtual Datacenter -->
+    <li>
+        <a href="https://aka.ms/vdc">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/virtual-datacenter.svg" alt="Azure Virtual Datacenter e-book" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 虛擬資料中心電子書</h3>
+                            <p>這個電子書會說明如何將企業工作負載部署至 Azure 雲端平台，同時又能採用您現有的安全性和網路原則。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+        <!-- Azure for AWS Professionals -->
     <li>
         <a href="/azure/architecture/aws-professional">
             <div class="cardSize">
@@ -178,6 +198,26 @@ ms.lasthandoff: 11/14/2017
                         <div class="cardText">
                             <h3>Azure 建置區塊</h3>
                             <p>簡化 Azure 資源的部署。 使用單一設定檔，在 Azure 中部署複雜的架構。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Performance anti-practices -->
+    <li>
+        <a href="/azure/architecture/antipatterns">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/performance.svg" alt="Performance antipatterns" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>效能反模式</h3>
+                            <p>如何偵測及修正雲端應用程式中一些效能和延展性相關問題的原因。</p>
                         </div>
                     </div>
                 </div>
@@ -238,26 +278,6 @@ ms.lasthandoff: 11/14/2017
                         <div class="cardText">
                             <h3>多組織用戶共享應用程式的身分識別管理</h3>
                             <p>了解多租用戶使用 Azure AD 進行身分識別管理時的最佳作法。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- ElasticSearch -->
-    <li>
-        <a href="/azure/architecture/elasticsearch">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/elasticsearch.svg" alt="Run Elasticsearch on Azure" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>在 Azure 上執行 Elasticsearch</h3>
-                            <p>了解如何在 Azure 上部署、管理和調整 Elasticsearch 叢集。</p>
                         </div>
                     </div>
                 </div>
