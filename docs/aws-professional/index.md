@@ -5,13 +5,13 @@ keywords: "AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, 
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/23/2017
+ms.lasthandoff: 01/02/2018
 ---
-# <a name="azure-for-aws-professionals"></a>Azure for AWS 專業人員
+# <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
 本文可協助 Amazon Web Services (AWS) 專家了解 Microsoft Azure 帳戶、平台和服務的基本概念。 其中也涵蓋 AWS 和 Azure 平台之間的主要相似度和差異。
 
@@ -114,13 +114,13 @@ Azure 提供數種方式來管理您的資源：
 您要使用[可用性設定組](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-manage-availability/)將多個容錯網域分散到 VM。 當執行個體指派給相同的可用性設定組時，Azure 會平均地跨數個容錯網域加以散發。 如果一個容錯網域中發生電源故障或網路中斷，至少有一些集合的 VM 會在容錯網域中，且不受中斷影響。
 
 ![AWS 可用性區域相較於 Azure 容錯網域和可用性設定組](./images/zone-fault-domains.png "AWS 可用性區域相較於 Azure 容錯網域和可用性設定組")
-<br/>AWS 可用性區域相較於 Azure 容錯網域和可用性設定組
+<br/>*AWS 可用性區域相較於 Azure 容錯網域和可用性設定組*
 <br/><br/>
 
 應該依您應用程式中執行個體的角色來組織可用性設定組，以確保每個角色的一個執行個體皆可運作。 例如，在標準三層式 web 應用程式中，您需要針對前端、應用程式及資料執行個體建立個別的可用性設定組。
 
 ![每個應用程式角色的 Azure 可用性設定組](./images/three-tier-example.png "每個應用程式角色的可用性設定組")
-<br/>每個應用程式角色的 Azure 可用性設定組
+<br/>*每個應用程式角色的 Azure 可用性設定組*
 <br/><br/>
 
 將 VM 執行個體新增至可用性設定組時，也會指派[更新網域](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/)給它們。
@@ -237,14 +237,12 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 -   [佇列儲存體](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/) - 可為工作流程處理及雲端服務元件間的通訊，提供訊息服務。
 
 -   [檔案儲存體](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/) - 標準使用伺服器訊息區 (SMB) 通訊協定為繼承應用程式提供共用儲存體。 檔案儲存體會以類似的方式在 AWS 平台用於 EFS。
-
-
-
-
  
 #### <a name="glacier-and-azure-storage"></a>Glacier 與 Azure 儲存體 
-[Azure 儲存體標準封存](/azure/storage/blobs/storage-blob-storage-tiers)會提供 AWS 長期保存 Glacier 儲存體的直接對等項目。 針對不常存取且長期存留的資料，Azure 提供了 [Azure 非經常性存取 blob 儲存層](/azure/storage/blobs/storage-blob-storage-tiers)。
-非經常性存取儲存體提供 blob 儲存體更便宜且較低效能儲存體，且相當於 AWS 的 S3 - 不頻繁的存取。
+
+[Azure 封存 Blob 儲存體](/azure/storage/blobs/storage-blob-storage-tiers#archive-access-tier)相當於 AWS Glacier 儲存體服務。 它適用於不太會存取的資料，且該資料已儲存至少 180 天且可以容忍數小時的擷取延遲。 
+
+針對不常存取、卻又必須可供立即存取的資料，[Azure 非經常性 Blob 儲存層](/azure/storage/blobs/storage-blob-storage-tiers#cool-access-tier)可提供比標準 Blob 儲存體還要便宜的儲存體。 此儲存層相當於 AWS S3 - 不常存取儲存體服務。
 
 #### <a name="see-also"></a>另請參閱
 
@@ -362,7 +360,8 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 
 [Cortana Intelligence Suite](https://azure.microsoft.com/suites/cortana-intelligence-suite/) 是 Azure 的產品和服務套件，專為擷取、組織、分析和視覺化大量資料而設計。 Cortana 套件包含下列服務：
 
--   [HDInsight](https://azure.microsoft.com/documentation/services/hdinsight/) - 受管理的 Apache 分佈，其中包括 Hadoop、Spark、Storm 或 HBase。
+-   
+            [HDInsight](https://azure.microsoft.com/documentation/services/hdinsight/) - 受控 Apache 分佈，其中包括 Hadoop、Spark、Storm 或 HBase。
 
 -   [Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) - 提供資料協調流程和 Data Pipeline 功能。
 

@@ -4,11 +4,11 @@ description: "獨立於使用者介面之外執行的背景工作指引。"
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 62266b822a238ee53b62e74e91d753dc5da308b4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
+ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/29/2017
 ---
 # <a name="background-jobs"></a>背景作業作業
 [!INCLUDE [header](../_includes/header.md)]
@@ -72,7 +72,7 @@ ms.lasthandoff: 11/14/2017
 
 * [**Azure Web Apps 及 WebJobs**](#azure-web-apps-and-webjobs)。 您可以根據 Web 應用程式內容中各種不同類型的指令碼或可執行程式，來使用 Web 工作執行自訂工作。
 * [**Azure 虛擬機器**](#azure-virtual-machines)。 如果您使用 Windows 服務，或您想要使用 Windows 工作排程器，它一般會在專用的虛擬機器內裝載您的背景工作。
-* [**Azure Batch**](#azure-batch)。 Batch 是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作， ，而且可以自動調整計算資源。
+* [**Azure Batch**](#azure-batch)。 Batch 是一項平台服務，可排程要在一組受控虛擬機器上執行的計算密集型工作， ，而且可以自動調整計算資源。
 * [**Azure Container Service**](#azure-container-service)。 Azure Container Service (ACS) 提供 Azure 上的容器裝載環境。 
 * [**Azure 雲端服務**](#azure-cloud-services)。 您可以在做為背景工作執行的角色內撰寫程式碼。
 
@@ -100,11 +100,11 @@ Azure WebJobs 具有下列特性：
 * **記錄**：Console.Out 會被視為 (標示為) INFO。 Console.Error 會被視為 ERROR。 您可以使用 Azure 入口網站存取監視和診斷資訊。 您可以直接從網站下載記錄檔。 這些資訊會儲存在下列位置：
   * 針對觸發執行：Vfs/data/jobs/triggered/jobName
   * 針對連續執行：Vfs/data/jobs/continuous/jobName
-* **設定**：您可以使用入口網站、REST API 和 PowerShell 對 Web 工作進行設定。 您可以使用和工作指令碼位於相同根目錄的設定檔 (名為 settings.job) 來提供作業的設定資訊。 例如：
+* **設定**：您可以使用入口網站、REST API 和 PowerShell 對 Web 工作進行設定。 您可以使用和工作指令碼位於相同根目錄的設定檔 (名為 settings.job) 來提供作業的設定資訊。 例如︰
   * { "stopping_wait_time": 60 }
   * { "is_singleton": true }
 
-#### <a name="considerations"></a>考量
+#### <a name="considerations"></a>注意事項
 
 * 根據預設，WebJobs 會跟據 Web 應用程式來調整自己。 不過，您可以藉由將 **is_singleton** 設定屬性設為 **true**，進而設定為在單一執行個體上執行作業。 單一執行個體 Web 工作可用於您不想要調整的工作，或作為同時進行的多重執行個體來執行，例如重新建立索引、資料分析和類似的工作。
 * 若要將作業對 Web 應用程式效能的影響降到最低，請考慮在新的 App Service 方案中建立空的 Azure Web 應用程式執行個體，來裝載可能會長時間執行或耗用大量資源的 Web 工作。
@@ -125,11 +125,11 @@ Azure WebJobs 具有下列特性：
 
 如需有關如何啟動背景工作的詳細資訊，請參閱先前的＜ [觸發程序](#triggers) ＞一節。  
 
-#### <a name="considerations"></a>考量
+#### <a name="considerations"></a>注意事項
 當您決定是否要在 Azure 虛擬機器中部署背景工作時，請考慮下列幾點：
 
 * 在不同的 Azure 虛擬機器中裝載背景工作提供了彈性，並可透過起始、執行、排程及資源配置以精確控制。 不過，如果必須部署虛擬機器，並只是為了執行背景工作，則會增加執行階段成本。
-* 沒有任何設備可監視 Azure 入口網站中的工作，且沒有適用於失敗工作的自動重新啟動功能，但您可以監視虛擬機器的基本狀態，並使用 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/en-us/library/mt125356.aspx) 管理它。 不過，計算節點中沒有機制可用來控制程序和執行緒。 通常，使用虛擬機器將會需要額外的工作，才能在工作中實作機制，以便從檢測中收集資料，並從虛擬機器中的作業系統收集資料。 一個可能適當的解決方案是使用 [System Center Management Pack for Azure](https://www.microsoft.com/en-us/download/details.aspx?id=50013)。
+* 沒有任何設備可監視 Azure 入口網站中的工作，且沒有適用於失敗工作的自動重新啟動功能，但您可以監視虛擬機器的基本狀態，並使用 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 管理它。 不過，計算節點中沒有機制可用來控制程序和執行緒。 通常，使用虛擬機器將會需要額外的工作，才能在工作中實作機制，以便從檢測中收集資料，並從虛擬機器中的作業系統收集資料。 一個可能適當的解決方案是使用 [System Center Management Pack for Azure](https://www.microsoft.com/download/details.aspx?id=50013)。
 * 您可以考慮建立透過 HTTP 端點公開的監視探查。 這些探查的程式碼可執行健康狀態檢查、收集操作資訊和統計資料，或自動分頁錯誤資訊，以及將它傳回給管理應用程式。 如需詳細資訊，請參閱 [健康狀態端點監控模式](http://msdn.microsoft.com/library/dn589789.aspx)。
 
 #### <a name="more-information"></a>詳細資訊
@@ -142,7 +142,7 @@ Azure WebJobs 具有下列特性：
 
 Batch 服務會佈建 VM、將工作指派給 VM、執行工作，並監視進度。 Batch 可以自動相應放大 VM 來反應工作負載。 Batch 也提供作業排程。 Azure Batch 支援 Linux 和 Windows VM。
 
-#### <a name="considerations"></a>考量 
+#### <a name="considerations"></a>注意事項 
 
 Batch 適合執行本質平行的工作負載。 也可以執行最後有歸納步驟的平行計算，或是執行[訊息傳遞介面 (MPI) 應用程式](/azure/batch/batch-mpi) (用於需要在節點間傳遞訊息的平行工作)。 
 
@@ -165,7 +165,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 - 視需要啟動或停止容器。 
 - Azure Container Registry 可讓您註冊在 Azure 界限內註冊您的容器。 這同時具有安全性、隱私權和相近的優點。 
 
-#### <a name="considerations"></a>考量
+#### <a name="considerations"></a>注意事項
 
 - 必須了解如何使用容器協調器。 這會不會是個問題，取決於您的 DevOps 小組技能。  
 - 容器服務在 IaaS 環境中執行。 它會在專用 VNet 內佈建 VM 叢集。 
@@ -180,7 +180,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 
 有數種方式來實作雲端服務角色中的背景工作：
 
-* 在角色中建立 **RoleEntryPoint** 類別的實作，並使用其方法來執行背景工作。 這些工作會在 WaIISHost.exe 的內容中執行。 它們可以使用 **CloudConfigurationManager** 類別的 **GetSetting** 方法來載入組態設定。 如需詳細資訊，請參閱 [生命週期 (雲端服務)](#lifecycle-cloud-services)。
+* 在角色中建立 **RoleEntryPoint** 類別的實作，並使用其方法來執行背景工作。 這些工作會在 WaIISHost.exe 的內容中執行。 它們可以使用 **CloudConfigurationManager** 類別的 **GetSetting** 方法來載入組態設定。 如需詳細資訊，請參閱[生命週期](#lifecycle)。
 * 應用程式啟動時，使用啟動工作來執行背景工作。 若要強制工作繼續在背景中執行，請將 **taskType** 屬性設為 **background** (如果不這麼做，應用程式啟動處理序將會停止並等待工作完成)。 如需詳細資訊，請參閱 [Run startup tasks in Azure (在 Azure 中執行啟動工作)](/azure/cloud-services/cloud-services-startup-tasks)。
 * 您可以使用 WebJobs SDK，實作初始為啟動工作的背景工作 (如 Web 工作)。 如需詳細資訊，請參閱 [在 Azure App Service 中建立 .NET WebJob](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started)。
 * 您可以使用啟動工作，安裝執行一或多個背景工作的 Windows 服務。 您必須將 **taskType** 屬性設為 **background**，以便在背景中執行服務。 如需詳細資訊，請參閱 [Run startup tasks in Azure (在 Azure 中執行啟動工作)](/azure/cloud-services/cloud-services-startup-tasks)。
@@ -194,7 +194,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 * 它可讓您實作關注的分離動作。 每種角色類型可以實作一組明確定義和相關的特定工作。 這使得設計和維護程式碼更容易，因為每個角色之間的程式碼和功能會有較少的相依關係。
 * 它有助於隔離機密的程序和資料。 比方說，實作 UI 的 Web 角色不需要存取背景工作角色所管理和控制的資料。 這可以用來加強安全性，尤其是當您使用 [Gatekeeper Pattern (閘道管理員模式)](http://msdn.microsoft.com/library/dn589793.aspx)之類的模式時。  
 
-#### <a name="considerations"></a>考量
+#### <a name="considerations"></a>注意事項
 如果使用雲端服務 Web 和背景工作角色，在選擇部署背景工作的方式和位置時，請考量下列重點：
 
 * 在現有 Web 角色中裝載背景工作，會比為了這些工作而執行不同背景工作角色的成本更低。 不過，如果對處理順序和其他資源產生爭用的話，很可能會影響應用程式的效能和可用性。 使用不同的背景工作角色，可防止長時間執行或耗用大量資源的背景工作影響 Web 角色。
@@ -321,9 +321,8 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 * [執行背景工作 (英文)](http://msdn.microsoft.com/library/ff803365.aspx)
 * [Azure 角色啟動生命週期](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (英文) (部落格文章)
 * [Azure 雲端服務角色生命週期](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (英文) (影片)
-* [什麼是 Azure WebJob SDK](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [在 Azure App Service 中建立 .NET WebJob](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started)
-* [使用 WebJob 執行背景工作](https://docs.microsoft.com/en-us/azure/app-service-web/web-sites-create-web-jobs)
-* [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [如何在雲端服務中啟用診斷](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics)
+* [什麼是 Azure WebJob SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
+* [使用 WebJob 執行背景工作](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
+* [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
+* [如何在雲端服務中啟用診斷](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

@@ -4,11 +4,11 @@ description: "Azure 資源的命名慣例。 如何為虛擬機器、儲存體�
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 5084fc2ba5a18707de1213276111c53203b6cdd7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 20f090c4cc39f96887cd58ffd2a9c7736e77de57
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -37,7 +37,7 @@ ms.lasthandoff: 11/14/2017
 * Product Line (產品線) 是產品或部門所行使之職責的特定名稱。 對於內部服務和應用程式來說，此項目通常是選用的。 不過，如果是需要能夠輕易區別和辨識 (例如為了清楚區別帳單記錄) 的公開服務，則強烈建議使用此項目。
 * Environment (環境) 是描述應用程式或服務之部署生命週期的名稱，例如開發、品管或生產。
 
-| 公司 | 部門 | 產品線或服務 | Environment | 完整名稱 |
+| 公司 | 部門 | 產品線或服務 | 環境 | 完整名稱 |
 | --- | --- | --- | --- | --- |
 | Contoso |SocialGaming |AwesomeService |Production |Contoso SocialGaming AwesomeService Production |
 | Contoso |SocialGaming |AwesomeService |Dev |Contoso SocialGaming AwesomeService Dev |
@@ -57,9 +57,9 @@ ms.lasthandoff: 11/14/2017
 
 詞綴指的是可說明特定資源的各個層面。 下列表格顯示一些常用範例。
 
-| 層面 | 範例 | 注意事項 |
+| 層面 | 範例 | 注意 |
 | --- | --- | --- |
-| Environment |開發、生產、品管 |識別資源的環境 |
+| 環境 |開發、生產、品管 |識別資源的環境 |
 | 位置 |uw (美國西部)、ue (美國東部) |識別資源所要部署到的區域 |
 | 執行個體 |01、02 |適用於有多個具名執行個體 (Web 伺服器等) 的資源。 |
 | 產品或服務 |服務進行分析 |識別資源可支援的產品、應用程式或服務 |
@@ -73,38 +73,53 @@ ms.lasthandoff: 11/14/2017
 
 一般來說，要避免任何特殊字元 (`-` 或 `_`) 作為任何名稱的第一個或最後一個字元。 這些字元會導致大部分驗證規則失敗。
 
-| 類別 | 服務或實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 資源群組 |資源群組 |全域 |1-64 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
-| 資源群組 |可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
-| 一般 |Tag |相關聯的實體 |512 (名稱)、256 (值) |不區分大小寫 |英數字元 |`"key" : "value"` |`"department" : "Central IT"` |
-| 計算 |虛擬機器 |資源群組 |1-15 (Windows)、1-64 (Linux) |不區分大小寫 |英數字元、底線和連字號 |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
-| 計算 |函式應用程式 | 全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<name>-func` |`calcprofit-func` |
-| 儲存體 |儲存體帳戶名稱 (資料) |全域 |3-24 |小寫 |英數字元 |`<globally unique name><number>` (使用函式來計算命名的儲存體帳戶的唯一 GUID) |`profxdata001` |
-| 儲存體 |儲存體帳戶名稱 (磁碟) |全域 |3-24 |小寫 |英數字元 |`<vm name without dashes>st<number>` |`profxsql001st0` |
-| 儲存體 | 容器名稱 |儲存體帳戶 |3-63 |小寫 |英數字元和破折號 |`<context>` |`logs` |
-| 儲存體 |Blob 名稱 | 容器 |1-1024 |區分大小寫 |任何 URL 字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| 儲存體 |Queue name |儲存體帳戶 |3-63 |小寫 |英數字元和破折號 |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
-| 儲存體 |資料表名稱 | 儲存體帳戶 |3-63 |不區分大小寫 |英數字元 |`<service short name><context>` |`awesomeservicelogs` |
-| 儲存體 |檔案名稱 | 儲存體帳戶 |3-63 |小寫 | 英數字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| 儲存體 |資料湖存放區 | 全域 |3-24 |小寫 | 英數字元 |`<name>-dtl` |`telemetry-dtl` |
-| 網路 |虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-vnet` |`profx-vnet` |
-| 網路 |子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、底線、破折號和句點 |`<descriptive context>` |`web` |
-| 網路 |網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-| 網路 |網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-| 網路 |網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`sql-allow` |
-| 網路 |公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
-| 網路 |負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service or role>-lb` |`profx-lb` |
-| 網路 |負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`http` |
-| 網路 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service or role>-agw` |`profx-agw` |
-| 網路 |流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、破折號、句點 |`<descriptive context>` |`app1` |
+### <a name="general"></a>一般
+
+| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|資源群組 |訂用帳戶 |1-90 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
+|Tag |相關聯的實體 |512 (名稱)、256 (值) |不區分大小寫 |英數字元 |`"key" : "value"` |`"department" : "Central IT"` |
+
+### <a name="compute"></a>計算
+
+| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|虛擬機器 |資源群組 |1-15 (Windows)、1-64 (Linux) |不區分大小寫 |英數字元、底線和連字號 |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
+|函式應用程式 | 全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<name>-func` |`calcprofit-func` |
 
 > [!NOTE]
 > Azure 中的虛擬機器有兩個不同的名稱：虛擬機器名稱和主機名稱。 當您在入口網站中建立 VM，主機名稱和虛擬機器的資源名稱會使用相同的名稱。 上述限制適用於主機名稱。 實際資源名稱最多可以有 64 個字元。
 
-Microsoft 經常在 Azure 中加入新的服務。 上表包括網路計算和儲存體中最常使用的服務。 至於其他服務，請考慮適當的 3 個字母後置詞。
+### <a name="storage"></a>儲存體
 
-## <a name="organizing-resources-with-tags"></a>使用標記組織資源
+| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|儲存體帳戶名稱 (資料) |全域 |3-24 |小寫 |英數字元 |`<globally unique name><number>` (使用函式來計算命名的儲存體帳戶的唯一 GUID) |`profxdata001` |
+|儲存體帳戶名稱 (磁碟) |全域 |3-24 |小寫 |英數字元 |`<vm name without dashes>st<number>` |`profxsql001st0` |
+| 容器名稱 |儲存體帳戶 |3-63 |小寫 |英數字元和破折號 |`<context>` |`logs` |
+|Blob 名稱 | 容器 |1-1024 |區分大小寫 |任何 URL 字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Queue name |儲存體帳戶 |3-63 |小寫 |英數字元和破折號 |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
+|資料表名稱 | 儲存體帳戶 |3-63 |不區分大小寫 |英數字元 |`<service short name><context>` |`awesomeservicelogs` |
+|檔案名稱 | 儲存體帳戶 |3-63 |小寫 | 英數字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Data Lake Store | 全域 |3-24 |小寫 | 英數字元 |`<name>-dls` |`telemetry-dls` |
+
+### <a name="networking"></a>網路
+
+| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-vnet` |`profx-vnet` |
+|子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、底線、破折號和句點 |`<descriptive context>` |`web` |
+|網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`sql-allow` |
+|公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
+|負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service or role>-lb` |`profx-lb` |
+|負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`http` |
+|Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service or role>-agw` |`profx-agw` |
+|流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、破折號、句點 |`<descriptive context>` |`app1` |
+
+## <a name="organize-resources-with-tags"></a>具有標籤的組織資源
 
 Azure Resource Manager 支援使用任意文字字串來標記實體，以識別內容並簡化自動化作業。  例如，`"sqlVersion: "sql2014ee"` 標記可識別執行 SQL Server 2014 Enterprise Edition 之部署中的 VM，以便對 VM 執行自動化指令碼。  標記應該用來與所選擇的命名慣例一起擴充及增強內容。
 
@@ -126,13 +141,13 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 
 部分常見的標記方法範例如下：
 
-| 標記名稱 | 金鑰 | 範例 | 註解 |
+| 標記名稱 | Key | 範例 | 註解 |
 | --- | --- | --- | --- |
 | 帳單收件者/內部退款識別碼 |billTo |`IT-Chargeback-1234` |內部的 I/O 或計費代碼 |
 | 操作員或直接負責人 (DRI) |managedBy |`joe@contoso.com` |別名或電子郵件地址 |
-| 專案名稱 |project-name |`myproject` |專案或產品線的名稱 |
-| 專案版本 |project-version |`3.4` |專案或產品線的版本 |
-| Environment |Environment |`<Production, Staging, QA >` |環境識別碼 |
+| 專案名稱 |projectName |`myproject` |專案或產品線的名稱 |
+| 專案版本 |projectVersion |`3.4` |專案或產品線的版本 |
+| 環境 |Environment |`<Production, Staging, QA >` |環境識別碼 |
 | 層 |層 |`Front End, Back End, Data` |層或角色/內容識別 |
 | 資料設定檔 |dataProfile |`Public, Confidential, Restricted, Internal` |資源中所儲存資料的敏感性 |
 

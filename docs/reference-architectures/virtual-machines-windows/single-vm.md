@@ -2,15 +2,15 @@
 title: "在 Azure 上執行 Windows VM"
 description: "如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。"
 author: telmosampaio
-ms.date: 11/16/2017
+ms.date: 12/12/2017
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: b519cb96c124a91d95fb5965f34b86026c95805c
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 71eeebae1f557ecbb6f33c4a7e37a278204f3dcd
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上執行 Windows VM
 
@@ -24,15 +24,16 @@ ms.lasthandoff: 11/17/2017
 
 佈建 Azure VM 需要額外的元件，例如計算、網路功能和儲存體資源。
 
-* **資源群組。** [*資源群組*][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
+* **資源群組。** [資源群組][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
 * **VM**。 您可以從已發佈的映像清單、自訂的受控映像或您上傳至 Azure Blob 儲存體的虛擬硬碟 (VHD) 檔案佈建 VM。
 * **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD，因此即使主機電腦已關閉仍會保存下來。
 * **暫存磁碟。** VM 是使用暫存磁碟 (Windows 上的 `D:` 磁碟機) 來建立。 此磁碟會儲存在主機電腦的實體磁碟機上。 它「不會」儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中遭到刪除。 僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。
 * **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。 資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
 * **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
-* **公用 IP 位址。** 必須要有公用 IP 位址才能與 VM &mdash; 進行通訊，例如透過遠端桌面 (RDP)。
-* **網路介面 (NIC)**。 指派的 NIC 可讓 VM 與虛擬網路通訊。
-* **網路安全性群組 (NSG)**。 [NSGs][nsg] 可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
+* **公用 IP 位址。** 必須要有公用 IP 位址才能與 VM &mdash; 進行通訊，例如透過遠端桌面 (RDP)。  
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。  
+* **網路介面 (NIC)**。 指派的 NIC 可讓 VM 與虛擬網路通訊。  
+* **網路安全性群組 (NSG)**。 [網路安全性群組][nsg]可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
 * **診斷。** 診斷記錄對於管理和針對 VM 進行疑難排解十分重要。
 
 ## <a name="recommendations"></a>建議
@@ -86,7 +87,7 @@ az vm list-sizes --location <location>
 
 ## <a name="availability-considerations"></a>可用性考量
 
-若要擁有較高的可用性，請在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定][vm-sla] (SLA)。
+若要擁有較高的可用性，請在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定 (SLA)][vm-sla]。
 
 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。 您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
@@ -132,7 +133,7 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
   * 執行最新版 Windows Server 2016 Datacenter Edition 的 VM。
   * 可將兩個資料磁碟格式化的範例自訂指令碼擴充功能，以及部署 IIS 的 PowerShell DSC 指令碼。
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
@@ -180,6 +181,7 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azbbv2]: https://github.com/mspnp/template-building-blocks
 [azure-cli-2]: /cli/azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [azure-storage]: /azure/storage/storage-introduction
 [blob-snapshot]: /azure/storage/storage-blob-snapshots
 [blob-storage]: /azure/storage/storage-introduction

@@ -4,11 +4,11 @@ description: "用於設定重試機制的服務特定指引。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6aba60dc3a60e96e59e2034d4a1e380e0f1c996a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0a416bc6297c7406de92fbc695b62c39c637de8f
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -59,7 +59,7 @@ TableRequestOptions interactiveRequestOption = new TableRequestOptions()
   // For Read-access geo-redundant storage, use PrimaryThenSecondary.
   // Otherwise set this to PrimaryOnly.
   LocationMode = LocationMode.PrimaryThenSecondary,
-  // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+  // Maximum execution time based on the business use case. 
   MaximumExecutionTime = TimeSpan.FromSeconds(2)
 };
 ```
@@ -94,13 +94,32 @@ var stats = await client.GetServiceStatsAsync(interactiveRequestOption, operatio
 
 除了指出錯誤是否適合重試外，擴充的重試原則會傳回 **RetryContext** 以表示重試次數、最後一個要求的結果，以及下一個重試會在主要或次要位置發生 (請參閱下表以取得詳細資料)。 **RetryContext** 物年的屬性可用於判定是否與何時嘗試重試。 如需詳細資料，請參閱 [IExtendedRetryPolicy.Evaluate Method](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx)。
 
-下表顯示內建重試原則的的預設設定。
+下表顯示內建重試原則的預設設定。
 
-| **內容** | **設定** | **預設值** | **意義** |
-| --- | --- | --- | --- |
-| 資料表 / Blob / 檔案<br />QueueRequestOptions |MaximumExecutionTime<br /><br />ServerTimeout<br /><br /><br /><br /><br />LocationMode<br /><br /><br /><br /><br /><br /><br />RetryPolicy |120 秒<br /><br />無<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />ExponentialPolicy |要求的最大執行時間，包含所有可能的重試嘗試。<br />要求的伺服器逾時間隔 (值四捨五入至秒)。 如果未指定，則會對伺服器的所有要求使用預設值。 通常，最好的選擇是略過此設定，以便使用伺服器預設值。<br />如果使用讀取權限異地備援儲存體 (RA-GRS) 複寫選項建立儲存體帳戶，您可以使用位置模式來指出哪個位置應接收要求。 例如，如果指定 **PrimaryThenSecondary**，則一律先將要求傳送至主要位置。 如果要求失敗，就會傳送到次要位置。<br />如需每個選項的詳細資訊，請參閱下列內容。 |
-| 指數原則 |maxAttempt<br />deltaBackoff<br /><br /><br />MinBackoff<br /><br />MaxBackoff |3<br />4 秒<br /><br /><br />3 秒<br /><br />120 秒 |重試嘗試的次數。<br />重試之間的輪詢間隔。 此時間範圍的倍數 (包含隨機元素)，將用於後續的重試次數。<br />新增從 deltaBackoff 計算的所有重試間隔。 無法變更此值。<br />如果計算的重試間隔大於 MaxBackoff，則會使用 MaxBackoff。 無法變更此值。 |
-| 線性原則 |maxAttempt<br />deltaBackoff |3<br />30 秒 |重試嘗試的次數。<br />重試之間的輪詢間隔。 |
+**要求選項**
+
+| **設定** | **預設值** | **意義** |
+| --- | --- | --- |
+| MaximumExecutionTime | 120 秒 | 要求的最大執行時間，包含所有可能的重試嘗試。 |
+| ServerTimeout | None | 要求的伺服器逾時間隔 (值四捨五入至秒)。 如果未指定，則會對伺服器的所有要求使用預設值。 通常，最好的選擇是略過此設定，以便使用伺服器預設值。 | 
+| LocationMode | None | 如果使用讀取權限異地備援儲存體 (RA-GRS) 複寫選項建立儲存體帳戶，您可以使用位置模式來指出哪個位置應接收要求。 例如，如果指定 **PrimaryThenSecondary**，則一律先將要求傳送至主要位置。 如果要求失敗，就會傳送到次要位置。 |
+| RetryPolicy | ExponentialPolicy | 如需每個選項的詳細資訊，請參閱下列內容。 |
+
+**指數原則** 
+
+| **設定** | **預設值** | **意義** |
+| --- | --- | --- |
+| maxAttempt | 3 | 重試嘗試的次數。 |
+| deltaBackoff | 4 秒 | 重試之間的輪詢間隔。 此時間範圍的倍數 (包含隨機元素)，將用於後續的重試次數。 |
+| MinBackoff | 3 秒 | 新增從 deltaBackoff 計算的所有重試間隔。 無法變更此值。
+| MaxBackoff | 120 秒 | 如果計算的重試間隔大於 MaxBackoff，則會使用 MaxBackoff。 無法變更此值。 |
+
+**線性原則**
+
+| **設定** | **預設值** | **意義** |
+| --- | --- | --- |
+| maxAttempt | 3 | 重試嘗試的次數。 |
+| deltaBackoff | 30 秒 | 重試之間的輪詢間隔。 |
 
 ### <a name="retry-usage-guidance"></a>重試使用指引
 當使用儲存體用戶端 API 存取 Azure 儲存體服務時，請考量下列指引：
@@ -149,7 +168,7 @@ namespace RetryCodeSamples
                 // For Read-access geo-redundant storage, use PrimaryThenSecondary.
                 // Otherwise set this to PrimaryOnly.
                 LocationMode = LocationMode.PrimaryThenSecondary,
-                // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+                // Maximum execution time based on the business use case. 
                 MaximumExecutionTime = TimeSpan.FromSeconds(2)
             };
 
@@ -270,7 +289,14 @@ public class BloggingContextConfiguration : DbConfiguration
 
 下表顯示使用 EF6 時內建重試原則的預設設定。
 
-![重試指引表格](./images/retry-service-specific/RetryServiceSpecificGuidanceTable4.png)
+| 設定 | 預設值 | 意義 |
+|---------|---------------|---------|
+| 原則 | 指數 | 指數輪詢。 |
+| MaxRetryCount | 5 | 重試次數上限。 |
+| MaxDelay | 30 秒 | 重試之間的延遲上限。 此值不會影響延遲序列的計算方式。 它只會定義上限。 |
+| DefaultCoefficient | 1 秒 | 指數輪詢計算係數。 無法變更此值。 |
+| DefaultRandomFactor | 1.1 | 乘數，用來對每個項目新增隨機延遲。 無法變更此值。 |
+| DefaultExponentialBase | 2 | 乘數，用來計算下一個延遲。 無法變更此值。 |
 
 ### <a name="retry-usage-guidance"></a>重試使用指引
 使用 EF6 存取 SQL Database 時，請考慮下列指引：
@@ -510,7 +536,15 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 無法在個別的作業層級設定重試原則。 它適用於傳訊用戶端的所有作業。
 下表顯示內建重試原則的預設設定。
 
-![重試指引表格](./images/retry-service-specific/RetryServiceSpecificGuidanceTable7.png)
+| 設定 | 預設值 | 意義 |
+|---------|---------------|---------|
+| 原則 | 指數 | 指數輪詢。 |
+| MinimalBackoff | 0 | 輪詢間隔最小值。 系統會將此值新增至透過 deltaBackoff 所計算出的重試間隔。 |
+| MaximumBackoff | 30 秒 | 輪詢間隔最大值。 如果計算的重試間隔大於 MaxBackoff，則會使用 MaximumBackoff。 |
+| DeltaBackoff | 3 秒 | 重試之間的輪詢間隔。 此時間範圍的倍數將用於後續的重試次數。 |
+| TimeBuffer | 5 秒 | 與重試相關聯的終止時間緩衝區。 如果剩餘時間小於 TimeBuffer，則會放棄重試次數。 |
+| MaxRetryCount | 10 | 重試次數上限。 |
+| ServerBusyBaseSleepTime | 10 秒 | 如果上次發生的例外狀況為 **ServerBusyException**，系統會將這個值新增至計算的重試間隔。 無法變更此值。 |
 
 ### <a name="retry-usage-guidance"></a>重試使用指引
 使用服務匯流排時請考慮下列指引：
@@ -520,7 +554,12 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 
 請考慮從重試作業的下列設定開始。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
 
-![重試指引表格](./images/retry-service-specific/RetryServiceSpecificGuidanceTable8.png)
+| Context | 延遲最大值範例 | 重試原則 | 設定 | 運作方式 |
+|---------|---------|---------|---------|---------|
+| 互動式、UI 或前景 | 2 秒*  | 指數 | MinimumBackoff = 0 <br/> MaximumBackoff = 30 秒。 <br/> DeltaBackoff = 300 毫秒。 <br/> TimeBuffer = 300 毫秒。 <br/> MaxRetryCount = 2 | 嘗試 1：延遲 0 秒。 <br/> 嘗試 2：延遲 ~300 毫秒。 <br/> 嘗試 3：延遲 ~900 毫秒。 |
+| 背景或批次 | 30 秒 | 指數 | MinimumBackoff = 1 <br/> MaximumBackoff = 30 秒。 <br/> DeltaBackoff = 1.75 秒。 <br/> TimeBuffer = 5 秒。 <br/> MaxRetryCount = 3 | 嘗試 1：延遲 ~1 秒。 <br/> 嘗試 2：延遲 ~3 秒。 <br/> 嘗試 3：延遲 ~6 毫秒。 <br/> 嘗試 4：延遲 ~13 毫秒。 |
+
+\* 不包括系統收到伺服器忙碌回應時所新增的額外延遲。
 
 ### <a name="telemetry"></a>遙測
 服務匯流排使用 **EventSource**，將重試記錄成 ETW 事件。 您必須將 **EventListener** 附加到事件來源，以擷取事件並在效能檢視器中檢視事件。 您可以使用 [語意記錄應用程式區塊](http://msdn.microsoft.com/library/dn775006.aspx) 來達成。 重試事件的格式如下：
@@ -821,7 +860,7 @@ namespace RetryCodeSamples
 
 ## <a name="documentdb-api-retry-guidelines"></a>DocumentDB API 重試指引
 
-Cosmos DB 是完全受管理的多模型資料庫，由於使用 [DocumentDB API][documentdb-api]，可支援無結構描述的 JSON 資料。 它提供可設定且可靠的效能、原生的 JavaScript 交易處理，而且是針對可彈性延展的雲端建置而成。
+Cosmos DB 是完全受控的多模型資料庫，由於使用 [DocumentDB API][documentdb-api]，可支援無結構描述的 JSON 資料。 它提供可設定且可靠的效能、原生的 JavaScript 交易處理，而且是針對可彈性延展的雲端建置而成。
 
 ### <a name="retry-mechanism"></a>重試機制
 `DocumentClient` 類別會自動重試失敗的嘗試。 若要設定重試次數和等待時間上限，請設定 [ConnectionPolicy.RetryOptions]。 用戶端引發的例外狀況可能超出重試原則，或不是暫時性的錯誤。
@@ -967,7 +1006,7 @@ client.RetryPolicy = RetryPolicy.Default;
 ### <a name="retry-strategies"></a>重試策略
 以下為一般類型的重試策略間隔：
 
-* **指數**：此重試原則會執行指定的重試次數，並使用隨機的指數退避方法來決定重試之間的間隔。 例如：
+* **指數**：此重試原則會執行指定的重試次數，並使用隨機的指數退避方法來決定重試之間的間隔。 例如︰
 
         var random = new Random();
 
@@ -977,11 +1016,11 @@ client.RetryPolicy = RetryPolicy.Default;
         var interval = (int)Math.Min(checked(this.minBackoff.TotalMilliseconds + delta),
                        this.maxBackoff.TotalMilliseconds);
         retryInterval = TimeSpan.FromMilliseconds(interval);
-* **累加**：此重試策略具有指定的重試嘗試次數，並在重試之間使用累加時間間隔。 例如：
+* **累加**：此重試策略具有指定的重試嘗試次數，並在重試之間使用累加時間間隔。 例如︰
 
         retryInterval = TimeSpan.FromMilliseconds(this.initialInterval.TotalMilliseconds +
                        (this.increment.TotalMilliseconds * currentRetryCount));
-* **線性重試**：此重試原則會執行指定的重試次數，並在重試之間使用指定的固定時間間隔。 例如：
+* **線性重試**：此重試原則會執行指定的重試次數，並在重試之間使用指定的固定時間間隔。 例如︰
 
         retryInterval = this.deltaBackoff;
 

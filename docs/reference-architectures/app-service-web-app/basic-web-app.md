@@ -2,13 +2,13 @@
 title: "基本 Web 應用程式"
 description: "在 Microsoft Azure 中執行的基本 Web 應用程式建議使用架構。"
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: b7475c4087a184bb7608d0c45ffecee912c920d7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="basic-web-application"></a>基本 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -29,15 +29,25 @@ ms.lasthandoff: 11/14/2017
 此架構具有下列元件：
 
 * **資源群組**。 [資源群組](/azure/azure-resource-manager/resource-group-overview)是 Azure 資源的邏輯容器。
-* **App Service 應用程式**。 [Azure App Service][app-service] 是完全受管理的平台，用於建立及部署雲端應用程式。     
-* **App Service 方案**。 [App Service 方案][app-service-plans]提供受管理的虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
+
+* **App Service 應用程式**。 
+            [Azure App Service][app-service] 是完全受控的平台，用於建立及部署雲端應用程式。     
+
+* **App Service 方案**。 
+            [App Service 方案][app-service-plans]提供受控虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
 
 * **部署位置**。  [部署位置][deployment-slots]可讓您預先準備好部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
 
-* **IP 位址**。 App Service 應用程式具有公用 IP 位址和網域名稱。 網域名稱是 `azurewebsites.net` 的子網域，例如 `contoso.azurewebsites.net`。 若要使用自訂網域名稱，例如 `contoso.com`，請建立網域名稱服務 (DNS) 記錄，將自訂網域名稱對應至 IP 位址。 如需詳細資訊，請參閱 [在 Azure App Service 中設定自訂網域名稱][custom-domain-name]。
+* **IP 位址**。 App Service 應用程式具有公用 IP 位址和網域名稱。 網域名稱是 `azurewebsites.net` 的子網域，例如 `contoso.azurewebsites.net`。  
+
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。 若要使用自訂網域名稱 (例如 `contoso.com`)，請建立 DNS 記錄，將自訂網域名稱對應至 IP 位址。 如需詳細資訊，請參閱 [在 Azure App Service 中設定自訂網域名稱][custom-domain-name]。  
+
 * **Azure SQL Database**。 [SQL Database][sql-db] 是雲端中的關聯式資料庫即服務。
+
 * **邏輯伺服器**。 在 Azure SQL Database 中，邏輯伺服器會裝載您的資料庫。 您可以為每部邏輯伺服器建立多個資料庫。
+
 * **Azure 儲存體**。 建立包含 Blob 容器的 Azure 儲存體帳戶，以儲存診斷記錄。
+
 * **Azure Active Directory** (Azure AD)。 使用 Azure AD 或其他識別提供者進行驗證。
 
 ## <a name="recommendations"></a>建議
@@ -112,7 +122,7 @@ App Service 提供[備份和還原][web-app-backup]應用程式檔案的功能�
 
 如需詳細資訊，請參閱 [Azure Resource Manager 概觀](/azure/azure-resource-manager/resource-group-overview)。
 
-### <a name="deployment"></a>部署
+### <a name="deployment"></a>Deployment
 部署包含兩個步驟：
 
 1. 佈建 Azure 資源。 對於此步驟，我們建議您使用 [Azure Resoure Manager 範本][arm-template]。 範本可讓您輕鬆地透過 PowerShell 或 Azure 命令列介面 (CLI) 進行自動部署。
@@ -215,6 +225,7 @@ New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <r
 [app-service-security]: /azure/app-service-web/web-sites-security
 [app-settings]: /azure/app-service-web/web-sites-configure
 [arm-template]: /azure/azure-resource-manager/resource-group-overview#resource-groups
+[azure-dns]: /azure/dns/dns-overview
 [custom-domain-name]: /azure/app-service-web/web-sites-custom-domain-name
 [deploy]: /azure/app-service-web/web-sites-deploy
 [deploy-arm-template]: /azure/resource-group-template-deploy
@@ -223,7 +234,7 @@ New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <r
 [kudu]: https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/
 [monitoring-guidance]: ../../best-practices/monitoring.md
 [new-relic]: http://newrelic.com/
-[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/app-service-web-app/basic-web-app/Paas-Basic/Templates
+[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/managed-web-app/basic-web-app/Paas-Basic/Templates
 [perf-analysis]: https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [resource-group]: /azure/azure-resource-manager/resource-group-overview

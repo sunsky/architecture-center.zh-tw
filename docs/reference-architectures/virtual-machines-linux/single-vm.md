@@ -2,15 +2,15 @@
 title: "在 Azure 上執行 Linux VM"
 description: "如何在 Azure 上執行 Linux VM，並注意延展性、恢復能力、管理性和安全性。"
 author: telmosampaio
-ms.date: 11/16/2017
+ms.date: 12/12/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: f538958be934ad2e9ea8d53791814b1e963c1a20
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: a51e0d7ed4e35c5331241cf78d1715e63f9b4d86
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="run-a-linux-vm-on-azure"></a>在 Azure 上執行 Linux VM
 
@@ -24,15 +24,16 @@ ms.lasthandoff: 11/17/2017
 
 佈建 Azure VM 需要額外的元件，例如計算、網路功能和儲存體資源。
 
-* **資源群組。** [*資源群組*][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
+* **資源群組。** [資源群組][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
 * **VM**。 您可以從已發佈的映像清單、自訂的受控映像或您上傳至 Azure Blob 儲存體的虛擬硬碟 (VHD) 檔案佈建 VM。 Azure 支援執行各種受歡迎的 Linux 散發套件，包括 CentOS、Debian、Red Hat Enterprise、Ubuntu 和 FreeBSD。 如需詳細資訊，請參閱 [Azure 和 Linux][azure-linux]。
 * **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD，因此即使主機電腦已關閉仍會保存下來。 對於 Linux VM，作業系統磁碟是 `/dev/sda1`。
 * **暫存磁碟。** VM 是使用暫存磁碟來建立。 此磁碟會儲存在主機電腦的實體磁碟機上。 它「不會」儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中遭到刪除。 僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。 對於 Linux VM，暫存磁碟為 `/dev/sdb1` 且掛接於 `/mnt/resource` 或 `/mnt`。
 * **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。 資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
 * **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
 * **公用 IP 位址。** 需要有公用 IP 位址才能與 VM 通訊 &mdash; 例如透過 SSH。
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。  
 * **網路介面 (NIC)**。 指派的 NIC 可讓 VM 與虛擬網路通訊。
-* **網路安全性群組 (NSG)**。 [NSGs][nsg] 可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
+* **網路安全性群組 (NSG)**。 [網路安全性群組][nsg]可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
 * **診斷。** 診斷記錄對於管理和針對 VM 進行疑難排解十分重要。
 
 ## <a name="recommendations"></a>建議
@@ -65,7 +66,7 @@ az vm list-sizes --location <location>
 
 新增一或多個資料磁碟。 當您建立 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 如果您未使用受控磁碟且具有大量的資料磁碟，請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
 
-在 Linux 殼層中，資料磁碟會顯示為`/dev/sdc``/dev/sdd` 等等。 您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。 若要使用資料磁碟，請建立磁碟分割和檔案系統，並掛接該磁碟。 例如：
+在 Linux 殼層中，資料磁碟會顯示為`/dev/sdc``/dev/sdd` 等等。 您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。 若要使用資料磁碟，請建立磁碟分割和檔案系統，並掛接該磁碟。 例如︰
 
 ```bat
 # Create a partition.
@@ -90,7 +91,7 @@ sudo mount /dev/sdc1 /data1
 此公用 IP 位址可以是動態或靜態。 預設值為動態。
 
 * 如果您需要一個不會變更的固定 IP 位址 &mdash;(例如，如果您需要在 DNS 中建立一個 A 記錄，或需要將 IP 位址加入安全清單)，請保留一個[靜態 IP 位址][static-ip]。
-* 您也可以建立 IP 位址的完整網域名稱 (FQDN)。 然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 記錄][cname-record]。 如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。
+* 您也可以建立 IP 位址的完整網域名稱 (FQDN)。 然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 記錄][cname-record]。 如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。 您可以使用 [Azure DNS][azure-dns] 或另一個 DNS 服務。
 
 所有 NSG 都包含一組[預設規則][nsg-default-rules]，包括一個封鎖所有網際網路輸入流量的規則。 預設的規則不能刪除，但其他規則可以覆寫它們。 若要啟用網際網路流量，請建立允許輸入流量輸入特定連接埠的規則 &mdash; 例如，允許連接埠 80 用於 HTTP。
 
@@ -102,7 +103,7 @@ sudo mount /dev/sdc1 /data1
 
 ## <a name="availability-considerations"></a>可用性考量
 
-若要擁有較高的可用性，請在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定][vm-sla] (SLA)。
+若要擁有較高的可用性，請在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定 (SLA)][vm-sla]。
 
 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。 您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
@@ -150,7 +151,7 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
   * 執行最新版 Ubuntu 16.04.3 LTS 的 VM。
   * 範例自訂指令碼擴充功能，會將 Apache HTTP 伺服器部署到 Ubuntu VM，並將這兩個資料磁碟格式化。
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
@@ -207,6 +208,7 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
 [data-disk]: /azure/virtual-machines/virtual-machines-linux-about-disks-vhds
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
+[azure-dns]: /azure/dns/dns-overview
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
