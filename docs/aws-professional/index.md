@@ -5,11 +5,11 @@ keywords: "AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, 
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: ac96110e3fe69b4bb69714e18fd0f193208bc244
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -103,36 +103,45 @@ Azure 提供數種方式來管理您的資源：
 
 ## <a name="regions-and-zones-high-availability"></a>地區和區域 (高可用性)
 
-在 AWS 中，可用性集中於「可用性區域」的概念。 在 Azure 中，建置高可用性解決方案會牽涉容錯網域和可用性設定組。 配對的地區會提供額外的災害復原功能。
+失敗的影響範圍各不相同。 有些硬體失敗 (例如失敗的磁碟) 可能會影響單一主機電腦。 失敗的網路交換器則可能影響整個伺服器機架。 較不常見的失敗是整個資料中心中斷，例如資料中心斷電。 至於整個區域都變得無法使用的情況則很罕見。
 
-### <a name="availability-zones-azure-fault-domains-and-availability-sets"></a>可用性區域、容錯網域和可用性設定組
+其中一個讓應用程式具有復原能力的主要方法是透過備援。 但您必須在設計應用程式時規劃此備援措施。 此外，您需要的備援層級取決於您的業務需求，並非每個應用程式都需要跨區域備援，以防範區域性中斷。 一般情況下，您需要在更好的備援性和可靠性與更高的成本和複雜性之間做出取捨。  
 
-在 AWS 中，地區會分割成兩個或多個可用性區域。 可用性區域會與地理區域中實際隔離的資料中心相對應。
-如果您將部署應用程式伺服器來分隔可用性區域，影響一個區域的硬體或連線中斷並不會影響其他區域中裝載的任何伺服器。
+在 AWS 中，地區會分割成兩個或多個可用性區域。 可用性區域會與地理區域中實際隔離的資料中心相對應。 Azure 提供許多功能，可讓應用程式在每個失敗階段都進行備援，包括**可用性設定組**、**可用性區域**和**配對區域**。 
 
-在 Azure 中，[容錯網域](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/)會定義共用實體電源來源和網路交換器的 VM 群組。
-您要使用[可用性設定組](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-manage-availability/)將多個容錯網域分散到 VM。 當執行個體指派給相同的可用性設定組時，Azure 會平均地跨數個容錯網域加以散發。 如果一個容錯網域中發生電源故障或網路中斷，至少有一些集合的 VM 會在容錯網域中，且不受中斷影響。
+![](../resiliency/images/redundancy.svg)
 
-![AWS 可用性區域相較於 Azure 容錯網域和可用性設定組](./images/zone-fault-domains.png "AWS 可用性區域相較於 Azure 容錯網域和可用性設定組")
-<br/>*AWS 可用性區域相較於 Azure 容錯網域和可用性設定組*
-<br/><br/>
+下表摘要說明每個選項。
 
-應該依您應用程式中執行個體的角色來組織可用性設定組，以確保每個角色的一個執行個體皆可運作。 例如，在標準三層式 web 應用程式中，您需要針對前端、應用程式及資料執行個體建立個別的可用性設定組。
+| &nbsp; | 可用性設定組 | 可用性區域 | 配對的區域 |
+|--------|------------------|-------------------|---------------|
+| 失敗原因 | 機架 | 資料中心 | 區域 |
+| 要求路由 | 負載平衡器 | 跨區域負載平衡器 | 流量管理員 |
+| 網路延遲 | 非常低 | 低 | 中到高 |
+| 虛擬網路  | VNet | VNet | 跨區域 VNet 對等互連 (預覽) |
+
+### <a name="availability-sets"></a>可用性設定組 
+
+若要防範局部硬體失敗 (例如，磁碟或網路交換器失敗)，請在可用性設定組中部署兩個以上的 VM。 可用性設定組包含兩個以上的「容錯網域」，這些網域會共用電力來源和網路交換器。 可用性設定組中的 VM 會分散於這些容錯網域中，因此如果某個硬體失敗影響其中一個容錯網域，網路流量仍可路由傳送至其他容錯網域中的 VM。 如需可用性設定組的詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性](/azure/virtual-machines/windows/manage-availability)。
+
+將 VM 執行個體新增至可用性設定組時，也會指派[更新網域](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/)給它們。 更新網域是 VM 群組，會同時針對預定進行的維修作業事件而設定。 將 VM 分散到多個更新網域，以確保計劃的更新和修補事件在任何指定時間只會影響這些 VM 的子集。
+
+應該依您應用程式中執行個體的角色來組織可用性設定組，以確保每個角色的一個執行個體皆可運作。 例如，在三層 Web 應用程式中，為前端、應用程式和資料層分別建立可用性設定組。
 
 ![每個應用程式角色的 Azure 可用性設定組](./images/three-tier-example.png "每個應用程式角色的可用性設定組")
-<br/>*每個應用程式角色的 Azure 可用性設定組*
-<br/><br/>
 
-將 VM 執行個體新增至可用性設定組時，也會指派[更新網域](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/)給它們。
-更新網域是 VM 群組，會同時針對預定進行的維修作業事件而設定。 將 VM 分散到多個更新網域，以確保計劃的更新和修補事件在任何指定時間只會影響這些 VM 的子集。
+### <a name="availability-zones-preview"></a>可用性區域 (預覽)
+
+[可用性區域](/azure/availability-zones/az-overview)實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。 
 
 ### <a name="paired-regions"></a>配對的區域
 
-在 Azure 中，您要使用[配對地區](https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/)跨兩個預先定義的地理區域支援備援性，以確保即使中斷影響到整個 Azure 地區，您的解決方案仍然可以使用。
+若要協助應用程式防範區域性中斷，您可以將應用程式部署至多個區域，並使用 [Azure 流量管理員][traffic-manager]將網際網路流量分散到不同區域。 每個 Azure 區域都會與另一個區域配對。 這些區域集合在一起就構成了[區域性配對][paired-regions]。 區域性配對會位於相同的地理位置內 (巴西南部除外)，以符合資料常駐地之稅務和執法管轄區的要求。
 
-不同於實體上分隔資料中心但可能會相對在附近地理區域的 AWS 可用性區域，通常會以最少 300 英哩來分隔配對地區。 這是為了確保較大規模的災難只會影響配對中的其中一個地區。 相鄰的配對可以設定為同步處理資料庫和儲存體服務資料，並加以設定以便平台更新一次只會發行至配對中的一個地區。
+不同於實體上分隔資料中心但可能會相對在附近地理區域的可用性區域，通常會以最少 300 英哩來分隔配對地區。 這是為了確保較大規模的災難只會影響配對中的其中一個地區。 相鄰的配對可以設定為同步處理資料庫和儲存體服務資料，並加以設定以便平台更新一次只會發行至配對中的一個地區。
 
 Azure [異地備援儲存體](https://azure.microsoft.com/documentation/articles/storage-redundancy/#geo-redundant-storage)會自動備份至適當的配對區域。 如需其他所有資源，請使用配對區域建立完整備援的解決方案，即表示在兩個區域中建立您解決方案的完整副本。
+
 
 ### <a name="see-also"></a>另請參閱
 
@@ -266,9 +275,9 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 
 在 AWS 中，Route 53 會提供 DNS 名稱管理和 DNS 層級流量路由與容錯移轉服務。 在 Azure 中，這會透過兩個服務進行處理：
 
--   [Azure DNS](https://azure.microsoft.com/documentation/services/dns/) - 提供網域和 DNS 管理。
+-   [Azure DNS](https://azure.microsoft.com/documentation/services/dns/) 提供網域和 DNS 管理。
 
--   [流量管理員](https://azure.microsoft.com/documentation/articles/traffic-manager-overview/) - 提供 DNS 層級流量路由、負載平衡和容錯移轉功能。
+-   [流量管理員][traffic-manager]提供 DNS 層級流量路由、負載平衡和容錯移轉功能。
 
 #### <a name="direct-connect-and-azure-expressroute"></a>Direct Connect 與 Azure ExpressRoute
 
@@ -432,3 +441,9 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 -   [模式與做法：Azure 指導方針](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [免費線上課程：AWS 專家適用的 Microsoft Azure](http://aka.ms/azureforaws)
+
+
+<!-- links -->
+
+[paired-regions]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
+[traffic-manager]: /azure/traffic-manager/
