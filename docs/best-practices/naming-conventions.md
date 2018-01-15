@@ -4,11 +4,11 @@ description: "Azure 資源的命名慣例。 如何為虛擬機器、儲存體�
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 20f090c4cc39f96887cd58ffd2a9c7736e77de57
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 364735dec9658b4d2a9d21330f38c57f6fa694bd
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -109,7 +109,7 @@ ms.lasthandoff: 01/02/2018
 | 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-vnet` |`profx-vnet` |
-|子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、底線、破折號和句點 |`<descriptive context>` |`web` |
+|子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`web` |
 |網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
 |網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、破折號、底線、句點 |`<descriptive context>` |`sql-allow` |

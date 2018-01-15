@@ -6,11 +6,11 @@ ms.date: 11/16/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: n-tier
 pnp.series.prev: single-vm
-ms.openlocfilehash: b1b3c94524d50d05c90b46d26cab54fea8c8061a
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 8f081baa40355b4f02b83c308466df8333d7ad87
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-load-balanced-vms-for-scalability-and-availability"></a>執行負載平衡的 VM 以獲得延展性和可用性
 
@@ -32,6 +32,7 @@ ms.lasthandoff: 11/17/2017
 * **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
 * **Azure Load Balancer**。 [負載平衡器][load-balancer]會將連入網際網路要求散發到 VM 執行個體。 
 * **公用 IP 位址**。 負載平衡器需要公用 IP 位址才能接收網際網路流量。
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 * **VM 擴展集**。 [VM 擴展集][vm-scaleset]是一組用來裝載工作負載且完全相同的 VM。 擴展集允許以手動方式或根據預先定義的規則，自動相應縮小或放大 VM 數目。
 * **可用性設定組**。 [可用性設定組][availability-set]包含 VM，可使 VM 符合較高[服務等級協定 (SLA)][vm-sla] 的資格。 若要套用較高的 SLA，可用性設定組必須至少包含兩個 VM。 可用性設定組會隱含於擴展集中。 如果您在擴展集之外建立 VM，就需要個別建立可用性設定組。
 * **受控磁碟**。 Azure 受控磁碟會管理適用於 VM 磁碟的虛擬硬碟 (VHD) 檔案。 
@@ -82,7 +83,7 @@ ms.lasthandoff: 11/17/2017
 
 若您使用的是非受控的磁碟，請針對每部 VM 建立個別的 Azure 儲存體帳戶來保存虛擬硬碟 (VHD)，以避免達到儲存體帳戶的每秒輸入/輸出作業 [(IOPS) 限制][vm-disk-limits]。
 
-建立一個儲存體帳戶以供診斷記錄使用。 所有 VM 都可共用這個儲存體帳戶。 這可以是使用標準磁碟之未受管理的儲存體帳戶。
+建立一個儲存體帳戶以供診斷記錄使用。 所有 VM 都可共用這個儲存體帳戶。 這可以是使用標準磁碟之非受控儲存體帳戶。
 
 ## <a name="availability-considerations"></a>可用性考量
 
@@ -169,6 +170,7 @@ ms.lasthandoff: 11/17/2017
 [azure-automation]: /azure/automation/automation-intro
 [azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-cli-2]: /azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [health-probe-log]: /azure/load-balancer/load-balancer-monitor-log

@@ -4,11 +4,11 @@ description: "在 Microsoft Azure 中執行的高可用性 Web 應用程式建�
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2d7d0c38bef3efc73a7ba2dd61e4190d07deb1b5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 60caa121d0ce2f1aa2638650229bed8048804c22
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>在多個區域中執行 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -17,13 +17,14 @@ ms.lasthandoff: 11/14/2017
 
 ![參考架構︰高可用性的 Web 應用程式](./images/multi-region-web-app-diagram.png) 
 
-*下載這個架構的 [Visio 檔案][visio-download]。*
+下載這個架構的 [Visio 檔案][visio-download]。
 
 ## <a name="architecture"></a>架構 
 
 此架構是根據[增進 Web 應用程式中的延展性][guidance-web-apps-scalability] 中的架構而建置。 主要差別在於：
 
 * **主要和次要區域**。 此架構使用兩個區域以實現更高的可用性。 應用程式會部署到每個區域。 正常作業期間，會將網路流量路由傳送到主要區域。 如果主要區域變得無法使用，就會將流量流量傳送到次要區域。 
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 * **Azure 流量管理員**。 [流量管理員][traffic-manager]會將傳入要求路由傳送到主要區域。 如果應用程式執行的區域變得無法使用，流量管理員就會容錯移轉到次要區域。
 * SQL Database 和 Cosmos DB 的**異地複寫**。 
 
@@ -31,8 +32,8 @@ ms.lasthandoff: 11/14/2017
 
 有數種一般方法可用來跨區域實現高可用性： 
 
-* 搭配熱待命的主動/被動。 流量會傳送到一個區域，而另一個區域則以熱待命模式等候。 熱待命表示次要區域中隨時都已配置 VM 且正在執行中。
-* 搭配冷待命的主動/被動。 流量會傳送到一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
+* 搭配熱待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以熱待命模式等候。 熱待命表示次要區域中隨時都已配置 VM 且正在執行中。
+* 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
 * 主動/主動。 兩個區域均為主動，而且要求會在它們之間負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。 
 
 此參考架構著重於搭配熱待命的主動/被動，使用流量管理員進行容錯移轉。 
@@ -40,7 +41,7 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能不同於這裡所述的架構。 請使用本節的建議作為起點。
+您的需求可能和此處所述的架構不同。 請使用本節的建議作為起點。
 
 ### <a name="regional-pairing"></a>區域配對
 每個 Azure 區域都會與相同地理位置內的另一個區域配對。 通常會從相同區域配對選擇區域 (例如，美國東部 2 和美國中部)。 這樣做的優點包括：
@@ -147,6 +148,7 @@ azure network traffic-manager endpoint set --name <endpoint> --profile-name <pro
 <!-- links -->
 
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-dns]: /azure/dns/dns-overview
 [docdb-geo]: /azure/documentdb/documentdb-distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

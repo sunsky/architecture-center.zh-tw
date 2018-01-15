@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: b3f1fcf1403a5199191cb37dfed4fbe86695766d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c54959da96115e55ba8a5c9e0f3c358d29ce5dd
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-windows-vms-in-multiple-regions-for-high-availability"></a>在多個區域中執行 Windows VM 以獲得高可用性
 
@@ -23,7 +23,8 @@ ms.lasthandoff: 11/14/2017
 
 此架構是根據[執行適用於多層式架構應用程式的 Windows VM](n-tier.md) 建置的。 
 
-* **主要和次要區域**。 使用兩個區域以實現更高的可用性。 其中一個是主要區域。 另一個則用於容錯移轉。 
+* **主要和次要區域**。 使用兩個區域以實現更高的可用性。 其中一個是主要區域。 另一個則用於容錯移轉。
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 * **Azure 流量管理員**。 [流量管理員][traffic-manager]會將連入要求路由傳送到其中一個區域。 正常作業期間，它會將要求路由傳送到主要區域。 如果該區域變得無法使用，流量管理員就會容錯移轉到次要區域。 如需詳細資訊，請參閱[流量管理員設定](#traffic-manager-configuration)。
 * **資源群組**。 分別針對主要區域、次要區域及流量管理員建立[資源群組][resource groups]。 這可讓您彈性地將每個區域當作單一資源集合來管理。 例如，您可以重新部署某一個區域，而不需拿掉另一個區域。 [連結資源群組][resource-group-links]，如此一來，您就能執行查詢，以列出應用程式的所有資源。
 * **VNet**。 針對每個區域建立不同的 VNet。 確定位址空間並未重疊。 
@@ -42,8 +43,8 @@ ms.lasthandoff: 11/14/2017
 有數種一般方法可用來跨區域實現高可用性： 
 
 * 搭配熱待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以熱待命模式等候。 熱待命表示次要區域中隨時都已配置 VM 且正在執行中。
-* 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的成本小於執行，但在失敗期間通常需要較久的時間才能上線。
-* 主動/主動。 這兩個區域均為主動，而且要求會在它們之間進行負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。 
+* 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
+* 主動/主動。 兩個區域均為主動，而且要求會在它們之間負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。 
 
 此參考架構著重於搭配熱待命的主動/被動 (使用流量管理員進行容錯移轉)。 請注意，您可以部署少量的 VM 來進行熱待命，然後視需要相應放大。
 
@@ -164,7 +165,7 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 
 <!-- Links -->
 [hybrid-vpn]: ../hybrid-networking/vpn.md
-
+[azure-dns]: /azure/dns/dns-overview
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

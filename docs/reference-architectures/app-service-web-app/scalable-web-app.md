@@ -7,11 +7,11 @@ pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: b875b89b87edd5636d90da8b7f8211f965b39937
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1fdaf6e3695cb814fa4c275a4a273f9fa9a7b71b
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
 
@@ -19,7 +19,7 @@ ms.lasthandoff: 11/14/2017
 
 ![[0]][0]
 
-*下載這個架構的 [Visio 檔案][visio-download]。*
+下載這個架構的 [Visio 檔案][visio-download]。
 
 ## <a name="architecture"></a>架構  
 
@@ -34,6 +34,7 @@ ms.lasthandoff: 11/14/2017
 * **資料儲存體**。 使用 [SQL Database][sql-db] 儲存關聯式資料。 至於非關聯式資料，請考慮 NoSQL 存放區，例如 [Cosmos DB][documentdb]。
 * **Azure 搜尋服務**。 使用 [Azure 搜尋][azure-search] 新增搜尋功能，例如搜尋建議、模糊搜尋、特定語言搜尋。 Azure 搜尋服務通會搭配其他資料存放區，特別是當主要資料存放區需要嚴格的一致性。 這種方式會將授權的資料儲存在 Azure 搜尋服務中的另一個資料存放區和搜尋索引。 Azure 搜尋服務也可用於合併多個資料存放區中的單一搜尋索引。  
 * **電子郵件/文字簡訊**。 您可以使用 SendGrid、Twilio 等第三方服務來傳送電子郵件或文字簡訊，而不必直接在應用程式中建立這項功能。
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 ## <a name="recommendations"></a>建議
 
@@ -82,7 +83,7 @@ ms.lasthandoff: 11/14/2017
 | 索引鍵/值組 |依使用者識別碼查閱的使用者設定檔資料 |Azure 資料表儲存體 |
 | 用來觸發進一步處理的簡訊 |訂單要求 |Azure 佇列儲存體、服務匯流排佇列或服務匯流排主題 |
 | 具有彈性結構描述且需要基本查詢的非關聯式資料 |產品目錄 |文件資料庫，例如 Azure Cosmos DB、MongoDB 或 Apache CouchDB |
-| 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |Azure SQL Database |
+| 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |連接字串 |
 
 ## <a name="scalability-considerations"></a>延展性考量
 
@@ -103,7 +104,7 @@ Azure App Service 的主要優點是能夠根據負載調整應用程式規模�
 Azure 搜尋服務替主要資料存放區省去了執行複雜資料搜尋的額外負荷，而且可加以調整以處理負載。 請參閱[在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級][azure-search-scaling]。
 
 ## <a name="security-considerations"></a>安全性考量
-本節列出本文所述的 Azure 服務專屬的安全性考量， 但不是安全性最佳作法的完整清單。 如需更多的安全性考量，請參閱[保護 Azure App Service 中的應用程式][app-service-security]。
+本節列出本文所述的 Azure 服務專屬的安全性考量， 但不是安全性最佳做法的完整清單。 如需更多的安全性考量，請參閱[保護 Azure App Service 中的應用程式][app-service-security]。
 
 ### <a name="cross-origin-resource-sharing-cors"></a>跨原始來源資源分享 (CORS)
 如果您將網站和 Web API 建立為不同的應用程式，則網站無法對 API 進行用戶端 AJAX 呼叫，除非您啟用 CORS。
@@ -127,6 +128,7 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [app-service-api-app]: /azure/app-service-api/app-service-api-apps-why-best-platform
 [app-service-pricing]: https://azure.microsoft.com/pricing/details/app-service/
 [azure-cdn]: https://azure.microsoft.com/services/cdn/
+[azure-dns]: /azure/dns/dns-overview
 [azure-redis]: https://azure.microsoft.com/services/cache/
 [azure-search]: https://azure.microsoft.com/documentation/services/search/
 [azure-search-scaling]: /azure/search/search-capacity-planning
