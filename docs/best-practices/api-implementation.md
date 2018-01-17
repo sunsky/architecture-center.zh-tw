@@ -4,18 +4,17 @@ description: "如何實作 API 的指示。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: b4d197719380bf55033942b3ebcad384170d950d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: cc28864de36afdeed2f8a7155a307e312c3a398e
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="api-implementation"></a>API 實作
-[!INCLUDE [header](../_includes/header.md)]
 
 仔細設計的 RESTful Web API 可定義資源、關係以及用戶端應用程式可存取的導覽配置。 當您實作和部署 Web API 時，您應該考慮裝載 Web API 之環境的實際需求，以及 Web API 的建構方式 (而非資料的邏輯結構)。 本指引著重於實作 Web API 和加以發佈以供用戶端應用程式使用的最佳作法。 如需 Web API 設計的詳細資訊，請參閱 [API 設計指引](/azure/architecture/best-practices/api-design)。
 
-## <a name="considerations-for-processing-requests"></a>處理要求的考量
+## <a name="processing-requests"></a>處理要求
 
 當您實作程式碼來處理要求時，請考慮下列幾點。
 
@@ -126,7 +125,7 @@ HTTP GET 作業會擷取儲存體中的客戶資料並建構 `Customer` 物件�
 * 對 URI `http://adventure-works.com/customers/2/orders` 的 HTTP GET 要求，用以尋找客戶的所有訂單。 此資料可以 XML 或 JSON 格式傳回。
 * 對 URI `http://adventure-works.com/customers/2/orders` 的 HTTP PUT 要求，用以建立此客戶的新訂單。 此資料必須在要求訊息中以 x-www-form-urlencoded 格式提供。
 
-## <a name="considerations-for-handling-exceptions"></a>處理例外狀況的考量
+## <a name="handling-exceptions"></a>處理例外狀況
 
 如果作業會擲回無法攔截的例外狀況，請考慮下列各點。
 
@@ -190,7 +189,7 @@ public IHttpActionResult DeleteCustomer(int id)
 
 HTTP 通訊協定會區分用戶端應用程式 (HTTP 4xx 狀態碼) 所引起的錯誤，與伺服器災難所造成的錯誤 (HTTP 5xx 狀態碼)。 請務必遵守任何錯誤回應訊息中的這個慣例。
 
-## <a name="considerations-for-optimizing-client-side-data-access"></a>最佳化用戶端資料存取的考量
+## <a name="optimizing-client-side-data-access"></a>將用戶端資料存取最佳化
 在涉及 Web 伺服器和用戶端應用程式的分散式環境中，網路是其中一個主要憂心來源。 這可能會是相當大的瓶頸，特別是在用戶端應用程式經常傳送要求或接收資料時。 因此，您的目標應該在將網路的傳輸流量降到最低。 當您實作程式碼來擷取和維護資料時，請考慮下列幾點：
 
 ### <a name="support-client-side-caching"></a>支援用戶端快取
@@ -541,7 +540,7 @@ public class OrdersController : ApiController
 >
 >
 
-## <a name="considerations-for-handling-large-requests-and-responses"></a>處理大量要求和回應的考量
+## <a name="handling-large-requests-and-responses"></a>處理大量要求和回應
 有時候用戶端應用程式可能需要發出要求，以傳送或接收大小可能數 MB (或更大) 的資料。 等候這個數量的資料進行傳輸，可能會導致用戶端應用程式沒有回應。 當您需要處理包含大量資料的要求時，請考慮下列幾點：
 
 ### <a name="optimize-requests-and-responses-that-involve-large-objects"></a>最佳化涉及大型物件的要求和回應
@@ -608,7 +607,7 @@ public class OrdersController : ApiController
 >
 >
 
-## <a name="considerations-for-maintaining-responsiveness-scalability-and-availability"></a>維護回應性、延展性和可用性的考量
+## <a name="maintaining-responsiveness-scalability-and-availability"></a>維護回應性、延展性和可用性
 在世界各地執行的許多用戶端應用程式可能會利用相同的 Web API。 請務必確保實作 Web API 來維護沈重負載下的回應性，可以延展來支援非常不同的工作負載，以及保證執行業務關鍵作業的用戶端的可用性。 當您決定如何儲存這些需求時，請考慮下列幾點：
 
 ### <a name="provide-asynchronous-support-for-long-running-requests"></a>長時間執行的要求提供非同步支援
@@ -652,7 +651,7 @@ HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入�
 >
 >
 
-## <a name="considerations-for-publishing-and-managing-a-web-api"></a>發佈和管理 Web API 的考量
+## <a name="publishing-and-managing-a-web-api"></a>發行和管理 Web API
 若要讓 Web API 可供用戶端應用程式使用，Web API 必須部署至主機環境。 此環境通常是 Web 伺服器，然而也可能是其他類型的主機程序。 發佈 Web API 時，您應該考慮下列幾點：
 
 * 所有要求都必須進行驗證和授權，而且必須強制執行適當層級的存取控制。
@@ -668,7 +667,7 @@ HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入�
 * 針對使用各種技術建置的用戶端，轉換訊息和轉譯通訊協定。
 * 快取要求和回應，以減少裝載 Web API 之伺服器的負載。
 
-## <a name="considerations-for-testing-a-web-api"></a>測試 Web API 的考量
+## <a name="testing-a-web-api"></a>測試 Web API
 Web API 應與軟體的任何其他部分一樣徹底進行測試。 您應該考慮建立單元測試來驗證功能。Web API 的本質會帶入其本身的額外需求，以驗證它可正確運作。 您應該特別注意下列層面：
 
 * 測試所有路由以確認它們叫用正確的作業。 請特別留意意外傳回的 HTTP 狀態碼 405 (不允許的方法)，因為這可能表示路由與可分派到該路由的 HTTP 方法 (GET、POST、PUT、DELETE) 不相符。
@@ -684,7 +683,7 @@ Web API 應與軟體的任何其他部分一樣徹底進行測試。 您應該�
 * 驗證要求和回應訊息的格式是否正確。 例如，如果 HTTP POST 要求包含新資源的資料 (採用 x-www-form-urlencoded 格式)，請確認對應的作業正確剖析資料、建立資源，並傳回包含新資源詳細資料的回應 (包括正確的 Location 標頭)。
 * 驗證回應訊息中的所有連結和 URI。 例如，HTTP POST 訊息應該會傳回新建資源的 URI。 所有 HATEOAS 連結都應該有效。
 
-* 確保每項作業都會針對不同的輸入組合傳回正確的狀態碼。 例如：
+* 確保每項作業都會針對不同的輸入組合傳回正確的狀態碼。 例如︰
 
   * 如果查詢成功，則應傳回狀態碼 200 (確定)
   * 如果找不到資源，作業應傳回 HTTP 狀態碼 404 (找不到)。
@@ -699,8 +698,9 @@ Web API 應與軟體的任何其他部分一樣徹底進行測試。 您應該�
 
 您也應該建立和執行效能測試，檢查 Web API 在受限的情況下是否運作順利。 您可以使用 Visual Studio Ultimate，建置 Web 效能和負載測試專案。 如需詳細資訊，請參閱[在應用程式發行前執行效能測試](https://msdn.microsoft.com/library/dn250793.aspx)。
 
-## <a name="publish-and-manage-a-web-api-using-the-azure-api-management-service"></a>使用 Azure API 管理服務來發佈和管理 Web API
-Azure 提供 [API 管理服務](https://azure.microsoft.com/documentation/services/api-management/) ，您可用於發佈和管理 Web API。 您可以使用這項工具來產生一個服務，以做為一或多個 Web API 的 façade。 此服務本身是可使用 Azure 管理入口網站建立及設定的可延伸 Web 服務。 您可以使用這項服務來發佈和管理 Web API，如下所示：
+## <a name="using-azure-api-management"></a>使用 Azure API 管理 
+
+在 Azure 上，請考慮使用 [Azue API 管理](https://azure.microsoft.com/documentation/services/api-management/)來發行和管理 Web API。 您可以使用這項工具來產生一個服務，以做為一或多個 Web API 的 façade。 此服務本身是可使用 Azure 管理入口網站建立及設定的可延伸 Web 服務。 您可以使用這項服務來發佈和管理 Web API，如下所示：
 
 1. 將 Web API 部署到網站、Azure 雲端服務或 Azure 虛擬機器。
 2. 將 API 管理服務連接到 Web API。 傳送至管理 API 之 URL 的要求會對應至 Web API 中的 URI。 相同的 API 管理服務可將要求路由傳送到多個 Web API。 這可讓您將多個 Web API 彙總成單一管理服務。 同樣地，如果您需要限制或分割不同應用程式可用的功能，可以從一個以上的 API 管理服務參考相同的 Web API。
@@ -729,7 +729,7 @@ Azure 提供 [API 管理服務](https://azure.microsoft.com/documentation/servic
 > 在此結構中，如果您使用您網站的自訂 DNS 名稱，則應該為每個網站設定適當的 CNAME 記錄，以指向 Azure 流量管理員網站的 DNS 名稱。
 >
 
-## <a name="support-developers-building-client-applications"></a>支援開發人員建置用戶端應用程式
+## <a name="supporting-client-side-developers"></a>支援用戶端開發人員
 建構用戶端應用程式的開發人員通常需要有關如何存取 Web API 的資訊，以及有關參數、資料類型、傳回型別和傳回碼 (描述 Web 服務與用戶端應用程式間的不同要求和回應) 的文件。
 
 ### <a name="document-the-rest-operations-for-a-web-api"></a>記載 Web API 的 REST 作業

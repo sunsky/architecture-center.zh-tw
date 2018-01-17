@@ -1,77 +1,55 @@
 ---
 title: "從資料損毀或意外刪除復原"
 description: "有關如何從意外損毀資料或刪除資料恢復資料，和設計可恢復、高可用性、容錯的應用程式，以及規劃災害復原的文章"
-author: adamglick
-ms.date: 08/18/2016
-ms.openlocfilehash: b75c774f85c42f64472167897f08a7302ab50a3f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+author: MikeWasson
+ms.date: 01/10/2018
+ms.openlocfilehash: 76d2f996750d5a67b67bd5dc4977580f3b8abbc3
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/11/2018
 ---
-[!INCLUDE [header](../_includes/header.md)]
-# <a name="azure-resiliency-technical-guidance-recovery-from-data-corruption-or-accidental-deletion"></a>Azure 復原技術指導：從資料損毀或意外刪除復原
+# <a name="recover-from-data-corruption-or-accidental-deletion"></a>從資料損毀或意外刪除復原 
+
 健全的商務持續性計畫的一部分為對資料損毀或遭意外刪除有所計畫。 以下是因為應用程式錯誤或操作員錯誤而損毀或意外刪除資料之後，有關復原的資訊。
 
 ## <a name="virtual-machines"></a>虛擬機器
-若要保護 Azure 虛擬機器 (有時稱為基礎結構即服務 VM) 不受應用程式錯誤或意外刪除，請使用 [Azure 備份](https://azure.microsoft.com/services/backup/)。 Azure 備份可讓您跨多個 VM 磁碟建立一致的備份。 此外，備份保存庫可以跨區域複寫，以從區域耗損提供復原。
+
+若要保護 Azure 虛擬機器 (VM) 不受應用程式錯誤影響或遭到意外刪除，請使用 [Azure 備份](/azure/backup/)。 Azure 備份可讓您跨多個 VM 磁碟建立一致的備份。 此外，備份保存庫可以跨區域複寫，以從區域耗損提供復原。
 
 ## <a name="storage"></a>儲存體
-請注意，雖然 Azure 儲存體透過自動化複本提供資料恢復，這無法防止您的應用程式程式碼 (或開發人員/使用者) 不會因為意外或非特意刪除、更新等而損毀資料。 維護應用程式或使用者錯誤的資料精確度需要更進階的技術，例如複製資料到具有稽核記錄檔的次要儲存體位置。 開發人員可以利用 Blob [快照集功能](https://msdn.microsoft.com/library/azure/ee691971.aspx)，這可以為 Blob 內容建立唯讀時間點快照集。 這可用來當做 Azure 儲存體 Blob 的資料精確度解決方案的基礎。
 
-### <a name="blob-and-table-storage-backup"></a>Blob 和資料表儲存體備份
-雖然 Blob 和資料表都很持久，但是它們一律會呈現資料的目前狀態。 從不想要的修改或刪除資料復原可能需要將資料還原到先前的狀態。 這可以利用 Azure 所提供用來儲存和保留時間點複本的功能來達成。
+Azure 儲存體可透過自動化複本提供資料復原功能。 不過，這無法避免應用程式程式碼或使用者損毀資料 (無論是意外還是惡意地)。 維護應用程式或使用者錯誤的資料精確度需要更進階的技術，例如複製資料到具有稽核記錄檔的次要儲存體位置。 
 
-針對 Azure Blob，您可以使用 [Blob 快照集功能](https://msdn.microsoft.com/library/ee691971.aspx)執行時間點備份。 針對每個快照集，您只需支付自從上一個快照集狀態後，在 Blob 中儲存差異所需的儲存體。 快照集取決於其根據的原始 Blob，因此建議對另一個 Blob 或甚至是另一個儲存體帳戶進行複製作業。 這可確保該備份資料可正確地受到保護，防止被意外刪除。 對於 Azure 資料表，您可以對不同的資料表或 Azure Blob 建立時間點複本。 執行資料表和 Blob 應用程式層級備份的更詳細指導方針與範例可以在這裡找到：
+- **區塊 Blob**。 建立每個區塊 Blob 的時間點快照集。 如需詳細資訊，請參閱 [建立 Blob 的快照集](/rest/api/storageservices/creating-a-snapshot-of-a-blob)。 針對每個快照集，您只需支付自從上一個快照集狀態後，在 Blob 中儲存差異所需的儲存體。 快照集取決於其根據的原始 Blob，因此建議對另一個 Blob 或甚至是另一個儲存體帳戶進行複製作業。 這可確保該備份資料可正確地受到保護，防止被意外刪除。 您可以使用 [AzCopy](/azure/storage/common/storage-use-azcopy) 或 [Azure PowerShell](/azure/storage/common/storage-powershell-guide-full)，將 Blob 複製到其他儲存體帳戶。
 
-* [保護您的資料表以免發生應用程式錯誤](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/05/03/protecting-your-tables-against-application-errors/)
-* [保護您的 Blob 以免發生應用程式錯誤](https://blogs.msdn.microsoft.com/windowsazurestorage/2010/04/29/protecting-your-blobs-against-application-errors/)
+- **檔案**。 使用[共用快照集 (預覽)](/azure/storage/files/storage-how-to-use-files-snapshots)，或使用 AzCopy 或 Azure PowerShell 可將您的檔案複製到其他儲存體帳戶。
+
+- **資料表**。 使用 AzCopy 可將資料表資料匯出到位於其他區域的其他儲存體帳戶。
 
 ## <a name="database"></a>資料庫
-有好幾種 [商務持續性](/azure/sql-database/sql-database-business-continuity/) (備份、還原) 選項可供 Azure SQL Database 使用。 透過[資料庫複製](/azure/sql-database/sql-database-copy/)功能，或透過[匯出](/azure/sql-database/sql-database-export/)與[匯入](https://msdn.microsoft.com/library/hh710052.aspx) SQL Server 的 bacpac 檔案即可複製資料庫。 資料庫複製可提供交易一致的結果，而 bacpac (透過匯入/匯出服務) 則不會。 這兩種選項都會在服務中心內以佇列為基礎的服務形式執行，並且目前不提供完成時間 SLA。
 
-> [!NOTE]
-> 資料庫複製和匯入/匯出選項對來源資料庫有極明顯程度的負載。 這些選項可能會觸發資源競爭或節流事件。
-> 
-> 
+### <a name="azure-sql-database"></a>連接字串 
 
-### <a name="sql-database-backup"></a>SQL Database 備份
-Microsoft Azure SQL Database 的時間點備份，是透過 [複製您的 Azure SQL Database](/azure/sql-database/sql-database-copy/)達成。 您可以使用此命令對相同邏輯資料庫伺服器或不同伺服器建立資料庫的交易一致複本。 在任一情況下，資料庫複本完整可運作，且完全獨立於來源資料庫。 您所建立的每個複本代表一個時間點復原選項。 您可以將新的資料庫重新命名為來源資料庫名稱，藉以完全復原資料庫狀態。 或者，您可以使用 Transact-SQL 查詢，從新的資料庫復原特定資料子集。 如需 SQL Database 的其他詳細資訊，請參閱 [使用 Azure SQL Database 的商務持續性概觀](/azure/sql-database/sql-database-business-continuity/)。
+SQL Database 會每週自動執行完整資料庫備份、每小時自動執行差異資料庫備份，以及每 5 到 10 分鐘自動執行交易記錄備份，透過這樣的備份組合來防止您的企業遺失資料。 使用時間點還原可將資料庫還原到較早的時間。 如需詳細資訊，請參閱
 
-### <a name="sql-server-on-virtual-machines-backup"></a>虛擬機器備份上的 SQL Server
-針對做為服務虛擬機器用於 Azure 基礎結構的 SQL Server (通常稱為 IaaS 或 IaaS VM)，有兩個選項：傳統備份和記錄傳送。 使用傳統備份可讓您還原到特定時間點，但復原程序緩慢。 還原傳統備份需要從最初的完整備份開始，然後套用之後所建立的任何備份。 第二個選項是設定記錄傳送的工作階段，將記錄備份的還原延遲 (例如，兩個小時)。 這會提供從在主要伺服器上所造成的錯誤復原的時間。
+- [使用自動資料庫備份復原 Azure SQL Database](/azure/sql-database/sql-database-recovery-using-backups)
 
-## <a name="other-azure-platform-services"></a>其他 Azure 平台服務
-某些 Azure 平台服務會將資訊儲存在使用者控制的儲存體帳戶或 Azure SQL Database。 如果帳戶或儲存體資源遭到刪除或損毀，這可能造成服務的嚴重錯誤。 在這些情況下，請務必維護備份，如果資料遭到刪除或損毀，便可讓您重新建立這些資源。
+- [使用 Azure SQL Database 的商務持續性概觀](/azure/sql-database/sql-database-business-continuity)
 
-針對 Azure 網站和 Azure 行動服務，您必須備份及維護相關聯的資料庫。 針對 Azure 媒體服務和虛擬機器，您必須維護相關聯的 Azure 儲存體帳戶和該帳戶中的所有資源。 例如，針對虛擬機器，您必須在 Azure Blob 儲存體中備份和管理 VM 磁碟。
+### <a name="sql-server-on-vms"></a>虛擬機器上的 SQL Server
 
-## <a name="checklists-for-data-corruption-or-accidental-deletion"></a>資料損毀或意外刪除的檢查清單
-## <a name="virtual-machines-checklist"></a>虛擬機器檢查清單
-1. 檢閱此文件的＜虛擬機器＞一節。
-2. 使用 Azure 備份來備份及維護 VM 磁碟 (或使用 Azure Blob 儲存體和 VHD 的快照集之您自己的備份系統)。
+對於在虛擬機器上執行的 SQL Server，有兩種選項：傳統備份和記錄傳送。 傳統備份可讓您還原到特定時間點，但復原程序緩慢。 還原傳統備份需要從最初的完整備份開始，然後套用之後所建立的任何備份。 第二個選項是設定記錄傳送的工作階段，將記錄備份的還原延遲 (例如，兩個小時)。 這會提供從在主要伺服器上所造成的錯誤復原的時間。
 
-## <a name="storage-checklist"></a>儲存體檢查清單
-1. 檢閱此文件的＜儲存體＞一節。
-2. 定期備份重要的儲存體資源。
-3. 考慮對 Blob 使用快照集功能。
+### <a name="azure-cosmos-db"></a>Azure Cosmos DB
 
-## <a name="database-checklist"></a>資料庫檢查清單
-1. 檢閱此文件的＜資料庫＞一節。
-2. 使用資料庫複製命令建立時間點備份。
+Azure Cosmos DB 可以定期自動進行備份。 備份會儲存在另一個儲存體服務中，而且系統會全域複寫這些備份，以便為區域性災害提供復原功能。 如果您不小心刪除資料庫或集合，您可以提出支援票證或連絡 Azure 支援，要求從最新的自動備份還原資料。 如需詳細資訊，請參閱[使用 Azure Cosmos DB 自動進行線上備份及還原](/azure/cosmos-db/online-backup-and-restore)。
 
-## <a name="sql-server-on-virtual-machines-backup-checklist"></a>虛擬機器備份上的 SQL Server 檢查清單
-1. 檢閱此文件的＜虛擬機器備份上的 SQL Server＞一節。
-2. 使用傳統備份和還原技術。
-3. 建立延後的記錄傳送工作階段。
+### <a name="azure-database-for-mysql-azure-database-for-postresql"></a>適用於 MySQL 的 Azure 資料庫、適用於 PostreSQL 的 Azure 資料庫
 
-## <a name="web-apps-checklist"></a>Web Apps 檢查清單
-1. 備份及維護相關聯的資料庫，如果有的話。
+使用適用於 MySQL 的 Azure 資料庫或適用於 PostreSQL 的 Azure 資料庫時，資料庫服務每隔五分鐘會自動備份一次服務。 透過這個自動備份功能，您可以將伺服器和其所有資料庫還原至新的伺服器，而且還原至更早的時間點。 如需詳細資訊，請參閱
 
-## <a name="media-services-checklist"></a>媒體服務檢查清單
-1. 備份及維護相關聯的儲存體資源。
+- [如何使用 Azure 入口網站，在適用於 MySQL 的 Azure 資料庫中備份和還原伺服器](/azure/mysql/howto-restore-server-portal)
 
-## <a name="more-information"></a>詳細資訊
-如需有關 Azure 的備份和還原功能的詳細資訊，請參閱 [儲存體、備份和復原案例](https://azure.microsoft.com/documentation/scenarios/storage-backup-recovery/)。
-
+- [如何使用 Azure 入口網站，在適用於 PostreSQL 的 Azure 資料庫中備份和還原伺服器](/azure/postgresql/howto-restore-server-portal)
 

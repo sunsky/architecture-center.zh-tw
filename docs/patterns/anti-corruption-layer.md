@@ -1,17 +1,17 @@
 ---
 title: "防損毀層模式"
-description: "在現代應用程式和舊版系統間實作外觀或配接器層。"
+description: "在最新應用程式和舊系統間實作外觀或配接層。"
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 590d5f3676c92f5f18661360106e2b2fdd4efbe1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e41f080abbef772596ee7f8b10ad72bb03a3b829
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="anti-corruption-layer-pattern"></a>防損毀層模式
 
-在現代應用程式和其依存的舊版系統間實作外觀或配接器層。 此層會轉譯現代應用程式與舊版系統之間的要求。 您可以使用此模式來確保應用程式的設計不會受限於舊版系統上的相依性。
+在現代應用程式和其依存的舊版系統間實作外觀或配接器層。 此層會轉譯現代應用程式與舊版系統之間的要求。 您可以使用此模式來確保應用程式的設計不會受限於舊版系統上的相依性。 此模式最早的相關描述，是在 Eric Evans 所著的《Domain-Driven Design (網域導向的設計)》一書中出現。
 
 ## <a name="context-and-problem"></a>內容和問題
 
@@ -21,7 +21,7 @@ ms.lasthandoff: 11/14/2017
 
 維護新版與舊版系統之間的存取權可以強制新系統遵守至少一些舊版系統的 API 或其他語意。 當這些舊版功能有品質問題時，支援它們發生「損毀」，否則可能需要全新設計的現代化應用程式。 
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 藉由在它們之間放置防損毀層來隔離舊版和現代系統。 此層會轉譯兩個系統之間的通訊，讓舊版系統維持不變，同時讓現代應用程式可以避免損害其設計和技術方法。
 

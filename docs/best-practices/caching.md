@@ -4,11 +4,11 @@ description: "用來改善效能和延展性的快取指引。"
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f8bc25ef10847e8308e830b745e87a176438d200
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7968c1578dfef2c7ad28576b9aafbbe2b6672cd9
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/11/2018
 ---
 # <a name="caching"></a>快取
 
@@ -185,23 +185,13 @@ ms.lasthandoff: 11/14/2017
 您也可以在資料於快取中流動進出時給予保護。 若要執行此動作，您可以依靠網路基礎結構所提供的安全性功能，用戶端應用程式會使用該基礎結構來連接至快取。 如果在裝載用戶端應用程式的相同組織中使用現場伺服器來實作快取，則網路本身的隔離可能不需要您採取其他步驟。 如果快取位於遠端且需要公用網路 (例如網際網路) 上的 TCP 或 HTTP 連接，請考慮實作 SSL。
 
 ## <a name="considerations-for-implementing-caching-with-microsoft-azure"></a>使用 Microsoft Azure 實作快取的考量
-Azure 提供了 Azure Redis 快取。 這是開放原始碼 Redis 快取的實作，可做為 Azure 資料中心的服務來執行。 它提供可從任何 Azure 應用程式存取的快取服務，無論應用程式實作為雲端服務、網站，或在 Azure 虛擬機器中。 擁有適當存取金鑰的用戶端應用程式可以共用快取。
+
+[Azure Redis 快取](/azure/redis-cache/)是開放原始碼 Redis 快取的實作，可作為 Azure 資料中心的服務來執行。 它提供可從任何 Azure 應用程式存取的快取服務，無論應用程式實作為雲端服務、網站，或在 Azure 虛擬機器中。 擁有適當存取金鑰的用戶端應用程式可以共用快取。
 
 Azure Redis 快取是高效能的快取解決方案，提供可用性、延展性和安全性。 它通常會以分散到一或多部專用電腦上的服務來執行。 它會試著盡可能在記憶體中儲存最多資訊，以確保快速存取。 此架構可透過減少執行緩慢的 I/O 作業的需求，用於提供低度延遲和高輸送量。
 
  Azure Redis 快取可與許多用戶端應用程式所使用的各種 API 相容。 如果您現有的應用程式已使用執行內部部署的 Azure Redis 快取，Azure Redis 快取就能在雲端中提供快取的快速移轉路徑。
 
-> [!NOTE]
-> Azure 也提供受管理的快取服務。 此服務是根據 Azure Service Fabric 快取引擎來提供。 它可讓您建立可由鬆散結合之應用程式共用的分散式快取。 快取會託管於 Azure 資料中心內所執行的高效能伺服器上。
-> 不過，此選項不再建議使用，且僅對於已建置使用此選項的現有應用程式提供支援。 針對所有新的開發，請改用 Azure Redis 快取。
-> 
-> 此外，Azure 支援角色中快取。 此功能可讓您建立雲端服務專用的快取。
-> 快取是透過 Web 或背景工作角色的執行個體來裝載，僅能由以相同雲端服務部署單位一部分來操作的角色進行存取 (部署單位是以雲端服務部署至特定區域的角色執行個體集合)。快取已叢集化，且裝載快取的同一個部署單位中所有角色的執行個體，都會變成相同快取叢集的一部分。 不過，此選項不再建議使用，且僅對於已建置使用此選項的現有應用程式提供支援。 針對所有新的開發，請改用 Azure Redis 快取。
-> 
-> Azure 受管理的快取服務和 Azure In-Role Cache 目前都預定在 2016 年 11 月 16 日淘汰。
-> 我們建議您移轉到 Azure Redis Cache，來為這次淘汰做準備。 如需詳細資訊，請參閱[應該使用哪個 Azure Redis 快取供應項目和大小？](/azure/redis-cache/cache-faq#what-redis-cache-offering-and-size-should-i-use)。
-> 
-> 
 
 ### <a name="features-of-redis"></a>Redis 的功能
  Redis 不僅是一種簡易快取伺服器。 它提供分散式記憶體內部資料庫搭配廣泛的命令集，可支援許多常見案例。 相關說明請參閱本文件稍後的＜使用 Redis 快取＞一節。 本節將摘要出一些 Redis 所提供的重要功能。

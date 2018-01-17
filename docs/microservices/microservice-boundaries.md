@@ -3,11 +3,11 @@ title: "識別微服務界限"
 description: "識別微服務界限"
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 046749191bd565813218b3834cb4674c4c5100e2
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: e4f11da9f970724c55ad99824f808a10c4558971
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>設計微服務：識別微服務界限
 
@@ -116,7 +116,7 @@ ms.lasthandoff: 12/29/2017
 
 **可攜性**。 此處所列的所有協調器 (Kubernetes、DC/OS、Docker Swarm 和 Service Fabric) 可在內部部署環境執行，也可以在多個公用雲端中執行。 
 
-**應用程式整合**. 使用無伺服器架構來建置複雜的應用程式並不是件容易的事。 在 Azure 中進行此作業的其中一個方法是使用 [Azure Logic Apps](/azure/logic-apps/) 來協調一組 Azure Functions。 如需此方法的範例，請參閱[建立與 Azure Logic Apps 整合的函式](/azure/azure-functions/functions-twitter-email.)
+**應用程式整合**. 使用無伺服器架構來建置複雜的應用程式並不是件容易的事。 在 Azure 中進行此作業的其中一個方法是使用 [Azure Logic Apps](/azure/logic-apps/) 來協調一組 Azure Functions。 如需此方法的範例，請參閱[建立與 Azure Logic Apps 整合的函式](/azure/azure-functions/functions-twitter-email)。
 
 **成本**。 使用協調器時，您需要為叢集中正在執行的 VM 支付費用。 使用無伺服器應用程式時，則只需為實際耗用的計算資源支付費用。 在這兩種情況中，您都需要考量任何其他服務 (例如，儲存體、資料庫和傳訊服務) 的成本。
 

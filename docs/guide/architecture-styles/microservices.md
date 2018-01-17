@@ -2,15 +2,15 @@
 title: "微服務架構樣式"
 description: "說明 Azure 上微服務架構的優點、挑戰和最佳做法"
 author: MikeWasson
-ms.openlocfilehash: 6426b3342a319832baf5eec35e9c783ba9348bdd
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 08fd39b6cf0b3c88af654b27e21b2d7dd9fb19b1
+ms.sourcegitcommit: 7764a804f000180c37a4f8dbab946b525f784f58
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/09/2018
 ---
 # <a name="microservices-architecture-style"></a>微服務架構樣式
 
-微服務架構是由一組小型的自發服務所組成。 每個服務各自獨立，並且應該實作單一的商務功能。 
+微服務架構是由一組小型的自發服務所組成。 每個服務各自獨立，並且應該實作單一的商務功能。 如需在 Azure 上建置微服務架構的詳細指引，請參閱[在 Azure 上設計、建置及操作微服務](../../microservices/index.md)。
 
 ![](./images/microservices-logical.svg)
  
@@ -111,7 +111,7 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="microservices-using-azure-container-service"></a>使用 Azure Container Service 的微服務 
 
-您可以使用 Azure Container Service 來設定和佈建 Docker 叢集。 Azure Container Service 支援數種熱門的容器 Orchestrator，包括 Kubernetes、DC/OS 和 Docker Swarm。
+您可以使用 [Azure Container Service](/azure/container-service/) 來設定和佈建 Docker 叢集。 Azure Container Service 支援數種熱門的容器 Orchestrator，包括 Kubernetes、DC/OS 和 Docker Swarm。
 
 ![](./images/microservices-acs.png)
  
@@ -133,11 +133,11 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="microservices-using-azure-service-fabric"></a>使用 Azure Service Fabric 的微服務
 
-下圖顯示使用 Azure Service Fabric 的微服務架構。
+下圖顯示使用 [Azure Service Fabric](/azure/service-fabric/) 的微服務架構。
 
 ![](./images/service-fabric.png)
 
-Service Fabric 叢集會部署到一個或多個 VM 擴展集。 您可以在叢集中放入多個 VM 擴展集，以便混用 VM 類型。 API 閘道會位於 Service Fabric 叢集前面，並有外部負載平衡器可接收用戶端要求。
+Service Fabric 叢集會部署到一個或多個虛擬機器擴展集。 您可以在叢集中放入多個 VM 擴展集，以便混用 VM 類型。 API 閘道會位於 Service Fabric 叢集前面，並有外部負載平衡器可接收用戶端要求。
 
 Service Fabric 執行階段會執行叢集管理，包括服務放置、節點容錯移轉以及健康情況監視。 執行階段會部署在叢集節點本身之中。 沒有不同組的叢集管理 VM。
 

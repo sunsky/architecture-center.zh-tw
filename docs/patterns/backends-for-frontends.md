@@ -3,15 +3,15 @@ title: "前端模式的後端"
 description: "建立由特定前端應用程式或介面取用的個別後端服務。"
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: dd71b65e99ae21dff1443f5728ae5f0f54f8122c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>前端模式的後端
 
-建立由特定前端應用程式或介面取用的個別後端服務。 想要避免為多個介面自訂單一後端時，此模式相當有用。
+建立由特定前端應用程式或介面取用的個別後端服務。 想要避免為多個介面自訂單一後端時，此模式相當有用。 此模式最早是由 Sam Newman 所提及。
 
 ## <a name="context-and-problem"></a>內容和問題
 
@@ -25,13 +25,15 @@ ms.lasthandoff: 11/14/2017
 
 因為開發活動的重點在於後端服務，可能會建立個別小組來管理和維護後端。 最後，這會導致介面和後端開發小組之間無法連繫，在後端小組上增加負擔，以平衡不同 UI 小組之間的競爭需求。 當一個介面小組需要對後端進行變更時，必須先向其他介面小組驗證這些變更，之後才能將變更整合到後端。 
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 每個使用者介面建立一個後端。 微調每個後端的行為與效能，以最符合前端環境的需求，而不需擔心影響其他前端的體驗。
 
 ![](./_images/backend-for-frontend-example.png) 
 
 因為每個後端相對於一個特定介面，可以為該介面最佳化。 如此一來，它會較小、較簡單且可能快於嘗試滿足所有介面需求的一般後端。 每個介面小組有控制自己後端的自主權，並且不依賴於集中式後端開發小組。 這讓介面小組對於後端的語言選擇、發佈日程、工作負載的優先順序以及功能整合有彈性。
+
+如需詳細資訊，請參閱[模式：前端的後端](http://samnewman.io/patterns/architectural/bff/)。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 

@@ -1,379 +1,329 @@
 ---
 title: "API 設計指引"
-description: "說明如何建立設計完善之 API 的指引。"
+description: "說明如何建立設計完善之 Web API 的指引。"
 author: dragon119
-ms.date: 07/13/2016
+ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 3ffadce1b0c4a4da808e52d61cff0b7f0b27de11
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f0813c18da03b9deeabbf529a560c60e8ce579d8
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="api-design"></a>API 設計
-[!INCLUDE [header](../_includes/header.md)]
 
-許多現代化的 Web 型解決方案利用 Web 伺服器代管的 Web 服務來提供遠端用戶端應用程式所需的功能。 Web 服務開放的作業構成 Web API。 設計良好的 Web API 應以支援下列特性為目標：
+大多數現代的 Web 應用程式，都會公開用戶端可用來與應用程式互動的 API。 設計良好的 Web API 應以支援下列特性為目標：
 
-* **平台獨立性**。 用戶端應用程式應該要能夠利用 Web 服務提供的 API，而不受 API 公開之資料或作業的實際實作方法所限制。 若要達到這個目標，API 必須遵守促使用戶端應用程式和 Web 服務就使用之資料格式，以及用戶端應用程式和 Web 服務兩者交換之資料格式等取得共識的通用標準。
-* **服務演化**。 Web 服務應該要能獨立於用戶端應用程式之外演化及新增 (或移除) 功能。 當 Web 服務提供的功能變更時，現有用戶端應用程式應該要能不經修改即可繼續運作。 所有功能也應該要可供探索，讓用戶端應用程式得以充分運用。
+* **平台獨立性**。 不論 API 是如何在內部實作，任何用戶端都應該能夠呼叫 API。 這需要使用標準通訊協定，並擁有讓用戶端和 Web 服務可以同意交換資料格式的機制。
 
-本指引的目的在於描述設計 Web API 時應考量的議題。
+* **服務演化**。 Web API 應該要能獨立於用戶端應用程式之外而演化及新增功能。 隨著 API 的發展，現有的用戶端應用程式即使不進行修改，也應該能夠繼續運作。 所有功能應該要可供探索，讓用戶端應用程式得以充分運用。
 
-## <a name="introduction-to-representational-state-transfer-rest"></a>具象狀態傳輸 (REST) 簡介
-在 2000 年，Roy Fielding 在他的論文中提出建構 Web 服務所公開之作業的替代架構方法：REST。 REST 是建置以超媒體為基礎之分散式系統的架構樣式。 REST 模型的主要優點是基於開放標準，因此能避免模型實作或存取模型的用戶端應用程式受到任何特定實作約束。 比方說，您可以使用 Microsoft ASP.NET Web API 來實作 REST Web 服務，以及使用任何能產生 HTTP 要求及剖析 HTTP 回應的語言和工具組來開發用戶端應用程式。
+本指引描述了設計 Web API 時應考量的問題。
 
-> [!NOTE]
-> REST 實際上獨立於任何基礎通訊協定之外，因此不一定要與 HTTP 連結。 不過在以 REST 為基礎的系統實作中，最常見的實作是將 HTTP 當做傳送及接收要求的應用程式通訊協定。 本文件的重點，在於將 REST 原則對應到專門使用 HTTP 來運作的系統。
->
->
+## <a name="introduction-to-rest"></a>REST 簡介
 
-REST 模型使用瀏覽配置來透過網路呈現物件和服務 (稱為「資源」)。 一般來說，有許多實作 REST 系統會使用 HTTP 通訊協定來傳送這些資源的存取要求。 在這些系統中，用戶端應用程式會以識別資源之 URI 的形式提交要求，以及指出要在該資源上執行作業的 HTTP 方法 (最常見的方法包括 GET、POST、PUT 或 DELETE)。  HTTP 要求的本文包含執行作業所需的資料。 您應了解的重點是 REST 能定義無狀態的要求模型。 HTTP 要求應該是獨立的，而且可能會以任何順序發生，因此嘗試保留多個要求之間的暫時性狀態資訊不是恰當的做法。  唯一可儲存資訊的場所是資源本身，而且每個要求都應該是不可部分完成的作業。 實際上，REST 模型會實作有限狀態機器，讓要求將資源從定義完善的非暫時性狀態轉換成其他狀態。
+在 2000 年時，Roy Fielding 提出了以具象狀態傳輸 (REST) 的架構來設計 Web 服務。 REST 是建置以超媒體為基礎之分散式系統的架構樣式。 REST 獨立於任何基礎通訊協定之外，因此不一定要與 HTTP 連結。 不過，最常見的 REST 實作會使用 HTTP 作為應用程式通訊協定，且本指南著重於針對 HTTP 來設計 REST API。
 
-> [!NOTE]
-> REST 模型中個別要求的無狀態性質，讓遵循這些原則建構的系統具備高度擴充性。 針對提出一系列要求的用戶端應用程式和處理這些要求的特定 Web 伺服器，您不需要保留兩者之間的同質性。
->
->
+REST 比起 HTTP 的主要優點是前者使用開放標準，因此不會讓 API 或用戶端應用程式的實作受到任何特定實作的約束。 例如，開發人員能以 ASP.NET 來撰寫 REST Web 服務，且用戶端應用程式可使用任何語言或工具組，只要能產生 HTTP 要求和剖析 HTTP 回應即可。
 
-實作有效 REST 模型的另一個重點，是了解模型提供存取能力之各種資源間的關聯性。 這些資源通常會組織成集合和關聯性。 例如，假設電子商務系統的快速分析顯示有兩個用戶端應用程式可能會感興趣的集合：訂單和客戶。 每張訂單和每位客戶都應該擁有自己的唯一索引鍵，以供識別之用。 存取訂單集合的 URI 可能就只是像 /orders 一樣簡單；同樣地，擷取所有客戶的 URI 可能是 /customers。 向 /orders URI 發出 HTTP GET 要求，應該會傳回以 HTTP 回應編碼且呈現集合中所有訂單的清單：
+以下是一些使用 HTTP 設計 REST 式 API 的主要原則：
+
+- REST API 是依照「資源」來設計的，而資源是指可由用戶端存取、任何類型的物件、資料或服務。 
+
+- 資源具有「識別碼」，這是可唯一識別該資源的 URI。 例如，特定客戶訂單的 URI 可能會是： 
+ 
+    ```http
+    http://adventure-works.com/orders/1
+    ```
+ 
+- 用戶端會透過交換資源的「表示法」與服務進行互動。 許多 Web API 會使用 JSON 作為交換格式。 例如，對上面所列 URI 的 GET 要求，可能會傳回此回應本文：
+
+    ```json
+    {"orderId":1,"orderValue":99.90,"productId":1,"quantity":1}
+    ```
+
+- REST API 會使用統一的介面，有助於讓用戶端與服務實作分離。 對於建置在 HTTP 上的 REST API，統一的介面包括使用標準 HTTP 動詞在資源上執行作業。 最常見的作業是 GET、POST、PUT、PATCH 和 DELETE。 
+
+- REST API 會使用無狀態要求模式。 HTTP 要求應該是獨立的，而且可能會以任何順序發生，因此保留多個要求之間的暫時性狀態資訊不是恰當的做法。 唯一可儲存資訊的場所是資源本身，而且每個要求都應該是不可部分完成的作業。 這個限制式可讓 Web 服務具有高度可調整性，因為在用戶端與特定伺服器之間不需要保留任何的親和性。 任何伺服器都可以處理來自任何用戶端的任何要求。 話雖如此，其他因素可能會限制延展性。 例如，許多 Web 服務都會寫入可能難以相應放大的後端資料存放區。([資料分割](./data-partitioning.md)一文描述了相應放大資料存放區的策略。)
+
+- REST API 是由表示法中包含的超媒體所推動的。 例如，以下顯示訂單的 JSON 表示法。 其中所包含的連結，可取得或更新與訂單相關的客戶。 
+ 
+    ```json
+    {
+        "orderID":3,
+        "productID":2,
+        "quantity":4,
+        "orderValue":16.60,
+        "links": [
+            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"GET" },
+            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"PUT" } 
+        ]
+    } 
+    ```
+
+
+在 2008 年時，Leonard Richardson 針對 Web API 提出了下列[成熟度模型](https://martinfowler.com/articles/richardsonMaturityModel.html)：
+
+- 等級 0：定義一個 URI，而所有的作業對此 URI 都是 POST 要求。
+- 等級 1：針對個別資源建立不同的 URI。
+- 等級 2：使用 HTTP 方法來定義資源上的作業。
+- 等級 3：使用超媒體 (HATEOAS，如下所述)。
+
+根據 Fielding 的定義，層級 3 代表真正的 REST 式 API。 在實務上，許多已發行的 Web API 是落在等級 2 附近。  
+
+## <a name="organize-the-api-around-resources"></a>依照資源來組織 API
+
+將焦點放在 Web API 公開商業實體。 例如，在電子商務系統中，主要實體可能是客戶和訂單。 可藉由傳送包含訂單資訊的 HTTP POST 要求來建立訂單。 HTTP 回應會指出訂購成功與否。 如果可能的話，資源 URI 應該要依據名詞 (資源) 而不是動詞 (在資源上的作業)。 
 
 ```HTTP
-GET http://adventure-works.com/orders HTTP/1.1
-...
+http://adventure-works.com/orders // Good
+
+http://adventure-works.com/create-order // Avoid
 ```
 
-以下所示的回應，會將訂單編碼成 JSON 清單結構。
+資源不一定要依據單一實體資料項目。 例如，訂單資源可能會以關聯式資料庫中數個資料表的形式在內部實作，但以單一實體的形式呈現給用戶端。 請避免建立只是反映資料庫內部結構的 API。 REST 的目的在於將實體，以及應用程式能在這些實體上所執行的作業加以模型化。 用戶端不應向內部實作公開。
+
+實體通常會分組成集合 (訂單、客戶)。 集合與集合內的項目是不同的資源，而應具有自己的 URI。 例如，下列 URI 可能代表訂單的集合： 
 
 ```HTTP
-HTTP/1.1 200 OK
-...
-Date: Fri, 22 Aug 2014 08:49:02 GMT
-Content-Length: ...
-[{"orderId":1,"orderValue":99.90,"productId":1,"quantity":1},{"orderId":2,"orderValue":10.00,"productId":4,"quantity":2},{"orderId":3,"orderValue":16.60,"productId":2,"quantity":4},{"orderId":4,"orderValue":25.90,"productId":3,"quantity":1},{"orderId":5,"orderValue":99.90,"productId":1,"quantity":1}]
-```
-若要擷取個別訂單，您需要指定 orders 資源中訂單的識別碼 (如 /orders/2)：
-
-```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
-...
+http://adventure-works.com/orders
 ```
 
-```HTTP
-HTTP/1.1 200 OK
-...
-Date: Fri, 22 Aug 2014 08:49:02 GMT
-Content-Length: ...
-{"orderId":2,"orderValue":10.00,"productId":4,"quantity":2}
-```
+傳送對集合 URI 的 HTTP GET 要求，可擷取集合中的項目清單。 集合中的每個項目也會有自己的唯一 URI。 對項目 URI 的 HTTP GET 要求，會傳回該項目的詳細資料。 
 
-> [!NOTE]
-> 為了簡單起見，這些範例顯示回應中的資訊，是以 JSON 文字資料的形式傳回。 然而，限制資源不能包含其他 HTTP 支援的資料類型 (如二進位或加密資訊) 並不合理；HTTP 回應中的 content-type 應該要指定類型。 此外，REST 模型也可以傳回不同格式 (如 XML 或 JSON) 的相同資料。 在此情況下，Web 服務應該要能夠與提出要求的用戶端交涉內容。 此要求包含 Accept 標頭，其指定用戶端慣用的接收格式，而 Web 服務應盡可能嘗試遵守該格式。
->
->
+在 URI 中請採用一致的命名慣例。 一般而言，在參考集合的 URI 中使用複數名詞比較有效益。 將集合的 URI 和項目組織成階層是很好的做法。 例如，`/customers` 是客戶集合的路徑，而 `/customers/5` 則是其 ID 等於 5 的客戶路徑。 這個方法有助於維持 Web API 的直覺性。 此外，許多 Web API 架構可根據參數化的 URI 路徑來路由傳送要求，因此您可以定義路徑 `/customers/{id}` 的路由。
 
-請注意，來自 REST 要求的回應會使用標準 HTTP 狀態碼。 例如，傳回有效資料的要求應包含 HTTP 回應碼 200 (良好)，而找不到或無法刪除指定資源的要求應傳回包含 HTTP 狀態碼 404 (找不到) 的回應。
+也請將不同類型之資源間的關聯性，以及公開這些關聯的方式納入考量。 例如，`/customers/5/orders` 可能代表客戶 5 的所有訂單。 您也可以嘗試從另一個方向切入；從訂單倒推具有如 `/orders/99/customer` URI 的客戶，來表示其關聯性。 不過，過度擴充此模型可能會導致難以實作。 比較好的解決方案，是在 HTTP 回應訊息本文中提供相關資源的可瀏覽連結。 稍後在[使用 HATEOAS 方法來啟用相關資源導覽](#using-the-hateoas-approach-to-enable-navigation-to-related-resources)一節將有這項機制的詳細描述。
 
-## <a name="design-and-structure-of-a-restful-web-api"></a>符合 REST 限制之 Web API 的設計和結構
-設計成功 Web API 的關鍵是簡單和一致性。 具備這兩項要素的 Web API 可讓您輕鬆地建置需要取用 API 的用戶端應用程式。
-
-符合 REST 限制的 Web API 著重於公開一組連接的資源，並提供讓應用程式操作這些資源及輕易地在之間瀏覽的核心作業。 基於這個理由，構成典型符合 REST 限制之 Web API 的 URI 應該以 Web API 公開的資料為導向，並使用 HTTP 所提供的機制來操作這些資料。 這個方法需要的心態與設計一組物件導向 API 之類別時普遍抱持的心態不同，因為後者較傾向受物件和類別的行為所驅策。 此外，符合 REST 限制的 Web API 應該沒有狀態，因此不需要仰賴特定序列叫用的作業。 以下各節摘要說明在設計符合 REST 限制之 Web API 時應考量的重點。
-
-### <a name="organizing-the-web-api-around-resources"></a>將 Web API 排列在資源周圍
-> [!TIP]
-> REST Web 服務所公開的 URI 應基於名詞 (Web API 提供存取能力的資料)，而不是動詞 (應用程式可以如何使用資料)。
->
->
-
-將焦點放在 Web API 公開商業實體。 例如，對於前述專為支援電子商務系統而設計的 Web API，主要實體是客戶和訂單。 諸如下訂單這類的程序，您可以提供能提取訂單資訊，並將其加入客戶之訂單清單的 HTTP POST 作業來達成。 就內部而言，這項 POST 作業可以執行如檢查存貨量及向客戶收費等工作。 HTTP 回應可以指出訂購成功與否。 另請注意，資源不一定要依據一個實體資料項目。 舉例來說，藉由使用自分散在關聯式資料庫多個資料表中許多資料列彙總而來的資訊，您可以將訂單資源實作在內部，但以單一實體的形式呈現給用戶端。
-
-> [!TIP]
-> 請避免設計會鏡像處理或需仰賴自己公開之資料內部結構的 REST 介面。 REST 不僅僅是針對關聯式資料庫中個別資料表執行簡單的 CRUD (建立、擷取、更新、刪除) 作業。 REST 的目的是將商業實體和應用程式可針對商業實體執行的作業對應到這些實體的實際實作，但避免向用戶端公開這些實際詳細資料。
->
->
-
-個別的商業實體很少以隔離狀態存在 (雖然可能有某些單一物件存在)，反之，它們傾向於集結成集合。 就 REST來說，每個實體和每個集合都是資源。 在符合 REST 限制的 Web API 中，每個集合在 Web 服務中都有自己的 URI，而透過 URI 針對集合執行 HTTP GET 能擷取該集合中的項目清單。 每個個別的項目也有自己的 URI，應用程式可以使用該 URI 來提交另一個 HTTP GET 要求，以便擷取該項目的詳細資料。 您應該以階層方式組織集合和項目的 URI。 在電子商務系統中，URI /customers 代表客戶的集合，而 /customers/5 能擷取該集合中的識別碼為 5 之單一客戶的詳細資料。 這個方法有助於維持 Web API 的直覺性。
-
-> [!TIP]
-> 在 URI 中採用一致的命名慣例；一般而言，在參考集合的 URI 中使用複數名詞比較有效益。
->
->
-
-您也需要將不同類型之資源間的關聯性和公開這些關聯的方式納入考量。 例如，客戶可能不會下訂單或下了多張訂單。 若要以自然的方式來呈現此關聯性，便是透過如 /customers/5/orders 之類的 URI 來尋找客戶 5 的所有訂單。 您也可以考慮透過 /orders/99/customer 之類的 URI 來尋找訂單 99 的客戶，呈現從訂單追溯回特定客戶的關聯，不過過度擴充該模型可能因為太過繁瑣而難以實作。 比較好的解決方案，是在查詢訂單時於傳回的 HTTP 回應訊息本文中提供相關資源 (如客戶) 的可瀏覽連結。 本指引稍後的「使用 HATEOAS 方法來啟用相關資源導覽」一節將有這項機制的詳細描述。
-
-在較複雜的系統中可能有許多不同類型的實體，而提供讓用戶端應用程式瀏覽多層級關聯性的 URI 將會是很誘人的做法。例如，瀏覽 /customers/1/orders/99/products 可取得客戶 1 之訂單 99 中的產品清單。 不過，如果資源之間的關聯性在未來發生變更，這種程度的複雜度不僅難以維持，也缺乏彈性。 相反地，您應該尋求將 URL 保持在相對簡單的情況下。 請記住，一旦應用程式擁有資源的參考，它就應該可以使用這個參考來尋找與該資源相關的項目。 您可以將前述查詢取代為 URI /customers/1/orders 來尋找客戶 1 的所有訂單，然後查詢 URI /orders/99/products 來尋找此訂單中的產品 (假設訂單 99 是由客戶 1 下的)。
+在更複雜的系統中，能提供可讓用戶端導覽數個層級關聯性 (例如 `/customers/1/orders/99/products`) 的 URI 會很吸引人。 不過，如果資源之間的關聯性在未來發生變更，這種程度的複雜度不僅難以維持，也缺乏彈性。 所以，請試著讓 URI 保持相對單純。 一旦應用程式擁有資源的參考，就應該可以使用這個參考來尋找與該資源相關的項目。 您可用 URI `/customers/1/orders` 來取代上述查詢，找出客戶 1 的所有訂單，然後用 `/orders/99/products` 來尋找此順序中的產品。
 
 > [!TIP]
 > 請避免要求比 collection/item/collection 更複雜的資源 URI。
->
->
 
-另一個要考量的重點是所有 Web 要求都會造成 Web 伺服器的負載，而要求數目越大，負載也就越沈重。 您應該嘗試定義資源，以避免「多話」的 Web API 公開大量小型資源。 這類 API 可能會要求用戶端應用程式提交多個要求來尋找所需的所有資料。 將資料反正規化並把相關資訊結合在一起，變成發出單一要求即可予以擷取的大型資源將能提高效益。 不過，您需要平衡這個方法在擷取用戶端非經常性需要之資料時的額外負荷。 擷取大型物件可能會增加要求的延遲時間，而且如果額外資料並非經常使用的資料，引發的額外頻寬成本並不會產生太高的效益。
+另一個因素是所有的 Web 要求，都會造成網頁伺服器的負載。 要求愈多，負載也愈大。 因此，請試著避免會公開大量小型資源的「多話」Web API。 這類 API 可能會要求用戶端應用程式傳送多個要求來尋找需要的所有資料。 反之，建議您將資料反正規化並將相關資訊結合在一起，變成發出單一要求即可予以擷取的大型資源。 不過，您需要設法平衡使用此方法在擷取資料時所造成的額外負荷 (這是用戶端不需要的)。 擷取大型物件可能會讓要求的延遲時間變長，並引發額外的頻寬成本。 如需有關這些效能反模式的詳細資訊，請參閱[多話的 I/O](../antipatterns/chatty-io/index.md) 和[沒有直接關聯的擷取](../antipatterns/extraneous-fetching/index.md)。
 
-請避免在 Web API 與基礎資料來源之結構、類型或位置之間導入相依性。 比方說，如果資料位於關聯式資料庫中，Web API 就不需要將每個資料表公開為資源集合。 您可以將 Web API 視為資料庫的抽象，如有必要，可以在資料庫和 Web API 之間導入對應層。 如此一來，當資料庫的設計或實作改變時 (例如，從含有正規化資料表之集合的關聯式資料庫轉變成文件資料庫等反正規化 NoSQL 儲存系統)，用戶端應用程式將能隔絕這些變更。
+請避免讓 Web API 與基礎資料來源產生相依性。 例如，若資料儲存在關聯式資料庫中，Web API 就不需要將每個資料表公開為資源集合。 事實上，這可能是不良的設計。 相反地，請將 Web API 想像成資料庫的抽象概念。 如有必要，請在資料庫與 Web API 之間引入對應層。 這樣一來，用戶端應用程式就會與基礎資料庫結構描述的變更隔離。
 
-> [!TIP]
-> 支持 Web API 的資料來源不一定非得是資料存放區，它可以是另一個服務或企業營運系統應用程式，或甚至是在組織內部執行的內部部署舊版應用程式。
->
->
+最後，您不一定能將 Web API 實作的每個作業對應到特定資源。 您可以透過能叫用某項功能，並以 HTTP 回應訊息形式傳回結果的 HTTP 要求來處理這類「非資源」案例。 例如，實作簡單計算機作業 (如加法和減法) 的 Web API 可以提供將這些作業公開為虛擬資源，並利用查詢字串來指定所需參數的 URI。 例如對 URI /add?operand1=99&operand2=1 的 GET 要求，會傳回本文中包含值 100 的回應訊息。 儘管如此，請謹慎使用這些形式的 URI。
 
-最後，您不一定能將 Web API 實作的每個作業對應到特定資源。 您可以透過能叫用某項功能，並以 HTTP 回應訊息形式傳回結果的 HTTP GET 要求來處理這類「非資源」案例。 實作簡單計算機樣式作業 (如加法和減法) 的 Web API 可以提供將這些作業公開為虛擬資源，並利用查詢字串來指定所需參數的 URI。 例如，URI /add?operand1=99&operand2=1 的 GET 要求可以傳回本文包含值 100 的回應訊息，而 URI /subtract?operand1=50&operand2=20 的 GET 要求則可以傳回本文包含值 30 的回應訊息。 儘管如此，請謹慎使用這些形式的 URI。
+## <a name="define-operations-in-terms-of-http-methods"></a>以 HTTP 方法定義作業
 
-### <a name="defining-operations-in-terms-of-http-methods"></a>以 HTTP 方法定義作業
 HTTP 通訊協定能定義數個將語意意義指派給要求的方法。 大多數符合 REST 限制之 Web API 使用的常見 HTTP 方法包括︰
 
-* **GET**：在指定的 URI 擷取一份資源。 回應訊息的本文包含要求之資源的詳細資料。
+* **GET**：在指定的 URI 擷取資源的表示法。 回應訊息的本文包含要求之資源的詳細資料。
 * **POST**：在指定的 URI 建立新資源。 要求訊息的本文提供新資源的詳細資料。 請注意，POST 也能用來觸發實際上不會建立資源的作業。
-* **PUT**：取代或更新指定之 URI 的資源。 要求訊息的本文能會指定要修改的資源及要套用的值。
-* **DELETE**：移除指定之 URI 的資源。
+* **PUT**：在指定的 URI 建立或取代資源。 要求訊息的本文會指定要建立或更新的資源。
+* **PATCH**：會執行資源的部分更新。 要求本文會指定要套用到資源的變更集。
+* **DELETE**：會在指定的 URI 移除資源。
 
-> [!NOTE]
-> HTTP 通訊協定也能定義其他較不常用的方法。例如用來向資源要求選擇性更新的 PATCH、用來要求資源描述的 HEAD、讓用戶端資訊取得伺服器支援之通訊選項相關資訊的 OPTIONS，以及讓用戶端要求可供測試和診斷之用之資訊的 TRACE。
->
->
-
-特定要求的效果應取決於要套用的資源是集合或個別項目。 下表摘要說明的常見慣例是大部分使用電子商務範例之符合 REST 限制實作所採用的慣例。 請注意，這些要求中並非所有要求都可以實作，須視特定案例的情況而定。
+特定要求的效果應取決於資源是集合還是個別項目。 下表摘要說明的常見慣例是大部分使用電子商務範例之符合 REST 限制實作所採用的慣例。 請注意，這些要求中並非所有要求都可以實作，須視特定案例的情況而定。
 
 | **Resource** | **POST** | **GET** | **PUT** | **DELETE** |
 | --- | --- | --- | --- | --- |
-| /customers |建立新客戶 |擷取所有客戶 |大量更新客戶 (若實作的話) |移除所有客戶 |
-| /customers/1 |錯誤 |擷取客戶 1 的詳細資料 |更新客戶 1 的詳細資料 (若有的話)，否則傳回錯誤 |移除客戶 1 |
-| /customers/1/orders |為客戶 1 建立新訂單 |擷取客戶 1 的所有訂單 |大量更新客戶 1 的訂單 (若實作的話) |移除客戶 1 的所有訂單 (若實作的話) |
+| /customers |建立新客戶 |擷取所有客戶 |大量更新客戶 |移除所有客戶 |
+| /customers/1 |Error |擷取客戶 1 的詳細資料 |更新客戶 1 的詳細資料 (若有的話) |移除客戶 1 |
+| /customers/1/orders |為客戶 1 建立新訂單 |擷取客戶 1 的所有訂單 |大量更新客戶 1 的訂單 |移除客戶 1 的所有訂單 |
 
-GET 和 DELETE 要求的用途相對地較清楚明瞭，但是 POST 和 PUT 要求用途和效果則有造成混淆的範圍。
+POST、PUT 和 PATCH 之間的差異可能會令人混淆。
 
-POST 要求應利用要求本文提供的資料建立新資源。 在 REST 模型中，您經常會將 POST 要求套用至集合形式的資源；新資源會加入集合中。
+- POST 要求會建立資源。 伺服器會指派新資源的 URI，並將該 URI 傳回給用戶端。 在 REST 模型中，您會經常將 POST 要求套用到集合。 新資源會新增到集合中。 POST 要求也可用來提交資料以處理現有的資源，而不建立任何新資源。
 
-> [!NOTE]
-> 您也可以定義觸發某些功能 (不一定是傳回資料) 的 POST 要求，而這些類型的要求可以套用至集合。 比方說，您可以使用 POST 要求將時程表傳遞給薪資處理服務，然後將計算出來稅金當做回應。
->
->
+- PUT 要求會建立資源「或」更新現有的資源。 用戶端會指定資源的 URI。 要求本文會包含資源的完整表示法。 若具有此 URI 的資源已經存在，則會取代此資源。 否則會建立新的資源 (若伺服器支援此動作)。 PUT 要求最常套用到是個別項目的資源 (例如特定的客戶)，而非集合的資源。 伺服器可能會支援透過 PUT 更新資源，但不支援透過 PUT 建立資源。 是否支援透過 PUT 建立資源，取決於資源存在之前，用戶端是否可以有意義地將 URI 指派給資源。 若否，請使用 POST 來建立資源並使用 PUT 或 PATCH 來更新資源。
 
-PUT 要求的目的在於修改現有資源。 如果指定的資源不存在，PUT 要求可能會傳回錯誤 (在某些情況下，它可能會實際建立資源)。 PUT 要求最常套用至個別項目形式的資源 (如特定客戶或訂單)，雖然您可以將它們套用至集合，不過這是比較不常實作的案例。 請注意，PUT 要求具有等冪性，POST 要求則否。如果應用程式提交相同的 PUT 要求多次，結果應該會保持不變 (使用相同的值修改相同的資源)，但如果應用程式重複相同的 POST 要求，結果會是建立多個資源。
+- PATCH 要求會針對現有的資源執行「部分更新」。 用戶端會指定資源的 URI。 要求本文會指定要套用到資源的「變更」集。 這可能比使用 PUT 更有效率，因為用戶端只會傳送變更，而不會傳送整個資源的表示法。 技術上 PATCH 也可以建立新的資源 (透過指定一組「null」資源的更新，若伺服器支援此動作)。 
 
-> [!NOTE]
-> 嚴格來說，HTTP PUT 要求會以在要求本文中指定的資源取代現有資源。 如果您的用意是要修改資源中選取範圍內的屬性，但保留其他屬性不變，這時應使用 HTTP PATCH 要求來實作。 不過，許多符合 REST 限制的實作放寬這項規則，均使用 PUT 來滿足這兩種情況的需求。
->
->
+PUT 要求必須具有等冪性。 若用戶端多次送出相同的 PUT 要求，結果應該永遠保持不變 (使用相同的值會修改相同的資源)。 不保證 POST 和 PATCH 要求都具有冪等性。
 
-### <a name="processing-http-requests"></a>處理 HTTP 要求
-用戶端應用程式加入許多 HTTP 要求中的資料，以及來自 Web 伺服器的對應回應訊息，都能以各種不同的格式 (或媒體類型) 來呈現。 例如，指定客戶或訂單詳細資料的資料可能是 XML、JSON 或其他編碼及壓縮格式。 符合 REST 限制的 Web API 應支援提交要求之用戶端應用程式所要求的各種媒體類型。
+## <a name="conform-to-http-semantics"></a>符合 HTTP 語意
 
-當用戶端應用程式傳送會在訊息本文中傳回資料的要求時，它能在要求的 Accept 標頭中指定可以處理的媒體類型。 下列程式碼說明可擷取訂單 2 的詳細資料，並要求以 JSON 傳回結果的 HTTP GET 要求 (用戶端仍應該檢查回應中的資料媒體類型，以確認傳回的資料格式)：
+本節會描述一些要設計符合 HTTP 規格的 API 時，一般的考量事項。 不過，恕無法涵蓋每種可能的細節或案例。 若有疑問，請參閱 HTTP 規格。
 
-```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
-...
-Accept: application/json
-...
-```
+### <a name="media-types"></a>媒體類型
 
-如果 Web 伺服器支援此媒體類型，它可以回覆含 Content-Type 標頭的回應，並在其中指定訊息本文中的資料格式：
+如先前所述，用戶端和伺服器會交換資源的表示法。 例如，在 POST 要求中，要求本文會包含所要建立資源的表示法。 在 GET 要求中，回應本文會包含已擷取資源的表示法。
 
-> [!NOTE]
-> 為了取得最大互通性，Accept 和 Content-Type 標頭中所參考媒體類型應辨識為 MIME 類型，而非某些自訂媒體類型。
->
->
+在 HTTP 通訊協定中，會使用「媒體類型」(也稱為 MIME 類型) 來指定格式。 對於非二進位資料，大部分 Web API 都支援 JSON (媒體類型 = application/json)，並可能支援 XML (媒體類型 = application/xml)。 
 
-```HTTP
-HTTP/1.1 200 OK
-...
-Content-Type: application/json; charset=utf-8
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-Content-Length: ...
-{"orderID":2,"productID":4,"quantity":2,"orderValue":10.00}
-```
-
-如果 Web 伺服器不支援要求的媒體類型，它可以利用不同的格式來傳送資料。 在所有情況下，它必須在 Content-Type 標頭中指定媒體類型 (例如 application/json)。 用戶端應用程式必須負責剖析回應訊息，並適當地解譯訊息本文中的結果。
-
-請注意，在此範例中 Web 伺服器成功擷取要求的資料，並藉由在回應標頭中傳回狀態碼 200 來表示成功。 如果找不到相符的資料，它應改為傳回狀態碼 404 (找不到)，而回應訊息的本文可以包含其他資訊。 這些資訊的格式是由 Content-Type 標頭指定，如下列範例所示：
-
-```HTTP
-GET http://adventure-works.com/orders/222 HTTP/1.1
-...
-Accept: application/json
-...
-```
-
-訂單 222 不存在，所以回應訊息看起來像：
-
-```HTTP
-HTTP/1.1 404 Not Found
-...
-Content-Type: application/json; charset=utf-8
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-Content-Length: ...
-{"message":"No such order"}
-```
-
-當應用程式傳送 HTTP PUT 要求來更新資源時，它會指定資源的 URI，並在要求訊息的本文中提供要修改的資料。 它也可以使用 Content-Type 標頭來指定這些資料的格式。 以文字為基礎的資訊常會使用 application/x-www-form-urlencoded 格式，其中包括一組以 & 字元分隔的名稱/值對。 下一個範例顯示修改訂單 1 之資訊的 HTTP PUT 要求：
-
-```HTTP
-PUT http://adventure-works.com/orders/1 HTTP/1.1
-...
-Content-Type: application/x-www-form-urlencoded
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-Content-Length: ...
-ProductID=3&Quantity=5&OrderValue=250
-```
-
-如果修改成功，在理想的情況下它會回應 HTTP 204 狀態碼，表示已成功處理程序，但回應本文不會包含進一步的資訊。 回應中的 Location 標頭包含新更新之資源的 URI：
-
-```HTTP
-HTTP/1.1 204 No Content
-...
-Location: http://adventure-works.com/orders/1
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-```
-
-> [!TIP]
-> 如果 HTTP PUT 要求訊息中的資料包含日期和時間資訊，請確認 Web 服務接受遵循 ISO 8601 標準格式化的日期和時間。
->
->
-
-如果要更新的資源不存在，Web 伺服器可以回覆「找不到」回應，如先前所述。 或者，如果伺服器確實自行建立物件，它會傳回狀態碼 HTTP 200 (良好) 或 HTTP 201 (已建立)，而回應本文可以包含新資源的資料。 如果要求的 Content-Type 標頭指定了 Web 伺服器無法處理的資料格式，它應該會回應 HTTP 狀態碼為 415 (不支援的媒體類型)。
-
-> [!TIP]
-> 請考慮實作可批次更新集合中多個資源的大量 HTTP PUT 作業。 PUT 要求應指定集合的 URI，而要求本文應指定要修改之資源的詳細資料。 這個方法有助於減少多對話的情況及提升效能。
->
->
-
-建立新資源之 HTTP POST 要求的格式與 PUT 要求的格式相似，其訊息本文包含要加入之新資源的詳細資料。 不過，URI 通常會指定應加入資源的集合。 下列範例會建立新訂單並加入訂單集合：
+要求或回應中的 Content-Type 標頭會指定表示法的格式。 以下是包括 JSON 資料的 POST 要求範例：
 
 ```HTTP
 POST http://adventure-works.com/orders HTTP/1.1
-...
-Content-Type: application/x-www-form-urlencoded
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-Content-Length: ...
-productID=5&quantity=15&orderValue=400
-```
-
-如果要求成功，Web 伺服器應該會回應含 HTTP 狀態碼 201 (已建立) 的訊息代碼。 Location 標頭應包含新建立之資源的 URI，且回應本文應包含一份新資源。Content-type 標頭能指定這些資料的格式：
-
-```HTTP
-HTTP/1.1 201 Created
-...
 Content-Type: application/json; charset=utf-8
-Location: http://adventure-works.com/orders/99
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
-Content-Length: ...
-{"orderID":99,"productID":5,"quantity":15,"orderValue":400}
+Content-Length: 57
+
+{"Id":1,"Name":"Gizmo","Category":"Widgets","Price":1.99}
 ```
 
-> [!TIP]
-> 如果 PUT 或 POST 要求所提供的資料無效，Web 伺服器應回應含 HTTP 狀態碼 400 (不正確的要求) 的訊息。 此訊息的本文可以包含有關要求之問題的其他資訊和預期的格式，也可以包含提供更多詳細資料的 URL 連結。
->
->
+若伺服器不支援該媒體類型，應會傳回 HTTP 狀態碼 415 (不支援的媒體類型)。
 
-若要移除資源，HTTP DELETE 要求恰恰能提供要刪除之資源的 URI。 下列範例會嘗試移除訂單 99：
+用戶端要求可能會包含 Accept 標頭，而在回應訊息中，該標頭包含用戶端會從伺服器接受的媒體類型清單。 例如︰
 
 ```HTTP
-DELETE http://adventure-works.com/orders/99 HTTP/1.1
-...
+GET http://adventure-works.com/orders/2 HTTP/1.1
+Accept: application/json
 ```
 
-如果刪除作業成功，Web 伺服器應回應 HTTP 狀態碼 204，指出已成功處理程序，但回應本文不包含進一步的資訊 (這個回應與成功 PUT 作業傳回的回應相同，只不過沒有 Location 標頭，因為資源已不存在)。如果以非同步方式執行刪除作業，DELETE 要求也可能會傳回 HTTP 狀態碼 200 (良好) 或 202 (已接受)。
+若伺服器不符合任何所列的媒體類型，應會傳回 HTTP 狀態碼 406 (無法接受)。 
 
-```HTTP
-HTTP/1.1 204 No Content
-...
-Date: Fri, 22 Aug 2014 09:18:37 GMT
+### <a name="get-methods"></a>GET 方法
+
+成功的 GET 方法通常會傳回 HTTP 狀態碼 200 (確定)。 若找不到該資源，此方法應會傳回 404 (找不到)。
+
+### <a name="post-methods"></a>POST 方法
+
+若 POST 方法建立了新資源，就會傳回 HTTP 狀態碼 201 (已建立)。 新資源的 URI 會包含在回應的 Location 標頭中。 回應本文會包含資源的表示法。
+
+若該方法進行了一些處理，但未建立新資源，則方法可能會傳回 HTTP 狀態碼 200，並在回應本文中包含作業的結果。 或者，若沒有可傳回的結果，該方法可能會傳回 HTTP 狀態碼 204 (沒有內容) 而不傳回回應本文。
+
+若用戶端在要求中放入無效的資料，伺服器應會傳回 HTTP 狀態碼 400 (錯誤的要求)。 回應本文可能會包含關於錯誤的其他資訊，或可提供更多詳細資料的 URI 連結。
+
+### <a name="put-methods"></a>PUT 方法
+
+若 PUT 方法建立了新資源，就會傳回 HTTP 狀態碼 201 (已建立)，如同 POST 方法一樣。 若該方法更新了現有資源，就會傳回 200 (確定) 或 204 (沒有內容)。 在某些情況下，可能會無法更新現有的資源。 在此情況下，請考慮傳回 HTTP 狀態碼 409 (衝突)。 
+
+請考慮實作可批次更新集合中多個資源的大量 HTTP PUT 作業。 PUT 要求應指定集合的 URI，而要求本文應指定要修改之資源的詳細資料。 這個方法有助於減少多對話的情況及提升效能。
+
+### <a name="patch-methods"></a>PATCH 方法
+
+用戶端會使用 PATCH 要求，以「修補程式文件」的格式將一組更新傳送給現有資源。 伺服器會處理修補程式文件以執行更新。 修補程式文件並不會描述整個資源，只會描述要套用的一組變更。 PATCH 方法的規格 ([RFC 5789](https://tools.ietf.org/html/rfc5789)) 不會針對修補程式文件定義特定格式。 格式必須從要求中的媒體類型來推斷。
+
+JSON 可能是 Web API 最常見的資料格式。 有兩種以 JSON 為基礎的主要修補程式格式，稱為「JSON 修補」和「JSON 合併修補」。
+
+JSON 合併修補稍微簡單些。 修補程式文件與原始的 JSON 資源具有相同的結構，但只包含了應變更或新增的欄位子集。 此外，您可在修補程式文件中將欄位值指定為 `null` 來刪除欄位。 (這表示若原始的資源可以有明確的 null 值，合併修補程式就不適合。)
+
+例如，假設原始的資源具有下列 JSON 表示法：
+
+```json
+{ 
+    "name":"gizmo",
+    "category":"widgets",
+    "color":"blue",
+    "price":10
+}
 ```
 
-如果找不到資源，Web 伺服器應改為傳回 404 (找不到) 訊息。
+以下是此資源可能的 JSON 合併修補程式：
 
-> [!TIP]
-> 如果您需要刪除集合中的所有資源，可以針對集合的 URI 指定 HTTP DELETE 要求，避免強迫應用程式輪流移除集合中的每個資源。
->
->
+```json
+{ 
+    "price":12,
+    "color":null,
+    "size":"small"
+}
+```
 
-### <a name="filtering-and-paginating-data"></a>篩選及為資料分頁
-URI 應該儘可能保持簡單又直覺。 透過單一 URI 公開資源集合能帶來這方面的優點，不過可能會導致應用程式在只需要資訊的子集時擷取大量資料。 產生大量流量不僅會影響 Web 伺服器的效能和延展性，還會對要求資料之用戶端應用程式回應能力造成不良影響。
+這會要求伺服器更新「價格」、刪除「色彩」，然後新增「大小」。 「名稱」和「類別」則不會受到修改。 如需 JSON 合併修補程式的確切詳情，請參閱 [RFC 7396](https://tools.ietf.org/html/rfc7396)。 JSON 合併修補程式的媒體類型為「application/merge-patch+json」。
 
-例如，如果訂單包含針對訂單支付的價格，需要擷取所有含價格 (非特定價值) 之訂單的用戶端應用程式可能需要從 /orders URI 擷取所有訂單，然後在本機篩選這些訂單。 顯然地，這個程序的效率不佳，它浪費裝載 Web API 之伺服器的網路頻寬和處理能力。
+若原始的資源可以包含明確的 null 值，合併修補程式就不適合，因為 `null` 在修補程式文件中有特殊意義。 此外，修補程式文件也不會指定伺服器應套用更新的順序。 這可能很重要，也可能不重要，端視資料和網域而定。 以 [RFC 6902](https://tools.ietf.org/html/rfc6902) 定義的 JSON 修補程式更加有彈性。 它會將變更指定為要套用的作業序列。 這些作業包括新增、移除、取代、複製及測試 (用來驗證值)。 JSON 修補程式的媒體類型為「application/json-patch+json」。
 
-提供 */orders/ordervalue_greater_than_n* (其中 *n* 代表訂單價格) 之類的 URI 配置可能是其中一個解決方案，但除了有限數目的價格以外，這個方法並不實用。 此外，如果您需要依據其他準則查詢訂單，可能會面臨提供一長串的 URI 和可能非直覺式名稱的窘境。
+以下是一些處理 PATCH 要求時可能會碰到的一般錯誤狀況，以及適用的 HTTP 狀態碼。
 
-較好的資料篩選策略是以查詢字串形式提供要傳遞到 Web API 的篩選準則，如 /orders?ordervaluethreshold=n。 在此範例中，Web API 中對應的作業會負責剖析和處理 `ordervaluethreshold` 查詢字串中的參數，並在 HTTP 回應中傳回篩選結果。
+| 錯誤狀況 | HTTP 狀態碼 |
+|-----------|------------|
+| 不支援該修補程式文件格式。 | 415 (不支援的媒體類型) |
+| 修補程式文件格式不正確。 | 400 (錯誤的要求) |
+| 修補程式文件有效，但在資源目前的狀態下，無法將變更套用到該資源。 | 409 (衝突)
 
-某些針對集合資源的簡單 HTTP GET 要求可能會傳回大量的項目。 為了對抗發生這種情況的可能性，您應該設計 Web API 以限制任何單一要求所傳回的資料量。 藉由支援讓使用者指定要擷取之項目數目上限的查詢字串 (其本身可能需要受到上界限制，以防止阻絕服務攻擊)，以及插入集合的起始位移，您可以達到此目的。 例如，URI /orders?limit=25&offset=50 中的查詢字串應從訂單集合中找到的第 50 張訂單開始擷取 25 張訂單。 如同篩選資料，在 Web API 中實作 GET 要求的作業需負責剖析和處理查詢字串中的 `limit` 和 `offset` 參數。 為了協助用戶端應用程式，傳回已分頁資料的 GET 要求也應該包含某種形式的中繼資料，以便指出集合中的可用資源總數。 您也可以考慮其他智慧型分頁策略。如需詳細資訊，請參閱 [API 設計注意事項：智慧型分頁](http://bizcoder.com/api-design-notes-smart-paging)
+### <a name="delete-methods"></a>DELETE 方法
 
-您可以遵循類似的策略在擷取資料時予以排序；您可以提供將欄位名稱當做值的排序參數 (如 /orders?sort=ProductID)。 不過請注意，這種方法可能會對快取造成不良影響 (查詢字串參數會構成部分資源識別碼，而許多快取實作會將該識別碼當做索引鍵來快取資料)。
+若刪除作業成功，網頁伺服器應會回應 HTTP 狀態碼 204，表示已成功處理程序，但回應本文不會包含進一步的資訊。 若該資源不存在，網頁伺服器可能會傳回 HTTP 404 (找不到)。
 
-如果單一資源項目包含大量資料，您可以延伸這個方法來限制 (投射) 傳回的欄位。 例如，您可以使用接受以逗號分隔清單之欄位的查詢字串參數 (如 /orders?fields=ProductID,Quantity)。
+### <a name="asynchronous-operations"></a>非同步作業
 
-> [!TIP]
-> 為查詢字串中所有選擇性參數提供有意義的預設值。 例如，如果您實作分頁，可以將 `limit` 參數設為 10，並將 `offset` 參數設為 0；如果您實作排序，可以將排序參數設定為資源的索引鍵；如果您支援投射，可以將 `fields` 參數設定為資源中的所有欄位。
->
->
+有時 POST、PUT、PATCH 或 DELETE 作業可能會需要一些時間才能完成處理。 若您將回應傳送給用戶端之前要等候作業完成，可能會導致無法接受的延遲。 在此情況下，請考慮讓作業非同步。 傳回 HTTP 狀態碼 202 (已接受)，來表示已接受要求，但尚未完成處理。 
 
-### <a name="handling-large-binary-resources"></a>處理大型二進位資源
-單一資源可能包含大型的二進位欄位，如檔案或影像。 若要克服傳輸問題造成的不可靠和間歇性連線，以及改善回應時間，請考慮提供讓用戶端應用程式以區塊形式擷取這類資源的作業。 若要這樣做，Web API 應支援大型資源之 GET 要求的 Accept-Ranges 標頭，最理想的情況是針對這些資源實作 HTTP HEAD 要求。 Accept-Ranges 標頭表示 GET 作業支援部分結果，而且用戶端應用程式可提交傳回以位元組範圍指定之資源子集的 GET 要求。 HEAD 要求與 GET 要求相似，不過它只會傳回描述資源的標頭和空白的訊息本文。 用戶端應用程式可以發出 HEAD 要求，以判斷是否要使用部分 GET 要求擷取資源。 下列範例顯示取得產品影像之相關資訊的 HEAD 要求：
+您應該公開會傳回非同步要求狀態的端點，讓用戶端可以透過輪詢狀態端點來監視狀態。 請在 202 回應的 Location 標頭中包含狀態端點的 URI。 例如︰
+
+```http
+HTTP/1.1 202 Accepted
+Location: /api/status/12345
+```
+
+若用戶端將 GET 要求傳送到此端點，回應中應包含要求的目前狀態。 或者，您也可以在回應中包含預估的完成時間，或用以取消作業的連結。 
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "status":"In progress",
+    "link": { "rel":"cancel", "method":"delete", "href":"/api/status/12345"
+}
+```
+
+若非同步作業建立了新資源，在作業完成後狀態端點應會傳回狀態碼 303 (請參閱「其他」)。 請在 303 回應中，包含可提供新資源 URI 的 Location 標頭：
+
+```http
+HTTP/1.1 303 See Other
+Location: /api/orders/12345
+```
+
+如需詳細資訊，請參閱 [REST 中的非同步作業](https://www.adayinthelifeof.nl/2011/06/02/asynchronous-operations-in-rest/)。
+
+## <a name="filter-and-paginate-data"></a>將資料篩選和分頁
+
+透過單一 URI 公開資源集合，可能會導致應用程式在只需要資訊的子集時反而擷取大量資料。 例如，假設用戶端應用程式需要找出具有特定成本值的所有訂單。 它可能會從 /orders URI 擷取所有的訂單，然後在用戶端上篩選這些訂單。 此程序顯然效率極低， 會浪費裝載 Web API 之伺服器的網路頻寬和處理能力。
+
+反之，API 可在 URI 的查詢字串中傳遞篩選條件 (例如 /orders?minCost=n)。 接著 Web API 會負責剖析和處理查詢字串中的 `minCost` 參數，並在伺服器端傳回篩選的結果。 
+
+針對集合資源的 GET 要求有可能會傳回大量的項目。 您應該設計 Web API 以限制任何單一要求所傳回的資料量。 請考慮提供可指定要擷取的項目上限的查詢字串，以及提供集合中的起始位移。 例如︰
+
+```
+/orders?limit=25&offset=50
+```
+
+也請考慮設定要傳回的項目上限，以協助避免拒絕服務的攻擊。 為了協助用戶端應用程式，傳回已分頁資料的 GET 要求也應該包含某種形式的中繼資料，以便指出集合中的可用資源總數。 您也可以考慮其他智慧型分頁策略。如需詳細資訊，請參閱 [API 設計注意事項：智慧型分頁](http://bizcoder.com/api-design-notes-smart-paging)
+
+您可以提供將欄位名稱當作值的排序參數 (例如 /orders?sort=ProductID)，來使用類似的策略在擷取資料時予以排序。 不過，這種方法可能會對快取造成不良影響 (因為查詢字串參數會構成部分資源識別碼，而許多快取實作會將該識別碼當做索引鍵來快取資料)。
+
+若每個項目都包含大量的資料，您可以延伸這個方法來限制傳回的欄位。 例如，您可以使用接受以逗號分隔清單之欄位的查詢字串參數 (如 /orders?fields=ProductID,Quantity)。 
+
+為查詢字串中所有選擇性參數提供有意義的預設值。 例如，如果您實作分頁，可以將 `limit` 參數設為 10，並將 `offset` 參數設為 0；如果您實作排序，可以將排序參數設定為資源的索引鍵；如果您支援投射，可以將 `fields` 參數設定為資源中的所有欄位。
+
+## <a name="support-partial-responses-for-large-binary-resources"></a>支援對大型二進位資源的部分回應
+
+資源可能會包含大型的二進位欄位，例如檔案或影像。 若要克服不可靠和間歇性連線所造成的問題，以及改善回應時間，請考慮以區塊形式擷取這類資源。 若要這樣做，Web API 應支援大型資源 GET 要求的 Accept-Ranges 標頭。 此標頭表示 GET 作業支援部分的要求。 用戶端應用程式能以位元組的範圍加以指定，送出會傳回資源子集的 GET 要求。 
+
+此外，也請考慮實作這些資源的 HTTP HEAD 要求。 HEAD 要求與 GET 要求相似，不過前者只會傳回描述資源的 HTTP 標頭和空白的訊息本文。 用戶端應用程式可以發出 HEAD 要求，以判斷是否要使用部分 GET 要求擷取資源。 例如︰
 
 ```HTTP
 HEAD http://adventure-works.com/products/10?fields=productImage HTTP/1.1
-...
 ```
 
-回應訊息含有標頭，其中包括資源大小 (4580 個位元組)，以及對應 GET 作業支援部分結果的 Accept-Ranges 標頭：
+以下是回應訊息的範例： 
 
 ```HTTP
 HTTP/1.1 200 OK
-...
+
 Accept-Ranges: bytes
 Content-Type: image/jpeg
 Content-Length: 4580
-...
 ```
 
-用戶端應用程式可以使用這些資訊來建構一系列的 GET 作業，以便利用較小的區塊擷取影像。 第一個要求會使用 Range 標頭擷取前 2500 個位元組：
+Content-Length 標頭會提供資源總大小，而 Accept-Ranges 標頭則會指出對應的 GET 作業支援部分結果。 用戶端應用程式可以使用這些資訊，以較小的區塊來擷取影像。 第一個要求會使用 Range 標頭擷取前 2500 個位元組：
 
 ```HTTP
 GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
 Range: bytes=0-2499
-...
 ```
 
 回應訊息會藉由傳回 HTTP 狀態碼 206 來指出這是部分回應。 Content-Length 標頭能指出訊息本文傳回的實際位元組數目 (不是資源的大小)，而 Content-Range 標頭能指出這是資源的哪個部分 (4580 個位元組中的第 0-2499 個位元組)：
 
 ```HTTP
 HTTP/1.1 206 Partial Content
-...
+
 Accept-Ranges: bytes
 Content-Type: image/jpeg
 Content-Length: 2500
 Content-Range: bytes 0-2499/4580
-...
-_{binary data not shown}_
+
+[...]
 ```
 
-用戶端應用程式的後續要求可以使用適當的 Range 標頭來擷取資源的其餘部分：
+來自用戶端應用程式的後續要求，可以擷取資源的其餘部分。
 
-```HTTP
-GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
-Range: bytes=2500-
-...
-```
+## <a name="use-hateoas-to-enable-navigation-to-related-resources"></a>使用 HATEOAS 方法來啟用相關資源的導覽
 
-對應的結果訊息看起來應該像這樣：
-
-```HTTP
-HTTP/1.1 206 Partial Content
-...
-Accept-Ranges: bytes
-Content-Type: image/jpeg
-Content-Length: 2080
-Content-Range: bytes 2500-4580/4580
-...
-```
-
-## <a name="using-the-hateoas-approach-to-enable-navigation-to-related-resources"></a>使用 HATEOAS 方法來啟用相關資源導覽
 REST 背後的其中一個主要動機，是它應該可以在不需要事先知道 URI 配置的情況下瀏覽整組資源。 每個 HTTP GET 要求都應傳回讓您能透過回應包含之超連結尋找與要求物件直接相關之資源的資訊，您也應提供它描述每個資源上可供使用之作業的資訊。 此原則就是所謂的 HATEOAS (Hypertext as the Engine of Application State)。 系統實際上是有限的狀態機器，而每個要求的回應都包含從某個狀態轉換為另一個狀態所需的資訊。其他任何資訊都不是必要資訊。
 
 > [!NOTE]
@@ -381,42 +331,63 @@ REST 背後的其中一個主要動機，是它應該可以在不需要事先知
 >
 >
 
-舉例來說，若要處理客戶和訂單之間的關聯性，針對特定訂單傳回之回應中的資料應包含超連結格式的 URI，以便識別下訂單的客戶，以及可針對該客戶執行的作業。
+例如，為了處理訂單與客戶之間的關聯性，訂單的表示法可能會包含用以識別訂單客戶可用作業的連結。 以下是可能的表示法： 
 
-```HTTP
-GET http://adventure-works.com/orders/3 HTTP/1.1
-Accept: application/json
-...
+```json
+{
+  "orderID":3,
+  "productID":2,
+  "quantity":4,
+  "orderValue":16.60,
+  "links":[
+    {
+      "rel":"customer",
+      "href":"http://adventure-works.com/customers/3", 
+      "action":"GET",
+      "types":["text/xml","application/json"] 
+    },
+    {
+      "rel":"customer",
+      "href":"http://adventure-works.com/customers/3", 
+      "action":"PUT",
+      "types":["application/x-www-form-urlencoded"]
+    },
+    {
+      "rel":"customer",
+      "href":"http://adventure-works.com/customers/3",
+      "action":"DELETE",
+      "types":[]
+    },
+    {
+      "rel":"self",
+      "href":"http://adventure-works.com/orders/3", 
+      "action":"GET",
+      "types":["text/xml","application/json"]
+    },
+    {
+      "rel":"self",
+      "href":"http://adventure-works.com/orders/3", 
+      "action":"PUT",
+      "types":["application/x-www-form-urlencoded"]
+    },
+    {
+      "rel":"self",
+      "href":"http://adventure-works.com/orders/3", 
+      "action":"DELETE",
+      "types":[]
+    }]
+}
 ```
 
-回應訊息的本文包含 `links` 陣列 (程式碼範例中反白顯示的部分)，指定關聯性的本質 (Customer)、客戶的 URI (http://adventure-works.com/customers/3)、如何擷取此客戶的詳細資料 (GET)，以及 Web 伺服器支援來擷取這些資訊的 MIME 類型 (text/xml 和 application/json)。 這是用戶端應用程式要能夠擷取客戶詳細資料所需的所有資訊。 此外，連結陣列也包含其他可執行之作業的連結，如 PUT (修改客戶，以及 Web 伺服器預期用戶端提供的格式) 和 DELETE。
+在此範例中，`links` 陣列有一組連結。 每個連結都代表相關實體上的作業。 每個連結的資料都包含關聯性 (「客戶」)、URI (`http://adventure-works.com/customers/3`)、HTTP 方法，以及支援的 MIME 類型。 這是用戶端應用程式要能夠叫用作業需要的所有資訊。 
 
-```HTTP
-HTTP/1.1 200 OK
-...
-Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
-{"orderID":3,"productID":2,"quantity":4,"orderValue":16.60,"links":[(some links omitted){"rel":"customer","href":" http://adventure-works.com/customers/3", "action":"GET","types":["text/xml","application/json"]},{"rel":"
-customer","href":" http://adventure-works.com /customers/3", "action":"PUT","types":["application/x-www-form-urlencoded"]},{"rel":"customer","href":" http://adventure-works.com /customers/3","action":"DELETE","types":[]}]}
-```
+`links` 陣列也會包含關於已擷取資源本身的自我參考資訊。 這些項目具有自我關聯性。
 
-基於完整性考量，連結陣列也應包含有關已擷取之資源的自我參考資訊。 先前的範例省略了這些連結，不過我們在下列程式碼中反白顯示。 請注意，在這些連結中，我們使用關聯性 self 來指出這是作業所傳回之資源的參考：
-
-```HTTP
-HTTP/1.1 200 OK
-...
-Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
-{"orderID":3,"productID":2,"quantity":4,"orderValue":16.60,"links":[{"rel":"self","href":" http://adventure-works.com/orders/3", "action":"GET","types":["text/xml","application/json"]},{"rel":" self","href":" http://adventure-works.com /orders/3", "action":"PUT","types":["application/x-www-form-urlencoded"]},{"rel":"self","href":" http://adventure-works.com /orders/3", "action":"DELETE","types":[]},{"rel":"customer",
-"href":" http://adventure-works.com /customers/3", "action":"GET","types":["text/xml","application/json"]},{"rel":" customer" (customer links omitted)}]}
-```
-
-這個方法若要生效，您必須備妥用戶端應用程式，使其能擷取及剖析這些額外資訊。
+傳回的連結集可能會變更，視資源的狀態而定。 這就是為何我們將超文字稱為「應用程式狀態的引擎」。
 
 ## <a name="versioning-a-restful-web-api"></a>符合 REST 限制的 Web API 版本控制
-即使是在所有最簡單的情況下，Web API 依然不太可能維持不變。 隨著商務需求變更，我們可能會加入新資源集合、資源之間的關聯性可能會改變，也會修改資源中的資料結構。 雖然更新 Web API 來處理新的或不同的需求是相對簡單的程序，不過您必須將這類變更對取用 Web API 之用戶端應用程式所造成的效果納入考量。 問題在於雖然設計和實作 Web API 的開發人員擁有該 API 完整的控制能力，不過對於從遠端作業之第三方組織所建置的用戶端應用程式，開發人員並沒有相同程度的控制能力。 主要的要務是讓現有用戶端應用程式在未變更的情況下繼續運作，同時允許新用戶端應用程式充分運用新功能和資源。
+
+Web API 維持靜態的可能性極低。 隨著商務需求變更，我們可能會加入新資源集合、資源之間的關聯性可能會改變，也會修改資源中的資料結構。 雖然更新 Web API 來處理新的或不同的需求是相對簡單的程序，不過您必須將這類變更對取用 Web API 之用戶端應用程式所造成的效果納入考量。 問題在於雖然設計和實作 Web API 的開發人員擁有該 API 完整的控制能力，不過對於從遠端作業之第三方組織所建置的用戶端應用程式，開發人員並沒有相同程度的控制能力。 主要的要務是讓現有用戶端應用程式在未變更的情況下繼續運作，同時允許新用戶端應用程式充分運用新功能和資源。
 
 版本控制可讓 Web API 指定其公開的功能和資源，而用戶端應用程式則可以提交導向特定版本之功能或資源的要求。 下列小節描述幾個不同的方法，每個方法都有其優點和缺點。
 
@@ -427,15 +398,13 @@ Content-Length: ...
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","address":"1 Microsoft Way Redmond WA 98053"}
 ```
 
 > [!NOTE]
-> 為了簡化及避免困擾，本節所示的範例回應不包含 HATEOAS 連結。
+> 為求簡單，本節所示的範例回應不包含 HATEOAS 連結。
 >
 >
 
@@ -443,10 +412,8 @@ Content-Length: ...
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","dateCreated":"2014-09-04T12:11:38.0376089Z","address":"1 Microsoft Way Redmond WA 98053"}
 ```
 
@@ -459,10 +426,8 @@ Content-Length: ...
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","dateCreated":"2014-09-04T12:11:38.0376089Z","address":{"streetAddress":"1 Microsoft Way","city":"Redmond","state":"WA","zipCode":98053}}
 ```
 
@@ -474,7 +439,7 @@ Content-Length: ...
 這個方法具有語意上的優點，因為您總是從相同的 URI 擷取相同的資源，不過這還是要取決於處理要求以剖析查詢字串，然後回傳適當 HTTP 回應的程式碼。 這個方法也需要面臨與實作 HATEOAS 同等複雜的 URI 版本控制機制。
 
 > [!NOTE]
-> 某些較舊的網頁瀏覽器和 Web Proxy 不會快取在 URL 中包含查詢字串的要求回應。 對於使用 Web API 且從這類網頁瀏覽器內部執行的 Web 應用程式，這會對應用程式的效能造成負面影響。
+> 某些較舊的網頁瀏覽器和 Web Proxy 不會快取在 URI 中包含查詢字串的要求回應。 對於使用 Web API 且從這類網頁瀏覽器內部執行的 Web 應用程式，這會對應用程式的效能造成負面影響。
 >
 >
 
@@ -485,17 +450,13 @@ Content-Length: ...
 
 ```HTTP
 GET http://adventure-works.com/customers/3 HTTP/1.1
-...
 Custom-Header: api-version=1
-...
 ```
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","address":"1 Microsoft Way Redmond WA 98053"}
 ```
 
@@ -503,17 +464,13 @@ Content-Length: ...
 
 ```HTTP
 GET http://adventure-works.com/customers/3 HTTP/1.1
-...
 Custom-Header: api-version=2
-...
 ```
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","dateCreated":"2014-09-04T12:11:38.0376089Z","address":{"streetAddress":"1 Microsoft Way","city":"Redmond","state":"WA","zipCode":98053}}
 ```
 
@@ -524,19 +481,15 @@ Content-Length: ...
 
 ```HTTP
 GET http://adventure-works.com/customers/3 HTTP/1.1
-...
 Accept: application/vnd.adventure-works.v1+json
-...
 ```
 
 處理要求的程式碼會負責處理 Accept 標頭且盡可能遵循 (用戶端應用程式可能會在 Accept 標頭中指定多個格式。不論如何，Web 伺服器可以選擇最合適的回應本文格式)。 Web 伺服器會使用 Content-Type 標頭確認回應本文中的資料格式：
 
 ```HTTP
 HTTP/1.1 200 OK
-...
 Content-Type: application/vnd.adventure-works.v1+json; charset=utf-8
-...
-Content-Length: ...
+
 {"id":3,"name":"Contoso LLC","address":"1 Microsoft Way Redmond WA 98053"}
 ```
 
@@ -556,12 +509,12 @@ Content-Length: ...
 
 您可以為您的 Web API 採用 OpenAPI。 考慮事項：
 
-- OpenAPI 規格隨附一組有關應如何設計 REST API 的固持己見指引。 該指引對於互通性會有好處，但在設計您的 API 時需要更小心，才能符合規格。
+- OpenAPI 規格隨附一組對於應如何設計 REST API 已有定見的指導方針。 該指引對於互通性會有好處，但在設計您的 API 時需要更小心，才能符合規格。
 - OpenAPI 會將合約優先方法升階，而不是將實作優先方法升階。 合約優先表示您會先設計 API 合約 (介面)，然後編寫實作合約的程式碼。 
 - Swagger 等工具可以從 API 合約產生用戶端程式庫或文件集。 例如，請參閱[使用 Swagger 的 ASP.NET Web API 說明頁面](/aspnet/core/tutorials/web-api-help-pages-using-swagger)。
 
 ## <a name="more-information"></a>詳細資訊
-* [Microsoft REST API 指引](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)包含設計公用 REST API 的詳細建議。
-* [RESTful Cookbook](http://restcookbook.com/) (英文) 含有建置符合 REST 限制之 Web API 的簡介。
-* [Web API 檢查清單](https://mathieu.fenniak.net/the-api-checklist/)含有在設計及實作 Web API 時應納入考量的實用項目清單。
-* [Open API Initiative](https://www.openapis.org/) 網站包含 Open API 的所有相關文件和實作詳細資料。
+* [Microsoft REST API 指導方針](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)。 設計公用 REST API 的詳細建議。
+* [REST 逐步指南](http://restcookbook.com/)。 建置 REST 式 API 的簡介。
+* [Web API 檢查清單](https://mathieu.fenniak.net/the-api-checklist/)。 在設計及實作 Web API 時應納入考量的實用項目清單。
+* [Open API Initiative](https://www.openapis.org/)。 Open API 的文件和實作詳細資料。
