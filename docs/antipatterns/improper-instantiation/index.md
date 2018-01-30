@@ -3,26 +3,26 @@ title: "不適當的具現化反模式"
 description: "避免對只需建立一次然後進行共用的物件持續建立新執行個體。"
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d6ea27b0ea88ad7527353d263d900626c0aff720
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 4b217f7fc644901eb5c3e77319d151caed30eef1
+ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>不適當的具現化反模式
 
-如果對只需建立一次然後進行共用的物件持續建立新執行個體，會對效能造成傷害。 
+有些物件只需建立一次並分享即可，持續為此類物件建立新的執行個體會傷害效能。 
 
 ## <a name="problem-description"></a>問題說明
 
-許多程式庫會提供外部資源的抽象概念。 就內部而言，這些類別通常會管理自己的資源連線，並作為用戶端可用來存取資源的代理程式。 以下是一些與 Azure 應用程式相關的代理程式類別範例：
+許多程式庫都提供對外部資源的抽象功能。 就內部而言，這些類別通常會管理自己的資源連線，並作為用戶端可用來存取資源的代理程式。 以下是一些與 Azure 應用程式相關的代理程式類別範例：
 
 - `System.Net.Http.HttpClient`。 使用 HTTP 與 Web 服務通訊。
 - `Microsoft.ServiceBus.Messaging.QueueClient`。 發佈和接收服務匯流排佇列的訊息。 
 - `Microsoft.Azure.Documents.Client.DocumentClient`。 連線至 Cosmos DB 執行個體
 - `StackExchange.Redis.ConnectionMultiplexer`。 連線至 Redis，包括 Azure Redis 快取。
 
-這些類別的目的是要具現化一次，並在應用程式的整個存留期間重複使用。 不過，這些類別通常都會被曲解為，應只在需要時取得，並且要快速發行。 (此處所列的項目剛好發生於 .NET 程式庫，但該模式不是只適用於 .NET)。
+這些類別的用意是只需具現化一次，並在應用程式的整個存留期間重複使用。 不過，人們往往誤以為這些類別只應在需要時取得，取得後還要快速發行。 (雖然此處列出的剛好都是 .NET 程式庫的項目，但並非只有 .NET 才會出現這種模式)。
 
 下列 ASP.NET 範例會建立 `HttpClient` 的執行個體，以便與遠端服務進行通訊。 您可以在[這裡][sample-app]找到完整的範例。
 
@@ -42,7 +42,7 @@ public class NewHttpClientInstancePerRequestController : ApiController
 }
 ```
 
-在 Web 應用程式中，此技術無法進行調整。 新的 `HttpClient` 物件會針對每個使用者的要求而建立。 如果負載過重，網頁伺服器可能會耗盡可用的通訊端，導致出現 `SocketException` 錯誤。
+由於在 Web 應用程式中，此技術無法進行調整， 因此系統會為各個使用者要求建立新的 `HttpClient` 物件。 如果負載過重，網頁伺服器可能會耗盡可用的通訊端，導致出現 `SocketException` 錯誤。
 
 此問題不限定於 `HttpClient` 類別。 其他包裝資源或建立成本高的類別也可能會造成類似問題。 下列範例會建立 `ExpensiveToCreateService` 類別的執行個體。 此處的問題不一定是通訊端耗盡，有可能只是與建立每個執行個體的所需時間有關。 持續建立和終結此類別的執行個體可能會對系統延展性有不好的影響。
 
@@ -93,23 +93,23 @@ public class SingleHttpClientInstanceController : ApiController
 }
 ```
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 
 - 此反模式的重點是會重複建立和終結*可共用*物件的執行個體。 如果類別不可共用 (不安全的執行緒)，則不適用此反模式。
 
-- 共用資源類型可能會要求您是否應使用單一執行個體或建立集區。 `HttpClient` 類別的設計主要用於共用，而非用於集區。 其他物件可能支援集區，可讓系統將工作負載分散到多個執行個體。
+- 所共用的資源類型可能會決定您應使用單一執行個體或建立集區。 `HttpClient` 類別的設計主要用於共用，而非用於集區。 其他物件可能支援集區，可讓系統將工作負載分散到多個執行個體。
 
 - 您在多個要求間共用的物件「必須」是安全執行緒。 `HttpClient` 類別是為使用此方法而設計，但其他類別可能不支援並行要求，因此請查看相關文件。
 
-- 某些資源類型微不足道，應不要保留。 資料庫連接就是個例子。 保留不需要的開放式資料庫連接，可能會阻止其他並行使用者存取資料庫。
+- 某些資源類型十分稀缺，不應久佔。 資料庫連線就是個例子。 保留不需要的開放式資料庫連線，可能會阻止其他並行使用者存取資料庫。
 
-- 在.NET Framework 中，許多與外部資源建立連線的物件，皆是在管理這些連線的其他類別上使用靜態 Factory 方法所建立。 這些處理站物件的用途是儲存和重複使用，而不是處置和重新建立。 例如，在 Azure 服務匯流排中，`QueueClient` 物件是透過 `MessagingFactory` 物件建立。 就內部而言，`MessagingFactory` 會管理連線。 如需詳細資訊，請參閱[使用服務匯流排傳訊的效能改進最佳作法][service-bus-messaging]。
+- 在.NET Framework 中，許多與外部資源建立連線的物件，皆是在管理這些連線的其他類別上使用靜態 Factory 方法所建立的。 這些處理站物件的用途是儲存和重複使用，而不是處置和重新建立。 例如，在 Azure 服務匯流排中，`QueueClient` 物件是透過 `MessagingFactory` 物件建立的。 就內部而言，`MessagingFactory` 會管理連線。 如需詳細資訊，請參閱[使用服務匯流排傳訊的效能改進最佳作法][service-bus-messaging]。
 
 ## <a name="how-to-detect-the-problem"></a>如何偵測問題
 
 此問題的徵兆包括輸送量降低或錯誤率增加，以及以下一個或多個狀況： 
 
-- 例外狀況增加，這表示通訊端、資料庫連接或檔案控制代碼等資源耗盡。 
+- 例外狀況增加，這表示通訊端、資料庫連線或檔案控制代碼等資源耗盡。 
 - 記憶體使用量和記憶體回收量增加。
 - 網路、磁碟或資料庫活動增加。
 
