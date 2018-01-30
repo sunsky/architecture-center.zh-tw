@@ -10,19 +10,21 @@
       items: null
     - name: 設計原則
       href: guide/design-principles/index.md
-    - name: 軟體品質的要件
+    - name: 軟體品質的要素
       href: guide/pillars.md
     - name: 設計模式
       href: patterns/index.md?toc=/azure/architecture/guide/toc.json
 - name: 參考架構
   href: reference-architectures/index.md
   items:
-    - name: 身分識別管理
-      href: reference-architectures/identity/index.md
-    - name: 混合式網路
-      href: reference-architectures/hybrid-networking/index.md
     - name: App Service Web 應用程式
       href: reference-architectures/app-service-web-app/index.md
+    - name: 混合式網路
+      href: reference-architectures/hybrid-networking/index.md
+    - name: 身分識別管理
+      href: reference-architectures/identity/index.md
+    - name: Jenkins 伺服器
+      href: reference-architectures/jenkins/index.md
     - name: 網路 DMZ
       href: reference-architectures/dmz/index.md
     - name: SAP NetWeaver 和 SAP HANA
@@ -60,7 +62,7 @@
       href: best-practices/api-implementation.md
     - name: 自動調整
       href: best-practices/auto-scaling.md
-    - name: 背景作業
+    - name: 背景作業作業
       href: best-practices/background-jobs.md
     - name: 快取
       href: best-practices/caching.md
@@ -74,7 +76,7 @@
       href: best-practices/naming-conventions.md
     - name: 暫時性錯誤處理
       href: best-practices/transient-faults.md
-    - name: 重試特定服務的指引
+    - name: 特定服務的重試指引
       href: best-practices/retry-service-specific.md
 - name: 效能反模式
   href: antipatterns/index.md
@@ -95,7 +97,7 @@
       href: antipatterns/no-caching/index.md
     - name: 同步 I/O
       href: antipatterns/synchronous-io/index.md
-- name: 設計檢閱檢查清單
+- name: 設計檢閱清單
   items:
     - name: Availability
       href: checklist/availability.md
@@ -115,7 +117,7 @@
       href: resiliency/failure-mode-analysis.md
 - name: 案例指南
   items:
-    - name: Azure for AWS 專業人員
+    - name: 適用於 AWS 專業人員的 Azure
       href: aws-professional/index.md
     - name: 管理多租用戶應用程式中的身分識別
       href: multitenant-identity/index.md

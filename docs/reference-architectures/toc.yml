@@ -12,19 +12,6 @@
           href: app-service-web-app/scalable-web-app.md
         - name: 多重區域部署
           href: app-service-web-app/multi-region.md
-    - name: 身分識別管理
-      href: identity/index.md
-      items:
-        - name: 應選取哪個？
-          href: identity/considerations.md
-        - name: 整合內部部署 AD 與 Azure AD
-          href: identity/azure-ad.md
-        - name: 將 AD DS 擴充至 Azure
-          href: identity/adds-extend-domain.md
-        - name: 在 Azure 中建立 AD DS 樹系
-          href: identity/adds-forest.md
-        - name: 將 AD FS 擴充至 Azure
-          href: identity/adfs.md
     - name: 混合式網路
       href: hybrid-networking/index.md
       items:
@@ -38,6 +25,19 @@
           href: hybrid-networking/expressroute-vpn-failover.md
         - name: 中樞輪輻拓撲
           href: hybrid-networking/hub-spoke.md
+    - name: 身分識別管理
+      href: identity/index.md
+      items:
+        - name: 應選取哪個？
+          href: identity/considerations.md
+        - name: 整合內部部署 AD 與 Azure AD
+          href: identity/azure-ad.md
+        - name: 將 AD DS 擴充至 Azure
+          href: identity/adds-extend-domain.md
+        - name: 在 Azure 中建立 AD DS 樹系
+          href: identity/adds-forest.md
+        - name: 將 AD FS 擴充至 Azure
+          href: identity/adfs.md
     - name: 網路 DMZ
       href: dmz/index.md
       items:
@@ -69,6 +69,8 @@
           href: virtual-machines-windows/n-tier.md
         - name: 多重區域應用程式
           href: virtual-machines-windows/multi-region-application.md
+    - name: Jenkins 伺服器
+      href: jenkins/index.md
     - name: SAP NetWeaver 和 SAP HANA
       href: sap/index.md
     - name: SharePoint Server 2016
