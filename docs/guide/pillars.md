@@ -2,11 +2,11 @@
 title: "軟體品質的要素"
 description: "說明軟體品質的五大要素，也就是延展性、可用性、復原功能、管理和安全性。"
 author: MikeWasson
-ms.openlocfilehash: 78e613368a07718f5923d619ace335d399b0cc80
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1d5e30602cafa0d39f92de3101974e77ae258595
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="pillars-of-software-quality"></a>軟體品質的要素 
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 11/14/2017
 
 垂直調整的優點是不必變更應用程式就可進行。 但是到達一定規模後就會出現限制，而無法再進行相應增加。 屆時，如果要再擴大規模，就必須進行水平調整。 
 
-水平調整必須設計在系統中。 例如，您可以將 VM 放在負載平衡器後方，以進行相應放大。 但是，集區中的每個 VM 都必須能夠處理任何用戶端要求，因此，應用程式必須是無狀態模式或將狀態儲存在外部 (例如，儲存在分散式快取)。 受管理的 PaaS 服務通常會內建水平調整和自動調整。 能夠輕鬆調整這些服務是使用 PaaS 服務的主要優勢。
+水平調整必須設計在系統中。 例如，您可以將 VM 放在負載平衡器後方，以進行相應放大。 但是，集區中的每個 VM 都必須能夠處理任何用戶端要求，因此，應用程式必須是無狀態模式或將狀態儲存在外部 (例如，儲存在分散式快取)。 受控 PaaS 服務通常會內建水平調整和自動調整。 能夠輕鬆調整這些服務是使用 PaaS 服務的主要優勢。
 
 不過，單純新增更多執行個體並不代表應用程式就會調整。 這種做法可能只是將瓶頸推向其他地方。 例如，如果您調整 Web 前端來處理更多用戶端要求，這可能會讓資料庫觸發鎖定爭用。 然後，您就必須考慮採取其他措施 (例如，開放式並行存取或資料分割)，才能提高進入資料庫的輸送量。
 
@@ -135,7 +135,7 @@ ms.lasthandoff: 11/14/2017
 
 ### <a name="identity-management"></a>身分識別管理
 
-請考慮使用 Azure Active Directory (Azure AD) 來驗證並授權使用者。 Azure AD 是受到完整管理的身分識別和存取管理服務。 您可以用它建立僅存在於 Azure 的網域，或用它整合您的內部部署 Active Directory 身分識別。 Azure AD 也會整合 Office365、Dynamics CRM Online 和眾多第三方 SaaS 應用程式。 對於消費者導向的應用程式，Azure Active Directory B2C 可讓使用者使用其現有的社交帳戶 (例如 Facebook、Google 或 LinkedIn) 進行驗證，或建立由 Azure AD 管理的新使用者帳戶。
+請考慮使用 Azure Active Directory (Azure AD) 來驗證並授權使用者。 Azure AD 是完全受控的身分識別和存取管理服務。 您可以用它建立僅存在於 Azure 的網域，或用它整合您的內部部署 Active Directory 身分識別。 Azure AD 也會整合 Office365、Dynamics CRM Online 和眾多第三方 SaaS 應用程式。 對於消費者導向的應用程式，Azure Active Directory B2C 可讓使用者使用其現有的社交帳戶 (例如 Facebook、Google 或 LinkedIn) 進行驗證，或建立由 Azure AD 管理的新使用者帳戶。
 
 如果您想要整合內部部署 Active Directory 環境與 Azure 網路，可行的方法有好幾個，端視您的需求而定。 如需詳細資訊，請參閱[身分識別管理][identity-ref-arch]參考架構。
 
@@ -147,13 +147,13 @@ ms.lasthandoff: 11/14/2017
 
 一般情況下，開發應用程式時的安全性最佳做法仍適用於雲端。 這些做法包括在所有地方使用 SSL、防範 CSRF 和 XSS 攻擊、防止 SQL 插入式攻擊等等。 
 
-雲端應用程式通常會使用具有存取金鑰的受管理服務。 請永遠不要將這些存取金鑰簽入到原始檔控制。 您可以考慮將應用程式密碼儲存在 Azure Key Vault。
+雲端應用程式通常會使用具有存取金鑰的受控服務。 請永遠不要將這些存取金鑰簽入到原始檔控制。 您可以考慮將應用程式密碼儲存在 Azure Key Vault。
 
 ### <a name="data-sovereignty-and-encryption"></a>資料主權和加密
 
 在使用 Azure 的高可用性功能時，請確保您的資料會留在正確的地緣政治區域內。 Azure 的異地備援儲存體會在相同的地緣政治區域中使用[配對區域][paired-region]的概念。 
 
-請使用 Key Vault 來保護密碼編譯金鑰和密碼。 藉由使用 Key Vault，您便可以使用硬體安全性模組 (HSM) 所保護的金鑰來加密金鑰和密碼。 許多 Azure 儲存體和 DB 服務都支援待用資料加密，包括 [Azure 儲存體][storage-encryption]、[Azure SQL Database][sql-db-encryption]、[Azure SQL 資料倉儲][data-warehouse-encryption]和 [Cosmos DB][documentdb-encryption]。
+請使用 Key Vault 來保護密碼編譯金鑰和密碼。 藉由使用 Key Vault，您便可以使用硬體安全性模組 (HSM) 所保護的金鑰來加密金鑰和密碼。 許多 Azure 儲存體和 DB 服務都支援待用資料加密，包括 [Azure 儲存體][storage-encryption]、[Azure SQL Database][sql-db-encryption]、[Azure SQL 資料倉儲][data-warehouse-encryption]和 [Cosmos DB][cosmosdb-encryption]。
 
 ### <a name="security-resources"></a>安全性資源
 
@@ -171,7 +171,7 @@ ms.lasthandoff: 11/14/2017
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
-[documentdb-encryption]: /azure/documentdb/documentdb-nosql-database-security
+[cosmosdb-encryption]: /azure/cosmos-db/database-security
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [paired-region]: /azure/best-practices-availability-paired-regions
 [resource-manager-auditing]: /azure/azure-resource-manager/resource-group-audit

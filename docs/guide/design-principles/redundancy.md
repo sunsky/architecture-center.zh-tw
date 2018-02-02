@@ -3,11 +3,11 @@ title: "讓各個項目都有備援"
 description: "將備援建置到您的應用程式中，以避免發生單一失敗點。"
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 89a1e6d2d3b1217ab07c9a99a4c4fb3e8cd2cd29
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="make-all-things-redundant"></a>讓各個項目都有備援
 
@@ -25,7 +25,7 @@ ms.lasthandoff: 11/14/2017
 
 **複寫資料庫**。 Azure SQL Database 和 Cosmos DB 會自動複寫區域內的資料，而且您可以跨區域啟用異地複寫。 如果您使用 IaaS 資料庫解決方案，請選擇一個支援複寫和容錯移轉的解決方案，例如 [SQL Server Alwayson 可用性群組][sql-always-on]。 
 
-**啟用異地複寫**。 [Azure SQL Database][sql-geo-replication] 和 [Cosmos DB][docdb-geo-replication] 的異地複寫會在一或多個次要區域中建立資料的次要可讀取複本。 如果發生中斷，資料庫可以容錯移轉到次要區域以進行寫入。
+**啟用異地複寫**。 [Azure SQL Database][sql-geo-replication] 和 [Cosmos DB][cosmosdb-geo-replication] 的異地複寫會在一或多個次要區域中建立資料的次要可讀取複本。 如果發生中斷，資料庫可以容錯移轉到次要區域以進行寫入。
 
 **針對可用性的分割**。 資料庫分割通常用來改善延展性，但它也可以提升可用性。 如果一個分區關閉，其他分區仍可供存取。 一個分區失敗只會中斷交易總計的子集。 
 
@@ -46,6 +46,6 @@ ms.lasthandoff: 11/14/2017
 [multi-vm-blueprint]: ../../reference-architectures/virtual-machines-windows/multi-vm.md
 
 [cassandra]: http://cassandra.apache.org/
-[docdb-geo-replication]: /azure/documentdb/documentdb-distribute-data-globally
+[cosmosdb-geo-replication]: /azure/cosmos-db/distribute-data-globally
 [sql-always-on]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
