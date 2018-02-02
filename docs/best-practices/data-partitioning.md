@@ -4,14 +4,13 @@ description: "如何分割要個別管理和存取的分割區指引。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: c139fd1ef59ea94235cd9519dd064d0722cee3c9
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aa59a99ae87328424379e1f9c6fee8cc5887e61c
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="data-partitioning"></a>資料分割
-[!INCLUDE [header](../_includes/header.md)]
 
 在許多大型解決方案中，資料分成個別的分割區，可以個別管理和存取。 您必須仔細選擇資料分割策略，才能最大化利益，同時將不良影響降至最低。 資料分割有助於改善延展性、減少爭用，以及最佳化效能。 資料分割的另一項優點是可提供一種機制，藉由使用模式來區分資料。 例如，您可以將較舊且較不使用 (冷) 的資料封存至成本較低的資料儲存體。
 
@@ -145,7 +144,7 @@ ms.lasthandoff: 11/14/2017
 * **資料對商務營運的重要性**。 某些資料可能包含重要商務資訊，例如發票明細或銀行交易。 其他資料可能包含較不重要的營運資料，例如記錄檔、效能追蹤等等。 識別每一個類型的資料之後，請考慮：
   * 利用適當的備份計劃，將重要資料儲存在高度可用的分割區中。
   * 為每個資料集的不同嚴重性建立個別的管理和監視機制或程序。 將具有相同嚴重性等級的資料放在同一個分割區，利用適當的頻率一併進行備份。 例如，保留銀行交易資料的分割區的備份頻率可能必須高於保留記錄或追蹤資訊的分割區。
-* **個別分割區的管理方式**。 將分割區設計為支援獨立管理和維護可提供數個優點。 例如：
+* **個別分割區的管理方式**。 將分割區設計為支援獨立管理和維護可提供數個優點。 例如︰
   * 如果分割區失敗，可以獨立復原而不會影響在其他分割區中存取資料的應用程式執行個體。
   * 依地理區域分割資料，允許已排程的維護工作在每個位置的離峰時段進行。 請確定分割區不會太大而無法防止任何已規劃的分割區維護在這段期間完成。
 * **是否要跨分割區複寫重要資料**。 此策略可以改善可用性和效能，不過它也可以導入一致性問題。 在分割區中對資料所做的變更，需要一段時間才能與每個複本同步。 在這段期間，不同的分割區會包含不同的資料值。
@@ -360,44 +359,31 @@ Azure 服務匯流排使用訊息代理程式，來處理傳送至服務匯流�
 * 無法將分割的佇列或主題設定為在其變成閒置狀態時自動刪除。
 * 如果您正在建置跨平台或混合式解決方案，目前無法將分割的佇列和主題與進階訊息佇列通訊協定 (AMQP) 搭配使用。
 
-## <a name="partitioning-strategies-for-documentdb-api"></a>DocumentDB API 的資料分割策略
-Azure Cosmos DB 是一種可以使用 [DocumentDB API][documentdb-api] 儲存文件的 NoSQL 資料庫。 Cosmos DB 資料庫中的文件是物件或其他資料片段的 JSON 序列化表示。 沒有固定的結構描述會強制執行，但是每個文件都必須包含唯一識別碼。
+## <a name="partitioning-strategies-for-cosmos-db"></a>Cosmos DB 的資料分割策略
+
+Azure Cosmos DB 是一種可以使用 [Azure Cosmos DB SQL API][cosmosdb-sql-api] 儲存 JSON 文件的 NoSQL 資料庫。 Cosmos DB 資料庫中的文件是物件或其他資料片段的 JSON 序列化表示。 沒有固定的結構描述會強制執行，但是每個文件都必須包含唯一識別碼。
 
 文件會組織成集合。 您可以將相關文件一起群組於一個集合中。 例如，在維護部落格文章的系統中，您可以將每篇部落格文章的內容儲存為集合中的文件。 您也可以為每個主體類型建立集合。 或者，在多租用戶應用程式中 (例如，不同的作者可以控制和管理自己部落格文章的系統)，您可以根據作者分割部落格，並為每位作者建立個別的集合。 配置給集合的儲存體空間非常有彈性，而且可以依需要縮小或成長。
 
-文件集合會提供自然的機制，可在單一資料庫內分割資料。 在內部，Cosmos DB 資料庫可以跨越多部伺服器，而且可能會嘗試跨伺服器分佈集合以分散負載。 實作分區化最簡單的方法是建立每個分區的集合。
+根據由應用程式定義的分割索引鍵，Cosmos DB 支援自動資料分割。 邏輯分割是一種資料分割，會儲存單一資料分割索引鍵值的所有資料。 共用相同分割索引鍵值的所有文件都位於相同的邏輯分割中。 Cosmos DB 會根據分割索引鍵的雜湊碼來散發值。 邏輯分割的大小上限為 10 GB。 因此，選擇分割索引鍵是在設計階段的一項重要決策。 選擇具有各種不同的值並且有平均存取模式的屬性。 如需詳細資訊，請參閱 [Azure Cosmos DB 中的分割和調整](/azure/cosmos-db/partition-data)。
 
 > [!NOTE]
-> 每個 Cosmos DB 資料庫都有「效能層級」來決定它取得的資源數量。 每個效能層級都會與「要求單位」(RU) 速率限制相關聯。 RU 速率限制會指定要保留且可供該集合獨佔使用的資源量。 集合的成本取決於為該集合選取的效能層級。 效能層級 (和 RU 速率限制) 愈高，費用也愈高。 您可以使用 Azure 入口網站來調整集合的效能層級。 如需詳細資訊，請參閱 Microsoft 網站上的＜Cosmos DB 中的效能層級＞頁面。
+> 每個 Cosmos DB 資料庫都有「效能層級」來決定它取得的資源數量。 每個效能層級都會與「要求單位」(RU) 速率限制相關聯。 RU 速率限制會指定要保留且可供該集合獨佔使用的資源量。 集合的成本取決於為該集合選取的效能層級。 效能層級 (和 RU 速率限制) 愈高，費用也愈高。 您可以使用 Azure 入口網站來調整集合的效能層級。 如需詳細資訊，請參閱 [Azure Cosmos DB 中的要求單位][cosmos-db-ru]。
 >
 >
+
+如果 Cosmos DB 提供的分割機制不足夠，您可能需要在應用程式層級分區資料。 文件集合會提供自然的機制，可在單一資料庫內分割資料。 實作分區化最簡單的方法是建立每個分區的集合。 容器是邏輯資源，可以跨一或多個伺服器。 固定大小的容器具有上限為 10 GB 和 10,000 RU/秒的輸送量。 無限制的容器不會有儲存大小上限，但是必須指定分割索引鍵。 透過應用程式分區，用戶端應用程式必須將要求導向到適當的分區，通常是以定義分區索引鍵的某些資料屬性為基礎，來實作其本身的對應機制。 
 
 所有資料庫都要建立在 Cosmos DB 帳戶的內容中。 單一帳戶可以包含數個資料庫，而且它會指定要在哪些區域中建立資料庫。 每個帳戶也會強制執行它自己的存取控制。 您可以使用 Cosmos DB 帳戶異地尋找靠近需要存取帳戶之使用者的地區 (資料庫內的集合)，並強制執行限制，以便只讓使用者和它們連接。
 
-每個 Cosmos DB 帳戶都有配額，可限制其包含的資料庫和集合數目，以及可用的文件儲存體數量。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束][azure-limits]。 理論上，如果您實作一個系統，其中所有分區都屬於同一個資料庫，就有可能達到帳戶的儲存體容量限制。
+決定如何利用 Cosmos DB SQL API 分割資料時，請考慮下列幾點：
 
-在此情況下，您可能必須建立其他帳戶和資料庫，並跨資料庫分佈分區。 不過，即使您不太可能達到資料庫的儲存體容量，它還是使用多個資料庫的最佳做法。 這是因為每個資料庫都有自己的一組使用者和權限，而您可以使用這項機制，在每個資料庫上隔離集合的存取權。
-
-圖 8 說明 DocumentDB API 的高階結構。
-
-![DocumentDB API 的結構](./images/data-partitioning/DocumentDBStructure.png)
-
-*圖 8.DocumentDB API 架構的結構*
-
-用戶端應用程式的工作是將要求導向到適當的分區，通常是以定義分區索引鍵的某些資料屬性為基礎，來實作其本身的對應機制。 圖 9 顯示兩個 DocumentDB API 資料庫，每一個都包含兩個集合做為分區。 資料是由租用戶識別碼分區化，並包含特定租用戶的資料。 資料庫會建立在個別的 Cosmos DB 帳戶中。 這些帳戶都會與其帳戶包含資料之租用戶位於相同的區域中。 用戶端應用程式中的路由邏輯會使用租用戶識別碼做為分區索引鍵。
-
-![使用 DocumentDB API 實作分區化](./images/data-partitioning/DocumentDBPartitions.png)
-
-*圖 9.使用 DocumentDB API 實作分區化*
-
-決定如何利用 DocumentDB API 分割資料時，請考慮下列幾點：
-
-* **DocumentDB API 資料庫的可用資源受限於帳戶的配額限制**。 每個資料庫可以保留許多集合 (同樣地，有其限制)，每個集合都和控管該集合 RU 速率限制 (保留的輸送量) 的效能層級相關聯。 如需詳細資訊，請參閱＜Azure 訂用帳戶和服務限制、配額與條件約束＞。
+* **Cosmos DB 資料庫的可用資源受限於帳戶的配額限制**。 每個資料庫可以保留許多集合，每個集合都和控管該集合 RU 速率限制 (保留的輸送量) 的效能層級相關聯。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束][azure-limits]。
 * **每份文件都必須有一個屬性，可用來在保留該文件之集合內唯一識別該文件**。 這個屬性和定義哪個集合要保留該文件的分區索引鍵不同。 集合可以包含大量文件。 理論上，它只受限於文件識別碼的最大長度。 文件識別碼可多達 255 個字元。
 * **針對文件的所有作業都會在交易的內容中執行。交易範圍則是包含該文件的集合。** 如果作業失敗，會復原已執行的工作。 當文件受限於某個作業時，所做的任何變更都會受限於快照集層級隔離。 例如，如果建立新文件的要求失敗，此機制可確保另一個同時查詢資料庫的使用者不會看到當時移除的部分文件。
 * **資料庫查詢的範圍也只限於集合層級**。 單一查詢只能從一個集合擷取資料。 如果您需要從多個集合中擷取資料，您必須個別查詢每個集合，並利用應用程式程式碼來合併結果。
-* **DocumentDB API 資料庫支援所有可和文件一起儲存在集合中的可程式化項目**。 這些包括預存程序、使用者定義函式和觸發程序 (以 JavaScript 撰寫)。 這些項目可以在相同的集合內存取任何文件。 此外，這些項目會在環境交易的範圍內執行 (如果是針對文件執行之建立、刪除或取代作業的結果引發了觸發程序)，或啟動新的交易 (如果是明確的用戶端要求結果做為執行的預存程序)。 如果可程式化項目中的程式碼擲回例外狀況，交易就會復原。 您可以使用預存程序和觸發程序來維護文件之間的完整性和一致性，但這些文件都必須屬於相同的集合。
-* **您想要在資料庫中保留的集合應該不太可能會超過集合的效能層級所定義的輸送量限制**。 如需詳細資訊，請參閱 Azure Cosmos DB 中的要求單位[cosmos-db-ru]。 如果您預期會達到這些限制，請考慮在不同帳戶中跨資料庫劃分集合，以減少每個集合的負載。
+* **Cosmos DB 支援所有可和文件一起儲存在集合中的可程式化項目**。 這些包括預存程序、使用者定義函式和觸發程序 (以 JavaScript 撰寫)。 這些項目可以在相同的集合內存取任何文件。 此外，這些項目會在環境交易的範圍內執行 (如果是針對文件執行之建立、刪除或取代作業的結果引發了觸發程序)，或啟動新的交易 (如果是明確的用戶端要求結果做為執行的預存程序)。 如果可程式化項目中的程式碼擲回例外狀況，交易就會復原。 您可以使用預存程序和觸發程序來維護文件之間的完整性和一致性，但這些文件都必須屬於相同的集合。
+* **您想要在資料庫中保留的集合應該不太可能會超過集合的效能層級所定義的輸送量限制**。 如需詳細資訊，請參閱 [Azure Cosmos DB 中的要求單位][cosmos-db-ru]。 如果您預期會達到這些限制，請考慮在不同帳戶中跨資料庫劃分集合，以減少每個集合的負載。
 
 ## <a name="partitioning-strategies-for-azure-search"></a>Azure 搜尋服務的資料分割策略
 搜尋資料的功能通常是許多 Web 應用程式所提供的主要導覽及探索方法。 它可協助使用者根據搜尋準則的組合快速尋找資源 (例如，電子商務應用程式中的產品)。 Azure 搜尋服務提供 web 內容上的全文檢索搜尋功能，並包括預先輸入、根據鄰近符合項目建議查詢，以及多面向導覽等功能。 如需這些功能的完整說明，請參閱 Microsoft 網站上的 [何謂 Azure 搜尋服務？] 頁面。
@@ -454,11 +440,11 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
   * 彙總類型，例如清單 (其可做為佇列和堆疊)
   * 集合 (排序和未排序)
   * 雜湊 (可將相關的欄位群組在一起，例如在一個物件中代表欄位的項目)
-* 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data types (資料類型)] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 10 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
+* 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data types (資料類型)] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 8 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
 
 ![Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構](./images/data-partitioning/RedisCustomersandOrders.png)
 
-*圖 10.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構*
+*圖 8.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構*
 
 > [!NOTE]
 > 在 Redis 中，所有索引鍵都是二進位資料值 (例如 Redis 字串)，且最多可包含 512 MB 的資料。 理論上，索引鍵幾乎可以包含所有資訊。 不過，建議採用一致的索引鍵命名慣例，可描述資料類型並識別實體，但該慣例不可過長。 常見的方法是使用 "entity_type:ID" 形式的索引鍵。 例如，您可以使用 "customer:99" 來指出客戶識別碼 99 的索引鍵。
@@ -562,18 +548,18 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 * Redis 網站上的 [Data Types (資料類型)] 頁面描述 Redis 和 Azure Redis 快取皆可使用的資料類型。
 
 [事件中樞的可用性和一致性]: /azure/event-hubs/event-hubs-availability-and-consistency
-[azure-limits]: /azure/azure-subscription-service-limit
+[azure-limits]: /azure/azure-subscription-service-limits
 [Azure 內容傳遞網路]: /azure/cdn/cdn-overview
 [Azure Redis 快取]: http://azure.microsoft.com/services/cache/
 [Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
 [Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
 [建立多語言方案]: https://msdn.microsoft.com/library/dn313279.aspx
-[cosmos-db-ru]: /azure/documentdb/documentdb-request-units
+[cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Data consistency primer (資料一致性入門)]: http://aka.ms/Data-Consistency-Primer
 [Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
 [Data Types]: http://redis.io/topics/data-types
-[documentdb-api]: /azure/documentdb/documentdb-introduction
+[cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [彈性資料庫功能概觀]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1

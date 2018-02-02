@@ -4,11 +4,11 @@ description: "獨立於使用者介面之外執行的背景工作指引。"
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: 10c24afee4b880cfbf8ee534f4d7f945d2b046a9
+ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="background-jobs"></a>背景作業作業
 [!INCLUDE [header](../_includes/header.md)]
@@ -104,7 +104,7 @@ Azure WebJobs 具有下列特性：
   * { "stopping_wait_time": 60 }
   * { "is_singleton": true }
 
-#### <a name="considerations"></a>注意事項
+#### <a name="considerations"></a>考量
 
 * 根據預設，WebJobs 會跟據 Web 應用程式來調整自己。 不過，您可以藉由將 **is_singleton** 設定屬性設為 **true**，進而設定為在單一執行個體上執行作業。 單一執行個體 Web 工作可用於您不想要調整的工作，或作為同時進行的多重執行個體來執行，例如重新建立索引、資料分析和類似的工作。
 * 若要將作業對 Web 應用程式效能的影響降到最低，請考慮在新的 App Service 方案中建立空的 Azure Web 應用程式執行個體，來裝載可能會長時間執行或耗用大量資源的 Web 工作。
@@ -125,7 +125,7 @@ Azure WebJobs 具有下列特性：
 
 如需有關如何啟動背景工作的詳細資訊，請參閱先前的＜ [觸發程序](#triggers) ＞一節。  
 
-#### <a name="considerations"></a>注意事項
+#### <a name="considerations"></a>考量
 當您決定是否要在 Azure 虛擬機器中部署背景工作時，請考慮下列幾點：
 
 * 在不同的 Azure 虛擬機器中裝載背景工作提供了彈性，並可透過起始、執行、排程及資源配置以精確控制。 不過，如果必須部署虛擬機器，並只是為了執行背景工作，則會增加執行階段成本。
@@ -142,7 +142,7 @@ Azure WebJobs 具有下列特性：
 
 Batch 服務會佈建 VM、將工作指派給 VM、執行工作，並監視進度。 Batch 可以自動相應放大 VM 來反應工作負載。 Batch 也提供作業排程。 Azure Batch 支援 Linux 和 Windows VM。
 
-#### <a name="considerations"></a>注意事項 
+#### <a name="considerations"></a>考量 
 
 Batch 適合執行本質平行的工作負載。 也可以執行最後有歸納步驟的平行計算，或是執行[訊息傳遞介面 (MPI) 應用程式](/azure/batch/batch-mpi) (用於需要在節點間傳遞訊息的平行工作)。 
 
@@ -165,7 +165,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 - 視需要啟動或停止容器。 
 - Azure Container Registry 可讓您註冊在 Azure 界限內註冊您的容器。 這同時具有安全性、隱私權和相近的優點。 
 
-#### <a name="considerations"></a>注意事項
+#### <a name="considerations"></a>考量
 
 - 必須了解如何使用容器協調器。 這會不會是個問題，取決於您的 DevOps 小組技能。  
 - 容器服務在 IaaS 環境中執行。 它會在專用 VNet 內佈建 VM 叢集。 
@@ -194,7 +194,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 * 它可讓您實作關注的分離動作。 每種角色類型可以實作一組明確定義和相關的特定工作。 這使得設計和維護程式碼更容易，因為每個角色之間的程式碼和功能會有較少的相依關係。
 * 它有助於隔離機密的程序和資料。 比方說，實作 UI 的 Web 角色不需要存取背景工作角色所管理和控制的資料。 這可以用來加強安全性，尤其是當您使用 [Gatekeeper Pattern (閘道管理員模式)](http://msdn.microsoft.com/library/dn589793.aspx)之類的模式時。  
 
-#### <a name="considerations"></a>注意事項
+#### <a name="considerations"></a>考量
 如果使用雲端服務 Web 和背景工作角色，在選擇部署背景工作的方式和位置時，請考量下列重點：
 
 * 在現有 Web 角色中裝載背景工作，會比為了這些工作而執行不同背景工作角色的成本更低。 不過，如果對處理順序和其他資源產生爭用的話，很可能會影響應用程式的效能和可用性。 使用不同的背景工作角色，可防止長時間執行或耗用大量資源的背景工作影響 Web 角色。
@@ -244,7 +244,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
     }
     ```
     
-    * 針對角色，將 **Freeze** 設定的定義做為布林值新增至 ServiceDefinition.csdef 和 ServiceConfiguration.*.cscfg 檔案，並將它設定為 **false**。 如果角色進入重複的重新啟動模式，您可以將設定變更為 **true** 以凍結角色執行，並允許它交換先前版本。
+  * 針對角色，將 **Freeze** 設定的定義做為布林值新增至 ServiceDefinition.csdef 和 ServiceConfiguration.\*.cscfg 檔案，並將它設定為 **false**。 如果角色進入重複的重新啟動模式，您可以將設定變更為 **true** 以凍結角色執行，並允許它交換先前版本。
 
 #### <a name="more-information"></a>詳細資訊
 * [計算資源彙總模式 (英文)](http://msdn.microsoft.com/library/dn589778.aspx)

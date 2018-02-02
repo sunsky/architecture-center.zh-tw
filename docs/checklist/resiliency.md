@@ -4,11 +4,11 @@ description: "提供設計期間復原考量指引的檢查清單。"
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 66ff802c1f7b35db147ffe4279982c827570c3c1
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 51f807715d0ac929806b9a5a13da4efa00566592
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -92,7 +92,7 @@ ms.lasthandoff: 01/11/2018
 
 **同時使用綜合與真實的使用者資料在生產環境中執行測試。** 測試與生產環境很少完全相同，因此務必使用藍色/綠色或淡黃色部署，並在生產環境中測試您的應用程式。 這可讓您在實際負載下的生產環境中測試您的應用程式，並確保它在完整部署的情況下如預期般運作。
 
-## <a name="deployment"></a>Deployment
+## <a name="deployment"></a>部署
 
 **記載您的應用程式發行程序。** 若未記載詳細的發行程序，操作人員可能會部署不正確的更新，或不正確地設定您的應用程式設定。 明確定義和記載您的發行程序，並確保它可供整個營運小組使用。 
 
@@ -203,7 +203,7 @@ ms.lasthandoff: 01/11/2018
 
 ### <a name="cosmos-db"></a>Cosmos DB
 
-**跨區域複寫資料庫。** Cosmos DB 可讓您將任意數目的 Azure 區域與 Cosmos DB 資料庫帳戶產生關聯。 Cosmos DB 資料庫可以有一個寫入區域和多個唯讀區域。 如果寫入區域發生失敗，您可以從另一個複本進行讀取。 用戶端 SDK 會自動處理此作業。 您也可以將寫入區域容錯移轉到另一個區域。 如需詳細資訊，請參閱[如何使用 Azure Cosmos DB 在全域散發資料？](/azure/documentdb/documentdb-distribute-data-globally)
+**跨區域複寫資料庫。** Cosmos DB 可讓您將任意數目的 Azure 區域與 Cosmos DB 資料庫帳戶產生關聯。 Cosmos DB 資料庫可以有一個寫入區域和多個唯讀區域。 如果寫入區域發生失敗，您可以從另一個複本進行讀取。 用戶端 SDK 會自動處理此作業。 您也可以將寫入區域容錯移轉到另一個區域。 如需詳細資訊，請參閱[如何使用 Azure Cosmos DB 在全域散發資料](/azure/cosmos-db/distribute-data-globally)。
 
 ### <a name="redis-cache"></a>Redis 快取
 

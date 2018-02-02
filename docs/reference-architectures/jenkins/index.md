@@ -3,11 +3,11 @@ title: "在 Azure 上執行 Jenkins 伺服器"
 description: "此參考架構會顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。"
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: d06b16c212951c629612d69b13fa2b32b1030475
-ms.sourcegitcommit: 9998334bebccb86be0f715ac7dffc0c3175aea68
+ms.openlocfilehash: 9cab4990b259695f310da339bfef3060b0905640
+ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/26/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 01/26/2018
 
 -   **資源群組。** [資源群組][rg]可用來將 Azure 資產分組，讓它們可以受到存留期、擁有者及其他準則所管理。 使用資源群組，以群組為單位來部署和監視資源，並根據資源群組來追蹤帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。
 
--   **Jenkins 伺服器**。 虛擬機器會部署為自動化伺服器來執行 [Jenkins][azure-market]，並充當 Jenkins 主機。 此參考架構會使用在 Azure 上的 Linux (Ubuntu 14.04 LTS) 虛擬機器上所安裝的 [Azure 上的 Jenkins 解決方案範本][solution]。 Microsoft Azure Marketplace 中提供其他 Jenkins 產品供應項目。
+-   **Jenkins 伺服器**。 虛擬機器會部署為自動化伺服器來執行 [Jenkins][azure-market]，並充當 Jenkins 主機。 此參考架構會使用在 Azure 上的 Linux (Ubuntu 16.04 LTS) 虛擬機器上所安裝的 [Azure 上的 Jenkins 解決方案範本][solution]。 Microsoft Azure Marketplace 中提供其他 Jenkins 產品供應項目。
 
     > [!NOTE]
     > Nginx 已安裝在虛擬機器上用來作為 Jenkins 的反向 proxy。 您可以將 Nginx 設定為啟用對 Jenkins 伺服器的 SSL。

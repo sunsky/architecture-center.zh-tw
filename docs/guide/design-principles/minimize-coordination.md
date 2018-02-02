@@ -3,11 +3,11 @@ title: "最小化協調"
 description: "將來應用程式服務之間的協調最小化，以達成延展性"
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 1f8caa8b7cd85593c937f1d99d582492d4cf9a8b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="minimize-coordination"></a>最小化協調 
 
@@ -49,7 +49,7 @@ ms.lasthandoff: 11/14/2017
 
 **可能時使用開放式並行存取**。 悲觀並行控制會使用資料庫鎖定來防止衝突。 這會造成效能不佳，並且降低可用性。 利用開放式並行存取控制，每個交易會修改資料的副本或快照集。 認可交易時，資料庫引擎會驗證交易，並拒絕會影響資料庫一致性的任何交易。 
 
-Azure SQL Database 和 SQL Server 透過[快照集隔離][sql-snapshot-isolation]支援開放式並行存取。 某些 Azure 儲存體服務透過使用 Etag (包含 [DocumentDB API][docdb-faq] 和 [Azure 儲存體][storage-concurrency]) 支援開放式並行存取。
+Azure SQL Database 和 SQL Server 透過[快照集隔離][sql-snapshot-isolation]支援開放式並行存取。 某些 Azure 儲存體服務透過使用 Etag (包含 [Azure Cosmos DB][cosmosdb-faq] 和 [Azure 儲存體][storage-concurrency]) 支援開放式並行存取。
 
 **考慮 MapReduce 或其他平行、分散式演算法**。 根據資料和要執行的工作類型，您可以將工作分割成可以由多個平行運作的節點執行的獨立工作。 請參閱 [Big Compute 架構樣式][big-compute]。
 
@@ -62,7 +62,7 @@ Azure SQL Database 和 SQL Server 透過[快照集隔離][sql-snapshot-isolation
 [compensating-transaction]: ../../patterns/compensating-transaction.md
 [cqrs-style]: ../architecture-styles/cqrs.md
 [cqrs-pattern]: ../../patterns/cqrs.md
-[docdb-faq]: /azure/documentdb/documentdb-faq
+[cosmosdb-faq]: /azure/cosmos-db/faq
 [domain-event]: https://martinfowler.com/eaaDev/DomainEvent.html
 [event-sourcing]: ../../patterns/event-sourcing.md
 [leader-election]: ../../patterns/leader-election.md

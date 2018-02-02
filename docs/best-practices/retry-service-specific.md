@@ -4,11 +4,11 @@ description: "用於設定重試機制的服務特定指引。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 0a416bc6297c7406de92fbc695b62c39c637de8f
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: da1145e2f2f91befd69505ae9ef2734d6110c1d0
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/02/2018
 | **[使用 ADO.NET 的 SQL Database](#sql-database-using-adonet-retry-guidelines)** |[Polly](#transient-fault-handling-with-polly) |宣告與程式設計 |單一陳述式或程式碼區塊 |自訂 |
 | **[服務匯流排](#service-bus-retry-guidelines)** |用戶端原生 |程式設計 |命名空間管理員、傳訊處理站及用戶端 |ETW |
 | **[Azure Redis 快取](#azure-redis-cache-retry-guidelines)** |用戶端原生 |程式設計 |用戶端 |TextWriter |
-| **[DocumentDB API](#documentdb-api-retry-guidelines)** |服務原生 |不可設定 |全域 |TraceSource |
+| **[Cosmos DB](#cosmos-db-retry-guidelines)** |服務原生 |不可設定 |全域 |TraceSource |
 | **[Azure 搜尋服務](#azure-storage-retry-guidelines)** |用戶端原生 |程式設計 |用戶端 |ETW 或自訂 |
 | **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |ADAL 程式庫原生 |內嵌至 ADAL 程式庫 |內部 |None |
 | **[Service Fabric](#service-fabric-retry-guidelines)** |用戶端原生 |程式設計 |用戶端 |None | 
@@ -858,9 +858,9 @@ namespace RetryCodeSamples
 ### <a name="more-information"></a>詳細資訊
 * [Redis 網站](http://redis.io/)
 
-## <a name="documentdb-api-retry-guidelines"></a>DocumentDB API 重試指引
+## <a name="cosmos-db-retry-guidelines"></a>Cosmos DB 重試指引
 
-Cosmos DB 是完全受控的多模型資料庫，由於使用 [DocumentDB API][documentdb-api]，可支援無結構描述的 JSON 資料。 它提供可設定且可靠的效能、原生的 JavaScript 交易處理，而且是針對可彈性延展的雲端建置而成。
+Cosmos DB 是完全受控的多模型資料庫，可支援無結構描述的 JSON 資料。 它提供可設定且可靠的效能、原生的 JavaScript 交易處理，而且是針對可彈性延展的雲端建置而成。
 
 ### <a name="retry-mechanism"></a>重試機制
 `DocumentClient` 類別會自動重試失敗的嘗試。 若要設定重試次數和等待時間上限，請設定 [ConnectionPolicy.RetryOptions]。 用戶端引發的例外狀況可能超出重試原則，或不是暫時性的錯誤。
@@ -897,7 +897,7 @@ options.MaxRetryWaitTimeInSeconds = 15;
     <sources>
       <source name="DocDBTrace" switchName="SourceSwitch" switchType="System.Diagnostics.SourceSwitch" >
         <listeners>
-          <add name="MyTextListener" type="System.Diagnostics.TextWriterTraceListener" traceOutputOptions="DateTime,ProcessId,ThreadId" initializeData="DocumentDBTrace.txt"></add>
+          <add name="MyTextListener" type="System.Diagnostics.TextWriterTraceListener" traceOutputOptions="DateTime,ProcessId,ThreadId" initializeData="CosmosDBTrace.txt"></add>
         </listeners>
       </source>
     </sources>
@@ -1036,7 +1036,6 @@ client.RetryPolicy = RetryPolicy.Default;
 [autorest]: https://github.com/Azure/autorest/tree/master/docs
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [ConnectionPolicy.RetryOptions]: https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.retryoptions.aspx
-[documentdb-api]: /azure/documentdb/documentdb-introduction
 [dotnet-foundation]: https://dotnetfoundation.org/
 [polly]: http://www.thepollyproject.org
 [redis-cache-troubleshoot]: /azure/redis-cache/cache-how-to-troubleshoot

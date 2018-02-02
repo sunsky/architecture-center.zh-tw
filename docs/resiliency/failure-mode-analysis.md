@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 03/24/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 09d09468eebe5c6fe1c9cdab14e142ff46cf0b25
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aca2088cb007728c5717a968969000c0a19bcd07
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="failure-mode-analysis"></a>失敗模式分析
 [!INCLUDE [header](../_includes/header.md)]
@@ -28,7 +28,7 @@ ms.lasthandoff: 11/14/2017
 
 作為 FMA 程序的起點，本文包含可能之失敗模式及其補救措施的目錄。 此目錄會依技術或 Azure 服務，再加上應用程式層級設計的一般類別來分類。 此目錄並不完整，但會涵蓋許多核心的 Azure 服務。
 
-## <a name="app-service"></a>App Service
+## <a name="app-service"></a>App Service 方案
 ### <a name="app-service-app-shuts-down"></a>App Service 應用程式關閉。
 **偵測**。 可能的原因：
 
@@ -133,7 +133,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 * SDK 會自動重試失敗的嘗試。 若要設定重試次數和等待時間上限，請設定 `ConnectionPolicy.RetryOptions`。 用戶端引發的例外狀況可能超出重試原則，或不是暫時性的錯誤。
 * 如果 Cosmos DB 將用戶端節流，它會傳回 HTTP 429 錯誤。 檢查 `DocumentClientException` 中的狀態碼。 如果您一直收到 429 錯誤，請考慮增加集合的輸送量值。
     * 如果您使用 MongoDB API，節流時服務會傳回錯誤碼 16500。
-* 跨兩個以上的區域複寫 Cosmos DB 資料庫。 所有複本都要可供讀取。 使用用戶端 SDK 指定 `PreferredLocations` 參數。 這是 Azure 區域的排序清單。 所有讀取都會傳送到清單中的第一個可用區域。 如果要求失敗，用戶端會依序嘗試清單中的其他區域。 如需詳細資訊，請參閱[如何使用 DocumentDB API 來設定 Azure Cosmos DB 全域散發][docdb-multi-region]。
+* 跨兩個以上的區域複寫 Cosmos DB 資料庫。 所有複本都要可供讀取。 使用用戶端 SDK 指定 `PreferredLocations` 參數。 這是 Azure 區域的排序清單。 所有讀取都會傳送到清單中的第一個可用區域。 如果要求失敗，用戶端會依序嘗試清單中的其他區域。 如需詳細資訊，請參閱[如何使用 SQL API 來設定 Azure Cosmos DB 全域散發][cosmosdb-multi-region]。
 
 **診斷**。 記錄用戶端上的所有錯誤。
 
@@ -145,7 +145,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 * SDK 會自動重試失敗的嘗試。 若要設定重試次數和等待時間上限，請設定 `ConnectionPolicy.RetryOptions`。 用戶端引發的例外狀況可能超出重試原則，或不是暫時性的錯誤。
 * 如果 Cosmos DB 將用戶端節流，它會傳回 HTTP 429 錯誤。 檢查 `DocumentClientException` 中的狀態碼。 如果您一直收到 429 錯誤，請考慮增加集合的輸送量值。
 * 跨兩個以上的區域複寫 Cosmos DB 資料庫。 如果主要區域失敗，系統會將另一個區域升階以便寫入。 您也可以手動觸發容錯移轉。 SDK 會進行自動探索及路由，讓應用程式程式碼可以在容錯移轉後繼續運作。 在容錯移轉期間 (通常是幾分鐘)，SDK 會尋找新的寫入區域，因此寫入作業的延遲會比較高。
-  如需詳細資訊，請參閱[如何使用 DocumentDB API 來設定 Azure Cosmos DB 全域散發][docdb-multi-region]。
+  如需詳細資訊，請參閱[如何使用 SQL API 來設定 Azure Cosmos DB 全域散發][cosmosdb-multi-region]。
 * 將文件保存至備份佇列，並於稍後處理佇列，以作為後援手段。
 
 **診斷**。 記錄用戶端上的所有錯誤。
@@ -339,7 +339,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 
 1. 重試作業以從暫時性失敗中復原。 用戶端 SDK 中的[重試原則][Storage.RetryPolicies]會自動處理此作業。
 2. 實作斷路器模式，以避免過量儲存。
-3. 如果嘗試 N 次重試都失敗，請執行正常遞補。 例如：
+3. 如果嘗試 N 次重試都失敗，請執行正常遞補。 例如︰
 
    * 將資料儲存在本機快取，並於之後服務恢復可用時將寫入轉送至儲存體。
    * 如果寫入動作位於交易式範圍中，則補償交易。
@@ -453,7 +453,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 [BrokeredMessage.TimeToLive]: https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx
 [cassandra-error-handling]: http://www.datastax.com/dev/blog/cassandra-error-handling-done-right
 [circuit-breaker]: https://msdn.microsoft.com/library/dn589784.aspx
-[docdb-multi-region]: /azure/documentdb/documentdb-developing-with-multiple-regions/
+[cosmosdb-multi-region]: /azure/cosmos-db/tutorial-global-distribution-sql-api
 [elasticsearch-azure]: ../elasticsearch/index.md
 [elasticsearch-client]: https://www.elastic.co/guide/en/elasticsearch/client/index.html
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
