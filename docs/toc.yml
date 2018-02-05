@@ -123,6 +123,8 @@
       href: multitenant-identity/index.md
     - name: 從雲端服務移轉至 Service Fabric
       href: service-fabric/migrate-from-cloud-services.md
+    - name: 重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式
+      href: service-fabric/refactor-migrated-app.md
     - name: 在 Azure 上執行 Elasticsearch
       href: elasticsearch/index.md
     - name: 擴充 Azure Resource Manager 範本功能
