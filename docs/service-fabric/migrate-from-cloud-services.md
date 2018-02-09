@@ -3,15 +3,15 @@ title: "將 Azure 雲端服務應用程式移轉至 Azure Service Fabric"
 description: "如何將應用程式從 Azure 雲端服務移轉至 Azure Service Fabric。"
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: 22b6cca0d4714dd4cde0fd7449340d6e1f45e65b
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 73e34c53ffd2f2eeb466d12a5f6c65dcfdaae389
+ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 02/03/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>將 Azure 雲端服務應用程式移轉至 Azure Service Fabric 
 
-[![GitHub](../_images/github.png) 範例程式碼][sample-code]
+[![GitHub](../_images/github.png) 程式碼範例][sample-code]
 
 本文說明如何將應用程式從 Azure 雲端服務移轉至 Azure Service Fabric。 內容重點放在架構決策和建議的做法。 
 
@@ -215,7 +215,7 @@ Service Fabric 應用程式包含下列組態檔：
 
 ## <a name="deploying-the-application"></a>部署應用程式
 
-Azure 雲端服務是受管理的服務，而 Service Fabric 是執行階段。 您可以在許多環境 (包括 Azure 和內部部署環境) 建立 Service Fabric 叢集。 在本文中，我們聚焦在部署至 Azure。 
+Azure 雲端服務是受控服務，而 Service Fabric 是執行階段。 您可以在許多環境 (包括 Azure 和內部部署環境) 建立 Service Fabric 叢集。 在本文中，我們聚焦在部署至 Azure。 
 
 下圖顯示建議的部署：
 
@@ -289,9 +289,9 @@ Service Fabric 叢集會部署到 [VM 擴展集][vm-scale-sets]。 擴展集是�
 
 此外，部署已從雲端服務變更為 VM 擴展集內執行的 Service Fabric 叢集。
 
-不過，此時應用程式並未獲得微服務的所有優勢，例如獨立的服務部署和版本設定。 若要獲得 Service Fabric 的所有優勢，Tailspin 需要再進行一些最佳化。
+## <a name="next-steps"></a>後續步驟
 
-
+現在 Surveys 應用程式已移轉，Tailspin 想要利用 Service Fabric 功能，例如獨立服務部署和版本設定。 深入了解 Tailspin 如何將這些服務分解為更細微的架構，以便利用[重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式][refactor-surveys]中的這些 Service Fabric 功能
 
 <!-- links -->
 
@@ -308,6 +308,7 @@ Service Fabric 叢集會部署到 [VM 擴展集][vm-scale-sets]。 擴展集是�
 [kestrel]: https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel
 [lb-probes]: /azure/load-balancer/load-balancer-custom-probe-overview
 [owin]: https://www.asp.net/aspnet/overview/owin-and-katana
+[refactor-surveys]: refactor-migrated-app.md
 [sample-code]: https://github.com/mspnp/cloud-services-to-service-fabric
 [sf-application-model]: /azure/service-fabric/service-fabric-application-model
 [sf-aspnet-core]: /azure/service-fabric/service-fabric-add-a-web-frontend
