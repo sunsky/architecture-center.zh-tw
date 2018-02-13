@@ -9,13 +9,13 @@
         - name: 最佳做法
           tocHref: /azure/architecture/best-practices
           topicHref: /azure/architecture/best-practices
-        - name: Azure for AWS 專業人員
+        - name: 適用於 AWS 專業人員的 Azure
           tocHref: /azure/architecture/aws-professional
           topicHref: /azure/architecture/aws-professional
         - name: 針對復原而設計
           tocHref: /azure/architecture/resiliency
           topicHref: /azure/architecture/resiliency
-        - name: 設計檢閱檢查清單
+        - name: 設計檢閱清單
           tocHref: /azure/architecture/checklist
           topicHref: /azure/architecture/checklist
         - name: Elasticsearch
@@ -32,6 +32,9 @@
         - name: 資源
           tocHref: /azure/architecture/resources
           topicHref: /azure/architecture/resources
+        - name: 採用指南
+          tocHref: /azure/architecture/cloud-adoption-guide/
+          topicHref: /azure/architecture/cloud-adoption-guide
         - name: 指南
           tocHref: /azure/architecture/guide
           topicHref: /azure/architecture/guide
