@@ -3,11 +3,11 @@ title: "不適當的具現化反模式"
 description: "避免對只需建立一次然後進行共用的物件持續建立新執行個體。"
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 4b217f7fc644901eb5c3e77319d151caed30eef1
-ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
+ms.openlocfilehash: 8955f37e76c8b5e66c1ed7737d200d11ed321612
+ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/29/2018
+ms.lasthandoff: 02/13/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>不適當的具現化反模式
 
