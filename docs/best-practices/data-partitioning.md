@@ -4,11 +4,11 @@ description: "如何分割要個別管理和存取的分割區指引。"
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: aa59a99ae87328424379e1f9c6fee8cc5887e61c
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: d1d9c1b3cf07f724eb010fc260d86ceb84b789ca
+ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="data-partitioning"></a>資料分割
 
