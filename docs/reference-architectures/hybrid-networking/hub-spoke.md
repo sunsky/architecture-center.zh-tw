@@ -2,14 +2,14 @@
 title: "在 Azure 中實作中樞輪輻網路拓撲"
 description: "如何在 Azure 中實作中樞輪輻網路拓撲。"
 author: telmosampaio
-ms.date: 05/05/2017
+ms.date: 02/14/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e6f07a7962dd5728226b023700268340590d97a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c03ecd4ba5ddbe50cfb17e56d75c18102b751cfb
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -114,7 +114,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 適用於此架構的部署可在 [GitHub][ref-arch-repo] 上取得。 它會使用每個 VNet 中的 Ubuntu VM 測試連線。 **中樞 VNet** 的**共用服務**子網路中沒有裝載任何實際的服務。
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
@@ -339,68 +339,6 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
   ```bash
   ping 10.1.1.37
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>新增輪輻之間的連線
-
-如果您想要允許輪輻彼此連線，必須將 UDR 部署至每個輪輻，以便將目的地為其他輪輻的流量轉送至中樞 VNet 中的閘道。 執行下列步驟，以確認您目前無法從一個輪輻連線到另一個輪輻，然後部署 UDR 並再次測試連線。
-
-1. 如果您無法再連線到 Jumpbox VM，請重複以上的步驟 1 到 4。
-
-2. 連線至輪輻 1 中其中一個網頁伺服器。
-
-  ```bash
-  ssh 10.1.1.37
-  ```
-
-3. 測試輪輻 1 和輪輻 2 之間的連線。 連線應該會失敗。
-
-  ```bash
-  ping 10.1.2.37
-  ```
-
-4. 切換回您電腦的命令提示字元。
-
-5. 切換至您在上述必要條件步驟中所下載存放庫的 `hybrid-networking\hub-spoke\spokes` 資料夾。
-
-6. 執行以下的 bash 或 PowerShell 命令，將 UDR 部署至第一個輪輻。 將這些值取代為您的訂用帳戶、資源群組名稱和 Azure 區域。
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke1-rg \
-    --location westus \
-    --spoke 1
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke1-rg `
-    -Location westus `
-    -Spoke 1
-  ```
-
-7. 執行以下的 bash 或 PowerShell 命令，將 UDR 部署至第二個輪輻。 將這些值取代為您的訂用帳戶、資源群組名稱和 Azure 區域。
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke2-rg \
-    --location westus \
-    --spoke 2
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke2-rg `
-    -Location westus `
-    -Spoke 2
-  ```
-
-8. 切換回 SSH 終端機。
-
-9. 測試輪輻 1 和輪輻 2 之間的連線。 連線應該會成功。
-
-  ```bash
-  ping 10.1.2.37
   ```
 
 <!-- links -->
