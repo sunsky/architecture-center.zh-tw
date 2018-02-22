@@ -1,0 +1,93 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: 資料架構指南
+  href: index.md
+  items:
+    - name: 傳統的 RDBMS
+      items:
+        - name: 概念
+          items:
+            - name: 關聯式資料
+              href: concepts/relational-data.md
+            - name: 交易資料
+              href: concepts/transactional-data.md
+            - name: 語意模型
+              href: concepts/semantic-modeling.md
+        - name: 案例
+          items:
+            - name: 線上交易處理 (OLTP)
+              href: scenarios/online-transaction-processing.md
+            - name: 線上分析處理 (OLAP)
+              href: scenarios/online-analytical-processing.md
+            - name: 資料倉儲
+              href: scenarios/data-warehousing.md
+            - name: 擷取、轉換和載入 (ETL)
+              href: scenarios/etl.md
+        - name: 技術選擇
+          items:
+            - name: 資料倉儲
+              href: technology-choices/data-warehouses.md
+            - name: 線上分析處理 (OLAP)
+              href: technology-choices/olap-data-stores.md
+            - name: 線上交易處理 (OLTP)
+              href: technology-choices/oltp-data-stores.md
+    - name: 巨量資料和 NoSQL
+      items:
+        - name: 概念
+          items:
+            - name: 非關聯式資料存放區
+              href: concepts/non-relational-data.md
+            - name: 使用 CSV 和 JSON 檔案
+              href: concepts/csv-and-json.md
+            - name: 巨量資料架構
+              href: concepts/big-data.md
+            - name: 進階分析
+              href: concepts/advanced-analytics.md
+            - name: 大規模機器學習
+              href: concepts/machine-learning-at-scale.md
+        - name: 案例
+          items:
+            - name: 批次處理
+              href: scenarios/batch-processing.md
+            - name: 即時處理
+              href: scenarios/real-time-processing.md
+            - name: 自由格式文字檢索
+              href: scenarios/search.md
+            - name: 互動式資料探索
+              href: scenarios/interactive-data-exploration.md
+            - name: 自然語言處理
+              href: scenarios/natural-language-processing.md
+            - name: 時間序列解決方案
+              href: scenarios/time-series.md
+        - name: 技術選擇
+          items:
+            - name: 分析資料存放區
+              href: technology-choices/analytical-data-stores.md
+            - name: 分析和報告
+              href: technology-choices/analysis-visualizations-reporting.md
+            - name: 批次處理
+              href: technology-choices/batch-processing.md
+            - name: 認知服務
+              href: technology-choices/cognitive-services.md
+            - name: 資料儲存體
+              href: technology-choices/data-storage.md
+            - name: 機器學習服務
+              href: technology-choices/data-science-and-machine-learning.md
+            - name: 自然語言處理
+              href: technology-choices/natural-language-processing.md
+            - name: 管線協調流程
+              href: technology-choices/pipeline-orchestration-data-movement.md
+            - name: 即時訊息擷取
+              href: technology-choices/real-time-ingestion.md
+            - name: 搜尋資料存放區
+              href: technology-choices/search-options.md
+            - name: 串流處理
+              href: technology-choices/stream-processing.md
+    - name: 跨領域考量
+      items:
+        - name: 資料傳輸
+          href: scenarios/data-transfer.md
+        - name: 將內部部署資料解決方案延伸至雲端
+          href: scenarios/hybrid-on-premises-and-cloud.md
+        - name: 保護資料解決方案
+          href: scenarios/securing-data-solutions.md
