@@ -2,11 +2,11 @@
 title: Azure Architecture Center
 description: "Azure Architecture Center 是官方中心，在其中可找到使用 Microsoft Azure 建立解決方案的指引、藍圖、模式和最佳做法。 此中心是由 Microsoft 模式與做法小組所策劃。"
 layout: LandingPage
-ms.openlocfilehash: 204d32c8de934665fff7b1a321bfdf893ac69983
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: eb069ae80ce70eb66ef57b1e0e21f7181d17d21f
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -64,26 +64,6 @@ ms.lasthandoff: 01/19/2018
 
 <!-- Second panel -->
 <ul class="panelContent cardsI">
-    <!-- Best practices -->
-    <li>
-        <a href="/azure/architecture/best-practices/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/best-practices.svg" alt="Best Practices" height="100%" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>雲端應用程式的最佳做法</h3>
-                            <p>適用於雲端應用程式的最佳做法，其中涵蓋自動調整、快取、資料分割和 API 設計等層面。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
     <!-- Microservices -->
     <li>
         <a href="/azure/architecture/microservices">
@@ -98,6 +78,86 @@ ms.lasthandoff: 01/19/2018
                         <div class="cardText">
                             <h3>在 Azure 上建置微服務</h3>
                             <p>這個有多個組件的系列會帶領您完成在 Azure 上設計和建置微服務架構的程序。 參考實作也會包含在其中。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- data guide -->
+    <li>
+        <a href="/azure/architecture/data-guide/">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/data-guide.svg" alt="Data Architecture Guide"  />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 資料架構指南</h3>
+                            <p>在 Microsoft Azure 上設計資料中心解決方案的結構化方式。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Best practices -->
+    <li>
+        <a href="/azure/architecture/best-practices/">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/best-practices.svg" alt="Best Practices" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>雲端應用程式的最佳做法</h3>
+                            <p>適用於雲端應用程式的最佳做法，其中涵蓋自動調整、快取、資料分割和 API 設計等層面。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Resiliency -->
+    <li>
+        <a href="/azure/architecture/resiliency">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/resiliency.svg" alt="Designing for Resiliency" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>針對復原而設計</h3>
+                            <p>了解如何設計具有復原功能的 Azure 應用程式。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Building blocks -->
+    <li>
+        <a href="https://github.com/mspnp/template-building-blocks/wiki">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/azbb.svg" alt="Azure Building Blocks" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 建置區塊</h3>
+                            <p>簡化 Azure 資源的部署。 使用單一設定檔，在 Azure 中部署複雜的架構。</p>
                         </div>
                     </div>
                 </div>
@@ -158,46 +218,6 @@ ms.lasthandoff: 01/19/2018
                         <div class="cardText">
                             <h3>適用於 AWS 專業人員的 Azure</h3>
                             <p>在 Microsoft Azure 中充分運用您的 AWS 經驗。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Resiliency -->
-    <li>
-        <a href="/azure/architecture/resiliency">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/resiliency.svg" alt="Designing for Resiliency" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>針對復原而設計</h3>
-                            <p>了解如何設計具有復原功能的 Azure 應用程式。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Building blocks -->
-    <li>
-        <a href="https://github.com/mspnp/template-building-blocks/wiki">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/azbb.svg" alt="Azure Building Blocks" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Azure 建置區塊</h3>
-                            <p>簡化 Azure 資源的部署。 使用單一設定檔，在 Azure 中部署複雜的架構。</p>
                         </div>
                     </div>
                 </div>
