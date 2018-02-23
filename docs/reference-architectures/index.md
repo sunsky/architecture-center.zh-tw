@@ -2,13 +2,16 @@
 title: "Azure 參考架構"
 description: "Azure 上一般工作負載的參考架構、藍圖和精準實作指導方針。"
 layout: LandingPage
-NOTE: edit the template in ./build/reference-architectures !!!
-ms.openlocfilehash: e513e2545fb95b486b11a067479e879f4abd4a8f
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: cd7f4b066ba7a4af16767db013c607bc0697dd98
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
+<!-- This file is generated! -->
+<!-- See the templates in ./build/reference-architectures  -->
+<!-- See data in index.json -->
+
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
 我們參考架構是依情節排列，將相關架構群組在一起。 每個架構都包含建議的做法，以及延展性、可用性、管理性和安全性的考量。 大部分還包含可部署的解決方案。

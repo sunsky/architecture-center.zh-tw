@@ -3,11 +3,11 @@ title: "不適當的具現化反模式"
 description: "避免對只需建立一次然後進行共用的物件持續建立新執行個體。"
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8955f37e76c8b5e66c1ed7737d200d11ed321612
-ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
+ms.openlocfilehash: 4d5ef9ad9e675b46df94b51e81d7a4bd4c1b25e9
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>不適當的具現化反模式
 
@@ -22,9 +22,7 @@ ms.lasthandoff: 02/13/2018
 - `Microsoft.Azure.Documents.Client.DocumentClient`。 連線至 Cosmos DB 執行個體
 - `StackExchange.Redis.ConnectionMultiplexer`。 連線至 Redis，包括 Azure Redis 快取。
 
-這些類別的用意是只需具現化一次，並在應用程式的整個存留期間重複使用。 不過，人們往往誤以為這些類別只應在需要時取得，取得後還要快速發行。 (雖然此處列出的剛好都是 .NET 程式庫的項目，但並非只有 .NET 才會出現這種模式)。
-
-下列 ASP.NET 範例會建立 `HttpClient` 的執行個體，以便與遠端服務進行通訊。 您可以在[這裡][sample-app]找到完整的範例。
+這些類別的用意是只需具現化一次，並在應用程式的整個存留期間重複使用。 不過，人們往往誤以為這些類別只應在需要時取得，取得後還要快速發行。 (雖然此處列出的剛好都是 .NET 程式庫的項目，但並非只有 .NET 才會出現這種模式)。下列 ASP.NET 範例會建立 `HttpClient` 的執行個體，以便與遠端服務進行通訊。 您可以在[這裡][sample-app]找到完整的範例。
 
 ```csharp
 public class NewHttpClientInstancePerRequestController : ApiController
@@ -76,18 +74,18 @@ public class ExpensiveToCreateService
 ```csharp
 public class SingleHttpClientInstanceController : ApiController
 {
-    private static readonly HttpClient HttpClient;
+    private static readonly HttpClient httpClient;
 
     static SingleHttpClientInstanceController()
     {
-        HttpClient = new HttpClient();
+        httpClient = new HttpClient();
     }
 
     // This method uses the shared instance of HttpClient for every call to GetProductAsync.
     public async Task<Product> GetProductAsync(string id)
     {
         var hostName = HttpContext.Current.Request.Url.Host;
-        var result = await HttpClient.GetStringAsync(string.Format("http://{0}:8080/api/...", hostName));
+        var result = await httpClient.GetStringAsync(string.Format("http://{0}:8080/api/...", hostName));
         return new Product { Name = result };
     }
 }

@@ -5,11 +5,11 @@ keywords: "AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, 
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: e5f7cb5062b0b4a8526f3b29a9fa4ddaff399fc0
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: b8698675efa42bb3fae73cefe7b078942549b412
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -351,7 +351,7 @@ AWS Simple Queueing Service (SQS) 會提供傳訊系統，可連線 AWS 平台�
 
 -   [佇列儲存體](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/) - 雲端傳訊服務，可在 Azure 平台內的應用程式元件之間進行通訊。
 
--   [服務匯流排](https://azure.microsoft.com/en-us/services/service-bus/) - 更強固的傳訊系統，可連線應用程式、服務和裝置。 服務匯流排會使用相關的[服務匯流排轉送](https://docs.microsoft.com/en-us/azure/service-bus-relay/relay-what-is-it)，也可以連線到遠端主控應用程式和服務。
+-   [服務匯流排](https://azure.microsoft.com/services/service-bus/) - 更強固的傳訊系統，可連線應用程式、服務和裝置。 服務匯流排會使用相關的[服務匯流排轉送](https://docs.microsoft.com/azure/service-bus-relay/relay-what-is-it)，也可以連線到遠端主控應用程式和服務。
 
 #### <a name="device-farm"></a>裝置伺服器陣列
 
