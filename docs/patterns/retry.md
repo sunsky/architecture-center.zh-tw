@@ -5,12 +5,13 @@ keywords: "設計模式"
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: resiliency
-ms.openlocfilehash: 6c02b384e71c068ecbc78f3170d28cea406538e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+pnp.pattern.categories:
+- resiliency
+ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="retry-pattern"></a>重試模式
 
@@ -24,7 +25,7 @@ ms.lasthandoff: 11/14/2017
 
 這些錯誤通常會自行修正，而且如果在適當的延遲後再重複觸發錯誤的動作，動作可能會成功。 例如，正在處理大量並行要求的資料庫服務可以實作節流策略，暫時拒絕任何進一步的要求直到其工作負載降低。 嘗試存取資料庫的應用程式可能會無法連線，但如果延遲一段時間之後再次嘗試可能會成功。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 在雲端中，暫時性錯誤不是很常見，應用程式應該設計為可以適當且明確地處理它們。 這會將錯誤可能會對應用程式正在執行的商務工作造成的影響降到最低。
 
@@ -48,13 +49,13 @@ ms.lasthandoff: 11/14/2017
 
 應用程式應記錄錯誤和失敗作業的詳細資料。 這項資訊對執行作業的人非常有用。 如果服務經常無法使用或忙碌，通常是因為服務耗盡其資源。 您可以相應放大服務，減少這些錯誤的發生頻率。 例如，如果資料庫服務持續多載，分割資料庫並將負載分散到多部伺服器可能有幫助。
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) 提供重試資料庫作業的機能。 此外，大多數的 Azure 服務與用戶端 SDK 皆包含重試機制。 如需詳細資訊，請參閱[特定服務的重試指引](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific)。
+> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) 提供重試資料庫作業的機能。 此外，大多數的 Azure 服務與用戶端 SDK 皆包含重試機制。 如需詳細資訊，請參閱[特定服務的重試指引](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
 當您在決定如何實作此模式時，應考慮下列幾點。
 
-重試原則應該加以調整以符合應用程式的商務需求和失敗的本質。 就某些非關鍵的作業而言，最好是快速失敗而不是重試數次，以免影響應用程式的輸送量。 例如，在存取遠端服務的互動式 Web 應用程式中，最好是經歷少數次短延遲時間的重試嘗試之後便失敗，並向使用者顯示適當的訊息 (例如，「請稍後再試一次」)。 就批次應用程式而言，可能更適合增加重試嘗試的次數，並以指數方式增加嘗試之間的延遲。
+重試原則應該加以調整以符合應用程式的商務需求和失敗的本質。 就某些非關鍵的作業而言，最好是快速檢錯而不是重試數次，以免影響應用程式的輸送量。 例如，在存取遠端服務的互動式 Web 應用程式中，最好是經歷少數次短延遲時間的重試嘗試之後便失敗，並向使用者顯示適當的訊息 (例如，「請稍後再試一次」)。 就批次應用程式而言，可能更適合增加重試嘗試的次數，並以指數方式增加嘗試之間的延遲。
 
 積極的重試原則在嘗試之間間隔的延遲時間較短，再加上大量重試，對已接近或達到產能的忙碌執行服務更是雪上加霜。 如果持續嘗試執行失敗的作業，此重試原則也可能會影響應用程式的回應能力。
 
@@ -68,7 +69,7 @@ ms.lasthandoff: 11/14/2017
 
 確保所有的重試程式碼針對各種失敗狀況經過完整測試。 確認它不會嚴重影響應用程式的效能或可靠性，不會導致服務和資源的負載過大、或產生競爭情況或瓶頸。
 
-只在完全了解失敗作業的脈絡內容時，才實作重試邏輯。 例如，如果包含重試原則的工作會叫用另一項也包含重試原則的工作，這額外的重試層會大大增加處理的時間。 最好是將較低層級的工作設定為可以快速失敗，並向叫用它的工作回報失敗的原因。 然後這個較高層級的工作就可以根據自己的原則處理失敗。
+只在完全了解失敗作業的脈絡內容時，才實作重試邏輯。 例如，如果包含重試原則的工作會叫用另一項也包含重試原則的工作，這額外的重試層會大大增加處理的時間。 最好是將較低層級的工作設定為可以快速檢錯，並向叫用它的工作回報失敗的原因。 然後這個較高層級的工作就可以根據自己的原則處理失敗。
 
 請務必記錄所有導致重試的連線失敗，以利找出基礎應用程式、服務或資源的問題。
 
@@ -172,5 +173,5 @@ private bool IsTransient(Exception ex)
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 - [斷路器模式](circuit-breaker.md)。 重試模式在處理暫時性錯誤上相當實用。 如果失敗會長時間持續，則可能較適合實作「斷路器」模式。 重試模式也能與斷路器搭配使用，提供處理錯誤的全方位方法。
-- [特定服務的重試指引](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific)
-- [連線恢復功能](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
+- [特定服務的重試指引](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
+- [連線恢復功能](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

@@ -3,11 +3,11 @@ title: "選擇即時訊息擷取技術"
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4f76e63a50c1d689ea3a37219a44aa94477a2e2e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2e6578b779950b5ef11bda7b8ba1fb2e45e09f4e
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>在 Azure 中選擇即時訊息擷取技術
 
@@ -58,7 +58,7 @@ Kafka 的常見使用案例包括：
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。 
+下表摘要列出各項功能的主要差異。 
 
 | | IoT 中樞 | 事件中樞 | HDInsight 上的 Kafka |
 | --- | --- | --- | --- |
@@ -70,4 +70,4 @@ Kafka 的常見使用案例包括：
 
 [1] 您也可以使用 [Azure IoT 通訊協定閘道](/azure/iot-hub/iot-hub-protocol-gateway)作為自訂閘道，為 IoT 中樞啟用通訊協定調適。
 
-如需詳細資訊，請參閱 [Azure IoT 中樞和 Azure 事件中樞的比較](/azure/iot-hub/iot-hub-compare-event-hubss)。
+如需詳細資訊，請參閱 [Azure IoT 中樞和 Azure 事件中樞的比較](/azure/iot-hub/iot-hub-compare-event-hubs)。

@@ -4,11 +4,11 @@ description: "如何自動調整以動態方式配置應用程式所需資源的
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f2d42e9d6f4baa2da111c61fe12b48fdec785b92
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a8489aaabab2b8523fbc9f026f4f435bb6d1ad29
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="autoscaling"></a>自動調整
 [!INCLUDE [header](../_includes/header.md)]
@@ -78,7 +78,7 @@ Azure 針對多數運算選項提供內建的自動調整。
 * 設定自動調整規則，然後監視經過一段時間的應用程式效能。 如有必要，使用此監視結果來調整系統的調整方式。 不過，請記住，自動調整不是即時生效的程序 它需要時間來回應計量，例如平均 CPU 使用率超過 (或低於) 指定的臨界值。
 * 根據測量的觸發程序屬性 (例如 CPU 使用量或佇列長度) 使用偵測機制的自動調整規則，會使用經過一段時間的彙總值 (而不是瞬間值) 來觸發自動調整動作。 根據預設，彙總是值的平均。 這可防止系統反應太快，或造成快速震盪。 這也可以讓自動啟動的新執行個體順利進入執行模式，避免新執行個體正在啟動時，又發生其他自動調整動作。 若是 Azure 雲端服務和 Azure 虛擬機器，彙總的預設期間為 45 分鐘，因此，計量需要經過這段時間後再觸發自動調整以回應尖峰需求量。 您可以使用 SDK 來變更彙總期間，但請注意低於 25 分鐘可能會造成無法預期的結果 (如需詳細資訊，請參閱 [使用 Azure 監視服務管理資源庫，根據 CPU 百分比自動調整雲端服務](http://rickrainey.com/2013/12/15/auto-scaling-cloud-services-on-cpu-percentage-with-the-windows-azure-monitoring-services-management-library/))。 若是 Web Apps，平均期間較短，允許在平均觸發量值變更約五分鐘後提供新執行個體。
 * 如果您使用 SDK 設定自動調整，而不是使用入口網站，您可以指定更詳細的作用中規則排程期間。 您也可以建立您自己的度量，並在自動調整規則中與現有度量一起使用。 例如，您可能想要使用替代計數器 (例如，每秒要求數或平均記憶體可用性)，或使用自訂計數器來測量特定商務程序。
-* 自動調整 Service Fabric 時，節點類型是由後端的 VM 擴展集建立，所以您必須為每個節點類型設定自動調整規則。 請先考慮一定要有的節點數目，再設定自動調整規模。 主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。 如需詳細資訊，請參閱[使用自動調整規則相應縮小或放大 Service Fabric 叢集](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-scale-up-down)。
+* 自動調整 Service Fabric 時，節點類型是由後端的 VM 擴展集建立，所以您必須為每個節點類型設定自動調整規則。 請先考慮一定要有的節點數目，再設定自動調整規模。 主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。 如需詳細資訊，請參閱[使用自動調整規則相應縮小或放大 Service Fabric 叢集](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-scale-up-down)。
 * 您可以使用入口網站，將 SQL Database 執行個體和佇列之類的資源連結至雲端服務執行個體。 這可讓您更輕鬆地存取每個連結資源的個別手動和自動調整設定選項。 如需詳細資訊，請參閱[作法：將資源連結到雲端服務](/azure/cloud-services/cloud-services-how-to-manage)。
 * 當您設定多個原則和規則時，它們有可能互相衝突。 自動調整會使用下列衝突解決規則，來確保一定有足量的執行中執行個體：
   * 相應放大作業一律優先於相應縮小作業。

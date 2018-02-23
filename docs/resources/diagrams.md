@@ -1,11 +1,11 @@
 ---
 title: "適用於架構圖表的圖示和其他資產"
 description: "適合用來產生您自己之架構圖表的圖示、Viso 範本、PNG 檔案和 SVG 檔案"
-ms.openlocfilehash: 863c5cd479e6c4b6d57299176b80d02661e5466b
-ms.sourcegitcommit: 662f27f37d45f778ad1b6355fb6fb66e3c65558c
+ms.openlocfilehash: 58a2046c0d463c1f331ea3f950f0c11c273ffc36
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="icons-and-diagrams"></a>圖示和圖表
 
@@ -18,7 +18,7 @@ ms.lasthandoff: 12/11/2017
 
 ![雲端和企業符號/圖示集](./_images/CnESymbols.png)
 
-[Microsoft Office Visio 樣板](http://www.microsoft.com/en-us/download/details.aspx?id=35772) \(英文\) 中提供適用於 Microsoft Office 和相關技術的其他符號。 它們並未針對架構圖表進行最佳化。   
+[Microsoft Office Visio 樣板](http://www.microsoft.com/download/details.aspx?id=35772) \(英文\) 中提供適用於 Microsoft Office 和相關技術的其他符號。 它們並未針對架構圖表進行最佳化。   
 
 > [!NOTE]
 > 這些資產不適合用於使用者介面。 協力廠商符號非 Microsoft 所擁有。

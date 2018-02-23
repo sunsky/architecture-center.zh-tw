@@ -4,11 +4,11 @@ description: "提供 DevOps 相關指引的檢查清單。"
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: c435ea0aed9571cb6508d7d23f93414a138998fe
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="devops-checklist"></a>DevOps 檢查清單
 
@@ -126,7 +126,7 @@ DevOps 是一種整合，將開發、品質保證和 IT 營運整合至統一的
 
 **使用組態管理。** 組態變更應該已納入規劃、可讓作業看見，而且已記錄。 這可能會採用組態管理資料庫的形式，或組態即程式碼的方法。 應該定期稽核組態，以確保實際就位的是預期的內容。
 
-**取得 Azure 支援方案並了解程序。** Azure 提供了許多[支援方案][azure-support-plans]。 針對您的需求判斷正確的方案，並確定整個小組知道如何使用它。 小組成員應該了解方案的詳細資料、支援程序的運作方式，以及如何使用 Azure 開啟支援票證。 如果您預期是高規格事件，Azure 支援人員可以協助您增加服務限制。 如需詳細資訊，請參閱 [Azure 支援常見問題集](https://azure.microsoft.com/en-us/support/faq/)。
+**取得 Azure 支援方案並了解程序。** Azure 提供了許多[支援方案][azure-support-plans]。 針對您的需求判斷正確的方案，並確定整個小組知道如何使用它。 小組成員應該了解方案的詳細資料、支援程序的運作方式，以及如何使用 Azure 開啟支援票證。 如果您預期是高規格事件，Azure 支援人員可以協助您增加服務限制。 如需詳細資訊，請參閱 [Azure 支援常見問題集](https://azure.microsoft.com/support/faq/)。
 
 **授與資源的存取權時請遵循最低權限原則。** 謹慎管理對資源的存取。 根據預設應拒絕存取，除非使用者明確獲得資源的存取權。 僅授與使用者完成其工作所需的存取權。 追蹤使用者權限，並執行定期的安全性稽核。
 

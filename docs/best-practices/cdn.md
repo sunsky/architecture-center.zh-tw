@@ -4,11 +4,11 @@ description: "內容傳遞網路 (CDN) 的指引，目的是傳遞 Azure 中裝�
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 73da41edec246b672564dd4a52b317eacf8ad649
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: 9ee9099c85818af9486408f6ece41d3f6fcd9b44
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用內容傳遞網路 (CDN) 的最佳作法
 
@@ -95,5 +95,3 @@ CDN 可以使用 CDN 所提供的憑證，透過 HTTPS (SSL) 傳遞內容，也�
 
 ### <a name="cdn-fallback"></a>CDN 後援
 考量應用程式如何處理 CDN 失敗或暫時無法使用。 如果無法使用 CDN，用戶端應用程式可使用前一個要求期間的本機快取資源複本 (位於用戶端)，或者可以加入程式碼來偵測失敗，而非從原點要求資源 (應用程式資料夾或佔用資源的 Azure Blob 容器)。
-
-下列範例顯示後援機制

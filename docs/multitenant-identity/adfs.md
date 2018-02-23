@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: a5dc25a4b61ffd13d86f1abb2b839054e5fb4c7f
-ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
+ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>與客戶的 AD FS 同盟
 
@@ -63,10 +63,10 @@ Azure Active Directory (Azure AD) 可輕鬆地登入 Azure AD 租用戶的使用
 | exp |[到期時間]。 此時間過後，就不會再接受該權杖。 |
 | iat |發出時間。 權杖的發出時間。 |
 | iss |簽發者。 此宣告的值一律是資源夥伴的 AD FS。 |
-| name |使用者名稱。 範例： `john@corp.fabrikam.com`. |
+| name |使用者名稱。 範例： `john@corp.fabrikam.com` |
 | nameidentifier |[名稱識別碼]。 做為權杖發出對象之實體名稱的識別碼。 |
 | nonce |工作階段 nonce。 AD FS 為了防止重新執行攻擊所產生的唯一值。 |
-| upn |使用者主體名稱 (UPN)。 範例： john@corp.fabrikam.com |
+| upn |使用者主體名稱 (UPN)。 範例： `john@corp.fabrikam.com` |
 | pwd_exp |密碼到期期間。 經過此秒數後，使用者的密碼或類似的驗證機密資訊 (例如 PIN)  就會到期。 |
 
 > [!NOTE]

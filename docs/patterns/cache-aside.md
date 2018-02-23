@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: e0a6a91fda6ea43236f6eea552f7b8f8d31160ad
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1536a33884c9c9faa1e3702c951067249e691bf8
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="cache-aside-pattern"></a>另行快取模式
 
@@ -24,7 +24,7 @@ ms.lasthandoff: 11/14/2017
 
 應用程式使用快取以減少重複存取資料存放區中存放的資訊。 但是，我們不能期望快取的資料會永遠與資料存放區中的資料完全一致。 應用程式應該實作的策略是，協助確保快取中的資料盡可能保持最新，也可以偵測並處理當快取中的資料變成過時的情況。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 許多商業的快取系統提供貫穿式讀取和貫穿式寫入/事後寫入作業。 在這些系統中，應用程式會參考快取來擷取資料。 如果資料不在快取中，就會從資料存放區擷取，並加入快取。 快取中保留的資料若有任何修改，也會自動寫回資料存放區。
 
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  範例使用 Azure Redis 快取 API 來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](https://docs.microsoft.com/en-us/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](https://docs.microsoft.com/en-us/azure/redis-cache/cache-web-app-howto)
+>  範例使用 Azure Redis 快取 API 來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
 
 下面顯示的 `UpdateEntityAsync` 方法示範如何讓快取中的物件在值被應用程式變更時變成無效。 程式碼會更新原始資料存放區，然後從快取移除快取的項目。
 
@@ -151,6 +151,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 以下是實作此模式的相關資訊︰
 
-- [快取指引](https://docs.microsoft.com/en-us/azure/architecture/best-practices/caching)。 提供如何在雲端解決方案中快取資料，以及當您實作快取時應該考慮的問題的其他資訊。
+- [快取指引](https://docs.microsoft.com/azure/architecture/best-practices/caching)。 提供如何在雲端解決方案中快取資料，以及當您實作快取時應該考慮的問題的其他資訊。
 
 - [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 雲端應用程式通常使用分散在資料存放區各處的資料。 在此環境中管理和維護資料的一致性，是系統一個相當關鍵的部分，尤其是可能發生並行存取和可用性的問題。 此入門說明有關分散式資料之間一致性的問題，並摘要說明應用程式如何實作最終一致性，以維持資料的可用性。
