@@ -3,15 +3,15 @@ title: "選擇資料儲存技術"
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a51c8d990818e0b0efb04dd7686b065e5b98338a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: d8f831e758ddc8604758392644a68b56dc51cf57
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
-本主題將比較巨量資料解決方案的資料存放區選項 &mdash; 具體來說，就是比較大量資料擷取和批次處理的資料儲存體，與[分析資料存放區](./analytical-data-stores.md)或[即時串流擷取](./real-time-ingestion.md)的儲存體
+本主題將比較巨量資料解決方案的資料存放區選項 &mdash; 具體來說，就是比較大量資料擷取和批次處理的資料儲存體，與[分析資料存放區](./analytical-data-stores.md)或[即時串流擷取](./real-time-ingestion.md)的儲存體。
 
 ## <a name="what-are-your-options-when-choosing-data-storage-in-azure"></a>選擇 Azure 中的資料儲存體時有哪些選項？
 
