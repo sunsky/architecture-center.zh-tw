@@ -1,6 +1,6 @@
 - name: Azure Architecture Center
   href: /azure/architecture
-- name: Azure 雲端採用指南
+- name: 雲端採用指南
   href: index.md
   items:
     - name: 基礎 Azure 採用

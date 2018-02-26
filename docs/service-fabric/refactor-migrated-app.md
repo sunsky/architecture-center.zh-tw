@@ -3,11 +3,11 @@ title: "重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式"
 description: "如何重構由 Azure 雲端服務移轉的現有 Azure Service Fabric 應用程式"
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 18af7c7fe0c0933b1a2a132ee2ee0d8479d41b2a
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: 450648fbd0b19cdc7585738701914a1ebc1ed779
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式
 
@@ -151,7 +151,7 @@ Surveys 應用程式的程式碼可於 [GitHub][sample-code] 取得。
 如果您剛開始使用 [Azure Service Fabric][service-fabric]，請先設定開發環境，然後下載最新的 [Azure SDK][azure-sdk] 和 [Azure Service Fabric SDK][service-fabric-sdk]。 SDK 包含 OneBox 叢集管理員，因此您可以使用完整的 F5 偵錯在本機部署及測試 Surveys 應用程式。
 
 <!-- links -->
-[azure-sdk]: https://azure.microsoft.com/en-us/downloads/archive-net-downloads/
+[azure-sdk]: https://azure.microsoft.com/downloads/archive-net-downloads/
 [container-scenarios]: /azure/service-fabric/service-fabric-containers-overview
 [kestrel]: https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel?tabs=aspnetcore2x
 [kestrel-intro]: https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel?tabs=aspnetcore1x
