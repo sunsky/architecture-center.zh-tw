@@ -3,11 +3,11 @@ title: "巨量資料架構"
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 6ee44c6d94ae7ac5cb67cb5f16337deb1ffd4b70
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2a1336faea81470b082d4eef8e2cc53a082c63c7
+ms.sourcegitcommit: 023d88e781f7fe64c62b247d876441ee40921b1b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="big-data-architectures"></a>巨量資料架構
 
@@ -55,19 +55,6 @@ ms.lasthandoff: 02/14/2018
 * **分析和報告**。 大部分巨量資料解決方案的目標，是要透過分析和報告提供資料的深入見解。 為了讓使用者能夠分析資料，架構中可能要包括資料模型化層，例如 Azure Analysis Services 中的多維度 OLAP Cube 或表格式資料模型。 架構也可能會支援自助商業智慧，其使用的是 Microsoft Power BI 或 Microsoft Excel 中的模型化和視覺效果技術。 分析和報告也可供資料科學家或資料分析師透過互動方式瀏覽資料。 針對這些案例，許多 Azure 服務支援了分析筆記本 (例如 Jupyter)，讓這些使用者能夠利用其現有的技巧來使用 Python 或 R。若要瀏覽大規模的資料，您可以使用 Microsoft R Server (不論是獨立使用或搭配 Spark 來使用)。
 
 * **協調流程**。 大部分的巨量資料解決方案都包含重複的資料處理作業並封裝在工作流程中，這些作業會轉換來源資料、在多個來源和接收器之間移動資料、將處理過的資料載入分析資料存放區，或將結果直接推送到報告或儀表板。 若要讓這些工作流程自動執行，您可以使用協調流程技術，例如 Azure Data Factory 或 Apache Oozie 和 Sqoop。
-
-## <a name="data-lake"></a>Data Lake
-
-如果您閱讀過任何有關巨量資料的文章，很可能您已看過「Data Lake」一詞。 您可能已經看過有產品名稱使用這個詞，或是看過有關儲存大量資料的概念。 
-
-Data Lake 同時包含儲存和處理。 Data Lake 儲存體有數個建置目標：容錯、無限延展性，以及高輸送量的資料 (具有不同形狀和大小) 擷取。 Data Lake 處理涉及一或多個具有這些建置目標的處理引擎，並可大規模處理 Data Lake 中所儲存的資料。
-
-Data Lake Store 通常會用於事件串流或 IoT 案例，因為它們可以保存大量的關聯式與非關聯式資料，而不需要轉換或結構描述定義。 其建置目的是要處理大量低延遲的小型寫入，並已經過最佳化而可提供龐大輸送量。
-
-資料案例中常用的另一個字詞是「資料超市」。 一般而言，資料超市會用來存放已經過清理、封裝和結構化的資料，以方便您取用。 與資料超市不同，Data Lake 的設計目的是要擷取未經處理資料，讓其保持原始或經過最少處理的形式，以便能夠以各種方式以及在不同時間詢問問題。 如果資料已運用特定方式加以清理和結構化 (和在資料超市中一樣)，當未來有新的問題或工具時，您將會難以改寫資料的處理及分析方式。 這就是為什麼 Data Lake 會由分屬不同實體之儲存和處理來構成的原因。
-
-相關 Azure 服務：
-- [Azure Data Lake](https://azure.microsoft.com/scenarios/data-lake/)
 
 ## <a name="lambda-architecture"></a>Lambda 架構
 
