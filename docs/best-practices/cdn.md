@@ -4,11 +4,11 @@ description: "內容傳遞網路 (CDN) 的指引，目的是傳遞 Azure 中裝�
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 9ee9099c85818af9486408f6ece41d3f6fcd9b44
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 42b73db08ecef858f5279ea292cf8c0df77b847c
+ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 02/27/2018
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用內容傳遞網路 (CDN) 的最佳作法
 
@@ -91,7 +91,7 @@ CDN 可以使用 CDN 所提供的憑證，透過 HTTPS (SSL) 傳遞內容，也�
 
 * 使用 CDN 以將 CORS 標頭新增至回應。 如需詳細資訊，請參閱[搭配使用 Azure CDN 與 CORS](/azure/cdn/cdn-cors)。 
 * 如果來源是 Azure Blob 儲存體，請將 CORS 規則新增至儲存體端點。 如需詳細資訊，請參閱 [跨原始資源共用 (CORS) 支援 Azure 儲存體服務](http://msdn.microsoft.com/library/azure/dn535601.aspx)。
-* 設定應用程式以設定 CORS 標頭。 如需範例，請參閱 ASp.NET Core 文件中的[啟用跨源要求 (CORS)](/aspnet/core/security/cors)。
+* 設定應用程式以設定 CORS 標頭。 如需範例，請參閱 ASP.NET Core 文件中的[啟用跨源要求 (CORS)](/aspnet/core/security/cors)。
 
 ### <a name="cdn-fallback"></a>CDN 後援
 考量應用程式如何處理 CDN 失敗或暫時無法使用。 如果無法使用 CDN，用戶端應用程式可使用前一個要求期間的本機快取資源複本 (位於用戶端)，或者可以加入程式碼來偵測失敗，而非從原點要求資源 (應用程式資料夾或佔用資源的 Azure Blob 容器)。
