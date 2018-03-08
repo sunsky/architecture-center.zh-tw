@@ -15,12 +15,9 @@
         - name: 針對復原而設計
           tocHref: /azure/architecture/resiliency
           topicHref: /azure/architecture/resiliency
-        - name: 設計檢閱清單
+        - name: 設計檢閱檢查清單
           tocHref: /azure/architecture/checklist
           topicHref: /azure/architecture/checklist
-        - name: Elasticsearch
-          tocHref: /azure/architecture/elasticsearch
-          topicHref: /azure/architecture/elasticsearch
         - name: 管理多租用戶應用程式中的身分識別
           tocHref: /azure/architecture/multitenant-identity
         - name: 參考架構
