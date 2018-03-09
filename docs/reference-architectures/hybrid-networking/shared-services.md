@@ -1,24 +1,23 @@
 ---
-title: "在 Azure 中實作中樞輪輻網路拓撲"
-description: "如何在 Azure 中實作中樞輪輻網路拓撲。"
+title: "在 Azure 中實作中樞輪輻網路拓撲與共用服務"
+description: "如何在 Azure 中實作中樞輪輻網路拓撲與共用服務。"
 author: telmosampaio
-ms.date: 02/23/2018
-pnp.series.title: Implement a hub-spoke network topology in Azure
-pnp.series.prev: expressroute
-ms.openlocfilehash: 1a2855f0d4a903fc4d7a022aef20ea73fe763e2c
+ms.date: 02/25/2018
+pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
+pnp.series.prev: hub-spoke
+ms.openlocfilehash: c0fb1d1ddd7c70ed914d58e7c73b10475b91aedf
 ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/08/2018
 ---
-# <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
+# <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
-此參考架構會顯示如何在 Azure 中實作中樞輪輻拓撲。 「中樞」是 Azure 中的虛擬網路 (VNet)，可當作內部部署網路的連線中心點。 「輪輻」是與中樞對等互連的 VNet，可用於隔離工作負載。 流量會透過 ExpressRoute 或 VPN 閘道連線，在內部部署資料中心和中樞之間流動。  [**部署這個解決方案**](#deploy-the-solution)。
+此參考架構是建置在[中樞輪輻][guidance-hub-spoke]參考架構基礎上，以包含可以被所有輪輻取用之中樞中的共用服務。 作為將資料中心移轉至雲端的第一步，並且建置[虛擬資料中心]，您需要共用的首要服務是身分識別和安全性。 此參考架構會示範如何從您的內部部署資料中心將 Active Directory 服務擴充至 Azure，以及如何在中樞輪輻拓撲中新增可以作為防火牆的網路虛擬設備 (NVA)。  [**部署這個解決方案**](#deploy-the-solution)。
 
 ![[0]][0]
 
 *下載這個架構的 [Visio 檔案][visio-download]*
-
 
 此拓撲的優點包括：
 
@@ -49,6 +48,10 @@ ms.lasthandoff: 03/08/2018
 
 * **閘道子網路**。 虛擬網路閘道會保留在相同的子網路中。
 
+* **共用服務子網路**。 中樞 VNet 中用來裝載可在所有輪輻間共用之服務 (例如 DNS 或 AD DS) 的子網路。
+
+* **DMZ 子網路**。 中樞 VNet 中的子網路，用來裝載可以作為安全性設備 (例如防火牆) 的 NVA。
+
 * **輪輻 VNet**。 在中樞輪輻拓撲中用來當作輪輻的一個或多個 Azure VNet。 輪輻可在自己的 VNet 中，用來隔離從其他輪輻分開管理的工作負載。 每個工作負載在透過 Azure 負載平衡器連線多個子網路的情況下，都可能包括多層。 如需有關應用程式基礎結構的詳細資訊，請參閱[執行 Windows VM 工作負載][windows-vm-ra]和[執行 Linux VM 工作負載][linux-vm-ra]。
 
 * **VNet 對等互連**。 在相同的 Azure 區域中，可以使用[對等連線][vnet-peering]來連線兩個 VNet。 對等連線是 VNet 之間不可轉移的低延遲連線。 因此，一旦對等互連之後，VNet 就會使用 Azure 骨幹交換流量，而不需要使用路由器。 在中樞輪輻網路拓撲中，您可以使用 VNet 對等互連，將中樞連線至每個輪輻。
@@ -58,46 +61,26 @@ ms.lasthandoff: 03/08/2018
 
 ## <a name="recommendations"></a>建議
 
-下列建議適用於大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。
+適用於[中樞輪輻][guidance-hub-spoke]參考架構的所有建議也會套用至共用服務參考架構。 
 
-### <a name="resource-groups"></a>資源群組
+此外，下列建議適用於共用服務底下大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。
 
-中樞 VNet 以及每個輪輻 VNet 都可以在不同的資源群組，甚至是不同的訂用帳戶中實作，只要這些訂用帳戶屬於相同 Azure 區域中的相同 Azure Active Directory (Azure AD) 租用戶即可。 如此可對每個工作負載進行非集中式管理，同時在中樞 VNet 中維護共用服務。
+### <a name="identity"></a>身分識別
 
-### <a name="vnet-and-gatewaysubnet"></a>VNet 和 GatewaySubnet
+大部分企業組織在其內部部署資料中心有 Active Directory 目錄服務 (ADDS) 環境。 若要將從依據 ADDS 之內部部署網路移到 Azure 的資產管理簡化，建議在 Azure 中裝載 ADDS 網域控制站。
 
-建立一個名為 *GatewaySubnet* 的子網路，且其位址範圍為 /27。 虛擬網路閘道需要使用這個子網路。 將 32 個位址配置給這個子網路，將有助於防止未來達到閘道大小限制。
+如果您使用群組原則物件，想要分別控制 Azure 和內部部署環境，請為每個 Azure 區域使用不同的 AD 站台。 將您的網域控制站放在相依工作負載可存取的中央 VNet (中樞)。
 
-如需有關設定閘道的詳細資訊，請根據您的連線類型，參閱下列參考架構：
+### <a name="security"></a>安全性
 
-- [使用 ExpressRoute 的混合式網路][guidance-expressroute]
-- [使用 VPN 閘道的混合式網路][guidance-vpn]
+當您從內部部署環境將工作負載移至 Azure 時，部分工作負載必須裝載在 VM 中。 基於相容性因素，您可能需要對周遊這些工作負載的流量強制執行限制。 
 
-如需高可用性，您可以使用 ExpressRoute 加上 VPN 進行容錯移轉。 請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][hybrid-ha]。
+您可以在 Azure 中使用網路虛擬設備 (NVA) 以裝載不同類型的安全性和效能服務。 如果您很熟悉現今一組特定的設備，建議在適用時於 Azure 中使用相同的虛擬設備。
 
-如果您不需要與內部部署網路連線，則不需要閘道也可以使用中樞輪輻拓撲。 
-
-### <a name="vnet-peering"></a>VNet 對等互連
-
-VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需要輪輻彼此連線，請考慮在這些輪輻之間加入個別的對等連線。
-
-不過，如果您有數個需要彼此連線的輪輻，將會因為[每個 VNet 的 VNet 對等互連數目限制][vnet-peering-limit]，而非常快速地用盡可能的對等連線。 在此案例中，請考慮使用使用者定義的路由 (UDR)，強制將目的地為輪輻的流量傳送到當作中樞 VNet 路由器的 NVA。 這可讓輪輻彼此連線。
-
-您也可以將輪輻設定為使用中樞 VNet 閘道，與遠端網路進行通訊。 若要允許閘道流量從輪輻流向中樞，然後連線至遠端網路，您必須：
-
-  - 將中樞中的 VNet 對等連線設定為**允許閘道傳輸**。
-  - 將每個輪輻中的 VNet 對等連線設定為**使用遠端閘道**。
-  - 將所有 VNet 對等連線設定為**允許轉送的流量**。
+> [!NOTE]
+> 此參考架構的部署指令碼會使用已啟用 IP 轉送的 Ubuntu VM 來模擬網路虛擬設備。
 
 ## <a name="considerations"></a>考量
-
-### <a name="spoke-connectivity"></a>輪輻連線能力
-
-如果您需要在輪輻之間連線，請考慮實作 NVA 以便在中樞路由傳送，並在輪輻中使用 UDR，將流量轉送到中樞。
-
-![[2]][2]
-
-在此案例中，您必須將對等連線設定為**允許轉送的流量**。
 
 ### <a name="overcoming-vnet-peering-limits"></a>克服 VNet 對等互連的限制
 
@@ -119,7 +102,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
 
-3. 安裝 [Azure 建置組塊][azbb] npm 套件。
+3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
 
 4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶，並遵循提示進行。
 
@@ -131,18 +114,16 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 若要將模擬的內部部署資料中心部署為 Azure VNet，請遵循下列步驟：
 
-1. 瀏覽至您在上述必要條件步驟中所下載存放庫的 `hybrid-networking\hub-spoke\` 資料夾。
+1. 瀏覽至您在上述必要條件步驟中所下載存放庫的 `hybrid-networking\shared-services-stack\` 資料夾。
 
-2. 開啟 `onprem.json` 檔案，然後在第 36 和 37 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
+2. 開啟 `onprem.json` 檔案，然後在第 45 和 46 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-3. 在第 38 行上，針對 `osType` 輸入 `Windows` 或 `Linux`，以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
-
-4. 執行 `azbb` 以部署模擬的內部部署環境，如下所示。
+3. 執行 `azbb` 以部署模擬的內部部署環境，如下所示。
 
   ```bash
   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
@@ -150,22 +131,22 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
   > [!NOTE]
   > 如果您決定使用不同的資源群組名稱 (非 `onprem-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
-5. 等待部署完成。 此部署會建立一個虛擬網路、一個虛擬機器，以及一個 VPN 閘道。 建立 VPN 閘道可能需要超過 40 分鐘才能完成。
+4. 等待部署完成。 此部署會建立一個虛擬網路、一個執行 Windows 的虛擬機器，以及一個 VPN 閘道。 建立 VPN 閘道可能需要超過 40 分鐘才能完成。
 
 ### <a name="azure-hub-vnet"></a>Azure 中樞 VNet
 
 若要部署中樞 VNet 並連線到以上所建立的模擬內部部署 VNet，請執行下列步驟。
 
-1. 開啟 `hub-vnet.json` 檔案，然後在第 39 和 40 行的引號之間輸入使用者名稱和密碼，如下所示。
+1. 開啟 `hub-vnet.json` 檔案，然後在第 50 和 51 行的引號之間輸入使用者名稱和密碼，如下所示。
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. 在第 41 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
+2. 在第 52 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
 
-3. 在第 72 行的引號之間輸入共用金鑰，如下所示，然後儲存檔案。
+3. 在第 83 行的引號之間輸入共用金鑰，如下所示，然後儲存檔案。
 
   ```bash
   "sharedKey": "",
@@ -181,54 +162,59 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 5. 等待部署完成。 此部署會建立一個虛擬網路、一個虛擬機器、一個 VPN 閘道，以及一個與上節中建立之閘道的連線。 建立 VPN 閘道可能需要超過 40 分鐘才能完成。
 
-### <a name="optional-test-connectivity-from-onprem-to-hub"></a>(選擇性) 測試從內部部署到中樞的連線
+### <a name="adds-in-azure"></a>在 Azure 中的 ADDS
 
-若要測試從模擬的內部部署環境到使用 Windows VM 之中樞 VNet 的連線，請執行下列步驟。
+若要在 Azure 中部署 ADDS 網域控制站，請執行下列步驟。
 
-1. 從 Azure 入口網站中，瀏覽至 `onprem-jb-rg` 資源群組，然後按一下 `jb-vm1` 虛擬機器資源。
-
-2.  在入口網站中虛擬機器刀鋒視窗的左上角，按一下 `Connect`，並遵循提示來使用遠端桌面連線至 VM。 請務必使用您在 `onprem.json` 檔案 36 和 37 行中指定的使用者名稱和密碼。
-
-3. 在 VM 中開啟 PowerShell 主控台，並使用 `Test-NetConnection` Cmdlet 來確認您可以連線至中樞 jumpbox VM，如下所示。
-
-  ```powershell
-  Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
-  ```
-  > [!NOTE]
-  > 根據預設，Windows Server VM 在 Azure 中不允許 ICMP 回應。 如果您想要使用 `ping` 來測試連線，您需要在 Windows 進階防火牆中為每個 VM 啟用 ICMP 流量。
-
-若要測試從模擬的內部部署環境到使用 Linux VM 之中樞 VNet 的連線，請執行下列步驟：
-
-1. 從 Azure 入口網站中，瀏覽至 `onprem-jb-rg` 資源群組，然後按一下 `jb-vm1` 虛擬機器資源。
-
-2. 在入口網站 VM 刀鋒視窗的左上角，按一下 `Connect`，然後複製入口網站上顯示的 `ssh` 命令。 
-
-3. 從 Linux 提示中執行 `ssh`，使用您在上述步驟 2 中複製的資訊，連線到模擬的內部部署環境 jumpbox，如下所示。
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-4. 使用您在 `onprem.json` 檔案 37 行中指定的密碼連線到 VM。
-
-5. 使用 `ping` 命令來測試與中樞 jumpbox 的連線，如下所示。
-
-  ```bash
-  ping 10.0.0.68
-  ```
-
-### <a name="azure-spoke-vnets"></a>Azure 輪輻 VNet
-
-若要部署輪輻 VNet，請執行下列步驟。
-
-1. 開啟 `spoke1.json` 檔案，然後在第 47 和 48 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
+1. 開啟 `hub-adds.json` 檔案，然後在第 14 和 15 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. 在第 49 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
+2. 執行 `azbb` 以部署 ADDS 網域控制站，如下所示。
+
+  ```bash
+  azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+  ```
+  
+  > [!NOTE]
+  > 如果您決定使用不同的資源群組名稱 (非 `hub-adds-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+
+  > [!NOTE]
+  > 這個部分的部署可能需要幾分鐘的時間，因為它需要將兩個 VM 加入裝載於模擬的內部部署資料中心之網域，然後在其上安裝 AD DS。
+
+### <a name="nva"></a>NVA
+
+若要在 `dmz` 子網路中部署 NVA，請執行下列步驟：
+
+1. 開啟 `hub-nva.json` 檔案，然後在第 13 和 14 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+2. 執行 `azbb` 以部署 NVA VM 和使用者定義的路由。
+
+  ```bash
+  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
+  ```
+  > [!NOTE]
+  > 如果您決定使用不同的資源群組名稱 (非 `hub-nva-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+
+### <a name="azure-spoke-vnets"></a>Azure 輪輻 VNet
+
+若要部署輪輻 VNet，請執行下列步驟。
+
+1. 開啟 `spoke1.json` 檔案，然後在第 52 和 53 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+
+2. 在第 54 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
 
 3. 執行 `azbb` 以部署第一個輪輻 VNet 環境，如下所示。
 
@@ -253,7 +239,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 若要建立從中樞 VNet 到輪輻 VNet 的對等互連連線，請執行下列步驟。
 
-1. 開啟 `hub-vnet-peering.json` 檔案並確認從 29 行開始之每個虛擬網路對等互連的資源群組名稱和虛擬網路名稱正確無誤。
+1. 開啟 `hub-vnet-peering.json` 檔案並確認從第 29 行開始之每個虛擬網路對等互連的資源群組名稱和虛擬網路名稱正確無誤。
 
 2. 執行 `azbb` 以部署第一個輪輻 VNet 環境，如下所示。
 
@@ -264,64 +250,11 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
   > [!NOTE]
   > 如果您決定使用不同的資源群組名稱 (非 `hub-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
-### <a name="test-connectivity"></a>測試連線能力
-
-若要測試從模擬的內部部署環境到使用 Windows VM 之輪輻 VNet 的連線，請執行下列步驟。
-
-1. 從 Azure 入口網站中，瀏覽至 `onprem-jb-rg` 資源群組，然後按一下 `jb-vm1` 虛擬機器資源。
-
-2.  在入口網站中虛擬機器刀鋒視窗的左上角，按一下 `Connect`，並遵循提示來使用遠端桌面連線至 VM。 請務必使用您在 `onprem.json` 檔案 36 和 37 行中指定的使用者名稱和密碼。
-
-3. 在 VM 中開啟 PowerShell 主控台，並使用 `Test-NetConnection` Cmdlet 來確認您可以連線至中樞 jumpbox VM，如下所示。
-
-  ```powershell
-  Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
-  Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
-  ```
-
-若要測試從模擬的內部部署環境到使用 Linux VM 之輪輻 VNet 的連線，請執行下列步驟：
-
-1. 從 Azure 入口網站中，瀏覽至 `onprem-jb-rg` 資源群組，然後按一下 `jb-vm1` 虛擬機器資源。
-
-2. 在入口網站 VM 刀鋒視窗的左上角，按一下 `Connect`，然後複製入口網站上顯示的 `ssh` 命令。 
-
-3. 從 Linux 提示中執行 `ssh`，使用您在上述步驟 2 中複製的資訊，連線到模擬的內部部署環境 jumpbox，如下所示。
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-5. 使用您在 `onprem.json` 檔案 37 行中指定的密碼連線到 VM。
-
-6. 使用 `ping` 命令來測試與每個輪輻中 jumpbox VM 的連線，如下所示。
-
-  ```bash
-  ping 10.1.0.68
-  ping 10.2.0.68
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>新增輪輻之間的連線
-
-如果您想要允許輪輻彼此連線，您必須使用網路虛擬設備 (NVA) 作為中樞虛擬網路的路由器，並且在嘗試連線到另一個輪輻時強制執行從輪輻到路由器的流量。 若要部署基本範例 NVA 作為單一 VM，且需要使用者定義的路由器允許兩個輪輻 Vnet 連線，請執行下列步驟：
-
-1. 開啟 `hub-nva.json` 檔案，然後在第 13 和 14 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
-
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
-2. 執行 `azbb` 以部署 NVA VM 和使用者定義的路由。
-
-  ```bash
-  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-  ```
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `hub-nva-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
-
 <!-- links -->
 
 [azure-cli-2]: /azure/install-azure-cli
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[guidance-hub-spoke]: ./hub-spoke.md
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [best-practices-security]: /azure/best-practices-network-securit
 [connect-to-an-Azure-vnet]: https://technet.microsoft.com/library/dn786406.aspx
@@ -331,6 +264,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 [hybrid-ha]: ./expressroute-vpn-failover.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
+[虛擬資料中心]: https://aka.ms/vdc
 [vnet-peering]: /azure/virtual-network/virtual-network-peering-overview
 [vnet-peering-limit]: /azure/azure-subscription-service-limits#networking-limits
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
@@ -338,8 +272,6 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 [visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[0]: ./images/hub-spoke.png "Azure 中的中樞輪輻拓撲"
-[1]: ./images/hub-spoke-gateway-routing.svg "Azure 中具有可轉移路由的中樞輪輻拓撲"
-[2]: ./images/hub-spoke-no-gateway-routing.svg "Azure 中具有使用 NVA 之可轉移路由的中樞輪輻拓撲"
+[0]: ./images/shared-services.png "Azure 中的共用服務拓撲"
 [3]: ./images/hub-spokehub-spoke.svg "Azure 中的中樞輪輻中樞輪輻拓撲"
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

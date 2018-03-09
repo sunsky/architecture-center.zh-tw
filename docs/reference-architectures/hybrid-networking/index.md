@@ -2,11 +2,11 @@
 title: "將內部部署網路連線到 Azure"
 description: "在內部部署網路與 Azure 之間的安全、強固網路連線之建議架構。"
 layout: LandingPage
-ms.openlocfilehash: b96601144099571768254af92788f75cca0b928c
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/08/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -14,7 +14,7 @@ ms.lasthandoff: 02/23/2018
 
 # <a name="connect-an-on-premises-network-to-azure"></a>將內部部署網路連線到 Azure
 
-這些參考架構顯示經過證實做法，可建立內部部署網路與 Azure 之間的強固網路連線。 <br/>[應選取哪個？](./considerations.md)
+這些參考架構顯示經過證實做法，可建立內部部署網路與 Azure 之間的強固網路連線。 [應選取哪個？](./considerations.md)
 
 <section class="series">
     <ul class="panelContent">
@@ -92,6 +92,26 @@ ms.lasthandoff: 02/23/2018
                     <div class="cardText">
                         <h3>中樞輪輻拓撲</h3>
                         <p>中樞是您內部部署網路連線的集中點。 輪輻是與中樞對等的 VNet，可用於隔離工作負載。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+    <!-- Hub-spoke topology with shared services -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./images/shared-services.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>具有共用服務的中樞輪輻拓撲</h3>
+                        <p>部署中樞輪輻拓撲，其中包含共用服務，包括 Active Directory 服務和網路虛擬設備 (NVA)。 共用服務可供所有輪輻取用。</p>
                     </div>
                 </div>
             </div>

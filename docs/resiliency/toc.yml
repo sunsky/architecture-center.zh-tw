@@ -4,8 +4,10 @@
   items:
     - name: 設計復原應用程式
       href: index.md
-    - name: 復原檢查清單
+    - name: 復原檢查清單 (一般)
       href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: 復原檢查清單 (Azure 服務)
+      href: ../checklist/resiliency-per-service.md?toc=/azure/architecture/resiliency/toc.json
     - name: 失敗模式分析
       href: failure-mode-analysis.md
     - name: 其他的指導方針

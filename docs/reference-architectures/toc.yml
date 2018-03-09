@@ -25,6 +25,8 @@
           href: hybrid-networking/expressroute-vpn-failover.md
         - name: 中樞輪輻拓撲
           href: hybrid-networking/hub-spoke.md
+        - name: 具有共用服務的中樞輪輻拓撲
+          href: hybrid-networking/shared-services.md
     - name: 身分識別管理
       href: identity/index.md
       items:

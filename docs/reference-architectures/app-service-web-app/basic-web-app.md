@@ -4,11 +4,11 @@ description: "在 Microsoft Azure 中執行的基本 Web 應用程式建議使�
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="basic-web-application"></a>基本 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -42,7 +42,7 @@ ms.lasthandoff: 01/02/2018
 
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。 若要使用自訂網域名稱 (例如 `contoso.com`)，請建立 DNS 記錄，將自訂網域名稱對應至 IP 位址。 如需詳細資訊，請參閱 [在 Azure App Service 中設定自訂網域名稱][custom-domain-name]。  
 
-* **Azure SQL Database**。 [SQL Database][sql-db] 是雲端中的關聯式資料庫即服務。
+* **Azure SQL Database**。 [SQL Database][sql-db] 是雲端中的關聯式資料庫即服務。 SQL Database 與 Microsoft SQL Server 資料庫引擎共用其程式碼基底。 根據您的應用程式需求而定，您也可以使用[適用於 MySQL 的 Azure 資料庫](/azure/mysql)或[適用於 PostgreSQL 的 Azure 資料庫](/azure/postgresql)。 這些是完全受控的資料庫服務，分別根據開放原始碼 MySQL Server 和 Postgres 資料庫引擎。
 
 * **邏輯伺服器**。 在 Azure SQL Database 中，邏輯伺服器會裝載您的資料庫。 您可以為每部邏輯伺服器建立多個資料庫。
 
@@ -122,7 +122,7 @@ App Service 提供[備份和還原][web-app-backup]應用程式檔案的功能�
 
 如需詳細資訊，請參閱 [Azure Resource Manager 概觀](/azure/azure-resource-manager/resource-group-overview)。
 
-### <a name="deployment"></a>Deployment
+### <a name="deployment"></a>部署
 部署包含兩個步驟：
 
 1. 佈建 Azure 資源。 對於此步驟，我們建議您使用 [Azure Resoure Manager 範本][arm-template]。 範本可讓您輕鬆地透過 PowerShell 或 Azure 命令列介面 (CLI) 進行自動部署。
