@@ -1,10 +1,10 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: 00abbfdeac89a9006517195bd4bbc514d587fe74
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9bd86f1b3527f1116d4f5169baf76f8a5b9a385b
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
@@ -46,7 +46,7 @@ Polyglot 持續性 (混合儲存體技術)<br/>
 </tbody>
 </table>
 
-本指南適用於應用程式架構設計人員、開發人員和營運團隊。 這不是個別 Azure 服務的使用說明指南。 閱讀本指南之後，您將了解在 Azure 雲端平台上進行建置時，該套用何種架構模式和最佳作法。
+本指南適用於應用程式架構設計人員、開發人員和營運團隊。 這不是個別 Azure 服務的使用說明指南。 閱讀本指南之後，您將了解在 Azure 雲端平台上進行建置時，該套用何種架構模式和最佳作法。 您也可以下載[本指南的電子書版本][ebook]。
 
 ## <a name="how-this-guide-is-structured"></a>指南結構
 
@@ -78,6 +78,7 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 [checklists]: ../checklist/index.md
 [compute-options]: ./technology-choices/compute-comparison.md
 [design-principles]: ./design-principles/index.md
+[ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
 [patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
 [pillars]: ./pillars.md
 [ref-archs]: ../reference-architectures/index.md
