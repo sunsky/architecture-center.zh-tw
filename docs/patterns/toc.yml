@@ -4,7 +4,7 @@
   href: index.md
 - name: 類別
   items:
-    - name: Availability
+    - name: 可用性
       href: category/availability.md
     - name: 資料管理
       href: category/data-management.md
@@ -68,7 +68,7 @@
   href: priority-queue.md
 - name: 佇列型負載調節
   href: queue-based-load-leveling.md
-- name: Retry
+- name: 重試
   href: retry.md
 - name: 排程器代理程式監督員
   href: scheduler-agent-supervisor.md
