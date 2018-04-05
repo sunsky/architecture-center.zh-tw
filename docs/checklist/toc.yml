@@ -2,7 +2,7 @@
   href: /azure/architecture
 - name: 設計檢閱清單
   items:
-    - name: Availability
+    - name: 可用性
       href: availability.md
     - name: DevOps
       href: dev-ops.md
