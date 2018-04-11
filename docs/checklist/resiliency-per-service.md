@@ -1,6 +1,6 @@
 ---
-title: "Azure 服務的復原檢查清單"
-description: "檢查清單，提供各種 Azure 服務的復原指南。"
+title: Azure 服務的復原檢查清單
+description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist

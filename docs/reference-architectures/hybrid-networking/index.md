@@ -1,6 +1,6 @@
 ---
-title: "將內部部署網路連線到 Azure"
-description: "在內部部署網路與 Azure 之間的安全、強固網路連線之建議架構。"
+title: 將內部部署網路連線到 Azure
+description: 在內部部署網路與 Azure 之間的安全、強固網路連線之建議架構。
 layout: LandingPage
 ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
 ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994

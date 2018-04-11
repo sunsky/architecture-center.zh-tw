@@ -1,6 +1,6 @@
 ---
-title: "擴充 Azure Resource Manager 範本功能"
-description: "說明如何擴充 Azure Resource Manager 範本功能的秘訣與技巧"
+title: 擴充 Azure Resource Manager 範本功能
+description: 說明如何擴充 Azure Resource Manager 範本功能的秘訣與技巧
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: 33ae6850ffa5b28108f30475804be5347859f0c3

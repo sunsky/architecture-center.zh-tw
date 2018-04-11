@@ -1,6 +1,6 @@
 ---
-title: "重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式"
-description: "如何重構由 Azure 雲端服務移轉的現有 Azure Service Fabric 應用程式"
+title: 重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式
+description: 如何重構由 Azure 雲端服務移轉的現有 Azure Service Fabric 應用程式
 author: petertay
 ms.date: 01/30/2018
 ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
