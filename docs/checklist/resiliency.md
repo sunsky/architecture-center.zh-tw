@@ -1,6 +1,6 @@
 ---
-title: "復原檢查清單"
-description: "提供設計期間復原考量指引的檢查清單。"
+title: 復原檢查清單
+description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist

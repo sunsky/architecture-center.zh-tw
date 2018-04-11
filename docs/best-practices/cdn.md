@@ -1,6 +1,6 @@
 ---
-title: "內容傳遞網路指導"
-description: "內容傳遞網路 (CDN) 的指引，目的是傳遞 Azure 中裝載的高頻寬內容。"
+title: 內容傳遞網路指導
+description: 內容傳遞網路 (CDN) 的指引，目的是傳遞 Azure 中裝載的高頻寬內容。
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
