@@ -1,6 +1,6 @@
 ---
-title: "身分識別管理"
-description: "說明並比較可在透過 Azure 跨越內部部署/雲端界限的混合式系統中，用來管理身分識別的不同方法。"
+title: 身分識別管理
+description: 說明並比較可在透過 Azure 跨越內部部署/雲端界限的混合式系統中，用來管理身分識別的不同方法。
 layout: LandingPage
 ms.openlocfilehash: de98ee30306f5e712759ab7140bd430cb6d4cd75
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

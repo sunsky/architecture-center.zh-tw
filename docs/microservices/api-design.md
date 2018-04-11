@@ -1,6 +1,6 @@
 ---
-title: "API 設計"
-description: "設計微服務的 API"
+title: API 設計
+description: 設計微服務的 API
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9

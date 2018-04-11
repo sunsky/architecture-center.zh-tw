@@ -1,6 +1,6 @@
 ---
-title: "架構樣式"
-description: "雲端應用程式的的一般架構樣式"
+title: 架構樣式
+description: 雲端應用程式的的一般架構樣式
 layout: LandingPage
 ms.openlocfilehash: 15a316f9ebf7cfe4e72a6992f264a68abb904819
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

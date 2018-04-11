@@ -1,6 +1,6 @@
 ---
-title: "同步 I/O 反模式"
-description: "在 I/O 完成時封鎖呼叫執行緒，會降低效能並且影響垂直延展性。"
+title: 同步 I/O 反模式
+description: 在 I/O 完成時封鎖呼叫執行緒，會降低效能並且影響垂直延展性。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: d5b3635565c6b71ef7716f54ee8cccc76093c3a3

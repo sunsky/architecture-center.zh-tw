@@ -1,6 +1,6 @@
 ---
-title: "沒有快取的反模式"
-description: "重複擷取相同資料可能會降低效能和延展性。"
+title: 沒有快取的反模式
+description: 重複擷取相同資料可能會降低效能和延展性。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 8a2bc3b473a30536cc1bef9e1dcad87acb46c4a9

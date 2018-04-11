@@ -1,6 +1,6 @@
 ---
-title: "在多租用戶應用程式中驗證"
-description: "多租用戶應用程式如何才能從 Azure AD 驗證使用者"
+title: 在多租用戶應用程式中驗證
+description: 多租用戶應用程式如何才能從 Azure AD 驗證使用者
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

@@ -1,6 +1,6 @@
 ---
-title: "CQRS 架構樣式"
-description: "描述CQRS 架構的優點、挑戰以及最佳做法"
+title: CQRS 架構樣式
+description: 描述CQRS 架構的優點、挑戰以及最佳做法
 author: MikeWasson
 ms.openlocfilehash: dd3da5886587159f57646ff1bfffa2094725f798
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

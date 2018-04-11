@@ -1,6 +1,6 @@
 ---
-title: "一般重試方針"
-description: "暫時性錯誤處理重試指引。"
+title: 一般重試方針
+description: 暫時性錯誤處理重試指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

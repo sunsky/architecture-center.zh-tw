@@ -1,6 +1,6 @@
 ---
-title: "自動調整指引"
-description: "如何自動調整以動態方式配置應用程式所需資源的指引。"
+title: 自動調整指引
+description: 如何自動調整以動態方式配置應用程式所需資源的指引。
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices

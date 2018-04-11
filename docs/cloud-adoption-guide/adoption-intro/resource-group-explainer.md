@@ -1,6 +1,6 @@
 ---
-title: "說明 - 什麼是 Azure 資源群組？"
-description: "說明資源群組的內部 Azure 函式"
+title: 說明 - 什麼是 Azure 資源群組？
+description: 說明資源群組的內部 Azure 函式
 author: petertay
 ms.openlocfilehash: e7c7334bd88c28f57498486bd2bed3c349565222
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

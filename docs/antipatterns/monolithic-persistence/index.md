@@ -1,6 +1,6 @@
 ---
-title: "整合的持續性反模式"
-description: "將所有應用程式的資料放入單一資料存放區會降低效能。"
+title: 整合的持續性反模式
+description: 將所有應用程式的資料放入單一資料存放區會降低效能。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 7f04b9f0805c281068b6b2edaf040683773e6f6e

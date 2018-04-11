@@ -1,6 +1,6 @@
 ---
-title: "扼制模式"
-description: "透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。"
+title: 扼制模式
+description: 透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: d03e8a1ef9077b6e00ea5a17423bf7e09b68111a

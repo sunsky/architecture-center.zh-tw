@@ -1,6 +1,6 @@
 ---
-title: "選擇解決方案以整合內部部署 Active Directory 與 Azure。"
-description: "比較用於整合內部部署 Active Directory 與 Azure 的參考架構。"
+title: 選擇解決方案以整合內部部署 Active Directory 與 Azure。
+description: 比較用於整合內部部署 Active Directory 與 Azure 的參考架構。
 ms.date: 04/06/2017
 ms.openlocfilehash: 413a5463d90547197c4b6834d353b4ecf61483ee
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

@@ -1,6 +1,6 @@
 ---
-title: "記錄和監視微服務"
-description: "記錄和監視微服務"
+title: 記錄和監視微服務
+description: 記錄和監視微服務
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428

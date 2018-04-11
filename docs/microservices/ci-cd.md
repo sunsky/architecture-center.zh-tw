@@ -1,6 +1,6 @@
 ---
-title: "微服務的 CI/CD"
-description: "微服務的持續整合與持續傳遞"
+title: 微服務的 CI/CD
+description: 微服務的持續整合與持續傳遞
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: 7d8a81b7bc236e50d722a68a0115b9220d4e094f

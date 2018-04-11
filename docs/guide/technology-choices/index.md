@@ -1,6 +1,6 @@
 ---
-title: "選擇適用於 Azure 應用程式的正確技術"
-description: "選擇適用於 Azure 應用程式的正確技術"
+title: 選擇適用於 Azure 應用程式的正確技術
+description: 選擇適用於 Azure 應用程式的正確技術
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 7681aeb7a6064d06674e781292c444dba9d410f2

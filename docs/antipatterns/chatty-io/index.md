@@ -1,6 +1,6 @@
 ---
-title: "多對話 I/O 反模式"
-description: "大量 I/O 要求可能會損害效能及回應能力。"
+title: 多對話 I/O 反模式
+description: 大量 I/O 要求可能會損害效能及回應能力。
 author: dragon119
 ms.openlocfilehash: 4f0e0e455ceb58317d3029d8ab4631d476802499
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

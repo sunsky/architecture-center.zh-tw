@@ -1,6 +1,6 @@
 ---
-title: "Windows VM 工作負載"
-description: "說明某些部署在 Azure 中裝載企業規模應用程式之 VM 的常見架構。"
+title: Windows VM 工作負載
+description: 說明某些部署在 Azure 中裝載企業規模應用程式之 VM 的常見架構。
 layout: LandingPage
 ms.openlocfilehash: 972a307c129598ecfab161d5246d0eb2abf7c7e5
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

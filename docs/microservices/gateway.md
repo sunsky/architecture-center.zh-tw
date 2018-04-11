@@ -1,6 +1,6 @@
 ---
-title: "API 閘道"
-description: "微服務中的 API 閘道"
+title: API 閘道
+description: 微服務中的 API 閘道
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: 6483d416363e24f4084d6b856847a740bf4054d9

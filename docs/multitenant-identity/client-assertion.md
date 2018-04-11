@@ -1,6 +1,6 @@
 ---
-title: "使用用戶端判斷提示從 Azure AD 取得存取權杖"
-description: "使用用戶端判斷提示從 Azure AD 取得存取權杖的方式。"
+title: 使用用戶端判斷提示從 Azure AD 取得存取權杖
+description: 使用用戶端判斷提示從 Azure AD 取得存取權杖的方式。
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
@@ -103,6 +103,7 @@ public class CertificateCredentialService : ICredentialService
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
 [用戶端判斷提示]: https://tools.ietf.org/html/rfc7521
+[client assertion]: https://tools.ietf.org/html/rfc7521
 [key vault]: key-vault.md
 [Setup-KeyVault]: https://github.com/mspnp/multitenant-saas-guidance/blob/master/scripts/Setup-KeyVault.ps1
 [Surveys]: tailspin.md

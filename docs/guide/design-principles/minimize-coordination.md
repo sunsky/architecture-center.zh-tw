@@ -1,6 +1,6 @@
 ---
-title: "最小化協調"
-description: "將來應用程式服務之間的協調最小化，以達成延展性"
+title: 最小化協調
+description: 將來應用程式服務之間的協調最小化，以達成延展性
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70

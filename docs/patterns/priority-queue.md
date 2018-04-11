@@ -1,7 +1,7 @@
 ---
-title: "優先順序佇列"
-description: "針對傳送給服務的要求排列優先順序，讓高優先順序要求的接收和處理順序在低優先順序要求之前。"
-keywords: "設計模式"
+title: 優先順序佇列
+description: 針對傳送給服務的要求排列優先順序，讓高優先順序要求的接收和處理順序在低優先順序要求之前。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

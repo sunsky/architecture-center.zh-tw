@@ -1,7 +1,7 @@
 ---
-title: "索引資料表"
-description: "針對資料存放區中查詢經常參考的欄位建立索引。"
-keywords: "設計模式"
+title: 索引資料表
+description: 針對資料存放區中查詢經常參考的欄位建立索引。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

@@ -1,6 +1,6 @@
 ---
-title: "閘道彙總模式"
-description: "您可以使用閘道來將多個個別的要求彙總成單一要求。"
+title: 閘道彙總模式
+description: 您可以使用閘道來將多個個別的要求彙總成單一要求。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: f59c8b8b02c6db28024d13621b782997e63a4e9e

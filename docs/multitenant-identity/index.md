@@ -1,6 +1,6 @@
 ---
-title: "多組織用戶共享應用程式的身分識別管理"
-description: "在多租用戶應用程式中進行驗證、授權和身分識別管理的最佳作法。"
+title: 多組織用戶共享應用程式的身分識別管理
+description: 在多租用戶應用程式中進行驗證、授權和身分識別管理的最佳作法。
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
@@ -96,6 +96,7 @@ ms.lasthandoff: 11/14/2017
 [AzureAD]: /azure/active-directory
 
 [與客戶的 AD FS 聯合]: adfs.md
+[Federating with a customer's AD FS]: adfs.md
 [tailpin]: tailspin.md
 
 [running-the-app]: ./run-the-app.md

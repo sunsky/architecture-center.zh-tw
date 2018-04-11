@@ -1,7 +1,7 @@
 ---
-title: "靜態內容裝載"
-description: "將靜態內容部署到可以直接將其傳遞給用戶端的雲端式儲存體服務。"
-keywords: "設計模式"
+title: 靜態內容裝載
+description: 將靜態內容部署到可以直接將其傳遞給用戶端的雲端式儲存體服務。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

@@ -1,6 +1,6 @@
 ---
-title: "巨量資料架構樣式"
-description: "說明 Azure 上巨量資料架構的優點、挑戰和最佳作法"
+title: 巨量資料架構樣式
+description: 說明 Azure 上巨量資料架構的優點、挑戰和最佳作法
 author: MikeWasson
 ms.openlocfilehash: 4e8b58d5fa0f6a441d70e05ec7d6a0e668712563
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

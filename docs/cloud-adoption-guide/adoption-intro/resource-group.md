@@ -1,6 +1,6 @@
 ---
-title: "指引：Azure 資源群組設計"
-description: "依據基本雲端採用策略設計 Azure 資源群組的指引"
+title: 指引：Azure 資源群組設計
+description: 依據基本雲端採用策略設計 Azure 資源群組的指引
 author: petertay
 ms.openlocfilehash: ac6cbb03be8cdba020641d3b9034ad9d20101acf
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

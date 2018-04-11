@@ -1,6 +1,6 @@
 ---
-title: "選擇資料管線協調流程技術"
-description: 
+title: 選擇資料管線協調流程技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637

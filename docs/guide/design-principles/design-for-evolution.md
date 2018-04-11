@@ -1,6 +1,6 @@
 ---
-title: "為變更設計"
-description: "進化的設計是連續創新的關鍵。"
+title: 為變更設計
+description: 進化的設計是連續創新的關鍵。
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 35e91228f3fb0a303594ec06f05b6865008e3a4f

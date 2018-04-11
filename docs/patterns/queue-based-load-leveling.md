@@ -1,7 +1,7 @@
 ---
-title: "佇列型負載調節"
-description: "使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。"
-keywords: "設計模式"
+title: 佇列型負載調節
+description: 使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

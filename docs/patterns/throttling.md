@@ -1,7 +1,7 @@
 ---
-title: "節流"
-description: "控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。"
-keywords: "設計模式"
+title: 節流
+description: 控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
@@ -103,3 +103,4 @@ ms.lasthandoff: 11/14/2017
 - <span data-ttu-id="72c9a-197">[優先順序佇列模式][]。</span><span class="sxs-lookup"><span data-stu-id="72c9a-197">[Priority Queue pattern][].</span></span> <span data-ttu-id="72c9a-198">系統可以使用優先順序佇列來當作其節流策略，以維持關鍵或高重要性應用程式的效能，同時降低較不重要的應用程式的效能。</span><span class="sxs-lookup"><span data-stu-id="72c9a-198">A system can use priority queuing as part of its throttling strategy to maintain performance for critical or higher value applications, while reducing the performance of less important applications.</span></span>
 
 [優先順序佇列模式]: priority-queue.md
+[Priority Queue pattern]: priority-queue.md

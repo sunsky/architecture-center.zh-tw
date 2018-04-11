@@ -1,6 +1,6 @@
 ---
-title: "API 實作指引"
-description: "如何實作 API 的指示。"
+title: API 實作指引
+description: 如何實作 API 的指示。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

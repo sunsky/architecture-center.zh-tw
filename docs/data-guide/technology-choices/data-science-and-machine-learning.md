@@ -1,6 +1,6 @@
 ---
-title: "選擇機器學習技術"
-description: 
+title: 選擇機器學習技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 995349c795066ec3067b20ad2615e40b0fb152db

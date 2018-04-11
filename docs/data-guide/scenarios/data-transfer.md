@@ -1,6 +1,6 @@
 ---
-title: "選擇資料傳輸技術"
-description: 
+title: 選擇資料傳輸技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a

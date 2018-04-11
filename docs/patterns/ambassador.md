@@ -1,6 +1,6 @@
 ---
-title: "大使模式"
-description: "建立會代表取用者服務或應用程式傳送網路要求的協助程式服務。"
+title: 大使模式
+description: 建立會代表取用者服務或應用程式傳送網路要求的協助程式服務。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 6c545619aab6a5817e55854350e3769834df27cd

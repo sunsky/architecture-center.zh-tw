@@ -1,6 +1,6 @@
 ---
-title: "將 Azure 雲端服務應用程式移轉至 Azure Service Fabric"
-description: "如何將應用程式從 Azure 雲端服務移轉至 Azure Service Fabric。"
+title: 將 Azure 雲端服務應用程式移轉至 Azure Service Fabric
+description: 如何將應用程式從 Azure 雲端服務移轉至 Azure Service Fabric。
 author: MikeWasson
 ms.date: 04/27/2017
 ms.openlocfilehash: ce9c138a6b093fb7f0329c619c75bd4f4aacc2e7
