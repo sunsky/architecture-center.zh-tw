@@ -1,6 +1,6 @@
 ---
-title: "將內部部署資料解決方案延伸至雲端"
-description: 
+title: 將內部部署資料解決方案延伸至雲端
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 66fc225dc123202ba587d82f15ea0883e1bbf3b5

@@ -1,6 +1,6 @@
 ---
-title: "快取指引"
-description: "用來改善效能和延展性的快取指引。"
+title: 快取指引
+description: 用來改善效能和延展性的快取指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

@@ -1,6 +1,6 @@
 ---
-title: "使用受管理的服務"
-description: "可能的話，請使用平台即服務 (PaaS) 而非基礎結構即服務 (IaaS)"
+title: 使用受管理的服務
+description: 可能的話，請使用平台即服務 (PaaS) 而非基礎結構即服務 (IaaS)
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 7156c073db3e047fb38e031309ddb637a9e44c02

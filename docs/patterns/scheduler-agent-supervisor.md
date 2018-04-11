@@ -1,7 +1,7 @@
 ---
-title: "排程器代理程式監督員"
-description: "在一組分散式服務和其他遠端資源中協調一組動作。"
-keywords: "設計模式"
+title: 排程器代理程式監督員
+description: 在一組分散式服務和其他遠端資源中協調一組動作。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

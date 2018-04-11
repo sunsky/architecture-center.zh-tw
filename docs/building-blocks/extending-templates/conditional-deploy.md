@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Resource Manager 範本中依條件部署資源"
-description: "說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源"
+title: 在 Azure Resource Manager 範本中依條件部署資源
+description: 說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: e911e7dc41b4f71ebfaf13a00f8cdbb5b4e2578b

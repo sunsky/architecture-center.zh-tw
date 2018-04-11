@@ -1,6 +1,6 @@
 ---
-title: "為 Azure 設計復原應用程式"
-description: "如何在 Azure 中建置復原應用程式，如高可用性和災害復原。"
+title: 為 Azure 設計復原應用程式
+description: 如何在 Azure 中建置復原應用程式，如高可用性和災害復原。
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency

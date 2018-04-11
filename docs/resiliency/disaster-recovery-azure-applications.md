@@ -1,6 +1,6 @@
 ---
-title: "Azure 應用程式的災害復原"
-description: "在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。"
+title: Azure 應用程式的災害復原
+description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
 author: adamglick
 ms.date: 05/26/2017
 ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66

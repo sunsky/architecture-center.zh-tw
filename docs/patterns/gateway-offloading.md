@@ -1,6 +1,6 @@
 ---
-title: "閘道卸載模式"
-description: "將共用或特殊服務功能卸載至閘道 Proxy。"
+title: 閘道卸載模式
+description: 將共用或特殊服務功能卸載至閘道 Proxy。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 6b3e4541aae77349ca91c18c788ddb508912361d

@@ -1,6 +1,6 @@
 ---
-title: "多層式架構樣式"
-description: "說明 Azure 上多層式架構的優點、挑戰和最佳做法"
+title: 多層式架構樣式
+description: 說明 Azure 上多層式架構的優點、挑戰和最佳做法
 author: MikeWasson
 ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

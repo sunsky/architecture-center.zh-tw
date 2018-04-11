@@ -1,11 +1,12 @@
 ---
-title: "閘道管理員"
-description: "可保護應用程式和服務，方法是使用專用的主機執行個體，其會作為用戶端和應用程式或服務之間的代理程式、驗證和處理要求，並在兩者之間傳遞要求和資料。"
-keywords: "設計模式"
+title: 閘道管理員
+description: 可保護應用程式和服務，方法是使用專用的主機執行個體，其會作為用戶端和應用程式或服務之間的代理程式、驗證和處理要求，並在兩者之間傳遞要求和資料。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: security
+pnp.pattern.categories:
+- security
 ms.openlocfilehash: 39f8548bbccb5e19d433f65b2e7e09147d676996
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT

@@ -1,6 +1,6 @@
 ---
-title: "軟體品質的要素"
-description: "說明軟體品質的五大要素，也就是延展性、可用性、復原功能、管理和安全性。"
+title: 軟體品質的要素
+description: 說明軟體品質的五大要素，也就是延展性、可用性、復原功能、管理和安全性。
 author: MikeWasson
 ms.openlocfilehash: 1d5e30602cafa0d39f92de3101974e77ae258595
 ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f

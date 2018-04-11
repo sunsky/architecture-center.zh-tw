@@ -1,6 +1,6 @@
 ---
-title: "說明：什麼是 Azure Active Directory 租用戶？"
-description: "說明 Azure Active Directory 在 Azure 中提供身分識別即服務 (IDaaS) 的內部運作方式"
+title: 說明：什麼是 Azure Active Directory 租用戶？
+description: 說明 Azure Active Directory 在 Azure 中提供身分識別即服務 (IDaaS) 的內部運作方式
 author: petertay
 ms.openlocfilehash: ce5a33b92047e1f360eee8fcbc7a726bcf8cd19f
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

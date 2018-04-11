@@ -1,6 +1,6 @@
 ---
-title: "針對企業的需求而建置"
-description: "每個設計決策必須對應合理的商務需求"
+title: 針對企業的需求而建置
+description: 每個設計決策必須對應合理的商務需求
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 110a441ae74334d212a717da2cb038d60b24bb1f

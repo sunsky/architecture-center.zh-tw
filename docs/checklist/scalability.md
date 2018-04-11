@@ -1,6 +1,6 @@
 ---
-title: "延展性檢查清單"
-description: "為 Azure 自動調整設計考量的延展性檢查清單指引。"
+title: 延展性檢查清單
+description: 為 Azure 自動調整設計考量的延展性檢查清單指引。
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist

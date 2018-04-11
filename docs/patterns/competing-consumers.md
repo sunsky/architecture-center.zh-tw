@@ -1,11 +1,12 @@
 ---
-title: "競爭取用者"
-description: "讓多個並行取用者處理在相同傳訊通道上接收的訊息。"
-keywords: "設計模式"
+title: 競爭取用者
+description: 讓多個並行取用者處理在相同傳訊通道上接收的訊息。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: messaging
+pnp.pattern.categories:
+- messaging
 ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT

@@ -1,6 +1,6 @@
 ---
-title: "在多租用戶應用程式中使用宣告式身分識別"
-description: "如何使用宣告進行簽發者驗證及授權"
+title: 在多租用戶應用程式中使用宣告式身分識別
+description: 如何使用宣告進行簽發者驗證及授權
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

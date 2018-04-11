@@ -1,6 +1,6 @@
 ---
-title: "自我修復設計"
-description: "具有復原功能的應用程式無須手動介入即可從失敗中復原。"
+title: 自我修復設計
+description: 具有復原功能的應用程式無須手動介入即可從失敗中復原。
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2

@@ -1,6 +1,6 @@
 ---
-title: "應用程式角色"
-description: "如何使用應用程式角色執行授權"
+title: 應用程式角色
+description: 如何使用應用程式角色執行授權
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

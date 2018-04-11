@@ -1,7 +1,7 @@
 ---
-title: "外部設定存放區"
-description: "將設定資訊從應用程式部署套件移至集中位置。"
-keywords: "設計模式"
+title: 外部設定存放區
+description: 將設定資訊從應用程式部署套件移至集中位置。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

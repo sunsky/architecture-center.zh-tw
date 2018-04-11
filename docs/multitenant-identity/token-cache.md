@@ -1,6 +1,6 @@
 ---
-title: "在多租用戶應用程式中快取存取權杖"
-description: "快取用於叫用後端 Web API 的存取權杖"
+title: 在多租用戶應用程式中快取存取權杖
+description: 快取用於叫用後端 Web API 的存取權杖
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

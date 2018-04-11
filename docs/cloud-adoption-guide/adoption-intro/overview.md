@@ -1,6 +1,6 @@
 ---
-title: "採用 Azure：基本"
-description: "說明企業要採用 Azure 所需具備的基本知識"
+title: 採用 Azure：基本
+description: 說明企業要採用 Azure 所需具備的基本知識
 author: petertay
 ms.openlocfilehash: e9421b610e4eb07a3ed37bca56e513b0689484ef
 ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974

@@ -1,6 +1,6 @@
 ---
-title: "隔艙模式"
-description: "將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行"
+title: 隔艙模式
+description: 將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: a2c499d77fafc4bee6b74ee0e0d84e6c23b47851

@@ -1,6 +1,6 @@
 ---
-title: "網路 DMZ"
-description: "說明並比較可用來保護 Azure 中執行之應用程式和元件的不同方法，作為未經授權入侵中混合式系統的一部分。"
+title: 網路 DMZ
+description: 說明並比較可用來保護 Azure 中執行之應用程式和元件的不同方法，作為未經授權入侵中混合式系統的一部分。
 layout: LandingPage
 ms.openlocfilehash: 98df0a25767c7a7282e67381c6465fe3263ce1fa
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

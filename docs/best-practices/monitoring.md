@@ -1,6 +1,6 @@
 ---
-title: "監視和診斷指引"
-description: "監視雲端中分散式應用程式的最佳作法。"
+title: 監視和診斷指引
+description: 監視雲端中分散式應用程式的最佳作法。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

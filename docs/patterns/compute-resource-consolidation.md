@@ -1,11 +1,12 @@
 ---
-title: "計算資源彙總"
-description: "將多個工作或作業合併為單一計算單位"
-keywords: "設計模式"
+title: 計算資源彙總
+description: 將多個工作或作業合併為單一計算單位
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: design-implementation
+pnp.pattern.categories:
+- design-implementation
 ms.openlocfilehash: 85191fc630549559f8a1395e5a8622a7a6140a2d
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT

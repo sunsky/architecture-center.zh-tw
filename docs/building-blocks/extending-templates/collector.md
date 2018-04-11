@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Resource Manager 範本中實作屬性轉換器與收集器"
-description: "說明如何在 Azure Resource Manager 範本中實作屬性轉換器與收集器"
+title: 在 Azure Resource Manager 範本中實作屬性轉換器與收集器
+description: 說明如何在 Azure Resource Manager 範本中實作屬性轉換器與收集器
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: 893779e652b845b3d936d11936dc767ef632fa43

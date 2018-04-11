@@ -1,6 +1,6 @@
 ---
-title: "忙碌資料庫反模式"
-description: "對資料庫伺服器進行卸載處理，可能會導致效能和延展性問題。"
+title: 忙碌資料庫反模式
+description: 對資料庫伺服器進行卸載處理，可能會導致效能和延展性問題。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 9fdbde0731a1be570ef611894a9d23a1be87f4e7

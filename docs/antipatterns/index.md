@@ -1,6 +1,6 @@
 ---
-title: "雲端應用程式的效能反模式"
-description: "可能會導致延展性問題的常見做法。"
+title: 雲端應用程式的效能反模式
+description: 可能會導致延展性問題的常見做法。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: 423fe6533e57268610f625f523714cd1bce89546

@@ -1,6 +1,6 @@
 ---
-title: "選擇 Azure 計算選項的準則"
-description: "比較數個軸間的 Azure 計算服務。"
+title: 選擇 Azure 計算選項的準則
+description: 比較數個軸間的 Azure 計算服務。
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 36b57d1fb674b5a1452a0e8208de836963b2b01b

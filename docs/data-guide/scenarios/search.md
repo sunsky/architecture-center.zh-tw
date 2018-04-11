@@ -1,6 +1,6 @@
 ---
-title: "處理自由格式文字以供搜尋之用"
-description: 
+title: 處理自由格式文字以供搜尋之用
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: e53730bd2e179c82399e0f92b6c5ce7f451a2f46

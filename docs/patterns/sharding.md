@@ -1,7 +1,7 @@
 ---
-title: "分區化"
-description: "將資料存放區分割為一組水平分割或分區。"
-keywords: "設計模式"
+title: 分區化
+description: 將資料存放區分割為一組水平分割或分區。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

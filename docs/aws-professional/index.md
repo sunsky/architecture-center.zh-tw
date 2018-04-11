@@ -1,7 +1,7 @@
 ---
-title: "Azure for AWS 專業人員"
-description: "了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。"
-keywords: "AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws"
+title: Azure for AWS 專業人員
+description: 了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。
+keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals

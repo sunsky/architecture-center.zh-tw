@@ -1,6 +1,6 @@
 ---
-title: "Azure 資源的命名慣例"
-description: "Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳戶、網路、虛擬網路、子網路和其他 Azure 實體命名"
+title: Azure 資源的命名慣例
+description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳戶、網路、虛擬網路、子網路和其他 Azure 實體命名
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices

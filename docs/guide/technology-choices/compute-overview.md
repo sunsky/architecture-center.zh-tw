@@ -1,6 +1,6 @@
 ---
-title: "Azure 計算選項的概觀"
-description: "Azure 計算選項的概觀"
+title: Azure 計算選項的概觀
+description: Azure 計算選項的概觀
 author: MikeWasson
 ms.openlocfilehash: a23dd49f24bc52db6f357540e3ebccb19e0497ee
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

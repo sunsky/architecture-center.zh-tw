@@ -1,7 +1,7 @@
 ---
-title: "具體化檢視"
-description: "當資料格式對必要的查詢作業而言不理想時，對一或多個資料存放區中的資料產生預先填入的檢視。"
-keywords: "設計模式"
+title: 具體化檢視
+description: 當資料格式對必要的查詢作業而言不理想時，對一或多個資料存放區中的資料產生預先填入的檢視。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

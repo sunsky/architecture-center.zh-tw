@@ -1,6 +1,6 @@
 ---
-title: "App Service Web 應用程式"
-description: "在 Microsoft Azure 中執行的 Web 應用程式建議使用架構。"
+title: App Service Web 應用程式
+description: 在 Microsoft Azure 中執行的 Web 應用程式建議使用架構。
 layout: LandingPage
 ms.openlocfilehash: ea5ca6f0a1e2995ab35333095260d8f2c3db2600
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

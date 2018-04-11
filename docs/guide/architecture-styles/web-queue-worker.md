@@ -1,6 +1,6 @@
 ---
-title: "Web-佇列-背景工作角色架構樣式"
-description: "說明 Azure 上 Web-佇列-背景工作角色架構的優點、挑戰和最佳作法"
+title: Web-佇列-背景工作角色架構樣式
+description: 說明 Azure 上 Web-佇列-背景工作角色架構的優點、挑戰和最佳作法
 author: MikeWasson
 ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

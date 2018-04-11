@@ -1,6 +1,6 @@
 ---
-title: "與客戶的 AD FS 同盟"
-description: "如何在多租用戶應用程式中與客戶的 AD FS 同盟"
+title: 與客戶的 AD FS 同盟
+description: 如何在多租用戶應用程式中與客戶的 AD FS 同盟
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

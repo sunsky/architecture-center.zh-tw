@@ -1,6 +1,6 @@
 ---
-title: "相應放大的設計"
-description: "雲端應用程式的設計應能水平調整規模。"
+title: 相應放大的設計
+description: 雲端應用程式的設計應能水平調整規模。
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 8f9b3e99a53f5941f708b0de124f37e6ff7e5ab2

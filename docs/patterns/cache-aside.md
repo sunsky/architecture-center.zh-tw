@@ -1,7 +1,7 @@
 ---
-title: "另行快取"
-description: "依需要從資料存放區將資料載入快取中"
-keywords: "設計模式"
+title: 另行快取
+description: 依需要從資料存放區將資料載入快取中
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

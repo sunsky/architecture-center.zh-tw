@@ -1,6 +1,6 @@
 ---
-title: "選擇將內部部署網路連線到 Azure 的解決方案"
-description: "比較將內部部署網路連線到 Azure 的參考架構。"
+title: 選擇將內部部署網路連線到 Azure 的解決方案
+description: 比較將內部部署網路連線到 Azure 的參考架構。
 author: telmosampaio
 ms.date: 04/06/2017
 ms.openlocfilehash: 274b9df1817632a7f3eaafa8bf02e965fdc3feea

@@ -1,6 +1,6 @@
 ---
-title: "資料分割指引"
-description: "如何分割要個別管理和存取的分割區指引。"
+title: 資料分割指引
+description: 如何分割要個別管理和存取的分割區指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

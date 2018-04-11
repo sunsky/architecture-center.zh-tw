@@ -1,6 +1,6 @@
 ---
-title: "Linux VM 工作負載"
-description: "說明某些部署在 Azure 中裝載企業規模應用程式之 VM 的常見架構。"
+title: Linux VM 工作負載
+description: 說明某些部署在 Azure 中裝載企業規模應用程式之 VM 的常見架構。
 layout: LandingPage
 ms.openlocfilehash: ef06fb93355f4676f44954930bcfeb2c2d012d43
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

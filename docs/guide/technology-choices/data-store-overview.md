@@ -1,6 +1,6 @@
 ---
-title: "選擇正確的資料存放區"
-description: "在 Azure 中選擇資料存放區的概觀"
+title: 選擇正確的資料存放區
+description: 在 Azure 中選擇資料存放區的概觀
 author: MikeWasson
 ms.openlocfilehash: 3a5780c4a2dbd8a41e9c7bfa7f68d8a7916a7374
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

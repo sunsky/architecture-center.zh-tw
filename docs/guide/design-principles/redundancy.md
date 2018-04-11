@@ -1,6 +1,6 @@
 ---
-title: "讓各個項目都有備援"
-description: "將備援建置到您的應用程式中，以避免發生單一失敗點。"
+title: 讓各個項目都有備援
+description: 將備援建置到您的應用程式中，以避免發生單一失敗點。
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671

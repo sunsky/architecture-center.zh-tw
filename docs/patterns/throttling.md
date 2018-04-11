@@ -1,7 +1,7 @@
 ---
-title: "節流"
-description: "控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。"
-keywords: "設計模式"
+title: 節流
+description: 控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

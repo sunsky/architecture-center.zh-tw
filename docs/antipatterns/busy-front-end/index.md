@@ -1,6 +1,6 @@
 ---
-title: "忙碌前端反模式"
-description: "在大量背景執行緒上進行的非同步工作，會讓資源的其他前景工作無資源可用。"
+title: 忙碌前端反模式
+description: 在大量背景執行緒上進行的非同步工作，會讓資源的其他前景工作無資源可用。
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: cedb80ddac5ceb1eb901455df3165993fd28a138

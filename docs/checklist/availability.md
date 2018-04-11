@@ -1,6 +1,6 @@
 ---
-title: "可用性檢查清單"
-description: "提供設計期間可用性考量指引的檢查清單。"
+title: 可用性檢查清單
+description: 提供設計期間可用性考量指引的檢查清單。
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist

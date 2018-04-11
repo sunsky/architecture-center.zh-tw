@@ -1,6 +1,6 @@
 ---
-title: "使用用戶端判斷提示從 Azure AD 取得存取權杖"
-description: "使用用戶端判斷提示從 Azure AD 取得存取權杖的方式。"
+title: 使用用戶端判斷提示從 Azure AD 取得存取權杖
+description: 使用用戶端判斷提示從 Azure AD 取得存取權杖的方式。
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

@@ -1,6 +1,6 @@
 ---
-title: "指引：Azure 訂用帳戶設計"
-description: "依據基本雲端採用策略設計 Azure 訂用帳戶的指引"
+title: 指引：Azure 訂用帳戶設計
+description: 依據基本雲端採用策略設計 Azure 訂用帳戶的指引
 author: alexbuckgit
 ms.openlocfilehash: 7134a0000ce33a786166d759cb390023a062dfda
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

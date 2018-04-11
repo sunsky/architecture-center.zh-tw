@@ -1,6 +1,6 @@
 ---
-title: "指引：Azure AD 租用戶設計"
-description: "依據基本雲端採用策略設計 Azure 租用戶的指引"
+title: 指引：Azure AD 租用戶設計
+description: 依據基本雲端採用策略設計 Azure 租用戶的指引
 author: telmosampaio
 ms.openlocfilehash: 9ac52e9fd44bd8b9c777625002d5960f4f269be2
 ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc

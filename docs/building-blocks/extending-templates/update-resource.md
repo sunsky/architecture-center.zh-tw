@@ -1,6 +1,6 @@
 ---
-title: "更新 Azure Resource Manager 範本中的資源"
-description: "說明如何擴充 Azure Resource Manager 範本的功能，以更新資源"
+title: 更新 Azure Resource Manager 範本中的資源
+description: 說明如何擴充 Azure Resource Manager 範本的功能，以更新資源
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: fc2565819c66ee7695224ef5793e7276e6e552e0

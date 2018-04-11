@@ -1,6 +1,6 @@
 ---
-title: "多租用戶應用程式中的租用戶註冊和上線"
-description: "如何在多組織用戶共享應用程式中上架租用戶"
+title: 多租用戶應用程式中的租用戶註冊和上線
+description: 如何在多組織用戶共享應用程式中上架租用戶
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

@@ -1,6 +1,6 @@
 ---
-title: "大量計算架構樣式"
-description: "說明 Azure 上大量計算架構的優點、挑戰和最佳作法"
+title: 大量計算架構樣式
+description: 說明 Azure 上大量計算架構的優點、挑戰和最佳作法
 author: MikeWasson
 ms.openlocfilehash: b16be4133143d7d73062eeb280b44779c390f387
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

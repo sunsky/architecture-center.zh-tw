@@ -1,6 +1,6 @@
 ---
-title: "作業的設計"
-description: "設計應用程式，讓作業小組擁有所需的工具"
+title: 作業的設計
+description: 設計應用程式，讓作業小組擁有所需的工具
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 76338cc27daf82ccb99df4e4c51c7a5ac6f26065

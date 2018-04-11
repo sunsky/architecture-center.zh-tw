@@ -1,6 +1,6 @@
 ---
-title: "側車模式"
-description: "將應用程式的元件部署到個別的處理序或容器，以提供隔離和封裝。"
+title: 側車模式
+description: 將應用程式的元件部署到個別的處理序或容器，以提供隔離和封裝。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: ec168009aa99f412c3f1222a1c404ea4ea5cb669

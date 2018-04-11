@@ -1,6 +1,6 @@
 ---
-title: "Azure 應用程式的設計原則"
-description: "Azure 應用程式的設計原則"
+title: Azure 應用程式的設計原則
+description: Azure 應用程式的設計原則
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 57b04839e14804ad97fc9c86e1f9c4fe6e0da472

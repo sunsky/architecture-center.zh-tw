@@ -1,6 +1,6 @@
 ---
-title: "針對限制進行分割"
-description: "使用分割作業來解決資料庫、網路和計算限制"
+title: 針對限制進行分割
+description: 使用分割作業來解決資料庫、網路和計算限制
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 4371490385b24230551bf17db0075052f320b574

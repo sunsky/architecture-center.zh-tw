@@ -1,6 +1,6 @@
 ---
-title: "閘道路由模式"
-description: "使用單一端點將要求路由至多個服務。"
+title: 閘道路由模式
+description: 使用單一端點將要求路由至多個服務。
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f

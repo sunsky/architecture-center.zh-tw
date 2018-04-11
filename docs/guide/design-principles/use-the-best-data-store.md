@@ -1,6 +1,6 @@
 ---
-title: "使用作業的最佳資料存放區"
-description: "挑選最適合您資料的儲存體技術，以及了解使用方式"
+title: 使用作業的最佳資料存放區
+description: 挑選最適合您資料的儲存體技術，以及了解使用方式
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2

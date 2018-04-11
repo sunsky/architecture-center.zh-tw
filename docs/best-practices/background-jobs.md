@@ -1,6 +1,6 @@
 ---
-title: "背景作業指引"
-description: "獨立於使用者介面之外執行的背景工作指引。"
+title: 背景作業指引
+description: 獨立於使用者介面之外執行的背景工作指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

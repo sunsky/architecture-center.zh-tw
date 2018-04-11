@@ -1,7 +1,7 @@
 ---
-title: "Valet 金鑰"
-description: "使用可提供用戶端對特定資源或服務受限制的直接存取的權杖或金鑰。"
-keywords: "設計模式"
+title: Valet 金鑰
+description: 使用可提供用戶端對特定資源或服務受限制的直接存取的權杖或金鑰。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

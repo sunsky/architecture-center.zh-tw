@@ -1,6 +1,6 @@
 ---
-title: "說明：什麼是 Azure 訂用帳戶？"
-description: "說明 Azure 訂用帳戶、帳戶和供應項目"
+title: 說明：什麼是 Azure 訂用帳戶？
+description: 說明 Azure 訂用帳戶、帳戶和供應項目
 author: alexbuckgit
 ms.openlocfilehash: 1650d90d6f78b46b7fe4128d2dab6a80bd6cca78
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
