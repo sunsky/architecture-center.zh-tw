@@ -1,6 +1,6 @@
 ---
-title: "使用 ExpressRoute 將內部部署網路連線至 Azure"
-description: "如何在透過 Azure ExpressRoute 連線的 Azure 虛擬網路與內部部署網路間，實作安全的站對站網路架構。"
+title: 使用 ExpressRoute 將內部部署網路連線至 Azure
+description: 如何在透過 Azure ExpressRoute 連線的 Azure 虛擬網路與內部部署網路間，實作安全的站對站網路架構。
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Connect an on-premises network to Azure
@@ -231,7 +231,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 為了盡可能提高安全性，請勿啟用您虛擬機器的公用 IP 位址，並且使用 NSG，以確保這些虛擬機器不可公開存取。 虛擬機器應僅供內部 IP 位址使用。 這些位址可透過 ExpressRoute 網路設定為可存取，讓內部部署的 DevOps 人員可進行設定或維護。
 
-如果您必須在外部網路中公開虛擬機器的管理端點，請使用 NSG 或存取控制清單，以 IP 位址或網路白名單來限制這些連接埠的可見性。
+如果您必須在外部網路中公開虛擬機器的管理端點，請使用 NSG 或存取控制清單，以 IP 位址或網路允許清單來限制這些連接埠的可見性。
 
 > [!NOTE]
 > 依預設，透過 Azure 入口網站部署的 Azure 虛擬機器包含提供登入存取的公用 IP 位址。  
