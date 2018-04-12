@@ -1,13 +1,13 @@
 ---
-title: "選擇批次處理技術"
-description: 
+title: 選擇批次處理技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bfb850ee8e9d8fd41927b4ca3b612e15b5ae6b11
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0117798af82f2caa6704dc86e88be57f09c381ea
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中選擇批次處理技術
 
@@ -39,13 +39,13 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="capability-matrix"></a>相容性矩陣
 
-下表是主要功能差異的摘要。 
+下表摘要列出各項功能的主要差異。 
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | Azure Data Lake Analytics | Azure SQL 資料倉儲 | 具有 Spark 的 HDInsight | 具有 Hive 的 HDInsight | 具有 Hive LLAP 的 HDInsight |
 | --- | --- | --- | --- | --- | --- |
-| 為受控服務 | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 <sup>1</sup> |
+| 屬於受控服務 | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 <sup>1</sup> |
 | 支援計算暫停 | 否 | yes | 否 | 否 | 否 |
 | 關聯式資料存放區 | yes | yes | 否 | 否 | 否 |
 | 可程式性 | U-SQL | T-SQL | Python、Scala、Java、R | HiveQL | HiveQL |
@@ -53,8 +53,9 @@ ms.lasthandoff: 02/14/2018
 | 定價模式 | 以每個批次作業為單位 | 依叢集小時 | 依叢集小時 | 依叢集小時 | 依叢集小時 |  
 
 [1] 使用手動設定和調整。
- 
+
 ### <a name="integration-capabilities"></a>整合功能
+
 | | Azure Data Lake Analytics | SQL 資料倉儲 | 具有 Spark 的 HDInsight | 具有 Hive 的 HDInsight | 具有 Hive LLAP 的 HDInsight |
 | --- | --- | --- | --- | --- | --- |
 | 從 Azure Data Lake Store 存取 | yes | yes | yes | yes | yes |
@@ -62,6 +63,7 @@ ms.lasthandoff: 02/14/2018
 | 從外部關聯式存放區查詢 | yes | 否 | yes | 否 | 否 |
 
 ### <a name="scalability-capabilities"></a>延展性功能
+
 | | Azure Data Lake Analytics | SQL 資料倉儲 | 具有 Spark 的 HDInsight | 具有 Hive 的 HDInsight | 具有 Hive LLAP 的 HDInsight |
 | --- | --- | --- | --- | --- | --- |
 | 向外延展細微性  | 每個作業 | 每個叢集 | 每個叢集 | 每個叢集 | 每個叢集 |
@@ -69,6 +71,7 @@ ms.lasthandoff: 02/14/2018
 | 資料的記憶體快取 | 否 | yes | yes | 否 | yes | 
 
 ### <a name="security-capabilities"></a>安全性功能
+
 | | Azure Data Lake Analytics | SQL 資料倉儲 | 具有 Spark 的 HDInsight | HDInsight 上的 Apache Hive | HDInsight 上的 Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | 驗證  | Azure Active Directory (Azure AD) | SQL / Azure AD | 否 | 本機 / Azure AD <sup>1</sup> | 本機 / Azure AD <sup>1</sup> |

@@ -1,18 +1,18 @@
 ---
-title: "管道與篩選器"
-description: "將執行複雜處理程序的工作，細分成一系列可重複使用的個別元素。"
-keywords: "設計模式"
+title: 管道與篩選器
+description: 將執行複雜處理程序的工作，細分成一系列可重複使用的個別元素。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - messaging
-ms.openlocfilehash: b41f3e46ad5982a3a4ec6635918481cb440c5e02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2c17504f594843c10fcfe221f0087f1087a73fb8
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="pipes-and-filters-pattern"></a>管道與篩選器模式
 
@@ -32,7 +32,7 @@ ms.lasthandoff: 11/14/2017
 
 不過，每個模組執行的處理工作，或每個工作的部署需求，會隨著商務需求更新而變更。 某些工作可能是計算密集型，而且可以從在功能強大的硬體上執行而獲益，其他工作則可能不需要如此昂貴的資源。 此外，未來可能需要其他處理程序，或者處理執行之工作的順序可能會變更。 解決方案需要能夠解決這些問題，而且增加程式碼重複使用的可能性。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 將每個串流所需的處理程序細分為一組個別元件 (或篩選器)，各個執行單一工作。 藉由標準化每個元件接收和傳送之資料的格式，這些篩選器可以一起合併到管道中。 這有助於避免重複的程式碼，並且在處理需求變更時，輕鬆地移除、取代或整合其他元件。 下圖顯示使用管道和篩選器實作的解決方案。
 
@@ -274,7 +274,7 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 }
 ```
 
-##<a name="related-patterns-and-guidance"></a>相關的模式和指導方針
+## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 實作此模式時，下列模式和指導方針可能也相關：
 - [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 上有提供示範此模式的範例。

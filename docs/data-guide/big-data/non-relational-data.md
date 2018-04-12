@@ -3,17 +3,17 @@ title: 非關聯式資料和 NoSQL
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8dd8f2b9dfef680f99c9c6b32aacf019c13095b0
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 2c284099bd7e8bbb85f1252a24d699d9fca09eae
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="non-relational-data-and-nosql"></a>非關聯式資料和 NoSQL
 
 「非關聯式資料庫」是一種資料庫，這種資料庫不會使用可在大部分傳統資料庫系統中看到的表格式資料列和資料行結構描述。 相反地，非關聯式資料庫會使用針對所要儲存之資料類型的特定需求所最佳化的儲存體模型。 比方說，資料可能會儲存為簡單的索引鍵/值組、JSON 文件，或包含邊緣和頂點的圖表。 
 
-這些資料存放區的共通點是它們都未使用[關聯式模式](./relational-data.md)。 此外，他們傾向於對其支援的資料類型及資料的查詢方式提供更具體的方法。 比方說，時間序列資料存放區是針對以時間為基礎的資料序列查詢予以最佳化，而圖表資料存放區則是針對瀏覽實體之間的加權關聯性進行最佳化。 這兩種格式都無法完全適用於管理交易資料的工作。 
+這些資料存放區的共通點是它們都未使用[關聯式模式](../relational-data/index.md)。 此外，他們傾向於對其支援的資料類型及資料的查詢方式提供更具體的方法。 比方說，時間序列資料存放區是針對以時間為基礎的資料序列查詢予以最佳化，而圖表資料存放區則是針對瀏覽實體之間的加權關聯性進行最佳化。 這兩種格式都無法完全適用於管理交易資料的工作。 
 
 NoSQL 一詞所指的資料存放區不會使用 SQL 進行查詢，而是會改用其他程式設計語言和建構來查詢資料。 在實務上，「NoSQL」表示「非關聯式資料庫」，即使這些資料庫之中有許多都支援 SQL 相容查詢亦然。 不過，在執行相同的 SQL 查詢時，基礎查詢執行策略與傳統的 RDBMS 通常會使用極為不同的方式。
 

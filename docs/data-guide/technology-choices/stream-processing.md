@@ -1,19 +1,19 @@
 ---
-title: "選擇串流處理技術"
-description: 
+title: 選擇串流處理技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 23d9849c14964b0905300f191a41084b589fd127
-ms.sourcegitcommit: 943e671a8d522cef5ddc8c6e04848134b03c2de4
+ms.openlocfilehash: 29e4cd3d5ea6e10f036bfe226152290512dafa65
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>在 Azure 中選擇串流處理技術
 
 本文將比較 Azure 中的即時串流處理適用的技術選項。
 
-即時串流處理會使用來自佇列或檔案型儲存體的訊息、處理訊息，然後將結果轉送至其他訊息佇列、檔案存放區或資料庫。 此處理可能包括訊息的查詢、篩選和彙總。 串流處理引擎必須能夠使用無數的資料流，並以最低延遲產生結果。 如需詳細資訊，請參閱[即時處理](../scenarios/real-time-processing.md)。
+即時串流處理會使用來自佇列或檔案型儲存體的訊息、處理訊息，然後將結果轉送至其他訊息佇列、檔案存放區或資料庫。 此處理可能包括訊息的查詢、篩選和彙總。 串流處理引擎必須能夠使用無數的資料流，並以最低延遲產生結果。 如需詳細資訊，請參閱[即時處理](../big-data/real-time-processing.md)。
 
 ## <a name="what-are-your-options-when-choosing-a-technology-for-real-time-processing"></a>選擇即時處理的技術時有哪些選項？
 在 Azure 中，下列所有資料存放區都將符合支援即時處理的核心需求：
@@ -41,6 +41,7 @@ ms.lasthandoff: 03/05/2018
 下表摘要列出各項功能的主要差異。 
 
 ### <a name="general-capabilities"></a>一般功能
+
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
 | 可程式性 | 串流分析查詢語言，JavaScript | Scala、Python、Java | Scala、Python、Java、R | Java、C# | C#、F#、Node.js | C#、Node.js、PHP、Java、Python |
@@ -48,12 +49,14 @@ ms.lasthandoff: 03/05/2018
 | 定價模式 | [串流處理單位](https://azure.microsoft.com/pricing/details/stream-analytics/) | 每小時叢集 | [Databricks 單位](https://azure.microsoft.com/pricing/details/databricks/) | 每小時叢集 | 依函式執行和資源耗用量 | 依 App Service 方案時數 |  
 
 ### <a name="integration-capabilities"></a>整合功能
+
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
 | 輸入 | [串流分析輸入](/azure/stream-analytics/stream-analytics-define-inputs)  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、儲存體 Blob、Azure Data Lake Store  | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 |
 | 接收 |  [串流分析輸出](/azure/stream-analytics/stream-analytics-define-outputs) | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | 事件中樞、服務匯流排、Kafka | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 | 
 
 ### <a name="processing-capabilities"></a>處理功能
+
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
 | 內建時序/時間範圍支援 | yes | yes | yes | yes | 否 | 否 |
@@ -65,4 +68,4 @@ ms.lasthandoff: 03/05/2018
 
 - [選擇即時訊息擷取技術](./real-time-ingestion.md)
 - [比較 Apache Storm 與 Azure Stream Analytics](/azure/stream-analytics/stream-analytics-comparison-storm)
-- [即時處理](../scenarios/real-time-processing.md)
+- [即時處理](../big-data/real-time-processing.md)

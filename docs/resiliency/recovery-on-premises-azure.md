@@ -1,15 +1,16 @@
 ---
-title: "技術指導：從內部部署復原至 Azure"
-description: "了解和設計從內部部署基礎結構復原至 Azure 的復原系統的文章"
+title: 技術指導：從內部部署復原至 Azure
+description: 了解和設計從內部部署基礎結構復原至 Azure 的復原系統的文章
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: f5ce86dbd605fa7dc74e6a7cc97f0d6c6acd79e5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6992e27d148074b3d60c282318741f45974d1afd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-on-premises-to-azure"></a>Azure 復原技術指導：從內部部署復原至 Azure
 Azure 提供一組完整的服務，可針對高可用性和災害復原用途，啟用從內部部署資料中心至 Azure 的擴充︰
 

@@ -1,17 +1,17 @@
 ---
-title: "可調整規模的 Web 應用程式"
-description: "改善 Microsoft Azure 中執行之 Web 應用程式的延展性。"
+title: 可調整規模的 Web 應用程式
+description: 改善 Microsoft Azure 中執行之 Web 應用程式的延展性。
 author: MikeWasson
 pnp.series.title: Azure App Service
 pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: 4ad12fb041a79fcb706530c9968fd0f96211d7f9
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
 
@@ -23,16 +23,16 @@ ms.lasthandoff: 01/30/2018
 
 ## <a name="architecture"></a>架構  
 
-此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件：
+此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件元：
 
 * **資源群組**。 [資源群組][resource-group]是 Azure 資源的邏輯容器。
 * **[Web 應用程式][app-service-web-app]**和 **[API 應用程式][app-service-api-app]**。 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。    
 * **WebJob**。 使用 [Azure WebJobs][webjobs] 在背景中執行長時間工作。 WebJob 可以依照排程持續執行，或為了回應觸發程序 (例如將訊息放在佇列上) 而執行。 在 App Service 應用程式的環境中 WebJob 是以背景處理序執行。
 * **佇列**。 在此處的架構中，應用程式將訊息放到 [Azure 佇列儲存體][queue-storage]佇列上，藉此將背景工作排入佇列。 訊息會觸發 WebJob 中的函式。 或者，也可以使用服務匯流排佇列。 如需兩者的比較，請參閱 [Azure 佇列和服務匯流排佇列 - 異同比較][queues-compared]。
 * **快取**。 在 [Azure Redis 快取][azure-redis]中儲存半靜態資料。  
-* **CDN**。 使用 [Azure 內容傳遞網路][azure-cdn] (CDN) 快取公開可用的內容，以降低延遲而且更快速傳遞內容。
-* **資料儲存體**。 使用 [Azure SQL Database][sql-db] 儲存關聯式資料。 至於非關聯式資料，請考慮 NoSQL 存放區，例如 [Cosmos DB][cosmosdb]。
-* **Azure 搜尋服務**。 使用 [Azure 搜尋服務][azure-search]來新增搜尋功能，例如搜尋建議、模糊搜尋、特定語言搜尋。 Azure 搜尋服務通會搭配其他資料存放區，特別是當主要資料存放區需要嚴格的一致性。 這種方式會將授權的資料儲存在 Azure 搜尋服務中的另一個資料存放區和搜尋索引。 Azure 搜尋服務也可用於合併多個資料存放區中的單一搜尋索引。  
+* <strong>CDN</strong>。 使用 [Azure 內容傳遞網路][azure-cdn] (CDN) 快取公開可用的內容，以降低延遲而且更快速傳遞內容。
+* **資料儲存體**。 使用 [SQL Database][sql-db] 儲存關聯式資料。 至於非關聯式資料，請考慮 NoSQL 存放區，例如 [Cosmos DB][cosmosdb]。
+* **Azure 搜尋服務**。 使用 [Azure 搜尋][azure-search] 新增搜尋功能，例如搜尋建議、模糊搜尋、特定語言搜尋。 Azure 搜尋服務通會搭配其他資料存放區，特別是當主要資料存放區需要嚴格的一致性。 這種方式會將授權的資料儲存在 Azure 搜尋服務中的另一個資料存放區和搜尋索引。 Azure 搜尋服務也可用於合併多個資料存放區中的單一搜尋索引。  
 * **電子郵件/文字簡訊**。 您可以使用 SendGrid、Twilio 等第三方服務來傳送電子郵件或文字簡訊，而不必直接在應用程式中建立這項功能。
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
@@ -83,7 +83,7 @@ ms.lasthandoff: 01/30/2018
 | 索引鍵/值組 |依使用者識別碼查閱的使用者設定檔資料 |Azure 資料表儲存體 |
 | 用來觸發進一步處理的簡訊 |訂單要求 |Azure 佇列儲存體、服務匯流排佇列或服務匯流排主題 |
 | 具有彈性結構描述且需要基本查詢的非關聯式資料 |產品目錄 |文件資料庫，例如 Azure Cosmos DB、MongoDB 或 Apache CouchDB |
-| 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |Azure SQL Database |
+| 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |連接字串 |
 
 ## <a name="scalability-considerations"></a>延展性考量
 
@@ -148,7 +148,7 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [sql-elastic]: /azure/sql-database/sql-database-elastic-scale-introduction
 [sql-encryption]: https://msdn.microsoft.com/library/dn948096.aspx
 [tm]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [web-app-multi-region]: ./multi-region.md
 [webjobs-guidance]: ../../best-practices/background-jobs.md
 [webjobs]: /azure/app-service/app-service-webjobs-readme

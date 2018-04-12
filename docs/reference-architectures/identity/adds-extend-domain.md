@@ -1,16 +1,19 @@
 ---
-title: "將 Active Directory Domain Services (AD DS) 擴充至 Azure"
-description: "如何在 Azure 中使用 Active Directory 授權來實作安全的混合式網路架構。\n指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory"
+title: 將 Active Directory Domain Services (AD DS) 擴充至 Azure
+description: >-
+  如何在 Azure 中使用 Active Directory 授權來實作安全的混合式網路架構。
+
+  指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 216c59a0a5912d0fe90011e49ad20eb017ada6be
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 007d244f29bf11c6e2bd703c7f4f245d22c02f0f
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -150,7 +153,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 [security-considerations]: #security-considerations
 [set-a-static-ip-address]: https://azure.microsoft.com/documentation/articles/virtual-networks-static-private-ip-arm-pportal/
 [standby-operations-masters]: https://technet.microsoft.com/library/cc794737(v=ws.10).aspx
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [vm-windows-sizes]: /azure/virtual-machines/virtual-machines-windows-sizes
 
 [0]: ./images/adds-extend-domain.png "使用 Active Directory 保護混合式網路架構的安全"

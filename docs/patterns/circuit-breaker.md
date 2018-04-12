@@ -1,16 +1,17 @@
 ---
-title: "斷路器"
-description: "在連線到遠端服務或資源時，處理可能需要不同時間來修復的錯誤。"
-keywords: "設計模式"
+title: 斷路器
+description: 在連線到遠端服務或資源時，處理可能需要不同時間來修復的錯誤。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: resiliency
-ms.openlocfilehash: ce110d0bbda600575d328895f2feca5aa253479d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+pnp.pattern.categories:
+- resiliency
+ms.openlocfilehash: 0f93c1ef664c8e7385895e3854835699f674ee0e
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="circuit-breaker-pattern"></a>斷路器模式
 
@@ -24,7 +25,7 @@ ms.lasthandoff: 11/14/2017
 
 此外，如果服務非常忙碌，則系統中某一部分的失敗可能會導致階層式失敗。 例如，叫用服務的作業可設定為能實作逾時，並在該服務無法在此期間內回應時，回覆失敗訊息。 不過，此策略可能會導致同個作業的許多並行要求遭到封鎖，直到逾時期限到期。 這些已封鎖的要求可能會佔據重要的系統資源，例如記憶體、執行緒、資料庫連線等等。 因此，這些資源可能會被耗盡，導致其他必須使用相同資源但可能不相關的部分系統作業失敗。 在這些情況下，作業最好能立即失敗，並只嘗試叫用可能成功的服務。 請注意，設定較短的逾時可能有助於解決此問題，但逾時不應該過短而造成作業一直失敗，即使服務要求最終會成功。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 因 Michael Nygard 的著作《[Release It!](https://pragprog.com/book/mnee/release-it)》而廣受歡迎的斷路器模式，可防止應用程式重複嘗試執行可能會失敗的作業。 一旦判斷該錯誤會持續較長時間時，該模式會讓應用程式繼續執行，而不用等候錯誤修正或浪費 CPU 循環。 斷路器模式也可讓應用程式偵測錯誤是否已解決。 如果此問題已獲得修正，應用程式可以嘗試叫用作業。
 
@@ -212,7 +213,7 @@ public class CircuitBreaker
         bool lockTaken = false;
         try
         {
-          Monitor.TryEnter(halfOpenSyncObject, ref lockTaken)
+          Monitor.TryEnter(halfOpenSyncObject, ref lockTaken);
           if (lockTaken)
           {
             // Set the circuit breaker state to HalfOpen.

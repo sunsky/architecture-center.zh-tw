@@ -3,11 +3,11 @@ title: 即時處理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: f1054ce5e8c2053aa4f80d8b472604125ba47187
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="real-time-processing"></a>即時處理
 
@@ -49,7 +49,7 @@ ms.lasthandoff: 03/31/2018
 
 ### <a name="data-storage"></a>資料儲存體
 
-- **Azure 儲存體 Blob 容器**或 **Azure Data Lake Store**。 系統通常在訊息代理程式中擷取傳入即時資料 (如上所述)，但在某些情況下，監視資料夾的新檔案，並在檔案建立或更新時處理它們可能較有意義。 此外，許多即時處理解決方案結合串流資料與靜態參考資料 (可儲存在檔案存放區中)。 最後，檔案儲存體可用來作為所擷取之即時資料的輸出目的地，以便進行封存或在 [lambda 架構](../concepts/big-data.md#lambda-architecture)中進一步批次處理。
+- **Azure 儲存體 Blob 容器**或 **Azure Data Lake Store**。 系統通常在訊息代理程式中擷取傳入即時資料 (如上所述)，但在某些情況下，監視資料夾的新檔案，並在檔案建立或更新時處理它們可能較有意義。 此外，許多即時處理解決方案結合串流資料與靜態參考資料 (可儲存在檔案存放區中)。 最後，檔案儲存體可用來作為所擷取之即時資料的輸出目的地，以便進行封存或在 [lambda 架構](../big-data/index.md#lambda-architecture)中進一步批次處理。
 
 如需詳細資訊，請參閱[資料儲存體](../technology-choices/data-storage.md)。
 

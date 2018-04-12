@@ -1,13 +1,13 @@
 ---
-title: "執行問卷應用程式"
-description: "如何在本機執行問卷應用程式範例"
+title: 執行問卷應用程式
+description: 如何在本機執行問卷應用程式範例
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: d17cd939c1172edd0947b30ea13657806060b5f1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-the-surveys-application"></a>執行問卷應用程式
 
@@ -22,7 +22,7 @@ ms.lasthandoff: 11/14/2017
 5. 執行應用程式和註冊新的租用戶。
 6. 新增使用者的應用程式角色。
 
-## <a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>先決條件
 -   [Visual Studio 2017][VS2017]
 -   [Microsoft Azure](https://azure.microsoft.com) 帳戶
 
@@ -40,7 +40,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
     ![](./images/running-the-app/new-tenant.png)
 
-4. 按一下 [建立] 。 系統可能需要幾分鐘的時間來建立新目錄。
+4. 按一下頁面底部的 [新增] 。 系統可能需要幾分鐘的時間來建立新目錄。
 
 若要完成完整的案例，您將需要第二個 Azure AD 目錄來代表註冊應用程式的客戶。 您可以使用預設的 Azure AD 目錄 (非 Tailspin)，或針對此用途建立新的目錄。 在範例中，我們使用 Contoso 作為虛構客戶。
 
@@ -52,17 +52,17 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 3. 按一下 [應用程式註冊] > [新增應用程式註冊]。
 
-4.  在 [建立] 刀鋒視窗中，輸入下列資訊：
+4. 在 [建立] 刀鋒視窗中，輸入下列資訊：
 
-  - **名稱**：`Surveys.WebAPI`
+   - **名稱**：`Surveys.WebAPI`
 
-  - **應用程式類型**：`Web app / API`
+   - **應用程式類型**：`Web app / API`
 
-  - **登入 URL**：`https://localhost:44301/`
+   - **登入 URL**：`https://localhost:44301/`
    
-  ![](./images/running-the-app/register-web-api.png) 
+   ![](./images/running-the-app/register-web-api.png) 
 
-5. 按一下 [建立] 。
+5. 按一下頁面底部的 [新增] 。
 
 6. 在 [應用程式註冊] 刀鋒視窗中，選取新的 **Surveys.WebAPI** 應用程式。
  
@@ -74,21 +74,21 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 9. 將 [多重租用戶] 設為 [是]。
 
-10. 按一下 [儲存] 。
+10. 按一下 [檔案] 。
 
 ## <a name="register-the-surveys-web-app"></a>註冊問卷 Web 應用程式 
 
-1.  瀏覽回到 [應用程式註冊] 刀鋒視窗，然後按一下 [新增應用程式註冊]。
+1. 瀏覽回到 [應用程式註冊] 刀鋒視窗，然後按一下 [新增應用程式註冊]。
 
-2.  在 [建立] 刀鋒視窗中，輸入下列資訊：
+2. 在 [建立] 刀鋒視窗中，輸入下列資訊：
 
-  - **名稱**：`Surveys`
-  - **應用程式類型**：`Web app / API`
-  - **登入 URL**：`https://localhost:44300/`
+   - **名稱**：`Surveys`
+   - **應用程式類型**：`Web app / API`
+   - **登入 URL**：`https://localhost:44300/`
    
-    請注意，登入 URL 的連接埠號碼不同於上一個步驟中的 `Surveys.WebAPI` 應用程式。
+   請注意，登入 URL 的連接埠號碼不同於上一個步驟中的 `Surveys.WebAPI` 應用程式。
 
-3. 按一下 [建立] 。
+3. 按一下頁面底部的 [新增] 。
  
 4. 在 [應用程式註冊] 刀鋒視窗中，選取新的 [問卷] 應用程式。
  
@@ -104,13 +104,13 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 8. 將 [多重租用戶] 設為 [是]。
 
-9. 按一下 [儲存] 。
+9. 按一下 [檔案] 。
 
 10. 在 [設定] 刀鋒視窗中，按一下 [回覆 URL]。
  
 11. 加入下列回覆 URL：`https://localhost:44300/signin-oidc`。
 
-12. 按一下 [儲存] 。
+12. 按一下 [檔案] 。
 
 13. 在 [API 存取權] 底下，按一下 [金鑰]。
 
@@ -118,7 +118,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 15. 在 [選取持續時間] 下拉式清單中，選取 [1 年]。 
 
-16. 按一下 [儲存] 。 當您儲存時，便會產生金鑰。
+16. 按一下 [檔案] 。 當您儲存時，便會產生金鑰。
 
 17. 離開此刀鋒視窗之前，請複製金鑰的值。
 
@@ -150,36 +150,36 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
     ![](./images/running-the-app/manifest.png)
  
-3.  將下列 JSON 新增至 `appRoles` 元素。 為 `id` 屬性產生新的 GUID。
+3. 將下列 JSON 新增至 `appRoles` 元素。 為 `id` 屬性產生新的 GUID。
 
-    ```json
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Creators can create surveys",
-      "displayName": "SurveyCreator",
-      "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
-      "isEnabled": true,
-      "value": "SurveyCreator"
-    },
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Administrators can manage the surveys in their tenant",
-      "displayName": "SurveyAdmin",
-      "id": "<Generate a new GUID>",  
-      "isEnabled": true,
-      "value": "SurveyAdmin"
-    }
-    ```
+   ```json
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Creators can create surveys",
+     "displayName": "SurveyCreator",
+     "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
+     "isEnabled": true,
+     "value": "SurveyCreator"
+   },
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Administrators can manage the surveys in their tenant",
+     "displayName": "SurveyAdmin",
+     "id": "<Generate a new GUID>",  
+     "isEnabled": true,
+     "value": "SurveyAdmin"
+   }
+   ```
 
-5.  在 `knownClientApplications` 屬性中加入問卷 Web 應用程式的應用程式識別碼，即稍早註冊問卷應用程式時取得的應用程式識別碼。 例如：
+4. 在 `knownClientApplications` 屬性中加入問卷 Web 應用程式的應用程式識別碼，即稍早註冊問卷應用程式時取得的應用程式識別碼。 例如︰
 
-  ```json
-  "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
-  ```
+   ```json
+   "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
+   ```
 
-  這項設定會將問卷應用程式加到獲授權呼叫 Web API 的用戶端清單中。
+   這項設定會將問卷應用程式加到獲授權呼叫 Web API 的用戶端清單中。
 
-6.  按一下 [儲存] 。
+5. 按一下 [檔案] 。
 
 現在針對問卷應用程式重複相同的步驟，但不要新增 `knownClientApplications` 的項目。 使用相同的角色定義，但為識別碼產生新的 GUID。
 
@@ -191,7 +191,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 2.  填妥必要的資訊，包括 DNS 名稱、資源群組、位置與定價層。 您可以建立新的資源群組或使用現有的資源群組。
 
-3. 按一下 [建立] 。
+3. 按一下頁面底部的 [新增] 。
 
 4. 建立 Resis 快取之後，瀏覽至入口網站中的資源。
 

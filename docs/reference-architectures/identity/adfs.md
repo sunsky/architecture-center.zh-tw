@@ -1,16 +1,19 @@
 ---
-title: "在 Azure 中實作 Active Directory 同盟服務 (AD FS)"
-description: "如何在 Azure 中使用 Active Directory 同盟服務授權來實作安全的混合式網路架構。\n指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory"
+title: 在 Azure 中實作 Active Directory 同盟服務 (AD FS)
+description: >-
+  如何在 Azure 中使用 Active Directory 同盟服務授權來實作安全的混合式網路架構。
+
+  指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: b8c9ae0621c087c68d449dd13e60046104c01513
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>將 Active Directory 同盟服務 (AD FS) 擴充至 Azure
 
@@ -137,7 +140,7 @@ AD FS 可在內部部署主控，但如果是當中有些組件實作在 Azure �
 
 [部署同盟伺服器陣列][Deploying_a_federation_server_farm]文章會提供安裝和設定 AD FS 的詳細指示。 在伺服器陣列中設定第一部 AD FS 伺服器之前，請執行下列工作：
 
-1. 取得公開受信任的憑證以執行伺服器驗證。 主體名稱必須包含用戶端用來存取同盟服務的名稱。 這可以是負載平衡器的已註冊 DNS 名稱，例如 *adfs.contoso.com* (基於安全性理由，請避免使用萬用字元名稱，例如 **.contoso.com*)。 在所有 AD FS 伺服器 VM 上使用相同的憑證。 您可以向受信任的憑證授權單位購買憑證，但是如果貴組織是使用 Active Directory 憑證服務，您就可以建立自己的憑證。 
+1. 取得公開受信任的憑證以執行伺服器驗證。 主體名稱必須包含用戶端用來存取同盟服務的名稱。 這可以是負載平衡器的已註冊 DNS 名稱，例如 adfs.contoso.com (基於安全性理由，請避免使用萬用字元名稱，例如 *.contoso.com)。 在所有 AD FS 伺服器 VM 上使用相同的憑證。 您可以向受信任的憑證授權單位購買憑證，但是如果貴組織是使用 Active Directory 憑證服務，您就可以建立自己的憑證。 
    
     主體別名會由裝置註冊服務 (DRS) 用來啟用來自外部裝置的存取。 此形式應該是 enterpriseregistration.contoso.com。
    
@@ -319,5 +322,5 @@ AD FS 會使用 HTTPS 通訊協定，因此請確定包含 web 層 VM 的子網�
 [github]: https://github.com/mspnp/reference-architectures/tree/master/identity/adfs
 [adfs_certificates]: https://technet.microsoft.com/library/dn781428(v=ws.11).aspx
 [considerations]: ./considerations.md
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adfs.png "使用 Active Directory 保護混合式網路架構的安全"

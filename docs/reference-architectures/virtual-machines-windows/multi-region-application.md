@@ -1,15 +1,15 @@
 ---
-title: "在多個 Azure 區域中執行 Windows VM 以獲得高可用性"
-description: "如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。"
+title: 在多個 Azure 區域中執行 Windows VM 以獲得高可用性
+description: 如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 9c54959da96115e55ba8a5c9e0f3c358d29ce5dd
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 9772d57e6a11711d77032b049168565d52d919b8
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-windows-vms-in-multiple-regions-for-high-availability"></a>在多個區域中執行 Windows VM 以獲得高可用性
 
@@ -114,9 +114,9 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 * 建立 [Windows Server 容錯移轉叢集][wsfc] (WSFC) 叢集，其中包含這兩個區域中的 SQL Server 執行個體。 
 * 建立 SQL Server Always On 可用性群組，其中包含主要和次要區域中的 SQL Server 執行個體。 如需相關步驟，請參閱[將 Always On 可用性群組擴充到遠端 Azure 資料中心 (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) \(英文\)。
 
-    * 將主要複本放置於主要區域。
-    * 將一或多個次要複本放置於主要區域。 設定這些來使用具有自動容錯移轉的同步認可。
-    * 將一或多個次要複本放置於次要區域。 基於效能考量，設定這些來使用「非同步」認可 (否則，所有的 T-SQL 交易都必須等候透過網路到次要區域的來回行程)。
+  * 將主要複本放置於主要區域。
+  * 將一或多個次要複本放置於主要區域。 設定這些來使用具有自動容錯移轉的同步認可。
+  * 將一或多個次要複本放置於次要區域。 基於效能考量，設定這些來使用「非同步」認可 (否則，所有的 T-SQL 交易都必須等候透過網路到次要區域的來回行程)。
 
     > [!NOTE]
     > 非同步認可複本不支援自動容錯移轉。
@@ -182,7 +182,7 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways

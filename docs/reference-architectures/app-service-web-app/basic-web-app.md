@@ -1,14 +1,14 @@
 ---
-title: "基本 Web 應用程式"
-description: "在 Microsoft Azure 中執行的基本 Web 應用程式建議使用架構。"
+title: 基本 Web 應用程式
+description: 在 Microsoft Azure 中執行的基本 Web 應用程式建議使用架構。
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="basic-web-application"></a>基本 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -30,11 +30,9 @@ ms.lasthandoff: 03/08/2018
 
 * **資源群組**。 [資源群組](/azure/azure-resource-manager/resource-group-overview)是 Azure 資源的邏輯容器。
 
-* **App Service 應用程式**。 
-            [Azure App Service][app-service] 是完全受控的平台，用於建立及部署雲端應用程式。     
+* **App Service 應用程式**。 [Azure App Service][app-service] 是完全受控的平台，用於建立及部署雲端應用程式。     
 
-* **App Service 方案**。 
-            [App Service 方案][app-service-plans]提供受控虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
+* **App Service 方案**。 [App Service 方案][app-service-plans]提供受控虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
 
 * **部署位置**。  [部署位置][deployment-slots]可讓您預先準備好部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
 
@@ -254,7 +252,7 @@ New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <r
 [ssl-cert]: /azure/app-service-web/web-sites-purchase-ssl-web-site
 [troubleshoot-blade]: https://azure.microsoft.com/updates/self-service-troubleshooting-for-app-service-web-apps-customers/
 [troubleshoot-web-app]: /azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
 [web-app-autoscale]: /azure/app-service-web/web-sites-scale
 [web-app-backup]: /azure/app-service-web/web-sites-backup

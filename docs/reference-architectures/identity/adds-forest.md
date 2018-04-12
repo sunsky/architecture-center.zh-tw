@@ -1,17 +1,20 @@
 ---
-title: "在 Azure 中建立 AD DS 資源樹系"
-description: "如何在 Azure 中建立受信任的 Active Directory 網域。\n指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory"
+title: 在 Azure 中建立 AD DS 資源樹系
+description: >-
+  如何在 Azure 中建立受信任的 Active Directory 網域。
+
+  指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
@@ -117,8 +120,8 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
      
 5. 如果您要使用模擬的內部部署設定，請設定連入信任關係：
    
-   1. 連線到跳躍箱 (*ra-adtrust-security-rg* 資源群組中的 *ra-adtrust-mgmt-vm1*)。 以 *testuser* 的身分和密碼 *AweS0me@PW* 登入。
-   2. 在跳躍箱上，開啟 *contoso.com* 網域 (內部部署網域) 第一個 VM 中的 RDP 工作階段。 此 VM 的 IP 位址為 192.168.0.4。 使用者名稱為 *contoso\testuser*，且密碼為 *AweS0me@PW*。
+   1. 連線到跳躍箱 (<em>ra-adtrust-security-rg</em> 資源群組中的 <em>ra-adtrust-mgmt-vm1</em>)。 以 <em>testuser</em> 的身分和密碼 <em>AweS0me@PW</em> 登入。
+   2. 在跳躍箱上，開啟 <em>contoso.com</em> 網域 (內部部署網域) 第一個 VM 中的 RDP 工作階段。 此 VM 的 IP 位址為 192.168.0.4。 使用者名稱為 <em>contoso\testuser</em>，且密碼為 <em>AweS0me@PW</em>。
    3. 下載 [incoming-trust.ps1][incoming-trust] 指令碼並執行，以便從 *treyresearch.com* 網域建立連入信任。
 
 6. 如果您要使用自己的內部部署基礎結構：
@@ -127,7 +130,7 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
    2. 編輯指令碼，並將 `$TrustedDomainName` 變數的值取代為您自己網域的名稱。
    3. 執行指令碼。
 
-7. 從跳躍箱連線至 *treyresearch.com* 網域 (雲端中的網域) 中的第一個 VM。 此 VM 的 IP 位址為 10.0.4.4。 使用者名稱為 *treyresearch\testuser*，且密碼為 *AweS0me@PW*。
+7. 從跳躍箱連線至 <em>treyresearch.com</em> 網域 (雲端中的網域) 中的第一個 VM。 此 VM 的 IP 位址為 10.0.4.4。 使用者名稱為 <em>treyresearch\testuser</em>，且密碼為 <em>AweS0me@PW</em>。
 
 8. 下載 [outgoing-trust.ps1][outgoing-trust] 指令碼並加以執行，以便從 *treyresearch.com* 網域建立連入信任。 如果您要使用自己的內部部署電腦，請先編輯指令碼。 將 `$TrustedDomainName` 變數設為您內部部署網域的名稱，並使用 `$TrustedDomainDnsIpAddresses` 變數，針對此網域指定 Active Directory DS 伺服器的 IP 位址。
 
@@ -162,5 +165,5 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 [standby-operations-masters]: https://technet.microsoft.com/library/cc794737(v=ws.10).aspx
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adds-forest.png "使用不同的 Active Directory 網域保護混合式網路架構的安全"

@@ -1,20 +1,20 @@
 ---
-title: "多組織用戶共享應用程式中的授權"
-description: "如何在多組織用戶共享應用程式中執行授權"
+title: 多組織用戶共享應用程式中的授權
+description: 如何在多組織用戶共享應用程式中執行授權
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 86c308d21f19bb3ac2a4a2240a9a03a504de5cf4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 03c4d5fa10c75437a7b066534619ba9a123c350c
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="role-based-and-resource-based-authorization"></a>角色和資源型授權
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 我們的 [參考實作] 是 ASP.NET Core 應用程式。 本文章中，我們將探討進行授權的兩個一般方法，使用 ASP.NET Core 提供的授權 API。
 
@@ -102,7 +102,6 @@ public IActionResult Create()
 ```csharp
 // old way
 [Authorize(Roles = "SurveyCreator")]
-
 ```
 
 ASP.NET Core 中仍支援這樣設定，但相較於授權原則它有一些缺點：
@@ -166,7 +165,7 @@ if (await _authorizationService.AuthorizeAsync(User, survey, Operations.Read) ==
 * 讀取
 * 更新
 * 刪除
-* Publish
+* 發佈
 * Unpublsh
 
 下列程式碼會針對特定使用者和問卷建立權限清單。 請注意，此程式碼會同時察看使用者的應用程式角色，以及問卷中的 owner/contributor 欄位。
@@ -245,7 +244,7 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
     };
 ```
 
-[**下一步**][web-api]
+[**下一主題**][web-api]
 
 <!-- Links -->
 [Tailspin]: tailspin.md

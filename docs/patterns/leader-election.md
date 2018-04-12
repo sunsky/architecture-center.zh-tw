@@ -1,18 +1,18 @@
 ---
-title: "選出領導者"
-description: "選取一個執行個體作為領導者，負責管理其他執行個體，協調分散式應用程式中共同作業工作執行個體集合執行的動作。"
-keywords: "設計模式"
+title: 選出領導者
+description: 選取一個執行個體作為領導者，負責管理其他執行個體，協調分散式應用程式中共同作業工作執行個體集合執行的動作。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: ddb61097ed3229ed0ed517b94c280d3ef892c999
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3e7d47f70f660f2507f0619e1c41bf9a32a25be4
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="leader-election-pattern"></a>選出領導者模式
 
@@ -26,14 +26,14 @@ ms.lasthandoff: 11/14/2017
 
 工作執行個體大部分時間都會個別執行，但也可能必須協調每個執行個體的動作，以確保不會衝突、造成共用資源爭用，或不小心干擾其他工作執行個體正在執行的工作。
 
-例如：
+例如︰
 
 - 在實作水平規模調整的雲端式系統中，相同工作的多個執行個體，只要每個執行個體都為不同使用者提供服務，就可以同時執行。 如果這些執行個體會寫入共用資源，則必須協調其動作，避免每個執行個體覆寫彼此所做的變更。
 - 如果工作以平行方式執行複雜計算的個別元素，則在全部完成時需要加以彙總。
 
 工作執行個體全部都是同儕節點，因此沒有自然的領導者可以作為協調器或彙總工具。
 
-## <a name="solution"></a>解決方式
+## <a name="solution"></a>解決方法
 
 應選擇單一工作執行個體作為領導者，並應由此執行個體協調其他從屬工作執行個體的動作。 如果所有工作執行個體都執行相同的程式碼，每一個都能作為領導者。 因此，必須仔細管理選擇程序，以防止同一時間有兩個以上的執行個體接任領導者角色。
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 11/14/2017
 在分散式環境中的一組工作之間選擇領導者的數種策略包括：
 - 選取其執行個體排名或處理序識別碼最低的工作執行個體。
 - 競爭以取得共用、分散式 Mutex。 最先取得 Mutex 的工作執行個體就是領導者。 然而，系統必須確保如果領導者終止或和系統的其餘部分中斷連線，就會釋出 Mutex，以讓另一個工作執行個體成為領導者。
-- 實作其中一種常見的領導者選擇演算法，例如[強勢演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) \(英文\) 或 [環演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html) \(英文\)。 這些演算法假設選擇中的每個候選項目都有唯一的識別碼，並能與其他候選項目可靠地進行通訊。
+- 實作其中一種常見的領導者選擇演算法，例如[強勢演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) \(英文\) 或 [通道演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html) \(英文\)。 這些演算法假設選擇中的每個候選項目都有唯一的識別碼，並能與其他候選項目可靠地進行通訊。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
@@ -70,9 +70,9 @@ ms.lasthandoff: 11/14/2017
 LeaderElection 方案中的 DistributedMutex 專案 (示範此模式的範例可於 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) 取得) 示範如何使用 Azure 儲存體 Blob 上的租用，提供用於實作共用、分散式 Mutex 的機制。 此 Mutex 可以用來在 Azure 雲端服務中的一組角色執行個體之間選擇領導者。 最先取得租用的角色執行個體會獲選為領導者，而且在其釋出租用或無法更新租用之前，都會是領導者。 其他角色執行個體可以繼續監視 Blob 租用，以防該領導者無法再使用。
 
 >  Blob 租用是對 Blob 的獨佔寫入鎖定。 不論何時，單一 Blob 都是唯一租用的主體。 角色執行個體可向指定的 Blob 要求租用，並在沒有其他角色執行個體握有同一個 Blob 的租用時獲得租用。 否則該要求將會擲回例外狀況。
-
+> 
 > 為了避免發生錯誤的角色執行個體無限期握有租用，須指定租用的存留期。 到期時，租用就會變成可用。 不過，當角色執行個體握有租用，它可以要求更新租用，延長獲得租用的時間。 如果角色執行個體想要一直握有租用，可以不斷重複此程序。
-如需如何租用 Blob 的詳細資訊，請參閱[租用 Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) \(英文\)。
+> 如需如何租用 Blob 的詳細資訊，請參閱[租用 Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) \(英文\)。
 
 下面 C# 範例中的 `BlobDistributedMutex` 類別包含的 `RunTaskWhenMutexAquired` 方法可讓角色執行個體嘗試向指定的 Blob 取得租用。 Blob (名稱、容器及儲存體帳戶) 的詳細資料會在建立 `BlobDistributedMutex` 物件 (此物件是範例程式碼中包含的簡單結構) 時，傳遞到 `BlobSettings` 物件中的建構函式。 建構函式也接受參考角色執行個體應執行程式碼的 `Task`，前提是它成功向 Blob 取得租用並獲選為領導者。 請注意，可處理取得租用之低階詳細資料的程式碼，是在名為 `BlobLeaseManager` 個別協助程式類別中實作。
 
@@ -194,11 +194,11 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 
 實作此模式時，下列指導方針可能也相關：
 - 此模式有可下載的[範例應用程式](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)。
-- [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 工作主機的執行個體可以隨著應用程式的負載來啟動和停止。 自動調整規模有助於維護尖峰處理時間的輸送量和效能。
+- [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx)。 工作主機的執行個體可以隨著應用程式的負載來啟動和停止。 自動調整規模有助於維護尖峰處理時間的輸送量和效能。
 - [計算分割指導方針](https://msdn.microsoft.com/library/dn589773.aspx) \(英文\)。 本指導方針說明如何以有助於將執行成本降至最低，同時維持服務延展性、效能、可用性及安全性的方式，將工作配置到雲端服務中的主機。
 - [工作式非同步模式](https://msdn.microsoft.com/library/hh873175.aspx)。
 - 說明[強勢演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)的範例。
-- 說明[環演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的範例。
+- 說明[通道演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的範例。
 - Microsoft Open Technologies 網站上的 [Apache Zookeeper on Microsoft Azure](https://msopentech.com/opentech-projects/apache-zookeeper-on-windows-azure-2/) 一文。
 - [Apache Curator](http://curator.apache.org/) 是 Apache ZooKeeper 的用戶端程式庫。
 - MSDN 上的[租用 Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) \(英文\) 一文。

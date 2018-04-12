@@ -1,13 +1,13 @@
 ---
-title: "選擇 OLTP 資料存放區"
-description: 
+title: 選擇 OLTP 資料存放區
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 1c27d7d5f3b78f40822de6b77664dbf49b1367f6
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 03/31/2018
 ---
 # <a name="choosing-an-oltp-data-store-in-azure"></a>在 Azure 中選擇 OLAP 資料存放區
 
@@ -25,9 +25,9 @@ ms.lasthandoff: 02/14/2018
 - [適用於 MySQL 的 Azure 資料庫](/azure/mysql/)
 - [適用於 PostgreSQL 的 Azure 資料庫](/azure/postgresql/)
 
-## <a name="key-selection-criteria"></a>關鍵選取準則
+## <a name="key-selection-criteria"></a>重要選取準則
 
-為了縮小選擇範圍，請先回答下列問題：
+若要縮小選項範圍，請開始回答這些問題：
 
 - 您是需要受控服務，而不是要管理您自己的伺服器嗎？
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能 
 | | 連接字串 | Azure 虛擬機器中的 SQL Server | 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫 |

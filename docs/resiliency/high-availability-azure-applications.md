@@ -1,15 +1,16 @@
 ---
-title: "Azure 應用程式的高可用性"
-description: "在 Microsoft Azure 上針對高可用性設計和建置應用程式的技術概觀和深度資訊。"
+title: Azure 應用程式的高可用性
+description: 在 Microsoft Azure 上針對高可用性設計和建置應用程式的技術概觀和深度資訊。
 author: adamglick
 ms.date: 05/31/2017
-ms.openlocfilehash: 46b7b802326a8de03546528aaeb1a1c6419d41db
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f116b9e64f1722b5141ae90239d5c8a8b4a89487
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="high-availability-for-applications-built-on-microsoft-azure"></a>建置在 Microsoft Azure 上之應用程式的高可用性
 具有高可用性的應用程式可以化解相依服務和硬體中，可用性、負載和暫時性失敗方面的變動。 應用程式會持續以可接受的方式來執行，如業務需求或應用程式服務等級協定 (SLA) 所定義。
 
@@ -46,7 +47,7 @@ Azure 網狀架構控制器會佈建和監視 Azure 計算執行個體的狀況�
 ![Azure 虛擬機器的可用性設定組](./images/high-availability-azure-applications/availability-set-for-azure-virtual-machines.png)
 
 > [!NOTE]
-> 在上圖中，SQL Server 是在虛擬機器上安裝並執行。 這點不同於 Azure SQL Database，其會提供資料庫作為受管理的服務。
+> 在上圖中，SQL Server 是在虛擬機器上安裝並執行。 這點不同於 Azure SQL Database，其會提供資料庫作為受控服務。
 > 
 > 
 

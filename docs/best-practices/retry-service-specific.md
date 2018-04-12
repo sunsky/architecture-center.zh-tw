@@ -1,14 +1,14 @@
 ---
-title: "重試服務的特定指引"
-description: "用於設定重試機制的服務特定指引。"
+title: 重試服務的特定指引
+description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6bb623bd8be89573178f250570407bf83d62c098
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 332f96e73def360926b6a934bbb1361b2254ec41
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -478,7 +478,6 @@ public async static Task<SqlDataReader> ExecuteReaderWithRetryAsync(this SqlComm
 
     }, cancellationToken);
 }
-
 ```
 
 這個非同步擴充方法的用法如下。
@@ -792,7 +791,7 @@ namespace RetryCodeSamples
                 try
                 {
                     var retryTimeInMilliseconds = TimeSpan.FromSeconds(4).Milliseconds; // delay between retries
-                    
+
                     // Using object-based configuration.
                     var options = new ConfigurationOptions
                                         {

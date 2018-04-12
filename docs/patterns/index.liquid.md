@@ -1,12 +1,12 @@
 ---
-title: "雲端設計模式"
-description: "Microsoft Azure 的雲端設計模式"
+title: 雲端設計模式
+description: Microsoft Azure 的雲端設計模式
 keywords: Azure
-ms.openlocfilehash: 264b8296a428f9c1b87314b782efcabc89cf010f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4747c896fc6fc5866be782d76c5290d6b49ad451
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
@@ -28,6 +28,8 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="catalog-of-patterns"></a>模式的目錄
 
-| 模式 | 摘要 |
-| ------- | ------- |
+| 模式 | 總結 |
+|---------|---------|
+|         |         |
+
 {%- for pattern in patterns %} | [{{ pattern.title }}](./{{ pattern.file }}) | {{ pattern.description }} | {%- endfor %}

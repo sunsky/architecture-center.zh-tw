@@ -1,13 +1,13 @@
 ---
-title: "自然語言處理"
-description: 
+title: 自然語言處理
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: c03e2d017f9b4eb955a0e3494b5bc6c2603d1058
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0afd8ac9a8a2e56f79ade0b2e10328630866c03c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="natural-language-processing"></a>自然語言處理
 
@@ -34,7 +34,7 @@ NLP 可用來進行文件分類，例如，將文件標示為機密或垃圾郵�
 
 ## <a name="architecture"></a>架構
 
-在 NLP 解決方案中，會對包含文字段落的文件執行自由格式文字處理。 整體架構可以是[批次處理](./batch-processing.md)或[即時串流處理](./real-time-processing.md)架構。
+在 NLP 解決方案中，會對包含文字段落的文件執行自由格式文字處理。 整體架構可以是[批次處理](../big-data/batch-processing.md)或[即時串流處理](../big-data/real-time-processing.md)架構。
 
 實際的處理會隨著所需的結果而不同，但就管線而言，NLP 可能會以批次或即時的方式套用。 例如，針對文字區塊可以使用情感分析，以產生情感分數。 此作業可藉由對儲存體中的資料執行批次程序來完成，或即時使用透過傳訊服務傳遞的較小資料區塊來完成。
 

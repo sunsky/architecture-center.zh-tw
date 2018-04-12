@@ -1,13 +1,13 @@
 ---
-title: "選擇搜尋資料存放區"
-description: 
+title: 選擇搜尋資料存放區
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 7fe5952c880921984beb30c71458fd1ef72ef239
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: ead07e307e96696faa5ddf48505eee378027523c
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 
@@ -39,23 +39,26 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
+
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
-| 為受控服務 | yes | 否 | yes | yes |  
+| 屬於受控服務 | yes | 否 | yes | yes |  
 | REST API | yes | yes | yes | 否 |
 | 可程式性 | .NET | Java | Java | T-SQL | 
 | 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | yes | 否 | yes | 否 |
 
 ### <a name="manageability-capabilities"></a>可管理性功能
+
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- |
 | 可更新的結構描述 | 否 | yes | yes | yes |
 | 支援相應放大  | yes | yes | yes | 否 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
+
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | 支援全文檢索搜尋以外的分析 | 否 | yes | yes | yes |
@@ -63,6 +66,7 @@ ms.lasthandoff: 02/14/2018
 | 支援語意搜尋 | 是 (僅尋找類似文件) | yes | yes | yes | 
 
 ### <a name="security-capabilities"></a>安全性功能
+
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | yes | yes | 

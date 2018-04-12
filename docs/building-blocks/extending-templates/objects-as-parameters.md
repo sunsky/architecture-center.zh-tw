@@ -1,13 +1,13 @@
 ---
-title: "在 Azure Resource Manager 範本中使用物件作為參數"
-description: "說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數"
+title: 在 Azure Resource Manager 範本中使用物件作為參數
+description: 說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 08ee1cf2924f78ce366c58e20e84a512785f85cc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 76f8b9d459f4ab3147b52762b7c26552ec92c7a3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中使用物件作為參數
 
@@ -294,7 +294,6 @@ ms.lasthandoff: 11/14/2017
   ],          
   "outputs": {}
 }
-
 ```
 
 讓我們來看看我們如何在 `securityRules` 子資源中指定我們的屬性值。 我們的所有屬性是使用 `parameter()` 函式參考，然後我們會使用點運算子來參考我們的 `securityRules` 陣列，依反覆項目的目前值編製索引。 最後，我們會使用另一個點運算子來參考物件的名稱。 
@@ -304,10 +303,10 @@ ms.lasthandoff: 11/14/2017
 如果您想要實驗此範本，請遵循下列步驟︰ 
 
 1.  請移至 Azure 入口網站，選取 **+** 圖示，並搜尋 [範本部署] 資源類型，並選取它。
-2.  導覽至 [範本部署] 頁面，選取 [建立] 按鈕。 這個按鈕會開啟**自訂部署**刀鋒視窗。
+2.  導覽至 [範本部署] 頁面，選取 [建立] 按鈕。 這個按鈕會開啟 [自訂部署] 刀鋒視窗。
 3.  選取 [編輯範本] 按鈕。
 4.  刪除空白範本。 
-5.  將範本樣本複製並貼到右窗格。
+5.  複製範例範本並貼到右窗格。
 6.  選取 [儲存] 按鈕。
 7.  當您返回 [自訂部署] 窗格時，選取 [編輯參數] 按鈕。
 8.  在 [編輯參數] 刀鋒視窗中，刪除現有範本。

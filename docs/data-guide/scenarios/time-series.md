@@ -1,13 +1,13 @@
 ---
-title: "時間序列資料"
-description: 
+title: 時間序列資料
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: ceb8f34d4fd950e5270edfea05945a824c4492f0
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 80ff6c45988062afcb0eb92cc79e640d39dbb21f
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="time-series-solutions"></a>時間序列解決方案
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 02/14/2018
 
 IoT 裝置所收集的資料在本質上即適用於時間序列儲存和分析。 內送資料絕大多數都是進行插入，而鮮少更新。 資料會加上時間戳記，並依據收到的順序插入，且這項資料通常會依時間先後順序顯示，讓使用者能探索趨勢、找出異常狀況，並將該資訊用於預測分析。
 
-如需詳細資訊，請參閱[物聯網](../concepts/big-data.md#internet-of-things-iot)。
+如需詳細資訊，請參閱[物聯網](../big-data/index.md#internet-of-things-iot)。
 
 ### <a name="real-time-analytics"></a>即時分析
 
@@ -57,7 +57,7 @@ IoT 裝置所收集的資料在本質上即適用於時間序列儲存和分析�
 
 ## <a name="architecture"></a>架構
 
-在許多涉及時間序列資料的案例中 (例如 IoT)，資料都是以即時方式擷取的。 因此，[即時處理](./real-time-processing.md)是其適用的架構。 
+在許多涉及時間序列資料的案例中 (例如 IoT)，資料都是以即時方式擷取的。 因此，[即時處理](../big-data/real-time-processing.md)是其適用的架構。 
 
 來自一或多個資料來源的資料會由 [IoT 中樞](/azure/iot-hub/)、[事件中樞](/azure/event-hubs/)或 [HDInsight 上的 Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) 擷取到串流緩衝處理層中。 接下來，資料會在串流處理層進行處理，然後選擇性地遞交到機器學習服務進行預測分析。 已處理的資料會儲存在分析資料存放區中，例如 [HBase](/azure/hdinsight/hbase/apache-hbase-overview)、[Azure Cosmos DB](/azure/cosmos-db/)、Azure Data Lake 或 Blob 儲存體。 您可以使用分析和報告應用程式或服務來顯示時間序列資料以供分析，例如 Power BI 或 OpenTSDB (如果儲存在 HBase 中)。
 

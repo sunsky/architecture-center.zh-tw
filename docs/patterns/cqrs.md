@@ -1,7 +1,7 @@
 ---
 title: CQRS
-description: "如果作業讀取的資料來自使用個別介面更新資料的作業，則隔離該作業。"
-keywords: "設計模式"
+description: 如果作業讀取的資料來自使用個別介面更新資料的作業，則隔離該作業。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
@@ -9,11 +9,11 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 80f4a8880cf2212acf82dadb67b0181e1cbae099
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: ce8d20ae82ae7d5ba00b4bc264a5c4d90fc383bd
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令與查詢責任隔離 (CQRS) 模式
 
@@ -41,7 +41,7 @@ ms.lasthandoff: 01/30/2018
 
 > 若要更深入了解 CRUD 方法的限制，請參閱 [CRUD，只有當您可以負擔時](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/)。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 命令與查詢責任隔離 (CQRS) 是一種模式，它會使用個別介面將讀取資料 (查詢) 的作業與更新資料 (命令) 的作業隔離。 這表示用於查詢和更新的資料模型不相同。 然後模型可以隔離，如下圖所示，雖然這不是絕對需求。
 
@@ -69,7 +69,7 @@ ms.lasthandoff: 01/30/2018
 
 - 請考慮將 CQRS 套用至它在其中最有價值的系統有限區段。
 
-- 部署最終一致性的典型方法是使用事件來源搭配 CQRS，讓寫入事件成為由執行命令所驅動的僅附加串流。 這些事件是用來更新作為讀取模型的具體化檢視。 如需詳細資訊，請參閱[事件來源和 CQRS](https://msdn.microsoft.com/library/dn568103.aspx#EventSourcingandCQRS)。
+- 部署最終一致性的典型方法是使用事件來源搭配 CQRS，讓寫入事件成為由執行命令所驅動的僅附加串流。 這些事件是用來更新作為讀取模型的具體化檢視。 如需詳細資訊，請參閱[事件來源和 CQRS](/azure/architecture/patterns/cqrs#event-sourcing-and-cqrs)。
 
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
 

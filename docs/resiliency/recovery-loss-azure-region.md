@@ -1,15 +1,16 @@
 ---
-title: "從 Azure 區域遺失中復原"
-description: "了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原的相關文章"
+title: 從 Azure 區域遺失中復原
+description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原的相關文章
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 42a7d865e101b43279f3198f3dd75df1b15a8565
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f551e8af8aece8aa30abfba2438c41c3944209bd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Azure 復原技術指導：從全區域服務中斷復原
 Azure 在實體和邏輯上劃分單位，稱為區域。 區域由一或多個非常接近的資料中心組成。 
 
@@ -98,7 +99,7 @@ Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項
 ### <a name="service-bus"></a>服務匯流排
 Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](/azure/service-bus-messaging/service-bus-outages-disasters/)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](recovery-local-failures.md#other-azure-platform-services)。
 
-### <a name="app-service"></a>App Service
+### <a name="app-service"></a>App Service 方案
 若要將 Azure App Service 應用程式，例如 Web Apps 或 Mobile Apps 移轉到次要 Azure 區域，您必須有可供發佈的網站備份。 如果運作中斷未波及整個 Azure 資料中心，或許可以使用 FTP 下載網站內容的最新備份。 然後，在替代區域建立新的應用程式，除非您先前為了保留容量而已經這樣做。 將網站發佈到新的區域，並進行任何必要的組態變更。 這些變更可能包括資料庫連接字串或區域專用的其他設定。 如有需要，新增網站的 SSL 憑證，並變更 DNS CNAME 記錄，使自訂網域名稱指向重新部署的 Azure Web 應用程式 URL。
 
 ### <a name="hdinsight"></a>HDInsight

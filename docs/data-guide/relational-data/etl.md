@@ -3,11 +3,11 @@ title: 擷取、轉換和載入 (ETL)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a980c1f8aef99fc263083e5e496b1340204f7dac
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
 
@@ -21,7 +21,7 @@ ms.lasthandoff: 03/31/2018
 
 資料轉換在執行時通常牽涉到各種作業，例如篩選、排序、彙總、聯結資料、清除資料、刪除重複資料，以及驗證資料。
 
-![擷取-轉換-載入 (ETL) 程序](./images/etl.png)
+![擷取-轉換-載入 (ETL) 程序](../images/etl.png)
 
 這三個 ETL 階段通常會以平行方式執行，以節省時間。 例如，在擷取資料時，轉換程序即會處理使用已接收的資料，並且準備進行載入，而載入程序也無須等到整個擷取程序完成後才開始處理已備妥的資料。
 
@@ -35,7 +35,7 @@ ms.lasthandoff: 03/31/2018
 
 擷取、載入和轉換 (ELT) 與 ETL 的不同之處，僅在於轉換的執行位置。 在 ELT 管線中，轉換會在目標資料存放區中執行。 此時並不會使用個別的轉換引擎，而是使用目標資料存放區的處理功能來轉換資料。 如此即不需要在管線中使用轉換引擎，因而能簡化架構。 這個方法的另一個好處是，調整目標資料存放區時，也會調整 ELT 管線效能。 不過，只有在目標系統的功能足以有效率地轉換資料時，ELT 才能妥善運作。
 
-![擷取-載入-轉換 (ELT) 程序](./images/elt.png)
+![擷取-載入-轉換 (ELT) 程序](../images/elt.png)
 
 ELT 通常會用於巨量資料領域中。 例如，一開始您可能會將所有來源資料擷取到可擴充儲存體中的一般檔案，例如 Hadoop 分散式檔案系統 (HDFS) 或 Azure Data Lake Store。 接著，您可以使用 Spark、Hive 或 PolyBase 等技術來查詢來源資料。 使用 ELT 的重點在於，用來執行轉換的資料存放區與最終使用資料的是同一個資料存放區。 此資料存放區會直接讀取可擴充儲存體，而不是將資料載入到本身專屬的儲存體。 這種方法可略過存在於 ETL 中的資料複製步驟，此作業在處理大型資料集時可能十分耗時。
 
@@ -62,7 +62,7 @@ ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支�
 
 控制流程會以工作的形式執行資料流程。 在資料流程工作中，會從來源擷取資料、加以轉換，或載入資料存放區中。 一個資料流程工作的輸出可以是下一個資料流程工作的輸入，且資料流程可以平行執行。 不同於控制流程，您無法在資料流程中的工作之間新增條件約束。 不過，您可以新增資料檢視器，以觀察每項工作正在處理的資料。
 
-![控制流程中以工作的形式執行的資料流程](./images/control-flow-data-flow.png)
+![控制流程中以工作的形式執行的資料流程](../images/control-flow-data-flow.png)
 
 在上圖中，控制流程內有數項工作，其中之一是資料流程工作。 其中一項工作內嵌於容器中。 容器可以用來提供工作的結構，進而提供工作單位。 舉例來說，集合中的重複元素即是如此，例如資料夾中的檔案或資料庫陳述式。
 
@@ -74,7 +74,7 @@ ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支�
 
 ## <a name="technology-choices"></a>技術選擇
 
-- [線上交易處理 (OLTP) 資料存放區](../technology-choices/oltp-data-stores.md)
-- [線上分析處理 (OLTP) 資料存放區](../technology-choices/olap-data-stores.md)
-- [資料倉儲](../technology-choices/data-warehouses.md)
+- [線上交易處理 (OLTP) 資料存放區](./online-transaction-processing.md#oltp-in-azure)
+- [線上分析處理 (OLTP) 資料存放區](./online-analytical-processing.md#olap-in-azure)
+- [資料倉儲](./data-warehousing.md)
 - [管線協調流程](../technology-choices/pipeline-orchestration-data-movement.md)

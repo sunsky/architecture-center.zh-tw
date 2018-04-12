@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 上執行 Jenkins 伺服器"
-description: "此參考架構會顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。"
+title: 在 Azure 上執行 Jenkins 伺服器
+description: 此參考架構會顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: 724185e43ed743013f52ded04b779552dd8e48c1
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: c07a341bbe4d0304087e4535408967c45d36199e
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
@@ -15,7 +15,7 @@ ms.lasthandoff: 02/27/2018
 
 ![在 Azure 上執行的 Jenkins 伺服器][0]
 
-下載包含此架構圖表的 [Visio 檔案](https://arch-center.azureedge.net/cdn/Jenkins-architecture.vsdx)。
+下載包含此架構圖表的 [Visio 檔案](https://archcenter.blob.core.windows.net/cdn/Jenkins-architecture.vsdx)。
 
 此架構可透過 Azure 服務支援災害復原，但並未涵蓋涉及多部主機的向外延展案例，或無停機時間的高可用性。 如需各種 Azure 元件的一般深入解析 (包括在 Azure 上建置 CI/CD 管線的相關逐步教學課程)，請參閱[在 Azure 上的 Jenkins][jenkins-on-azure]。
 
@@ -25,30 +25,30 @@ ms.lasthandoff: 02/27/2018
 
 此架構由下列元件組成：
 
--   **資源群組。** [資源群組][rg]可用來將 Azure 資產分組，讓它們可以受到存留期、擁有者及其他準則所管理。 使用資源群組，以群組為單位來部署和監視資源，並根據資源群組來追蹤帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。
+- **資源群組。** [資源群組][rg]可用來將 Azure 資產分組，讓它們可以受到存留期、擁有者及其他準則所管理。 使用資源群組，以群組為單位來部署和監視資源，並根據資源群組來追蹤帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。
 
--   **Jenkins 伺服器**。 虛擬機器會部署為自動化伺服器來執行 [Jenkins][azure-market]，並充當 Jenkins 主機。 此參考架構會使用在 Azure 上的 Linux (Ubuntu 16.04 LTS) 虛擬機器上所安裝的 [Azure 上的 Jenkins 解決方案範本][solution]。 Microsoft Azure Marketplace 中提供其他 Jenkins 產品供應項目。
+- **Jenkins 伺服器**。 虛擬機器會部署為自動化伺服器來執行 [Jenkins][azure-market]，並充當 Jenkins 主機。 此參考架構會使用在 Azure 上的 Linux (Ubuntu 16.04 LTS) 虛擬機器上所安裝的 [Azure 上的 Jenkins 解決方案範本][solution]。 Microsoft Azure Marketplace 中提供其他 Jenkins 產品供應項目。
 
-    > [!NOTE]
-    > Nginx 已安裝在虛擬機器上用來作為 Jenkins 的反向 proxy。 您可以將 Nginx 設定為啟用對 Jenkins 伺服器的 SSL。
-    > 
-    > 
+  > [!NOTE]
+  > Nginx 已安裝在虛擬機器上用來作為 Jenkins 的反向 proxy。 您可以將 Nginx 設定為啟用對 Jenkins 伺服器的 SSL。
+  > 
+  > 
 
--   **虛擬網路**。 [虛擬網路][vnet]會將 Azure 資源互相連線，並提供邏輯隔離。 在此架構中，Jenkins 伺服器會在虛擬網路中執行。
+- **虛擬網路**。 [虛擬網路][vnet]會將 Azure 資源互相連線，並提供邏輯隔離。 在此架構中，Jenkins 伺服器會在虛擬網路中執行。
 
--   **子網路**。 系統會將 Jenkins 伺服器隔離在[子網路][subnet]中，讓您能更輕鬆地管理和隔離網路流量，而不會影響效能。
+- **子網路**。 系統會將 Jenkins 伺服器隔離在[子網路][subnet]中，讓您能更輕鬆地管理和隔離網路流量，而不會影響效能。
 
--   **NSG**。 使用[網路安全性群組][nsg] (NSG) 來限制從網際網路到虛擬網路子網路的網路流量。
+- <strong>NSG</strong>。 使用[網路安全性群組][nsg] (NSG) 來限制從網際網路到虛擬網路子網路的網路流量。
 
--   **受控磁碟**。 [受控磁碟][managed-disk]是用於應用程式儲存區的永續性虛擬硬碟 (VHD)，也可用來維護 Jenkins 伺服器的狀態，並提供災害復原。 資料磁碟會儲存在 Azure 儲存體中。 如需高效能，建議使用[進階儲存體][premium]。
+- **受控磁碟**。 [受控磁碟][managed-disk]是用於應用程式儲存區的永續性虛擬硬碟 (VHD)，也可用來維護 Jenkins 伺服器的狀態，並提供災害復原。 資料磁碟會儲存在 Azure 儲存體中。 如需高效能，建議使用[進階儲存體][premium]。
 
--   **Azure Blob 儲存體**。 [Windows Azure 儲存體外掛程式][configure-storage]會使用 Azure Blob 儲存體，來儲存透過其他 Jenkins 組建所建立且共用的組建成品。
+- **Azure Blob 儲存體**。 [Windows Azure 儲存體外掛程式][configure-storage]會使用 Azure Blob 儲存體，來儲存透過其他 Jenkins 組建所建立且共用的組建成品。
 
--   **Azure Active Directory (Azure AD)**。 [Azure AD][azure-ad] 支援使用者驗證，讓您可設定 SSO。 Azure AD [服務主體][service-principal]會使用[以角色為基礎的存取控制][rbac] (RBAC)，來定義工作流程中每個角色授權的原則和權限。 每個服務主體都會與 Jenkins 作業相關聯。
+- <strong>Azure Active Directory (Azure AD)</strong>。 [Azure AD][azure-ad] 支援使用者驗證，讓您可設定 SSO。 Azure AD [服務主體][service-principal]會使用[以角色為基礎的存取控制][rbac] (RBAC)，來定義工作流程中每個角色授權的原則和權限。 每個服務主體都會與 Jenkins 作業相關聯。
 
--   **Azure Key Vault**。 為了在需要密碼時，管理用來佈建 Azure 資源的祕密和密碼編譯金鑰，此架構會使用 [Key Vault][key-vault]。 如需在管線中與應用程式相關聯的已新增說明儲存祕密，也請參閱 Jenkins 的 [Azure 認證][configure-credential]外掛程式。
+- **Azure Key Vault**。 為了在需要密碼時，管理用來佈建 Azure 資源的祕密和密碼編譯金鑰，此架構會使用 [Key Vault][key-vault]。 如需在管線中與應用程式相關聯的已新增說明儲存祕密，也請參閱 Jenkins 的 [Azure 認證][configure-credential]外掛程式。
 
--   **Azure 監視服務**。 此服務會[監視][monitor]裝載 Jenkins 的 Azure 虛擬機器。 這個部署會監視虛擬機器狀態與 CPU 使用率，而且會傳送警示。
+- **Azure 監視服務**。 此服務會[監視][monitor]裝載 Jenkins 的 Azure 虛擬機器。 這個部署會監視虛擬機器狀態與 CPU 使用率，而且會傳送警示。
 
 ## <a name="recommendations"></a>建議
 

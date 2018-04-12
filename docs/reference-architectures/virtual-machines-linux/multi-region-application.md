@@ -1,15 +1,15 @@
 ---
-title: "在多個 Azure 區域中執行 Linux VM 以獲得高可用性"
-description: "如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。"
+title: 在多個 Azure 區域中執行 Linux VM 以獲得高可用性
+description: 如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Linux VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 7d720a004d21edbffc0ddeba54e291aa817550e0
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 07ccf44f28203e6d5001475b47adce01437e9600
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="run-linux-vms-in-multiple-regions-for-high-availability"></a>在多個區域中執行 Linux VM 以獲得高可用性
 
@@ -150,6 +150,6 @@ Cassandra 資料中心是一群相關的資料節點，其會一起設定於叢�
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx
 [0]: ./images/multi-region-application-diagram.png "適用於 Azure 多層式架構應用程式的高可用性網路架構"

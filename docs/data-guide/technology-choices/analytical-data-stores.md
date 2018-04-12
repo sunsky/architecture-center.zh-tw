@@ -1,19 +1,19 @@
 ---
-title: "選擇分析資料存放區"
-description: 
+title: 選擇分析資料存放區
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b2e5e63982d4b89b95cd28e596d3b882a4a2263e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>在 Azure 中選擇分析資料存放區
 
-在[巨量資料](../concepts/big-data.md)架構中，通常需要提供分析資料存放區給已經過處理並使用結構化格式的資料，以便使用分析工具進行查詢。 支援查詢熱路徑 (hot-path) 及冷路徑 (cold-path) 資料的分析資料存放區統稱為服務層或資料服務儲存體。
+在[巨量資料](../big-data/index.md)架構中，通常需要提供分析資料存放區給已經過處理並使用結構化格式的資料，以便使用分析工具進行查詢。 支援查詢熱路徑 (hot-path) 及冷路徑 (cold-path) 資料的分析資料存放區統稱為服務層或資料服務儲存體。
 
-服務層會處理熱路徑和冷路徑中已處理過的資料。 在 [lambda 架構](../concepts/big-data.md#lambda-architecture)中，服務層會細分成_速度處理_層 (其中儲存尚未以累加方式處理的資料) 和_批次服務_層 (其中包含批次處理的輸出)。 服務層需要強力支援低延遲的隨機讀取。 速度層的資料儲存體也應該支援隨機寫入，因為將資料批次載入此存放區會導致不想要的延遲。 相反地，批次層的資料存放體不需要支援隨機寫入，而是批次寫入。
+服務層會處理熱路徑和冷路徑中已處理過的資料。 在 [lambda 架構](../big-data/index.md#lambda-architecture)中，服務層會細分成_速度處理_層 (其中儲存尚未以累加方式處理的資料) 和_批次服務_層 (其中包含批次處理的輸出)。 服務層需要強力支援低延遲的隨機讀取。 速度層的資料儲存體也應該支援隨機寫入，因為將資料批次載入此存放區會導致不想要的延遲。 相反地，批次層的資料存放體不需要支援隨機寫入，而是批次寫入。
 
 沒有適用於所有資料儲存體工作的單一最佳資料管理選項。 已針對不同的工作最佳化不同的資料管理解決方案。 大部分實際運作的雲端應用程式和巨量資料處理程序有各種不同的資料儲存需求，而且通常可以組合使用資料儲存解決方案。
 
@@ -48,13 +48,13 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="capability-matrix"></a>相容性矩陣
 
-下表是主要功能差異的摘要。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
 | --- | --- | --- | --- | --- | --- | --- |
-| 為受控服務 | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | yes | yes |
+| 屬於受控服務 | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | yes | yes |
 | 主要資料庫模型 | 關聯式 (使用資料行存放區索引時的單欄式格式) | 具有單欄式儲存體的關聯式資料表 | 寬資料行存放區 | Hive/記憶體內 | 表格式/MOLAP 語意模型 | 文件存放區、圖表、索引鍵-值存放區、寬資料行存放區 |
 | SQL 語言支援 | yes | yes | 是 (使用 [Phoenix](http://phoenix.apache.org/) JDBC 驅動程式) | yes | 否 | yes |
 | 已針對速度服務層最佳化 | 是 <sup>2</sup> | 否 | yes | yes | 否 | yes |
@@ -65,12 +65,12 @@ ms.lasthandoff: 02/14/2018
  
 ### <a name="scalability-capabilities"></a>延展性功能
 
-| | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
-| --- | --- | --- | --- | --- | --- | --- |
-| 高可用性的備援區域伺服器  | yes | yes | yes | 否 | 否 | yes | yes |
-| 支援查詢相應放大  | 否 | yes | yes | yes | yes | yes |
-| 動態延展性 (相應增加)  | yes | yes | 否 | 否 | yes | yes |
-| 支援資料的記憶體內快取 | yes | yes | 否 | yes | yes | 否 |
+|                                                  | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
+|--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
+| 高可用性的備援區域伺服器 |     yes      |        yes         |            yes             |           否           |           否            |    yes    |
+|             支援查詢相應放大             |      否      |        yes         |            yes             |          yes           |           yes           |    yes    |
+|          動態延展性 (相應增加)          |     yes      |        yes         |             否             |           否           |           yes           |    yes    |
+|        支援資料的記憶體內快取        |     yes      |        yes         |             否             |          yes           |           yes           |    否     |
 
 ### <a name="security-capabilities"></a>安全性功能
 

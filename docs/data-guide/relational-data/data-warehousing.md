@@ -1,22 +1,53 @@
 ---
-title: 選擇資料倉儲
+title: 資料倉儲和資料超市
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 9cb3d4d0196b02da76d85c7f7f0e4a2a69d531e9
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/06/2018
 ---
-# <a name="choosing-a-data-warehouse-in-azure"></a>在 Azure 中選擇資料倉儲
+# <a name="data-warehousing-and-data-marts"></a>資料倉儲和資料超市
 
-資料倉儲是位於中心且具組織性的關聯式存放庫，用來存放從一個或多個不同來源整合的資料。 本主題會比較 Azure 中的資料倉儲選項。
+資料倉儲是從一或多個不同的來源 (跨多個或所有主體區域) 整合資料的中央、組織、關聯式存放庫。 資料倉儲會儲存目前的資料和歷史資料，可多方面運用於資料的報告和分析。
 
-> [!NOTE]
-> 如需何時使用資料倉儲的詳細資訊，請參閱[資料倉儲和資料超市](../scenarios/data-warehousing.md)。
+![Azure 中的資料倉儲](../images/data-warehousing.png)
 
-## <a name="what-are-your-options-when-choosing-a-data-warehouse"></a>選擇資料倉儲時有哪些選項？
+資料移至資料倉儲時，系統會定期從包含重要商業資訊的各種來源擷取資料。 資料移動時，可進行格式化、清理、驗證、摘要和重新組織。 或者，也可以用最低的詳細程度儲存資料，並在倉儲中提供彙總檢視以供報告之用。 無論採用何種方式，資料倉儲都會成為用於報告、分析和使用商業智慧 (BI) 工具形成重要商務決策的資料所使用的永久儲存空間。
+
+## <a name="data-marts-and-operational-data-stores"></a>資料超市和作業資料存放區
+
+管理大規模的資料是複雜的工作，而以單一資料倉儲呈現整個企業的所有資料，也愈來愈少見了。 反之，組織會建立較小而更為聚焦的資料倉儲 (稱為*資料超市*)，以公開分析所需的資料。 協調程序會將作業資料存放區中維護的資料填入資料超市。 作業資料存放區會作為來源交易系統與資料超市之間的媒介。 作業資料存放區所管理的資料來源是交易系統中的資料經清理後的版本，且通常是資料倉儲或資料超市所維護之歷史資料的子集。 
+
+## <a name="when-to-use-this-solution"></a>使用此解決方案的時機
+
+當您需要將作業系統中的大量資料轉換為容易了解、最新且正確的格式時，請選擇資料倉儲。 資料倉儲不需要依循您在作業/OLTP 資料庫中可能使用的相同簡易資料結構。 您可以使用對商業使用者和分析師具有意義的資料行名稱、重新建構結構描述以簡化資料關聯性，並將多個資料表合併為一個。 這些步驟有助於引導需要建立隨選報表或需要在 BI 系統中建立報表及分析資料的使用者，在沒有資料庫管理員 (DBA) 或資料開發人員的協助下完成操作。
+
+如果您基於效能考量而需要在來源交易系統以外保留歷史資料，請考慮使用資料倉儲。 資料倉儲提供使用通用格式、通用索引鍵、通用資料模型和通用存取方法的集中式位置，可讓您輕鬆地多個位置存取歷史資料。
+
+資料倉儲針對讀取存取進行了最佳化，因此報表產生的速度會優於直接對來源交易系統執行報表。 此外，資料倉儲還具有下列優點：
+
+* 來自多個來源的所有歷史資料，都可視為單一真實來源進行儲存以及從資料倉儲存取。
+* 您可以在資料匯入至資料倉儲加以清理、提供更精確的資料，以及提供一致的程式碼和描述，而改善資料品質。
+* 報告工具不會與交易來源系統競爭查詢處理週期。 資料倉儲可讓交易系統主要著重於寫入的處理，而大部分的讀取要求則由資料倉儲負責因應。
+* 資料倉儲有助於整合來自不同軟體的資料。
+* 資料採礦工具可協助您使用自動方法在您的倉儲所儲存的資料中找出隱藏的模式。
+* 透過資料倉儲，將更容易為授權使用者提供安全的存取，同時限制其他人的存取。 由於不需要為商業使用者授與資料來源的存取權，對於一或多個生產交易系統的潛在攻擊媒介因而消除。
+* 資料倉儲可讓您輕鬆地以資料建立商業智慧解決方案，例如 [OLAP Cube](online-analytical-processing.md)。
+
+## <a name="challenges"></a>挑戰
+
+要適當設定資料倉儲以符合個人商業需求，可能必須先克服下列難題：
+
+* 確認正確建立商業概念模型所需的時間。 這是重要的步驟，因為資料倉儲是由資訊驅動的，專案的其餘部分皆由概念對應所推動。 這牽涉到商業相關詞彙和通用格式的標準化 (例如貨幣或日期)，和以對商業使用者具有意義，但仍可確保資料彙總與關聯性之正確性的方式重新建構結構描述。
+* 規劃和設定您的資料協調流程。 應考量的事項包括如何將資料從來源交易系統複製到資料倉儲，以及何時將歷史資料移出作業資料存放區，並移至倉儲中。
+* 在資料匯入至倉儲時加以清理，以維護或改善資料品質。
+
+## <a name="data-warehousing-in-azure"></a>Azure 中的資料倉儲
+
+在 Azure 中，您的資料可能會有一或多個來源，無論是來自客戶交易，還是來自不同部門所使用的各種商業應用程式。 過去，此資料會儲存在一或多個 [OLTP](online-transaction-processing.md) 資料庫中。 資料可持續保存在其他儲存媒體中，例如網路共用、Azure 儲存體 Blob 或 Data Lake。 資料也可由資料倉儲本身儲存，或儲存在關聯式資料庫中，例如 Azure SQL Database。 分析資料存放區層的目的是為了因應分析和報告工具對資料倉儲或資料超市所發出的查詢。 在 Azure 中，這項分析存放區功能可透過 Azure SQL 資料倉儲或使用 Hive 或互動式查詢的 Azure HDInsight 來提供。 此外，您將需要某種程度的協調流程，以定期將資料從資料儲存體移動或複製到資料倉儲，而此功能則可藉由 Azure Data Factory 或 Azure HDInsight 上的 Oozie 來提供。
 
 在 Azure 中實作資料倉儲有多種選項，您可以依據您的需求做選擇。 下列清單分成兩個類別，[對稱式多處理](https://en.wikipedia.org/wiki/Symmetric_multiprocessing) (SMP) 和[大量平行處理](https://en.wikipedia.org/wiki/Massively_parallel) (MPP)。 
 
@@ -31,7 +62,7 @@ MPP：
 - [HDInsight 上的 Apache Hive](/azure/hdinsight/hadoop/hdinsight-use-hive)
 - [HDInsight 上的互動式查詢 (Hive LLAP)](/azure/hdinsight/interactive-query/apache-interactive-query-get-started)
 
-一般而言，SMP 架構的倉儲最適用於小型至中型資料集 (上限為 4-100 TB)，而 MPP 通常用於巨量資料。 中/小和巨量資料之間的劃分，有部分與您組織的定義和支援基礎結構有關。 (請參閱[選擇 OLTP 資料存放區](oltp-data-stores.md#scalability-capabilities)。) 
+一般而言，SMP 架構的倉儲最適用於小型至中型資料集 (上限為 4-100 TB)，而 MPP 通常用於巨量資料。 中/小和巨量資料之間的劃分，有部分與您組織的定義和支援基礎結構有關。 (請參閱[選擇 OLTP 資料存放區](online-transaction-processing.md#scalability-capabilities)。) 
 
 除了資料大小，工作負載模式的類型可能是更大的決定因素。 比方說，SMP 解決方案用於複雜的查詢可能會太慢，反而需要 MPP 解決方案。 作業在節點之間散發和彙總的方式，可能會使得 MPP 系統對小型資料的效能造成負面影響。 如果您的資料大小已超過 1 TB，並預期要持續成長，請考慮選取 MPP 解決方案。 不過，如果您的資料大小少於 1 TB，但您的工作負載即將超過 SMP 解決方案的可用資源，則 MPP 可能是最佳的選項。
 
@@ -60,7 +91,7 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 - 對於大型資料集，資料來源是結構化或非結構化？ 非結構化資料可能需要用巨量資料環境來處理，例如 HDInsight 上的 Spark、Azure Databricks、HDInsight 上的 Hive LLAP，或 Azure Data Lake Analytics。 可將其全部作為 ELT (擷取、載入、轉換) 和 ETL (擷取、轉換、載入) 引擎。 它們可以將處理的資料輸出為結構化資料，以便更容易載入到 SQL 資料倉儲或其他選項。 對於結構化資料，SQL 資料倉儲具有稱為「針對計算最佳化」的效能層級，適用於需要超高效能的大量計算工作負載。
 
-- 是否要區隔您的歷史資料與您目前的操作資料？ 如果是的話，請選取需要[協調流程](pipeline-orchestration-data-movement.md)的選項。 這些是為大量讀取存取所最佳化的獨立倉儲，而且最適合作為個別的歷程記錄資料存放區。
+- 是否要區隔您的歷史資料與您目前的操作資料？ 如果是的話，請選取需要[協調流程](../technology-choices/pipeline-orchestration-data-movement.md)的其中一個選項。 這些是為大量讀取存取所最佳化的獨立倉儲，而且最適合作為個別的歷程記錄資料存放區。
 
 - 除了您的 OLTP 資料存放區，您是否需要整合多個來源的資料？ 如果是的話，請考慮可輕鬆整合多個資料來源的選項。 
 
@@ -118,15 +149,15 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 ### <a name="security-capabilities"></a>安全性功能
 
-| | 連接字串 | 虛擬機器中的 SQL Server | SQL 資料倉儲 | HDInsight 上的 Apache Hive | HDInsight 上的 Hive LLAP |
-| --- | --- | --- | --- | --- | --- | -- |
-| 驗證  | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD / Active Directory | SQL / Azure AD | 本機 / Azure AD <sup>1</sup> | 本機 / Azure AD <sup>1</sup> |
-| Authorization  | yes | yes | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> |
-| 稽核  | yes | yes | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> |
-| 待用資料加密 | 是 <sup>2</sup> | 是 <sup>2</sup> | 是 <sup>2</sup> | 是 <sup>2</sup> | 是 <sup>1</sup> | 是 <sup>1</sup> |
-| 資料列層級安全性 | yes | yes | yes | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> |
-| 支援防火牆 | yes | yes | yes | yes | 是 <sup>3</sup> | 是 <sup>3</sup> |
-| 動態資料遮罩 | yes | yes | yes | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> |
+|                         |           連接字串            |  虛擬機器中的 SQL Server  | SQL 資料倉儲 |   HDInsight 上的 Apache Hive    |    HDInsight 上的 Hive LLAP     |
+|-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
+|     驗證      | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD / Active Directory |   SQL / Azure AD   | 本機 / Azure AD <sup>1</sup> | 本機 / Azure AD <sup>1</sup> |
+|      Authorization      |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>1</sup>        |
+|        稽核         |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>1</sup>        |
+| 待用資料加密 |            是 <sup>2</sup>             |         是 <sup>2</sup>          |  是 <sup>2</sup>  |       是 <sup>2</sup>        |       是 <sup>1</sup>        |
+|   資料列層級安全性    |                   yes                   |                yes                |        yes         |              否               |       是 <sup>1</sup>        |
+|   支援防火牆    |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>3</sup>        |
+|  動態資料遮罩   |                   yes                   |                yes                |        yes         |              否               |       是 <sup>1</sup>        |
 
 [1] 使用[已加入網域的 HDInsight 叢集](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)時所需。
 

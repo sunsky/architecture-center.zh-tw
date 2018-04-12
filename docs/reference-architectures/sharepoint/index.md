@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列"
-description: "在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。"
+title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
+description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: d16f8721c6edc8e5049766f13e2d3bc59524453f
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: d1e3f0b73c94844ac649bf2abb6917809202fdb7
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -320,7 +320,7 @@ ms.lasthandoff: 02/23/2018
 [sql-sharepoint-best-practices]: https://technet.microsoft.com/library/hh292622(v=office.16).aspx
 [tempdb]: /sql/relational-databases/databases/tempdb-database
 [virtual-networks-nsg]: /azure/virtual-network/virtual-networks-nsg
-[visio-download]: https://archcenter.azureedge.net/cdn/Sharepoint-2016.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/Sharepoint-2016.vsdx
 [vm-sizes-general]: /azure/virtual-machines/windows/sizes-general
 [vm-sizes-memory]: /azure/virtual-machines/windows/sizes-memory
 [windows-n-tier]: ../virtual-machines-windows/n-tier.md

@@ -1,15 +1,16 @@
 ---
-title: "技術指導：從 Azure 的本機失敗中復原"
-description: "了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原 (著重於 Azure 內的本機失敗) 的相關文章。"
+title: 技術指導：從 Azure 的本機失敗中復原
+description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原 (著重於 Azure 內的本機失敗) 的相關文章。
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 180eb465e5f82406bb03924a29d5b06d43bbaa24
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5fc929bd1affe3dd6616f908bae0e7d2fefb89d5
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-local-failures-in-azure"></a>Azure 復原技術指導：從 Azure 的本機失敗中復原
 
 應用程式可用性有兩個主要威脅︰
@@ -101,7 +102,7 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 #### <a name="resource-management"></a>資源管理
 每個資料庫在建立時都會設定大小上限。 目前可用的大小上限為 1 TB (大小限制根據您的服務層而有所不同，請參閱 [Azure SQL Database 的服務層和效能層級](/azure/sql-database/sql-database-resource-limits/#service-tiers-and-performance-levels)。 當資料庫達到大小上限，就會拒絕其他 INSERT 或 UPDATE 命令  (但仍可查詢和刪除資料)。
 
-在資料庫內，Azure SQL Database 會使用網狀架構來管理資源。 不過，它會使用環狀拓撲 (而不是網狀架構控制器) 來偵測失敗。 叢集中的每個複本都有兩個鄰近項目，而且複本需負責在鄰近項目關閉時進行偵測。 當複本關閉時，其鄰近項目會觸發重新設定代理程式，以在另一部電腦上重新建立複本。 所提供的引擎節流可確保邏輯伺服器不會在電腦上使用太多資源，或超過電腦的實體限制。
+在資料庫內，Azure SQL Database 會使用網狀架構來管理資源。 不過，它會使用通道拓撲 (而不是網狀架構控制器) 來偵測失敗。 叢集中的每個複本都有兩個鄰近項目，而且複本需負責在鄰近項目關閉時進行偵測。 當複本關閉時，其鄰近項目會觸發重新設定代理程式，以在另一部電腦上重新建立複本。 所提供的引擎節流可確保邏輯伺服器不會在電腦上使用太多資源，或超過電腦的實體限制。
 
 ### <a name="elasticity"></a>彈性
 如果應用程式需要超過 1 TB 的資料庫限制，就必須實作相應放大方法。 您可以透過將資料手動分割 (也稱為分區化) 到多個 SQL Database，以使用 Azure SQL Database 相應放大。 此相應放大方法可讓成本有機會隨著規模達成接近線性的成長。 彈性成長或隨選容量可以視需要來成長，而其成本會隨之遞增，因為資料庫的計費是根據每天使用的實際大小平均值，而不是可能的最大大小。

@@ -7,11 +7,11 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute-vpn-failover
 pnp.series.prev: vpn
 cardTitle: ExpressRoute
-ms.openlocfilehash: 671be5118faaefab5ba5348de81642d8a8124b59
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ada07f399925da6da28b24260f5c73f1e106fd7d
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 將內部部署網路連線至 Azure
 
@@ -54,9 +54,9 @@ Get-AzureRmExpressRouteServiceProvider
 
 ExpressRoute 連線提供者會使用下列方法將您的資料中心連線至 Microsoft：
 
-* **共置於雲端 Exchange**。 如果您共置於具有雲端 Exchange 的設施中，您可以訂購虛擬交叉連線，透過共置提供者的乙太網路交換而連線至 Azure。 共置提供者可以在您於共置設施中的基礎結構與 Azure 之間，提供第 2 層交叉連線或受管理的第 3 層交叉連線。
-* **點對點乙太網路連線**。 您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連線到 Azure。 點對點乙太網路提供者可以在您的網路與 Azure 之間，提供第 2 層連線或受管理的第 3 層連線。
-* **任意點對任意點 (IPVPN) 網路**。 您可以將您的廣域網路 (WAN) 整合至 Azure。 網際網路通訊協定虛擬私人網路 (IPVPN) 提供者 (通常是多重通訊協定標籤交換 VPN) 可在您的分公司與資料中心之間提供任意點對任意點連線。 Azure 可以相互連線到您的 WAN，看起來就像任何其他分公司一樣。 WAN 提供者通常會提供受管理的第 3 層連線能力。
+* **共置於雲端 Exchange**。 如果您共置於具有雲端 Exchange 的設施中，您可以訂購虛擬交叉連線，透過共置提供者的乙太網路交換而連線至 Azure。 共置提供者可以在您於共置設施中的基礎結構與 Azure 之間，提供第 2 層交叉連線或受控第 3 層交叉連線。
+* **點對點乙太網路連線**。 您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連線到 Azure。 點對點乙太網路提供者可以在您的網路與 Azure 之間，提供第 2 層連線或受控第 3 層連線。
+* **任意點對任意點 (IPVPN) 網路**。 您可以將您的廣域網路 (WAN) 整合至 Azure。 網際網路通訊協定虛擬私人網路 (IPVPN) 提供者 (通常是多重通訊協定標籤交換 VPN) 可在您的分公司與資料中心之間提供任意點對任意點連線。 Azure 可以相互連線到您的 WAN，看起來就像任何其他分公司一樣。 WAN 提供者通常會提供受控第 3 層連線能力。
 
 如需連線提供者的詳細資訊，請參閱 [ExpressRoute 簡介][expressroute-introduction]。
 
@@ -241,7 +241,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-**必要條件**。 您必須已經使用適當的網路設備，設定現有的內部部署基礎結構。
+**必要條件。** 您必須已經使用適當的網路設備，設定現有的內部部署基礎結構。
 
 若要部署解決方案，請執行下列步驟。
 
@@ -278,7 +278,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 [expressroute-pricing]: https://azure.microsoft.com/pricing/details/expressroute/
 [expressroute-limits]: /azure/azure-subscription-service-limits#networking-limits
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/

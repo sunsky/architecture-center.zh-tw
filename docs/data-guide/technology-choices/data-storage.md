@@ -1,13 +1,13 @@
 ---
-title: "選擇資料儲存技術"
-description: 
+title: 選擇資料儲存技術
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d8f831e758ddc8604758392644a68b56dc51cf57
-ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
+ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
@@ -109,12 +109,13 @@ Azure Cosmos DB 功能：
 
 ### <a name="nosql-database-capabilities"></a>NoSQL 資料庫功能
 
-| | Azure Cosmos DB | HDInsight 上的 HBase |
-| --- | --- | --- |
-| 主要資料庫模型 | 文件存放區、圖表、索引鍵-值存放區、寬資料行存放區 | 寬資料行存放區 |
-| 次要索引 | yes | 否 |
-| SQL 語言支援 | yes | 是 (使用 [Phoenix](http://phoenix.apache.org/) JDBC 驅動程式) |
-| 一致性 | 強式、限定過期、工作階段、一致前置詞、最終 | 強式 |
-| 原生 Azure Functions 整合 | [是](/azure/cosmos-db/serverless-computing-database) | 否 |
-| 自動全球發行 | [是](/azure/cosmos-db/distribute-data-globally) | 否 [HBase 叢集複寫可使用最終一致性跨區域設定](/azure/hdinsight/hbase/apache-hbase-replication) |
-| 定價模式 | 隨需以秒計費、可彈性擴充的要求單位 (RU)，可彈性擴充的儲存體 | 以分鐘計價的 HDInsight 叢集 (節點的水平調整)，儲存體 |
+|                                    |                                           Azure Cosmos DB                                           |                                                             HDInsight 上的 HBase                                                             |
+|------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+|       主要資料庫模型       |                      文件存放區、圖表、索引鍵-值存放區、寬資料行存放區                      |                                                             寬資料行存放區                                                              |
+|         次要索引          |                                                 yes                                                 |                                                                     否                                                                     |
+|        SQL 語言支援        |                                                 yes                                                 |                                     是 (使用 [Phoenix](http://phoenix.apache.org/) JDBC 驅動程式)                                      |
+|            一致性             |                   強式、限定過期、工作階段、一致前置詞、最終                   |                                                                   強式                                                                   |
+| 原生 Azure Functions 整合 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
+|   自動全球發行    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 否 [HBase 叢集複寫可使用最終一致性跨區域設定](/azure/hdinsight/hbase/apache-hbase-replication) |
+|           定價模式            | 隨需以秒計費、可彈性擴充的要求單位 (RU)，可彈性擴充的儲存體 |                              以分鐘計價的 HDInsight 叢集 (節點的水平調整)，儲存體                               |
+

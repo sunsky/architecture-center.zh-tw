@@ -1,13 +1,13 @@
 ---
-title: "在 Azure 上部署 SAP NetWeaver 和 SAP HANA"
-description: "Azure 高可用性環境中執行 SAP HANA 的經過證實做法。"
+title: 在 Azure 上部署 SAP NetWeaver 和 SAP HANA
+description: Azure 高可用性環境中執行 SAP HANA 的經過證實做法。
 author: njray
 ms.date: 06/29/2017
-ms.openlocfilehash: 27a97103c0c6f305cb8e830d670c8d0ba7e22aa5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 33171164c59a520a87ef3209c5bb1b208377221c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="deploy-sap-netweaver-and-sap-hana-on-azure"></a>在 Azure 上部署 SAP NetWeaver 和 SAP HANA
 
@@ -15,7 +15,7 @@ ms.lasthandoff: 11/14/2017
 
 ![0][0]
 
-*下載這個架構的 [Visio 檔案][visio-download]。*
+下載這個架構的 [Visio 檔案][visio-download]。
 
 > [!NOTE]
 > 部署此參考架構需要 SAP 產品的適當授權和其他非 Microsoft 技術。 如需 Microsoft 與 SAP 之間合作關係的相關資訊，請參閱 [Azure 上的 SAP HANA][sap-hana-on-azure]。
@@ -48,7 +48,7 @@ ms.lasthandoff: 11/14/2017
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能不同於這裡所述的架構。 請使用以下建議作為起點。
+您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。
 
 ### <a name="load-balancers"></a>負載平衡器
 
@@ -133,7 +133,7 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 此參考架構的部署指令碼可在 [GitHub][github] 上取得。
 
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 - 您必須能夠存取 SAP 軟體下載中心才能完成安裝。
  
@@ -161,9 +161,9 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 
 您可以以累加方式或一次全部部署此架構。 第一次，建議您使用累加式部署，以便您看到每個部署步驟的執行方式。 使用下列其中一個 mode 參數來指定增量
 
-| 模式           | 作用                                                                                                            |
+| Mode           | 作用                                                                                                            |
 |----------------|-----------------------------------------------------|
-| 基礎結構 | 在 Azure 中部署網路基礎結構。        |
+| infrastructure | 在 Azure 中部署網路基礎結構。        |
 | 工作負載       | 將 SAP 伺服器部署至網路。             |
 | 所有            | 部署所有先前的部署。              |
 
@@ -235,7 +235,7 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 [sap-hana-on-azure]: https://azure.microsoft.com/services/virtual-machines/sap-hana/
 [sap-netweaver-dr]: http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
-[visio-download]: https://archcenter.azureedge.net/cdn/SAP-HANA-architecture.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/SAP-HANA-architecture.vsdx
 [vm-sizes-mem]: /azure/virtual-machines/windows/sizes-memory
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm
 [0]: ./images/sap-hana.png "使用 Microsoft Azure 的 SAP HANA 架構"

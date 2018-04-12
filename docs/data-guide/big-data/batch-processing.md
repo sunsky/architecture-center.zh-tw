@@ -3,11 +3,11 @@ title: 批次處理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d3d3b92034c251586ecc9caff2785ecd0808b2a7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="batch-processing"></a>批次處理
 
@@ -19,7 +19,7 @@ ms.lasthandoff: 03/31/2018
 
 ## <a name="when-to-use-this-solution"></a>使用此解決方案的時機
 
-在許多情況下都會使用批次處理，從簡單的資料轉換，到更完整的 ETL (擷取-轉換-載入) 管線，都會用到。 在巨量資料內容中，批次處理可能會運用在非常大型的資料集上，而其計算會非常耗時。 (如需範例，請參閱 [Lambda 架構](../concepts/big-data.md#lambda-architecture)。)批次處理通常會帶來進一步的互動式瀏覽、提供可用來建立模型的資料供機器學習使用，或將資料寫入至最適合用於分析和視覺效果的資料存放區。
+在許多情況下都會使用批次處理，從簡單的資料轉換，到更完整的 ETL (擷取-轉換-載入) 管線，都會用到。 在巨量資料內容中，批次處理可能會運用在非常大型的資料集上，而其計算會非常耗時。 (如需範例，請參閱 [Lambda 架構](../big-data/index.md#lambda-architecture)。)批次處理通常會帶來進一步的互動式瀏覽、提供可用來建立模型的資料供機器學習使用，或將資料寫入至最適合用於分析和視覺效果的資料存放區。
 
 批次處理的範例之一，是將半結構化的一般 CSV 或 JSON 大型檔案集轉換為可供進一步查詢的結構描述化和結構化格式。 一般而言，資料會從用於擷取的原始格式 (例如 CSV) 轉換為可提升查詢效能的二進位格式，因為它們會以單欄格式儲存資料，且通常會提供資料的關於索引和統計資料。
 

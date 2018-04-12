@@ -1,17 +1,17 @@
 ---
-title: "整合內部部署 AD 網域與 Azure Active Directory"
-description: "如何使用 Azure Active Directory 實作安全的混合式網路架構。"
+title: 整合內部部署 AD 網域與 Azure Active Directory
+description: 如何使用 Azure Active Directory 實作安全的混合式網路架構。
 author: telmosampaio
 pnp.series.title: Identity management
 ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: dd4cf0369974ea68d240ed294b1c50972d361d74
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>整合內部部署 Active Directory 網域與 Azure Active Directory
 
@@ -119,7 +119,7 @@ Azure AD Connect 同步處理服務可確保雲端中儲存的身分識別資訊
 
 ### <a name="user-authentication"></a>使用者驗證
 
-根據預設，Azure AD Connect 同步處理伺服器會在內部部署網域與 Azure AD 之間設定密碼同步處理，而且 Azure AD 服務會假設使用者是藉由提供他們在內部部署環境所使用的相同密碼進行驗證。 對許多組織來說，這是適當的方式，但您也應該考慮到組織現有的原則和基礎結構。 例如：
+根據預設，Azure AD Connect 同步處理伺服器會在內部部署網域與 Azure AD 之間設定密碼同步處理，而且 Azure AD 服務會假設使用者是藉由提供他們在內部部署環境所使用的相同密碼進行驗證。 對許多組織來說，這是適當的方式，但您也應該考慮到組織現有的原則和基礎結構。 例如︰
 
 * 貴組織的安全性原則可能會禁止將密碼雜湊同步處理至雲端。
 * 您可能會要求使用者在從公司網路上已加入網域的機器中存取雲端資源時，使用無縫式單一登入 (SSO)。
@@ -260,7 +260,7 @@ GitHub 中有實作這些建議和考量的參考架構部署。 此參考架構
 [considerations]: ./considerations.md
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [sla-aad]: https://azure.microsoft.com/support/legal/sla/active-directory/v1_0/
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 
 
 [0]: ./images/azure-ad.png "使用 Azure Active Directory 的雲端身分識別架構"

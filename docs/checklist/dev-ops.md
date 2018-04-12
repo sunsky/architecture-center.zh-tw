@@ -1,14 +1,14 @@
 ---
-title: "DevOps 檢查清單"
-description: "提供 DevOps 相關指引的檢查清單。"
+title: DevOps 檢查清單
+description: 提供 DevOps 相關指引的檢查清單。
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2e338d2f2e61b404223001a61f44e06e89e7f563
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="devops-checklist"></a>DevOps 檢查清單
 
@@ -130,7 +130,7 @@ DevOps 是一種整合，將開發、品質保證和 IT 營運整合至統一的
 
 **授與資源的存取權時請遵循最低權限原則。** 謹慎管理對資源的存取。 根據預設應拒絕存取，除非使用者明確獲得資源的存取權。 僅授與使用者完成其工作所需的存取權。 追蹤使用者權限，並執行定期的安全性稽核。
 
-**使用角色型存取控制。** 將使用者帳戶和存取權指派給資源不應該是手動程序。 使用[角色型存取控制][ rbac] (RBAC) 根據 [Azure Active Directory][azure-ad] 身分識別和群組來授與存取權。 
+<strong>使用角色型存取控制。</strong> 將使用者帳戶和存取權指派給資源不應該是手動程序。 使用[角色型存取控制][ rbac] (RBAC) 根據 [Azure Active Directory][azure-ad] 身分識別和群組來授與存取權。 
 
 **使用錯誤追蹤系統來追蹤問題。** 如果沒有追蹤問題的好方法，就很容易會遺失項目、重複工作，或產生額外的問題。 不要依賴非正式個人對個人通訊，來追蹤錯誤的狀態。 使用錯誤追蹤工具來記錄問題的相關詳細資料、指派資源以解決問題，以及提供進度和狀態的稽核記錄。 
 

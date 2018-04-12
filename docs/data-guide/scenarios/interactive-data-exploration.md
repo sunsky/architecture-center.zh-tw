@@ -1,13 +1,13 @@
 ---
-title: "互動式資料探索"
-description: 
+title: 互動式資料探索
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a9e72f4cf88c9082fe79f854dd79e98bfaa918f5
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="interactive-data-exploration"></a>互動式資料探索
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="architecture"></a>架構
 
-雖然此案例的目標是要支援互動式資料分析，但資料科學所牽涉到的資料清理、取樣和結構化工作，常會包含長時間執行的程序。 此時，[批次處理](./batch-processing.md)就是適當的架構。
+雖然此案例的目標是要支援互動式資料分析，但資料科學所牽涉到的資料清理、取樣和結構化工作，常會包含長時間執行的程序。 此時，[批次處理](../big-data/batch-processing.md)就是適當的架構。
 
 ## <a name="technology-choices"></a>技術選擇
 

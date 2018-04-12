@@ -1,13 +1,13 @@
 ---
-title: "選擇 OLAP 資料存放區"
-description: 
+title: 選擇 OLAP 資料存放區
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: f3041b95696c9408a2c9ab747fe1ec3041db0743
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 03/31/2018
 ---
 # <a name="choosing-an-olap-data-store-in-azure"></a>在 Azure 中選擇 OLAP 資料存放區
 
@@ -30,7 +30,7 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 
 ## <a name="key-selection-criteria"></a>重要選取準則
 
-若要縮小選項範圍，請從回答下列問題來開始：
+若要縮小選項範圍，請開始回答這些問題：
 
 - 您是否想擁有受控服務，而不是自行管理伺服器？
 
