@@ -1,10 +1,11 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: 9bd86f1b3527f1116d4f5169baf76f8a5b9a385b
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.topic: landing-page
+ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
@@ -70,7 +71,7 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 
 **[雲端設計模式][patterns]**。 這些設計模式有助於在 Azure 中建置可靠、可擴充且安全的應用程式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。
 
-> &#10148; 檢閱完整的[雲端設計模式目錄](../patterns/index.md)。
+> & #10148; 檢閱完整的[雲端設計模式目錄](../patterns/index.md)。
 
 
 [arch-styles]: ./architecture-styles/index.md
