@@ -1,15 +1,15 @@
 ---
-title: "在 Azure 中實作中樞輪輻網路拓撲與共用服務"
-description: "如何在 Azure 中實作中樞輪輻網路拓撲與共用服務。"
+title: 在 Azure 中實作中樞輪輻網路拓撲與共用服務
+description: 如何在 Azure 中實作中樞輪輻網路拓撲與共用服務。
 author: telmosampaio
 ms.date: 02/25/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: c0fb1d1ddd7c70ed914d58e7c73b10475b91aedf
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: b492427f12e026be97629ccdc2b8d19c8c66f47d
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
@@ -98,7 +98,7 @@ ms.lasthandoff: 03/08/2018
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
-1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
 2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
 
@@ -106,9 +106,9 @@ ms.lasthandoff: 03/08/2018
 
 4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶，並遵循提示進行。
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter-using-azbb"></a>使用 azbb 部署模擬的內部部署資料中心
 
@@ -118,18 +118,18 @@ ms.lasthandoff: 03/08/2018
 
 2. 開啟 `onprem.json` 檔案，然後在第 45 和 46 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 3. 執行 `azbb` 以部署模擬的內部部署環境，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
-  ```
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `onprem-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   ```bash
+   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
+   ```
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `onprem-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
 4. 等待部署完成。 此部署會建立一個虛擬網路、一個執行 Windows 的虛擬機器，以及一個 VPN 閘道。 建立 VPN 閘道可能需要超過 40 分鐘才能完成。
 
@@ -139,26 +139,26 @@ ms.lasthandoff: 03/08/2018
 
 1. 開啟 `hub-vnet.json` 檔案，然後在第 50 和 51 行的引號之間輸入使用者名稱和密碼，如下所示。
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 2. 在第 52 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
 
 3. 在第 83 行的引號之間輸入共用金鑰，如下所示，然後儲存檔案。
 
-  ```bash
-  "sharedKey": "",
-  ```
+   ```bash
+   "sharedKey": "",
+   ```
 
 4. 執行 `azbb` 以部署模擬的內部部署環境，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
-  ```
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `hub-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   ```bash
+   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
+   ```
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `hub-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
 5. 等待部署完成。 此部署會建立一個虛擬網路、一個虛擬機器、一個 VPN 閘道，以及一個與上節中建立之閘道的連線。 建立 VPN 閘道可能需要超過 40 分鐘才能完成。
 
@@ -168,22 +168,22 @@ ms.lasthandoff: 03/08/2018
 
 1. 開啟 `hub-adds.json` 檔案，然後在第 14 和 15 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 2. 執行 `azbb` 以部署 ADDS 網域控制站，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+   ```
   
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `hub-adds-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `hub-adds-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
-  > [!NOTE]
-  > 這個部分的部署可能需要幾分鐘的時間，因為它需要將兩個 VM 加入裝載於模擬的內部部署資料中心之網域，然後在其上安裝 AD DS。
+   > [!NOTE]
+   > 這個部分的部署可能需要幾分鐘的時間，因為它需要將兩個 VM 加入裝載於模擬的內部部署資料中心之網域，然後在其上安裝 AD DS。
 
 ### <a name="nva"></a>NVA
 
@@ -191,17 +191,17 @@ ms.lasthandoff: 03/08/2018
 
 1. 開啟 `hub-nva.json` 檔案，然後在第 13 和 14 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 2. 執行 `azbb` 以部署 NVA VM 和使用者定義的路由。
 
-  ```bash
-  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-  ```
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `hub-nva-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   ```bash
+   azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
+   ```
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `hub-nva-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
 ### <a name="azure-spoke-vnets"></a>Azure 輪輻 VNet
 
@@ -209,31 +209,31 @@ ms.lasthandoff: 03/08/2018
 
 1. 開啟 `spoke1.json` 檔案，然後在第 52 和 53 行的引號之間輸入使用者名稱和密碼，如下所示，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 2. 在第 54 行上，針對 `osType` 輸入 `Windows` 或 `Linux` 以安裝 Windows Server 2016 Datacenter 或 Ubuntu 16.04 作為 jumpbox 的作業系統。
 
 3. 執行 `azbb` 以部署第一個輪輻 VNet 環境，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
+   ```
   
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `spoke1-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `spoke1-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
-3. 對 `spoke2.json` 檔案重複上述的步驟 1。
+4. 對 `spoke2.json` 檔案重複上述的步驟 1。
 
-4. 執行 `azbb` 以部署第二個輪輻 VNet 環境，如下所示。
+5. 執行 `azbb` 以部署第二個輪輻 VNet 環境，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
-  ```
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `spoke2-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   ```bash
+   azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
+   ```
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `spoke2-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
 ### <a name="azure-hub-vnet-peering-to-spoke-vnets"></a>Azure 中樞 VNet 對等互連至輪輻 VNet
 
@@ -243,12 +243,12 @@ ms.lasthandoff: 03/08/2018
 
 2. 執行 `azbb` 以部署第一個輪輻 VNet 環境，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
+   ```
 
-  > [!NOTE]
-  > 如果您決定使用不同的資源群組名稱 (非 `hub-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
+   > [!NOTE]
+   > 如果您決定使用不同的資源群組名稱 (非 `hub-vnet-rg`)，請務必搜尋使用該名稱的所有參數檔案，然後加以編輯，以便使用您自己的資源群組名稱。
 
 <!-- links -->
 
@@ -270,7 +270,7 @@ ms.lasthandoff: 03/08/2018
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
 
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-hub-spoke.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [0]: ./images/shared-services.png "Azure 中的共用服務拓撲"
 [3]: ./images/hub-spokehub-spoke.svg "Azure 中的中樞輪輻中樞輪輻拓撲"

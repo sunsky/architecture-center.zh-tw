@@ -1,16 +1,16 @@
 ---
-title: "執行適用於多層式架構的 Windows VM"
-description: "如何在 Azure 上實作多層式架構，請特別注意可用性、安全性、延展性及管理功能安全性。"
+title: 執行適用於多層式架構的 Windows VM
+description: 如何在 Azure 上實作多層式架構，請特別注意可用性、安全性、延展性及管理功能安全性。
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: 0654239a5bbd966a2aa776415b7f15ae723ffd63
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 5ed94eb9ab8203d35d9597336e367d54e03944d7
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-windows-vms-for-an-n-tier-application"></a>執行適用於多層式架構應用程式的 Windows VM
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 01/08/2018
 * **負載平衡器。** 使用[網際網路面向的負載平衡器][load-balancer-external]，將連入的網際網路流量散發到 Web 層，並使用[內部負載平衡器][load-balancer-internal]，將來自 Web 層的網路流量散發到 Business 層。
 * **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，能夠儘允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許遠端桌面 (RDP) 流量。
 * **監視。** 監視軟體 (例如 [Nagios]、[Zabbix] 或 [Icinga]) 可讓您深入了解回應時間、VM 執行時間，以及系統的整體健康情況。 在位於個別管理子網路中的 VM 上安裝監視軟體。
-* **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的 3 層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
+* <strong>NSG。</strong> 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的 3 層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
 * **SQL Server Always On 可用性群組。** 藉由啟用複寫和容錯移轉，在資料層提供高可用性。
 * **Active Directory Domain Services (AD DS) 伺服器**。 在 Windows Server 2016 之前，必須將 SQL Server Always On 可用性群組加入網域。 這是因為可用性群組相依於 Windows Server 容錯移轉叢集 (WSFC) 技術。 Windows Server 2016 引進了不需 Active Directory 就可建立容錯移轉叢集的能力，因此，對這個架構而言，AD DS 伺服器並非必要。 如需詳細資訊，請參閱 [Windows Server 2016 中容錯移轉叢集的新功能][wsfc-whats-new]。
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
@@ -82,10 +82,10 @@ ms.lasthandoff: 01/08/2018
 3. 建立可用性群組接聽程式，並將接聽程式的 DNS 名稱對應到內部負載平衡器的 IP 位址。 
 4. 建立 SQL Server 接聽連接埠的負載平衡器規則 (預設為 TCP 連接埠 1433)。 負載平衡器規則必須啟用「浮動 IP」，也稱為「伺服器直接回傳」。 這樣會導致 VM 直接回覆用戶端，以啟用與主要複本的直接連線。
   
-  > [!NOTE]
-  > 啟用浮動 IP 時，前端連接埠號碼必須與負載平衡器規則中的後端連接埠號碼相同。
-  > 
-  > 
+   > [!NOTE]
+   > 啟用浮動 IP 時，前端連接埠號碼必須與負載平衡器規則中的後端連接埠號碼相同。
+   > 
+   > 
 
 當 SQL 用戶端嘗試連線時，負載平衡器會將連線要求路由傳送到主要複本。 如果已容錯移轉至另一個複本，負載平衡器會自動將後續要求路由傳送到新的主要複本。 如需詳細資訊，請參閱[設定 SQL Server Always On 可用性群組的 ILB 接聽程式][sql-alwayson-ilb]。
 
@@ -131,25 +131,25 @@ Jumpbox 將具備最低效能需求，因此，請針對 Jumpbox 選取較小的
 
 此參考架構的部署可在 [GitHub][github-folder] 上取得。 
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
-1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
 2. 確定您已在電腦上安裝 Azure CLI 2.0。 若要安裝 CLI，請依照[安裝 Azure CLI 2.0][azure-cli-2] 中的指示進行。
 
 3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
 
-  ```bash
-  npm install -g @mspnp/azure-building-blocks
-  ```
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
 
 4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
 
@@ -159,18 +159,18 @@ Jumpbox 將具備最低效能需求，因此，請針對 Jumpbox 選取較小的
 
 2. 參數檔案會指定部署中每個 VM 的預設管理員使用者名稱及密碼。 您必須在部署參考架構前先變更這些內容。 開啟 `n-tier-windows.json` 檔案，並用新設定取代每個 **adminUsername** 和 **adminPassword** 欄位。
   
-  > [!NOTE]
-  > 在部署期間，會有多個指令碼在 **VirtualMachineExtension** 物件及 **VirtualMachine** 物件中部份的 **extensions** 設定中執行。 這些指令碼需要您之前變更的管理員使用者名稱和密碼。 建議您檢閱這些指令碼，以確保指定了正確的認證。 若您並未指定正確的認證，部署可能失敗。
-  > 
-  > 
+   > [!NOTE]
+   > 在部署期間，會有多個指令碼在 **VirtualMachineExtension** 物件及 **VirtualMachine** 物件中部份的 **extensions** 設定中執行。 這些指令碼需要您之前變更的管理員使用者名稱和密碼。 建議您檢閱這些指令碼，以確保指定了正確的認證。 若您並未指定正確的認證，部署可能失敗。
+   > 
+   > 
 
 儲存檔案。
 
 3. 使用如下所示的 **azbb** 命令列來部署參考架構。
 
-  ```bash
-  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-  ```
+   ```bash
+   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
+   ```
 
 如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
 
@@ -216,5 +216,5 @@ Jumpbox 將具備最低效能需求，因此，請針對 Jumpbox 選取較小的
 [Nagios]: https://www.nagios.org/
 [Zabbix]: http://www.zabbix.com/
 [Icinga]: http://www.icinga.org/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [0]: ./images/n-tier-diagram.png "使用 Microsoft Azure 的多層式架構"

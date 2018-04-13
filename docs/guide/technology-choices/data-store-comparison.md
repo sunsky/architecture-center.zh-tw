@@ -1,12 +1,12 @@
 ---
-title: "選擇資料存放區的準則"
-description: "Azure 計算選項的概觀"
+title: 選擇資料存放區的準則
+description: Azure 計算選項的概觀
 author: MikeWasson
-ms.openlocfilehash: 7fb75cd334438c5b985fa04ad8afe3236f2391f8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9cb2f77b854a38450490bc96bf0b6a2998ceb1c7
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>選擇資料存放區的準則
 
@@ -38,11 +38,11 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 
 ### <a name="management-and-cost"></a>管理和成本
 
-- **受管理的服務**。 除非您需要只能在 IaaS 主控的資料存放區中找到的特定功能，否則請儘可能使用受管理的資料服務。
-- **區域可用性**。 針對受管理的服務，所有 Azure 區域都提供服務嗎嗎？ 您的解決方案需要裝載在特定的 Azure 區域嗎？
+- **受控服務**。 除非您需要只能在 IaaS 主控的資料存放區中找到的特定功能，否則請儘可能使用受控資料服務。
+- **區域可用性**。 針對受控服務，所有 Azure 區域都提供服務嗎嗎？ 您的解決方案需要裝載在特定的 Azure 區域嗎？
 - **可攜性**。 您的資料需要移轉至內部部署、外部資料中心或其他雲端主控環境嗎？
 - **授權**。 您有專屬與 OSS 授權類型的喜好設定嗎？ 您可使用的授權類型是否有任何其他外部限制？
-- **整體成本**。 在您的解決方案中使用服務的整體成本為何？ 若要支援您的執行時間和輸送量需求，將需執行多少個執行個體？ 請考慮此計算中的作業成本。 建議使用受管理服務的其中一個原因，便是可降低作業成本。
+- **整體成本**。 在您的解決方案中使用服務的整體成本為何？ 若要支援您的執行時間和輸送量需求，將需執行多少個執行個體？ 請考慮此計算中的作業成本。 建議使用受控服務的其中一個原因，便是可降低作業成本。
 - **符合成本效益**。 您可以分割資料，以更符合成本效益的方式儲存它嗎？ 例如，您可以將大型物件從昂貴的關聯式資料庫移出到物件存放區嗎？
 
 ### <a name="security"></a>安全性
@@ -61,7 +61,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="relational-database-management-systems-rdbms"></a>關聯式資料庫管理系統 (RDBMS)
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>建立新記錄和更新現有的資料會定期發生。</li>
@@ -74,7 +74,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>資料為高度正規化。</li>
@@ -87,7 +87,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>企業營運 (人力資本管理、客戶關係管理、企業資源規劃)</li>
@@ -105,7 +105,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="document-databases"></a>文件資料庫
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>一般用途。</li>
@@ -117,7 +117,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
             <li>會以單一區塊的形式來擷取與寫入個別文件。</li>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>可以透過反正規化的方式來管理資料。</li>
@@ -129,10 +129,10 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
-            <li>產品類別目錄</li>
+            <li>產品目錄</li>
             <li>使用者帳戶</li>
             <li>用料表</li>
             <li>個人化</li>
@@ -149,7 +149,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="keyvalue-stores"></a>索引鍵/值存放區
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>使用單一識別碼索引鍵 (如字典) 來識別和存取資料。</li>
@@ -160,17 +160,17 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>資料大小通常很大。</li>
-            <li>每個索引鍵都與單一值關聯，也就是未受管理的資料 BLOB。</li>
+            <li>每個索引鍵都與單一值關聯，也就是非受控資料 BLOB。</li>
             <li>未強制執行任何結構描述。</li>
             <li>實體之間沒有關聯性。</li>
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>資料快取</li>
@@ -186,7 +186,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="graph-databases"></a>圖表資料庫
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>資料項目之間的關聯性非常複雜，相關的資料項目之間包含許多躍點。</li>
@@ -195,7 +195,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>資料由節點和關聯性組成。</li>
@@ -205,13 +205,13 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>組織圖</li>
             <li>朋友圈</li>
             <li>詐騙偵測</li>
-            <li>Analytics</li>
+            <li>分析</li>
             <li>推薦引擎</li>
         </ul>
     </td>
@@ -221,7 +221,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="column-family-databases"></a>資料行系列資料庫
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>大部分的資料行系列資料庫執行寫入作業的速度非常快。</li>
@@ -232,7 +232,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>資料會儲存在包含索引鍵資料行和一或多個資料行系列的資料表中。</li>
@@ -242,7 +242,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>建議</li>
@@ -262,7 +262,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="search-engine-databases"></a>搜尋引擎資料庫
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>索引資料來自多個來源和服務。</li>
@@ -274,7 +274,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>半結構化或非結構化</li>
@@ -283,13 +283,13 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>產品類別目錄</li>
             <li>網站搜尋</li>
             <li>記錄</li>
-            <li>Analytics</li>
+            <li>分析</li>
             <li>購物網站</li>
         </ul>
     </td>
@@ -299,7 +299,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="data-warehouse"></a>資料倉儲
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>資料分析</li>
@@ -307,17 +307,17 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>來自多個來源的歷程記錄資料。</li>
-            <li>通常在「星型」或「雪花式」結構描述中進行反正規化，包含事實和維度資料表。</li>
+            <li>通常在「星型」&quot;&quot;或「雪花式」&quot;&quot;結構描述中進行反正規化，包含事實和維度資料表。</li>
             <li>通常會根據排程來載入新資料。</li>
             <li>維度資料表通常包含實體的多個歷程記錄版本，稱為「緩時變維度」。</li>
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>為分析模型、報表和儀表板提供資料的企業資料倉儲。
     </td>
 </tr>
@@ -327,7 +327,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="time-series-databases"></a>時間序列資料庫
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>有壓倒性比例 (95-99%) 的作業為寫入作業。</li>
@@ -340,7 +340,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>作為主索引鍵和排序機制的時間戳記。</li>
@@ -349,7 +349,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>監視和事件遙測。</li>
@@ -362,7 +362,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="object-storage"></a>物件儲存體
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>由索引鍵識別。</li>
@@ -372,7 +372,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>資料大小很大。</li>
@@ -381,7 +381,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>影像、視訊、Office 文件、PDF</li>
@@ -397,7 +397,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 ## <a name="shared-files"></a>共用檔案
 
 <table>
-<tr><td>**工作負載**</td>
+<tr><td><strong>工作負載</strong></td>
     <td>
         <ul>
             <li>移轉自與檔案系統互動的現有應用程式。</li>
@@ -405,7 +405,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**資料類型**</td>
+<tr><td><strong>資料類型</strong></td>
     <td>
         <ul>
             <li>階層式資料夾集合中的檔案。</li>
@@ -413,7 +413,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
         </ul>
     </td>
 </tr>
-<tr><td>**範例**</td>
+<tr><td><strong>範例</strong></td>
     <td>
         <ul>
             <li>舊版檔案</li>

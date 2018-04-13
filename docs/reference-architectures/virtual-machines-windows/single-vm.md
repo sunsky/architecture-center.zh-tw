@@ -1,16 +1,16 @@
 ---
-title: "在 Azure 上執行 Windows VM"
-description: "如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。"
+title: 在 Azure 上執行 Windows VM
+description: 如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。
 author: telmosampaio
-ms.date: 12/12/2017
+ms.date: 04/03/2018
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: ffc8ddcbdd5422f1e38922fc6735ab1579289c7b
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 9bc0b4af56b9194fd1bec8a189c86963ad2b0c98
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上執行 Windows VM
 
@@ -22,31 +22,37 @@ ms.lasthandoff: 02/23/2018
 
 ## <a name="architecture"></a>架構
 
-佈建 Azure VM 需要額外的元件，例如計算、網路功能和儲存體資源。
+除了 VM 本身，佈建 Azure VM 還需要額外的元件，包括網路功能和儲存體資源。
 
-* **資源群組。** [資源群組][resource-manager-overview]是保存相關資源的容器。 一般來說，您應該在解決方案中，根據資源的存留期以及將管理資源的人員來群組資源。 對於單一 VM 工作負載，建議您針對所有資源建立單一資源群組。
+* **資源群組。** [資源群組][resource-manager-overview]是保存 Azure 相關資源的本機容器。 一般來說，根據資源的存留期以及將管理資源的人員來群組資源。 
+
 * **VM**。 您可以從已發佈的映像清單、自訂的受控映像或您上傳至 Azure Blob 儲存體的虛擬硬碟 (VHD) 檔案佈建 VM。
-* **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD，因此即使主機電腦已關閉仍會保存下來。
+
+* **受控磁碟**。 [Azure 受控磁碟][managed-disks]藉由為您處理儲存體來簡化磁碟管理。 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD，因此即使主機電腦已關閉仍會保存下來。 我們也建議建立一或多個[資料磁碟][data-disk]，這些是用於應用程式資料的持續性 VHD。
+
 * **暫存磁碟。** VM 是使用暫存磁碟 (Windows 上的 `D:` 磁碟機) 來建立。 此磁碟會儲存在主機電腦的實體磁碟機上。 它「不會」儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中遭到刪除。 僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。
-* **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。 資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
-* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
+
+* **虛擬網路 (VNet)。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。
+
+* **網路介面 (NIC)**。 NIC 可讓 VM 與虛擬網路通訊。  
+
 * **公用 IP 位址。** 必須要有公用 IP 位址才能與 VM &mdash; 進行通訊，例如透過遠端桌面 (RDP)。  
-* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。  
-* **網路介面 (NIC)**。 指派的 NIC 可讓 VM 與虛擬網路通訊。  
-* **網路安全性群組 (NSG)**。 [網路安全性群組][nsg]可用來允許或拒絕通往網路資源的網路流量。 您可以將 NSG 與獨立的 NIC 或子網路關聯。 如果您將它與子網路關聯，該 NSG 規則會套用至子網路中的所有 VM。
+
+* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+
+* **網路安全性群組 (NSG)**。 [網路安全性群組][nsg]可用來允許或拒絕 VM 的網路流量。 NSG 可與子網路或個別 VM 執行個體相關聯。 
+
 * **診斷。** 診斷記錄對於管理和針對 VM 進行疑難排解十分重要。
 
 ## <a name="recommendations"></a>建議
 
-此架構顯示在 Azure 中執行 Windows VM 的基準建議。 但是，我們不建議針對關鍵任務工作負載使用單一 VM，因為它會建立單一失敗點。 若要擁有較高的可用性，您必須在[可用性設定組][availability-set]中部署多個 VM。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。 
+此架構顯示在 Azure 中執行 Windows VM 的基準建議。 但是，我們不建議針對關鍵任務工作負載使用單一 VM，因為它會建立單一失敗點。 如需較高的可用性，請部署兩部以上的負載平衡 VM。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
 ### <a name="vm-recommendations"></a>VM 建議
 
-Azure 提供許多不同的虛擬機器大小。 建議使用[進階儲存體][premium-storage]，因為具有高效能、低延遲，而且[可支援特定的 VM 大小][premium-storage-supported]。 除非您有高效能運算等特殊工作負載，否則請選取其中一種大小。 如需詳細資訊，請參閱[虛擬機器大小][virtual-machine-sizes]。
+Azure 提供許多不同的虛擬機器大小。 如需相關資訊，請參閱 [Azure 中虛擬機器的大小][virtual-machine-sizes]。 如果您將現有的工作負載移至 Azure，則從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和每秒的磁碟輸入/輸出作業 (IOPS) 測量您的實際工作負載效能，並視需要調整大小。 如果您的 VM 需要多個 NIC，請注意每種 [VM 大小][vm-size-tables]都有定義 NIC 的數目上限。
 
-如果您將現有的工作負載移至 Azure，則從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和每秒的磁碟輸入/輸出作業 (IOPS) 測量您的實際工作負載效能，並視需要調整大小。 如果您的 VM 需要多個 NIC，請注意每種 [VM 大小][vm-size-tables]都有定義 NIC 的數目上限。
-
-當您佈建 Azure 資源時，必須指定一個區域。 一般而言，選擇最接近您的內部使用者或客戶的區域。 不過，並非所有 VM 大小在所有區域都可供使用。 如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。 如需特定區域中可用的 VM 大小清單，請從 Azure 命令列介面 (CLI) 執行下列命令：
+一般而言，選擇最接近您的內部使用者或客戶的 Azure 區域。 不過，並非所有 VM 大小在所有區域都可供使用。 如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。 如需特定區域中可用的 VM 大小清單，請從 Azure 命令列介面 (CLI) 執行下列命令：
 
 ```
 az vm list-sizes --location <location>
@@ -60,15 +66,15 @@ az vm list-sizes --location <location>
 
 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。 成本是依佈建的磁碟容量而定。 IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
 
-我們也建議使用[受控磁碟](/azure/storage/storage-managed-disks-overview)。 受控磁碟不需要儲存體帳戶。 您只需指定磁碟的大小和類型，它就會以高度可用的資源方式進行部署。
+我們也建議使用[受控磁碟][managed-disks]。 受控磁碟不需要儲存體帳戶。 您只需指定磁碟的大小和類型，它就會以高度可用的資源方式進行部署。
 
-若您使用的是非受控的磁碟，請針對每個 VM 建立個別的 Azure 儲存體帳戶來保存虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 [(IOPS) 限制][vm-disk-limits]。
+新增一或多個資料磁碟。 當您建立 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 若情況允許，請將應用程式安裝在資料磁碟，不要安裝在作業系統磁碟。 有些舊版應用程式可能需要在 C: 磁碟機上安裝元件，在此情況下，您可以使用 PowerShell [調整作業系統磁碟大小][resize-os-disk]。
 
-新增一或多個資料磁碟。 當您建立 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 如果您未使用受控磁碟且具有大量的資料磁碟，請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
+建立儲存體帳戶以放置診斷記錄。 標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
 
-若情況允許，請將應用程式安裝在資料磁碟，不要安裝在作業系統磁碟。 有些舊版應用程式可能需要在 C: 磁碟機上安裝元件，在此情況下，您可以使用 PowerShell [調整作業系統磁碟大小][resize-os-disk]。
+> [!NOTE]
+> 如果您未使用受控磁碟，請針對每個 VM 建立個別的 Azure 儲存體帳戶來保存虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 [IOPS 限制][vm-disk-limits]。 請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
 
-為求最佳效能，請建立個別的儲存體帳戶來保存診斷記錄。 標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
 
 ### <a name="network-recommendations"></a>網路建議
 
@@ -83,7 +89,7 @@ az vm list-sizes --location <location>
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-您可以藉由[變更 VM 大小][vm-resize]來相應增加或相應減少 VM。 若要水平相應放大，請將兩個以上的 VM 置於負載平衡器後方。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM 以獲得延展性和可用性][multi-vm]。
+您可以藉由[變更 VM 大小][vm-resize]來相應增加或相應減少 VM。 若要水平相應放大，請將兩個以上的 VM 置於負載平衡器後方。 如需詳細資訊，請參閱[執行負載平衡的 VM 以獲得延展性和可用性][multi-vm]。
 
 ## <a name="availability-considerations"></a>可用性考量
 
@@ -91,21 +97,15 @@ az vm list-sizes --location <location>
 
 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。 您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
-VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure 儲存體來提供持久性和可用性。
-
 為了防止在正常作業期間意外遺失資料 (例如，因使用者錯誤而造成)，您也應該使用 [Blob 快照][blob-snapshot]或其他工具來實作時間點備份。
 
 ## <a name="manageability-considerations"></a>管理性考量
 
 **資源群組。** 請將關係密切且具有相同生命週期的資源置於同一個[資源群組][resource-manager-overview]中。 資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組追蹤帳單成本。 您也可以刪除整組資源，這對於測試部署非常有用。 請指派有意義的資源名稱，以簡化尋找特定資源及了解其角色的程序。 如需詳細資訊，請參閱[建議的 Azure 資源命名慣例][naming-conventions]。
 
-**停止 VM。** Azure 會區分「已停止」和「已解除配置」狀態。 您需要在 VM 狀態停止時支付費用，而不是在取消配置 VM 時支付。
+**停止 VM。** Azure 會區分「已停止」和「已解除配置」狀態。 您需要在 VM 狀態停止時支付費用，而不是在取消配置 VM 時支付。 在 Azure 入口網站中，[停止] 按鈕會取消配置 VM。 如果您已在登入時透過 OS 關閉，則會停止 VM，但不會取消配置，因此您仍需付費。
 
-在 Azure 入口網站中，[停止] 按鈕會取消配置 VM。 如果您已在登入時透過 OS 關閉，則會停止 VM，但不會取消配置，因此您仍需付費。
-
-**刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。 這表示您可以放心地刪除 VM，而不會遺失任何資料。 不過，您仍需支付儲存體費用。 若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]中刪除。
-
-若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。
+**刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。 這表示您可以放心地刪除 VM，而不會遺失任何資料。 不過，您仍需支付儲存體費用。 若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]中刪除。 若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。
 
 ## <a name="security-considerations"></a>安全性考量
 
@@ -131,44 +131,50 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
   * 用來裝載 VM 且具有名為 **web** 之單一子網路的虛擬網路。
   * 含有兩個傳入規則的 NSG，允許 RDP 和 HTTP 流量到 VM。
   * 執行最新版 Windows Server 2016 Datacenter Edition 的 VM。
-  * 可將兩個資料磁碟格式化的範例自訂指令碼擴充功能，以及部署 IIS 的 PowerShell DSC 指令碼。
+  * 可將兩個資料磁碟格式化的範例自訂指令碼擴充功能，以及可部署 Internet Information Services (IIS) 的 PowerShell DSC 指令碼。
 
 ### <a name="prerequisites"></a>先決條件
 
-在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
-
-1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
 2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
 
 3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
 
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
+4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，輸入下列命令來登入您的 Azure 帳戶。
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
 
-若要部署範例單一 VM 工作負載，請依照下列步驟執行：
+若要部署此參考架構，請依照下列步驟執行：
 
 1. 瀏覽至您在上述必要條件步驟中所下載存放庫的 `virtual-machines\single-vm\parameters\windows` 資料夾。
 
-2. 開啟 `single-vm-v2.json` 檔案，然後在引號之間輸入使用者名稱和 SSH 金鑰，如下所示，然後儲存檔案。
+2. 開啟 `single-vm-v2.json` 檔案，然後在引號之間輸入使用者名稱和密碼，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "",
-  "adminPassword": "",
-  ```
+   ```bash
+   "adminUsername": "",
+   "adminPassword": "",
+   ```
 
 3. 執行 `azbb` 以部署範例 VM，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g <resource_group_name> -l <location> -p single-vm-v2.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g <resource_group_name> -l <location> -p single-vm-v2.json --deploy
+   ```
 
-如需部署此範例參考架構的詳細資訊，請瀏覽我們的 [GitHub 存放庫][git]。
+若要驗證部署，請執行下列 Azure CLI 命令，以尋找 VM 的公用 IP 位址：
+
+```bash
+az vm show -n ra-single-windows-vm1 -g <resource-group-name> -d -o table
+```
+
+如果您在網頁瀏覽器中巡覽到這個位址，您應會看到預設的 IIS 首頁。
+
+如需自訂此部署的相關資訊，請瀏覽我們的 [GitHub 存放庫][git]。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -196,8 +202,9 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
 [group-policy]: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn595129(v=ws.11)
 [log-collector]: https://azure.microsoft.com/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-windows-manage-availability
+[managed-disks]: /azure/storage/storage-managed-disks-overview
 [multi-vm]: multi-vm.md
-[naming-conventions]: /azure/architecture/best-practices/naming-conventions.md
+[naming-conventions]: ../../best-practices/naming-conventions.md
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [nsg-default-rules]: /azure/virtual-network/virtual-networks-nsg#default-rules
 [planned-maintenance]: /azure/virtual-machines/virtual-machines-windows-planned-maintenance
@@ -218,7 +225,7 @@ VHD 會儲存在 [Azure 儲存體][azure-storage]中。 系統會複寫 Azure �
 [services-by-region]: https://azure.microsoft.com/regions/#services
 [static-ip]: /azure/virtual-network/virtual-networks-reserved-public-ip
 [virtual-machine-sizes]: /azure/virtual-machines/virtual-machines-windows-sizes
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vm-disk-limits]: /azure/azure-subscription-service-limits#virtual-machine-disk-limits
 [vm-resize]: /azure/virtual-machines/virtual-machines-linux-change-vm-size
 [vm-size-tables]: /azure/virtual-machines/virtual-machines-windows-sizes

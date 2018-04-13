@@ -3,56 +3,36 @@
 - name: 資料架構指南
   href: index.md
   items:
-    - name: 傳統的 RDBMS
+    - name: 傳統的 RDBMS 工作負載
       items:
-        - name: 概念
-          items:
-            - name: 關聯式資料
-              href: concepts/relational-data.md
-            - name: 交易資料
-              href: concepts/transactional-data.md
-            - name: 語意模型
-              href: concepts/semantic-modeling.md
+        - name: 概觀
+          href: relational-data/index.md
+        - name: 線上交易處理 (OLTP)
+          href: relational-data/online-transaction-processing.md
+        - name: 資料倉儲
+          href: relational-data/data-warehousing.md
+        - name: 線上分析處理 (OLAP)
+          href: relational-data/online-analytical-processing.md
+        - name: 擷取、轉換和載入 (ETL)
+          href: relational-data/etl.md
+    - name: 巨量資料架構
+      items:
+        - name: 概觀
+          href: big-data/index.md
+        - name: 批次處理
+          href: big-data/batch-processing.md
+        - name: 即時處理
+          href: big-data/real-time-processing.md
+        - name: 大規模機器學習
+          href: big-data/machine-learning-at-scale.md
+        - name: 非關聯式資料存放區
+          href: big-data/non-relational-data.md
         - name: 案例
           items:
-            - name: 線上交易處理 (OLTP)
-              href: scenarios/online-transaction-processing.md
-            - name: 線上分析處理 (OLAP)
-              href: scenarios/online-analytical-processing.md
-            - name: 資料倉儲
-              href: scenarios/data-warehousing.md
-            - name: 擷取、轉換和載入 (ETL)
-              href: scenarios/etl.md
-        - name: 技術選擇
-          items:
-            - name: 資料倉儲
-              href: technology-choices/data-warehouses.md
-            - name: 線上分析處理 (OLAP)
-              href: technology-choices/olap-data-stores.md
-            - name: 線上交易處理 (OLTP)
-              href: technology-choices/oltp-data-stores.md
-    - name: 巨量資料和 NoSQL
-      items:
-        - name: 概念
-          items:
-            - name: 非關聯式資料存放區
-              href: concepts/non-relational-data.md
-            - name: 使用 CSV 和 JSON 檔案
-              href: concepts/csv-and-json.md
-            - name: Data Lake
-              href: concepts/data-lake.md
-            - name: 巨量資料架構
-              href: concepts/big-data.md
             - name: 進階分析
-              href: concepts/advanced-analytics.md
-            - name: 大規模機器學習
-              href: concepts/machine-learning-at-scale.md
-        - name: 案例
-          items:
-            - name: 批次處理
-              href: scenarios/batch-processing.md
-            - name: 即時處理
-              href: scenarios/real-time-processing.md
+              href: scenarios/advanced-analytics.md
+            - name: Data Lake
+              href: scenarios/data-lake.md
             - name: 自由格式文字檢索
               href: scenarios/search.md
             - name: 互動式資料探索
@@ -61,6 +41,8 @@
               href: scenarios/natural-language-processing.md
             - name: 時間序列解決方案
               href: scenarios/time-series.md
+            - name: 使用 CSV 和 JSON 檔案
+              href: scenarios/csv-and-json.md
         - name: 技術選擇
           items:
             - name: 分析資料存放區

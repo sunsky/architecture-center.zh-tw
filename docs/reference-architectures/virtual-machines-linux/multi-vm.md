@@ -1,16 +1,16 @@
 ---
-title: "在 Azure 上執行負載平衡的 VM 以獲得延展性和可用性"
-description: "如何在 Azure 上執行多個 Linux VM 以獲得延展性和可用性。"
+title: 在 Azure 上執行負載平衡的 VM 以獲得延展性和可用性
+description: 如何在 Azure 上執行多個 Linux VM 以獲得延展性和可用性。
 author: telmosampaio
 ms.date: 11/16/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: n-tier
 pnp.series.prev: single-vm
-ms.openlocfilehash: 8f081baa40355b4f02b83c308466df8333d7ad87
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 2c8b1310e0a76ae0cea0a52cdbd2a0e5d3205d6e
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-load-balanced-vms-for-scalability-and-availability"></a>執行負載平衡的 VM 以獲得延展性和可用性
 
@@ -125,11 +125,11 @@ ms.lasthandoff: 01/08/2018
   * 位於 VM 擴展集前方的負載平衡器。
   * 含有傳入規則的 NSG，可允許 HTTP 流量通往 VM 擴展集。
 
-### <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>先決條件
 
 在您可以將參考架構部署到自己的訂用帳戶之前，必須執行下列步驟。
 
-1. 複製、派生或下載適用於 [AzureCAT 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
 2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
 
@@ -137,9 +137,9 @@ ms.lasthandoff: 01/08/2018
 
 4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
 
@@ -149,16 +149,16 @@ ms.lasthandoff: 01/08/2018
 
 2. 開啟 `multi-vm-v2.json` 檔案，然後在引號之間輸入使用者名稱和 SSH 金鑰，如下所示，然後儲存檔案。
 
-  ```bash
-  "adminUsername": "",
-  "sshPublicKey": "",
-  ```
+   ```bash
+   "adminUsername": "",
+   "sshPublicKey": "",
+   ```
 
 3. 執行 `azbb` 以部署 VM，如下所示。
 
-  ```bash
-  azbb -s <subscription_id> -g <resource_group_name> -l <location> -p multi-vm-v2.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g <resource_group_name> -l <location> -p multi-vm-v2.json --deploy
+   ```
 
 如需部署此範例參考架構的詳細資訊，請瀏覽我們的 [GitHub 存放庫][git]。
 
@@ -187,7 +187,7 @@ ms.lasthandoff: 01/08/2018
 [runbook-gallery]: /azure/automation/automation-runbook-gallery#runbooks-in-runbook-gallery
 [single-vm]: single-vm.md
 [subscription-limits]: /azure/azure-subscription-service-limits
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vm-disk-limits]: /azure/azure-subscription-service-limits#virtual-machine-disk-limits
 [vm-scaleset]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [vm-sizes]: https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/

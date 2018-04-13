@@ -1,13 +1,13 @@
 ---
-title: "前端模式的後端"
-description: "建立由特定前端應用程式或介面取用的個別後端服務。"
+title: 前端模式的後端
+description: 建立由特定前端應用程式或介面取用的個別後端服務。
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>前端模式的後端
 

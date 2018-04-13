@@ -1,11 +1,11 @@
 ---
-title: "適用於架構圖表的圖示和其他資產"
-description: "適合用來產生您自己之架構圖表的圖示、Viso 範本、PNG 檔案和 SVG 檔案"
-ms.openlocfilehash: 58a2046c0d463c1f331ea3f950f0c11c273ffc36
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+title: 適用於架構圖表的圖示和其他資產
+description: 適合用來產生您自己之架構圖表的圖示、Viso 範本、PNG 檔案和 SVG 檔案
+ms.openlocfilehash: f65a09450ba1b7154e6d43bbc7bdb65212b21828
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="icons-and-diagrams"></a>圖示和圖表
 
@@ -27,6 +27,10 @@ ms.lasthandoff: 02/23/2018
 ## <a name="reference-architectures-visio-template"></a>參考架構 Visio 範本 
 
 [參考架構](../reference-architectures/index.md)中所使用的圖表版本可[以 Visio 格式下載](https://aka.ms/arch-diagrams)。
+
+## <a name="solution-architecture-diagrams"></a>方案架構圖表
+
+Microsoft 會發佈[方案架構和隨附的圖表](https://azure.microsoft.com/solutions/architecture/)。 此圖表可以 SVG 格式下載。 您可使用許多工具 (包括 Visio 和 PowerPoint) 來開啟 SVG，然後進行修改。 如果您取消圖表的群組，則可以選取個別的圖示。   
 
 ## <a name="3d-blueprint-visio-template"></a>3D 藍圖 Visio 範本
 

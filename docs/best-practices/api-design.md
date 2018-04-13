@@ -1,14 +1,14 @@
 ---
-title: "API 設計指引"
-description: "說明如何建立設計完善之 Web API 的指引。"
+title: API 設計指引
+description: 說明如何建立設計完善之 Web API 的指引。
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: f0813c18da03b9deeabbf529a560c60e8ce579d8
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: a8c4a81835ebd3ebdba2fd2cec624a9a9d5646f5
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="api-design"></a>API 設計
 
@@ -42,7 +42,7 @@ REST 比起 HTTP 的主要優點是前者使用開放標準，因此不會讓 AP
     {"orderId":1,"orderValue":99.90,"productId":1,"quantity":1}
     ```
 
-- REST API 會使用統一的介面，有助於讓用戶端與服務實作分離。 對於建置在 HTTP 上的 REST API，統一的介面包括使用標準 HTTP 動詞在資源上執行作業。 最常見的作業是 GET、POST、PUT、PATCH 和 DELETE。 
+- REST API 會使用統一的介面，有助於讓用戶端與服務實作分離。 對於建置在 HTTP 上的 REST API，統一的介面包括使用標準 HTTP 指令動詞在資源上執行作業。 最常見的作業是 GET、POST、PUT、PATCH 和 DELETE。 
 
 - REST API 會使用無狀態要求模式。 HTTP 要求應該是獨立的，而且可能會以任何順序發生，因此保留多個要求之間的暫時性狀態資訊不是恰當的做法。 唯一可儲存資訊的場所是資源本身，而且每個要求都應該是不可部分完成的作業。 這個限制式可讓 Web 服務具有高度可調整性，因為在用戶端與特定伺服器之間不需要保留任何的親和性。 任何伺服器都可以處理來自任何用戶端的任何要求。 話雖如此，其他因素可能會限制延展性。 例如，許多 Web 服務都會寫入可能難以相應放大的後端資料存放區。([資料分割](./data-partitioning.md)一文描述了相應放大資料存放區的策略。)
 
@@ -422,7 +422,7 @@ Content-Type: application/json; charset=utf-8
 ### <a name="uri-versioning"></a>URI 版本控制
 每次修改 Web API 或變更資源的結構描述時，您會在每個資源的 URI 加入版本號碼。 早已存在的 URI 應維持先前的運作，傳回符合原始結構描述的資源。
 
-延伸上述範例，如果將 `address` 欄位重建為包含位址之每個構成組件的子欄位 (如 `streetAddress`、`city`、`state` 及 `zipCode`)，您可以透過包含版本號碼的 URI (如 http://adventure-works.com/v2/customers/3) 公開這個版本的資源：
+延伸上述範例，如果將 `address` 欄位重建為包含位址之每個構成組件的子欄位 (如 `streetAddress`、`city`、`state` 及 `zipCode`)，您可以透過包含版本號碼的 URI (如 http://adventure-works.com/v2/customers/3:) 公開這個版本的資源：
 
 ```HTTP
 HTTP/1.1 200 OK
