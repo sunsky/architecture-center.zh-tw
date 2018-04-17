@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 0cbcf0a8af1a8e20f2a1c024f5146a37176c5d1e
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 9a6bd1332ea59923b32379018060403024b15e10
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="designing-resilient-applications-for-azure"></a>為 Azure 設計復原應用程式
 
@@ -153,7 +153,7 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 **可用性設定組**。 若要防範局部硬體失敗 (例如，磁碟或網路交換器失敗)，請在可用性設定組中部署兩個以上的 VM。 可用性設定組包含兩個以上的「容錯網域」，這些網域會共用電力來源和網路交換器。 可用性設定組中的 VM 會分散於這些容錯網域中，因此如果某個硬體失敗影響其中一個容錯網域，網路流量仍可路由傳送至其他容錯網域中的 VM。 如需可用性設定組的詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性](/azure/virtual-machines/windows/manage-availability)。
 
-**可用性區域 (預覽)**。  可用性區域實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。 
+**可用性區域**。  可用性區域實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。 
 
 **配對的區域**。 若要協助應用程式防範區域性中斷，您可以將應用程式部署至多個區域，並使用 Azure 流量管理員將網際網路流量分散到不同區域。 每個 Azure 區域都會與另一個區域配對。 這些區域集合在一起就構成了[區域性配對](/azure/best-practices-availability-paired-regions)。 區域性配對會位於相同的地理位置內 (巴西南部除外)，以符合資料常駐地之稅務和執法管轄區的要求。
 
@@ -164,7 +164,7 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 | 失敗原因 | 機架 | 資料中心 | 區域 |
 | 要求路由 | 負載平衡器 | 跨區域負載平衡器 | 流量管理員 |
 | 網路延遲 | 非常低 | 低 | 中到高 |
-| 虛擬網路  | VNet | VNet | 跨區域 VNet 對等互連 (預覽) |
+| 虛擬網路  | VNet | VNet | 跨區域 VNet 對等互連 |
 
 ## <a name="designing-for-resiliency"></a>針對復原而設計
 在設計階段中，您應該執行失敗模式分析 (FMA)。 FMA 的目標是要找出失敗的可能點，並定義應用程式回應這些失敗的方式。

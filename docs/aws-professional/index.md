@@ -5,11 +5,11 @@ keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, a
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b8698675efa42bb3fae73cefe7b078942549b412
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -118,7 +118,7 @@ Azure 提供數種方式來管理您的資源：
 | 失敗原因 | 機架 | 資料中心 | 區域 |
 | 要求路由 | 負載平衡器 | 跨區域負載平衡器 | 流量管理員 |
 | 網路延遲 | 非常低 | 低 | 中到高 |
-| 虛擬網路  | VNet | VNet | 跨區域 VNet 對等互連 (預覽) |
+| 虛擬網路  | VNet | VNet | 跨區域 VNet 對等互連 |
 
 ### <a name="availability-sets"></a>可用性設定組 
 
@@ -130,7 +130,7 @@ Azure 提供數種方式來管理您的資源：
 
 ![每個應用程式角色的 Azure 可用性設定組](./images/three-tier-example.png "每個應用程式角色的可用性設定組")
 
-### <a name="availability-zones-preview"></a>可用性區域 (預覽)
+### <a name="availability-zones"></a>可用性區域
 
 [可用性區域](/azure/availability-zones/az-overview)實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。 
 
@@ -369,8 +369,7 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 
 [Cortana Intelligence Suite](https://azure.microsoft.com/suites/cortana-intelligence-suite/) 是 Azure 的產品和服務套件，專為擷取、組織、分析和視覺化大量資料而設計。 Cortana 套件包含下列服務：
 
--   
-            [HDInsight](https://azure.microsoft.com/documentation/services/hdinsight/) - 受控 Apache 分佈，其中包括 Hadoop、Spark、Storm 或 HBase。
+-   [HDInsight](https://azure.microsoft.com/documentation/services/hdinsight/) - 受控 Apache 分佈，其中包括 Hadoop、Spark、Storm 或 HBase。
 
 -   [Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) - 提供資料協調流程和 Data Pipeline 功能。
 

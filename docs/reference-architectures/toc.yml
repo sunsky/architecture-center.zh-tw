@@ -12,6 +12,10 @@
           href: app-service-web-app/scalable-web-app.md
         - name: 多重區域部署
           href: app-service-web-app/multi-region.md
+    - name: 資料架構
+      items:
+        - name: 具 SQL 資料倉儲的 Enterprise BI
+          href: data/enterprise-bi-sqldw.md
     - name: 混合式網路
       href: hybrid-networking/index.md
       items:
