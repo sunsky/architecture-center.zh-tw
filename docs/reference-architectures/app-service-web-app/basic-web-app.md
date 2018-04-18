@@ -157,7 +157,7 @@ App Service 應用程式一律會有一個名為 `production` 的部署位置，
 
 * 在 Azure 入口網站中使用 [[疑難排解] 刀鋒視窗][troubleshoot-blade]，來尋找常見問題的解決方案。
 * 啟用[記錄串流][web-app-log-stream]，可讓您近乎即時地查看記錄資訊。
-* [Kudu 儀表板][kudu]有數個工具可用來監視和偵錯您的應用程式。 如需詳細資訊，請參 [您應該知道的 Azure 網站線上工具][kudu] (部落格文章)。 您可以從 Azure 入口網站連線至 Kudu 儀表板。 開啟您應用程式的刀鋒視窗，按一下 [工具]，然後按一下 [Kudu]。
+* [Kudu 儀表板][kudu]有數個工具可用來監視和偵錯您的應用程式。 如需詳細資訊，請參 [您應該知道的 Azure 網站線上工具][kudu] \(部落格文章)。 您可以從 Azure 入口網站連線至 Kudu 儀表板。 開啟您應用程式的刀鋒視窗，按一下 [工具]，然後按一下 Kudu。
 * 如果您使用 Visual Studio，請參閱[使用 Visual Studio 為 Azure App Service 中的 Web 應用程式進行疑難排解][troubleshoot-web-app]，來取得偵錯和疑難排解的秘訣。
 
 ## <a name="security-considerations"></a>安全性考量
