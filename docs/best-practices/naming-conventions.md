@@ -4,11 +4,11 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f814201901af69b816d7f1588e58057b252b22db
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -102,20 +102,20 @@ ms.lasthandoff: 02/09/2018
 |Queue name |儲存體帳戶 |3-63 |小寫 |英數字元和連字號 |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
 |資料表名稱 | 儲存體帳戶 |3-63 |不區分大小寫 |英數字元 |`<service short name><context>` |`awesomeservicelogs` |
 |檔案名稱 | 儲存體帳戶 |3-63 |小寫 | 英數字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
-|Data Lake Store | 全域 |3-24 |小寫 | 英數字元 |`<name>-dls` |`telemetry-dls` |
+|Data Lake Store | 全域 |3-24 |小寫 | 英數字元 |`<name>dls` |`telemetrydls` |
 
 ### <a name="networking"></a>網路
 
 | 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、連字號、底線、句點 |`<service short name>-vnet` |`profx-vnet` |
-|子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<descriptive context>` |`web` |
-|網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-|網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-|網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<descriptive context>` |`sql-allow` |
-|公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
-|負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<service or role>-lb` |`profx-lb` |
-|負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線、句點 |`<descriptive context>` |`http` |
+|虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-vnet` |`profx-vnet` |
+|子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`web` |
+|網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`sql-allow` |
+|公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
+|負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
+|負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-agw` |`profx-agw` |
 |流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、連字號和句點 |`<descriptive context>` |`app1` |
 
