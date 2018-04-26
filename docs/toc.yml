@@ -10,9 +10,10 @@
   items:
     - name: 架構樣式
       href: guide/architecture-styles/index.md
-    - name: 技術選擇
-      href: guide/technology-choices/index.md
-      items: null
+    - name: 選擇計算服務
+      href: guide/technology-choices/compute-overview.md
+    - name: 選擇資料存放區
+      href: guide/technology-choices/data-store-overview.md
     - name: 設計原則
       href: guide/design-principles/index.md
     - name: 軟體品質的要素
@@ -106,7 +107,7 @@
       href: antipatterns/synchronous-io/index.md
 - name: 設計檢閱清單
   items:
-    - name: Availability
+    - name: 可用性
       href: checklist/availability.md
     - name: DevOps
       href: checklist/dev-ops.md

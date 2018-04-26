@@ -20,14 +20,17 @@
           href: architecture-styles/big-data.md
         - name: 大量計算
           href: architecture-styles/big-compute.md
-    - name: 技術選擇
-      href: technology-choices/index.md
+    - name: 選擇計算服務
       items:
-        - name: 計算選項概觀
+        - name: 概觀
           href: technology-choices/compute-overview.md
+        - name: 決策樹
+          href: technology-choices/compute-decision-tree.md
         - name: 計算的比較
           href: technology-choices/compute-comparison.md
-        - name: 資料存放區概觀
+    - name: 選擇資料存放區
+      items:
+        - name: 概觀
           href: technology-choices/data-store-overview.md
         - name: 資料存放區的比較
           href: technology-choices/data-store-comparison.md
@@ -46,7 +49,7 @@
           href: design-principles/partition.md
         - name: 作業的設計
           href: design-principles/design-for-operations.md
-        - name: 使用受管理的服務
+        - name: 使用受控服務
           href: design-principles/managed-services.md
         - name: 使用作業的最佳資料存放區
           href: design-principles/use-the-best-data-store.md
@@ -54,7 +57,7 @@
           href: design-principles/design-for-evolution.md
         - name: 針對企業的需求而建置
           href: design-principles/build-for-business.md
-    - name: 軟體品質的要件
+    - name: 軟體品質的要素
       href: pillars.md
     - name: 設計模式
       href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
