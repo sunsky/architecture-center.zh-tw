@@ -1,15 +1,17 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
 本指南會告訴您在 Azure 上設定可擴充、可復原和高可用性應用程式的結構化方法。 者是以我們與客戶合作後了解到的實證做法作為基礎。
+
+<br/>
 
 <img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
@@ -53,25 +55,49 @@ Polyglot 持續性 (混合儲存體技術)<br/>
 
 Azure 應用程式架構指南會整理成一系列的步驟，從架構與設計到實作。 每個步驟都有支援的指引，可協助您設計您的應用程式架構。
 
-**[架構樣式][arch-styles]**。 第一個決策點是最基本的。 您正在建置何種架構？ 架構可能是微服務架構、更傳統的多層式架構 (N-tier) 應用程式或巨量資料解決方案。 我們已識別七個不同的架構樣式。 每個都有優點和挑戰。
+### <a name="architecture-styles"></a>架構樣式
 
-> &#10148; [Azure 參考架構][ref-archs]會說明 Azure 中的建議部署，以及延展性、可用性、管理性和安全性的考量。 大部分也會包含可部署的 Resource Manager 範本。
+第一個決策點是最基本的。 您正在建置何種架構？ 架構可能是微服務架構、更傳統的多層式架構 (N-tier) 應用程式或巨量資料解決方案。 我們已識別數個不同的架構樣式。 每個都有優點和挑戰。
 
-**[技術選擇][technology-choices]**。 應該盡早決定兩種技術的選擇，因為它們會影響整個架構。 這兩個選擇就是計算和儲存體技術。 「計算」一詞指的是運算資源的裝載模型，您的應用程式會在運算資源上執行。 儲存體包含資料庫，但也包含其他儲存體，這些儲存體會用於訊息佇列、快取、IoT 資料、非結構化記錄資料，以及其他應用程式可能會保存到儲存體的項目。 
+深入了解：
 
-> &#10148; [計算選項][compute-options]和[儲存體選項][storage-options]會提供選取計算和儲存體服務的詳細比較準則。
+- [架構樣式][arch-styles]
+- [Azure 參考架構][ref-archs]
 
-**[設計原則][design-principles]**。 在整個設計程序中，請記住這些十個高階的設計原則。 
+### <a name="technology-choices"></a>技術選擇
 
-> &#10148; [最佳做法][best-practices]一文會提供自動調整、快取、資料分割和 API 設計等層面的專屬指引。   
+應該盡早決定兩種技術的選擇，因為它們會影響整個架構。 這兩個選擇就是計算服務和資料存放區。 *計算*指的是運算資源的裝載模型，您的應用程式會在運算資源上執行。 *資料存放區*包含資料庫，但也包含其他儲存體，這些儲存體會用於訊息佇列、快取、記錄，以及其他應用程式可能會保存到儲存體的項目。 
 
-**[核心][pillars]**。 成功的雲端應用程式會將焦點放在軟體品質的五個核心：延展性、可用性、復原力、管理性和安全性。 
+深入了解：
 
-> &#10148; 使用我們的[設計檢閱清單][checklists]，以根據這些品質核心來檢閱您的設計。 
+- [選擇計算服務](./technology-choices/compute-overview.md)
+- [選擇資料存放區](./technology-choices/data-store-overview.md)
 
-**[雲端設計模式][patterns]**。 這些設計模式有助於在 Azure 中建置可靠、可擴充且安全的應用程式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。
+### <a name="design-principles"></a>設計原則
 
-> &#10148; 檢閱完整的[雲端設計模式目錄](../patterns/index.md)。
+我們已識別十個高階的設計原則，讓您的應用程式更有擴充空間、可容易復原且更方便管理。 這些設計原則可套用至任何架構樣式。 在整個設計程序中，請記住這些十個高階的設計原則。 接著請考慮該架構特定方面的一組最佳做法，例如自動調整大小、快取、資料分割、API 設計等。
+
+深入了解：
+
+- [Azure 應用程式的設計原則][design-principles]
+- [建立雲端時的最佳做法][best-practices]
+
+### <a name="quality-pillars"></a>品質要素
+
+成功的雲端應用程式會將焦點放在軟體品質的五大要素：延展性、可用性、復原功能、管理和安全性。 使用我們的設計檢閱清單，以根據這些品質要素來檢閱您的架構。
+
+深入了解：
+
+- [軟體品質的要素][pillars]
+- [設計檢閱清單][checklists] 
+
+### <a name="cloud-design-patterns"></a>雲端設計模式
+
+設計模式是軟體設計常見問題的一般解決方案。 我們已識別一組設計模式，在設計雲端分散式應用程式時特別實用。
+
+深入了解：
+
+- [雲端設計模式目錄](../patterns/index.md)
 
 
 [arch-styles]: ./architecture-styles/index.md
