@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 1536a33884c9c9faa1e3702c951067249e691bf8
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: d4d7c9dcd612c780e3e494509a57b6b4a0144423
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="cache-aside-pattern"></a>另行快取模式
 
@@ -84,7 +84,7 @@ private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionM
 public static ConnectionMultiplexer Connection => lazyConnection.Value;
 ```
 
-下列程式碼範例中的 `GetMyEntityAsync` 方法示範如何實作以 Azure Redis 快取為基礎的另行快取模式。 此方法使用貫穿式讀取方法從快取中擷取物件。
+下列程式碼範例中的 `GetMyEntityAsync` 方法示範如何實作以 Azure Redis 快取為基礎的另行快取模式。 此方法會使用貫穿式讀取方法從快取中擷取物件。
 
 物件的識別方式是使用整數識別碼做為索引鍵。 `GetMyEntityAsync` 方法會嘗試使用此金鑰從快取擷取項目。 如果找到相符的項目，就會傳回。 如果快取中沒有符合的項目，`GetMyEntityAsync` 方法就會從資料存放區擷取物件、將它加入快取，然後將它傳回。 實際從資料存放區中讀取資料的程式碼不會在這裡顯示，因為它取決於資料存放區。 請注意，快取的項目已設定為過期，以避免在其他地方經過更新而變成過時。
 

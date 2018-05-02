@@ -3,11 +3,11 @@ title: 隔艙模式
 description: 將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: a2c499d77fafc4bee6b74ee0e0d84e6c23b47851
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="bulkhead-pattern"></a>隔艙模式
 
@@ -23,7 +23,7 @@ ms.lasthandoff: 11/14/2017
 
 相同的資源耗盡問題會影響具有多個取用者的服務。 來自一個用戶端的大量請求可能會耗盡服務中的可用資源。 其他取用者無法再取用該服務，導致連鎖性失效效應。
 
-## <a name="solution"></a>解決方式
+## <a name="solution"></a>解決方法
 
 根據取用者負載和可用性需求，將服務執行個體分割成不同的群組。 這種設計可以幫助隔離失敗，並允許您為某些取用者維持服務功能，即使在失敗期間也是如此。
 
@@ -51,7 +51,7 @@ ms.lasthandoff: 11/14/2017
 - 將取用者分割到隔艙時，請考慮使用處理序、執行緒集區和旗號。 像 [Netflix Hystrix][hystrix] 和 [Polly][polly] 這樣的專案為建立取用者隔艙提供了一個架構。
 - 將服務分割到隔艙時，請考慮將它們部署至不同的虛擬機器、容器或處理序。 容器在相當低的額外負荷下，提供了資源隔離的良好平衡。
 - 使用非同步訊息進行通訊的服務可以透過不同的佇列集隔離。 每個佇列都可以有一組處理佇列訊息的專用執行個體，或者一組使用演算法來清除佇列並分派處理的執行個體。
-- 決定隔艙的資料粒度層級。 例如，如果要在分割區之間分配租用戶，則可以將每個租用戶放入個別的分割區，將多個租用戶放入一個分割區。
+- 決定隔艙的資料粒度層級。 例如，如果要在分割區之間分配租用戶，您可以將每個租用戶放入個別的分割區，或將多個租用戶放入一個分割區。
 - 監視每個分割區的效能和 SLA。
 
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
@@ -89,7 +89,7 @@ spec:
         cpu: "1"
 ```
 
-## <a name="related-guidance"></a>相關指導方針
+## <a name="related-guidance"></a>相關的指引
 
 - [斷路器模式](./circuit-breaker.md)
 - [為 Azure 設計有彈性的應用程式](../resiliency/index.md)

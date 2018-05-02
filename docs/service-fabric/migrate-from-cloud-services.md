@@ -3,11 +3,11 @@ title: 將 Azure 雲端服務應用程式移轉至 Azure Service Fabric
 description: 如何將應用程式從 Azure 雲端服務移轉至 Azure Service Fabric。
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: ce9c138a6b093fb7f0329c619c75bd4f4aacc2e7
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: b9ecbc88ae74da99a0ff3bb8814a9cb3422f79d5
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>將 Azure 雲端服務應用程式移轉至 Azure Service Fabric 
 
@@ -141,9 +141,9 @@ Service Fabric 可供各種 Microsoft 服務使用，包括 Azure SQL Database�
 
 - 將 Web 角色植入 ASP.NET Core，以便能夠自我裝載。
 - 將網站轉換為單一頁面應用程式 (SPA)，以使用 ASP.NET Web API 呼叫 Web API 實作。 這會需要徹底重新設計的 Web 前端。
-- 保留現有的 ASP.NET MVC 程式碼，並將 Windows Server 容器中的 IIS 部署到 Service Fabric。 這個方式只需要稍微變更程式碼，或完全不必變更。 不過，Service Fabric 中的[容器支援][sf-containers]目前仍是預覽本。
+- 保留現有的 ASP.NET MVC 程式碼，並將 Windows Server 容器中的 IIS 部署到 Service Fabric。 這個方式只需要稍微變更程式碼，或完全不必變更。 
 
-根據這些考量，我們選擇了第一個選項，也就是移植到 ASP.NET Core。 為了這麼做，我們遵循了[從 ASP.NET MVC 移轉到 ASP.NET Core MVC][aspnet-migration] 所述的步驟。 
+第一個選項是移植到 ASP.NET Core，可讓我們使用 ASP.NET Core 中的最新功能。 為了執行轉換，我們遵循了[從 ASP.NET MVC 移轉到 ASP.NET Core MVC][aspnet-migration] 中說明的步驟。 
 
 > [!NOTE]
 > 為求安全，在搭配使用 ASP.NET Core 與 Kestrel 時，您應該在 Kestrel 前面放置反向 Proxy 以處理來自網際網路的流量。 如需詳細資訊，請參閱 [ASP.NET Core 中的 Kestrel Web 伺服器實作][kestrel]。 [部署應用程式](#deploying-the-application)一節會說明建議的 Azure 部署。

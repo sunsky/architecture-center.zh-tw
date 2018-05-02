@@ -7,11 +7,11 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>整合內部部署 Active Directory 網域與 Azure Active Directory
 
@@ -119,9 +119,9 @@ Azure AD Connect 同步處理服務可確保雲端中儲存的身分識別資訊
 
 ### <a name="user-authentication"></a>使用者驗證
 
-根據預設，Azure AD Connect 同步處理伺服器會在內部部署網域與 Azure AD 之間設定密碼同步處理，而且 Azure AD 服務會假設使用者是藉由提供他們在內部部署環境所使用的相同密碼進行驗證。 對許多組織來說，這是適當的方式，但您也應該考慮到組織現有的原則和基礎結構。 例如︰
+根據預設，Azure AD Connect 同步伺服器會在內部部署網域與 Azure AD 之間設定密碼雜湊同步處理，且 Azure AD 服務會假設使用者是藉由提供他們在內部部署環境中使用的相同密碼進行驗證。 對許多組織來說，這是適當的方式，但您也應該考慮到組織現有的原則和基礎結構。 例如︰
 
-* 貴組織的安全性原則可能會禁止將密碼雜湊同步處理至雲端。
+* 貴組織的安全性原則可能會禁止將密碼雜湊同步處理至雲端。 在此情況下，您的組織應考慮使用[傳遞驗證](/azure/active-directory/connect/active-directory-aadconnect-pass-through-authentication)。
 * 您可能會要求使用者在從公司網路上已加入網域的機器中存取雲端資源時，使用無縫式單一登入 (SSO)。
 * 貴組織可能已部署 Active Directory 同盟服務 (AD FS) 或第三方同盟提供者。 您可以將 Azure AD 設定為使用此基礎結構，以實作驗證和 SSO，而不是使用雲端中保留的密碼資訊。
 

@@ -5,15 +5,15 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 45d1564c255f2450f68c5e92ebe0d7de0c40ae31
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d49129a38d0413f6006095f03b817885e1ce6c92
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 來保護應用程式的機密資訊
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 應用程式設定經常含有機密內容因此必須受到保護，例如：
 
@@ -75,7 +75,7 @@ Surveys 應用程式會從下列位置載入組態設定：
 3. 按一下 [更多服務] > [安全性 + 身分識別] > [Azure Active Directory] > [使用者和群組] > [所有使用者]。
 4. 按一下入口網站頂端的 [新增使用者]。
 5. 填寫欄位，然後將使用者指派至 [全域管理員] 目錄角色。
-6. 按一下 [建立] 。
+6. 按一下頁面底部的 [新增] 。
 
 ![全域管理員使用者](./images/running-the-app/global-admin-user.png)
 
@@ -120,7 +120,7 @@ Surveys 應用程式會從下列位置載入組態設定：
     ],
     ```          
 
-6. 按一下 [儲存] 。  
+6. 按一下 [檔案] 。  
 
 7. 重複步驟 3-6，將相同的 JSON 片段新增至 Web API (Surveys.WebAPI) 的應用程式資訊清單。
 
@@ -167,7 +167,7 @@ Surveys 應用程式會從下列位置載入組態設定：
     ```
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true" 
     ```
-    其中 
+    其中
    
    * 金鑰保存庫名稱 = 您在上一個步驟中提供給金鑰保存庫的名稱。
    * Redis DNS 名稱 = Redis 快取執行個體的 DNS 名稱。
@@ -282,7 +282,7 @@ Surveys 應用程式會從下列位置載入組態設定：
 > 
 > 
 
-[**下一步**][adfs]
+[**下一主題**][adfs]
 
 <!-- Links -->
 [adfs]: ./adfs.md
