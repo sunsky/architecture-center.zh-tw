@@ -4,11 +4,11 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 332f96e73def360926b6a934bbb1361b2254ec41
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: c80a4aa232cca1283d84368a36dd7341cab8a314
+ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/29/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -924,7 +924,7 @@ Active Directory 驗證程式庫 (ADAL) 中有內建的 Azure Active Directory �
 使用 Azure Active Directory 時請考慮下列指引：
 
 * 可能的話，使用 ADAL 程式庫和內建支援進行重試。
-* 如果您為 Azure Active Directory 使用 REST API，則只有在下列狀況才應重試作業：結果是 5xx 範圍中的錯誤 (例如 500 內部伺服器錯誤、502 錯誤的閘道、503 服務無法使用，以及 504 閘道器逾時)。 若為任何其他錯誤，請勿重試。
+* 如果您正在使用 Azure Active Directory 的 REST API，請在結果碼為 429 (要求太多) 或 5xx 範圍內出現錯誤時，重試該作業。 若為任何其他錯誤，請勿重試。
 * 建議將指數退避原則搭配 Azure Active Directory 用於批次案例中。
 
 請考慮讓重試作業從下列設定開始。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
@@ -989,6 +989,7 @@ client.RetryPolicy = RetryPolicy.Default;
 * 暫時性偵測邏輯將取決於您用來叫用 REST 呼叫的實際用戶端 API。 有些用戶端 (例如較新的 **HttpClient** 類別)，不會為已完成的要求擲回狀態碼為 HTTP 不成功的例外狀況。 這會改善效能，但會防止使用暫時性錯誤處理應用程式區塊。 在此情況下，您無法使用會為 HTTP 不成功的狀態碼產生例外狀況的程式碼，來包裝對 REST API 的呼叫，接著會由區塊來處理該狀態碼。 或者，您可以使用不同的機制來驅動重試。
 * 從服務傳回的 HTTP 狀態碼可協助指出錯誤是否為暫時性。 您可能需要檢查用戶端產生的例外狀況，或檢查重試架構，以存取狀態碼或決定等同的例外狀況類型。 下列 HTTP 代碼通常表示重試是適當的：
   * 408 要求逾時
+  * 429 要求太多
   * 500 內部伺服器錯誤
   * 502 錯誤的閘道
   * 503 服務無法使用
