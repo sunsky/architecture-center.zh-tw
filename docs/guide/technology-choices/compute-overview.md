@@ -3,17 +3,17 @@ title: Azure 計算選項的概觀
 description: Azure 計算選項的概觀
 author: MikeWasson
 ms.date: 04/21/2018
-ms.openlocfilehash: 6781e1f1f6e239e3853920cb544092538cccfc62
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: 8ee508aaa07d87ac77ef484e20d572fdf2b9fb40
+ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/23/2018
+ms.lasthandoff: 04/29/2018
 ---
 # <a name="overview-of-azure-compute-options"></a>Azure 計算選項的概觀
 
 *計算*一詞是指您的應用程式執行所在運算資源的裝載模型。 
 
-頻譜的一端是 **基礎結構即服務** (IaaS)。 有了 IaaS，您可以佈建您需要的 VM，以及相關聯的網路和儲存體元件。 然後您會部署您想放在這些 VM 上的任何軟體和應用程式。 此模型最接近傳統內部部署環境，不同之處在於 Microsoft 會管理基礎結構。 您還是可以管理個別的 VM。  
+頻譜的一端是**基礎結構即服務** (IaaS)。 有了 IaaS，您可以佈建您需要的 VM，以及相關聯的網路和儲存體元件。 然後您會部署您想放在這些 VM 上的任何軟體和應用程式。 此模型最接近傳統內部部署環境，不同之處在於 Microsoft 會管理基礎結構。 您還是可以管理個別的 VM。  
 
 **平台即服務** (PaaS) 提供受控的裝載環境，您可以在其中部署您的應用程式而不需要管理 VM 或網路資源。 例如，不要建立個別的 VM，您可以指定執行個體計數，而服務將會佈建、設定和管理所需的資源。 Azure App Service 是 PaaS 服務的範例。
 
