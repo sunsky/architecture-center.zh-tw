@@ -4,11 +4,11 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: b4f40c427fc91c6b00d934c9a5dacdca91a55690
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -114,8 +114,8 @@ ms.lasthandoff: 04/16/2018
 |網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`sql-allow` |
 |公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
-|負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
-|負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
+|Load Balancer |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
+|負載平衡的規則組態 |Load Balancer |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-agw` |`profx-agw` |
 |流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、連字號和句點 |`<descriptive context>` |`app1` |
 

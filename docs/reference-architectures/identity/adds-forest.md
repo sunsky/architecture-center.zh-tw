@@ -5,16 +5,16 @@ description: >-
 
   指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 047ecea41ba30ce4cccf17b8c4964a37ae60150f
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
@@ -90,51 +90,71 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-部署此參考架構的解決方案可在 [GitHub][github] 上取得。 您需要最新版的 Azure CLI，才能執行可部署解決方案的 PowerShell 指令碼。 若要部署參考架構，請依照下列步驟執行：
+適用於此架構的部署可在 [GitHub][github] 上取得。 請注意，整個部署最多可能需要兩個小時，其中包括建立 VPN 閘道和執行設定 AD DS 的指令碼。
 
-1. 將解決方案資料夾從 [GitHub][github] 下載或複製到本機電腦。
+### <a name="prerequisites"></a>先決條件
 
-2. 開啟 Azure CLI，並瀏覽至本機解決方案資料夾。
+1. 複製、派生或下載適用於[參考架構][github] GitHub 存放庫的 zip 檔案。
 
-3. 執行以下命令：
-   
-    ```Powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+2. 安裝 [Azure CLI 2.0][azure-cli-2]。
+
+3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
+
+4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模擬的內部部署資料中心
+
+1. 巡覽至 GitHub 存放庫的 `identity/adds-forest` 資料夾。
+
+2. 開啟 `onprem.json` 檔案。 搜尋 `adminPassword` 和 `Password` 的執行個體，並新增密碼的值。
+
+3. 執行下列命令，並等待部署完成：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
-   
-    使用您的 Azure 訂用帳戶識別碼來取代 `<subscription id>` 。
-   
-    針對 `<location>`，請指定 Azure 區域，例如 `eastus` 或 `westus`。
-   
-    `<mode>` 參數可精密控制部署，而且可以是下列其中一個值：
-   
-   * `Onpremise`：部署模擬的內部部署環境。
-   * `Infrastructure`：在 Azure 中部署 VNet 基礎結構和跳躍箱。
-   * `CreateVpn`：部署 Azure 虛擬網路閘道，並將其連線到模擬的內部部署網路。
-   * `AzureADDS`：部署當作 Active Directory DS 伺服器的 VM、將 Active Directory 部署到這些 VM，然後在 Azure 中部署網域。
-   * `WebTier`：部署 Web 層 VM 和負載平衡器。
-   * `Prepare`：部署所有先前的部署。 **如果您沒有現有的內部部署網路，但您想要部署上述的完整參考架構以供測試或評估之用，這是建議的選項。** 
-   * `Workload`：部署商務和資料層 VM 以及負載平衡器。 請注意，這些 VM 不包含在 `Prepare` 部署中。
 
-4. 等待部署完成。 如果您要部署 `Prepare` 部署，將需要數小時的時間。
-     
-5. 如果您要使用模擬的內部部署設定，請設定連入信任關係：
-   
-   1. 連線到跳躍箱 (<em>ra-adtrust-security-rg</em> 資源群組中的 <em>ra-adtrust-mgmt-vm1</em>)。 以 <em>testuser</em> 的身分和密碼 <em>AweS0me@PW</em> 登入。
-   2. 在跳躍箱上，開啟 <em>contoso.com</em> 網域 (內部部署網域) 第一個 VM 中的 RDP 工作階段。 此 VM 的 IP 位址為 192.168.0.4。 使用者名稱為 <em>contoso\testuser</em>，且密碼為 <em>AweS0me@PW</em>。
-   3. 下載 [incoming-trust.ps1][incoming-trust] 指令碼並執行，以便從 *treyresearch.com* 網域建立連入信任。
+### <a name="deploy-the-azure-vnet"></a>部署 Azure VNet
 
-6. 如果您要使用自己的內部部署基礎結構：
-   
-   1. 下載 [incoming-trust.ps1][incoming-trust] 指令碼。
-   2. 編輯指令碼，並將 `$TrustedDomainName` 變數的值取代為您自己網域的名稱。
-   3. 執行指令碼。
+1. 開啟 `azure.json` 檔案。 搜尋 `adminPassword` 和 `Password` 的執行個體，並新增密碼的值。
 
-7. 從跳躍箱連線至 <em>treyresearch.com</em> 網域 (雲端中的網域) 中的第一個 VM。 此 VM 的 IP 位址為 10.0.4.4。 使用者名稱為 <em>treyresearch\testuser</em>，且密碼為 <em>AweS0me@PW</em>。
+2. 在同一個檔案中，搜尋 `sharedKey` 的執行個體，並輸入 VPN 連線的共用金鑰。 
 
-8. 下載 [outgoing-trust.ps1][outgoing-trust] 指令碼並加以執行，以便從 *treyresearch.com* 網域建立連入信任。 如果您要使用自己的內部部署電腦，請先編輯指令碼。 將 `$TrustedDomainName` 變數設為您內部部署網域的名稱，並使用 `$TrustedDomainDnsIpAddresses` 變數，針對此網域指定 Active Directory DS 伺服器的 IP 位址。
+    ```bash
+    "sharedKey": "",
+    ```
 
-9. 等待幾分鐘，讓上述步驟完成，然後連線至內部部署 VM，並執行[驗證信任][verify-a-trust]一文中所述的步驟，來判斷 *contoso.com* 和 *treyresearch.com* 網域之間的信任關係是否已正確設定。
+3. 執行下列命令，並等待部署完成。
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
+    ```
+
+   部署至與內部 VNet 相同的資源群組。
+
+
+### <a name="test-the-ad-trust-relation"></a>測試 AD 信任關係
+
+1. 使用 Azure 入口網站，巡覽至您所建立的資源群組。
+
+2. 使用 Azure 入口網站尋找名為 `ra-adt-mgmt-vm1` 的 VM。
+
+2. 按一下 `Connect` 以開啟 VM 的遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `onprem.json` 參數檔案中指定的密碼。
+
+3. 從遠端桌面工作階段中開啟連至 192.168.0.4 (此為 VM `ra-adtrust-onpremise-ad-vm1` 的 IP 位址) 的另一個遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `azure.json` 參數檔案中指定的密碼。
+
+4. 從 `ra-adtrust-onpremise-ad-vm1` 的遠端桌面工作階段中移至 [伺服器管理員]，然後按一下 [工具] > [Active Directory 網域及信任]。 
+
+5. 在左窗格中，以滑鼠右鍵按一下 contoso.com，然後選取 [內容]。
+
+6. 按一下 [信任] 索引標籤。您應該會看到 treyresearch.net 列為連入信任。
+
+![](./images/ad-forest-trust.png)
+
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -144,6 +164,8 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
 [adfs]: adfs.md
+[azure-cli-2]: /azure/install-azure-cli
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
