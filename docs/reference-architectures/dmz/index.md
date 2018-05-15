@@ -1,18 +1,18 @@
 ---
-title: 網路 DMZ
+title: 網路 DMZ 參考架構
 description: 說明並比較可用來保護 Azure 中執行之應用程式和元件的不同方法，作為未經授權入侵中混合式系統的一部分。
 layout: LandingPage
-ms.openlocfilehash: 98df0a25767c7a7282e67381c6465fe3263ce1fa
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 759418af013aac1f284d582bacc432325361d815
+ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 05/11/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
 <!-- See data in index.json -->
 
-# <a name="network-dmz"></a>網路 DMZ
+# <a name="network-dmz-reference-architectures"></a>網路 DMZ 參考架構
 
 這些參考架構會顯示經過證實的建立網路 DMZ 做法，可保護 Azure 虛擬網路與內部部署網路或網際網路之間的界限。
 
