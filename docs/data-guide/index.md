@@ -5,11 +5,11 @@ author: zoinerTejada
 ms:date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0975d056aa971c627ca91c9fc05c4e16e07b6fc0
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 63c1cca45fe9d99b5d0679360ef487c3a42da956
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="azure-data-architecture-guide"></a>Azure 資料架構指南
 
@@ -21,7 +21,7 @@ ms.lasthandoff: 05/07/2018
 
 ## <a name="how-this-guide-is-structured"></a>指南結構
 
-本指南的結構是以資料解決方案的兩個一般類別為主：*傳統 RDMBS 工作負載*和*巨量資料解決方案*。 
+本指南的結構是以資料解決方案的兩個一般類別為主：傳統 RDBMS 工作負載和巨量資料解決方案。 
 
 **[傳統 RDBMS 工作負載](./relational-data/index.md)**。 這些工作負載包括線上交易處理 (OLTP) 和線上分析處理 (OLAP)。 OLTP 系統中的資料通常是關聯式資料，它有一個預先定義的結構描述和一組用來維護參考完整性的條件約束。 通常，組織中多個來源的資料可能會合併到資料倉儲，並使用 ETL 程序來移動和轉換來源資料。
 

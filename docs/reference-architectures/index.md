@@ -3,11 +3,11 @@ title: Azure 參考架構
 description: Azure 上一般工作負載的參考架構、藍圖和精準實作指導方針。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 4c0006404ed0c0f603e9599cd9c04e6d02fdbfeb
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 6c9be20e2b831f2e6c1ffd33aa89a56375a0511c
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
+ms.lasthandoff: 05/21/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -179,8 +179,8 @@ ms.lasthandoff: 05/06/2018
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>SAP NetWeaver 和 SAP HANA</h3>
-                        <p>在 Azure 的高可用性環境中部署及執行 SAP NetWeaver SAP HANA。</p>
+                        <h3>執行 Azure 上的 SAP</h3>
+                        <p>在 Azure 的高可用性環境中部署及執行 SAP。</p>
                     </div>
                 </div>
             </div>
