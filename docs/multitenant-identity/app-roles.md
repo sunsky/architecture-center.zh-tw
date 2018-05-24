@@ -6,15 +6,15 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: a39c64f003c26f860086701dd988a8bb21fab5bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ec563936e5f00aba79d65844762feeed97ad547d
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="application-roles"></a>應用程式角色
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 應用程式角色是用來指派權限給使用者。 例如，[Tailspin Surveys][Tailspin] 應用程式會定義下列角色：
 
@@ -53,7 +53,7 @@ ms.lasthandoff: 11/14/2017
 ### <a name="implementation"></a>實作
 **定義角色。** SaaS 提供者在[應用程式資訊清單]中宣告應用程式角色。 例如，以下是 Surveys 應用程式的資訊清單項目：
 
-```
+```json
 "appRoles": [
   {
     "allowedMemberTypes": [
@@ -123,7 +123,7 @@ if (context.User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
 ### <a name="implementation"></a>實作
 在應用程式資訊清單中，將 `groupMembershipClaims` 屬性設為 "SecurityGroup"。 這樣才能從 AAD 取得群組成員資格宣告。
 
-```
+```json
 {
    // ...
    "groupMembershipClaims": "SecurityGroup",
