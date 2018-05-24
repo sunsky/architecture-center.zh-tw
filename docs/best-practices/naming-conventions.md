@@ -4,11 +4,11 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: b4f40c427fc91c6b00d934c9a5dacdca91a55690
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.openlocfilehash: df536a4b34a29b93edc4e03fa1142e20fe84a6a7
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -85,7 +85,7 @@ ms.lasthandoff: 05/03/2018
 
 | 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|虛擬機器 |資源群組 |1-15 (Windows)、1-64 (Linux) |不區分大小寫 |英數字元、底線和連字號 |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
+|虛擬機器 |資源群組 |1-15 (Windows)、1-64 (Linux) |不區分大小寫 |英數字元和連字號 |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
 |函式應用程式 | 全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<name>-func` |`calcprofit-func` |
 
 > [!NOTE]
