@@ -23,7 +23,7 @@ ms.lasthandoff: 04/06/2018
 
 ## <a name="architecture"></a>架構  
 
-此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件元：
+此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件：
 
 * **資源群組**。 [資源群組][resource-group]是 Azure 資源的邏輯容器。
 * **[Web 應用程式][app-service-web-app]**和 **[API 應用程式][app-service-api-app]**。 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。    
@@ -41,14 +41,14 @@ ms.lasthandoff: 04/06/2018
 您的需求可能和此處所述的架構不同。 以本節的建議作為起點。
 
 ### <a name="app-service-apps"></a>App Service 應用程式
-建議您將 Web 應用程式和 Web API 建立為不同的 App Service 應用程式。 此設計可讓您在個別的 App Service 方案中執行它們，使它們可以獨立調整規模。 如果您一開始不需要這種程度的延展性，可以將應用程式部署到相同的方案中，之後有需要時再將它們移到別的方案。
+建議您將 Web 應用程式和 Web API 建立不同的 App Service 應用程式。 此設計可讓您在個別的 App Service 方案中執行它們，使它們可以獨立調整規模。 如果您一開始不需要這種程度的延展性，可以將應用程式部署到相同的方案中，之後有需要時再將它們移到別的方案。
 
 > [!NOTE]
 > 在基本、標準和進階方案中，是依照方案中的 VM 執行個體計費，而不是依照應用程式。 請參閱 [App Service 價格][app-service-pricing]。
 > 
 > 
 
-如果您想要使用 App Service Mobile Apps 的「簡單資料表」或「簡單 API」功能，針對此用途建立個別的 App Service 應用程式。  這些功能依賴特定應用程式架構來實踐它們。
+如果您想要使用 App Service Mobile Apps 的「簡單資料表」或「簡單 API」功能，針對此用途建立個別的 App Service 應用程式。這些功能依賴特定應用程式架構。
 
 ### <a name="webjobs"></a>WebJobs
 請考慮將需耗用大量資源的 WebJob 部署到個別 App Service 方案中的空白 App Service 應用程式。 這可為 WebJob 提供專用的執行個體。 請參閱[背景作業指引][webjobs-guidance]。  
@@ -104,7 +104,7 @@ Azure App Service 的主要優點是能夠根據負載調整應用程式規模�
 Azure 搜尋服務替主要資料存放區省去了執行複雜資料搜尋的額外負荷，而且可加以調整以處理負載。 請參閱[在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級][azure-search-scaling]。
 
 ## <a name="security-considerations"></a>安全性考量
-本節列出本文所述的 Azure 服務專屬的安全性考量， 但不是安全性最佳做法的完整清單。 如需更多的安全性考量，請參閱[保護 Azure App Service 中的應用程式][app-service-security]。
+本節列出 Azure 服務專屬的安全性考量， 但不是安全性最佳做法的完整清單。 如需更多的安全性考量，請參閱[保護 Azure App Service 中的應用程式][app-service-security]。
 
 ### <a name="cross-origin-resource-sharing-cors"></a>跨原始來源資源分享 (CORS)
 如果您將網站和 Web API 建立為不同的應用程式，則網站無法對 API 進行用戶端 AJAX 呼叫，除非您啟用 CORS。
