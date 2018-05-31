@@ -4,11 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: d03cc9dd1af92a91bbfab1ebc8c438e6312eeb49
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34423012"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -855,7 +856,7 @@ var stats = await client.GetServiceStatsAsync(null, context);
 
 | **設定** | **預設值** | **意義** |
 | --- | --- | --- |
-| MaximumExecutionTime | 120 秒 | 要求的最大執行時間，包含所有可能的重試嘗試。 |
+| MaximumExecutionTime | None | 要求的最大執行時間，包含所有可能的重試嘗試。 如果未指定，則允許的要求採用時間量無限制。 換句話說，要求可能會停止回應。 |
 | ServerTimeout | None | 要求的伺服器逾時間隔 (值四捨五入至秒)。 如果未指定，則會對伺服器的所有要求使用預設值。 通常，最好的選擇是略過此設定，以便使用伺服器預設值。 | 
 | LocationMode | None | 如果使用讀取權限異地備援儲存體 (RA-GRS) 複寫選項建立儲存體帳戶，您可以使用位置模式來指出哪個位置應接收要求。 例如，如果指定 **PrimaryThenSecondary**，則一律先將要求傳送至主要位置。 如果要求失敗，就會傳送到次要位置。 |
 | RetryPolicy | ExponentialPolicy | 如需每個選項的詳細資訊，請參閱下列內容。 |
