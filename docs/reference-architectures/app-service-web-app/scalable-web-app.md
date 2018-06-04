@@ -12,6 +12,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846503"
 ---
 # <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
 
@@ -26,7 +27,7 @@ ms.lasthandoff: 04/06/2018
 此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件：
 
 * **資源群組**。 [資源群組][resource-group]是 Azure 資源的邏輯容器。
-* **[Web 應用程式][app-service-web-app]**和 **[API 應用程式][app-service-api-app]**。 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。    
+* **[Web 應用程式][app-service-web-app]** 和 **[API 應用程式][app-service-api-app]**。 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。    
 * **WebJob**。 使用 [Azure WebJobs][webjobs] 在背景中執行長時間工作。 WebJob 可以依照排程持續執行，或為了回應觸發程序 (例如將訊息放在佇列上) 而執行。 在 App Service 應用程式的環境中 WebJob 是以背景處理序執行。
 * **佇列**。 在此處的架構中，應用程式將訊息放到 [Azure 佇列儲存體][queue-storage]佇列上，藉此將背景工作排入佇列。 訊息會觸發 WebJob 中的函式。 或者，也可以使用服務匯流排佇列。 如需兩者的比較，請參閱 [Azure 佇列和服務匯流排佇列 - 異同比較][queues-compared]。
 * **快取**。 在 [Azure Redis 快取][azure-redis]中儲存半靜態資料。  
@@ -41,14 +42,14 @@ ms.lasthandoff: 04/06/2018
 您的需求可能和此處所述的架構不同。 以本節的建議作為起點。
 
 ### <a name="app-service-apps"></a>App Service 應用程式
-建議您將 Web 應用程式和 Web API 建立不同的 App Service 應用程式。 此設計可讓您在個別的 App Service 方案中執行它們，使它們可以獨立調整規模。 如果您一開始不需要這種程度的延展性，可以將應用程式部署到相同的方案中，之後有需要時再將它們移到別的方案。
+建議您將 Web 應用程式和 Web API 建立為不同的 App Service 應用程式。 此設計可讓您在個別的 App Service 方案中執行它們，使它們可以獨立調整規模。 如果您一開始不需要這種程度的延展性，可以將應用程式部署到相同的方案中，之後有需要時再將它們移到別的方案。
 
 > [!NOTE]
 > 在基本、標準和進階方案中，是依照方案中的 VM 執行個體計費，而不是依照應用程式。 請參閱 [App Service 價格][app-service-pricing]。
 > 
 > 
 
-如果您想要使用 App Service Mobile Apps 的「簡單資料表」或「簡單 API」功能，針對此用途建立個別的 App Service 應用程式。這些功能依賴特定應用程式架構。
+如果您想要使用 App Service Mobile Apps 的「簡單資料表」或「簡單 API」功能，針對此用途建立個別的 App Service 應用程式。  這些功能依賴特定應用程式架構。
 
 ### <a name="webjobs"></a>WebJobs
 請考慮將需耗用大量資源的 WebJob 部署到個別 App Service 方案中的空白 App Service 應用程式。 這可為 WebJob 提供專用的執行個體。 請參閱[背景作業指引][webjobs-guidance]。  
