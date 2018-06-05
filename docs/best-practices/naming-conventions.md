@@ -59,11 +59,11 @@ ms.lasthandoff: 05/21/2018
 
 | 層面 | 範例 | 注意 |
 | --- | --- | --- |
-| 環境 |開發、生產、品管 |識別資源的環境 |
+| 環境 |dev, prod, QA |識別資源的環境 |
 | 位置 |uw (美國西部)、ue (美國東部) |識別資源所要部署到的區域 |
 | 執行個體 |01、02 |適用於有多個具名執行個體 (Web 伺服器等) 的資源。 |
-| 產品或服務 |服務進行分析 |識別資源可支援的產品、應用程式或服務 |
-| 角色 |sql、Web、傳訊 |識別相關聯資源的角色 |
+| 產品或服務 |service |識別資源可支援的產品、應用程式或服務 |
+| 角色 |sql、Web、messaging |識別相關聯資源的角色 |
 
 在為公司或專案開發特定命名慣例時，請務必選擇一組通用的詞綴及其位置 (尾碼或首碼)。
 
@@ -75,7 +75,7 @@ ms.lasthandoff: 05/21/2018
 
 ### <a name="general"></a>一般
 
-| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |資源群組 |訂用帳戶 |1-90 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
@@ -83,7 +83,7 @@ ms.lasthandoff: 05/21/2018
 
 ### <a name="compute"></a>計算
 
-| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |虛擬機器 |資源群組 |1-15 (Windows)、1-64 (Linux) |不區分大小寫 |英數字元和連字號 |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
 |函式應用程式 | 全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<name>-func` |`calcprofit-func` |
@@ -93,7 +93,7 @@ ms.lasthandoff: 05/21/2018
 
 ### <a name="storage"></a>儲存體
 
-| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |儲存體帳戶名稱 (資料) |全域 |3-24 |小寫 |英數字元 |`<globally unique name><number>` (使用函式來計算命名的儲存體帳戶的唯一 GUID) |`profxdata001` |
 |儲存體帳戶名稱 (磁碟) |全域 |3-24 |小寫 |英數字元 |`<vm name without hyphens>st<number>` |`profxsql001st0` |
@@ -106,7 +106,7 @@ ms.lasthandoff: 05/21/2018
 
 ### <a name="networking"></a>網路
 
-| 實體 | Scope | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-vnet` |`profx-vnet` |
 |子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`web` |
@@ -148,7 +148,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 | 專案名稱 |projectName |`myproject` |專案或產品線的名稱 |
 | 專案版本 |projectVersion |`3.4` |專案或產品線的版本 |
 | 環境 |Environment |`<Production, Staging, QA >` |環境識別碼 |
-| 層 |層 |`Front End, Back End, Data` |層或角色/內容識別 |
+| 層 |tier |`Front End, Back End, Data` |層或角色/內容識別 |
 | 資料設定檔 |dataProfile |`Public, Confidential, Restricted, Internal` |資源中所儲存資料的敏感性 |
 
 ## <a name="tips-and-tricks"></a>秘訣與技巧
@@ -166,7 +166,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 > [!TIP]
 > 無論是用於資料還是磁碟的儲存體帳戶，都應該遵循能夠利用多個儲存體帳戶的命名慣例 (也就是一律使用數字尾碼)。
 
-您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 blob 資料。 Blob 服務的預設端點是 https://<name>.blob.core.windows.net。
+您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 blob 資料。 Blob 服務的預設端點是 https://\<name\>.blob.core.windows.net。
 
 但如果您將自訂網域 (如 www.contoso.com) 對應至儲存體帳戶的 Blob 端點，也能使用該網域來存取儲存體帳戶中的 Blob 資料。 例如，使用自訂網域名稱，可以用 `http://www.contoso.com/mycontainer/myblob` 存取 `http://mystorage.blob.core.windows.net/mycontainer/myblob`。
 
