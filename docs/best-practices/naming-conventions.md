@@ -9,6 +9,7 @@ ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422944"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -166,7 +167,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 > [!TIP]
 > 無論是用於資料還是磁碟的儲存體帳戶，都應該遵循能夠利用多個儲存體帳戶的命名慣例 (也就是一律使用數字尾碼)。
 
-您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 blob 資料。 Blob 服務的預設端點是 https://\<name\>.blob.core.windows.net。
+您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 blob 資料。 Blob 服務的預設端點是 https://<name>.blob.core.windows.net。
 
 但如果您將自訂網域 (如 www.contoso.com) 對應至儲存體帳戶的 Blob 端點，也能使用該網域來存取儲存體帳戶中的 Blob 資料。 例如，使用自訂網域名稱，可以用 `http://www.contoso.com/mycontainer/myblob` 存取 `http://mystorage.blob.core.windows.net/mycontainer/myblob`。
 
