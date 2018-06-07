@@ -9,6 +9,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846398"
 ---
 # <a name="basic-web-application"></a>基本 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -34,7 +35,7 @@ ms.lasthandoff: 04/06/2018
 
 * **App Service 方案**。 [App Service 方案][app-service-plans]提供受控虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
 
-* **部署位置**。 [部署位置][deployment-slots]可讓您預先準備好部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
+* **部署位置**。  [部署位置][deployment-slots]可讓您預先準備好部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
 
 * **IP 位址**。 App Service 應用程式具有公用 IP 位址和網域名稱。 網域名稱是 `azurewebsites.net` 的子網域，例如 `contoso.azurewebsites.net`。  
 
@@ -142,7 +143,7 @@ App Service 應用程式一律會有一個名為 `production` 的部署位置，
 ### <a name="configuration"></a>組態
 儲存作為[應用程式設定][app-settings]的組態設定。 在您的 Resource Manager 範本中或使用 PowerShell 定義應用程式設定。 在執行階段上，應用程式設定可作為應用程式的環境變數。
 
-永遠不要將密碼、存取金鑰或連接字串簽入原始檔控制，而是將這些設定作為參數傳遞至部署指令碼，將這些值儲存為應用程式設定。
+永遠不要將密碼、存取金鑰或連接字串簽入原始檔控制， 而是將這些設定作為參數傳遞至部署指令碼，將這些值儲存為應用程式設定。
 
 依預設，當您交換部署位置時，應用程式設定也會進行交換。 如果生產環境和預備環境需要不同設定，您可以建立衷於位置且不要進行交換的應用程式設定。
 
@@ -170,7 +171,7 @@ App Service 應用程式一律會有一個名為 `production` 的部署位置，
 每個部署位置都具有公用 IP 位址。 使用 [Azure Active Directory 登入][aad-auth]可保護非生產位置，因此只有您的開發和 DevOps 小組成員可以連線至這些端點。
 
 ### <a name="logging"></a>記錄
-記錄絕對不能記下使用者的密碼，或其他可能可用來認可身分識別詐騙的資訊。 儲存之前請先從資料中清除這些細節。    
+記錄絕對不能記下使用者的密碼，或其他可能可用來認可身分識別詐騙的資訊。 儲存之前請先從資料中清除這些細節。   
 
 ### <a name="ssl"></a>SSL
 App Service 應用程式包含 `azurewebsites.net` 子網域的 SSL 端點 (不需額外費用)。 SSL 端點包含 `*.azurewebsites.net` 網域的萬用字元憑證。 如果您使用自訂網域名稱，您必須提供符合自訂網域的憑證。 最簡單的方式是直接透過 Azure 入口網站購買憑證。 您也可以從其他憑證授權單位匯入憑證。 如需詳細資訊，請參閱[購買並設定您 Azure App Service 的 SSL 憑證][ssl-cert]。
