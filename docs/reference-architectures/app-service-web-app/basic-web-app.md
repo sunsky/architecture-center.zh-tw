@@ -26,7 +26,7 @@ ms.lasthandoff: 04/06/2018
 >
 >
 
-此架構具有下列單元：
+此架構具有下列元件：
 
 * **資源群組**。 [資源群組](/azure/azure-resource-manager/resource-group-overview)是 Azure 資源的邏輯容器。
 
@@ -34,13 +34,13 @@ ms.lasthandoff: 04/06/2018
 
 * **App Service 方案**。 [App Service 方案][app-service-plans]提供受控虛擬機器 (VM) 來裝載您的應用程式。 所有與方案相關聯的應用程式都會在相同的虛擬機器執行個體上執行。
 
-* **部署位置**。  [部署位置][deployment-slots]可讓您預先進行部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
+* **部署位置**。 [部署位置][deployment-slots]可讓您預先準備好部署，然後將其與生產環境部署交換。 這樣一來，您可以避免直接在生產環境中部署。 如需特定建議事項，請參閱[可管理性](#manageability-considerations)一節。
 
 * **IP 位址**。 App Service 應用程式具有公用 IP 位址和網域名稱。 網域名稱是 `azurewebsites.net` 的子網域，例如 `contoso.azurewebsites.net`。  
 
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。 若要使用自訂網域名稱 (例如 `contoso.com`)，請建立 DNS 記錄，將自訂網域名稱對應至 IP 位址。 如需詳細資訊，請參閱 [在 Azure App Service 中設定自訂網域名稱][custom-domain-name]。  
 
-* **Azure SQL Database**。 [SQL Database][sql-db] 是雲端中的關聯式資料庫即服務。 SQL Database 與 Microsoft SQL Server 資料庫引擎共用其程式碼基底。 根據您的應用程式需求而定，您也可以使用[適用於 MySQL 的 Azure 資料庫](/azure/mysql)或[適用於 PostgreSQL 的 Azure 資料庫](/azure/postgresql)。 這些是完全受控的資料庫服務，分別基於 MySQL Server 和 Postgres 開放原始碼資料庫引擎。
+* **Azure SQL Database**。 [SQL Database][sql-db] 是雲端中的關聯式資料庫即服務。 SQL Database 與 Microsoft SQL Server 資料庫引擎共用其程式碼基底。 根據您的應用程式需求而定，您也可以使用[適用於 MySQL 的 Azure 資料庫](/azure/mysql)或[適用於 PostgreSQL 的 Azure 資料庫](/azure/postgresql)。 這些都是完全受控的資料庫服務，分別以 MySQL Server 和 Postgres 資料庫引擎的開放原始碼作為基礎。
 
 * **邏輯伺服器**。 在 Azure SQL Database 中，邏輯伺服器會裝載您的資料庫。 您可以為每部邏輯伺服器建立多個資料庫。
 
@@ -85,7 +85,7 @@ Azure App Service 的主要優點是能夠根據負載調整應用程式規模�
 
 * 盡可能避免進行相應增加和減少，因為這樣可能會觸發應用程式重新啟動。 相反地，在一般負載情況下請選擇符合您效能需求的層級和大小，然後相應放大執行個體來處理流量的變化。    
 * 啟用自動調整。 如果您的應用程式具有可預測的工作負載規律性，則可建立設定檔以預先排定執行個體計數。 如果工作負載不可預測，則可以設定規則來自動調整來因應負載的變更。 您可以結合這兩種方法。
-* CPU使用率通常是評估自動縮放規則的一個很好指標。 不過，您應對您的應用程式進行負載測試，找出潛在的瓶頸，並根據該資料設定自動調整規則。  
+* CPU 使用率通常是評估自動縮放規則的良好指標。 不過，您應對您的應用程式進行負載測試，找出潛在的瓶頸，並根據該資料設定自動調整規則。
 * 自動調整規則包含「冷卻」期間，也就是調整動作完成後，再啟動新調整動作前的等候間隔。 冷卻期間會讓系統穩定後，才能再次進行調整。 針對新增執行個體設定較短的冷卻期間，以及針對移除執行個體設定較長的冷卻期間。 例如，為新增執行個體設定 5 分鐘，但為移除執行個體設定 60 分鐘。 最好在負載過重時快速增加新執行個體來處理額外的流量，然後逐漸減少執行個體。
 
 ### <a name="scaling-sql-database"></a>調整 SQL Database 的規模
@@ -126,10 +126,10 @@ App Service 提供[備份和還原][web-app-backup]應用程式檔案的功能�
 1. 佈建 Azure 資源。 對於此步驟，我們建議您使用 [Azure Resoure Manager 範本][arm-template]。 範本可讓您輕鬆地透過 PowerShell 或 Azure 命令列介面 (CLI) 進行自動部署。
 2. 部署應用程式 (程式碼、二進位檔和內容檔案)。 您有多個選擇，包括從本機 Git 存放庫進行部署、使用 Visual Studio 或從雲端式原始檔控制進行連續部署。 請參閱[將您的應用程式部署至 Azure App Service][deploy]。  
 
-App Service 應用程式一律會有一個名為 `production` 的部署位置，代表實際作用的生產網站。 我們建議您為部署更新建立一個預備環境。 使用預備環境的優點包括：
+App Service 應用程式一律會有一個名為 `production` 的部署位置，代表實際作用的生產網站。 我們建議您為部署更新建立預備位置。 使用預備位置的優點包括：
 
 * 您可以確認部署成功後，再交換至生產環境。
-* 部署至預備環境，可確保所有執行個體在交換至生產環境之前就已準備就緒。 許多應用程式都有重要的暖機和冷啟動時間。
+* 部署至預備位置，可確保所有執行個體在交換至生產環境之前就已準備就緒。 許多應用程式都有重要的暖機和冷啟動時間。
 
 我們也建議您建立第三個位置來保存上一次的正確部署。 當您交換預備環境和生產環境之後，請將先前的生產環境部署 (現在處於預備環境) 移到「上一次的正確部署」位置。 這樣一來，如果您之後發現問題，您可以快速還原至上一次的正確版本。
 
