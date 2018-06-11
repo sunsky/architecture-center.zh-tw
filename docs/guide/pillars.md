@@ -130,23 +130,23 @@ ms.locfileid: "28896349"
 
 ## <a name="security"></a>安全性
 
-您必須思考應用程式從設計和實作到部署與作業之整個生命週期的安全性。 Azure 平台可防範各種不同威脅，例如網路入侵和 DDoS 攻擊。 但您仍需要在應用程式和 DevOps 程序中建置安全性。
+您必須思考應用程式從設計和實作到部署與運維之整個生命週期的安全性。 Azure 平台提供防範各種不同威脅，例如網路入侵和 DDoS 攻擊。 但您仍需要在應用程式和 DevOps 程序中建立安全性。
 
 以下是部分需要考慮的安全性領域。 
 
 ### <a name="identity-management"></a>身分識別管理
 
-請考慮使用 Azure Active Directory (Azure AD) 來驗證並授權使用者。 Azure AD 是完全受控的身分識別和存取管理服務。 您可以用它建立僅存在於 Azure 的網域，或用它整合您的內部部署 Active Directory 身分識別。 Azure AD 也會整合 Office365、Dynamics CRM Online 和眾多第三方 SaaS 應用程式。 對於消費者導向的應用程式，Azure Active Directory B2C 可讓使用者使用其現有的社交帳戶 (例如 Facebook、Google 或 LinkedIn) 進行驗證，或建立由 Azure AD 管理的新使用者帳戶。
+請考慮使用 Azure Active Directory (Azure AD) 來驗證並授權使用者。 Azure AD 是完全受控的身分識別和存取管理服務。 您可以用它來建立僅存在於 Azure 中的網域，或用它來整合內部部署之 Active Directory 身分識別。 Azure AD 也整合了 Office365、Dynamics CRM Online 和眾多第三方 SaaS 應用程式。 對於消費者導向的應用程式，Azure Active Directory B2C 可讓使用者使用其現有的社交帳戶 (例如 Facebook、Google 或 LinkedIn) 進行驗證，或建立由 Azure AD 管理的新使用者帳戶。
 
 如果您想要整合內部部署 Active Directory 環境與 Azure 網路，可行的方法有好幾個，端視您的需求而定。 如需詳細資訊，請參閱[身分識別管理][identity-ref-arch]參考架構。
 
-### <a name="protecting-your-infrastructure"></a>保護您的基礎結構 
+### <a name="protecting-your-infrastructure"></a>保護您的基礎架構 
 
-請控制您所部署之 Azure 資源的存取權。 每個 Azure 訂用帳戶都會與 Azure AD 租用戶有[信任關係][ad-subscriptions]。 請使用[角色型存取控制][ rbac] (RBAC) 來為您組織內的使用者授與正確的 Azure 資源權限。 若要授與存取權，請將 RBAC 角色指派給某個範圍內的使用者或群組。 此範圍可以是訂用帳戶、資源群組或是單一資源。 對基礎結構的所有變更進行[稽核][resource-manager-auditing]。 
+請控管您所部署之 Azure 資源的存取權。 每個 Azure 訂用帳戶都會與 Azure AD 租用戶有[信任關係][ad-subscriptions]。 請使用[角色存取控制][ rbac] (RBAC) 來為您組織內的使用者授與正確的 Azure 資源權限。 若要授與存取權，請將 RBAC 角色指派給某個範圍內的使用者或群組。 此範圍可以是訂用帳戶、資源群組或是單一資源。 對基礎架構的所有變更進行[稽核][resource-manager-auditing]。 
 
 ### <a name="application-security"></a>應用程式安全性
 
-一般情況下，開發應用程式時的安全性最佳做法仍適用於雲端。 這些做法包括在所有地方使用 SSL、防範 CSRF 和 XSS 攻擊、防止 SQL 插入式攻擊等等。 
+一般情況下，開發應用程式時的安全性最佳實踐仍適用於雲端。 這些做法包括在所有地方使用 SSL、防範 CSRF 和 XSS 攻擊、防止 SQL 資料隱碼攻擊等等。 
 
 雲端應用程式通常會使用具有存取金鑰的受控服務。 請永遠不要將這些存取金鑰簽入到原始檔控制。 您可以考慮將應用程式密碼儲存在 Azure Key Vault。
 
@@ -154,7 +154,7 @@ ms.locfileid: "28896349"
 
 在使用 Azure 的高可用性功能時，請確保您的資料會留在正確的地緣政治區域內。 Azure 的異地備援儲存體會在相同的地緣政治區域中使用[配對區域][paired-region]的概念。 
 
-請使用 Key Vault 來保護密碼編譯金鑰和密碼。 藉由使用 Key Vault，您便可以使用硬體安全性模組 (HSM) 所保護的金鑰來加密金鑰和密碼。 許多 Azure 儲存體和 DB 服務都支援待用資料加密，包括 [Azure 儲存體][storage-encryption]、[Azure SQL Database][sql-db-encryption]、[Azure SQL 資料倉儲][data-warehouse-encryption]和 [Cosmos DB][cosmosdb-encryption]。
+請使用 Key Vault 來保護加密金鑰和密碼。 藉由使用 Key Vault，您便可以使用硬體安全性模組 (HSM) 所保護的金鑰來加密金鑰和密碼。 許多 Azure 儲存體和 DB 服務都支援資料靜態加密，包括 [Azure 儲存體][storage-encryption]、[Azure SQL Database][sql-db-encryption]、[Azure SQL 資料倉儲][data-warehouse-encryption]和 [Cosmos DB][cosmosdb-encryption]。
 
 ### <a name="security-resources"></a>安全性資源
 
