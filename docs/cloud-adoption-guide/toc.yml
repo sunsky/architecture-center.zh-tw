@@ -17,11 +17,13 @@
             - name: 說明：什麼是 Azure Active Directory 租用戶？
               href: adoption-intro/tenant-explainer.md
             - name: 作法：取得 Azure Active Directory 租用戶
-              href: /azure/active-directory/develop/active-directory-howto-tenant?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/develop/active-directory-howto-tenant
+              maintainContext: true
             - name: 指引：Azure AD 租用戶設計
               href: adoption-intro/tenant.md
             - name: 作法：將使用者新增至 Azure AD 租用戶
-              href: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/add-users-azure-active-directory
+              maintainContext: true
         - name: 了解 Azure 訂用帳戶
           items:
             - name: 說明：什麼是 Azure 訂用帳戶？
@@ -35,35 +37,46 @@
             - name: 說明：什麼是 Azure 資源群組？
               href: adoption-intro/resource-group-explainer.md
             - name: 說明：了解 Azure 中的資源存取
-              href: /azure/active-directory/active-directory-understanding-resource-access?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/active-directory-understanding-resource-access
+              maintainContext: true
             - name: 作法：使用入口網站來建立資源群組
-              href: /azure/azure-resource-manager/resource-group-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/azure-resource-manager/resource-group-portal
+              maintainContext: true
             - name: 指引：資源群組設計
               href: adoption-intro/resource-group.md
             - name: 指引：Azure 資源的命名慣例
-              href: /azure/architecture/best-practices/naming-conventions?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/architecture/best-practices/naming-conventions
+              maintainContext: true
         - name: 將基本架構部署到 Azure
           items:
             - name: 平台即服務 (PaaS 模型) 架構
               items:
                 - name: 作法：將基本 Web 應用程式部署到 Azure
-                  href: /azure/app-service?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/app-service
+                  maintainContext: true
                 - name: 指引：Azure 中 Web 應用程式的最佳做法
-                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
+                  maintainContext: true
             - name: 基礎結構即服務 (IaaS)
               items:
                 - name: 說明：什麼是 Azure 虛擬網路？
-                  href: /azure/virtual-network/virtual-networks-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-overview
+                  maintainContext: true
                 - name: 作法：將虛擬網路部署到 Azure
-                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
+                  maintainContext: true
                 - name: 作法：將單一的 Windows 虛擬機器 IaaS 工作負載部署到 Azure
-                  href: /azure/virtual-machines/windows/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/windows/quick-create-portal
+                  maintainContext: true
                 - name: 指引：將 Windows 虛擬機器部署至 Azure 的最佳做法
-                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
+                  maintainContext: true
                 - name: 作法：將單一的 Linux 虛擬機器 IaaS 工作負載部署到 Azure
-                  href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/linux/quick-create-portal
+                  maintainContext: true
                 - name: 指引：將 Linux 虛擬機器部署至 Azure 的最佳做法
-                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
+                  maintainContext: true
     - name: 中繼 Azure 採用
       href: intermediate-stage/overview.md
       items:
