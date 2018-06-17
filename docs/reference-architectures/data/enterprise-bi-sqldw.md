@@ -50,7 +50,7 @@ ms.lasthandoff: 04/16/2018
 ![](./images/enterprise-bi-sqldw-pipeline.png)
  
 > [!NOTE]
-> 在步驟 1 &ndash; 3 中，請考慮使用 Redgate 資料平台 Studio。 資料平台 Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。 如需詳細資訊，請參閱[使用 Redgate 資料平台 Studio 載入資料](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。 
+> 在步驟 1 &ndash; 3 中，請考慮使用 Redgate Data Platform Studio。 Data Platform Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。 如需詳細資訊，請參閱[使用 Redgate Data Platform Studio 載入資料](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。 
 
 以下幾節將詳細說明這些階段。
 
