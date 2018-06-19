@@ -7,11 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 85191fc630549559f8a1395e5a8622a7a6140a2d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252919"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>計算資源彙總模式
 
@@ -32,7 +33,7 @@ ms.lasthandoff: 11/14/2017
 
 在 Azure 中，這個考量也適用於雲端服務、應用程式服務和虛擬機器中的角色。 這些項目會在自己的虛擬環境中執行。 執行一系列專為執行一組妥善定義作業所設計的不同角色、網站或虛擬機器，但必須作為單一解決方案進行通訊及共同合作，可以會造成資源的使用效率不佳。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 為協助降低成本、增加使用率、改善通訊速度並減少管理，可以將多個工作或作業合併為單一計算單位。
 
@@ -88,7 +89,7 @@ ms.lasthandoff: 11/14/2017
 
 角色負責啟動和停止工作。 當 Azure 網狀架構控制器載入角色時，會引發角色的 `Start` 事件。 您可以覆寫 `WebRole` 或 `WorkerRole` 類別的 `OnStart` 方法來處理此事件，或許還可以初始化這個方法中之工作所仰賴的資料和其他資源。
 
-當 `OnStart ` 方法完成時，角色就可以開始回應要求。 您可以在[將應用程式移動至雲端](https://msdn.microsoft.com/library/ff728592.aspx)模式和實務指南的[應用程式啟動流程](https://msdn.microsoft.com/library/ff803371.aspx#sec16)一節中，使用角色中的 `OnStart` 和 `Run` 方法，來找到詳細資訊和指引。
+當 `OnStart` 方法完成時，角色就可以開始回應要求。 您可以在[將應用程式移動至雲端](https://msdn.microsoft.com/library/ff728592.aspx)模式和實務指南的[應用程式啟動流程](https://msdn.microsoft.com/library/ff803371.aspx#sec16)一節中，使用角色中的 `OnStart` 和 `Run` 方法，來找到詳細資訊和指引。
 
 > 盡可能以簡明的 `OnStart` 方法來保留程式碼。 Azure 並不限制這個方法完成所花費的時間，但該角色將無法開始回應傳送給它的網路要求，直到這個方法完成為止。
 

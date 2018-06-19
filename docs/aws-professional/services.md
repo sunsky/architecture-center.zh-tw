@@ -5,11 +5,12 @@ keywords: 雲端服務比較, 比較雲端服務, 多重雲端, 比較 Azure AWS
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 5a564c7b4825340deb3c6deb037f755108cb0896
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 096721348d525eb95767ab3cf188d21a32236cc6
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253038"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 與 Azure 服務相比
 
@@ -174,7 +175,7 @@ Microsoft Azure 與 AWS 在公用雲端平台各擅勝場，全都備有各種�
 |        目錄服務        | AWS Directory Service + AWS 上的 Windows Server Active Directory |                                       [Azure Active Directory Domain Services + Azure IaaS 上的 Windows Server Active Directory](https://azure.microsoft.com/services/active-directory/)                                        | 全面的身分識別與存取管理雲端解決方案，可提供完善的功能，用以管理使用者與群組。 可提供內部部署與雲端應用程式 (例如 Microsoft 線上服務如 Office 365 及許多非 Microsoft 的 SaaS 應用程式) 的安全存取。 |
 |     <strong>&nbsp;</strong>      |                            Cognito                             |                                                                   [Azure Active Directory B2C](https://azure.microsoft.com/services/active-directory-b2c/)                                                                    |                                                                          高可用性的全域身分識別管理服務，可用於處理數億個身分識別的消費者端應用程式。                                                                           |
 |     <strong>&nbsp;</strong>      |                     AWS Directory Service                      |                                                                 [Windows Server Active Directory](https://azure.microsoft.com/services/active-directory-ds/)                                                                  |                                                                                                                用以在雲端支援 Microsoft Active Directory 的服務。                                                                                                                |
-|            法規遵循            |                          AWS Artifact                          |                                                                   [Microsoft 服務信任入口網站](https://www.microsoft.com/TrustCenter/STP/default.aspx)                                                                    |                                                                                              提供來自雲端服務的稽核報告、合規性指南和信任文件存取。                                                                                              |
+|            法規遵循            |                          AWS Artifact                          |                                                                   [服務信任平台](https://www.microsoft.com/en-us/TrustCenter/STP/default.aspx)                                                                    |                                                                                              提供來自雲端服務的稽核報告、合規性指南和信任文件存取。                                                                                              |
 |             安全性             |                           AWS Shield                           |                                                      [Azure DDoS Protection 服務 (預覽版)](https://azure.microsoft.com/blog/azure-ddos-protection-service-preview/)                                                       |                                                                                                  提供具有分散式阻斷服務 (DDoS) 攻擊防護的雲端服務。                                                                                                   |
 
 ## <a name="developer-tools"></a>開發人員工具

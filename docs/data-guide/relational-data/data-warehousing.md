@@ -3,11 +3,12 @@ title: 資料倉儲和資料超市
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252800"
 ---
 # <a name="data-warehousing-and-data-marts"></a>資料倉儲和資料超市
 
@@ -113,7 +114,7 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表是主要功能差異的摘要。
+下表是各項功能主要差異的摘要。
 
 ### <a name="general-capabilities"></a>一般功能
 
@@ -142,7 +143,7 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 | --- | --- | --- | --- | --- | --- | -- |
 | 高可用性的備援區域伺服器  | yes | yes | yes | 否 | 否 |
 | 支援查詢相應放大 (分散式查詢)  | 否 | 否 | yes | yes | yes |
-| 動態延展性 (相應增加)  | yes | 否 | 是 <sup>1</sup> | 否 | 否 |
+| 動態延展性 | yes | 否 | 是 <sup>1</sup> | 否 | 否 |
 | 支援資料的記憶體內快取 | yes |  yes | 否 | yes | yes |
 
 [1] SQL 資料倉儲可讓您調整資料倉儲單位 (DWU) 數目以相應增加或減少。 請參閱[管理 Azure SQL 資料倉儲中的計算能力](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview)。

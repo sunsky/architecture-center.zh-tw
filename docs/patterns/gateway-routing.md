@@ -3,11 +3,12 @@ title: 閘道路由模式
 description: 使用單一端點將要求路由至多個服務。
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252595"
 ---
 # <a name="gateway-routing-pattern"></a>閘道路由模式
 
@@ -17,7 +18,7 @@ ms.lasthandoff: 11/14/2017
 
 當用戶端需要使用多個服務時，為每個服務端點設定個別的端點，以及讓用戶端管理每個端點會是一項挑戰。 例如，電子商務應用程式可能會提供服務，例如搜尋、評論、購物車、結帳和訂單記錄。 每個服務都有用戶端必須與其互動的不同 API，而用戶端必須了解每個端點，才能連接到服務。 如果 API 變更，則必須一併更新用戶端。 如果您將服務重構為兩個或多個個別的服務，則必須變更服務和用戶端中的程式碼。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 將閘道放置在一組應用程式、服務或部署的前方。 使用應用程式第 7 層路由來將要求路由至適當的執行個體。
 
@@ -71,7 +72,7 @@ server {
 
 ## <a name="related-guidance"></a>相關的指引
 
-- [前端模式的範例](./backends-for-frontends.md)
+- [針對前端的後端模式](./backends-for-frontends.md)
 - [閘道彙總模式](./gateway-aggregation.md)
 - [閘道卸載模式](./gateway-offloading.md)
 

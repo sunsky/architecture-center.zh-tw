@@ -3,11 +3,12 @@ title: 選擇資料傳輸技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252748"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>在 Azure 來回傳輸資料
 
@@ -60,7 +61,7 @@ ms.lasthandoff: 02/14/2018
 
 **Azure Data Factory**。 [Azure Data Factory](/azure/data-factory/) 是受控服務，最適合在眾多 Azure 服務和 (或) 內部部署環境之間定期傳輸檔案。 您可以使用 Azure Data Factory 建立並排程資料驅動的工作流程 (稱為管線)，以從不同的資料存放區擷取資料。 使用計算服務 (例如，Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics 和 Azure Machine Learning) 可以處理或轉換資料。 建立資料驅動的工作流程，以便[協調](../technology-choices/pipeline-orchestration-data-movement.md)及自動進行資料移動和資料轉換。
 
-## <a name="key-selection-criteria"></a>重要選取準則
+## <a name="key-selection-criteria"></a>關鍵選取準則
 
 在資料傳輸案例中，請回答下列問題來選擇適合您需求的系統：
 
@@ -76,7 +77,7 @@ ms.lasthandoff: 02/14/2018
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。
+下表是各項功能主要差異的摘要。
 
 ### <a name="physical-transfer"></a>實體傳輸
 

@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: f02843f179671da04bc2f09326b58075b432ba95
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423012"
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253072"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -38,6 +38,9 @@ ms.locfileid: "34423012"
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 Azure Active Directory (Azure AD) 是完整的身分識別與存取管理雲端解決方案，結合了核心目錄服務、進階身分識別控管、安全性，以及應用程式存取管理。 Azure AD 也提供給開發人員一個身分識別管理平台，以根據集中化的原則和規則將存取控制傳遞給其應用程式。
+
+> [!NOTE]
+> 如需受控服務識別端點的重試指引，請參閱[如何使用 Azure 虛擬機器受控服務識別 (MSI) 來取得權杖](/azure/active-directory/managed-service-identity/how-to-use-vm-token#error-handling)。
 
 ### <a name="retry-mechanism"></a>重試機制
 Active Directory 驗證程式庫 (ADAL) 中有內建的 Azure Active Directory 重試機制。 為了避免非預期的鎖定，建議第三方廠商程式庫和應用程式程式碼「不要」重試失敗的連線，但允許 ADAL 處理重試。 

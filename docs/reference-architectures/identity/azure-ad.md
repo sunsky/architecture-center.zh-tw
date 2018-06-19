@@ -7,11 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: ade79f8ebffc15b423ef6ebfb9b19611c9500cd8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/23/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252987"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>整合內部部署 Active Directory 網域與 Azure Active Directory
 
@@ -32,7 +33,7 @@ Azure Active Directory (Azure AD) 是雲端式的多租用戶目錄和身分識�
 * 內部部署網路和應用程式的 Azure VNet 未使用 VPN 通道或 ExpressRoute 線路連線的架構。
 
 > [!NOTE]
-> Azure AD 目前僅支援使用者驗證。 某些應用程式和服務 (例如 SQL Server) 可能需要電腦驗證，但這並非此解決方案的適用情況。
+> Azure AD 可以驗證存在於組織目錄中使用者和應用程式的身分識別。 某些應用程式和服務 (例如 SQL Server) 可能需要電腦驗證，但這並非此解決方案的適用情況。
 > 
 
 如需了解其他考量，請參閱[選擇解決方案以整合內部部署 Active Directory 與 Azure][considerations]。 
