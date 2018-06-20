@@ -60,4 +60,5 @@
     - name: 軟體品質的要素
       href: pillars.md
     - name: 設計模式
-      href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
+      href: ../patterns/index.md
+      maintainContext: true
