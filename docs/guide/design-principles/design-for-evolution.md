@@ -2,13 +2,12 @@
 title: 為變更設計
 description: 進化的設計是連續創新的關鍵。
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: d05c1813dbc49f3ed8378cac4ea0c584ebdd9ff7
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: 9873d5c4e19d738a77a222e1f9a878ac5f5d125f
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252885"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206560"
 ---
 # <a name="design-for-evolution"></a>進化的設計
 

@@ -2,12 +2,12 @@
 title: 針對企業的需求而建置
 description: 每個設計決策必須對應合理的商務需求
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 110a441ae74334d212a717da2cb038d60b24bb1f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 768f2298860d91774d93c1917cf95000bb2b873d
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206566"
 ---
 # <a name="build-for-the-needs-of-the-business"></a>針對企業的需求而建置
 

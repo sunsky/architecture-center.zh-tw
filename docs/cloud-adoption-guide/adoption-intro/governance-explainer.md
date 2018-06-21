@@ -2,12 +2,12 @@
 title: 說明：什麼是雲端治理？
 description: 說明 Azure 與雲端的資源治理概念
 author: petertay
-ms.openlocfilehash: 63b04089aad5fc736641f8aaa6ff5247ea8ba13e
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291033"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206475"
 ---
 # <a name="explainer-what-is-cloud-resource-governance"></a>說明：什麼是雲端資源治理？
 
@@ -16,6 +16,8 @@ ms.locfileid: "35291033"
 不過，雖然為開發人員提供不受限制的資源存取可以讓他們非常敏捷，但是也會導致非預期的成本後果。 例如，開發小組可能會核准要部署一組測試資源，但是在完成測試之後忘記刪除。 這些資源將會繼續累計成本，即使已不再核准或需要使用它們。 
 
 這個問題的解決方案是資源存取**治理**。 治理指的是管理、監視及稽核 Azure 資源的使用符合組織目標和需求的進行中程序。 
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
 這些目標和需求對於每個組織都是獨特的，所以不可能有一體適用的治理方法。 相反地，Azure 會實作兩個主要的治理工具，**資源型存取控制 (RBAC)** 和**資源原則**，由每個組織設計其治理模型並使用。
 

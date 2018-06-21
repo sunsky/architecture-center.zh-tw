@@ -2,12 +2,12 @@
 title: 自我修復設計
 description: 具有復原功能的應用程式無須手動介入即可從失敗中復原。
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206573"
 ---
 # <a name="design-for-self-healing"></a>自我修復設計
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 11/14/2017
 
 **重試失敗的作業**。 可能會因為暫時遺失網路連線、卸除資料庫連線或服務忙碌時的逾時而發生暫時性失敗。 請在應用程式中建置重試邏輯以處理暫時性失敗。 用戶端 SDK 會對許多 Azure 服務實作自動重試功能。 如需詳細資訊，請參閱[暫時性錯誤處理][transient-fault-handling]和[重試模式][retry]。
 
-**保護失敗的遠端服務 (斷路器)**。 在發生暫時性失敗後進行重試是不錯的舉動，但如果失敗持續發生，最終的結果可能是會有無數的呼叫者不斷衝擊失敗的服務。 這可能會導致連鎖性失敗，因為要求會堵塞起來。 請使用[斷路器模式][circuit-breaker]，以在作業可能會失敗時立即失敗 (而不進行遠端呼叫)。  
+**保護失敗的遠端服務 (斷路器)**。 在發生暫時性失敗後進行重試是不錯的舉動，但如果失敗持續發生，最終的結果可能是會有無數的呼叫者不斷衝擊失敗的服務。 這可能會導致連鎖性失敗，因為要求會堵塞起來。 請使用[斷路器模式][circuit-breaker]，以在作業可能會失敗時快速檢錯 (而不進行遠端呼叫)。  
 
 **隔離重要的資源 (隔艙)**。 某個子系統發生失敗有時可能會產生連鎖反應。 如果失敗造成某些資源 (例如執行緒或通訊端) 無法即時釋出，而導致資源耗盡，就會發生這個情況。 為了避免這個問題，請將系統分割為隔離群組，讓一個分割區中的失敗不會使整個系統當機。  
 

@@ -2,16 +2,18 @@
 title: 說明：Azure 如何運作？
 description: 說明 Azure 的內部運作方式
 author: petertay
-ms.openlocfilehash: 1cebcc001b8d2ae93d8b0271c48d54617281c7c2
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 88514ba01efabe38a1b92d135321c2e44cef004e
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35290504"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206458"
 ---
 # <a name="explainer-how-does-azure-work"></a>說明：Azure 如何運作？
 
 Azure 是 Microsoft 的公用雲端平台。 Azure 提供多種不同的服務，包括平台即服務 (PaaS)、基礎結構即服務 (IaaS)、資料庫即服務 (DBaaS) 等等。 但 Azure 到底是什麼？它如何運作？
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo] 
 
 Azure 就像其他雲端平台一樣，需仰賴名為**虛擬化**的技術。 大部分的電腦硬體都可用軟體來模擬，因為大部分的電腦硬體都只是一組永久或半永久編碼在矽晶片材料中的指令。 使用將軟體指令對應至硬體指令的模擬層，虛擬化的硬體即可用軟體執行，如同在實際的硬體中執行一般。
 
