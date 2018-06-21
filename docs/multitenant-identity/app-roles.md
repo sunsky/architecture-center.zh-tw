@@ -11,6 +11,7 @@ ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422961"
 ---
 # <a name="application-roles"></a>應用程式角色
 

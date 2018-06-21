@@ -10,6 +10,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012513"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 來保護應用程式的機密資訊
 

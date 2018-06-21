@@ -8,6 +8,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012834"
 ---
 # <a name="enterprise-bi-with-sql-data-warehouse"></a>具 SQL 資料倉儲的 Enterprise BI
  

@@ -8,6 +8,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270117"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 

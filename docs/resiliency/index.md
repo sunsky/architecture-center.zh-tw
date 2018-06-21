@@ -10,6 +10,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012632"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>為 Azure 設計復原應用程式
 
@@ -176,7 +177,7 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 如需包含適用於 Azure 之特定建議事項的 FMA 程序相關資訊，請參閱 [Azure 復原指引：失敗模式分析][fma]。
 
 ### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a>識別失敗模式和偵測策略的範例
-**失敗點：**呼叫外部 web 服務/API。
+**失敗點：** 呼叫外部 web 服務/API。
 
 | 失敗模式 | 偵測策略 |
 | --- | --- |

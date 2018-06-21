@@ -12,6 +12,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30849649"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Azure 與內部部署資料中心之間的 DMZ
 

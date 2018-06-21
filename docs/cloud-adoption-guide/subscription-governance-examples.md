@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299892"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>實作 Azure 企業 Scaffold 的範例
 本文提供企業如何實作 [Azure 企業 Scaffold](subscription-governance.md) 建議的範例。 它會使用名為 Contoso 的虛構公司來說明常見案例的最佳作法。

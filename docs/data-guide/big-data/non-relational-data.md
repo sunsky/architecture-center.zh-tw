@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298666"
 ---
 # <a name="non-relational-data-and-nosql"></a>非關聯式資料和 NoSQL
 

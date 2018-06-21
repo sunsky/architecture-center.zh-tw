@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477735"
 ---
 # <a name="chatty-io-antipattern"></a>多對話 I/O 反模式
 

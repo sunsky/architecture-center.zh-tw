@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30848609"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 

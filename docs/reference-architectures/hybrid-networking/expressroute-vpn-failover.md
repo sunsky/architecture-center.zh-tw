@@ -11,6 +11,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270433"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure
 

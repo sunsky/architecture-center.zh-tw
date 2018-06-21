@@ -14,6 +14,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847844"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>健康情況端點監視模式
 

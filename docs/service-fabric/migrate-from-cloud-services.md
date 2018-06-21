@@ -8,6 +8,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012683"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>將 Azure 雲端服務應用程式移轉至 Azure Service Fabric 
 

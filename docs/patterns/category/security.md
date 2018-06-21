@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846993"
 ---
 # <a name="security-patterns"></a>安全性模式
 

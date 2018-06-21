@@ -8,6 +8,7 @@ ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/03/2018
+ms.locfileid: "32323919"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 

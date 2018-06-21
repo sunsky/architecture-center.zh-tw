@@ -9,6 +9,7 @@ ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/11/2018
+ms.locfileid: "27766100"
 ---
 # <a name="scalability-checklist"></a>延展性檢查清單
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673397"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>設計微服務：識別微服務界限
 

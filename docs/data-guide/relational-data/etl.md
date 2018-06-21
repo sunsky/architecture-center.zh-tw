@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298636"
 ---
 # <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
 

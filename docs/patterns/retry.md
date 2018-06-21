@@ -12,6 +12,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478250"
 ---
 # <a name="retry-pattern"></a>重試模式
 

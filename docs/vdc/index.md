@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298833"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虛擬資料中心和 Enterprise 控制平面
 

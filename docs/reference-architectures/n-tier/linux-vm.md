@@ -8,6 +8,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673580"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>在 Azure 上執行 Linux VM
 

@@ -11,6 +11,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540276"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>使用用戶端判斷提示從 Azure AD 取得存取權杖
 

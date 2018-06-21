@@ -8,6 +8,7 @@ ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/29/2017
+ms.locfileid: "27549173"
 ---
 # <a name="designing-microservices-api-gateways"></a>設計微服務：API 閘道
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/13/2017
+ms.locfileid: "26678725"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>設計微服務：擷取與工作流程
 

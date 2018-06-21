@@ -10,6 +10,7 @@ ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673570"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>適用於高可用性的多重區域多層式架構 (N-tier) 應用程式
 

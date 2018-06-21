@@ -9,6 +9,7 @@ ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/08/2018
+ms.locfileid: "29783507"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 

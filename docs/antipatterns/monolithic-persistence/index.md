@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538676"
 ---
 # <a name="monolithic-persistence-antipattern"></a>整合的持續性反模式
 

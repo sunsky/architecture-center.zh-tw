@@ -12,6 +12,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24542628"
 ---
 # <a name="federated-identity-pattern"></a>同盟身分識別模式
 
