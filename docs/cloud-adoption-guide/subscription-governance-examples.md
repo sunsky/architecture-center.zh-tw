@@ -19,6 +19,7 @@ ms.sourcegitcommit: 4ec010846b9b5545c843a32e08293f906e512302
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/17/2018
+ms.locfileid: "34299892"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a><span data-ttu-id="e9f80-103">實作 Azure 企業 Scaffold 的範例</span><span class="sxs-lookup"><span data-stu-id="e9f80-103">Examples of implementing Azure enterprise scaffold</span></span>
 <span data-ttu-id="e9f80-104">本文提供企業如何實作 [Azure 企業 Scaffold](subscription-governance.md) 建議的範例。</span><span class="sxs-lookup"><span data-stu-id="e9f80-104">This article provides examples of how an enterprise can implement the recommendations for an [Azure enterprise scaffold](subscription-governance.md).</span></span> <span data-ttu-id="e9f80-105">它會使用名為 Contoso 的虛構公司來說明常見案例的最佳作法。</span><span class="sxs-lookup"><span data-stu-id="e9f80-105">It uses a fictional company named Contoso to illustrate best practices for common scenarios.</span></span>

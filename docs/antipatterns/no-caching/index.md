@@ -8,6 +8,7 @@ ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/05/2018
+ms.locfileid: "27595980"
 ---
 # <a name="no-caching-antipattern"></a><span data-ttu-id="81f8a-103">沒有快取的反模式</span><span class="sxs-lookup"><span data-stu-id="81f8a-103">No Caching antipattern</span></span>
 

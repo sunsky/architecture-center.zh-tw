@@ -7,8 +7,10 @@ pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
 ms.openlocfilehash: 48943094e7847e39b9fdc4c3f71e27f2e6e41293
 ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673570"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a><span data-ttu-id="8e6e2-103">適用於高可用性的多重區域多層式架構 (N-tier) 應用程式</span><span class="sxs-lookup"><span data-stu-id="8e6e2-103">Multi-region N-tier application for high availability</span></span>
 

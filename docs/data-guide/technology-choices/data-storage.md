@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847204"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a><span data-ttu-id="0d024-102">在 Azure 中選擇巨量資料儲存技術</span><span class="sxs-lookup"><span data-stu-id="0d024-102">Choosing a big data storage technology in Azure</span></span>
 

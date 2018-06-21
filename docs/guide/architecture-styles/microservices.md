@@ -7,6 +7,7 @@ ms.sourcegitcommit: 7764a804f000180c37a4f8dbab946b525f784f58
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/09/2018
+ms.locfileid: "27717635"
 ---
 # <a name="microservices-architecture-style"></a><span data-ttu-id="ec37d-103">微服務架構樣式</span><span class="sxs-lookup"><span data-stu-id="ec37d-103">Microservices architecture style</span></span>
 

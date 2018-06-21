@@ -8,6 +8,7 @@ ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/08/2018
+ms.locfileid: "29782541"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a><span data-ttu-id="92349-103">重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式</span><span class="sxs-lookup"><span data-stu-id="92349-103">Refactor an Azure Service Fabric Application migrated from Azure Cloud Services</span></span>
 

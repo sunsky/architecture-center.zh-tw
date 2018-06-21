@@ -12,6 +12,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270467"
 ---
 # <a name="circuit-breaker-pattern"></a><span data-ttu-id="cb211-104">斷路器模式</span><span class="sxs-lookup"><span data-stu-id="cb211-104">Circuit Breaker pattern</span></span>
 

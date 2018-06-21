@@ -13,6 +13,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847102"
 ---
 # <a name="pipes-and-filters-pattern"></a><span data-ttu-id="c6b28-104">管道與篩選器模式</span><span class="sxs-lookup"><span data-stu-id="c6b28-104">Pipes and Filters pattern</span></span>
 

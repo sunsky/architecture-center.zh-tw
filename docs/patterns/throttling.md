@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541252"
 ---
 # <a name="throttling-pattern"></a><span data-ttu-id="72c9a-104">節流模式</span><span class="sxs-lookup"><span data-stu-id="72c9a-104">Throttling pattern</span></span>
 

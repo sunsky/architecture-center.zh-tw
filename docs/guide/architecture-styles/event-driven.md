@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478318"
 ---
 # <a name="event-driven-architecture-style"></a><span data-ttu-id="c09e9-103">事件驅動架構樣式</span><span class="sxs-lookup"><span data-stu-id="c09e9-103">Event-driven architecture style</span></span>
 

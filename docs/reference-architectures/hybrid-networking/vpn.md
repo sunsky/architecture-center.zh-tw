@@ -12,6 +12,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270688"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a><span data-ttu-id="0f699-103">使用 VPN 閘道將內部部署網路連線至 Azure</span><span class="sxs-lookup"><span data-stu-id="0f699-103">Connect an on-premises network to Azure using a VPN gateway</span></span>
 

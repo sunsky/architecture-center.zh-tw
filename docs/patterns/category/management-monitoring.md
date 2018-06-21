@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846785"
 ---
 # <a name="management-and-monitoring-patterns"></a><span data-ttu-id="3d668-106">管理與監視模式</span><span class="sxs-lookup"><span data-stu-id="3d668-106">Management and Monitoring patterns</span></span>
 

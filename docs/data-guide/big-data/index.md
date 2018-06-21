@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298850"
 ---
 # <a name="big-data-architectures"></a><span data-ttu-id="ced11-102">巨量資料架構</span><span class="sxs-lookup"><span data-stu-id="ced11-102">Big data architectures</span></span>
 

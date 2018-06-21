@@ -8,6 +8,7 @@ ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/12/2017
+ms.locfileid: "26652989"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a><span data-ttu-id="db69e-103">設計微服務：記錄和監視</span><span class="sxs-lookup"><span data-stu-id="db69e-103">Designing microservices: Logging and monitoring</span></span>
 

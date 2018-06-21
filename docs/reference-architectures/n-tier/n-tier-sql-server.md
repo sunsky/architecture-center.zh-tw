@@ -8,8 +8,10 @@ pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
 ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
 ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673590"
 ---
 # <a name="n-tier-application-with-sql-server"></a><span data-ttu-id="dfd6f-103">具有 SQL Server 的多層式架構 (N-tier) 應用程式</span><span class="sxs-lookup"><span data-stu-id="dfd6f-103">N-tier application with SQL Server</span></span>
 

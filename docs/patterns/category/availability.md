@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847272"
 ---
 # <a name="availability-patterns"></a><span data-ttu-id="46a00-107">可用性模式</span><span class="sxs-lookup"><span data-stu-id="46a00-107">Availability patterns</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477575"
 ---
 # <a name="improper-instantiation-antipattern"></a><span data-ttu-id="80661-103">不適當的具現化反模式</span><span class="sxs-lookup"><span data-stu-id="80661-103">Improper Instantiation antipattern</span></span>
 

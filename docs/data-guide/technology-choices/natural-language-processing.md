@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288850"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a><span data-ttu-id="ee071-102">在 Azure 中選擇自然語言處理技術</span><span class="sxs-lookup"><span data-stu-id="ee071-102">Choosing a natural language processing technology in Azure</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847776"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a><span data-ttu-id="467a3-102">選擇 Microsoft 認知服務技術</span><span class="sxs-lookup"><span data-stu-id="467a3-102">Choosing a Microsoft cognitive services technology</span></span>
 

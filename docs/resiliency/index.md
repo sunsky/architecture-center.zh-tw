@@ -10,6 +10,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012632"
 ---
 # <a name="designing-resilient-applications-for-azure"></a><span data-ttu-id="b9b70-103">為 Azure 設計復原應用程式</span><span class="sxs-lookup"><span data-stu-id="b9b70-103">Designing resilient applications for Azure</span></span>
 
@@ -176,7 +177,7 @@ ms.lasthandoff: 04/16/2018
 <span data-ttu-id="b9b70-331">如需包含適用於 Azure 之特定建議事項的 FMA 程序相關資訊，請參閱 [Azure 復原指引：失敗模式分析][fma]。</span><span class="sxs-lookup"><span data-stu-id="b9b70-331">For more information about the FMA process, with specific recommendations for Azure, see [Azure resiliency guidance: Failure mode analysis][fma].</span></span>
 
 ### <a name="example-of-identifying-failure-modes-and-detection-strategy"></a><span data-ttu-id="b9b70-332">識別失敗模式和偵測策略的範例</span><span class="sxs-lookup"><span data-stu-id="b9b70-332">Example of identifying failure modes and detection strategy</span></span>
-<span data-ttu-id="b9b70-333">**失敗點：**呼叫外部 web 服務/API。</span><span class="sxs-lookup"><span data-stu-id="b9b70-333">**Failure point:** Call to an external web service / API.</span></span>
+<span data-ttu-id="b9b70-333">**失敗點：** 呼叫外部 web 服務/API。</span><span class="sxs-lookup"><span data-stu-id="b9b70-333">**Failure point:** Call to an external web service / API.</span></span>
 
 | <span data-ttu-id="b9b70-334">失敗模式</span><span class="sxs-lookup"><span data-stu-id="b9b70-334">Failure mode</span></span> | <span data-ttu-id="b9b70-335">偵測策略</span><span class="sxs-lookup"><span data-stu-id="b9b70-335">Detection strategy</span></span> |
 | --- | --- |

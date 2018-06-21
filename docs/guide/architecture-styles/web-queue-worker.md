@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539796"
 ---
 # <a name="web-queue-worker-architecture-style"></a><span data-ttu-id="6984c-103">Web-佇列-背景工作角色架構樣式</span><span class="sxs-lookup"><span data-stu-id="6984c-103">Web-Queue-Worker architecture style</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30297949"
 ---
 # <a name="interactive-data-exploration"></a><span data-ttu-id="373be-102">互動式資料探索</span><span class="sxs-lookup"><span data-stu-id="373be-102">Interactive data exploration</span></span>
 

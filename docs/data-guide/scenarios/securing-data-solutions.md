@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288920"
 ---
 # <a name="securing-data-solutions"></a><span data-ttu-id="876c1-102">保護資料解決方案</span><span class="sxs-lookup"><span data-stu-id="876c1-102">Securing data solutions</span></span>
 

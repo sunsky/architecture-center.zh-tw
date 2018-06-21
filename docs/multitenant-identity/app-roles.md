@@ -11,6 +11,7 @@ ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422961"
 ---
 # <a name="application-roles"></a><span data-ttu-id="76ca7-103">應用程式角色</span><span class="sxs-lookup"><span data-stu-id="76ca7-103">Application roles</span></span>
 

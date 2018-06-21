@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846877"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a><span data-ttu-id="fcb2e-102">在 Azure 中選擇分析資料存放區</span><span class="sxs-lookup"><span data-stu-id="fcb2e-102">Choosing an analytical data store in Azure</span></span>
 

@@ -11,6 +11,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359234"
 ---
 # <a name="cache-access-tokens"></a><span data-ttu-id="b6776-103">快取存取權杖</span><span class="sxs-lookup"><span data-stu-id="b6776-103">Cache access tokens</span></span>
 

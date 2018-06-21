@@ -11,6 +11,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477439"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a><span data-ttu-id="f9dd7-103">與客戶的 AD FS 同盟</span><span class="sxs-lookup"><span data-stu-id="f9dd7-103">Federate with a customer's AD FS</span></span>
 

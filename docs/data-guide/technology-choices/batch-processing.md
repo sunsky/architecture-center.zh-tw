@@ -8,6 +8,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30848660"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a><span data-ttu-id="975da-102">在 Azure 中選擇批次處理技術</span><span class="sxs-lookup"><span data-stu-id="975da-102">Choosing a batch processing technology in Azure</span></span>
 

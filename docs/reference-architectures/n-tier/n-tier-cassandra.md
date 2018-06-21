@@ -5,8 +5,10 @@ author: MikeWasson
 ms.date: 05/03/2018
 ms.openlocfilehash: 46e9a821a33dd3ea3ae9129ab5ad69172bfcd667
 ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673610"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a><span data-ttu-id="3e36f-103">具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式</span><span class="sxs-lookup"><span data-stu-id="3e36f-103">N-tier application with Apache Cassandra</span></span>
 

@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288810"
 ---
 # <a name="processing-free-form-text-for-search"></a><span data-ttu-id="42065-102">處理自由格式文字以供搜尋之用</span><span class="sxs-lookup"><span data-stu-id="42065-102">Processing free-form text for search</span></span>
 

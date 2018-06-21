@@ -9,6 +9,7 @@ ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 01/05/2018
+ms.locfileid: "27596014"
 ---
 # <a name="api-implementation"></a><span data-ttu-id="be147-103">API 實作</span><span class="sxs-lookup"><span data-stu-id="be147-103">API implementation</span></span>
 

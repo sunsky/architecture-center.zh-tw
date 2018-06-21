@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478301"
 ---
 # <a name="explainer-what-is-an-azure-subscription"></a><span data-ttu-id="58136-103">說明：什麼是 Azure 訂用帳戶？</span><span class="sxs-lookup"><span data-stu-id="58136-103">Explainer: What is an Azure subscription?</span></span>
 
