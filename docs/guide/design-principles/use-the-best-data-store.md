@@ -2,43 +2,43 @@
 title: 使用作業的最佳資料存放區
 description: 挑選最適合您資料的儲存體技術，以及了解使用方式
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c3619012e8c199d154e4ac432ce03b2a9295c26f
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206563"
 ---
-# <a name="use-the-best-data-store-for-the-job"></a>使用作業的最佳資料存放區
+# <a name="use-the-best-data-store-for-the-job"></a><span data-ttu-id="122ac-103">使用作業的最佳資料存放區</span><span class="sxs-lookup"><span data-stu-id="122ac-103">Use the best data store for the job</span></span>
 
-## <a name="pick-the-storage-technology-that-is-the-best-fit-for-your-data-and-how-it-will-be-used"></a>挑選最適合您資料的儲存體技術，以及了解使用方式
+## <a name="pick-the-storage-technology-that-is-the-best-fit-for-your-data-and-how-it-will-be-used"></a><span data-ttu-id="122ac-104">挑選最適合您資料的儲存體技術，以及了解使用方式</span><span class="sxs-lookup"><span data-stu-id="122ac-104">Pick the storage technology that is the best fit for your data and how it will be used</span></span>
 
-將所有資料插入大型關聯式 SQL 資料庫的日子已經過去了。 關聯式資料庫很好 &mdash; 前提是關聯式資料的交易提供 ACID 保證。 但是它們都帶伴隨著成本：
+<span data-ttu-id="122ac-105">將所有資料插入大型關聯式 SQL 資料庫的日子已經過去了。</span><span class="sxs-lookup"><span data-stu-id="122ac-105">Gone are the days when you would just stick all of your data into a big relational SQL database.</span></span> <span data-ttu-id="122ac-106">關聯式資料庫很好 &mdash; 前提是關聯式資料的交易提供 ACID 保證。</span><span class="sxs-lookup"><span data-stu-id="122ac-106">Relational databases are very good at what they do &mdash; providing ACID guarantees for transactions over relational data.</span></span> <span data-ttu-id="122ac-107">但是它們都帶伴隨著成本：</span><span class="sxs-lookup"><span data-stu-id="122ac-107">But they come with some costs:</span></span>
 
-- 查詢可能需要昂貴的聯結。
-- 資料都必須正規化，而且符合預先定義的結構描述 (寫入結構描述)。
-- 鎖定爭用情況可能會影響效能。
+- <span data-ttu-id="122ac-108">查詢可能需要昂貴的聯結。</span><span class="sxs-lookup"><span data-stu-id="122ac-108">Queries may require expensive joins.</span></span>
+- <span data-ttu-id="122ac-109">資料都必須正規化，而且符合預先定義的結構描述 (寫入結構描述)。</span><span class="sxs-lookup"><span data-stu-id="122ac-109">Data must be normalized and conform to a predefined schema (schema on write).</span></span>
+- <span data-ttu-id="122ac-110">鎖定爭用情況可能會影響效能。</span><span class="sxs-lookup"><span data-stu-id="122ac-110">Lock contention may impact performance.</span></span>
 
-在任何大型解決方案中，有可能單一資料存放區技術不能滿足您的全部需求。 關聯式資料庫的替代方案有索引鍵/值存放區、文件資料庫、搜尋引擎資料庫、時間序列資料庫、資料行系列資料庫、圖形資料庫。 它們各有其優缺點，而每種類型的資料恰好適合其中一、兩個。 
+<span data-ttu-id="122ac-111">在任何大型解決方案中，有可能單一資料存放區技術不能滿足您的全部需求。</span><span class="sxs-lookup"><span data-stu-id="122ac-111">In any large solution, it's likely that a single data store technology won't fill all your needs.</span></span> <span data-ttu-id="122ac-112">關聯式資料庫的替代方案有索引鍵/值存放區、文件資料庫、搜尋引擎資料庫、時間序列資料庫、資料行系列資料庫、圖形資料庫。</span><span class="sxs-lookup"><span data-stu-id="122ac-112">Alternatives to relational databases include key/value stores, document databases, search engine databases, time series databases, column family databases, and graph databases.</span></span> <span data-ttu-id="122ac-113">它們各有其優缺點，而每種類型的資料恰好適合其中一、兩個。</span><span class="sxs-lookup"><span data-stu-id="122ac-113">Each has pros and cons, and different types of data fit more naturally into one or another.</span></span> 
 
-例如，您可能將產品目錄儲存在具有彈性結構描述的文件資料庫中，像是 Cosmos DB。 在此案例中，每個產品描述都是獨立的文件。 在查詢整個目錄時，您可能會索引目錄，並將索引儲存在 Azure 搜尋服務。 產品庫存可能放在 SQL 資料庫中，因為這些資料需要 ACID 保證。
+<span data-ttu-id="122ac-114">例如，您可能將產品目錄儲存在具有彈性結構描述的文件資料庫中，像是 Cosmos DB。</span><span class="sxs-lookup"><span data-stu-id="122ac-114">For example, you might store a product catalog in a document database, such as Cosmos DB, which allows for a flexible schema.</span></span> <span data-ttu-id="122ac-115">在此案例中，每個產品描述都是獨立的文件。</span><span class="sxs-lookup"><span data-stu-id="122ac-115">In that case, each product description is a self-contained document.</span></span> <span data-ttu-id="122ac-116">在查詢整個目錄時，您可能會索引目錄，並將索引儲存在 Azure 搜尋服務。</span><span class="sxs-lookup"><span data-stu-id="122ac-116">For queries over the entire catalog, you might index the catalog and store the index in Azure Search.</span></span> <span data-ttu-id="122ac-117">產品庫存可能放在 SQL 資料庫中，因為這些資料需要 ACID 保證。</span><span class="sxs-lookup"><span data-stu-id="122ac-117">Product inventory might go into a SQL database, because that data requires ACID guarantees.</span></span>
 
-記住，資料不只是保存應用程式資料。 它也包含應用程式記錄、事件、訊息和快取。
+<span data-ttu-id="122ac-118">記住，資料不只是保存應用程式資料。</span><span class="sxs-lookup"><span data-stu-id="122ac-118">Remember that data includes more than just the persisted application data.</span></span> <span data-ttu-id="122ac-119">它也包含應用程式記錄、事件、訊息和快取。</span><span class="sxs-lookup"><span data-stu-id="122ac-119">It also includes application logs, events, messages, and caches.</span></span>
 
-## <a name="recommendations"></a>建議
+## <a name="recommendations"></a><span data-ttu-id="122ac-120">建議</span><span class="sxs-lookup"><span data-stu-id="122ac-120">Recommendations</span></span>
 
-**不要每樣東西都使用關聯式資料庫**。 適當時請考慮其他資料存放區。 請參閱[選擇正確的資料存放區][data-store-overview]。
+<span data-ttu-id="122ac-121">**不要每樣東西都使用關聯式資料庫**。</span><span class="sxs-lookup"><span data-stu-id="122ac-121">**Don't use a relational database for everything**.</span></span> <span data-ttu-id="122ac-122">適當時請考慮其他資料存放區。</span><span class="sxs-lookup"><span data-stu-id="122ac-122">Consider other data stores when appropriate.</span></span> <span data-ttu-id="122ac-123">請參閱[選擇正確的資料存放區][data-store-overview]。</span><span class="sxs-lookup"><span data-stu-id="122ac-123">See [Choose the right data store][data-store-overview].</span></span>
 
-**採納 polyglot persistence**。 在任何大型解決方案中，有可能單一資料存放區技術不能滿足您的全部需求。 
+<span data-ttu-id="122ac-124">**採納 polyglot persistence**。</span><span class="sxs-lookup"><span data-stu-id="122ac-124">**Embrace polyglot persistence**.</span></span> <span data-ttu-id="122ac-125">在任何大型解決方案中，有可能單一資料存放區技術不能滿足您的全部需求。</span><span class="sxs-lookup"><span data-stu-id="122ac-125">In any large solution, it's likely that a single data store technology won't fill all your needs.</span></span> 
 
-**考慮資料的類型**。 例如，將交易資料放在 SQL、將 JSON 文件放在文件資料庫、將遙測資料放在時間序列資料庫、將應用程式記錄放在 Elasticsearch、將 blob 放在 Azure Blob 儲存體。
+<span data-ttu-id="122ac-126">**考慮資料的類型**。</span><span class="sxs-lookup"><span data-stu-id="122ac-126">**Consider the type of data**.</span></span> <span data-ttu-id="122ac-127">例如，將交易資料放在 SQL、將 JSON 文件放在文件資料庫、將遙測資料放在時間序列資料庫、將應用程式記錄放在 Elasticsearch、將 blob 放在 Azure Blob 儲存體。</span><span class="sxs-lookup"><span data-stu-id="122ac-127">For example, put transactional data into SQL, put JSON documents into a document database, put telemetry data into a time series data base, put application logs in Elasticsearch, and put blobs in Azure Blob Storage.</span></span>
 
-**把可用性擺在 (增強式) 一致性之前**。 CAP 理論表示分散式系統必須在可用性和一致性之間取捨。 (網路磁碟分割是 CAP 理論的另一要角，永遠無法完全避免。)通常，採用「最終一致性」模型可以獲得更高的可用性。 
+<span data-ttu-id="122ac-128">**把可用性擺在 (增強式) 一致性之前**。</span><span class="sxs-lookup"><span data-stu-id="122ac-128">**Prefer availability over (strong) consistency**.</span></span> <span data-ttu-id="122ac-129">CAP 理論表示分散式系統必須在可用性和一致性之間取捨。</span><span class="sxs-lookup"><span data-stu-id="122ac-129">The CAP theorem implies that a distributed system must make trade-offs between availability and consistency.</span></span> <span data-ttu-id="122ac-130">(網路磁碟分割是 CAP 理論的另一要角，永遠無法完全避免。)通常，採用「最終一致性」模型可以獲得更高的可用性。</span><span class="sxs-lookup"><span data-stu-id="122ac-130">(Network partitions, the other leg of the CAP theorem, can never be completely avoided.) Often, you can achieve higher availability by adopting an *eventual consistency* model.</span></span> 
 
-**考慮開發小組的技能組合**。 使用 polyglot persistence 有其優點，但也有可能力不從心。 採用新的資料儲存技術需要一套新的技能。 開發團隊必須了解如何充分利用技術。 他們必須了解適當的使用模式、如何將查詢最佳化、微調效能等等。 在考慮儲存體技術時請把這一點納入考量。 
+<span data-ttu-id="122ac-131">**考慮開發小組的技能組合**。</span><span class="sxs-lookup"><span data-stu-id="122ac-131">**Consider the skill set of the development team**.</span></span> <span data-ttu-id="122ac-132">使用 polyglot persistence 有其優點，但也有可能力不從心。</span><span class="sxs-lookup"><span data-stu-id="122ac-132">There are advantages to using polyglot persistence, but it's possible to go overboard.</span></span> <span data-ttu-id="122ac-133">採用新的資料儲存技術需要一套新的技能。</span><span class="sxs-lookup"><span data-stu-id="122ac-133">Adopting a new data storage technology requires a new set of skills.</span></span> <span data-ttu-id="122ac-134">開發團隊必須了解如何充分利用技術。</span><span class="sxs-lookup"><span data-stu-id="122ac-134">The development team must understand how to get the most out of the technology.</span></span> <span data-ttu-id="122ac-135">他們必須了解適當的使用模式、如何將查詢最佳化、微調效能等等。</span><span class="sxs-lookup"><span data-stu-id="122ac-135">They must understand appropriate usage patterns, how to optimize queries, tune for performance, and so on.</span></span> <span data-ttu-id="122ac-136">在考慮儲存體技術時請把這一點納入考量。</span><span class="sxs-lookup"><span data-stu-id="122ac-136">Factor this in when considering storage technologies.</span></span> 
 
-**使用補償交易**。 polyglot persistence 的副作用是單一交易可能會將資料寫入多個存放區。 如果哪個環節出錯了，使用補償交易來復原任何已完成的步驟。
+<span data-ttu-id="122ac-137">**使用補償交易**。</span><span class="sxs-lookup"><span data-stu-id="122ac-137">**Use compensating transactions**.</span></span> <span data-ttu-id="122ac-138">polyglot persistence 的副作用是單一交易可能會將資料寫入多個存放區。</span><span class="sxs-lookup"><span data-stu-id="122ac-138">A side effect of polyglot persistence is that single transaction might write data to multiple stores.</span></span> <span data-ttu-id="122ac-139">如果哪個環節出錯了，使用補償交易來復原任何已完成的步驟。</span><span class="sxs-lookup"><span data-stu-id="122ac-139">If something fails, use compensating transactions to undo any steps that already completed.</span></span>
 
-**查看限界內容**。 「限界內容」一詞來自網域導向設計。 限界內容是環繞網域模型的明確界限，定義了模型套用至網域的哪些部分。 在理想情況下，限界內容會對應到商務網域的子網域。 系統中的限界內容是考慮 polyglot persistence 的最佳位置。 例如，「產品」會出現在「產品目錄」和「產品庫存」兩個子網域中，但很可能這兩個子網域在儲存、更新、查詢產品方面有不同的需求。
+<span data-ttu-id="122ac-140">**查看限界內容**。</span><span class="sxs-lookup"><span data-stu-id="122ac-140">**Look at bounded contexts**.</span></span> <span data-ttu-id="122ac-141">「限界內容」一詞來自網域導向設計。</span><span class="sxs-lookup"><span data-stu-id="122ac-141">*Bounded context* is a term from domain driven design.</span></span> <span data-ttu-id="122ac-142">限界內容是環繞網域模型的明確界限，定義了模型套用至網域的哪些部分。</span><span class="sxs-lookup"><span data-stu-id="122ac-142">A bounded context is an explicit boundary around a domain model, and defines which parts of the domain the model applies to.</span></span> <span data-ttu-id="122ac-143">在理想情況下，限界內容會對應到商務網域的子網域。</span><span class="sxs-lookup"><span data-stu-id="122ac-143">Ideally, a bounded context maps to a subdomain of the business domain.</span></span> <span data-ttu-id="122ac-144">系統中的限界內容是考慮 polyglot persistence 的最佳位置。</span><span class="sxs-lookup"><span data-stu-id="122ac-144">The bounded contexts in your system are a natural place to consider polyglot persistence.</span></span> <span data-ttu-id="122ac-145">例如，「產品」會出現在「產品目錄」和「產品庫存」兩個子網域中，但很可能這兩個子網域在儲存、更新、查詢產品方面有不同的需求。</span><span class="sxs-lookup"><span data-stu-id="122ac-145">For example, "products" may appear in both the Product Catalog subdomain and the Product Inventory subdomain, but it's very likely that these two subdomains have different requirements for storing, updating, and querying products.</span></span>
 
 [data-store-overview]: ../technology-choices/data-store-overview.md
