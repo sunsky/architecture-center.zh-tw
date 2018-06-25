@@ -2,12 +2,13 @@
 title: Azure 計算服務的決策樹
 description: 選取計算服務的流程圖
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 3dcfbd156d4fced863a56bcc8bb74483aa665f9f
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.date: 06/13/2018
+ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/11/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206606"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Azure 計算服務的決策樹
 
@@ -25,5 +26,20 @@ Azure 提供了多種方式來裝載您的應用程式程式碼。 *計算*一�
 
 如果您的應用程式包含多個工作負載，請個別評估每個工作負載。 完整的解決方案可能會納入兩個或更多計算服務。
 
+## <a name="flowchart"></a>流程圖
+
 ![](../images/compute-decision-tree.svg)
 
+## <a name="definitions"></a>定義
+
+- **Greenfield (綠色領域)** 描述一個全新且從頭開始建立的軟體專案。 不包含舊版程式碼。 
+
+- **Brownfield (棕色領域)** 描述在現有的應用程式上建立的軟體專案。 它可能會繼承舊版的程式碼或架構。
+
+- **隨即轉移**是一種將工作負載移轉至雲端，而不需要重新設計應用程式或變更程式碼的策略。 也稱為*重新裝載*。 如需詳細資訊，請參閱 [Azure 移轉中心](https://azure.microsoft.com/migration/)。
+
+- **雲端最佳化**是透過重構應用程式以充分利用雲端原生功能來移轉至雲端的策略。
+
+## <a name="next-steps"></a>後續步驟
+
+如要考量其他準則，請參閱[選擇 Azure 計算服務的準則](./compute-comparison.md)。

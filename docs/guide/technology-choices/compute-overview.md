@@ -2,16 +2,19 @@
 title: Azure 計算選項的概觀
 description: Azure 計算選項的概觀
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 8ee508aaa07d87ac77ef484e20d572fdf2b9fb40
-ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
+ms.date: 06/13/2018
+ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/29/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206557"
 ---
 # <a name="overview-of-azure-compute-options"></a>Azure 計算選項的概觀
 
 *計算*一詞是指您的應用程式執行所在運算資源的裝載模型。 
+
+## <a name="overview"></a>概觀
 
 頻譜的一端是**基礎結構即服務** (IaaS)。 有了 IaaS，您可以佈建您需要的 VM，以及相關聯的網路和儲存體元件。 然後您會部署您想放在這些 VM 上的任何軟體和應用程式。 此模型最接近傳統內部部署環境，不同之處在於 Microsoft 會管理基礎結構。 您還是可以管理個別的 VM。  
 
@@ -23,12 +26,15 @@ ms.lasthandoff: 04/29/2018
 
 IaaS 提供最大控制、彈性和可攜性。 FaaS 提供簡潔、彈性的調整，與潛在的成本節省，因為您只針對您的程式碼執行的時間付費。 PaaS 介於兩者之間。 一般情況下，服務提供的彈性愈大，對於設定和管理資源，您要負責的愈多。 FaaS 服務會自動管理近乎執行中應用程式的所有層面，而 IaaS 解決方案需要您佈建、設定及管理 VM 和您所建立的網路元件。
 
+## <a name="azure-compute-options"></a>Azure 計算選項
+
 以下是 Azure 中目前可用的主要計算選項：
 
 - [虛擬機器](/azure/virtual-machines/)是 IaaS 服務，可讓您部署及管理虛擬網路 (VNet) 內的 VM。
-- [App Service](/azure/app-service/app-service-value-prop-what-is) 是用於裝載 Web 應用程式、行動裝置應用程式後端、RESTful API 或自動化商務程序的受控服務。
+- [App Service](/azure/app-service/app-service-value-prop-what-is) 是用於裝載 Web 應用程式、行動裝置應用程式後端、RESTful API 或自動化商務程序的受控 PaaS 供應項目。
 - [Service Fabric](/azure/service-fabric/service-fabric-overview) 是可以在許多環境中 (包括 Azure 或內部部署) 執行的分散式系統平台。 Service Fabric 是跨電腦叢集的微服務協調者。 
 - [Azure Container Service](/azure/container-service/container-service-intro) 可讓您建立、設定和管理虛擬機器的叢集，這些虛擬機器預先設定為執行容器化應用程式。
+- [Azure Container Instances](/azure/container-instances/container-instances-overview) 提供更簡單快速的方法，讓您無需佈建任何虛擬機器或採用更高層級的服務，就能在 Azure 中執行容器。
 - [Azure Functions](/azure/azure-functions/functions-overview) 是受控 FaaS 服務。
 - [Azure Batch](/azure/batch/batch-technical-overview) 是受控服務，可用於執行大規模的平行和高效能運算 (HPC) 應用程式。
 - [雲端服務](/azure/cloud-services/cloud-services-choose-me)是用於執行雲端應用程式的受控服務。 它使用 PaaS 裝載模型。 
@@ -42,6 +48,8 @@ IaaS 提供最大控制、彈性和可攜性。 FaaS 提供簡潔、彈性的調
 - 成本。 除了服務本身的成本，請考慮用於管理該服務上所建置解決方案的作業成本。 例如，IaaS 解決方案可能會有較高的作業成本。
 - 每個服務的整體限制為何？ 
 - 此服務適用什麼種類的應用程式架構？ 
+
+## <a name="next-steps"></a>後續步驟
 
 若要適當選取應用程式的計算服務，請使用 [Azure 計算服務的決策樹](./compute-decision-tree.md)
 

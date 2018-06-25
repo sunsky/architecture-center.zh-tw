@@ -2,12 +2,12 @@
 title: 採用 Azure：中繼
 description: 說明企業要採用 Azure 所需具備的中繼層級知識
 author: petertay
-ms.openlocfilehash: 39b98595dd615ba1aa36921e48a0b23797bebaa0
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291050"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206356"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Azure 雲端採用指南：中繼概觀
 
@@ -53,31 +53,31 @@ Azure 採用中繼階段的焦點是設計您的治理模型，讓多個小組�
 請遵循下列步驟：
 
 1. 如果貴組織還沒有帳戶的話，請建立 [Azure 帳戶](/azure/active-directory/sign-up-organization)。 註冊 Azure 帳戶的人員會成為 Azure 帳戶管理員，而且貴組織的領導必須選取個人來承擔這個角色。 這個個人將負責：
-  * 建立訂用帳戶，並且
-  * 建立和管理 [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis) 租用戶，在其中儲存這些訂用帳戶的使用者身分識別。    
+    * 建立訂用帳戶，並且
+    * 建立和管理 [Azure Active Directory (AD)](/azure/active-directory/active-directory-whatis) 租用戶，在其中儲存這些訂用帳戶的使用者身分識別。    
 2. 貴組織的領導小組決定哪些人負責：
-  * 使用者身分識別管理，[Azure AD 租用戶](/azure/active-directory/develop/active-directory-howto-tenant)預設會在貴組織的 Azure 帳戶建立時建立，而且帳戶管理員預設會新增為 [Azure AD 全域管理員](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role)。 貴組織可以選擇另一個使用者來管理使用者身分識別，方法是[將 Azure AD 全域管理員角色指派給該使用者](/azure/active-directory/active-directory-users-assign-role-azure-portal)。 
-  * 訂用帳戶，這表示這些使用者：
-    * 管理與該訂用帳戶中資源使用量相關聯的成本，
-    * 實作和維護資源存取權的最小權限模型，以及
-    * 持續追蹤服務限制。
-  * 共用基礎結構服務 (如果貴組織決定要使用此模型)，這表示此使用者負責：
-    * 內部部署至 Azure 的網路連線，以及 
-    * Azure 中透過虛擬網路對等互連的網路連線擁有權。
-  * 工作負載擁有者。 
+    * 使用者身分識別管理，[Azure AD 租用戶](/azure/active-directory/develop/active-directory-howto-tenant)預設會在貴組織的 Azure 帳戶建立時建立，而且帳戶管理員預設會新增為 [Azure AD 全域管理員](/azure/active-directory/active-directory-assign-admin-roles-azure-portal#details-about-the-global-administrator-role)。 貴組織可以選擇另一個使用者來管理使用者身分識別，方法是[將 Azure AD 全域管理員角色指派給該使用者](/azure/active-directory/active-directory-users-assign-role-azure-portal)。 
+    * 訂用帳戶，這表示這些使用者：
+        * 管理與該訂用帳戶中資源使用量相關聯的成本，
+        * 實作和維護資源存取權的最小權限模型，以及
+        * 持續追蹤服務限制。
+    * 共用基礎結構服務 (如果貴組織決定要使用此模型)，這表示此使用者負責：
+        * 內部部署至 Azure 網路連線，以及 
+        * 透過虛擬網路對等互連，在 Azure 內網路連線的擁有權。
+    * 工作負載擁有者。 
 3. Azure AD 全域管理員會為以下人員[建立新的使用者帳戶](/azure/active-directory/add-users-azure-active-directory)：
-  * 將成為與每個環境相關聯訂用帳戶**訂用帳戶擁有者**的人員。 請注意，只有當訂用帳戶**服務管理員**不負責管理每個訂用帳戶/環境的資源存取權時，才需要這麼做。
-  * 將成為**網路作業使用者**的人員，以及
-  * 身為**工作負載擁有者**的人員。
+    * 將成為與每個環境相關聯訂用帳戶**訂用帳戶擁有者**的人員。 請注意，只有當訂用帳戶**服務管理員**不負責管理每個訂用帳戶/環境的資源存取權時，才需要這麼做。
+    * 將成為**網路作業使用者**的人員，以及
+    * 身為**工作負載擁有者**的人員。
 4. Azure 帳戶管理員會使用 [Azure 帳戶入口網站](https://account.azure.com)，建立下列三個訂用帳戶：
-  * 適用於**共用基礎結構**環境的訂用帳戶，
-  * 適用於**生產**環境的訂用帳戶，以及 
-  * 適用於**開發**環境的訂用帳戶。 
+    * 適用於**共用基礎結構**環境的訂用帳戶，
+    * 適用於**生產**環境的訂用帳戶，以及 
+    * 適用於**開發**環境的訂用帳戶。 
 5. Azure 帳戶管理員會[將訂用帳戶服務擁有者新增至每個訂用帳戶](/azure/billing/billing-add-change-azure-subscription-administrator#add-an-rbac-owner-admin-for-a-subscription-in-azure-portal)。
-6. 建立**工作負載擁有者**的核准程序，以要求建立資源群組。 核准程序的實作方式有許多種，例如透過電子郵件，或者您可以使用如 [Sharepoint 工作流程](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3)的處理程序管理工具。 核准程序可以依照下列步驟：
-  1. **工作負載擁有者**為**開發**環境、**生產**環境或兩者中的必要 Azure 資源準備用料表，並且將它提交給**訂用帳戶擁有者**。
-  2. **訂用帳戶擁有者**檢閱用料表並驗證要求的資源，以確保要求的資源適合其規劃使用，例如，檢查要求的[虛擬機器大小](/azure/virtual-machines/windows/sizes)正確無誤。
-  3. 如果要求未獲得核准，**工作負載擁有者**會收到通知。 如果要求通過核准，**訂用帳戶擁有者**會遵循貴組織的[命名慣例](/azure/architecture/best-practices/naming-conventions)來[建立要求的資源群組](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups)，[新增**工作負載擁有者**](/azure/role-based-access-control/role-assignments-portal#add-access)，其具有[**參與者**角色](/azure/role-based-access-control/built-in-roles#contributor)，並且將通知傳送給已建立資源群組的**工作負載擁有者**。
+6. 建立**工作負載擁有者**的核准程序，以要求建立資源群組。 核准程序的實作方式有許多種，例如透過電子郵件，或者您可以使用如 [Sharepoint 工作流程](https://support.office.com/article/introduction-to-sharepoint-workflow-07982276-54e8-4e17-8699-5056eff4d9e3)的處理程序管理工具。 核准程序可以依照下列步驟：  
+    * **工作負載擁有者**為**開發**環境、**生產**環境或兩者中的必要 Azure 資源準備用料表，並且將它提交給**訂用帳戶擁有者**。
+    * **訂用帳戶擁有者**檢閱用料表並驗證要求的資源，以確保要求的資源適合其規劃使用，例如，檢查要求的[虛擬機器大小](/azure/virtual-machines/windows/sizes)正確無誤。
+    * 如果要求未獲得核准，**工作負載擁有者**會收到通知。 如果要求通過核准，**訂用帳戶擁有者**會遵循貴組織的[命名慣例](/azure/architecture/best-practices/naming-conventions)來[建立要求的資源群組](/azure/azure-resource-manager/resource-group-portal#manage-resource-groups)，[新增**工作負載擁有者**](/azure/role-based-access-control/role-assignments-portal#add-access)，其具有[**參與者**角色](/azure/role-based-access-control/built-in-roles#contributor)，並且將通知傳送給已建立資源群組的**工作負載擁有者**。
 7. 為工作負載擁有者建立核准程序，以要求來自共用基礎結構擁有者的虛擬網路對等互連連線。 如同上一個步驟，這個核准程序可以使用電子郵件或處理程序管理工具來實作。
 
 既然您已實作治理模型，您可以部署共用基礎結構服務。

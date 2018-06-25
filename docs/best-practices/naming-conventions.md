@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42d91da3eacdcda66b82dff82ba444170c11d7d1
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253055"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206373"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -34,7 +34,7 @@ ms.locfileid: "35253055"
 `<Company> <Department (optional)> <Product Line (optional)> <Environment>`
 
 * 每個訂用帳戶的公司 (Company) 通常都相同。 不過，有些公司的組織結構內可能有子公司。 這些公司可能由一個中央 IT 群組管理。 在這些情況下，它們可以同時具有父公司名稱 (*Contoso*) 和子公司名稱 (*Northwind*)，並藉此區別。
-* Department (部門) 是組織內的一群人工作所在單位的名稱。 此為命名空間內的選用項目。
+* Department (部門) 是組織內包含一群人所在單位的名稱。 此為命名空間內的選用項目。
 * Product Line (產品線) 是產品或部門所行使之職責的特定名稱。 對於內部服務和應用程式來說，此項目通常是選用的。 不過，如果是需要能夠輕易區別和辨識 (例如為了清楚區別帳單記錄) 的公開服務，則強烈建議使用此項目。
 * Environment (環境) 是描述應用程式或服務之部署生命週期的名稱，例如開發、品管或生產。
 
