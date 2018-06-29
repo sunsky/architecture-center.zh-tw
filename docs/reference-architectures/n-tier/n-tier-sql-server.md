@@ -2,16 +2,13 @@
 title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
-ms.date: 05/03/2018
-pnp.series.title: Windows VM workloads
-pnp.series.next: multi-region-application
-pnp.series.prev: multi-vm
-ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 06/23/2018
+ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
+ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673590"
+ms.lasthandoff: 06/24/2018
+ms.locfileid: "36746667"
 ---
 # <a name="n-tier-application-with-sql-server"></a>具有 SQL Server 的多層式架構 (N-tier) 應用程式
 
@@ -43,9 +40,11 @@ ms.locfileid: "33673590"
 
 * **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，能夠儘允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許遠端桌面 (RDP) 流量。
 
-* **SQL Server Always On 可用性群組。** 藉由啟用複寫和容錯移轉，在資料層提供高可用性。
+* **SQL Server Always On 可用性群組。** 藉由啟用複寫和容錯移轉，在資料層提供高可用性。 它會使用 Windows Server 容錯移轉叢集 (WSFC) 技術來進行容錯移轉。
 
-* **Active Directory Domain Services (AD DS) 伺服器**。 SQL Server Always On 可用性群組已加入網域，以啟用 Windows Server 容錯移轉叢集 (WSFC) 技術進行容錯移轉。 
+* **Active Directory Domain Services (AD DS) 伺服器**。 容錯移轉叢集及其相關聯叢集角色的電腦物件，是在 Active Directory Domain Services (AD DS) 中建立。
+
+* **雲端見證**。 容錯移轉叢集需要它一半以上的節點執行，也就是具有仲裁。 如果叢集只有兩個節點，網路磁碟分割可能會導致每個節點都認為它是主要節點。 在此情況下，您需要「見證」以打破和局，並建立仲裁。 見證是例如共用磁碟的資源，可以作為打破和局項目以建立仲裁。 雲端見證是使用 Azure Blob 儲存體的見證類型。 若要深入了解有關仲裁的概念，請參閱＜[了解叢集和集區仲裁](/windows-server/storage/storage-spaces/understand-quorum)＞。 如需雲端見證的詳細資訊，請參閱＜[為容錯移轉叢集部署雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)＞。 
 
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
@@ -157,13 +156,13 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub][github-folder] 上取得。 
+此參考架構的部署可在 [GitHub][github-folder] 上取得。 請注意，整個部署可能需要長達 2 小時的時間，包括執行指令碼以設定 AD DS、Windows Server 容錯移轉叢集和 SQL Server 可用性設定組。
 
 ### <a name="prerequisites"></a>先決條件
 
 1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
 
-2. 確定您已在電腦上安裝 Azure CLI 2.0。 若要安裝 CLI，請依照[安裝 Azure CLI 2.0][azure-cli-2] 中的指示進行。
+2. 安裝 [Azure CLI 2.0][azure-cli-2]。
 
 3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
 
@@ -171,32 +170,80 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
    npm install -g @mspnp/azure-building-blocks
    ```
 
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
+4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
 
    ```bash
    az login
    ```
 
-### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
+### <a name="deploy-the-solution"></a>部署解決方案 
 
-若要以多層式架構 (N-Tier) 應用程式參考架構部署 Windows VM，請依以下步驟進行：
+1. 執行下列命令以建立資源群組。
 
-1. 瀏覽至您在上述必要條件步驟 1 中複製存放庫的 `virtual-machines\n-tier-windows` 資料夾。
+    ```bash
+    az group create --location <location> --name <resource-group-name>
+    ```
 
-2. 參數檔案會指定部署中每個 VM 的預設管理員使用者名稱及密碼。 您必須在部署參考架構前先變更這些內容。 開啟 `n-tier-windows.json` 檔案，並用新設定取代每個 **adminUsername** 和 **adminPassword** 欄位。
-  
-   > [!NOTE]
-   > 在部署期間，會有多個指令碼在 **VirtualMachineExtension** 物件及 **VirtualMachine** 物件中部份的 **extensions** 設定中執行。 這些指令碼需要您之前變更的管理員使用者名稱和密碼。 建議您檢閱這些指令碼，以確保指定了正確的認證。 若您並未指定正確的認證，部署可能失敗。
-   > 
-   > 
+2. 執行下列命令為雲端見證建立儲存體帳戶。
 
-儲存檔案。
+    ```bash
+    az storage account create --location <location> \
+      --name <storage-account-name> \
+      --resource-group <resource-group-name> \
+      --sku Standard_LRS
+    ```
 
-3. 使用如下所示的 **azbb** 命令列來部署參考架構。
+3. 瀏覽至參考架構 GitHub 存放庫的 `virtual-machines\n-tier-windows` 資料夾。
 
-   ```bash
-   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-   ```
+4. 開啟 `n-tier-windows.json` 檔案。 
+
+5. 搜尋 "witnessStorageBlobEndPoint" 的所有執行個體，並且將預留位置文字取代為步驟 2 中儲存體帳戶的名稱。
+
+    ```json
+    "witnessStorageBlobEndPoint": "https://[replace-with-storageaccountname].blob.core.windows.net",
+    ```
+
+6. 執行下列命令以列出儲存體帳戶的帳戶金鑰。
+
+    ```bash
+    az storage account keys list \
+      --account-name <storage-account-name> \
+      --resource-group <resource-group-name>
+    ```
+
+    輸出應該看起來如下所示。 複製 `key1` 的值。
+
+    ```json
+    [
+    {
+        "keyName": "key1",
+        "permissions": "Full",
+        "value": "..."
+    },
+    {
+        "keyName": "key2",
+        "permissions": "Full",
+        "value": "..."
+    }
+    ]
+    ```
+
+7. 在 `n-tier-windows.json` 檔案中，搜尋 "witnessStorageAccountKey" 的所有執行個體，並且貼至帳戶金鑰。
+
+    ```json
+    "witnessStorageAccountKey": "[replace-with-storagekey]"
+    ```
+
+8. 在 `n-tier-windows.json` 檔案中，搜尋 `testPassw0rd!23`、`test$!Passw0rd111` 和 `AweS0me@SQLServicePW` 的所有執行個體。 將它們取代為您自己的密碼，然後儲存檔案。
+
+    > [!NOTE]
+    > 如果您變更系統管理員使用者名稱，您也必須在 JSON 檔案中更新 `extensions` 區塊。 
+
+9. 執行下列命令來部署架構。
+
+    ```bash
+    azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
+    ```
 
 如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
 

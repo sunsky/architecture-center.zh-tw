@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: f02843f179671da04bc2f09326b58075b432ba95
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
+ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253072"
+ms.lasthandoff: 06/22/2018
+ms.locfileid: "36327682"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -325,7 +325,7 @@ Azure 搜尋服務 SDK 中的重試行為是由 [SearchServiceClient] 和 [Searc
 * [RetryExponential 類別](http://msdn.microsoft.com/library/microsoft.servicebus.retryexponential.aspx)。 這會公開控制退避間隔的屬性、重試計數，以及用來限制作業完成總時間的 **TerminationTimeBuffer** 屬性。
 * [NoRetry 類別](http://msdn.microsoft.com/library/microsoft.servicebus.noretry.aspx)。 這用於當不需要在服務匯流排 API 層級重試時，例如當在批次或多步驟作業期間由另一個處理序管理重試時。
 
-服務匯流排動作會傳回某個範圍的例外狀況，如 [附錄：傳訊例外狀況](http://msdn.microsoft.com/library/hh418082.aspx)中所列的清單。 此清單會提供這些重試作業的表示是否適合的資訊。 例如， [ServerBusyException](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.serverbusyexception.aspx) 表示用戶端應等待一段時間後，再重試作業。 **ServerBusyException** 的發生也會導致服務匯流排切換成不同的模式，在該模式中會在計算出的重試延遲中額外加上 10 秒的延遲。 此模式會在短時間後重設。
+服務匯流排動作會傳回某個範圍的例外狀況，如[服務匯流排傳訊例外狀況](/azure/service-bus-messaging/service-bus-messaging-exceptions)中所列的清單。 此清單會提供這些重試作業的表示是否適合的資訊。 例如， **ServerBusyException** 表示用戶端應等待一段時間後，再重試作業。 **ServerBusyException** 的發生也會導致服務匯流排切換成不同的模式，在該模式中會在計算出的重試延遲中額外加上 10 秒的延遲。 此模式會在短時間後重設。
 
 從服務匯流排傳回的例外狀況會公開 **IsTransient** 屬性，以表示用戶端是否應該重試作業。 內建的 **RetryExponential** 原則依賴 **MessagingException** 類別中的 **IsTransient** 屬性，也就是所有服務匯流排例外狀況的基底類別。 如果您建立 **RetryPolicy** 基底類別的自訂實作，您可以使用例外狀況類型和 **IsTransient** 屬性的組合，藉此更細微地控制重試動作。 例如，您可能會偵測到 **QuotaExceededException** ，並先採取動作清空佇列，再重試將訊息傳送到佇列。
 

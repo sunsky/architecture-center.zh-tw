@@ -3,12 +3,12 @@ title: Azure 計算服務的決策樹
 description: 選取計算服務的流程圖
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
+ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206606"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36338178"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Azure 計算服務的決策樹
 
@@ -25,6 +25,8 @@ Azure 提供了多種方式來裝載您的應用程式程式碼。 *計算*一�
 - [計算比較資料表](./compute-comparison.md)
 
 如果您的應用程式包含多個工作負載，請個別評估每個工作負載。 完整的解決方案可能會納入兩個或更多計算服務。
+
+如需在 Azure 中裝載容器選項的詳細資訊，請參閱＜https://azure.microsoft.com/overview/containers/＞。
 
 ## <a name="flowchart"></a>流程圖
 
