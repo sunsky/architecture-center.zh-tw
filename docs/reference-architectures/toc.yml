@@ -16,6 +16,8 @@
       items:
         - name: 具 SQL 資料倉儲的 Enterprise BI
           href: data/enterprise-bi-sqldw.md
+        - name: 具 SQL 資料倉儲和 Data Factory 的自動化 Enterprise BI
+          href: data/enterprise-bi-adf.md
     - name: 混合式網路
       href: hybrid-networking/index.md
       items:
