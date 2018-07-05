@@ -10,12 +10,12 @@ pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: 047ecea41ba30ce4cccf17b8c4964a37ae60150f
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.openlocfilehash: 105ffc4b329331522529161731b1947f99e02280
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2018
-ms.locfileid: "32323902"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142194"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
@@ -95,17 +95,7 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][github] GitHub 存放庫的 zip 檔案。
-
-2. 安裝 [Azure CLI 2.0][azure-cli-2]。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模擬的內部部署資料中心
 

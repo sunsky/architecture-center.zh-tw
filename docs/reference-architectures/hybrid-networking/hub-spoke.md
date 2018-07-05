@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 4ebb0d4df3e1907662537516cae1f077e68e47b4
-ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
+ms.openlocfilehash: 925e0f47cf6b9aa1ad48ffae2c9561a2393bf601
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36209571"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142245"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -125,17 +125,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
-
-2. 安裝 [Azure CLI 2.0][azure-cli-2]。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模擬的內部部署資料中心
 

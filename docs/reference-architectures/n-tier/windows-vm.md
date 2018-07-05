@@ -3,12 +3,12 @@ title: 在 Azure 上執行 Windows VM
 description: 如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: 748bcfcf599c7fa0e82691632d14e0f78fd78582
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673600"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142211"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上執行 Windows VM
 
@@ -127,17 +127,7 @@ az vm list-sizes --location <location>
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
-
-2. 確定您已在電腦上安裝 Azure CLI 2.0。 如需 CLI 安裝指示，請參閱[安裝 Azure CLI 2.0][azure-cli-2]。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，輸入下列命令來登入您的 Azure 帳戶。
-
-  ```bash
-  az login
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
 

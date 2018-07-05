@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 5e5029dd7de78c6953229364f9e8ae2789c2b348
-ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
+ms.openlocfilehash: 555d08e5d3792f8699875c6d6aa8a1a42eadd477
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36209554"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142347"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
@@ -106,17 +106,7 @@ ms.locfileid: "36209554"
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
-
-2. 安裝 [Azure CLI 2.0][azure-cli-2]。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-datacenter-using-azbb"></a>使用 azbb 部署模擬的內部部署資料中心
 

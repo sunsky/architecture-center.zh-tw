@@ -3,12 +3,12 @@ title: Azure 應用程式的災害復原
 description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
+ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477769"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37343374"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 應用程式的災害復原
 
@@ -278,7 +278,7 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 自動化的最佳做法是建立 Azure 災害復原 PowerShell 指令碼或命令列介面 (CLI) 指令碼的儲存機制。 清楚標示並加以分類，以便快速存取。 指定主要人員來負責管理指令碼的存放庫和版本控制。 詳細記載這些指令碼，並提供參數說明和指令碼使用範例。 此外，請務必讓此文件與您的 Azure 部署保持同步。 這強調由主要人員負責存放庫所有組件的目的。
 
 ## <a name="failure-detection"></a>失敗偵測
-若要正確處理可用性和災害復原的問題，您必須能夠偵測及診斷失敗。 執行進階的伺服器和部署監視，以在系統或其元件突然無法使用時快速注意到。 監視工具會評估雲端服務和其相依項目的整體健康狀態，所以可以執行部分的這項工作。 [System Center 2016](https://www.microsoft.com/server-cloud/products/system-center-2016/) 是其中一項合適的 Microsoft 工具。 協力廠商工具也可以提供監視功能。 大部分監視解決方案會追蹤關鍵效能計數器和服務可用性。
+若要正確處理可用性和災害復原的問題，您必須能夠偵測及診斷失敗。 執行進階的伺服器和部署監視，以在系統或其元件突然無法使用時快速注意到。 監視工具會評估雲端服務和其相依項目的整體健康狀態，所以可以執行部分的這項工作。 [System Center 2016](https://www.microsoft.com/cloud-platform/system-center) 是其中一項合適的 Microsoft 工具。 協力廠商工具也可以提供監視功能。 大部分監視解決方案會追蹤關鍵效能計數器和服務可用性。
 
 雖然這些工具很重要，但您必須規劃雲端服務內的錯誤偵測和報告功能。 您也必須規劃適當使用 Azure 診斷。 自訂效能計數器或事件記錄檔項目也可以是整體策略的一部分。 這可在發生失敗時提供更多資料，以便快速診斷問題及恢復完整功能。 它也提供其他計量，以便監視工具用來判斷應用程式健康狀態。 如需詳細資訊，請參閱 [在 Azure 雲端服務中啟用 Azure 診斷](/azure/cloud-services/cloud-services-dotnet-diagnostics/)。 如需如何規劃整體「健康狀態模型」的討論，請參閱 [Failsafe︰恢復雲端架構指引](https://channel9.msdn.com/Series/FailSafe)。
 

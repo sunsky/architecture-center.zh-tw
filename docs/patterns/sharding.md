@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 328483e24c75137f07576104d50dc59d426b8ac4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543012"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091099"
 ---
 # <a name="sharding-pattern"></a>分區化模式
 
@@ -35,7 +35,7 @@ ms.locfileid: "24543012"
 
 藉由新增更多容量、處理能力、記憶體和網路連線來進行垂直調整，可以延後其中某些限制的影響，但可能只是暫時的解決方案。 能夠支援大量使用者和大量資料的商業雲端應用程式，必須能夠幾乎無限期地調整，所以垂直調整不一定是最佳的解決方案。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 將資料存放區分割為水平分割區或分區。 每個分區具有相同的結構描述，但會保存自己的相異資料子集。 分區本身就是資料存放區 (它可以包含各類型實體的資料)，其在伺服器上當作儲存體節點執行。
 
@@ -221,5 +221,4 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 - [具體化檢視模式](materialized-view.md)。 若要維護某些查詢作業的效能，建立可彙總及摘要資料的具體化檢視很實用，尤其在此摘要資料是以分散於各分區的資訊為基礎時。 說明如何產生及填入這些檢視。
 - Adding Simplicity 部落格上的 [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html)。
 - CodeFutures 網站上的 [Database Sharding](http://dbshards.com/database-sharding/)。
-- Max Indelicato 部落格上的 [Scalability Strategies Primer: Database Sharding](http://blog.maxindelicato.com/2008/12/scalability-strategies-primer-database-sharding.html)。
 - Dare Obasanjo 部落格上的 [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx)。

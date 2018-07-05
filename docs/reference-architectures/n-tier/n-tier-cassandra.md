@@ -3,12 +3,12 @@ title: 具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 description: 如何在 Microsoft Azure 上執行適用於多層式架構的 Linux VM。
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 46e9a821a33dd3ea3ae9129ab5ad69172bfcd667
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673610"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142228"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 
@@ -28,7 +28,7 @@ ms.locfileid: "33673610"
 
 * **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的 3 層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
 
-* **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md)和[在 Azure 上執行 Linux VM](./linux-vm.md)。
+* **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
 
 * **可用性設定組。** 針對每一層建立[可用性設定組][azure-availability-sets]，並且在每一層中至少佈建兩個 VM。 這讓 VM 能夠符合適用於 VM 之較高[服務等級協定 (SLA)][vm-sla] 的資格。 
 
@@ -144,21 +144,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
-
-2. 確定您已在電腦上安裝 Azure CLI 2.0。 若要安裝 CLI，請依照[安裝 Azure CLI 2.0][azure-cli-2] 中的指示進行。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-   ```bash
-   npm install -g @mspnp/azure-building-blocks
-   ```
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列其中一個命令登入 Azure 帳戶，並遵循提示進行。
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-solution-using-azbb"></a>使用 azbb 部署解決方案
 

@@ -4,12 +4,12 @@ description: 獨立於使用者介面之外執行的背景工作指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 10c24afee4b880cfbf8ee534f4d7f945d2b046a9
-ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
+ms.openlocfilehash: 781d616dfcf24775525e2489e7e463174ec9bfa3
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/01/2018
-ms.locfileid: "28907041"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091082"
 ---
 # <a name="background-jobs"></a>背景作業作業
 [!INCLUDE [header](../_includes/header.md)]
@@ -292,7 +292,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
   * 必須依特定順序處理訊息，像是根據其現有值變更資料的訊息 (例如，將值加入至現有值)，可能不會以其原始的傳送順序到達。 或者，可能因每個執行個體上變動的負載，而依不同順序由背景工作的不同執行個體處理。 必須依特定順序處理的訊息應該包含序號、金鑰或其他某些指標，好讓背景工作使用以確保能依正確的順序處理這些訊息。 如果您使用 Azure 服務匯流排，您可以使用訊息工作階段來保證傳遞順序。 不過，盡可能設計處理序以讓訊息順序變得不重要，通常會更有效率。
   * 一般而言，背景工作會在佇列中查看訊息，這會暫時對其他訊息取用者隱藏這些訊息。 然後它會在成功處理完畢後刪除訊息。 如果背景工作在處理訊息時失敗，該訊息將會在查看逾時到期之後重新出現在佇列上。 它將會由工作的另一個執行個體進行處理，或在此執行個體的下一個處理週期進行處理。 如果訊息在取用者中發生相同的錯誤，它會封鎖工作、佇列，最終在佇列已滿時封鎖應用程式本身。 因此，請務必從佇列偵測並移除有害訊息。 如果您使用 Azure 服務匯流排，造成錯誤的訊息可能會被自動或手動地移至相關聯的無效信件佇列。
   * 佇列會保證「至少一次」  使用傳遞機制，但它們可能會傳遞相同的訊息多次。 此外，如果背景工作在處理訊息後、但在從佇列刪除前失敗，訊息將會變成可再次處理。 背景工作應該具有等冪性，這表示超過一次處理相同的訊息不會造成錯誤，或使應用程式的資料不一致。 某些作業自然是等冪，例如將儲存的值設為特定的新值。 不過，將值加入到現有的儲存值，而不檢查儲存值是否仍然與原先傳送的訊息相同之類的作業，可能會導致不一致情況。 Azure 服務匯流排佇列可以設定為自動移除重複的訊息。
-  * 某些傳訊系統 (例如 Azure 儲存體佇列和 Azure 服務匯流排佇列) 支援 de-queue count 屬性，指出已從佇列讀取訊息的次數。 這在處理重複及有害訊息時很有用。 如需詳細資訊，請參閱[非同步傳訊入門](http://msdn.microsoft.com/library/dn589781.aspx)和[等冪性模式](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/)。
+  * 某些傳訊系統 (例如 Azure 儲存體佇列和 Azure 服務匯流排佇列) 支援 de-queue count 屬性，指出已從佇列讀取訊息的次數。 這在處理重複及有害訊息時很有用。 如需詳細資訊，請參閱[非同步傳訊入門](http://msdn.microsoft.com/library/dn589781.aspx)和[等冪性模式](http://blog.jonathanoliver.com/idempotency-patterns/)。
 
 ## <a name="scaling-and-performance-considerations"></a>調整和效能考量
 背景工作必須提供足夠的效能，確保它們不會封鎖應用程式，或不會因系統負載不足而延遲作業時導致不一致。 一般而言，藉由調整裝載背景工作的計算執行個體可提升效能。 當您規劃和設計背景工作時，請考慮下列有關延展性和效能的重點：

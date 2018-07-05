@@ -3,12 +3,12 @@ title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
 ms.date: 06/23/2018
-ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
-ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
+ms.openlocfilehash: 7c8184d25cf6b3bd358adc2728329fd3bd08503a
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/24/2018
-ms.locfileid: "36746667"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142296"
 ---
 # <a name="n-tier-application-with-sql-server"></a>具有 SQL Server 的多層式架構 (N-tier) 應用程式
 
@@ -160,23 +160,9 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於[參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-2. 安裝 [Azure CLI 2.0][azure-cli-2]。
-
-3. 安裝 [Azure 建置組塊][azbb] npm 封裝。
-
-   ```bash
-   npm install -g @mspnp/azure-building-blocks
-   ```
-
-4. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶。
-
-   ```bash
-   az login
-   ```
-
-### <a name="deploy-the-solution"></a>部署解決方案 
+### <a name="deploy-the-solution"></a>部署解決方案
 
 1. 執行下列命令以建立資源群組。
 
@@ -252,11 +238,9 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-dc]: multi-region-sql-server.md
 [n-tier]: n-tier.md
-[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-windows-manage-availability#configure-each-application-tier-into-separate-availability-sets
 [azure-cli]: /azure/virtual-machines-command-line-tools
-[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [azure-dns]: /azure/dns/dns-overview
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 [防禦主機]: https://en.wikipedia.org/wiki/Bastion_host
@@ -274,7 +258,6 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [公用 IP 位址]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-alwayson-force-failover]: https://msdn.microsoft.com/library/ff877957.aspx
 [sql-alwayson-getting-started]: https://msdn.microsoft.com/library/gg509118.aspx
