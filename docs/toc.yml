@@ -127,6 +127,8 @@
       maintainContext: true
     - name: 失敗模式分析
       href: resiliency/failure-mode-analysis.md
+- name: 範例案例
+  href: example-scenario/index.md
 - name: 案例指南
   items:
     - name: 適用於 AWS 專業人員的 Azure
