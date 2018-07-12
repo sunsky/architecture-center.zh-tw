@@ -3,25 +3,26 @@ title: Azure 上 Linux 虛擬機器的 SAP S/4HANA
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: d24ef6f9e4eae460d0d0dcfff35568c812d09951
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423043"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864499"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>Azure 上 Linux 虛擬機器的 SAP S/4HANA
 
 此參考架構會顯示一組經過證實的做法，能在 Azure 上支援災害復原的高可用性環境中執行 S/4HANA。 這個架構是以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。 
 
-
 ![](./images/sap-s4hana.png)
+
+下載這個架構的 [Visio 檔案][visio-download]。
+
+> [!NOTE] 
+> 部署此參考架構需要 SAP 產品的適當授權和其他非 Microsoft 技術。
 
 ## <a name="architecture"></a>架構
  
-> [!NOTE] 
-> 根據此參考架構部署 SAP 產品，需要 SAP 產品的適當授權和其他非 Microsoft 技術。
-
 此參考架構描述企業等級、生產環境層級系統。 若要符合您的業務需求，此組態可縮減為單一虛擬機器。 但是需要下列元件：
 
 **虛擬網路**。 [Azure 虛擬網路](/azure/virtual-network/virtual-networks-overview)服務會安全地讓 Azure 資源彼此連線。 在此架構中，虛擬網路是透過在[中樞輪輻拓撲](../hybrid-networking/hub-spoke.md)中樞中所部署的閘道，連線至內部部署環境。 輪輻是虛擬網路，用於 SAP 應用程式。
@@ -197,3 +198,5 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 - [Azure 社群支援](https://azure.microsoft.com/support/community/)
 - [SAP 社群](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

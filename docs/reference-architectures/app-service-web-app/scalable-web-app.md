@@ -8,11 +8,11 @@ pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
 ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846503"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958801"
 ---
 # <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
 

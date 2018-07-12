@@ -3,11 +3,11 @@ title: Web-佇列-背景工作角色架構樣式
 description: 說明 Azure 上 Web-佇列-背景工作角色架構的優點、挑戰和最佳作法
 author: MikeWasson
 ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539796"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958784"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Web-佇列-背景工作角色架構樣式
 
@@ -29,13 +29,13 @@ Web 和背景工作角色都是無狀態。 工作階段狀態可以儲存在分
 
 ## <a name="when-to-use-this-architecture"></a>使用此架構的時機
 
-「Web-佇列-背景工作角色」架構的實作，通常是使用受管理的計算服務：Azure App Service 或 Azure 雲端服務實作。 
+「Web-佇列-背景工作角色」架構的實作，通常是使用受控計算服務：Azure App Service 或 Azure 雲端服務實作。 
 
 請考慮將此架構樣式用於：
 
 - 具備相對簡單網域的應用程式。
 - 有一些長時間執行工作流程或批次作業的應用程式。
-- 當您想要使用受管理的服務，而不是基礎結構即服務 (IaaS)。
+- 當您想要使用受控服務，而不是基礎結構即服務 (IaaS)。
 
 ## <a name="benefits"></a>優點
 

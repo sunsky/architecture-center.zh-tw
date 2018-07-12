@@ -3,21 +3,23 @@ title: 在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 0efe3e78d9e1809fdab52044b75e432742786b79
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423042"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864533"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
 此參考架構會顯示一組經過證實的做法，能在 Windows 環境中具有高可用性的 Azure 上執行 SAP NetWeaver。 資料庫是 AnyDB，這是任何支援 DBMS 的 SAP 字詞，不包括 SAP HANA。 這個架構是以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。
 
-![](./images/sap-s4hana.png)
- 
+![](./images/sap-netweaver.png)
+
+下載這個架構的 [Visio 檔案][visio-download]。
+
 > [!NOTE] 
-> 根據此參考架構部署 SAP 產品，需要 SAP 產品的適當授權和其他非 Microsoft 技術。
+> 部署此參考架構需要 SAP 產品的適當授權和其他非 Microsoft 技術。
 
 ## <a name="architecture"></a>架構
 此架構由下列基礎結構和關鍵軟體元件組成。
@@ -174,3 +176,4 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 - [SAP 社群](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
 
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx
