@@ -3,12 +3,12 @@ title: 即時處理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298626"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37090980"
 ---
 # <a name="real-time-processing"></a>即時處理
 
@@ -56,7 +56,7 @@ ms.locfileid: "30298626"
 
 ### <a name="stream-processing"></a>串流處理
 
-- **Azure 串流分析**。 Azure 串流分析可針對未繫結的資料流執行永久查詢。 這些查詢會使用來自儲存體或訊息代理程式的資料流、根據時間範圍篩選和彙總資料，並將結果寫入接收器，例如儲存體、資料庫，或直接寫入 Power BI 中的報表。
+- **Azure 串流分析**。 Azure 串流分析可針對未繫結的資料流執行永久查詢。 這些查詢會使用來自儲存體或訊息代理程式的資料流、根據時間範圍篩選和彙總資料，並將結果寫入接收器，例如儲存體、資料庫，或直接寫入 Power BI 中的報表。 串流分析會使用 SQL 型查詢語言，可支援時態和地理空間建構，且可使用 JavaScript 加以延伸。
 - **Storm**。 Apache Storm 是一種使用於串流處理的開放原始碼架構，其使用 Spout 和 Bolt 的拓撲，從即時的串流資料來源中取用、處理及輸出結果。 您可以在 Azure HDInsight 叢集中佈建 Storm，並在 Java 或 C# 中實作拓撲。
 - **Spark 串流**。 Apache Spark 是處理一般資料的開放原始碼分散式平台。 Spark 提供 Spark 串流 API，您可以在其中以任何支援的 Spark 語言 (包括 Java、Scala 和 Python) 撰寫程式碼。 Spark 2.0 導入了 Spark 結構化串流 API，可提供更簡單且更一致的程式設計模型。 Spark 2.0 可從 Azure HDInsight 叢集取得。
 

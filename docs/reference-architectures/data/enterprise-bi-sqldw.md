@@ -1,34 +1,40 @@
 ---
 title: 具 SQL 資料倉儲的 Enterprise BI
 description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業見解
-author: alexbuckgit
-ms.date: 04/13/2018
-ms.openlocfilehash: b5e5aa32fc9cc8c7b8b5a42c9a4fc3e0216b2f72
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+author: MikeWasson
+ms.date: 07/01/2018
+ms.openlocfilehash: e3542e40b4b6d1f604f93bb21528f34ba7f22fc6
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012834"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142330"
 ---
 # <a name="enterprise-bi-with-sql-data-warehouse"></a>具 SQL 資料倉儲的 Enterprise BI
- 
+
 此參考架構會實作 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。 [**部署這個解決方案**。](#deploy-the-solution)
 
 ![](./images/enterprise-bi-sqldw.png)
 
 **案例**：組織具有在內部部署的 SQL Server 資料庫中儲存的大型 OLTP 資料集。 組織想要使用 SQL 資料倉儲，透過 Power BI 執行分析。 
 
-此參考架構是針對一次性或隨需作業而設計的。 如果您需要持續移動資料 (每小時或每日)，建議您使用 Azure Data Factory 來定義自動化工作流程。
+此參考架構是針對一次性或隨需作業而設計的。 如果您需要持續移動資料 (每小時或每日)，建議您使用 Azure Data Factory 來定義自動化工作流程。 如需使用 Data Factory 的參考架構，請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI](./enterprise-bi-adf.md) (英文)。
 
 ## <a name="architecture"></a>架構
 
 此架構由下列元件組成。
 
-**SQL Server**。 來源資料位於內部部署的 SQL Server 資料庫中。 為了模擬內部部署環境，此架構的部署指令碼會在 Azure 中佈建已安裝 SQL Server 的虛擬機器。 
+### <a name="data-source"></a>資料來源
+
+**SQL Server**。 來源資料位於內部部署的 SQL Server 資料庫中。 為了模擬內部部署環境，此架構的部署指令碼會在 Azure 中佈建已安裝 SQL Server 的 VM。 系統會使用 [Wide World Importers OLTP 範例資料庫][wwi] (機器翻譯) 作為來源資料。
+
+### <a name="ingestion-and-data-storage"></a>擷取和資料儲存體
 
 **Blob 儲存體**。 Blob 儲存體會作為在資料載入至 SQL 資料倉儲之前用來複製資料的臨時區域。
 
 **Azure SQL 資料倉儲**。 [SQL 資料倉儲](/azure/sql-data-warehouse/)是為了對大型資料執行分析而設計的分散式系統。 它支援大量平行處理 (MPP)，因而適合用來執行高效能分析。 
+
+### <a name="analysis-and-reporting"></a>分析和報告
 
 **Azure Analysis Services**。 [Analysis Services](/azure/analysis-services/) 是完全受控的服務，可提供資料模型功能。 使用 Analysis Services 可建立可供使用者查詢的語意模型。 Analysis Services 在 BI 儀表板案例中最能發揮效用。 在此架構中，Analysis Services 會從資料倉儲讀取資料以處理語意模型，並有效率地為儀表板查詢提供服務。 它也可藉由相應放大複本以加快查詢處理速度，而支援彈性的並行存取。
 
@@ -36,11 +42,13 @@ ms.locfileid: "31012834"
 
 **Power BI**。 Power BI 是一套用來分析資料以產生商業見解的商務分析工具。 在此架構中，它會查詢儲存在 Analysis Services 中的語意模型。
 
+### <a name="authentication"></a>驗證
+
 **Azure Active Directory** (Azure AD) 會驗證透過 Power BI 連線至 Analysis Services 伺服器的使用者。
 
 ## <a name="data-pipeline"></a>Data Pipeline
  
-此參考架構會使用 [WorldWideImporters](/sql/sample/world-wide-importers/wide-world-importers-oltp-database) 範例資料庫做作為資料來源。 資料管線具有下列階段：
+此參考架構會使用 [WorldWideImporters](/sql/sample/world-wide-importers/wide-world-importers-oltp-database) 範例資料庫作為資料來源。 資料管線具有下列階段：
 
 1. 將資料從 SQL Server 匯出至一般檔案 (bcp 公用程式)。
 2. 將一般檔案複製到 Azure Blob 儲存體 (AzCopy)。
@@ -188,21 +196,13 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 
 ### <a name="prerequisites"></a>先決條件
 
-1. 複製、派生或下載適用於 [Azure 參考架構][ref-arch-repo] GitHub 存放庫的 zip 檔案。
-
-2. 安裝 [Azure 建置組塊][azbb-wiki] (azbb)。
-
-3. 從命令提示字元、bash 提示字元或 PowerShell 提示字元中，使用下列命令登入 Azure 帳戶，並依照指示操作。
-
-  ```bash
-  az login  
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-server"></a>部署模擬的內部部署伺服器
 
-首先，您會將 VM 部署為模擬的內部部署伺服器，其中包含 SQL Server 2017 和相關工具。 這個步驟也會將範例 [Wide World Importers OLTP 資料庫](/sql/sample/world-wide-importers/wide-world-importers-oltp-database)載入至 SQL Server。
+首先，您會將 VM 部署為模擬的內部部署伺服器，其中包含 SQL Server 2017 和相關工具。 這個步驟也會將 [Wide World Importers OLTP 資料庫][wwi]載入 SQL Server 中。
 
-1. 瀏覽至您在上述必要條件中下載之存放庫的 `data\enterprise-bi-sqldw\onprem\templates` 資料夾。
+1. 巡覽至存放庫的 `data\enterprise_bi_sqldw\onprem\templates` 資料夾。
 
 2. 在 `onprem.parameters.json` 檔案中，取代 `adminUsername` 和 `adminPassword` 的值。 此外也應變更 `SqlUserCredentials` 區段中的值，以符合使用者名稱和密碼。 請留意 userName 屬性中的 `.\\` 前置詞。
     
@@ -216,28 +216,39 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 3. 依照下列方式執行 `azbb`，以部署內部部署伺服器。
 
     ```bash
-    azbb -s <subscription_id> -g <resource_group_name> -l <location> -p onprem.parameters.json --deploy
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.parameters.json --deploy
     ```
+
+    指定可支援 SQL 資料倉儲和 Azure Analysis Services 的區域。 請參閱[不同區域的產品](https://azure.microsoft.com/global-infrastructure/services/)
 
 4. 此部署可能需要 20 到 30 分鐘才能完成，其中包括執行 [DSC](/powershell/dsc/overview) 指令碼以安裝工具和還原資料庫。 在 Azure 入口網站中檢閱資源群組中的資源，以驗證部署。 您應該會看到 `sql-vm1` 虛擬機器及其相關聯的資源。
 
 ### <a name="deploy-the-azure-resources"></a>部署 Azure 資源
 
-此步驟會佈建 Azure SQL 資料倉儲和 Azure Analysis Services，以及儲存體帳戶。 如果您想，您可以將此步驟與上一個步驟平行執行。
+此步驟會佈建 SQL 資料倉儲和 Azure Analysis Services，以及儲存體帳戶。 如果您想，您可以將此步驟與上一個步驟平行執行。
 
-1. 瀏覽至您在上述必要條件中下載之存放庫的 `data\enterprise-bi-sqldw\azure\templates` 資料夾。
+1. 巡覽至存放庫的 `data\enterprise_bi_sqldw\azure\templates` 資料夾。
 
-2. 執行下列 Azure CLI 命令以建立資源群組 (請取代在方括弧中指定的參數)。 請注意，您可以部署至與您在上一個步驟中用於內部部署伺服器的資源群組不同的群組。 
-
-    ```bash
-    az group create --name <resource_group_name> --location <location>  
-    ```
-
-3. 執行下列 Azure CLI 命令以部署 Azure 資源 (請取代在方括弧中指定的參數)。 `storageAccountName` 參數必須遵循儲存體帳戶的[命名規則](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。 對於 `analysisServerAdmin` 參數，請使用您的 Azure Active Directory 使用者主體名稱 (UPN)。
+2. 請執行下列 Azure CLI 命令以建立資源群組。 您可以部署到與上一個步驟中不同的資源群組，但請選擇相同的區域。 
 
     ```bash
-    az group deployment create --resource-group <resource_group_name> --template-file azure-resources-deploy.json --parameters "dwServerName"="<server_name>" "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" "storageAccountName"="<storage_account_name>" "analysisServerName"="<analysis_server_name>" "analysisServerAdmin"="user@contoso.com"
+    az group create --name <resource_group_name> --location <region>  
     ```
+
+3. 請執行下列 Azure CLI 命令以部署 Azure 資源。 請取代角括弧中所顯示的參數值。 
+
+    ```bash
+    az group deployment create --resource-group <resource_group_name> \
+     --template-file azure-resources-deploy.json \
+     --parameters "dwServerName"="<server_name>" \
+     "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" \ 
+     "storageAccountName"="<storage_account_name>" \
+     "analysisServerName"="<analysis_server_name>" \
+     "analysisServerAdmin"="user@contoso.com"
+    ```
+
+    - `storageAccountName` 參數必須遵循儲存體帳戶的[命名規則](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。
+    - 對於 `analysisServerAdmin` 參數，請使用您的 Azure Active Directory 使用者主體名稱 (UPN)。
 
 4. 在 Azure 入口網站中檢閱資源群組中的資源，以驗證部署。 您應該會看到儲存體帳戶、Azure SQL 資料倉儲執行個體和 Analysis Services 執行個體。
 
@@ -261,7 +272,7 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 
 3. 在 Azure 入口網站中，瀏覽至儲存體帳戶、選取 Blob 服務，並開啟 `wwi` 容器，以確認來源資料已複製到 Blob 儲存體。 您應該會看到以 `WorldWideImporters_Application_*` 開頭的資料表清單。
 
-### <a name="execute-the-data-warehouse-scripts"></a>執行資料倉儲指令碼
+### <a name="run-the-data-warehouse-scripts"></a>執行資料倉儲指令碼
 
 1. 在您的遠端桌面工作階段中，啟動 SQL Server Management Studio (SSMS)。 
 
@@ -298,7 +309,7 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 SELECT TOP 10 * FROM prd.CityDimensions
 ```
 
-### <a name="build-the-azure-analysis-services-model"></a>建置 Azure Analysis Services 模型
+## <a name="build-the-analysis-services-model"></a>建置 Analysis Services 模型
 
 在此步驟中，您將建立會從資料倉儲匯入資料的表格式模型。 然後，您會將模型部署至 Azure Analysis Services。
 
@@ -310,13 +321,13 @@ SELECT TOP 10 * FROM prd.CityDimensions
 
 4. 為專案命名，然後按一下 [確定]。
 
-5. 在 [表格式模型設計工具] 對話方塊中，選取 [整合式工作區]，然後將 [相容性層級] 設為 `SQL Server 2017 / Azure Analysis Services (1400)`。 按一下 [SERVICEPRINCIPAL] 。
+5. 在 [表格式模型設計工具] 對話方塊中，選取 [整合式工作區]，然後將 [相容性層級] 設為 `SQL Server 2017 / Azure Analysis Services (1400)`。 按一下 [確定]。
 
 6. 在 [表格式模型總管] 視窗中，以滑鼠右鍵按一下專案，然後選取 [從資料來源匯入]。
 
 7. 選取 [Azure SQL 資料倉儲]，然後按一下 [連線]。
 
-8. 針對 [伺服器]，輸入 Azure SQL 資料倉儲伺服器的完整名稱。 針對 [資料庫]，輸入 `wwi`。 按一下 [SERVICEPRINCIPAL] 。
+8. 針對 [伺服器]，輸入 Azure SQL 資料倉儲伺服器的完整名稱。 針對 [資料庫]，輸入 `wwi`。 按一下 [確定]。
 
 9. 在下一個對話方塊中，選擇 [資料庫] 驗證，並輸入您的 Azure SQL 資料倉儲的使用者名稱和密碼，然後按一下 [確定]。
 
@@ -337,7 +348,7 @@ SELECT TOP 10 * FROM prd.CityDimensions
 
 16. 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選取 [屬性]。 
 
-17. 在 [伺服器] 下，輸入 Azure Analysis Services 執行個體的 URL。 您可以從 Azure 入口網站中取得此值。 在入口網站中選取 Analysis Services 資源，按一下 [概觀] 窗格，然後尋找 [伺服器名稱] 屬性。 該屬性將類似於 `asazure://westus.asazure.windows.net/contoso`。 按一下 [SERVICEPRINCIPAL] 。
+17. 在 [伺服器] 下，輸入 Azure Analysis Services 執行個體的 URL。 您可以從 Azure 入口網站中取得此值。 在入口網站中選取 Analysis Services 資源，按一下 [概觀] 窗格，然後尋找 [伺服器名稱] 屬性。 該屬性將類似於 `asazure://westus.asazure.windows.net/contoso`。 按一下 [確定]。
 
     ![](./images/analysis-services-properties.png)
 
@@ -347,7 +358,7 @@ SELECT TOP 10 * FROM prd.CityDimensions
 
     ![](./images/analysis-services-models.png)
 
-### <a name="analyze-the-data-in-power-bi-desktop"></a>在 Power BI Desktop 中分析資料
+## <a name="analyze-the-data-in-power-bi-desktop"></a>在 Power BI Desktop 中分析資料
 
 在此步驟中，您將使用 Power BI 從 Analysis Services 中的資料建立報告。
 
@@ -367,7 +378,7 @@ SELECT TOP 10 * FROM prd.CityDimensions
 
 6. 在 [欄位] 窗格中，展開 **prd.CityDimensions**。
 
-7. 將 **prd.CityDimensions** > [WWI 城市識別碼] 拖曳至 [軸] 區。
+7. 也請將 [prd.CityDimensions] > [WWI 城市識別碼] 拖曳至 [軸] 區。
 
 8. 將 **prd.CityDimensions** > [城市] 拖曳至 [圖例] 區。
 
@@ -404,4 +415,4 @@ SELECT TOP 10 * FROM prd.CityDimensions
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [ref-arch-repo-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
-
+[wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

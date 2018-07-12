@@ -2,21 +2,21 @@
 title: 實作 Azure 和網際網路之間的 DMZ
 description: 如何在 Azure 中使用網際網路存取實作安全的混合式網路架構。
 author: telmosampaio
-ms.date: 11/23/2016
+ms.date: 07/02/2018
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: c88545b1fcae49b413e7e2b6ac5bd92d3fd3456d
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 7a062d2394ae8b3bd1b17c19cbdf512327f9a766
+ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270393"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37403142"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Azure 和網際網路之間的 DMZ
 
-此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure 並接受網際網路流量。 
+此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure 並接受網際網路流量。 [**部署這個解決方案**。](#deploy-the-solution)
 
 [![0]][0] 
 
@@ -79,37 +79,70 @@ ms.locfileid: "30270393"
 
 您應該記錄所有連接埠上的所有傳入要求。 定期稽核記錄，留意不在預期參數範圍之內的要求，因為這些可能表示入侵嘗試。
 
-## <a name="solution-deployment"></a>解決方案部署
 
-在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 可以使用 Windows 或 Linux VM 部署參考架構，請遵循下列指示：
+## <a name="deploy-the-solution"></a>部署解決方案
 
-1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-dmz%2FvirtualNetwork.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值：
-   * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-public-dmz-network-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 從下拉式清單方塊中選取 [作業系統類型]，選取 [Windows] 或 [Linux]。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
-3. 等待部署完成。
-4. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-dmz%2Fworkload.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-5. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值：
-   * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-public-dmz-wl-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
-6. 等待部署完成。
-7. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-dmz%2Fsecurity.azuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-8. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值：
-   * [資源群組] 名稱已於參數檔中定義，因此，請選取 [使用現有的] 並在文字方塊中輸入 `ra-public-dmz-network-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
-9. 等待部署完成。
-10. 參數檔案中有硬式編碼的所有 VM 的系統管理員使用者名稱和密碼，強烈建議您立即變更這兩項。 在 Azure 入口網站中選取部署中的每個 VM，然後按一下 [支援與疑難排解] 刀鋒視窗中的 [重設密碼]。 選取 [模式] 下拉式清單方塊中的 [重設密碼]，然後選取新的[使用者名稱] 和 [密碼]。 按一下 [更新] 按鈕以儲存。
+在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 
 
+### <a name="prerequisites"></a>先決條件
+
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+
+### <a name="deploy-resources"></a>部署資源
+
+1. 瀏覽至參考架構 GitHub 存放庫的 `/dmz/secure-vnet-hybrid` 資料夾。
+
+2. 執行以下命令：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
+    ```
+
+3. 執行以下命令：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-hybrid.json --deploy
+    ```
+
+### <a name="connect-the-on-premises-and-azure-gateways"></a>將內部部署連線到 Azure 閘道
+
+在此步驟中，您會將兩個區域網路閘道連線。
+
+1. 在 Azure 入口網站中，巡覽至您所建立的資源群組。 
+
+2. 尋找名為 `ra-vpn-vgw-pip` 的資源，並複製 [概觀] 刀鋒視窗中所顯示的 IP 位址。
+
+3. 尋找名為 `onprem-vpn-lgw` 的資源。
+
+4. 按一下 [設定] 刀鋒視窗。 在 [IP 位址] 底下，貼上步驟 2 中的 IP 位址。
+
+    ![](./images/local-net-gw.png)
+
+5. 按一下 [儲存]，並等候作業完成。 可能需要大約 5 分鐘的時間。
+
+6. 尋找名為 `onprem-vpn-gateway1-pip` 的資源。 複製 [概觀] 刀鋒視窗中所顯示的 IP 位址。
+
+7. 尋找名為 `ra-vpn-lgw` 的資源。 
+
+8. 按一下 [設定] 刀鋒視窗。 在 [IP 位址] 底下，貼上步驟 6 中的 IP 位址。
+
+9. 按一下 [儲存]，並等候作業完成。
+
+10. 若要確認連線，請前往每個閘道的 [連線] 刀鋒視窗。 狀態應該是 [已連線]。
+
+### <a name="verify-that-network-traffic-reaches-the-web-tier"></a>請確認網路流量有到達 Web 層
+
+1. 在 Azure 入口網站中，巡覽至您所建立的資源群組。 
+
+2. 尋找名為 `pub-dmz-lb` 的資源，也就是公用 DMZ 前方的負載平衡器。 
+
+3. 複製 [概觀] 刀鋒視窗中的公用 IP 位址，並在網頁瀏覽器中開啟此位址。 您應該會看到預設的 Apache2 伺服器首頁。
+
+4. 尋找名為 `int-dmz-lb` 的資源，也就是私人 DMZ 前方的負載平衡器。 複製 [概觀] 刀鋒視窗中的私人 IP 位址。
+
+5. 尋找名為 `jb-vm1` 的 VM。 請按一下 [連線]，並使用遠端桌面連線到 VM。 使用者名稱與密碼會在 onprem.json 檔案中指定。
+
+6. 從遠端桌面工作階段中，開啟網頁瀏覽器並巡覽至步驟 4 中的 IP 位址。 您應該會看到預設的 Apache2 伺服器首頁。
 
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-manage-availability
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/dmz/secure-vnet-dmz

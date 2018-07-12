@@ -3,12 +3,12 @@ title: 選擇串流處理技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 29e4cd3d5ea6e10f036bfe226152290512dafa65
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848643"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091058"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>在 Azure 中選擇串流處理技術
 
@@ -53,8 +53,8 @@ ms.locfileid: "30848643"
 
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
-| 輸入 | [串流分析輸入](/azure/stream-analytics/stream-analytics-define-inputs)  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、儲存體 Blob、Azure Data Lake Store  | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 |
-| 接收 |  [串流分析輸出](/azure/stream-analytics/stream-analytics-define-outputs) | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | 事件中樞、服務匯流排、Kafka | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 | 
+| 輸入 | Azure 事件中樞、Azure IoT 中樞、Azure Blob 儲存體  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、Kafka、HDFS、儲存體 Blob、Azure Data Lake Store  | 事件中樞、IoT 中樞、儲存體 Blob、Azure Data Lake Store  | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 |
+| 接收 |  Azure Data Lake Store、Azure SQL Database、儲存體 Blob、事件中樞、Power BI、表格儲存體、服務匯流排佇列、服務匯流排主題、Cosmos DB、Azure Functions  | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | HDFS、Kafka、儲存體 Blob、Azure Data Lake Store、Cosmos DB | 事件中樞、服務匯流排、Kafka | [支援的繫結](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | 服務匯流排、儲存體佇列、儲存體 Blob、事件中樞、Webhook、Cosmos DB、檔案 | 
 
 ### <a name="processing-capabilities"></a>處理功能
 

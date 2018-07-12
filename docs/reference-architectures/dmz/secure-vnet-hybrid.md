@@ -2,21 +2,21 @@
 title: 在 Azure 中實作安全的混合式網路架構
 description: 如何在 Azure 中實作安全的混合式網路架構。
 author: telmosampaio
-ms.date: 11/23/2016
+ms.date: 07/01/2018
 pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 81dea2e4439d5a01ebb88ab86dc0a59609bb7bc3
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
+ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30849649"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37403159"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Azure 與內部部署資料中心之間的 DMZ
 
-此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure。 此架構會在內部部署網路與 Azure 虛擬網路 (VNet) 之間實作 DMZ (也稱為「周邊網路」)。 DMZ 包含實作安全性功能 (例如防火牆和封包檢查) 的網路虛擬裝置 (NVA)。 VNet 的所有傳出流量會強制通過內部部署網路後再傳送至網際網路，以便進行稽核。
+此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure。 此架構會在內部部署網路與 Azure 虛擬網路 (VNet) 之間實作 DMZ (也稱為「周邊網路」)。 DMZ 包含實作安全性功能 (例如防火牆和封包檢查) 的網路虛擬裝置 (NVA)。 VNet 的所有傳出流量會強制通過內部部署網路後再傳送至網際網路，以便進行稽核。 [**部署這個解決方案**。](#deploy-the-solution)
 
 [![0]][0] 
 
@@ -78,7 +78,8 @@ DevOps 與 IT 管理員角色應不可有 NVA 資源的存取權。 應僅限安
 
 ### <a name="nva-recommendations"></a>NVA 建議
 
-NVA 提供不同的服務來管理和監視網路流量。 [Azure Marketplace][azure-marketplace-nva] 提供數個第三方廠商的 NVA 供您使用。 如果這些第三方廠商的 NVA 都不符合您的需求，您可以使用虛擬機器建立自訂的 NVA。 
+NVA 提供不同的服務來管理和監視網路流量。 
+  [Azure Marketplace][azure-marketplace-nva] 提供數個第三方廠商的 NVA 供您使用。 如果這些第三方廠商的 NVA 都不符合您的需求，您可以使用虛擬機器建立自訂的 NVA。 
 
 例如，此參考架構的解決方案部署，會在虛擬機器上實作具有下列功能的 NVA：
 
@@ -159,19 +160,65 @@ NVA 前方的負載平衡器也可以當做安全性裝置，如果流量不在�
 ### <a name="devops-access"></a>DevOps 存取
 使用 [RBAC][rbac] 限制 DevOps 可在每一層執行的作業。 授與權限時，請使用[最小權限的原則][security-principle-of-least-privilege]。 記錄所有的系統管理作業並定期執行稽核，以確保所有設定變更都是經過規劃的。
 
-## <a name="solution-deployment"></a>解決方案部署
+## <a name="deploy-the-solution"></a>部署解決方案
 
-在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 您可以遵循下列指示來部署參考架構：
+在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 
 
-1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fdmz%2Fsecure-vnet-hybrid%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值：   
-   * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-private-dmz-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
-3. 等待部署完成。
-4. 參數檔案中有硬式編碼的所有 VM 的系統管理員使用者名稱和密碼，強烈建議您立即變更這兩項。 在 Azure 入口網站中選取部署中的每個虛擬機器，然後按一下 [支援與疑難排解] 刀鋒視窗中的 [重設密碼]。 選取 [模式] 下拉式清單方塊中的 [重設密碼]，然後選取新的[使用者名稱] 和 [密碼]。 按一下 [更新] 按鈕以儲存。
+### <a name="prerequisites"></a>先決條件
+
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+
+### <a name="deploy-resources"></a>部署資源
+
+1. 瀏覽至參考架構 GitHub 存放庫的 `/dmz/secure-vnet-hybrid` 資料夾。
+
+2. 執行以下命令：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
+    ```
+
+3. 執行以下命令：
+
+    ```bash
+    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-hybrid.json --deploy
+    ```
+
+### <a name="connect-the-on-premises-and-azure-gateways"></a>將內部部署連線到 Azure 閘道
+
+在此步驟中，您會將兩個區域網路閘道連線。
+
+1. 在 Azure 入口網站中，巡覽至您所建立的資源群組。 
+
+2. 尋找名為 `ra-vpn-vgw-pip` 的資源，並複製 [概觀] 刀鋒視窗中所顯示的 IP 位址。
+
+3. 尋找名為 `onprem-vpn-lgw` 的資源。
+
+4. 按一下 [設定] 刀鋒視窗。 在 [IP 位址] 底下，貼上步驟 2 中的 IP 位址。
+
+    ![](./images/local-net-gw.png)
+
+5. 按一下 [儲存]，並等候作業完成。 可能需要大約 5 分鐘的時間。
+
+6. 尋找名為 `onprem-vpn-gateway1-pip` 的資源。 複製 [概觀] 刀鋒視窗中所顯示的 IP 位址。
+
+7. 尋找名為 `ra-vpn-lgw` 的資源。 
+
+8. 按一下 [設定] 刀鋒視窗。 在 [IP 位址] 底下，貼上步驟 6 中的 IP 位址。
+
+9. 按一下 [儲存]，並等候作業完成。
+
+10. 若要確認連線，請前往每個閘道的 [連線] 刀鋒視窗。 狀態應該是 [已連線]。
+
+### <a name="verify-that-network-traffic-reaches-the-web-tier"></a>請確認網路流量有到達 Web 層
+
+1. 在 Azure 入口網站中，巡覽至您所建立的資源群組。 
+
+2. 尋找名為 `int-dmz-lb` 的資源，也就是私人 DMZ 前方的負載平衡器。 複製 [概觀] 刀鋒視窗中的私人 IP 位址。
+
+3. 尋找名為 `jb-vm1` 的 VM。 請按一下 [連線]，並使用遠端桌面連線到 VM。 使用者名稱與密碼會在 onprem.json 檔案中指定。
+
+4. 從遠端桌面工作階段中，開啟網頁瀏覽器並巡覽至步驟 2 中的 IP 位址。 您應該會看到預設的 Apache2 伺服器首頁。
 
 ## <a name="next-steps"></a>後續步驟
 

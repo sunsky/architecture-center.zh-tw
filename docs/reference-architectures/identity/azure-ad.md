@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: ade79f8ebffc15b423ef6ebfb9b19611c9500cd8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: 21a6474db94d34e23f79d1ba0e35943c0cb52966
+ms.sourcegitcommit: d5db5b8ed7429f056130096d0ef4b249b564599a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252987"
+ms.lasthandoff: 07/01/2018
+ms.locfileid: "37141379"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>整合內部部署 Active Directory 網域與 Azure Active Directory
 
@@ -216,7 +216,7 @@ Azure AD Connect 會安裝下列工具，以從您的內部部署機器維護 Az
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-GitHub 中有實作這些建議和考量的參考架構部署。 此參考架構會在 Azure 部署模擬的內部部署網路，供您進行測試和實驗。 您可以使用 Windows 或 Linux VM 部署此參考架構，請遵循下列指示： 
+GitHub 中有實作這些建議和考量的參考架構部署。 此參考架構會在 Azure 中部署模擬的內部部署網路，供您進行測試和實驗。 您可以使用 Windows 或 Linux VM 部署此參考架構，請遵循下列指示： 
 
 1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 2. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值： 
