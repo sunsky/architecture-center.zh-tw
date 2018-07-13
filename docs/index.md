@@ -3,12 +3,12 @@ title: Azure Architecture Center
 description: Azure Architecture Center 是官方中心，在其中可找到使用 Microsoft Azure 建立解決方案的指引、藍圖、模式和最佳做法。 此中心是由 Microsoft 模式與做法小組所策劃。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0ac5dd79f765fe9b649cc2ca83c0213b4ba28544
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847725"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987585"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -79,7 +79,7 @@ ms.locfileid: "30847725"
                         </div>
                         <div class="cardText">
                             <h3>在 Azure 上建置微服務</h3>
-                            <p>這個有多個組件的系列會帶領您完成在 Azure 上設計和建置微服務架構的程序。 參考實作也會包含在其中。</p>
+                            <p>這個設計會帶領您完成在 Azure 上設計和建置微服務架構的程序。 參考實作也會包含在其中。</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ ms.locfileid: "30847725"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>雲端應用程式的最佳做法</h3>
+                            <h3>雲端最佳做法</h3>
                             <p>適用於雲端應用程式的最佳做法，其中涵蓋自動調整、快取、資料分割和 API 設計等層面。</p>
                         </div>
                     </div>
@@ -246,46 +246,6 @@ ms.locfileid: "30847725"
             </div>
         </a>
     </li>
-    <!-- Sharepoint -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sharepoint">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sharepoint/images/sharepoint.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>在 Azure 上執行 SharePoint Server 2016</h3>
-                            <p>在 Azure 上部署和執行高可用性的 SharePoint Server 2016 伺服器陣列。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SAP -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sap">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sap/images/sap.svg" width="100%" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>在 Azure 上執行 SAP HANA</h3>
-                            <p>在 Azure 的高可用性環境中部署及執行 SAP NetWeaver 和 SAP HANA。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
     <!-- Multitenant identity -->
     <li>
         <a href="/azure/architecture/multitenant-identity">
@@ -300,46 +260,6 @@ ms.locfileid: "30847725"
                         <div class="cardText">
                             <h3>多組織用戶共享應用程式的身分識別管理</h3>
                             <p>了解多租用戶使用 Azure AD 進行身分識別管理時的最佳作法。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- AzureCAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/azurecat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/azurecat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Azure 客戶諮詢小組</h3>
-                            <p>AzureCAT 小組的部落格</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SQL CAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/sqlcat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/sqlcat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>SQL Server 客戶諮詢小組</h3>
-                            <p>SQLCAT 小組的部落格</p>
                         </div>
                     </div>
                 </div>

@@ -3,39 +3,141 @@ title: Azure 參考架構
 description: Azure 上一般工作負載的參考架構、藍圖和精準實作指導方針。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 6c9be20e2b831f2e6c1ffd33aa89a56375a0511c
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34422893"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987619"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
-
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
 我們參考架構是依情節排列，將相關架構群組在一起。 每個架構都包含建議的做法，以及延展性、可用性、管理性和安全性的考量。 大部分還包含可部署的解決方案。
 
-<section class="series">
-    <ul class="panelContent">
+跳至：[巨量資料](#big-data-solutions) | [Web 應用程式](#web-applications) | [多層式架構 (N-Tier) 應用程式](#n-tier-applications) | [虛擬網路](#virtual-networks) | [Active Directory](#extending-on-premises-active-directory-to-azure) | [VM 工作負載](#vm-workloads)
 
-<!-- N-tier -->
+## <a name="big-data-solutions"></a>巨量資料解決方案
+
+<ul  class="panelContent cardsF">
+<!-- SQL Data Warehouse -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./n-tier/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./data/enterprise-bi-sqldw.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./n-tier/images/n-tier-sql-server.svg" />
+                            <img src="./data/images/data-guide.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>多層式架構 (N-tier) 的應用程式</h3>
-                        <p>部署適用於 Windows 或 Linux 的多層式架構 (N-tier) 應用程式至 Azure。</p>
-                        <p>顯示適用於 SQL Server 和 Apache Cassandra 的組態。 要獲得高可用性，請在兩個區域中部署主動-被動組態。</p>
+                        <h3>具 SQL 資料倉儲的 Enterprise BI</h3>
+                        <p>ELT (extract-load-transform) 管線將資料從內部部署資料庫移到 SQL 資料倉儲。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/enterprise-bi-adf.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./data/images/data-guide.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>具 Azure Data Factory 的自動化 Enterprise BI</h3>
+                        <p>將 ELT 管線自動化以從內部部署資料庫執行增量載入。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="web-applications"></a>Web 應用程式
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/basic-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>基本 Web 應用程式</h3>
+                        <p>具 Azure App Service 與 Azure SQL Database 的 Web 應用程式。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>調整彈性高的 Web 應用程式</h3>
+                        <p>改善 Web 應用程式延展性的已經實證做法。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>高可用性 Web 應用程式</h3>
+                        <p>在多個區域中執行 App Service Web 應用程式來達到高可用性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="n-tier-applications"></a>多層式架構 (N-Tier) 應用程式
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./n-tier/images/Windows.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>具有 SQL Server 的多層式架構 (N-tier) 應用程式</h3>
+                        <p>在 Windows 上使用 SQL Server 為多層式架構 (N-Tier) 應用程式設定的虛擬機器。</p>
                     </div>
                 </div>
             </div>
@@ -43,92 +145,282 @@ ms.locfileid: "34422893"
     </a>
 </li>
 
-<!-- Hybrid network -->
+<!-- Multi-region Windows -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./hybrid-networking/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./n-tier/multi-region-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./hybrid-networking/images/vpn.svg" height="140px" />
+                            <img src="./n-tier/images/Windows.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>混合式網路</h3>
-                        <p>此系列會顯示在內部部署網路與 Azure 之間建立網路連線的選項。</p>
-                        <p>設定包括適用於私人和專用連線的站對站 VPN 或Azure ExpressRoute。</p>
+                        <h3>多重區域多層式架構 (N-tier) 應用程式</h3>
+                        <p>使用 SQL Server Always On 可用性群組，在兩個區域中實現多層式架構 (N-Tier) 應用程式以獲得高可用性。</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- Network DMZ -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./dmz/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./dmz/images/secure-vnet-dmz.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>網路 DMZ</h3>
-                        <p>此系列會顯示如何建立網路 DMZ 來保護 Azure 虛擬網路與內部部署網路或網際網路之間的界限。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Identity management -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./identity/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./identity/images/adds-extend-domain.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>身分識別管理</h3>
-                        <p>此系列會顯示整合內部部署 Active Directory (AD) 環境與 Azure 網路的選項。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- App Service web application -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./app-service-web-app/images/scalable-web-app.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>App Service Web 應用程式</h3>
-                        <p>此系列會顯示使用 Azure App Service 的 web 應用程式之最佳做法。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
 
-<ul class="panelContent cardsI">
-    <!-- Jenkins build server -->
+<!-- N-tier Linux -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-cassandra.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./n-tier/images/LinuxPenguin.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>具有 Cassandra 的多層式架構 (N-tier) 應用程式</h3>
+                        <p>在 Linux 上使用 Apache Cassandra 為多層式架構 (N-Tier) 應用程式設定的虛擬機器。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="virtual-networks"></a>虛擬網路
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vpn.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>使用虛擬私人網路 (VPN) 的混合式網路</h3>
+                        <p>將內部部署網路連線到 Azure 虛擬網路。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- ExpressRoute -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/expressroute.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>使用 ExpressRoute 的混合式網路</h3>
+                        <p>使用專用的私人連線將內部部署網路擴充至 Azure。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- ExpressRoute + VPN -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/expressroute.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>使用 ExpressRoute 搭配 VPN 容錯移轉的混合式網路</h3>
+                        <p>使用 ExpressRoute 搭配 VPN 作為容錯移轉連線以獲得高可用性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Hub spoke -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/gateway.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>中樞輪輻網路拓撲</h3>
+                        <p>建立內部部署網路的連線中心點，同時隔離工作負載。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Shared services -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/gateway.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>具有共用服務的中樞輪輻拓撲</h3>
+                        <p>透過包含共用的服務 (例如 Active Directory) 來擴充中樞輪輻拓撲。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Hybrid DMZ -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./dmz/secure-vnet-hybrid.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vnet.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 和內部部署之間的 DMZ</h3>
+                        <p>使用網路虛擬設備建立安全的混合式網路。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Internet DMZ -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./dmz/secure-vnet-dmz.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vnet.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 和網際網路之間的 DMZ</h3>
+                        <p>使用網路虛擬設備建立接受網際網路流量的安全網路。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="extending-on-premises-active-directory-to-azure"></a>將內部部署 Active Directory 延伸至 Azure
+
+<ul class="panelContent cardsF">
+<!-- Azure AD -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/azure-ad.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-active-directory.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>與 Azure Active Directory 整合</h3>
+                        <p>整合內部部署 AD 網域與 Azure Active Directory。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD DS -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adds-extend-domain.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>將內部部署 Active Directory 網域擴充至 Azure</h3>
+                        <p>在 Azure 中部署 Active Directory Domain Services (AD DS) 以擴充至內部部署網域。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD DS Forest -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adds-forest.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>在 Azure 中建立 AD DS 樹系</h3>
+                        <p>在 Azure 中建立您內部部署 AD 樹系所信任的個別 AD 網域。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD FS -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adfs.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>將 Active Directory 同盟服務 (AD FS) 擴充至 Azure</h3>
+                        <p>使用 AD FS 對在 Azure 中執行的元件進行同盟驗證和授權。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="vm-workloads"></a>VM 工作負載
+
+<ul  class="panelContent cardsF">
+<!-- Jenkins -->
 <li style="display: flex; flex-direction: column;">
     <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -141,14 +433,14 @@ ms.locfileid: "34422893"
                     </div>
                     <div class="cardText">
                         <h3>Jenkins 組建伺服器</h3>
-                        <p>在 Azure 上部署和操作可調整的企業級 Jenkins 伺服器。</p>
+                        <p>在 Azure 上可調整的企業級 Jenkins 伺服器。</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- SharePoint Server 2016 farm -->
+<!-- SharePoint -->
 <li style="display: flex; flex-direction: column;">
     <a href="./sharepoint/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -161,16 +453,16 @@ ms.locfileid: "34422893"
                     </div>
                     <div class="cardText">
                         <h3>SharePoint Server 2016 伺服器陣列</h3>
-                        <p>使用 SQL Server AlwaysOn 可用性群組，來部署及執行高可用性 SharePoint Server 2016 伺服器陣列。</p>
+                        <p>在 Azure 上使用 SQL Server Always On 可用性群組的高可用性 SharePoint Server 2016 伺服器陣列。</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- SAP NetWeaver and SAP HANA -->
+<!-- SAP -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./sap/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./sap/sap-netweaver.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
@@ -180,8 +472,46 @@ ms.locfileid: "34422893"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>執行 Azure 上的 SAP</h3>
-                        <p>在 Azure 的高可用性環境中部署及執行 SAP。</p>
+                        <h3>SAP NetWeaver</h3>
+                        <p>Windows 上的 SAP NetWeaver 處於支援災害復原的高可用性環境中。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/sap-s4hana.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./sap/images/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP S/4HANA</h3>
+                        <p>Linux 上的 SAP S/4HANA 處於支援災害復原的高可用性環境中。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/hana-large-instances.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./sap/images/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 上的 SAP HANA 大型執行個體</h3>
+                        <p>HANA大型執行個體部署在 Azure 區域中的實體伺服器上。</p>
                     </div>
                 </div>
             </div>
@@ -189,3 +519,4 @@ ms.locfileid: "34422893"
     </a>
 </li>
 </ul>
+
