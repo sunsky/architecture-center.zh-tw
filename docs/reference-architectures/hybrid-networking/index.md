@@ -1,126 +1,87 @@
 ---
-title: 將內部部署網路連線到 Azure
-description: 在內部部署網路與 Azure 之間的安全、強固網路連線之建議架構。
-layout: LandingPage
-ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+title: 選擇將內部部署網路連線到 Azure 的解決方案
+description: 比較將內部部署網路連線到 Azure 的參考架構。
+author: telmosampaio
+ms.date: 07/02/2018
+ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782321"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987473"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
-
 # <a name="connect-an-on-premises-network-to-azure"></a>將內部部署網路連線到 Azure
 
-這些參考架構顯示經過證實做法，可建立內部部署網路與 Azure 之間的強固網路連線。 [應選取哪個？](./considerations.md)
+本文會比較將內部部署網路連線到 Azure 虛擬網路 (VNet) 的選項。 對於每個選項都可以使用更詳細的參考架構。
 
-<section class="series">
-    <ul class="panelContent">
-    <!-- VPN -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/vpn.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>VPN</h3>
-                        <p>使用網站對網站虛擬私人網路 (VPN) 將內部部署網路擴充至 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute</h3>
-                        <p>使用 Azure ExpressRoute 將內部部署網路擴充至 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute with VPN failover -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute-vpn-failover.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>含 VPN 容錯移轉的 ExpressRoute</h3>
-                        <p>使用 Azure ExpressRoute 搭配 VPN 作為容錯移轉連線，將內部部署網路擴充至 Azure。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/hub-spoke.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>中樞輪輻拓撲</h3>
-                        <p>中樞是您內部部署網路連線的集中點。 輪輻是與中樞對等的 VNet，可用於隔離工作負載。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology with shared services -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/shared-services.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>具有共用服務的中樞輪輻拓撲</h3>
-                        <p>部署中樞輪輻拓撲，其中包含共用服務，包括 Active Directory 服務和網路虛擬設備 (NVA)。 共用服務可供所有輪輻取用。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
+## <a name="vpn-connection"></a>VPN 連線
 
-<ul class="panelContent cardsI">
-</ul>
+[VPN 閘道](/azure/vpn-gateway/vpn-gateway-about-vpngateways)是一種虛擬網路閘道，可在 Azure 虛擬網路和內部部署位置之間傳送加密流量。 加密流量會通過公用網際網路。
+
+此架構適合內部部署硬體和雲端之間的流量可能不大的混合式應用程式，或是您願意用稍微延長的延遲交換雲端彈性和處理能力的混合式應用程式。
+
+**優點**
+
+- 設定容易。
+
+**挑戰**
+
+- 需要有內部部署 VPN 裝置。
+- 雖然 Microsoft 保證每個 VPN 閘道可達 99.9% 的可用性，但是此 [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) 只涵蓋 VPN 閘道，而不涵蓋閘道的網路連線。
+- 透過 Azure VPN 閘道的 VPN 連線目前最多可支援 200 Mbps 的頻寬。 如果您預期會超過此輸送量，可能需要跨多個 VPN 連線分割 Azure 虛擬網路。
+
+**參考架構**
+
+- [使用 VPN 閘道的混合式網路](./vpn.md)
+
+## <a name="azure-expressroute-connection"></a>Azure ExpressRoute 連線
+
+[ExpressRoute](/azure/expressroute/) 連線會透過第三方連線提供者，使用私人的專用連線。 私人連線會將內部部署網路延伸到 Azure。 
+
+此架構適合執行需要高度延展性之大型、任務關鍵性工作負載的混合式應用程式。 
+
+**優點**
+
+- 可用的頻寬更高；根據連線提供者而定，最多可達 10 Gbps。
+- 支援動態調整頻寬，有助於在要求較低的期間降低成本。 不過，並非所有連線提供者都有這個選項。
+- 根據連線提供者而定，或許可讓您的組織直接存取國家雲端。
+- 整個連線的可用性 SLA 為 99.9%。
+
+**挑戰**
+
+- 設定可能相當複雜。 建立 ExpressRoute 連線需要使用第三方連線提供者。 此提供者負責佈建網路連線。
+- 需要高頻寬的路由器內部部署。
+
+**參考架構**
+
+- [使用 ExpressRoute 的混合式網路](./expressroute.md)
+
+## <a name="expressroute-with-vpn-failover"></a>含 VPN 容錯移轉的 ExpressRoute
+
+此選項結合上述兩者，在正常情況下使用 ExpressRoute，但在 ExpressRoute 線路的連線中斷時，容錯移轉到 VPN 連線。
+
+此架構適合需要較高頻寬的 ExpressRoute，而且也需要高可用性網路連線的混合式應用程式。 
+
+**優點**
+
+- 如果 ExpressRoute 線路失敗，雖然後援連線位於較低頻寬的網路，但仍然可達高可用性。
+
+**挑戰**
+
+- 設定複雜。 您需要同時設定 VPN 連線與 ExpressRoute 線路。
+- 需要備援硬體 (VPN 設備)，以及您必須支付費用的備援 Azure VPN 閘道連線。
+
+**參考架構**
+
+- [使用 ExpressRoute 和 VPN 容錯移轉的混合式網路](./expressroute-vpn-failover.md)
+
+
+## <a name="hub-spoke-network-topology"></a>中樞輪輻網路拓撲
+
+中樞輪輻網路拓撲是一種在共用服務 (例如身分識別和安全性) 時隔離工作負載的方式。 「中樞」是 Azure 中的虛擬網路 (VNet)，可當作內部部署網路的連線中心點。 「輪輻」是與中樞對等的 VNet。 共用的服務會部署在中樞中，而個別的工作負載會部署為輪輻。
+
+
+**參考架構**
+
+- [中樞輪輻拓撲](./hub-spoke.md)
+- [具有共用服務的中樞輪輻](./shared-services.md)

@@ -3,12 +3,12 @@ title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: d1e3f0b73c94844ac649bf2abb6917809202fdb7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9fe4fc09cf3babdf3ec8e8f27049f90e0047e9f0
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270117"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987704"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -38,7 +38,9 @@ ms.locfileid: "30270117"
 
 - **閘道**。 閘道會提供內部部署網路與 Azure 虛擬網路之間的連線。 您的連線可以使用 ExpressRoute 或站對站 VPN。 如需詳細資訊，請參閱[將內部部署網路連線至 Azure][hybrid-ra]。
 
-- **Windows Server Active Directory (AD) 網域控制站**。 由於 SharePoint Server 2016 不支援使用 Azure Active Directory Domain Services，因此您必須部署 Windows Server AD 網域控制站。 這些網域控制站會在 Azure VNet 中執行，並與內部部署 Windows Server AD 樹系之間有信任關係。 SharePoint 伺服器陣列資源的用戶端 Web 要求會在 VNet 中進行驗證 ，而不是透過內部部署網路的閘道連線傳送該驗證流量。 DNS 中會建立內部網路 A 或 CNAME 記錄，讓內部網路使用者可以將 SharePoint 伺服器陣列的名稱解析為內部負載平衡器的私用 IP 位址。
+- **Windows Server Active Directory (AD) 網域控制站**。 此參考架構部署 Windows Server AD 網域控制站。 這些網域控制站會在 Azure VNet 中執行，並與內部部署 Windows Server AD 樹系之間有信任關係。 SharePoint 伺服器陣列資源的用戶端 Web 要求會在 VNet 中進行驗證 ，而不是透過內部部署網路的閘道連線傳送該驗證流量。 DNS 中會建立內部網路 A 或 CNAME 記錄，讓內部網路使用者可以將 SharePoint 伺服器陣列的名稱解析為內部負載平衡器的私用 IP 位址。
+
+  SharePoint Server 2016 也支援使用[Azure Active Directory Domain Services](/azure/active-directory-domain-services/)。 Azure AD Domain Services 提供受控網域服務，使您不需要部署和管理 Azure 中的網域控制站。
 
 - **SQL Server Always On 可用性群組**。 若要取得 SQL Server 資料庫的高可用性使用，我們建議您使用 [可用性群組][sql-always-on]。 用於 SQL Server 的虛擬機器有兩個。 一個包含主要資料庫複本，另一個包含次要複本。 
 
