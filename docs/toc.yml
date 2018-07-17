@@ -332,18 +332,32 @@
       href: example-scenario/index.md
     - name: AI
       items:
-        - name: 影像處理
+        - name: 影像分類
           href: example-scenario/ai/intelligent-apps-image-processing.md
     - name: 應用程式
       items:
         - name: 飯店預約聊天機器人
           href: example-scenario/apps/commerce-chatbot.md
-        - name: 使用 Azure Kubernetes Service 的 DevOps
+        - name: 具有容器的 DevOps
           href: example-scenario/apps/devops-with-aks.md
+        - name: 具有 VSTS 的 DevOps
+          href: example-scenario/apps/devops-dotnet-webapp.md
+        - name: 適用於開發/測試的 SAP
+          href: example-scenario/apps/sap-dev-test.md
+        - name: 電子商務前端
+          href: example-scenario/apps/ecommerce-scenario.md
     - name: 資料與分析
       items:
         - name: 即時詐欺偵測
           href: example-scenario/data/fraud-detection.md
+        - name: 可調整的訂單處理
+          href: example-scenario/data/ecommerce-order-processing.md
+    - name: 基礎結構
+      items:
+        - name: 多層式 Windows
+          href: example-scenario/infrastructure/regulated-multitier-app.md
+        - name: HPC 影片轉譯
+          href: example-scenario/infrastructure/video-rendering.md
 - name: 參考架構
   items:
     - name: 概觀
