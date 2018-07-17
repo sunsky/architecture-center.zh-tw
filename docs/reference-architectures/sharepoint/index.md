@@ -2,13 +2,13 @@
 title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
-ms.date: 08/01/2017
-ms.openlocfilehash: 9fe4fc09cf3babdf3ec8e8f27049f90e0047e9f0
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 07/14/2018
+ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987704"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060892"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -172,78 +172,104 @@ ms.locfileid: "38987704"
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署指令碼可在 [GitHub][github] 上取得。 
+此參考架構的部署可在 [GitHub][github] 上取得。 整個部署可能需要數小時才能完成。
 
-您可以以累加方式或一次全部部署此架構。 第一次，建議您使用累加式部署，以便您看到每個部署的執行方式。 使用下列其中一個 mode 參數來指定增量。
+此部署會在您的訂用帳戶中建立下列資源群組︰
 
-| Mode           | 作用                                                                                                            |
-|----------------|-------------------------------------------------------------------------------------------------------------------------|
-| onprem         | (選擇性) 部署模擬的內部部署網路環境以用於測試或評估。 這個步驟不會連線到實際的內部部署網路。 |
-| infrastructure | 將 SharePoint 2016 網路基礎結構和 jumpbox 部署到 Azure。                                                |
-| createvpn      | 部署 SharePoint 和內部部署網路的虛擬網路閘道並使其連線。 只有當您執行 `onprem` 步驟時，才須執行此步驟。                |
-| workload       | 將 SharePoint 伺服器部署到 SharePoint 網路。                                                               |
-| security       | 將網路安全性群組部署到 SharePoint 網路。                                                           |
-| 所有            | 部署所有先前的部署。                            
+- ra-onprem-sp2016-rg
+- ra-sp2016-network-rg
 
+範本參數檔案會參照這些名稱，因此，如果您變更這些名稱，請據以更新參數檔案。 
 
-若要在模擬的內部部署網路環境上以累加方式部署架構，請依序執行下列步驟：
-
-1. onprem
-2. infrastructure
-3. createvpn
-4. workload
-5. security
-
-若不是在模擬的內部部署網路環境上以累加方式部署架構，請依序執行下列步驟：
-
-1. infrastructure
-2. workload
-3. security
-
-若要在一個步驟中部署所有項目，請使用 `all`。 請注意，整個程序可能需費時數小時。
+參數檔案會在不同位置中包含硬式編碼的密碼。 在部署之前，請變更這些值。
 
 ### <a name="prerequisites"></a>先決條件
 
-* 安裝最新版的 [Azure PowerShell][azure-ps]。
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-* 在部署此參考架構之前，請確認您的訂用帳戶有足夠的配額 (至少 38 個核心)。 如果沒有足夠的配額，請使用 Azure 入口網站來提交支援要求以取得更多配額。
+### <a name="deploy-the-solution"></a>部署解決方案 
 
-* 若要預估此部署的成本，請參閱 [Azure 定價計算機][azure-pricing]。
+1. 執行下列命令以部署模擬的內部部署網路。
 
-### <a name="deploy-the-reference-architecture"></a>部署參考架構
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p onprem.json --deploy
+    ```
 
-1.  將 [GitHub 存放庫][github]下載或複製到本機電腦。
+2. 執行下列命令來部署 Azure VNet 與 VPN 閘道。
 
-2.  開啟 PowerShell 視窗並瀏覽至 `/sharepoint/sharepoint-2016` 資料夾。
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p connections.json --deploy
+    ```
 
-3.  執行下列 PowerShell 命令。 針對\<subscription id\>，您的 Azure 訂用帳戶識別碼。 針對\<location\>，請指定 Azure 區域，例如 `eastus` 或 `westus`。 針對\<mode\>，請指定 `onprem`、`infrastructure`、`createvpn`、`workload`、`security` 或 `all`。
+3. 執行下列命令以部署 jumpbox、AD 網域控制站與 SQL Server VM。
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
+    ```
+
+4. 執行下列命令以建立容錯移轉叢集和可用性群組。 
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+
+5. Run the following command to deploy the remaining VMs.
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
+    ```
+
+此時，請確認您可以針對 SQL Server Always On 可用性群組，建立網路端點到負載平衡器的 TCP 連線。 若要進行，請執行下列步驟：
+
+1. 使用 Azure 入口網站尋找 `ra-sp2016-network-rg` 資源群組中名為 `ra-sp-jb-vm1` 的 VM。 這就是 jumpbox VM。
+
+2. 按一下 `Connect` 以開啟 VM 的遠端桌面工作階段。 請使用您在 `azure1.json` 參數檔案中指定的密碼。
+
+3. 從遠端桌面工作階段，登入 10.0.5.4。 這是名為 `ra-sp-app-vm1` 的 VM IP 位址。
+
+4. 在 VM 中開啟 PowerShell 主控台，並使用 `Test-NetConnection` Cmdlet 確認您可以連線至負載平衡器。
 
     ```powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
-    ```   
-4. 出現提示時，請登入您的 Azure 帳戶。 部署指令碼可能需要數小時才能完成，視您選取的模式而定。
+    Test-NetConnection 10.0.3.100 -Port 1433
+    ```
 
-5. 完成部署之後，請執行指令碼以設定 SQL Server Alwayson 可用性群組。 請參閱[讀我檔案][readme]，以取得詳細資訊。
+輸出應如下所示：
 
-> [!WARNING]
-> 參數檔案會在不同位置中包含硬式編碼的密碼 (`AweS0me@PW`)。 在部署之前，請變更這些值。
+```powershell
+ComputerName     : 10.0.3.100
+RemoteAddress    : 10.0.3.100
+RemotePort       : 1433
+InterfaceAlias   : Ethernet 3
+SourceAddress    : 10.0.0.132
+TcpTestSucceeded : True
+```
 
+如果失敗，使用 Azure 入口網站重新啟動名為 `ra-sp-sql-vm2` 的 VM。 VM 重新啟動之後，再次執行 `Test-NetConnection` 命令。 VM 重新啟動之後，您可能需要等候大約一分鐘，才會連線成功。 
 
-## <a name="validate-the-deployment"></a>驗證部署
+現在，如下所示完成部署。
 
-部署此參考架構之後，下列資源群組會列在您所使用的訂用帳戶底下：
+1. 執行下列命令，以部署 SharePoint 伺服器陣列的主要節點。
 
-| 資源群組        | 目的                                                                                         |
-|-----------------------|-------------------------------------------------------------------------------------------------|
-| ra-onprem-sp2016-rg   | 使用 Active Directory 的模擬內部部署網路，與 SharePoint 2016 網路是同盟關係 |
-| ra-sp2016-network-rg  | 支援 SharePoint 部署的基礎結構                                                 |
-| ra-sp2016-workload-rg | SharePoint 和支援的資源                                                             |
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure4-sharepoint-server.json --deploy
+    ```
 
-### <a name="validate-access-to-the-sharepoint-site-from-the-on-premises-network"></a>從內部部署網路驗證 SharePoint 網站的存取權
+2. 執行下列命令，以部署 SharePoint 快取、搜尋和網路。
 
-1. 在 [Azure 入口網站][azure-portal]中的 [資源群組] 下，選取 `ra-onprem-sp2016-rg` 資源群組。
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure5-sharepoint-farm.json --deploy
+    ```
 
-2. 在資源清單中，選取名為 `ra-adds-user-vm1` 的虛擬機器資源。 
+3. 執行下列命令，以建立 NSG 規則。
+
+    ```bash
+    azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure6-security.json --deploy
+    ```
+
+### <a name="validate-the-deployment"></a>驗證部署
+
+1. 在 [Azure 入口網站][azure-portal]中，瀏覽至 `ra-onprem-sp2016-rg` 資源群組。
+
+2. 在資源清單中，選取名為 `ra-onpr-u-vm1` 的虛擬機器資源。 
 
 3. 連線至虛擬機器，如[連線至虛擬機器][connect-to-vm]中所述。 使用者名稱為 `\onpremuser`。
 
@@ -252,38 +278,6 @@ ms.locfileid: "38987704"
 6.  在 [Windows 安全性] 方塊中，使用 `contoso.local\testuser` 作為使用者名稱來登入 SharePoint 入口網站。
 
 此登入可讓您從內部部署網路使用的 Fabrikam.com 網域通往 SharePoint 入口網站使用的 contoso.local 網域。 當 SharePoint 網站開啟時，您會看到根示範網站。
-
-### <a name="validate-jumpbox-access-to-vms-and-check-configuration-settings"></a>驗證虛擬機器的 jumpbox 存取權及檢查組態設定
-
-1.  在 [Azure 入口網站][azure-portal]中的 [資源群組] 下，選取 `ra-sp2016-network-rg` 資源群組。
-
-2.  在資源清單中，選取名為 `ra-sp2016-jb-vm1` 的虛擬機器資源，這就是 jumpbox。
-
-3. 連線至虛擬機器，如[連線至虛擬機器][connect-to-vm]中所述。 使用者名稱為 `testuser`。
-
-4.  登入 jumpbox 之後，請從 jumpbox 開啟 RDP 工作階段。 連線至 VNet 中的任何其他虛擬機器。 使用者名稱是 `testuser`。 您可以忽略有關遠端電腦安全性憑證的警告。
-
-5.  虛擬機器的遠端連線開啟時，請檢閱設定然後使用「伺服器管理員」等系統管理工具進行變更。
-
-部署的虛擬機器如下表所示。 
-
-| 資源名稱      | 目的                                   | 資源群組        | 虛擬機器名稱                       |
-|--------------------|-------------------------------------------|-----------------------|-------------------------------|
-| Ra-sp2016-ad-vm1   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad1.contoso.local             |
-| Ra-sp2016-ad-vm2   | Active Directory + DNS                    | Ra-sp2016-network-rg  | Ad2.contoso.local             |
-| Ra-sp2016-fsw-vm1  | SharePoint                                | Ra-sp2016-network-rg  | Fsw1.contoso.local            |
-| Ra-sp2016-jb-vm1   | Jumpbox                                   | Ra-sp2016-network-rg  | Jb (使用公用 IP登入) |
-| Ra-sp2016-sql-vm1  | SQL Always On - 容錯移轉                  | Ra-sp2016-network-rg  | Sq1.contoso.local             |
-| Ra-sp2016-sql-vm2  | SQL Always On - 主要                   | Ra-sp2016-network-rg  | Sq2.contoso.local             |
-| Ra-sp2016-app-vm1  | SharePoint 2016 應用程式 MinRole       | Ra-sp2016-workload-rg | App1.contoso.local            |
-| Ra-sp2016-app-vm2  | SharePoint 2016 應用程式 MinRole       | Ra-sp2016-workload-rg | App2.contoso.local            |
-| Ra-sp2016-dch-vm1  | SharePoint 2016 分散式快取 MinRole | Ra-sp2016-workload-rg | Dch1.contoso.local            |
-| Ra-sp2016-dch-vm2  | SharePoint 2016 分散式快取 MinRole | Ra-sp2016-workload-rg | Dch2.contoso.local            |
-| Ra-sp2016-srch-vm1 | SharePoint 2016 搜尋 MinRole            | Ra-sp2016-workload-rg | Srch1.contoso.local           |
-| Ra-sp2016-srch-vm2 | SharePoint 2016 搜尋 MinRole            | Ra-sp2016-workload-rg | Srch2.contoso.local           |
-| Ra-sp2016-wfe-vm1  | SharePoint 2016 Web 前端 MinRole     | Ra-sp2016-workload-rg | Wfe1.contoso.local            |
-| Ra-sp2016-wfe-vm2  | SharePoint 2016 Web 前端 MinRole     | Ra-sp2016-workload-rg | Wfe2.contoso.local            |
-
 
 **_此參考架構的參與者_** &mdash;  Joe Davies、Bob Fox、Neil Hodgkinson、Paul Stork
 
