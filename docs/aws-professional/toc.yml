@@ -1,8 +1,0 @@
-- name: Azure Architecture Center
-  href: /azure/architecture
-- name: Azure for AWS 專業人員
-  items:
-    - name: 概觀
-      href: index.md
-    - name: 服務比較
-      href: services.md
