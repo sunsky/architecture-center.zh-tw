@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 925e0f47cf6b9aa1ad48ffae2c9561a2393bf601
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: 9105748f434e5d655b09b1fe0775417f33a912b0
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142245"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843587"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -163,7 +163,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 2. (選擇性) 針對 Linux 部署，請將 `osType` 設為 `Linux`。
 
-3. 針對 `sharedKey`，輸入 VPN 連線的共用金鑰。 
+3. 尋找 `sharedKey` 的兩個執行個體，輸入 VPN 連線的共用金鑰。 這兩個值必須相符。
 
     ```bash
     "sharedKey": "",

@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327682"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843621"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -383,7 +383,7 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 \* 不包括系統收到伺服器忙碌回應時所新增的額外延遲。
 
 ### <a name="telemetry"></a>遙測
-服務匯流排使用 **EventSource**，將重試記錄成 ETW 事件。 您必須將 **EventListener** 附加到事件來源，以擷取事件並在效能檢視器中檢視事件。 您可以使用 [語意記錄應用程式區塊](http://msdn.microsoft.com/library/dn775006.aspx) 來達成。 重試事件的格式如下：
+服務匯流排使用 **EventSource**，將重試記錄成 ETW 事件。 您必須將 **EventListener** 附加到事件來源，以擷取事件並在效能檢視器中檢視事件。 重試事件的格式如下：
 
 ```text
 Microsoft-ServiceBus-Client/RetryPolicyIteration
@@ -985,8 +985,8 @@ namespace RetryCodeSamples
 存取 Azure 或協力廠商服務時請考量下列事項：
 
 * 使用系統化的方法管理重試，或許是做為可重複使用的程式碼，讓您可以在所有的用戶端與所有的解決方案之間套用一致的方法。
-* 如果目標服務或用戶端有沒有內建的重試機制，請考慮使用重試架構 (例如暫時性錯誤處理應用程式區塊) 來管理重試。 這可以幫助您實作一致的重試行為，且可能會為目標服務提供適合的預設重試策略。 不過，您可能需要為具有非標準行為的服務建立自訂重試程式碼，非標準行為不依例外狀況來表示暫時性錯誤，或如果您想要使用 **Retry-Response** 來管理重試行為，也必須建立自訂重試程式碼。
-* 暫時性偵測邏輯將取決於您用來叫用 REST 呼叫的實際用戶端 API。 有些用戶端 (例如較新的 **HttpClient** 類別)，不會為已完成的要求擲回狀態碼為 HTTP 不成功的例外狀況。 這會改善效能，但會防止使用暫時性錯誤處理應用程式區塊。 在此情況下，您無法使用會為 HTTP 不成功的狀態碼產生例外狀況的程式碼，來包裝對 REST API 的呼叫，接著會由區塊來處理該狀態碼。 或者，您可以使用不同的機制來驅動重試。
+* 如果目標服務或用戶端有沒有內建的重試機制，請考慮使用重試架構 (例如 [Polly][polly]) 來管理重試。 這可以幫助您實作一致的重試行為，且可能會為目標服務提供適合的預設重試策略。 不過，您可能需要為具有非標準行為的服務建立自訂重試程式碼，非標準行為不依例外狀況來表示暫時性錯誤，或如果您想要使用 **Retry-Response** 來管理重試行為，也必須建立自訂重試程式碼。
+* 暫時性偵測邏輯將取決於您用來叫用 REST 呼叫的實際用戶端 API。 有些用戶端 (例如較新的 **HttpClient** 類別)，不會為已完成的要求擲回狀態碼為 HTTP 不成功的例外狀況。 
 * 從服務傳回的 HTTP 狀態碼可協助指出錯誤是否為暫時性。 您可能需要檢查用戶端產生的例外狀況，或檢查重試架構，以存取狀態碼或決定等同的例外狀況類型。 下列 HTTP 代碼通常表示重試是適當的：
   * 408 要求逾時
   * 429 要求太多
@@ -999,7 +999,7 @@ namespace RetryCodeSamples
   * WebExceptionStatus.ConnectFailure
   * WebExceptionStatus.Timeout
   * WebExceptionStatus.RequestCanceled
-* 在服務無法使用狀態下，服務可能會先指出適當的延遲，然後在 **Retry-After** 回應標頭或不同的自訂標頭中重試。 服務也可能傳送額外的資訊做為自訂標頭，或內嵌在回應的內容中。 暫時性錯誤處理應用程式區塊無法使用標準或任何自訂的「retry-after」標頭。
+* 在服務無法使用狀態下，服務可能會先指出適當的延遲，然後在 **Retry-After** 回應標頭或不同的自訂標頭中重試。 服務也可能傳送額外的資訊做為自訂標頭，或內嵌在回應的內容中。 
 * 408 要求逾時除外，不要重試代表用戶端錯誤 (4xx 範圍中的錯誤) 的狀態碼。
 * 在各種條件下 (例如不同的網路狀態及各種的系統負載) 徹底測試您的重試策略和機制。
 
