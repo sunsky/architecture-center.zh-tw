@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206373"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864550"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -115,14 +115,14 @@ ms.locfileid: "36206373"
 |網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`sql-allow` |
 |公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
-|Load Balancer |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
-|負載平衡的規則組態 |Load Balancer |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
+|負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
+|負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-agw` |`profx-agw` |
 |流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、連字號和句點 |`<descriptive context>` |`app1` |
 
 ## <a name="organize-resources-with-tags"></a>具有標籤的組織資源
 
-Azure Resource Manager 支援使用任意文字字串來標記實體，以識別內容並簡化自動化作業。  例如，`"sqlVersion: "sql2014ee"` 標記可識別執行 SQL Server 2014 Enterprise Edition 之部署中的 VM，以便對 VM 執行自動化指令碼。  標記應該用來與所選擇的命名慣例一起擴充及增強內容。
+Azure Resource Manager 支援使用任意文字字串來標記實體，以識別內容並簡化自動化作業。  例如，標記 `"sqlVersion"="sql2014ee"` 可以識別執行 SQL Server 2014 企業版的虛擬機器。 標記應該用來與所選擇的命名慣例一起擴充及增強內容。
 
 > [!TIP]
 > 標記的另一項優點是標記可跨越資源群組，因此可讓您連結不同部署間的實體並予以相互關聯。

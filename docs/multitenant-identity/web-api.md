@@ -6,18 +6,18 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 65529280c5849e36ed7ff23de08a0b485034d0d8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2d02ff7be04c6ebec888039453fe1ac7e957b301
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541460"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843669"
 ---
 # <a name="secure-a-backend-web-api"></a>保護後端 Web API
 
 [![GitHub](../_images/github.png) 程式碼範例][sample application]
 
-[Tailspin Surveys] 應用程式使用後端 Web API 來管理問卷的 CRUD 作業。 例如，當使用者按一下 [我的問卷調查] 時，Web 應用程式會傳送 HTTP 要求到 Web API：
+[Tailspin 問卷] 應用程式使用後端 Web API 來管理問卷的 CRUD 作業。 例如，當使用者按一下 [我的問卷調查] 時，Web 應用程式會傳送 HTTP 要求到 Web API：
 
 ```
 GET /users/{userId}/surveys
@@ -68,7 +68,7 @@ Tailspin 應用程式實作委派的使用者識別。 以下是兩者的主要�
 這兩種方法中，Web 應用程式必須取得存取權杖，也就是呼叫 Web API 所需的認證。
 
 * 如果是委派的使用者識別，權杖必須來自可代表使用者發行權杖的 IDP。
-* 如果是用戶端認證，應用程式可能會從 IDP 取得權杖，或主控自己的權杖伺服器。 (但請勿重頭開始撰寫權杖伺服器，請使用經完整測試的架構，例如 [IdentityServer3])。如果您使用 Azure AD 進行驗證，強烈建議從 Azure AD 取得存取權杖，即使是使用用戶端認證流程也一樣。
+* 如果是用戶端認證，應用程式可能會從 IDP 取得權杖，或主控自己的權杖伺服器。 (但請勿重頭開始撰寫權杖伺服器，請使用經完整測試的架構，例如 [IdentityServer4]。)如果您使用 Azure AD 進行驗證，強烈建議從 Azure AD 取得存取權杖，即使是使用用戶端認證流程也一樣。
 
 本文的其餘部分假設應用程式透過 Azure AD 進行驗證。
 
@@ -270,8 +270,8 @@ public void ConfigureServices(IServiceCollection services)
 [ADAL]: https://msdn.microsoft.com/library/azure/jj573266.aspx
 [JwtBearer]: https://www.nuget.org/packages/Microsoft.AspNet.Authentication.JwtBearer
 
-[Tailspin Surveys]: tailspin.md
-[IdentityServer3]: https://github.com/IdentityServer/IdentityServer3
+[Tailspin 問卷]: tailspin.md
+[IdentityServer4]: https://github.com/IdentityServer/IdentityServer4
 [更新應用程式資訊清單]: ./run-the-app.md#update-the-application-manifests
 [權杖快取]: token-cache.md
 [租用戶註冊]: signup.md
