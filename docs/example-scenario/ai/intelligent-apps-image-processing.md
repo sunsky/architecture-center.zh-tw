@@ -1,16 +1,16 @@
 ---
-title: 智慧型應用程式 - Azure 上的映像處理
-description: 經過證明的解決方案，可以將映像處理建置到您的 Azure 應用程式。
+title: Azure 上的保險理賠映像分類
+description: 經過證明的案例，可以將映像處理建置到您的 Azure 應用程式。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: c5bfb9a929ddddda4336e1cbc8665a0b4d3bbe2c
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891291"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060824"
 ---
-# <a name="insurance-claim-image-classification-on-azure"></a>Azure 上的保險理賠映像分類
+# <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保險理賠映像分類
 
 此範例案例適用於需要處理映像的企業。
 
@@ -18,19 +18,18 @@ ms.locfileid: "37891291"
 
 藉由使用 Azure 服務 (例如電腦視覺 API 和 Azure Functions)，公司可以消除管理個別伺服器的需求，同時減少成本及利用 Microsoft 已透過認知服務針對處理映像開發的專業知識。 這個案例特別說明映像處理案例。 如果您有不同的 AI 需求，請考慮整套的[認知服務][cognitive-docs]。
 
-## <a name="potential-use-cases"></a>潛在使用案例
+## <a name="related-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此解決方案：
+請針對下列使用案例考慮此案例：
 
 * 分類潮流網站上的映像。
-* 分類保險理賠的映像
 * 分類來自遊戲螢幕擷取畫面的遙測資料。
 
 ## <a name="architecture"></a>架構
 
 ![智慧型應用程式架構 - 電腦視覺][architecture-computer-vision]
 
-此解決方案涵蓋了 Web 或行動裝置應用程式的後端元件。 整個解決方案的資料流程如下所示：
+此案例涵蓋了 Web 或行動裝置應用程式的後端元件。 整個案例的資料流程如下所示：
 
 1. Azure Functions 作為 API 層。 這些 API 可讓應用程式上傳映像，並且從 Cosmos DB 擷取資料。
 
@@ -64,7 +63,7 @@ ms.locfileid: "37891291"
 
 ### <a name="scalability"></a>延展性
 
-大部分情況下，此解決方案的所有元件都是會自動調整的受控服務。 幾個值得注意的例外狀況：Azure Functions 的上限為 200 個執行個體。 如果您需要調整超過上限，請考慮多個區域或應用程式方案。
+大部分情況下，此案例的所有元件都是會自動調整的受控服務。 幾個值得注意的例外狀況：Azure Functions 的上限為 200 個執行個體。 如果您需要調整超過上限，請考慮多個區域或應用程式方案。
 
 Cosmos DB 不會依據佈建要求單位 (RU) 自動調整。  如需評估需求的指引，請參閱我們文件中的[要求單位][request-units]。 若要充分利用 Cosmos DB 中的調整，您也應該參閱[分割區索引鍵][partition-key]。
 
@@ -80,13 +79,13 @@ NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP
 
 ### <a name="resiliency"></a>災害復原
 
-此解決方案中的所有元件都是受控元件，所以它們在區域層級都會自動復原。 
+此案例中的所有元件都是受控元件，所以它們在區域層級都會自動復原。
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
 ## <a name="pricing"></a>價格
 
-為了探索執行此解決方案的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
+為了探索執行此案例的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
 
 我們根據流量 (假設所有映像的大小是 100kb)，提供了三個範例成本設定檔：
 
@@ -96,7 +95,7 @@ NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP
 
 ## <a name="related-resources"></a>相關資源
 
-如需此解決方案的引導式學習路徑，請參閱[在 Azure 中建置無伺服器 Web 應用程式][serverless]。  
+如需此案例的引導式學習路徑，請參閱[在 Azure 中建置無伺服器 Web 應用程式][serverless]。  
 
 在將這個解決方案放入生產環境之前，請檢閱 Azure Functions [最佳做法][functions-best-practices]。
 

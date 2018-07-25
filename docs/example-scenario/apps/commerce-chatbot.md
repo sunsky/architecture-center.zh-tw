@@ -1,26 +1,26 @@
 ---
-title: 適用於預約旅館的交談 Azure 聊天機器人
-description: 經過證明的解決方案，可以使用 Azure Bot 服務、認知服務和 LUIS、Azure SQL Database 及 Application Insights，為商務應用程式建置交談聊天機器人。
+title: Azure 上適用於預約旅館的交談聊天機器人
+description: 經過證明的案例，可以使用 Azure Bot 服務、認知服務和 LUIS、Azure SQL Database 及 Application Insights，為商務應用程式建置交談聊天機器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 85bdc3194961bbbd8d89db34e5c56e4baa8d8599
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891288"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060858"
 ---
-# <a name="conversational-azure-chatbot-for-hotel-reservations"></a>適用於預約旅館的交談 Azure 聊天機器人
+# <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 
-此範例案例適用於需要將交談聊天機器人整合到應用程式的企業。 在此解決方案中，C# 聊天機器人用於連鎖旅館，讓客戶可以透過 Web 或行動裝置應用程式檢查空房狀況及預訂住宿。
+此範例案例適用於需要將交談聊天機器人整合到應用程式的企業。 在此案例中，C# 聊天機器人用於連鎖旅館，讓客戶可以透過 Web 或行動裝置應用程式檢查空房狀況及預訂住宿。
 
 案例範例包括為客戶提供檢視旅館空房及預訂房間、檢閱餐廳外帶菜單及訂購餐點，或者搜尋及訂購相片沖印的方式。 傳統上，企業可能需要雇用及訓練客戶服務代理商，以回應這些客戶要求，而且客戶在業務代表可以提供協助之前必須等待。
 
 藉由使用 Azure 服務，例如 Bot 服務和 Language Understanding 或 Speech API 服務，公司可以透過自動化、可調整的聊天機器人，協助客戶及處理訂單或預約。
 
-## <a name="potential-use-cases"></a>潛在使用案例
+## <a name="related-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此解決方案：
+請針對下列使用案例考慮此案例：
 
 * 檢視餐廳外帶菜單及訂購餐點
 * 檢查旅館空房狀況及預約房間
@@ -30,7 +30,7 @@ ms.locfileid: "37891288"
 
 ![交談聊天機器人所牽涉到 Azure 元件的架構概觀][architecture]
 
-此解決方案涵蓋可以作為旅館禮賓接待的交談聊天機器人。 整個解決方案的資料流程如下所示：
+此案例涵蓋可以作為旅館禮賓接待的交談聊天機器人。 整個案例的資料流程如下所示：
 
 1. 客戶使用行動裝置或 Web 應用程式存取聊天機器人。
 2. 使用 Azure Active Directory B2C (企業對客戶)，使用者經過驗證。
@@ -58,19 +58,19 @@ ms.locfileid: "37891288"
 
 ### <a name="availability"></a>可用性
 
-此解決方案會使用 Azure SQL Database 來儲存客戶預約。 SQL Database 包括區域備援資料庫、容錯移轉群組和異地複寫。 如需詳細資訊，請參閱 [Azure SQL Database 可用性功能][sqlavailability-docs]。
+此案例會使用 Azure SQL Database 來儲存客戶預約。 SQL Database 包括區域備援資料庫、容錯移轉群組和異地複寫。 如需詳細資訊，請參閱 [Azure SQL Database 可用性功能][sqlavailability-docs]。
 
-如需其他延展性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
+如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
 
 ### <a name="scalability"></a>延展性
 
-此解決方案會使用 Azure App Service。 您可以使用 App Service，自動調整執行聊天機器人的執行個體數目。 這項功能可讓您的 Web 應用程式和聊天機器人掌握客戶需求。 如需自動調整規模的詳細資訊，請參閱架構中心的[自動調整規模最佳做法][autoscaling]。
+此案例會使用 Azure App Service。 您可以使用 App Service，自動調整執行聊天機器人的執行個體數目。 這項功能可讓您的 Web 應用程式和聊天機器人掌握客戶需求。 如需自動調整規模的詳細資訊，請參閱架構中心的[自動調整規模最佳做法][autoscaling]。
 
 如需其他延展性主題，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 
-此解決方案會使用 Azure Active Directory B2C (企業對客戶) 來驗證使用者。 使用 AAD B2C，您的聊天機器人不會儲存任何機密客戶帳戶資訊或認證。 如需詳細資訊，請參閱 [Azure Active Directory B2C 概觀][aadb2c-docs]。
+此案例會使用 Azure Active Directory B2C (企業對客戶) 來驗證使用者。 使用 AAD B2C，您的聊天機器人不會儲存任何機密客戶帳戶資訊或認證。 如需詳細資訊，請參閱 [Azure Active Directory B2C 概觀][aadb2c-docs]。
 
 儲存在 Azure SQL Database 中的資訊，會以透明資料加密 (TDE) 進行加密並待用。 SQL Database 也提供 Always Encrypted，這項功能會在查詢和處理期間將資料加密。 如需 SQL Database 安全性的詳細資訊，請參閱 [Azure SQL Database 安全性與合規性][sqlsecurity-docs]。
 
@@ -78,15 +78,15 @@ ms.locfileid: "37891288"
 
 ### <a name="resiliency"></a>災害復原
 
-此解決方案會使用 Azure SQL Database 來儲存客戶預約。 SQL Database 包括區域備援資料庫、容錯移轉群組、異地複寫和自動備份。 這些功能可讓您的應用程式在發生維護事件或中斷時繼續執行。 如需詳細資訊，請參閱 [Azure SQL Database 可用性功能][sqlavailability-docs]。
+此案例會使用 Azure SQL Database 來儲存客戶預約。 SQL Database 包括區域備援資料庫、容錯移轉群組、異地複寫和自動備份。 這些功能可讓您的應用程式在發生維護事件或中斷時繼續執行。 如需詳細資訊，請參閱 [Azure SQL Database 可用性功能][sqlavailability-docs]。
 
-為了監視應用程式的健康情況，此解決方案使用 Application Insights。 使用 Application Insights，您可以產生警示，並且針對會影響客戶體驗和聊天機器人可用性的效能問題做回應。 如需詳細資訊，請參閱 [Application Insights 是什麼？][appinsights-docs]
+為了監視應用程式的健康情況，此案例使用 Application Insights。 使用 Application Insights，您可以產生警示，並且針對會影響客戶體驗和聊天機器人可用性的效能問題做回應。 如需詳細資訊，請參閱 [Application Insights 是什麼？][appinsights-docs]
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
-## <a name="deploy-the-solution"></a>部署解決方案
+## <a name="deploy-the-scenario"></a>部署案例
 
-此解決方案可分為三個元件，讓您可以探索最著重的部分：
+此案例可分為三個元件，讓您可以探索最著重的部分：
 
 * [基礎結構元件](#deploy-infrastructure-components)。 使用 Azure Resource Manger 範本來部署 App Service、Web 應用程式、Application Insights、儲存體帳戶及 SQL Server 和資料庫的核心基礎結構元件。
 * [Web 應用程式聊天機器人](#deploy-web-app-chatbot)。 使用 Azure CLI 來部署具有 Bot 服務和 Language Understanding and Intelligent Services (LUIS) 應用程式的聊天機器人。
@@ -135,11 +135,11 @@ az bot create \
 
 * [商務聊天機器人 C# 範例](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
-範例應用程式包含 Azure Active Directory 驗證元件，並且與認知服務的 Language Understanding and Intelligent Services (LUIS) 元件整合。 應用程式需要 Visual Studio 以便建置及部署解決方案。 關於設定 AAD B2C 和 LUIS 應用程式的額外資訊，可以在 GitHub 存放庫文件中找到。
+範例應用程式包含 Azure Active Directory 驗證元件，並且與認知服務的 Language Understanding and Intelligent Services (LUIS) 元件整合。 應用程式需要 Visual Studio 以便建置及部署案例。 關於設定 AAD B2C 和 LUIS 應用程式的額外資訊，可以在 GitHub 存放庫文件中找到。
 
 ## <a name="pricing"></a>價格
 
-為了探索執行此解決方案的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
+為了探索執行此案例的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
 
 我們根據您期望聊天機器人處理的訊息量，提供了 3 個範例成本設定檔：
 

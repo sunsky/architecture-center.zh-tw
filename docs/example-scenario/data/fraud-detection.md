@@ -1,14 +1,14 @@
 ---
-title: 進階分析與即時詐騙偵測
-description: 經過證明的解決方案，可以使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
+title: Azure 上的即時詐騙偵測
+description: 經過證明的案例，可以使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: cf375445b38b0ff7d6fbc400902d5e97b34b4fed
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: e22322133adf40d033ac5af98069cb00765d14ca
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891287"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060807"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Azure 上的即時詐騙偵測
 
@@ -19,10 +19,10 @@ ms.locfileid: "37891287"
 藉由使用完全受控的 Azure 服務，例如事件中樞和串流分析，公司可以消除管理個別伺服器的需求，同時減少成本及利用 Microsoft 在雲端規模資料擷取和即時分析方面的專業知識。 這個案例特別說明詐騙活動的偵測。 如果您有其他資料分析的需求，應該檢閱可用 [Azure Analytics 服務][product-category]的清單。
 
 這個範例代表更廣泛資料處理架構和策略的一部分。 這方面的其他選項和整體架構會在本文稍後討論。
- 
-## <a name="potential-use-cases"></a>潛在使用案例
 
-請針對下列使用案例考慮此解決方案：
+## <a name="related-use-cases"></a>相關使用案例
+
+請針對下列使用案例考慮此案例：
 
 * 偵測電子通訊案例中的詐騙行動電話通話。
 * 識別銀行機構的詐騙信用卡交易。
@@ -30,9 +30,9 @@ ms.locfileid: "37891287"
 
 ## <a name="architecture"></a>架構
 
-![即時詐騙偵測解決方案的 Azure 元件架構概觀][architecture-diagram]
+![即時詐騙偵測案例的 Azure 元件架構概觀][architecture-diagram]
 
-此解決方案涵蓋了即時分析管線的後端元件。 整個解決方案的資料流程如下所示：
+此案例涵蓋了即時分析管線的後端元件。 整個案例的資料流程如下所示：
 
 1. 行動電話通話中繼資料從來源系統傳送到 Azure 事件中樞執行個體。 
 2. 串流分析作業隨即啟動，它會透過事件中樞來源接收資料。
@@ -41,9 +41,9 @@ ms.locfileid: "37891287"
 
 ### <a name="components"></a>元件
 
-* [Azure 事件中樞][docs-event-hubs]是即時串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 在此解決方案中，事件中樞會接收要分析是否有詐騙活動的所有通話中繼資料。
-* [Azure 串流分析][docs-stream-analytics]是事件處理引擎，可以分析來自裝置和其他資料來源的大量資料流。 它也支援從資料流擷取資訊，以識別模式和關聯性。 這些模式可以觸發其他下游動作。 在此解決方案中，串流分析會轉換來自事件中樞的輸入串流，以識別詐騙通話。
-* 在此解決方案中使用[Blob 儲存體][docs-blob-storage]，以儲存串流分析作業的結果。
+* [Azure 事件中樞][docs-event-hubs]是即時串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 在此案例中，事件中樞會接收要分析是否有詐騙活動的所有通話中繼資料。
+* [Azure 串流分析][docs-stream-analytics]是事件處理引擎，可以分析來自裝置和其他資料來源的大量資料流。 它也支援從資料流擷取資訊，以識別模式和關聯性。 這些模式可以觸發其他下游動作。 在此案例中，串流分析會轉換來自事件中樞的輸入串流，以識別詐騙通話。
+* 在此案例中使用 [Blob 儲存體][docs-blob-storage]，以儲存串流分析作業的結果。
 
 ## <a name="considerations"></a>考量
 
@@ -61,9 +61,9 @@ ms.locfileid: "37891287"
 
 ### <a name="scalability"></a>延展性
 
-此解決方案的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。  事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
+此案例的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。  事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
 
-如需設計可調整解決方案的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
+如需設計可調整案例的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 
@@ -75,13 +75,13 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
-## <a name="deploy-the-solution"></a>部署解決方案
+## <a name="deploy-the-scenario"></a>部署案例
 
-若要部署此解決方案，您可以遵循示範如何以手動方式部署解決方案每個元件的這個[逐步教學課程][tutorial]。 本教學課程也會提供 .NET 用戶端應用程式，以產生範例通話中繼資料，並將該資料傳送至事件中樞執行個體。 
+若要部署此案例，您可以遵循示範如何以手動方式部署案例每個元件的這個[逐步教學課程][tutorial]。 本教學課程也會提供 .NET 用戶端應用程式，以產生範例通話中繼資料，並將該資料傳送至事件中樞執行個體。
 
 ## <a name="pricing"></a>價格
 
-為了探索執行此解決方案的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的資料量。
+為了探索執行此案例的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的資料量。
 
 我們根據您預期取得的流量，提供了三個範例成本設定檔：
 
@@ -91,7 +91,7 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 
 ## <a name="related-resources"></a>相關資源
 
-更複雜的詐騙偵測案例受益於機器學習模型。 如需使用 Machine Learning Server 建置的解決方案，請參閱[使用 Machine Learning Server 的詐騙偵測][r-server-fraud-detection]。 如需使用 Machine Learning Server 的其他解決方案範本，請參閱[資料科學案例和解決方案範本][docs-r-server-sample-solutions]。 如需使用 Azure Data Lake Analytics 的範例解決方案，請參閱[使用 Azure Data Lake 和 R 進行詐騙偵測][technet-fraud-detection]。  
+更複雜的詐騙偵測案例受益於機器學習模型。 如需使用 Machine Learning Server 建置的案例，請參閱[使用 Machine Learning Server 的詐騙偵測][r-server-fraud-detection]。 如需使用 Machine Learning Server 的其他解決方案範本，請參閱[資料科學案例和解決方案範本][docs-r-server-sample-solutions]。 如需使用 Azure Data Lake Analytics 的範例解決方案，請參閱[使用 Azure Data Lake 和 R 進行詐騙偵測][technet-fraud-detection]。  
 
 <!-- links -->
 [product-category]: https://azure.microsoft.com/product-categories/analytics/
