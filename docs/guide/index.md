@@ -1,20 +1,16 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: 3a667334be682e7e96c6dd30bd401a7e4c608108
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31771681"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334261"
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
 本指南會告訴您在 Azure 上設定可擴充、可復原和高可用性應用程式的結構化方法。 者是以我們與客戶合作後了解到的實證做法作為基礎。
-
-<br/>
-
-<img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
 ## <a name="introduction"></a>簡介
 
@@ -62,8 +58,7 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 
 深入了解：
 
-- [架構樣式][arch-styles]
-- [Azure 參考架構][ref-archs]
+- [架構樣式](./architecture-styles/index.md)
 
 ### <a name="technology-choices"></a>技術選擇
 
@@ -80,36 +75,14 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 
 深入了解：
 
-- [Azure 應用程式的設計原則][design-principles]
-- [建立雲端時的最佳做法][best-practices]
+- [設計原則](./design-principles/index.md)
+
 
 ### <a name="quality-pillars"></a>品質要素
 
 成功的雲端應用程式會將焦點放在軟體品質的五大要素：延展性、可用性、復原功能、管理和安全性。 使用我們的設計檢閱清單，以根據這些品質要素來檢閱您的架構。
 
-深入了解：
-
-- [軟體品質的要素][pillars]
-- [設計檢閱清單][checklists] 
-
-### <a name="cloud-design-patterns"></a>雲端設計模式
-
-設計模式是軟體設計常見問題的一般解決方案。 我們已識別一組設計模式，在設計雲端分散式應用程式時特別實用。
-
-深入了解：
-
-- [雲端設計模式目錄](../patterns/index.md)
+- [品質要素](./pillars.md)
 
 
-[arch-styles]: ./architecture-styles/index.md
-[best-practices]: ../best-practices/index.md
-[checklists]: ../checklist/index.md
-[compute-options]: ./technology-choices/compute-comparison.md
-[design-principles]: ./design-principles/index.md
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
-[patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
-[pillars]: ./pillars.md
-[ref-archs]: ../reference-architectures/index.md
-[storage-options]: ./technology-choices/data-store-comparison.md
-[technology-choices]: ./technology-choices/index.md
-
