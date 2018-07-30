@@ -3,12 +3,12 @@ title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
 ms.date: 07/14/2018
-ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 04c69309e9f96e3bf7cd7faabeedd9b6d9da1ebd
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060892"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334125"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -66,17 +66,19 @@ ms.locfileid: "39060892"
 
 ### <a name="vm-recommendations"></a>VM 建議
 
-以標準 DSv2 虛擬機器大小為基礎，此架構需要最少 38 個核心：
+此架構至少需要 44 個核心：
 
 - Standard_DS3_v2 上 8 個 SharePoint 伺服器 (每部伺服器 4 個核心) = 32 個核心
 - Standard_DS1_v2 上 2 個 Active Directory 網域控制站 (每個控制站 1 個核心) = 2 個核心
-- Standard_DS1_v2 上 2 個 SQL Server 虛擬機器 = 2 個核心
+- Standard_DS3_v2 上 2 個 SQL Server 虛擬機器 = 8 個核心
 - Standard_DS1_v2 上 1 個多數節點 = 1 個核心
 - Standard_DS1_v2 上 1 個管理伺服器 = 1 個核心
 
-核心總數將取決於您選取的虛擬機器大小。 如需詳細資訊，請參閱下方的 [SharePoint Server 建議](#sharepoint-server-recommendations)。
-
 請確定您的 Azure 訂用帳戶具有足夠的虛擬機器核心配額可用於部署，否則部署將會失敗。 請參閱 [Azure 訂用帳戶和服務限制、配額與限制][quotas]。 
+
+對於除了搜尋索引子以外的所有 SharePoint 角色，我們建議使用 [Standard_DS3_v2][vm-sizes-general] 虛擬機器大小。 搜尋索引子應至少使用 [Standard_DS13_v2][vm-sizes-memory]大小。 對於測試，此參考架構的參數檔案會為搜尋索引子角色指定較小的 DS3_v2 大小。 對於生產部署，請更新參數檔案以使用 DS13 或更大的大小。 如需詳細資訊，請參閱[適用於 SharePoint Server 2016 的硬體和軟體需求][sharepoint-reqs]。 
+
+對於 SQL Server 虛擬機器，我們建議至少 4 個核心和 8 GB 的 RAM。 此參考架構的參數檔案指定 DS3_v2 大小。 對於生產部署，您可能需要指定較大的虛擬機器大小。 如需詳細資訊，請參閱[儲存體和 SQL Server 容量規劃和設定 (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements)。 
  
 ### <a name="nsg-recommendations"></a>NSG 建議
 
@@ -109,18 +111,12 @@ ms.locfileid: "39060892"
 - 快取進階使用者帳戶
 - 快取進階讀者帳戶
 
-對於除了搜尋索引子以外的所有角色，我們建議使用 [Standard_DS3_v2][vm-sizes-general] 虛擬機器大小。 搜尋索引子應至少使用 [Standard_DS13_v2][vm-sizes-memory]大小。 
-
-> [!NOTE]
-> 針對搜尋索引子，此參考架構的 Resource Manager 範本會使用較小的 DS3 大小，以便用於測試和部署。 對於生產部署，請使用 DS13 或更大的大小。 
-
-對於生產工作負載，請參閱[適用於 SharePoint Server 2016 的硬體和軟體需求][sharepoint-reqs]。 
-
 若要符合磁碟輸送量最低每秒 200 MB 的支援需求，請務必規劃搜尋架構。 請參閱[在 SharePoint Server 2013 中的規劃企業搜尋架構][sharepoint-search]。 也請遵循[在 SharePoint Server 2016 中進行編目的最佳做法][sharepoint-crawling]。
 
 此外，請將搜尋元件資料存放在高效能的個別儲存磁碟區或分割區。 若要減少負載並提高輸送量，請設定此架構所需的物件快取使用者帳戶。 將 Windows Server 作業系統檔案、SharePoint Server 2016 程式檔和診斷記錄分散在三個一般效能的個別儲存磁碟區或分割區。 
 
 如需有關這些建議的詳細資訊，請參閱[在 SharePoint Server 2016 中初始部署管理與服務帳戶][sharepoint-accounts]。
+
 
 ### <a name="hybrid-workloads"></a>混合式工作負載
 
@@ -183,7 +179,7 @@ ms.locfileid: "39060892"
 
 參數檔案會在不同位置中包含硬式編碼的密碼。 在部署之前，請變更這些值。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -201,7 +197,7 @@ ms.locfileid: "39060892"
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p connections.json --deploy
     ```
 
-3. 執行下列命令以部署 jumpbox、AD 網域控制站與 SQL Server VM。
+3. 執行下列命令以部署 jumpbox、AD 網域控制站與 SQL Server 虛擬機器。
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
