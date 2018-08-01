@@ -3,12 +3,12 @@ title: 執行問卷應用程式
 description: 如何在本機執行問卷應用程式範例
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: d4fa8122794740e6935293147d999b26d9485d90
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848677"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229094"
 ---
 # <a name="run-the-surveys-application"></a>執行問卷應用程式
 
@@ -23,7 +23,7 @@ ms.locfileid: "30848677"
 5. 執行應用程式和註冊新的租用戶。
 6. 新增使用者的應用程式角色。
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 -   [Visual Studio 2017][VS2017]
 -   [Microsoft Azure](https://azure.microsoft.com) 帳戶
 
@@ -35,7 +35,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 1. 登入 [Azure 入口網站][portal]。
 
-2. 按一下 [新增] > [安全性 + 識別] > [Azure Active Directory]。
+2. 按一下 [+ 建立資源] > [身分識別] > [Azure Active Directory]。
 
 3. 輸入 `Tailspin` 作為組織名稱，並輸入網域名稱。 網域名稱格式將為 `xxxx.onmicrosoft.com`，而且必須是全域唯一的。 
 
@@ -67,7 +67,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 6. 在 [應用程式註冊] 刀鋒視窗中，選取新的 **Surveys.WebAPI** 應用程式。
  
-7. 按一下 [內容] 。
+7. 然後按一下 [設定] > [屬性]。
 
 8. 在 [應用程式識別碼 URI] 編輯方塊中輸入 `https://<domain>/surveys.webapi`，其中 `<domain>` 是目錄的網域名稱。 例如：`https://tailspin.onmicrosoft.com/surveys.webapi`
 
@@ -188,13 +188,13 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 問卷應用程式使用 Redis 來快取 OAuth 2 存取權杖。 若要建立快取：
 
-1.  移至 [Azure 入口網站](https://portal.azure.com)，按一下 [新增] > [資料庫] > [Redis 快取]。
+1.  移至 [Azure 入口網站](https://portal.azure.com)，按一下 [+ 建立資源] > [資料庫] > [Redis 快取]。
 
 2.  填妥必要的資訊，包括 DNS 名稱、資源群組、位置與定價層。 您可以建立新的資源群組或使用現有的資源群組。
 
 3. 按一下頁面底部的 [新增] 。
 
-4. 建立 Resis 快取之後，瀏覽至入口網站中的資源。
+4. 建立 Redis 快取之後，請巡覽至入口網站中的資源。
 
 5. 按一下 [存取金鑰]，並複製主要金鑰。
 

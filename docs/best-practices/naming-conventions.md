@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987728"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229145"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -119,6 +119,13 @@ ms.locfileid: "38987728"
 |負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-agw` |`profx-agw` |
 |流量管理員設定檔 |資源群組 |1-63 |不區分大小寫 |英數字元、連字號和句點 |`<descriptive context>` |`app1` |
+
+### <a name="containers"></a>容器
+
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|Container Registry | 全域 |5-50 |不區分大小寫 | 英數字元 |`<service short name>registry` |`app1registry` |
+
 
 ## <a name="organize-resources-with-tags"></a>具有標籤的組織資源
 
