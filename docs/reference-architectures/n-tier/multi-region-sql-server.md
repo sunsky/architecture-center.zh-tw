@@ -2,15 +2,15 @@
 title: 適用於高可用性的多重區域多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。
 author: MikeWasson
-ms.date: 05/03/2018
+ms.date: 07/19/2018
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 48943094e7847e39b9fdc4c3f71e27f2e6e41293
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: a8dafab9ce8312004e99f0f19d06d6b47b6b19d8
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673570"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229247"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>適用於高可用性的多重區域多層式架構 (N-tier) 應用程式
 
@@ -80,18 +80,18 @@ ms.locfileid: "33673570"
 
 請注意，流量管理員預設會自動容錯回復。 若要避免這個問題，請在容錯移轉事件之後，手動降低主要區域的優先順序。 例如，假設主要區域是優先順序 1，而次要為優先順序 2。 在容錯移轉之後，將主要區域設定為優先順序 3，以防止自動容錯回復。 當您準備好切換回來時，將優先順序更新為 1。
 
-下列 [Azure CLI][install-azure-cli] 命令會更新優先順序：
+下列 [Azure CLI][azure-cli] 命令會更新優先順序：
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 另一種方法是暫時停用端點，直到您準備好進行容錯回復為止：
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --status Disabled
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 依據容錯移轉的原因而定，您可能需要重新部署區域內的資源。 容錯回復之前，請執行操作性整備測試。 測試應該確認如下的事項：
@@ -109,10 +109,10 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 * 在每個區域中至少放置兩個網域控制站。
 * 為每個網域控制站提供一個靜態 IP 位址。
 * 建立 VNet 對 VNet 連線以啟用 VNet 之間的通訊。
-* 針對每個 VNet，將網域控制站的 IP 位址 (從這兩個區域) 新增到 DNS 伺服器清單。 您可以使用下列 CLI 命令。 如需詳細資訊，請參閱[管理虛擬網路 (VNet) 所使用的 DNS 伺服器][vnet-dns]。
+* 針對每個 VNet，將網域控制站的 IP 位址 (從這兩個區域) 新增到 DNS 伺服器清單。 您可以使用下列 CLI 命令。 如需詳細資訊，請參閱[變更 DNS 伺服器][vnet-dns]。
 
     ```bat
-    azure network vnet set --resource-group dc01-rg --name dc01-vnet --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
+    az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
 * 建立 [Windows Server 容錯移轉叢集][wsfc] (WSFC) 叢集，其中包含這兩個區域中的 SQL Server 執行個體。 
@@ -171,7 +171,7 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
-[install-azure-cli]: /azure/xplat-cli-install
+[azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions
 [resource groups]: /azure/azure-resource-manager/resource-group-overview
 [resource-group-links]: /azure/resource-group-link-resources
@@ -185,7 +185,7 @@ azure network traffic-manager  endpoint set --resource-group <resource-group> --
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
+[vnet-dns]: /azure/virtual-network/manage-virtual-network#change-dns-servers
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx

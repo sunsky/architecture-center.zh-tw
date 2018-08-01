@@ -2,12 +2,12 @@
 title: 採用 Azure：中繼
 description: 說明企業要採用 Azure 所需具備的中繼層級知識
 author: petertay
-ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: a1f93616f5f1ecf4f395ce39bbb037ef6ab5991b
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206356"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229230"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Azure 雲端採用指南：中繼概觀
 
@@ -27,7 +27,7 @@ Azure 採用中繼階段的焦點是設計您的治理模型，讓多個小組�
 
 在基礎採用階段中，您已了解有關 Azure 內部與如何建立、讀取、更新和刪除資源的一些基本概念。 您也了解身分識別，且 Azure 只信任 Azure Active Directory (AD) 驗證及授權需要這些資源存取權的使用者。
 
-您也會開始了解如何設定 Azure 的治理工具，來管理貴組織對於 Azure 資源的使用。 在基礎階段中我們討論了如何治理單一小組部署簡單工作負載所需的資源存取權。 事實上，貴組織會組成多個小組，同時處理多個工作負載。 
+您也會開始了解如何設定 Azure 的治理工具，來管理貴組織對於 Azure 資源的使用。 我們討論了如何治理單一小組部署簡單工作負載所需的資源存取權。 事實上，貴組織會組成多個小組，同時處理多個工作負載。 
 
 開始之前，讓我們看看**工作負載**這個詞彙真正的意義。 這個詞彙通常被理解為定義任意單位的功能，例如應用程式或服務。 我們會以部署到伺服器以及所需任何其他服務 (例如資料庫) 的程式碼成品角度來思考工作負載。 這對於內部部署應用程式或服務是有用的定義，但是在雲端中我們就需要加以延伸。 
 

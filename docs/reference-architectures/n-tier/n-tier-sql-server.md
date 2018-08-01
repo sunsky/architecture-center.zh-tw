@@ -2,13 +2,13 @@
 title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
-ms.date: 06/23/2018
-ms.openlocfilehash: 7c8184d25cf6b3bd358adc2728329fd3bd08503a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.date: 07/19/2018
+ms.openlocfilehash: 42ba18e9ffef32c6990fbb888cc41e980fb4abea
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142296"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229128"
 ---
 # <a name="n-tier-application-with-sql-server"></a>具有 SQL Server 的多層式架構 (N-tier) 應用程式
 
@@ -26,6 +26,8 @@ ms.locfileid: "37142296"
 
 * **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。 針對每一層建立不同的子網路。 
 
+* **應用程式閘道**。 [Azure 應用程式閘道](/azure/application-gateway/)是第 7 層負載平衡器。 在此架構中，它會將 HTTP 要求路由傳送至 Web 前端。 應用程式閘道也會提供 [Web 應用程式防火牆](/azure/application-gateway/waf-overview) (WAF)，該防火牆會保護應用程式免於常見惡意探索和弱點。 
+
 * **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的 3 層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
 
 * **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
@@ -34,9 +36,9 @@ ms.locfileid: "37142296"
 
 * **VM 擴展集** (未顯示)。 [VM 擴展集][vmss]是使用可用性設定組的替代方案。 擴展集可讓您輕鬆地根據預先定義的規則，手動或自動相應放大層中的 VM。
 
-* **Azure 負載平衡器。** [負載平衡器][load-balancer]會將連入網際網路要求散發到 VM 執行個體。 使用[公用負載平衡器][load-balancer-external]，可將連入的網際網路流量散發到 Web 層，使用[內部負載平衡器][load-balancer-internal]，則可將來自 Web 層的網路流量散發到 Business 層。
+* **負載平衡器。** 使用 [Azure Load Balancer][load-balancer] 將來自 Web 層的流量散佈到商務層，以及將來自商務層的流量散佈到 SQL Server。
 
-* **公用 IP 位址**。 公用負載平衡器需要公用 IP 位址才能接收網際網路流量。
+* **公用 IP 位址**。 應用程式需要公用 IP 位址才能接收網際網路流量。
 
 * **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，能夠儘允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許遠端桌面 (RDP) 流量。
 
@@ -62,7 +64,7 @@ ms.locfileid: "37142296"
 
 ### <a name="load-balancers"></a>負載平衡器
 
-不要直接將 VM 公開至網際網路，而是改為每個 VM 提供私人 IP 位址。 用戶端會使用公用負載平衡器的 IP 位址來連線。
+不要直接將 VM 公開至網際網路，而是改為每個 VM 提供私人 IP 位址。 用戶端會使用與應用程式閘道相關聯的公用 IP 位址來進行連線。
 
 定義負載平衡器規則，以將網路流量導向至 VM。 例如，若要啟用 HTTP 流量，請建立一個規則，將前端設定的連接埠 80 對應至後端位址集區的連接埠 80。 當用戶端將 HTTP 要求傳送到連接埠 80 時，負載平衡器會藉由使用[雜湊演算法][load-balancer-hashing] (其中包含來源 IP 位址) 來選取後端 IP 位址。 如此一來，就會將用戶端要求散發到所有 VM。
 
@@ -148,8 +150,6 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 虛擬網路是 Azure 中的流量隔離界限。 某一個 VNet 中的 VM 無法直接與不同 VNet 中的 VM 通訊。 除非您建立[網路安全性群組][nsg] (NSG) 來限制流量，否則，相同 VNet 中的 VM 可以彼此通訊。 如需詳細資訊，請參閱 [Microsoft 雲端服務和網路安全性][network-security]。
 
-針對傳入的網際網路流量，負載平衡器規則會定義哪些流量可以連線到後端。 不過，負載平衡器規則不支援 IP 安全清單，因此，如果您想要將特定的公用 IP 位址新增至安全清單，請將 NSG 新增至子網路。
-
 請考慮新增網路虛擬設備 (NVA)，在網際網路和 Azure 虛擬網路之間建立 DMZ。 NVA 是虛擬設備的通稱，可以執行網路相關的工作，例如防火牆、封包檢查、稽核和自訂路由傳送。 如需詳細資訊，請參閱[實作 Azure 和網際網路之間的 DMZ][dmz]。
 
 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure Key Vault 整合][sql-keyvault]。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
@@ -158,7 +158,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 此參考架構的部署可在 [GitHub][github-folder] 上取得。 請注意，整個部署可能需要長達 2 小時的時間，包括執行指令碼以設定 AD DS、Windows Server 容錯移轉叢集和 SQL Server 可用性設定組。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -248,10 +248,6 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [chef]: https://www.chef.io/solutions/azure/
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-windows
-[lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
-[lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
-[load-balancer-external]: /azure/load-balancer/load-balancer-internet-overview
-[load-balancer-internal]: /azure/load-balancer/load-balancer-internal-overview
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
@@ -275,7 +271,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [0]: ./images/n-tier-sql-server.png "使用 Microsoft Azure 的多層式架構"
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
-[load-balancer]: /azure/load-balancer/load-balancer-get-started-internet-arm-cli
+[load-balancer]: /azure/load-balancer/
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features
 [vmss-design]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview
 [subscription-limits]: /azure/azure-subscription-service-limits

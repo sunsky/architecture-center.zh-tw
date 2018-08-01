@@ -1,17 +1,17 @@
 ---
-title: 說明：什麼是雲端治理？
-description: 說明 Azure 與雲端的資源治理概念
+title: 什麼是雲端治理？
+description: Azure 上資源存取權治理的概念說明
 author: petertay
-ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 3338ed5652296c5cd01277a51be1cb5893320b65
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206475"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229196"
 ---
-# <a name="explainer-what-is-cloud-resource-governance"></a>說明：什麼是雲端資源治理？
+# <a name="what-is-cloud-resource-governance"></a>什麼是雲端資源治理？
 
-在 [Azure 如何運作？](azure-explainer.md)說明中，您已了解 Azure 是代替使用者執行虛擬化硬體和軟體的伺服器和網路硬體的集合。 Azure 可藉由讓建立、讀取、更新和刪除資源變得簡單，使貴組織的開發和 IT 部門更加敏捷。
+在 [Azure 如何運作？](azure-explainer.md)中，您已了解 Azure 是代替使用者執行虛擬化硬體和軟體的伺服器和網路硬體的集合。 Azure 可藉由讓建立、讀取、更新和刪除資源變得簡單，使貴組織的開發和 IT 部門更加敏捷。
 
 不過，雖然為開發人員提供不受限制的資源存取可以讓他們非常敏捷，但是也會導致非預期的成本後果。 例如，開發小組可能會核准要部署一組測試資源，但是在完成測試之後忘記刪除。 這些資源將會繼續累計成本，即使已不再核准或需要使用它們。 
 
@@ -29,8 +29,4 @@ RBAC 會定義角色，而角色會定義獲指派角色的使用者功能。 �
 
 ## <a name="next-steps"></a>後續步驟
 
-採用 Azure 的下一個步驟是[了解 Azure 中的數位身分識別](tenant-explainer.md)以及[在 Azure AD 中建立您的第一個使用者][docs-add-users-to-aad]。
-
-<!-- Links -->
-
-[docs-add-users-to-aad]: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+既然您已了解雲端資源治理的概念，請繼續深入了解在 Azure 中[如何管理資源存取權](azure-resource-access.md)，以準備學習[如何設計治理模型](governance-how-to.md)。

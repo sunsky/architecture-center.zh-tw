@@ -1,15 +1,15 @@
 ---
-title: 說明：Azure 如何運作？
-description: 說明 Azure 的內部運作方式
+title: Azure 如何運作？
+description: Azure 內部運作方式的說明
 author: petertay
-ms.openlocfilehash: 88514ba01efabe38a1b92d135321c2e44cef004e
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: bf301a05d69ed66aa03727dde3968477c2337790
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206458"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39228961"
 ---
-# <a name="explainer-how-does-azure-work"></a>說明：Azure 如何運作？
+# <a name="how-does-azure-work"></a>Azure 如何運作？
 
 Azure 是 Microsoft 的公用雲端平台。 Azure 提供多種不同的服務，包括平台即服務 (PaaS)、基礎結構即服務 (IaaS)、資料庫即服務 (DBaaS) 等等。 但 Azure 到底是什麼？它如何運作？
 
@@ -31,7 +31,7 @@ Azure 就像其他雲端平台一樣，需仰賴名為**虛擬化**的技術。 
 
 ## <a name="next-steps"></a>後續步驟
 
-* 既然您已經了解 Azure 的內部運作，請深入了解[資源存取治理](governance-explainer.md)。 然後，移至採用 Azure 的第一個步驟，也就是[了解 Azure 中的數位身分識別](tenant-explainer.md)。 一旦您完成該步驟，您就已準備就緒可以[在 Azure AD 中建立您的第一個使用者][docs-add-users-to-aad]。
+* 既然您已經了解 Azure 的內部運作，請深入了解[資源存取治理](governance-explainer.md)。 
 
 <!-- Links -->
 
