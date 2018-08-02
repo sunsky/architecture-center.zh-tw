@@ -4,12 +4,12 @@ description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ca4bf77c9348f6c656348d9cd61d3a1241d69ba8
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782609"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352639"
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -17,7 +17,7 @@ ms.locfileid: "29782609"
 
 ## <a name="requirements"></a>需求
 
-**定義客戶的可用性需求。** 您的客戶對於您應用程式的元件會有可用性需求，這會影響您的應用程式的設計。 針對應用程式的各項可用性目標，取得客戶的同意，否則您的設計可能不符合客戶的期望。 如需詳細資訊，請參閱[定義您的復原需求](../resiliency/index.md#defining-your-resiliency-requirements)。
+**定義客戶的可用性需求。** 您的客戶對於您應用程式的元件會有可用性需求，這會影響您的應用程式的設計。 針對應用程式的各項可用性目標，取得客戶的同意，否則您的設計可能不符合客戶的期望。 如需詳細資訊，請參閱[為 Azure 設計復原應用程式](../resiliency/index.md)。
 
 ## <a name="application-design"></a>應用程式設計
 
@@ -58,7 +58,7 @@ ms.locfileid: "29782609"
 
 **確定您使用的任何第三方服務均提供 SLA。** 如果您的應用程式相依於第三方服務，但第三方並未提供 SLA 形式的可用性保證，則也無法保證應用程式的可用性。 您的 SLA 無異於您的應用程式最不常使用的元件。
 
-**在適當情況下對遠端作業實作復原模式。** 如果您的應用程式相依於遠端服務之間的通訊，請遵循設計模式來處理暫時性失敗，例如[重試模式][retry-pattern]和[斷路器模式][circuit-breaker]。 如需詳細資訊，請參閱[復原策略](../resiliency/index.md#resiliency-strategies)。
+**在適當情況下對遠端作業實作復原模式。** 如果您的應用程式相依於遠端服務之間的通訊，請遵循[設計模式](../patterns/category/resiliency.md)來處理暫時性失敗，例如[重試模式][retry-pattern]和[斷路器模式][circuit-breaker]。 
 
 **可能的話，請實作非同步作業。** 同步作業會獨佔資源，而且在呼叫端等候程序完成時，封鎖其他作業。 將您應用程式的每個組件設計成儘可能允許非同步作業。 如需有關如何以 C# 實作非同步程式設計的詳細資訊，請參閱[使用 async 和 await 進行非同步程式設計][asynchronous-c-sharp]。
 
