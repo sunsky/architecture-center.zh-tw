@@ -4,12 +4,12 @@ description: 提供設計期間可用性考量指引的檢查清單。
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 324d8200d822eb1a7dce95ba4b2a7f29b00fb291
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973105"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352622"
 ---
 # <a name="availability-checklist"></a>可用性檢查清單
 
@@ -21,7 +21,7 @@ ms.locfileid: "27973105"
 
 **根據服務層級目標來分解工作負載。** 如果服務由重要和比較不重要的工作負載組成，請以不同的方式加以管理，並指定服務功能及執行個體數目，以符合其可用性需求。
 
-**最小化和了解服務相依性。** 盡可能將使用過的不同服務數目降到最低，並確定您了解所有存在於系統中的功能和服務相依性。 這包括這些相依性的本質、失敗的影響，或整體應用程式上每個服務減少的效能。 請參閱[定義您的復原需求](../resiliency/index.md#defining-your-resiliency-requirements)。
+**最小化和了解服務相依性。** 盡可能將使用過的不同服務數目降到最低，並確定您了解所有存在於系統中的功能和服務相依性。 這包括這些相依性的本質、失敗的影響，或整體應用程式上每個服務減少的效能。
 
 **盡可能將工作和訊息設計成具有等冪性**。 若作業可以多次重複並產生相同的結果，則作業具有等冪性。 等冪性可以確保重複的要求不會造成問題。 訊息取用者與其執行的作業應該具有等冪性，這樣重複先前執行過的作業才不會使結果無效。 這可能表示偵測重複訊息，或是使用開放式的方法來處理衝突，以確保一致性。
 

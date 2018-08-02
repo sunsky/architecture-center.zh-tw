@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843621"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334159"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -23,7 +23,7 @@ ms.locfileid: "37843621"
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |ADAL 程式庫原生 |內嵌至 ADAL 程式庫 |內部 |None |
 | **[Cosmos DB](#cosmos-db)** |服務原生 |不可設定 |全域 |TraceSource |
-| **[事件中樞](#azure-event-hubs)** |用戶端原生 |程式設計 |用戶端 |None |
+| **[事件中樞](#event-hubs)** |用戶端原生 |程式設計 |用戶端 |None |
 | **[Redis 快取](#azure-redis-cache)** |用戶端原生 |程式設計 |用戶端 |TextWriter |
 | **[搜尋](#azure-search)** |用戶端原生 |程式設計 |用戶端 |ETW 或自訂 |
 | **[服務匯流排](#service-bus)** |用戶端原生 |程式設計 |命名空間管理員、傳訊處理站及用戶端 |ETW |
