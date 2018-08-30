@@ -2,12 +2,12 @@
 title: Azure 管理設計指南
 description: 設定 Azure 治理控制，讓使用者部署簡單工作負載的指導方針
 author: petertay
-ms.openlocfilehash: 78545400fc0b09262dce3d0e577442443468b2ed
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 88cd24a46a6bdaca4e0dd18706af1f7e3fe3bce2
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229455"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016103"
 ---
 # <a name="azure-governance-design-guide"></a>Azure 管理設計指南
 
@@ -24,7 +24,7 @@ ms.locfileid: "39229455"
 在我們開始設計治理模型之前，務必先了解 Azure 的授權方式。 這是因為與您的 Azure 授權相關聯的系統管理帳戶，具有所有 Azure 資源的最高等級存取權。 這些系統管理帳戶形成治理模型的基礎。  
 
 > [!NOTE]
-> 如果貴組織擁有現有 [Microsoft Enterprise 合約](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx)，但是其中不包含 Azure，可以藉由預先付款承諾來新增 Azure。 如需詳細資訊，請參閱 [Azure 企業授權](https://azure.microsoft.com/pricing/enterprise-agreement/)。 
+> 如果貴組織擁有現有 [Microsoft Enterprise 合約](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx)，但是其中不包含 Azure，可以藉由預先付款承諾來新增 Azure。 如需詳細資訊，請參閱 [Azure 企業授權](https://azure.microsoft.com/pricing/enterprise-agreement/)。 
 
 當 Azure 新增至貴組織的 Enterprise 合約時，系統會提示貴組織建立 **Azure 帳戶**。 在帳戶建立程序中，會建立 **Azure 帳戶擁有者**，以及具有**全域管理員**帳戶的 Azure Active Directory (Azure AD) 租用戶。 Azure AD 租用戶是一種邏輯建構，代表 Azure AD 專用的安全執行個體。
 

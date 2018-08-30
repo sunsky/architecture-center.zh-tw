@@ -2,12 +2,12 @@
 title: 事件驅動架構樣式
 description: 說明 Azure 上事件驅動架構和 IoT 架構的優點、挑戰和最佳做法
 author: MikeWasson
-ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: dbf6be5ed386d06f96c876993ad03e7cb0e3dded
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478318"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016047"
 ---
 # <a name="event-driven-architecture-style"></a>事件驅動架構樣式
 
@@ -55,42 +55,9 @@ ms.locfileid: "29478318"
 - 有保證的傳遞。 在某些系統上，尤其是在 IoT 案例中，保證事件的傳遞是相當重要的事。
 - 按順序處理事件，或只處理一次。 每個取用者類型通常會在多個執行個體中執行，以便擁有復原功能和延展性。 如果事件必須按順序處理 (在某個取用者類型中)，或如果處理邏輯不是等冪的，這會產生挑戰。
 
-## <a name="iot-architecture"></a>IoT 架構
-
-事件驅動架構是 IoT 解決方案的核心。 下圖顯示 IoT 可能的邏輯架構。 此圖強調架構的事件串流元件。
-
-![](./images/iot.png)
-
-**雲端閘道**會使用可靠、低延遲的傳訊系統在雲端邊界擷取裝置事件。
-
-裝置可能會將事件直接傳送到雲端閘道，或透過**現場閘道**來傳送。 現場閘道是專用的裝置或軟體，通常會與裝置共置，以便接收事件並將它們轉送到雲端閘道。 現場閘道可能也會前置處理未經處理的裝置事件，以執行篩選、彙總或通訊協定轉換等功能。
-
-在擷取之後，事件會通過一個或多個**串流處理器**，這些處理器可以路由傳送資料 (例如，傳送到儲存體) 或執行分析和其他處理。
-
-以下是一些常見的處理類型。 (此清單一定不怎麼詳盡)。
-
-- 將事件資料寫入冷儲存體，以便封存或批次分析。
-
-- 最忙碌路徑分析，(近乎) 即時地分析事件串流，以偵測異常行為、辨識滾動時間範圍的模式，或在串流中發生特定情況時觸發警示。 
-
-- 處理裝置中特殊的非遙測訊息類型，例如通知和警示。 
-
-- 機器學習。
-
-深灰色的方塊顯示的是 IoT 系統中，與事件串流沒有直接關係，但為求完整所以在此納入的元件。
-
-- **裝置登錄**是已佈建之裝置的資料庫，包括裝置識別碼，且通常會包括裝置中繼資料，例如位置。
-
-- **佈建 API** 是常見用於佈建和註冊新裝置的外部介面。
-
-- 某些 IoT 解決方案允許將**命令和控制訊息**傳送至裝置。
-
-> 本節提供了極為高階的 IoT 檢視，其中有許多要考慮的微妙之處和挑戰。 如需更詳細的參考架構和討論，請參閱 [Microsoft Azure IoT 參考架構][ iot-ref-arch] (PDF 下載)。
-
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
