@@ -2,14 +2,15 @@
 title: Azure 應用程式的設計原則
 description: Azure 應用程式的設計原則
 author: MikeWasson
-ms.openlocfilehash: 462896098c668c0775464ca498925266cd73c6e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 5dd5d02019723ce57ba377d99b3965d0d7ed4079
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206793"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326069"
 ---
-# <a name="design-principles-for-azure-applications"></a>Azure 應用程式的設計原則
+# <a name="ten-design-principles-for-azure-applications"></a>Azure 應用程式的 10 個設計原則
 
 請遵循這些設計原則，讓您的應用程式更有擴充空間、可容易復原且更方便管理。 
 

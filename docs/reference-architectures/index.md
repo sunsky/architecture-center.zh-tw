@@ -3,12 +3,13 @@ title: Azure 參考架構
 description: Azure 上一般工作負載的參考架構、藍圖和精準實作指導方針。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 08/30/2018
+ms.openlocfilehash: e9b3a65c48c759f9fc07da9f2c4195fc2db4c782
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987619"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325566"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
@@ -52,6 +53,26 @@ ms.locfileid: "38987619"
                     <div class="cardText">
                         <h3>具 Azure Data Factory 的自動化 Enterprise BI</h3>
                         <p>將 ELT 管線自動化以從內部部署資料庫執行增量載入。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Stream Analytics -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-stream-analytics.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-analysis-service.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>串流處理搭配 Azure 串流分析</h3>
+                        <p>將兩個資料流的記錄相互關聯以計算移動平均的端對端資料流處理管線。</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +123,7 @@ ms.locfileid: "38987619"
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
