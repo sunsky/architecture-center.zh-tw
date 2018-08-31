@@ -2,12 +2,13 @@
 title: 架構樣式
 description: 雲端應用程式的的一般架構樣式
 layout: LandingPage
-ms.openlocfilehash: e647d1a0f3305e7754859e5ab8a9a3b46c3d4fb6
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.date: 08/30/2018
+ms.openlocfilehash: b192cfc4168cc6f73e191a4ec8a5a83f1986aee7
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33810426"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326267"
 ---
 # <a name="architecture-styles"></a>架構樣式
 
@@ -69,7 +70,7 @@ CQRS 最適合套用至較大架構的子系統。 一般而言，您不應強�
 
 ### <a name="big-data-big-compute"></a>巨量資料與大量計算
 
-對符合某些特定設定檔的工作負載而言，**[巨量資料](./big-data.md)** 與 **[大量計算](./big-compute.md)** 是其專屬架構樣式。 巨量資料會將非常大的資料集分割成區塊，並在整個集合上執行平行處理，以便進行分析和報告。 大量計算 (也稱為高效能運算 (HPC)) 會在大量核心 (數千個) 間執行平行計算。 網域包含模擬、模型和 3-D 轉譯。
+對符合某些特定設定檔的工作負載而言，**[巨量資料](./big-data.md)** 與**[大量計算](./big-compute.md)** 是其專屬架構樣式。 巨量資料會將非常大的資料集分割成區塊，並在整個集合上執行平行處理，以便進行分析和報告。 大量計算 (也稱為高效能運算 (HPC)) 會在大量核心 (數千個) 間執行平行計算。 網域包含模擬、模型和 3-D 轉譯。
 
 ## <a name="architecture-styles-as-constraints"></a>作為限制的架構樣式
 

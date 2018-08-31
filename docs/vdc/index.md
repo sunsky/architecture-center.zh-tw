@@ -3,12 +3,12 @@ title: Azure 虛擬資料中心
 description: Microsoft Azure 虛擬資料中心的資源
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: e37ac347247b2960b85832a20a2b57eec18f65a7
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987507"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43324751"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虛擬資料中心和 Enterprise 控制平面
 
@@ -26,7 +26,7 @@ Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還�
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="/azure/networking/networking-virtual-datacenter"><img src="./images/vdc-network.png" alt="Network Perspective" /></a></td>
     <td>
-        <h3><a href="/azure/networking/networking-virtual-datacenter">Azure 虛擬資料中心：網路觀點</a></h3>
+        <h3><a href="networking-virtual-datacenter.md">Azure 虛擬資料中心：網路觀點</a></h3>
         <p>此線上文章概述可用來解決許多客戶在考慮移至雲端時所面臨之架構規模、效能和安全性問題的網路模式和設計。</p>
     </td>
 </tr>

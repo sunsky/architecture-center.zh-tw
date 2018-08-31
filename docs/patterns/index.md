@@ -2,12 +2,13 @@
 title: 雲端設計模式
 description: Microsoft Azure 的雲端設計模式
 keywords: Azure
-ms.openlocfilehash: 0b564931fe027e42b3a6db1a5d6a207e6441e536
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 06/23/2017
+ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847240"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326192"
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
@@ -70,7 +71,7 @@ ms.locfileid: "30847240"
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/security.md"><img src="_images/category/security.svg" alt="Security" /></a></td>
     <td>
-        <h3><a href="./category/security.md">Security</a></h3>
+        <h3><a href="./category/security.md">安全性</a></h3>
         <p>安全性是指系統有能力防止正確用法以外的惡意或意外動作，並且防止洩漏或遺失資訊。 雲端應用程式皆暴露在受信任內部部署範圍外的網際網路上，且開放給大眾使用，也可能服務不受信任的使用者。 應用程式的設計和部署方式應要能保護應用程式不受到惡意攻擊、僅限核准的使用者可存取應用程式，以及保護敏感性資料。</p>
     </td>
 </tr>
