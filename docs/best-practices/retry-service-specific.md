@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334159"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016021"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -23,7 +23,9 @@ ms.locfileid: "39334159"
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |ADAL 程式庫原生 |內嵌至 ADAL 程式庫 |內部 |None |
 | **[Cosmos DB](#cosmos-db)** |服務原生 |不可設定 |全域 |TraceSource |
+| **Data Lake Store** |用戶端原生 |不可設定 |個別作業 |None |
 | **[事件中樞](#event-hubs)** |用戶端原生 |程式設計 |用戶端 |None |
+| **[IoT 中樞](#iot-hub)** |用戶端 SDK 原生 |程式設計 |用戶端 |None |
 | **[Redis 快取](#azure-redis-cache)** |用戶端原生 |程式設計 |用戶端 |TextWriter |
 | **[搜尋](#azure-search)** |用戶端原生 |程式設計 |用戶端 |ETW 或自訂 |
 | **[服務匯流排](#service-bus)** |用戶端原生 |程式設計 |命名空間管理員、傳訊處理站及用戶端 |ETW |
@@ -125,6 +127,25 @@ client.RetryPolicy = RetryPolicy.Default;
 ### <a name="more-information"></a>詳細資訊
 [Azure 事件中樞的 .NET 標準用戶端程式庫](https://github.com/Azure/azure-event-hubs-dotnet)
 
+## <a name="iot-hub"></a>IoT 中樞
+
+Azure IoT 中樞是一種用於連接、監視和管理裝置以開發物聯網 (IoT) 應用程式的服務。
+
+### <a name="retry-mechanism"></a>重試機制
+
+Azure IoT 裝置 SDK 可以偵測網路、通訊協定或應用程式中的錯誤。 根據錯誤類型，SDK 會檢查是否需要執行重試。 如果該錯誤可以*復原*，則 SDK 開始使用設定的重試原則進行重試。
+
+預設的重試原則是*具隨機抖動的指數後退*，但可以加以設定。
+
+### <a name="policy-configuration"></a>原則組態
+
+原則設定因語言而異。 如需詳細資訊，請參閱 [IoT 中樞重試原則設定](/azure/iot-hub/iot-hub-reliability-features-in-sdks#retry-policy-apis)。
+
+### <a name="more-information"></a>詳細資訊
+
+* [IoT 中樞重試原則](/azure/iot-hub/iot-hub-reliability-features-in-sdks)
+* [IoT 中樞裝置中斷連線的疑難排解](/azure/iot-hub/iot-hub-troubleshoot-connectivity)
+
 ## <a name="azure-redis-cache"></a>Azure Redis 快取
 Azure Redis 快取是快速資料存取與低延遲性的快取服務，以普遍的開放原始碼 Redis 快取為基礎。 它很安全，且由 Microsoft 管理，可使用 Azure 的任何應用程式存取。
 
@@ -133,7 +154,7 @@ Azure Redis 快取是快速資料存取與低延遲性的快取服務，以普�
 請注意 StackExchange.Redis 用戶端透過單一連接使用多工。 建議用法是在應用程式啟動時建立用戶端的執行個體，並對快取的所有作業使用此執行個體。 基於這個理由，對快取只連接一次，且因此本節中指引的所有一切都與此初始連接的重試原則有關，不適用於存取快取的每個作業。
 
 ### <a name="retry-mechanism"></a>重試機制
-StackExchange.Redis 用戶端會使用透過一組選項設定的連線管理員類別，包括：
+StackExchange.Redis 用戶端使用透過一組選項設定的連線管理員類別，包括：
 
 - **ConnectRetry**。 重試快取失敗連接的次數。
 - **ReconnectRetryPolicy**。 要使用的重試策略。

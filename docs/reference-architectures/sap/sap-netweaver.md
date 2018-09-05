@@ -3,12 +3,12 @@ title: 在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864533"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016034"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -35,7 +35,7 @@ ms.locfileid: "37864533"
 - **Jumpbox**。 也稱為防禦主機。 這是網路上系統管理員用來連線到其他虛擬機器的安全虛擬機器。
 - **Windows Server Active Directory 網域控制站**。 會針對所有虛擬機器和網域中的使用者使用網域控制站。
 
-**負載平衡器**。 內建 SAP 負載平衡器和 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) 兩者都可用來達到高可用性。 會使用 Azure Load Balancer 執行個體，將流量分配到應用程式層子網路中的虛擬機器。
+**負載平衡器**。 會使用 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) 執行個體，將流量分配到應用程式層子網路中的虛擬機器。 您可以在資料層中使用內建的 SAP 負載平衡器、Azure Load Balancer 或其他機制，根據 DBMS 來達到高可用性。 如需詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。 
 
 **可用性設定組**。 SAP Web Dispatcher、SAP 應用程式伺服器和 (A)SCS 的虛擬機器角色會分組到個別[可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)，每個角色都會佈建至少兩部虛擬機器。 這讓虛擬機器能夠符合適用於較高[服務等級協定](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) 的資格。
 

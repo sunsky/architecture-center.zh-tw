@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 9105748f434e5d655b09b1fe0775417f33a912b0
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: abe9d6a58f3deeab388c20471c5559d63ef2f245
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843587"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016073"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -123,7 +123,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 範本參數檔案會參照這些名稱，因此，如果您變更這些名稱，請據以更新參數檔案。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

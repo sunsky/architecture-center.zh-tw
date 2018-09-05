@@ -4,12 +4,12 @@ description: 說明如何建立設計完善之 Web API 的指引。
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: db9784f454e0b52b335d6dff3a054c2c59124c9f
-ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
+ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36209605"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016017"
 ---
 # <a name="api-design"></a>API 設計
 
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 這個版本控制機制非常簡單，但需仰賴伺服器將要求路由傳送到適當端點。 不過，在經過數個反覆項目後當 Web API 成熟時，它會變得難以揮灑，因此伺服器必須支援許多不同的版本。 此外，從純化論者的觀點來看，在所有情況下用戶端應用程式都在擷取相同的資料 (客戶 3)，所以 URI 不應該因版本而有所不同。 此配置也會讓 HATEOAS 的實作變得更複雜，因為所有連結都需要在它們的 URI 中包含版本號碼。
 
 ### <a name="query-string-versioning"></a>查詢字串版本控制
-與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 *http://adventure-works.com/customers/3?version=2* 。 如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
+與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 *http://adventure-works.com/customers/3?version=2*。 如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
 
 這個方法具有語意上的優點，因為您總是從相同的 URI 擷取相同的資源，不過這還是要取決於處理要求以剖析查詢字串，然後回傳適當 HTTP 回應的程式碼。 這個方法也需要面臨與實作 HATEOAS 同等複雜的 URI 版本控制機制。
 
