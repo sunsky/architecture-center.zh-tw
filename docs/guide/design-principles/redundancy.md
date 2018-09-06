@@ -2,12 +2,13 @@
 title: 讓各個項目都有備援
 description: 將備援建置到您的應用程式中，以避免發生單一失敗點。
 author: MikeWasson
-ms.openlocfilehash: 4f6e3404b2aaf9c28dfd6812975c2709d8cc8c85
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 0df9e0bded9b8719d43b9ba328c2de6a10b37f92
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206570"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325456"
 ---
 # <a name="make-all-things-redundant"></a>讓各個項目都有備援
 

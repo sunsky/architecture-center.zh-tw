@@ -2,12 +2,13 @@
 title: 最小化協調
 description: 將來應用程式服務之間的協調最小化，以達成延展性
 author: MikeWasson
-ms.openlocfilehash: f26222148db2b48743c52293011ea0a5a58ebe07
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: 0e0aa34f851ee743a0c4bebc6d9ca63d7f3ae203
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206522"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326209"
 ---
 # <a name="minimize-coordination"></a>最小化協調 
 

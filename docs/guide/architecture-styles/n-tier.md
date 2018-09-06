@@ -2,12 +2,13 @@
 title: 多層式架構樣式
 description: 說明 Azure 上多層式架構的優點、挑戰和最佳做法
 author: MikeWasson
-ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 08/30/2018
+ms.openlocfilehash: 2a113cefec8bd1c6c524030fbc459851094c09d6
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540372"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325745"
 ---
 # <a name="n-tier-architecture-style"></a>多層式架構樣式
 
@@ -30,7 +31,7 @@ ms.locfileid: "24540372"
 
 ## <a name="when-to-use-this-architecture"></a>使用此架構的時機
 
-多層式架構通常實作為基礎結構即服務 (IaaS) 應用程式，每個層均執行在一組個別的 VM 上。 不過，多層式架構應用程式不需要是純 IaaS。 通常，對架構的某些部分 (特別是快取、傳訊和資料存放區) 使用受管理的服務會有幫助。
+多層式架構通常實作為基礎結構即服務 (IaaS) 應用程式，每個層均執行在一組個別的 VM 上。 不過，多層式架構應用程式不需要是純 IaaS。 通常，對架構的某些部分 (特別是快取、傳訊和資料存放區) 使用受控服務會有幫助。
 
 考慮下列項目的多層式架構：
 
@@ -51,7 +52,7 @@ ms.locfileid: "24540372"
 
 - 產生只會在資料庫上執行 CRUD 作業、新增額外的延遲而不會執行任何實用工作的中介層很容易。 
 - 整合型設計可避免獨立部署功能。
-- 管理 IaaS 應用程式的工作比只使用受管理服務的應用程式更多。 
+- 管理 IaaS 應用程式的工作比只使用受控服務的應用程式更多。 
 - 在大型系統中可能難以管理網路安全性。
 
 ## <a name="best-practices"></a>最佳作法
@@ -91,7 +92,7 @@ Web 和商務層為無狀態。 任何 VM 可以處理該層的任何要求。 �
 
 - 使用 VM 擴展集來自動調整。
 
-- 在架構中尋找您可以使用受管理的服務，而不需進行重大重構的位置。 特別是，查看快取、傳訊、儲存體和資料庫。 
+- 在架構中尋找您可以使用受控服務，而不需進行重大重構的位置。 特別是，查看快取、傳訊、儲存體和資料庫。 
 
 - 為獲得較高安全性，請在應用程式前方放置網路 DMZ。 DMZ 包含實作安全性功能 (例如防火牆和封包檢查) 的網路虛擬裝置 (NVA)。 如需詳細資訊，請參閱[網路 DMZ 參考架構][dmz]。
 

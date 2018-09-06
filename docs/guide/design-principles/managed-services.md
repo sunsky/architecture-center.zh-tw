@@ -2,12 +2,13 @@
 title: 使用受控服務
 description: 可能的話，請使用平台即服務 (PaaS) 而非基礎結構即服務 (IaaS)
 author: MikeWasson
-ms.openlocfilehash: 6d3cfb2e97b5a9b25bb1afd72059e981ef45c0d8
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: f6777a19e126a8a7f64be05dfad9bc503d27b1c3
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206605"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325769"
 ---
 # <a name="use-managed-services"></a>使用受控服務
 

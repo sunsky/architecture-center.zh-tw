@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229145"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326315"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -111,10 +111,10 @@ ms.locfileid: "39229145"
 | --- | --- | --- | --- | --- | --- | --- |
 |虛擬網路 (VNet) |資源群組 |2-64 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-vnet` |`profx-vnet` |
 |子網路 |父 VNet |2-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`web` |
-|網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|網路介面 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vmname>-nic<num>` |`profx-sql1-vm1-nic1` |
 |網路安全性群組 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |網路安全性群組規則 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`sql-allow` |
-|公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vm or service name>-pip` |`profx-sql1-pip` |
+|公用 IP 位址 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<vm or service name>-pip` |`profx-sql1-vm1-pip` |
 |負載平衡器 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-lb` |`profx-lb` |
 |負載平衡的規則組態 |負載平衡器 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<descriptive context>` |`http` |
 |Azure 應用程式閘道 |資源群組 |1-80 |不區分大小寫 |英數字元、連字號、底線和句點 |`<service or role>-agw` |`profx-agw` |
@@ -195,4 +195,4 @@ Blob 名稱可以包含任何字元組合，但是必須正確逸出保留的 UR
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-subscription-governance
+[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold

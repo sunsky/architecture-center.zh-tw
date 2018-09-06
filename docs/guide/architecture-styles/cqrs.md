@@ -2,12 +2,13 @@
 title: CQRS 架構樣式
 description: 描述CQRS 架構的優點、挑戰以及最佳做法
 author: MikeWasson
-ms.openlocfilehash: dd3da5886587159f57646ff1bfffa2094725f798
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 08/30/2018
+ms.openlocfilehash: ba7af25f940a01e184279c4665f8fce8ebb71b23
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539860"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325919"
 ---
 # <a name="cqrs-architecture-style"></a>CQRS 架構樣式
 
@@ -19,7 +20,7 @@ ms.locfileid: "24539860"
 
 另一個潛在的問題是，讀取和寫入工作負載通常是不對稱的，具有非常不同的效能和調整需求。 
 
-CQRS 可解決這些問題，方法是將讀取和寫入分隔至個別的模型，使用  **命令**  來更新資料，以及使用**查詢**來讀取資料。
+CQRS 可解決這些問題，方法是將讀取和寫入分隔至個別的模型，使用 **命令** 來更新資料，以及使用**查詢**來讀取資料。
 
 - 命令應該以工作為基礎，而不是以資料為中心。 (「預訂旅館房間」而不是「將保留狀態設為已保留」。) 命令可能會放在佇列上以進行非同步處理，而不是同步處理。
 
