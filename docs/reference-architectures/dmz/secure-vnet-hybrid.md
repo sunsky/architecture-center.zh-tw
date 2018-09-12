@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403159"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675802"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Azure 與內部部署資料中心之間的 DMZ
 
@@ -78,8 +78,7 @@ DevOps 與 IT 管理員角色應不可有 NVA 資源的存取權。 應僅限安
 
 ### <a name="nva-recommendations"></a>NVA 建議
 
-NVA 提供不同的服務來管理和監視網路流量。 
-  [Azure Marketplace][azure-marketplace-nva] 提供數個第三方廠商的 NVA 供您使用。 如果這些第三方廠商的 NVA 都不符合您的需求，您可以使用虛擬機器建立自訂的 NVA。 
+NVA 提供不同的服務來管理和監視網路流量。 [Azure Marketplace][azure-marketplace-nva] 提供數個第三方廠商的 NVA 供您使用。 如果這些第三方廠商的 NVA 都不符合您的需求，您可以使用虛擬機器建立自訂的 NVA。 
 
 例如，此參考架構的解決方案部署，會在虛擬機器上實作具有下列功能的 NVA：
 
@@ -164,7 +163,7 @@ NVA 前方的負載平衡器也可以當做安全性裝置，如果流量不在�
 
 在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -227,6 +226,7 @@ NVA 前方的負載平衡器也可以當做安全性裝置，如果流量不在�
 * 如需有關使用 Azure 管理網路安全性的詳細資訊，請參閱 [Microsoft 雲端服務和網路安全性][cloud-services-network-security]。
 * 如需在 Azure 中保護資源的詳細資訊，請參閱[開始使用 Microsoft Azure 安全性][getting-started-with-azure-security]。 
 * 若要深入了解如何解決 Azure 閘道連線上的安全性考量，請參閱[使用 Azure 和內部部署 VPN 實作混合式網路架構][guidance-vpn-gateway-security]和[使用 Azure ExpressRoute 實作混合式網路架構][guidance-expressroute-security]。
+* [針對 Azure 中的網路虛擬設備問題進行疑難排解](/azure/virtual-network/virtual-network-troubleshoot-nva)
   > 
 
 <!-- links -->
