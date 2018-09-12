@@ -4,12 +4,12 @@ description: 如何在 Azure 中建置復原應用程式，如高可用性和災
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: b92a26323b4329f3dbe4f941b98da0080e730d65
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352581"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389429"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>為 Azure 設計復原應用程式
 
@@ -259,7 +259,7 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 這是分析設計階段期間可能的失敗點另一個重要的原因。 該分析的結果應該輸入您的測試計劃。
 
-**負載測試**. 使用諸如 [Visual Studio Team Services][vsts] 或 [Apache JMeter][jmeter] 等工具負載測試應用程式。 負載測試對於識別只有在負載下發生的失敗而言十分重要，例如後端資料庫遭灌爆或服務節流。 使用生產資料或盡可能最接近生產資料的綜合資料，針對尖峰負載進行測試。 目標是查看應用程式在真實世界情況下的運作方式。   
+**負載測試**. 負載測試對於識別只有在負載下發生的失敗而言十分重要，例如後端資料庫遭灌爆或服務節流。 使用生產資料或盡可能最接近生產資料的綜合資料，針對尖峰負載進行測試。 目標是查看應用程式在真實世界情況下的運作方式。   
 
 ## <a name="deploy-using-reliable-processes"></a>使用可靠的程序部署
 一旦應用程式部署到生產環境後，更新就會成為可能的錯誤來源。 在最糟的情況下，不良的更新可能會導致停機時間。 若要避免這個問題，部署程序必須是可預測且可重複。 部署包括佈建 Azure 資源、部署應用程式的程式碼，以及套用組態集。 更新可能需要這三個全部或一個子集。 
@@ -355,4 +355,3 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
