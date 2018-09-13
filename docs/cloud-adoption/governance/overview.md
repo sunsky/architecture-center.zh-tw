@@ -2,12 +2,13 @@
 title: 企業雲端採用：治理概觀
 description: Azure 企業雲端採用的治理內容概觀
 author: petertaylor9999
-ms.openlocfilehash: 512ef5fc9db3756299107aee3cf1551521425a10
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: 08994ca5de1da2eadd7ad3cd558845cfe47f64ff
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327432"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389038"
 ---
 # <a name="enterprise-cloud-adoption-governance-overview"></a>企業雲端採用：治理概觀
 
