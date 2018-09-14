@@ -5,10 +5,10 @@ author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
 ms.openlocfilehash: d1d9c1b3cf07f724eb010fc260d86ceb84b789ca
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 09/13/2018
 ms.locfileid: "29059967"
 ---
 # <a name="data-partitioning"></a>資料分割
@@ -27,7 +27,7 @@ ms.locfileid: "29059967"
 * **改善可用性**。 跨多個伺服器分格資料可避免單一失敗點。 如果伺服器失敗，或正在進行規劃的維護，只有該資料分割中的資料無法使用。 在其他分割區上的作業可以繼續進行。 增加分割區的數目可減少無法使用的資料百分比，藉以減少單一伺服器失敗的相對影響。 複寫每個分割區可以進一步減少單一分割區失敗影響作業的機會。 它也能夠分離必須持續高度可用的重要資料和可用性需求較低的低價值資料 (例如記錄檔)。
 * **改善安全性**。 依據資料的性質及其分割方式，就可以將機密和非機密資料分離到不同的分割區，因而可分離到不同的伺服器或資料存放區。 如此便可以為機密資料進行安全性的特別最佳化。
 * **提供做業彈性**。 資料分割提供許多微調作業、最大化系統管理效率和最小化成本的機會。 例如，您可以根據資料在每個分割區中的重要性，來定義適用於管理、監視、備份和還原的不同原則，以及其他系統管理工作。
-* **比對資料存放區和使用模式**。 資料分割可根據資料存放區所提供的成本和內建功能，讓每個分割區部署在不同類型的資料存放區上。 例如，大型二進位資料可儲存於 Blob 資料存放區，而更為結構化的資料可保存於文件資料庫中。 如需詳細資訊，請參閱模式與實例指南中的[建置 Polyglot 解決方案]，以及 Microsoft 網站上的[高度可調整解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性]。
+* **比對資料存放區和使用模式**。 資料分割可根據資料存放區所提供的成本和內建功能，讓每個分割區部署在不同類型的資料存放區上。 例如，大型二進位資料可儲存於 Blob 資料存放區，而更為結構化的資料可保存於文件資料庫中。 如需詳細資訊，請參閱模式與實例指南中的[建置 Polyglot 解決方案]，以及 Microsoft 網站上的[Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]。
 
 有些系統不會實作資料分割，因為它會被視為成本，而不是一項優點。 這個基本原理的常見原因包括：
 
@@ -117,7 +117,7 @@ ms.locfileid: "29059967"
 
 請注意，某些雲端環境會根據基礎結構界限配置資源。 您應該確定您所選界限的限制可在資料儲存體、處理能力及頻寬等方面，提供足夠的空間，使資料量能夠如預期般成長。
 
-例如，如果您使用 Azure 表格儲存體，忙碌的分區所需的資源數可能超過可供單一分割區用來處理要求的資源數 (對於單一磁碟區可在一段特定期間內處理的要求數量是有限制的。 如需詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]頁面)。
+例如，如果您使用 Azure 表格儲存體，忙碌的分區所需的資源數可能超過可供單一分割區用來處理要求的資源數 (對於單一磁碟區可在一段特定期間內處理的要求數量是有限制的。 如需詳細資訊，請參閱 Microsoft 網站上的 [Azure Storage Scalability and Performance Targets]頁面)。
 
  在此情況下，可能需要重新分割分區以散佈負載。 如果這些表格的總大小或輸送量超過儲存體帳戶的容量，可能必須建立其他儲存體帳戶並跨這些帳戶散佈表格。 如果儲存體帳戶的數目超過訂用帳戶可用的帳戶數目，則可能必須使用多個訂用帳戶。
 
@@ -264,7 +264,7 @@ Azure 儲存體提供管理資料的四個抽象概念：
 * **區域備援儲存體**，可維護同一個區域內三個跨不同資料中心 (或跨兩個地理位置相近的區域) 散佈的資料複本。 這種形式的備援可以防止在單一資料中心內發生的災害，但無法防止會影響整個區域的大規模網路中斷連線。 請注意，區域備援儲存體僅適用於區塊 blob。
 * **異地備援儲存體**，可維護六個資料複本：一個區域中 (您的所在地區) 的三個複本，以及一個遠端區域中的另外三個複本。 這種形式的備援提供最高層級的災害防護。
 
-Microsoft 已發佈 Azure 儲存體帳戶的延展性目標。 如需詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標] 。 總儲存體帳戶容量目前不能超過 500 TB (這包括保留在資料表儲存體、檔案儲存體、blob 儲存體中的資料大小，以及保留在存體佇列中未處理訊息的大小)。
+Microsoft 已發佈 Azure 儲存體帳戶的延展性目標。 如需詳細資訊，請參閱 Microsoft 網站上的 [Azure Storage scalability and performance targets] 。 總儲存體帳戶容量目前不能超過 500 TB (這包括保留在資料表儲存體、檔案儲存體、blob 儲存體中的資料大小，以及保留在存體佇列中未處理訊息的大小)。
 
 儲存體帳戶的要求速率上限 (假設為 1 KB 的實體、blob 或訊息大小) 是每秒 20,000 個要求。 儲存體帳戶的上限是每個檔案共用 1000 IOPS (大小為 8 KB)。 如果您的系統可能會超過這些限制，請考慮跨多個儲存體帳戶分割負載。 單一 Azure 訂用帳戶可以建立高達 200 個儲存體帳戶。 不過，請注意這些限制可能會隨著時間變更。
 
@@ -274,7 +274,7 @@ Azure 表格儲存體是一個索引鍵-值存放區，專為資料分割而設�
 * **分割區索引鍵**。 此為字串值，可決定 Azure 表格儲存體將在哪個分割區中放置實體。 具有相同資料分割 索引鍵的所有實體將會儲存在相同分割區上。
 * **資料列索引鍵**。 這是另一個字串值，會識別分割區內的實體。 在一個分割區內的所有實體都會由此索引鍵依照語彙以遞增順序排列。 分割區索引鍵/資料列索引鍵組合對每個實體必須是唯一的，且長度不能超過 1 KB。
 
-實體資料的其餘部分由應用程式定義的欄位組成。 沒有特定的結構描述會強制執行，而且每個資料列可以包含一組不同的應用程式定義欄位。 唯一的限制是實體的大小上限 (包括分割區和資料列索引鍵) 目前為 1 MB。 資料表的大小上限為 200 TB，不過這些數字未來可能會變更 (請查看 Microsoft 網站上的 [Azure 儲存體延展性和效能目標] 頁面，以取得這些限制的最新資訊)。
+實體資料的其餘部分由應用程式定義的欄位組成。 沒有特定的結構描述會強制執行，而且每個資料列可以包含一組不同的應用程式定義欄位。 唯一的限制是實體的大小上限 (包括分割區和資料列索引鍵) 目前為 1 MB。 資料表的大小上限為 200 TB，不過這些數字未來可能會變更 (請查看 Microsoft 網站上的 [Azure Storage Scalability and Performance Targets]頁面，以取得這些限制的最新資訊)。
 
 如果您嘗試儲存的實體超過這個容量，請考慮將它們劃分成多個資料表。 使用垂直資料分割，將欄位區分成最有可能一起存取的群組。
 
@@ -303,18 +303,18 @@ Azure 資料表儲存體使用資料分割索引鍵來決定如何儲存資料�
   > 如果實體有一個自然索引鍵，則使用它做為資料分割索引鍵，並指定空白字串做為資料列索引鍵。 如果實體具有包含兩個屬性的複合索引鍵，選取最慢的變更中屬性做為資料分割索引鍵，另一個則做為資料列索引鍵。 如果實體有兩個以上的索引鍵屬性，使用屬性的串連來提供資料分割和資料列索引鍵。
   >
   >
-* 如果您使用分割區和資料列索引鍵以外的欄位定期執行查閱資料的查詢，請考慮實作 [Index Table Pattern (索引資料表模式)]。
+* 如果您使用分割區和資料列索引鍵以外的欄位定期執行查閱資料的查詢，請考慮實作 [Index Table Pattern]。
 * 如果您使用單純遞增或遞減數列 (例如 "0001"、"0002"、"0003"，依此類推) 來產生分割區索引鍵，而每個分割區只包含有限的資料數量，那麼 Azure 表格儲存體會在同一部伺服器上將這些分割區實際群組在一起。 這個機制假設應用程式很有可能在連續範圍的分割區中執行查詢 (範圍查詢)，並已針對此情況進行最佳化。 不過，這種方法會導致著重於單一伺服器的作用點，因為新實體的所有插入可能都會集中在連續範圍的其中一端。 它也會降低延展性。 若要跨伺服器更平均分佈負載，請考慮雜湊資料分割索引鍵，使順序更加隨機。
-* Azure 資料表儲存體支援屬於相同分割區之實體的交易式作業。 這表示應用程式可以執行多個插入、更新、刪除、取代或合併作業做為不可部分完成的單位 (前提是交易未包含 100 個以上的實體，且要求的承載大小未超過 4 MB)。 跨越多個分割區的作業不是交易式，而且可能需要您實作最終一致性，如同 [Data consistency primer (資料一致性入門) (資料一致性入門)]所述。 如需表格儲存體和交易的詳細資訊，請瀏覽 Microsoft 網站上的 [執行實體群組交易] 頁面。
+* Azure 資料表儲存體支援屬於相同分割區之實體的交易式作業。 這表示應用程式可以執行多個插入、更新、刪除、取代或合併作業做為不可部分完成的單位 (前提是交易未包含 100 個以上的實體，且要求的承載大小未超過 4 MB)。 跨越多個分割區的作業不是交易式，而且可能需要您實作最終一致性，如同 [Data consistency primer (資料一致性入門) (資料一致性入門)]所述。 如需表格儲存體和交易的詳細資訊，請瀏覽 Microsoft 網站上的 [Performing Entity Group Transactions] 頁面。
 * 請特別注意分割區索引鍵的細微性，原因入下：
   * 對每個實體使用相同的分割區索引鍵，會使表格儲存體服務建立保留在某一部伺服器上的單一大型分割區。 這可防止它相應放大，並改為將焦點放在單一伺服器上的負載。 如此一來，這個方法只適用於管理少數實體的系統。 不過，這個方法確實能確保所有實體都可以參與實體群組交易。
   * 對每個實體使用唯一的分割區索引鍵，會導致表格儲存體服務為每個實體建立個別的分割區，可能會產生大量的小型分割區 (取決於實體的大小)。 比起使用單一分割區索引鍵，這種方法具更大的可調整性，但無法進行實體群組交易， 此外，擷取多個實體的查詢可能牽涉到讀取多部伺服器。 不過，如果應用程式執行範圍查詢，使用單純的數列來產生分割區索引鍵可能有助於最佳化這些查詢。
   * 跨實體的子集共用資料分割索引鍵，能夠讓您將相同分割區中的相關實體分組。 涉及可使用實體群組交易執行之相關實體的作業，以及擷取一組相關實體的查詢，可藉由存取單一伺服器來滿足。
 
-如需 Azure 表格儲存體中資料分割的詳細資訊，請參閱 Microsoft 網站上的 [Azure 儲存體表格設計指南] 一文。
+如需 Azure 表格儲存體中資料分割的詳細資訊，請參閱 Microsoft 網站上的 [Azure Storage Table Design Guide] 一文。
 
 ## <a name="partitioning-azure-blob-storage"></a>分割 Azure blob 儲存體
-Azure Blob 儲存體能夠保留大型二進位物件，目前可保留大小高達 5 TB 的區塊 blob 或 1 TB 的分頁 blob。 (如需最新資訊，請參閱 Microsoft 網站上的 [Azure 儲存體延展性和效能目標]頁面)。在案例中使用區塊 blob，例如您必須在其中快速上傳或下載大量資料的資料流。 對需要隨機而不是序列存取部分資料的應用程式使用分頁 blob。
+Azure Blob 儲存體能夠保留大型二進位物件，目前可保留大小高達 5 TB 的區塊 blob 或 1 TB 的分頁 blob。 (如需最新資訊，請參閱 Microsoft 網站上的 [Azure Storage Scalability and Performance Targets]頁面)。在案例中使用區塊 blob，例如您必須在其中快速上傳或下載大量資料的資料流。 對需要隨機而不是序列存取部分資料的應用程式使用分頁 blob。
 
 每個 blob (區塊或分頁) 會保留在 Azure 儲存體帳戶中的容器中。 您可以使用容器來將具有相同安全性需求的相關 blob 群組在一起。 這是邏輯性的群組，而非實體的。 在容器內，每個 Blob 都有唯一的名稱。
 
@@ -441,7 +441,7 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
   * 彙總類型，例如清單 (其可做為佇列和堆疊)
   * 集合 (排序和未排序)
   * 雜湊 (可將相關的欄位群組在一起，例如在一個物件中代表欄位的項目)
-* 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data types (資料類型)] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 8 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
+* 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data Types] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 8 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
 
 ![Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構](./images/data-partitioning/RedisCustomersandOrders.png)
 
@@ -453,7 +453,7 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 >
 
 * 您可以將相關的資訊儲存在相同資料庫中的不同彙總以實作垂直資料分割。 例如，在電子商務應用程式中，您可以將經常存取的產品相關資訊儲存在某一個 Redis 雜湊中，並將較少使用的詳細資訊儲存在另一個。
-  這兩個雜湊可以使用相同的產品識別碼做為索引鍵的一部分。 例如，您可以針對產品資訊使用 "product: *nn*" (其中 *nn* 是產品識別碼)，而 "product_details: *nn*" 則適用於詳細資料。 此策略有助於減少大多數查詢可能會擷取的資料量。
+  這兩個雜湊可以使用相同的產品識別碼做為索引鍵的一部分。 例如，您可以針對產品資訊使用 "product:nn" (其中 nn 是產品識別碼)，而 "product_details: nn" 則適用於詳細資料。 此策略有助於減少大多數查詢可能會擷取的資料量。
 * 您可以重新分割 Redis 資料存放區，但請記住它是複雜且耗時的工作。 Redis 叢集可以自動重新分割資料，但Azure Redis 快取無法使用此功能。 因此，當您設計資料分割配置時，請嘗試在每個分割區中保留足夠的可用空間，以允許一段時間後預期的資料成長。 不過，請記住 Azure Redis Cache 的目的是暫時快取資料，而且保留在快取中的資料具有有限的存留期，指定為存留時間 (TTL) 值。 對於相對易變的資料而言，TTL 可以短一點，但對於靜態資料而言，TTL 可以更長。 如果此資料量可能會填滿快取，請避免在快取中儲存大量長時間留存的資料。 如果空間價格不斐，您可以指定會讓 Azure Redis Cache 移除資料的收回原則。
 
   > [!NOTE]
@@ -526,9 +526,9 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 考量實作資料一致性的策略時，下列模式可能也會與您的案例相關：
 
 * Microsoft 網站上的 [Data consistency primer (資料一致性入門) (資料一致性入門)] 頁面會說明在雲端等分散式環境中維護一致性的策略。
-* Microsoft 網站上的 [Data partitioning guidance (資料分割指引)] 頁面提供如何設計分割區以符合分散式解決方案中各種準則的一般概觀。
+* Microsoft 網站上的 [Data Partitioning Guidance] 頁面提供如何設計分割區以符合分散式解決方案中各種準則的一般概觀。
 * Microsoft 網站上所述的 [Sharding Pattern (分區化模式)] 摘要列出一些分區化資料的常見策略。
-* Microsoft 網站上所述的 [Index Table Pattern (索引資料表模式)] 說明如何建立資料的次要索引。 應用程式可以使用未參考集合的主索引鍵的查詢，透過這個方法快速擷取資料。
+* Microsoft 網站上所述的 [Index Table Pattern] 說明如何建立資料的次要索引。 應用程式可以使用未參考集合的主索引鍵的查詢，透過這個方法快速擷取資料。
 * Microsoft 網站上所述的 [Materialized View Pattern] 說明如何產生預先填入的檢視，可摘要列出資料以支援快速查詢作業。 如果包含已摘要列出之資料的分割區會跨多個網站分佈，則這個方法對分割的資料存放區很有幫助。
 * Microsoft 網站上的 [使用 Azure 的內容傳遞網路] 一文提供有關設定和使用內容傳遞網路搭配 Azure 的其他指引。
 
@@ -537,8 +537,8 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 * Microsoft 網站上的 [彈性資料庫功能概觀] 頁面提供全面性的彈性資料庫介紹。
 * Microsoft 網站上的 [使用彈性資料庫分割合併工具來縮放] 頁面會包含使用劃分-合併服務來管理彈性資料庫分區的相關資訊。
 * Microsoft 網站上的 [Azure 儲存體延展性和效能目標](https://msdn.microsoft.com/library/azure/dn249410.aspx) 頁面記錄 Azure 儲存體目前的大小和輸送量限制。
-* Microsoft 網站上的 [執行實體群組交易] 頁面提供有關透過儲存在 Azure 表格儲存體的實體實作交易式作業的詳細資訊。
-* Microsoft 網站上的 [Azure 儲存體表格設計指南] 一文會包含有關 Azure 表格儲存體中的資料分割的詳細資訊。
+* Microsoft 網站上的 [Performing Entity Group Transactions] 頁面提供有關透過儲存在 Azure 表格儲存體的實體實作交易式作業的詳細資訊。
+* Microsoft 網站上的 [Azure Storage Table Design Guide] 一文會包含有關 Azure 表格儲存體中的資料分割的詳細資訊。
 * Microsoft 網站上的 [使用 Azure 的內容傳遞網路] 頁面會說明如何使用 Azure 內容傳遞網路來複寫保留在 Azure Blob 儲存體中的資料。
 * Microsoft 網站上的 [何謂 Azure 搜尋服務？] 頁面會提供可在 Azure 搜尋服務使用之功能的完整說明。
 * Microsoft 網站上的 [Azure 搜尋服務中的服務限制] 頁面包含 Azure 搜尋服務之每個執行個體的功能相關資訊。
@@ -546,32 +546,32 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 * Microsoft 網站上的 [Azure Redis 快取] 頁面提供 Azure Redis 快取的簡介。
 * Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)] 頁面提供如何使用 Redis 實作資料分割的相關資訊。
 * Microsoft 網站上的 [在 Azure 中的 CentOS Linux VM 上執行 Redis] 頁面會逐步解說範例，並顯示如何建置和設定做為 Azure VM 執行的 Redis 節點。
-* Redis 網站上的 [Data Types (資料類型)] 頁面描述 Redis 和 Azure Redis 快取皆可使用的資料類型。
+* Redis 網站上的 [Data Types] 頁面描述 Redis 和 Azure Redis 快取皆可使用的資料類型。
 
 [事件中樞的可用性和一致性]: /azure/event-hubs/event-hubs-availability-and-consistency
 [azure-limits]: /azure/azure-subscription-service-limits
 [Azure 內容傳遞網路]: /azure/cdn/cdn-overview
 [Azure Redis 快取]: http://azure.microsoft.com/services/cache/
-[Azure 儲存體延展性和效能目標]: /azure/storage/storage-scalability-targets
-[Azure 儲存體表格設計指南]: /azure/storage/storage-table-design-guide
+[Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
+[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
 [建置 Polyglot 解決方案]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
-[高度可調整解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性]: https://msdn.microsoft.com/library/dn271399.aspx
+[Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Data consistency primer (資料一致性入門) (資料一致性入門)]: http://aka.ms/Data-Consistency-Primer
-[Data partitioning guidance (資料分割指引)]: https://msdn.microsoft.com/library/dn589795.aspx
-[Data types (資料類型)]: http://redis.io/topics/data-types
+[Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
+[Data Types]: http://redis.io/topics/data-types
 [cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [彈性資料庫功能概觀]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [Azure Service Fabric 中可靠集合的指導方針與建議]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
-[Index Table Pattern (索引資料表模式)]: http://aka.ms/Index-Table-Pattern
+[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
 [Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
 [多分區查詢]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Azure Service Fabric 概觀]: /azure/service-fabric/service-fabric-overview
 [分割 Service Fabric 可靠服務]: /azure/service-fabric/service-fabric-concepts-partitioning
 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)]: http://redis.io/topics/partitioning
-[執行實體群組交易]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Redis 叢集教學課程]: http://redis.io/topics/cluster-tutorial
 [在 Azure 中的 CentOS Linux VM 上執行 Redis]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
 [使用彈性資料庫分割合併工具來縮放]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
