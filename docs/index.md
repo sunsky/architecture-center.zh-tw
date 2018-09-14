@@ -3,12 +3,12 @@ title: Azure Architecture Center
 description: Azure Architecture Center 是官方中心，在其中可找到使用 Microsoft Azure 建立解決方案的指引、藍圖、模式和最佳做法。 此中心是由 Microsoft 模式與做法小組所策劃。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ea3784a23c73c7f0eb103a0cb19e2c6b70ea9d7c
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987585"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584641"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -46,16 +46,16 @@ ms.locfileid: "38987585"
             </div>
         </a>
     </li>
-    <!-- Cloud design patterns -->
+    <!-- Cloud Adoption -->
     <li>
-        <a href="/azure/architecture/patterns/">
+        <a href="/azure/architecture/cloud-adoption/">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <img src="_images/cloud-design-patterns.svg" alt="" />
+                        <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>雲端設計模式</h3>
-                            <p>開發人員和解決方案架構設計人員的設計模式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。</p>
+                            <h3>企業雲端採用</h3>
+                            <p>本指南概述了建立整個組織雲端採用策略的流程。 它著重於組織整備程度、管理以及基礎結構。</p>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,26 @@ ms.locfileid: "38987585"
             </div>
         </a>
     </li>
+    <!-- design patterns -->
+    <li>
+        <a href="/azure/architecture/microservices">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/cloud-design-patterns.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>雲端設計模式</h3>
+                            <p>開發人員和解決方案架構設計人員的設計模式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
     <!-- Checklists -->
     <li>
         <a href="/azure/architecture/checklist/">
@@ -240,26 +260,6 @@ ms.locfileid: "38987585"
                         <div class="cardText">
                             <h3>效能反模式</h3>
                             <p>如何偵測及修正雲端應用程式中一些效能和延展性相關問題的原因。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Multitenant identity -->
-    <li>
-        <a href="/azure/architecture/multitenant-identity">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/multitenant-identity.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>多組織用戶共享應用程式的身分識別管理</h3>
-                            <p>了解多租用戶使用 Azure AD 進行身分識別管理時的最佳作法。</p>
                         </div>
                     </div>
                 </div>
