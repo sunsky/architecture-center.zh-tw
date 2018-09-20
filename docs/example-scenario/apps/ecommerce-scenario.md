@@ -3,14 +3,14 @@ title: Azure 上的電子商務前端
 description: 經過證明的案例，可以在 Azure 上裝載電子商務網站
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 568821e97c6b90a36429dfa8ec0ef9ed38c7963c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 1af481476c74b365ce5145636426683c6896b00b
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060969"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389191"
 ---
-# <a name="e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
+# <a name="e-commerce-frontend-on-azure"></a>Azure 上的電子商務前端
 
 此範例案例會逐步引導您使用 Azure 平台即服務 (PaaS) 工具，實作電子商務前端。 許多電子商務網站都會面臨隨著時間而異的季節性和流量變化。 當產品或服務的需求激增時 (不論預期或非預期的情況下)，使用 PaaS 工具可讓您自動服務更多客戶與處理更多交易。 此外，此案例可僅支付所需的容量，妥善發揮雲端的經濟效益。
 
@@ -64,12 +64,12 @@ Web 層和函式的其他選項包括：
 
 * [Service Fabric][docs-service-fabric] - 這是一個平台，焦點在於建置分散式元件，可受益於在具有高度控制權的叢集之間部署及執行。 Service Fabric 也可用來裝載容器。
 * [Azure Kubernetes Service][docs-kubernetes-service] - 這是一個平台，用來建置及部署容器型解決方案，這些解決方案可以作為微服務架構的一個實作。 這樣可讓應用程式的不同元件更有靈活度，以便隨選獨立調整。
-* [Azure 容器執行個體][docs-container-instances] - 以短期生命週期快速部署及執行容器的方式。 這裡的容器通常會部署以執行快速處理作業，例如處理訊息或執行計算，然後在完成時取消佈建。
+* [Azure 容器執行個體][docs-container-instances] - 以短期生命週期快速部署及執行容器的方式。 這裡的容器會部署以執行快速處理作業，例如處理訊息或執行計算，然後在完成時取消佈建。
 * [服務匯流排][service-bus] 可用來取代儲存體佇列。
 
 資料層的其他選項包括：
 
-* [Cosmos DB][docs-cosmosdb] - Microsoft 全球發行的多模型資料庫。 提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。
+* [Cosmos DB][docs-cosmosdb] - Microsoft 全球發行的多模型資料庫。 此服務提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。
 
 ## <a name="considerations"></a>考量
 
@@ -77,13 +77,13 @@ Web 層和函式的其他選項包括：
 
 * 建置您的雲端應用程式時，請考量利用[獲得可用性的典型設計模式][design-patterns-availability]。
 * 在適當的 [App Service Web 應用程式參考架構][app-service-reference-architecture]中檢閱可用性考量
-* 如需有關可用性的其他考量，請參閱架構中心的[可用性檢查清單][availability]。
+* 如需有關可用性的其他考量，請參閱 Azure 架構中心的[可用性檢查清單][availability]。
 
 ### <a name="scalability"></a>延展性
 
 * 建置雲端應用程式時，請了解[獲得延展性的典型設計模式][design-patterns-scalability]。
 * 在適當的 [App Service Web 應用程式參考架構][app-service-reference-architecture]中檢閱延展性考量
-* 如需其他延展性主題，請參閱架構中心的[延展性檢查清單][scalability]。
+* 如需其他延展性主題，請參閱 Azure 架構中心的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 
@@ -96,13 +96,13 @@ Web 層和函式的其他選項包括：
 
 * 請考量利用[斷路器模式][circuit-breaker]，以在應用程式某部分無法使用時，提供柔性錯誤處理。
 * 檢閱[獲得復原的典型設計模式][design-patterns-resiliency]，並考量在適當時實作。
-* 您可以在架構中心上找到一些 [App Service 的復原建議做法][resiliency-app-service]。
+* 您可以在 Azure 架構中心上找到一些 [App Service 的建議做法][resiliency-app-service]。
 * 請考量針對資料層使用作用中[異地複寫][sql-geo-replication]，針對映像和佇列使用[異地備援][storage-geo-redudancy] 儲存體。
-* 如需關於[復原][resiliency]的深入討論，請參閱架構中心的相關文章。
+* 如需關於[復原][resiliency]的深入討論，請參閱 Azure 架構中心的相關文章。
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
-若要部署此案例，您可以遵循示範如何以手動方式部署每個元件的這個[逐步教學課程][end-to-end-walkthrough]。 本教學課程也提供 .NET 範例應用程式，該應用程式會執行簡單的票證購買應用程式。 此外，還有 ARM 範本，可以將大部分 Azure 資源的部署自動化。
+若要部署此案例，您可以遵循示範如何以手動方式部署每個元件的這個[逐步教學課程][end-to-end-walkthrough]。 本教學課程也提供 .NET 範例應用程式，該應用程式會執行簡單的票證購買應用程式。 此外，還有 Resource Manager 範本，可以將大部分 Azure 資源的部署自動化。
 
 ## <a name="pricing"></a>價格
 
@@ -110,9 +110,9 @@ Web 層和函式的其他選項包括：
 
 我們根據您預期取得的流量，提供了三個範例成本設定檔：
 
-* [小型][small-pricing]：這表示建置最小生產層級執行個體所需的元件。 我們在這裡假設是小量使用者，每個月只有數千個。 應用程式使用標準 Web 應用程式的單一執行個體，這就足以啟用自動調整。 每個其他元件會調整到基本層，允許最少的成本，但是仍然確保有 SLA 支援和足夠的容量可以處理生產層級工作負載。
-* [中型][medium-pricing]：這表示元件代表中等大小部署。 我們在這裡預估每月使用系統的使用者大約有 100000 個。 預期流量是在具有中等標準層的單一應用程式服務執行個體中處理。 此外，認知和搜尋服務的中等層會新增至計算機。
-* [大型][large-pricing]：這表示應用程式適用於大規模，有數百萬個使用者每月移動以 TB 計算的資料。 在這個使用量層級，高效能、進階層 Web 應用程式會部署在需要流量管理員的多個區域前端。 資料是由下列項目組成：儲存體、資料庫和 CDN，已針對數 TB 的資料進行設定。
+* [小型][small-pricing]：這個定價範例表示建置最小生產層級執行個體所需的元件。 我們在這裡假設是少量使用者，每個月只有數千個。 應用程式使用標準 Web 應用程式的單一執行個體，這就足以啟用自動調整。 每個其他元件會調整到基本層，允許最少的成本，但是仍然確保有 SLA 支援和足夠的容量，可以處理生產層級工作負載。
+* [中型][medium-pricing]：這個定價範例表示元件代表中等大小部署。 我們在這裡預估每月使用系統的使用者大約有 100000 個。 預期流量是在具有中等標準層的單一應用程式服務執行個體中處理。 此外，認知和搜尋服務的中等層會新增至計算機。
+* [大型][large-pricing]：這個定價範例表示應用程式適用於大規模，有數百萬個使用者每月移動以 TB 計算的資料。 在這個使用量層級，高效能、進階層 Web 應用程式會部署在需要流量管理員的多個區域前端。 資料是由下列項目組成：儲存體、資料庫和 CDN，已針對數 TB 的資料進行設定。
 
 ## <a name="related-resources"></a>相關資源
 

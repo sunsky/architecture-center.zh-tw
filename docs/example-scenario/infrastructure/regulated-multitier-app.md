@@ -3,12 +3,12 @@ title: 受規範產業的安全 Windows Web 應用程式
 description: 經過實證的案例，可透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: aba714fc1955341645d0faa400768bc09fb8e50b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060989"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389266"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>受規範產業的安全 Windows Web 應用程式
 
@@ -51,7 +51,7 @@ ms.locfileid: "39060989"
 
 * [適用於 Linux 的 SQL Server][sql-linux] 可取代後端資料存放區。
 
-* [Cosmos DB][cosmos] 是資料存放區的另一個替代方式。
+* [Cosmos DB][cosmos] 是資料存放區的替代方式。
 
 ## <a name="considerations"></a>考量
 
@@ -86,7 +86,7 @@ ms.locfileid: "39060989"
 **必要條件。**
 
 * 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
-* 若要將 SQL Server 叢集部署到後端擴展集，您需要 Active Directory Directory Services 網域。
+* 若要將 SQL Server 叢集部署到後端擴展集，您需要 Azure Active Directory (AD) Domain Services 中的網域。
 
 若要使用 Azure Resource Manager 範本部署此案例的核心基礎結構，請執行下列步驟。
 
@@ -106,9 +106,9 @@ ms.locfileid: "39060989"
 
 我們根據執行應用程式的擴展集 VM 執行個體數目，提供了 3 個範例成本設定檔。
 
-* [小型][small-pricing]：這會與兩個前端和兩個後端 VM 執行個體相互關聯。
-* [中型][medium-pricing]：這會與 20 個前端和 5 個後端 VM 執行個體相互關聯。
-* [大型][large-pricing]：這會與 100 個前端和 10 個後端 VM 執行個體相互關聯。
+* [小型][small-pricing]：這個定價範例與兩個前端和兩個後端 VM 執行個體相互關聯。
+* [中型][medium-pricing]：這個定價範例與 20 個前端和 5 個後端 VM 執行個體相互關聯。
+* [大型][large-pricing]：這個定價範例與 100 個前端和 10 個後端 VM 執行個體相互關聯。
 
 ## <a name="related-resources"></a>相關資源
 

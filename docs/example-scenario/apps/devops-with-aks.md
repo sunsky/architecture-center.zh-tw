@@ -3,12 +3,12 @@ title: 容器型工作負載的 CI/CD 管線
 description: 經過證明的案例，可以為使用 Jenkins、Azure Container Registry、Azure Kubernetes Service、Cosmos DB 及 Grafana 的 Node.js Web 應用程式，建置 DevOps 管線。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334210"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389378"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>容器型工作負載的 CI/CD 管線
 
@@ -44,7 +44,7 @@ ms.locfileid: "39334210"
 ### <a name="components"></a>元件
 
 * [Jenkins][jenkins] 是開放原始碼 Automation 伺服程式，可與 Azure 服務整合，以進行持續整合 (CI) 及持續部署 (CD)。 在此案例中，Jenkins 會根據對於原始檔控制的認可，協調新容器映像的建立，將這些映像推送至 Azure Container Registry，然後在 Azure Kubernetes Service 中更新應用程式執行個體。
-* [Azure Linux 虛擬機器][azurevm-docs]是用來執行 Jenkins 和 Grafana 執行個體。
+* [Azure Linux 虛擬機器][azurevm-docs]是用來執行 Jenkins 和 Grafana 執行個體的 IaaS 平台。
 * [Azure Container Registry][azureacr-docs] 會儲存及管理 Azure Kubernetes Service 叢集所使用的容器映像。 映像會安全地儲存，並且可以由 Azure 平台複寫到其他區域來加快部署速度。
 * [Azure Kubernetes Service][azureaks-docs] 是受控 Kubernetes 平台，讓您不需要具備容器協調流程專業知識，也可以部署及管理容器化應用程式。 以主控的 Kubernetes 服務形式，Azure 會為您處理像是健康狀態監視和維護等重要工作。
 * [Azure Cosmos DB] [azurecosmosdb-docs] 是全域分散式、多模型資料庫，可讓您從各種不同的資料庫和一致性模型中，選擇符合您需求的項目。 使用 Cosmos DB，您的資料可以全域複寫，不需要部署及設定叢集管理或複寫元件。
@@ -53,7 +53,7 @@ ms.locfileid: "39334210"
 
 ### <a name="alternatives"></a>替代項目
 
-* [Visual Studio Team Services][vsts] 和 Team Foundation Server 會協助您實作任何應用程式的持續整合 (CI)、測試及部署 (CD) 管線。
+* [Azure Pipelines][azure-pipelines] 會協助您實作任何應用程式的持續整合 (CI)、測試及部署 (CD) 管線。
 * 如果您想要更多叢集控制權，[Kubernetes][kubernetes] 可以直接在 Azure 虛擬機器上執行，不用透過受控服務。
 * [Service Fabric][service-fabric] 是另一個可以取代 AKS 的替代容器協調器。
 
@@ -65,7 +65,7 @@ ms.locfileid: "39334210"
 
 負載平衡器是 Azure Kubernetes Service 叢集的一部分，它會將應用程式流量散佈到執行應用程式的一或多個容器 (Pod)。 在 Kubernetes 中執行容器化應用程式的這個方法，會為您的客戶提供高可用性基礎結構。
 
-如需其他可用性主題，請參閱架構中心的[可用性檢查清單][availability]。
+如需其他可用性主題，請參閱 Azure 架構中心內的[可用性檢查清單][availability]。
 
 ### <a name="scalability"></a>延展性
 
@@ -73,7 +73,7 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 
 應用程式資料會儲存在 Azure Cosmos DB，這是可以全域調整的全域分散式、多模型資料庫。 Cosmos DB 會將調整基礎結構的需求抽象化，如同使用傳統資料庫元件一般，您可以選擇全域複寫您的 Cosmos DB 以符合客戶需求。
 
-如需其他延展性主題，請參閱架構中心的[延展性檢查清單][scalability]。
+如需其他延展性主題，請參閱 Azure 架構中心的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 
@@ -123,9 +123,9 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 
 我們根據要儲存的容器映像數目和執行應用程式的 Kubernetes 節點數目，提供了 3 個範例成本設定檔。
 
-* [小型][small-pricing]：這個設定檔適用於每月 1000 個容器建置。
-* [中型][medium-pricing]：這個設定檔適用於每月 100000 個容器建置。
-* [大型][large-pricing]：這個設定檔適用於每月 1000000 個容器建置。
+* [小型][small-pricing]：這個定價範例適用於每月 1000 個容器建置。
+* [中型][medium-pricing]：這個定價範例適用於每月 100,000 個容器建置。
+* [大型][large-pricing]：這個定價範例適用於每月 1,000,000 個容器建置。
 
 ## <a name="related-resources"></a>相關資源
 
@@ -149,7 +149,7 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md
 [sshkeydocs]: /azure/virtual-machines/linux/mac-create-ssh-keys
-[vsts]: /vsts/?view=vsts
+[azure-pipelines]: /azure/devops/pipelines
 [kubernetes]: https://kubernetes.io/
 [service-fabric]: /azure/service-fabric/
 

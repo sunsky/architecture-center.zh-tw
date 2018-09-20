@@ -3,12 +3,12 @@ title: 適用於開發/測試工作負載的 SAP
 description: 開發/測試環境的 SAP 案例
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 675a5cb4b1ee4001ca50d24c145ce1a177f90da4
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060959"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389174"
 ---
 # <a name="sap-for-devtest-workloads"></a>適用於開發/測試工作負載的 SAP
 
@@ -33,8 +33,8 @@ ms.locfileid: "39060959"
 
 此案例中會討論佈建單一 SAP 系統資料庫和單一虛擬機器上的 SAP 應用程式伺服器，整個案例的資料流程如下所示：
 
-1. 展示層中的客戶會使用他們的 SAP GUI，或是其他內部部署的使用者介面 (Internet Explorer、Excel 或其他 Web 應用程式) 來存取以 Azure 為基礎的 SAP 系統。
-2. 會透過使用已建立的 Express Route 來提供連線能力。 Azure 中的 Express Route 會在 Express Route 閘道終止。 網路流量會透過 Express Route 閘道路由至閘道子網路，以及從閘道子網路路由至應用程式層輪輻子網路 (請參閱 [hub-spoke][hub-spoke] 模式)，然後透過網路安全性群組路由至 SAP 應用程式虛擬機器。
+1. 展示層中的客戶會使用他們的 SAP GUI，或是其他內部部署的使用者介面 (Internet Explorer、Excel 或其他 Web 應用程式)，來存取以 Azure 為基礎的 SAP 系統。
+2. 會透過使用已建立的 Express Route 來提供連線能力。 Azure 中的 Express Route 連線會在 Express Route 閘道終止。 網路流量會透過 Express Route 閘道路由至閘道子網路，以及從閘道子網路路由至應用程式層輪輻子網路 (請參閱 [hub-spoke][hub-spoke] 模式)，然後透過網路安全性群組路由至 SAP 應用程式虛擬機器。
 3. 身分識別管理伺服器會提供驗證服務。
 4. 「跳躍箱」會提供本機管理功能。
 
@@ -92,7 +92,7 @@ ms.locfileid: "39060959"
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-將不會安裝 \* SAP，您必須在建置基礎結構之後，以手動方式執行這項操作。
+\* SAP 不會自動安裝，請在建置基礎結構之後，手動安裝它。
 
 <!-- links -->
 [reference architecture]:  /azure/architecture/reference-architectures/sap

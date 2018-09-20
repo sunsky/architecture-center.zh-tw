@@ -4,12 +4,12 @@ description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 25d961d6bb753b1f515fc073e51bbb912cc59db7
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29783507"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584760"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
@@ -99,6 +99,10 @@ ms.locfileid: "29783507"
 **使用時間點還原從人為錯誤中復原。**  時間點還原會使您的資料庫回到較早的時間點。 如需詳細資訊，請參閱[使用自動化資料庫備份來復原 Azure SQL Database][sql-restore]。
 
 **使用異地還原從服務中斷中復原。** 異地還原可從異地備援備份還原資料庫。  如需詳細資訊，請參閱[使用自動化資料庫備份來復原 Azure SQL Database][sql-restore]。
+
+## <a name="sql-data-warehouse"></a>SQL 資料倉儲
+
+**請勿停用異地備份。** 根據預設，Microsoft Azure SQL 資料倉儲每 24 小時會完整備份您的資料以進行災害復原。 建議您不要關閉這項功能。 如需詳細資訊，請參閱[異地備份](/azure/sql-data-warehouse/backup-and-restore#geo-backups)。
 
 ## <a name="sql-server-running-in-a-vm"></a>在虛擬機器中執行的 SQL Server
 

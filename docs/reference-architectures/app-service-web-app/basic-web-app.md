@@ -4,12 +4,12 @@ description: 在 Microsoft Azure 中執行的基本 Web 應用程式建議使用
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: e4992564bc4e8a7b71fc7c5f0bf1662f5e13d5c1
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958835"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389395"
 ---
 # <a name="basic-web-application"></a>基本 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -152,7 +152,7 @@ App Service 應用程式一律會有一個名為 `production` 的部署位置，
 
 使用 [New Relic][new-relic] 或 [Application Insights][app-insights] 來監視負載下的應用程式效能和行為。 請留意 Application insights 的[資料速率限制][app-insights-data-rate]。
 
-使用 [Visual Studio Team Services][vsts] 等工具執行負載測試。 如需雲端應用程式中的一般效能分析概觀，請參閱[效能分析入門][perf-analysis]。
+使用 [Azure DevOps][azure-devops] 或 [Visual Studio Team Foundation Server][tfs] 等工具執行負載測試。 如需雲端應用程式中的一般效能分析概觀，請參閱[效能分析入門][perf-analysis]。
 
 針對應用程式進行疑難排解的秘訣：
 
@@ -224,6 +224,7 @@ New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <r
 [app-service-security]: /azure/app-service-web/web-sites-security
 [app-settings]: /azure/app-service-web/web-sites-configure
 [arm-template]: /azure/azure-resource-manager/resource-group-overview#resource-groups
+[azure-devops]: /azure/devops/
 [azure-dns]: /azure/dns/dns-overview
 [custom-domain-name]: /azure/app-service-web/web-sites-custom-domain-name
 [deploy]: /azure/app-service-web/web-sites-deploy
@@ -252,9 +253,9 @@ New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <r
 [sql-resource-limits]: /azure/sql-database/sql-database-resource-limits
 [ssl-cert]: /azure/app-service-web/web-sites-purchase-ssl-web-site
 [troubleshoot-blade]: https://azure.microsoft.com/updates/self-service-troubleshooting-for-app-service-web-apps-customers/
+[tfs]: /tfs/index
 [troubleshoot-web-app]: /azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
 [web-app-autoscale]: /azure/app-service-web/web-sites-scale
 [web-app-backup]: /azure/app-service-web/web-sites-backup
 [web-app-log-stream]: /azure/app-service-web/web-sites-enable-diagnostic-log#streamlogs

@@ -3,12 +3,12 @@ title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326051"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584743"
 ---
 # <a name="n-tier-application-with-sql-server"></a>具有 SQL Server 的多層式架構 (N-tier) 應用程式
 
@@ -154,6 +154,8 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure Key Vault 整合][sql-keyvault]。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
+我們建議啟用 [Azure DDoS 保護標準](/azure/virtual-network/ddos-protection-overview)，該標準為 VNet 中的資源提供額外的 DDoS 安全防護功能。 雖然基本 DDoS 保護會隨著 Azure 平台而自動啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。  
+
 ## <a name="deploy-the-solution"></a>部署解決方案
 
 此參考架構的部署可在 [GitHub][github-folder] 上取得。 請注意，整個部署可能需要長達 2 小時的時間，包括執行指令碼以設定 AD DS、Windows Server 容錯移轉叢集和 SQL Server 可用性設定組。
@@ -220,7 +222,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. 在 `n-tier-windows.json` 檔案中，搜尋 `[replace-with-password]` 的所有執行個體，並以強式密碼加以取代。 儲存檔案。
+8. 在 `n-tier-windows.json` 檔案中，搜尋 `[replace-with-password]` 和 `[replace-with-sql-password]` 的所有執行個體，並以強式密碼加以取代。 儲存檔案。
 
     > [!NOTE]
     > 如果您變更系統管理員使用者名稱，您也必須在 JSON 檔案中更新 `extensions` 區塊。 

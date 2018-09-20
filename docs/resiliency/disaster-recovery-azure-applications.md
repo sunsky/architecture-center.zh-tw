@@ -3,12 +3,12 @@ title: Azure 應用程式的災害復原
 description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
-ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
+ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
+ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37343374"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45556677"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 應用程式的災害復原
 
@@ -299,7 +299,10 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 | 服務 | 話題 |
 |---------|-------|
+| 適用於 MySQL 的 Azure 資料庫 | [使用「適用於 MySQL 的 Azure 資料庫」的商務持續性概觀](/azure/mysql/concepts-business-continuity) |
+| 適用於 PostgreSQL 的 Azure 資料庫 | [使用「適用於 PostgreSQL 的 Azure 資料庫」的商務持續性概觀](/azure/postgresql/concepts-business-continuity)
 | 雲端服務 | [發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦](/azure/cloud-services/cloud-services-disaster-recovery-guidance) |
+| Cosmos DB | [Azure Cosmos DB 中商務持續性的自動區域性容錯移轉](/azure/cosmos-db/regional-failover)
 | Key Vault | [Azure Key Vault 的可用性與備援](/azure/key-vault/key-vault-disaster-recovery-guidance) |
 |儲存體 | [如果 Azure 儲存體發生中斷怎麼辦](/azure/storage/storage-disaster-recovery-guidance) |
 | SQL Database | [還原 Azure SQL Database 或容錯移轉到次要資料庫](/azure/sql-database/sql-database-disaster-recovery) |

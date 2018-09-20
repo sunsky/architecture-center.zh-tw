@@ -3,12 +3,12 @@ title: Azure 上適用於預約旅館的交談聊天機器人
 description: 經過證明的案例，可以使用 Azure Bot 服務、認知服務和 LUIS、Azure SQL Database 及 Application Insights，為商務應用程式建置交談聊天機器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 95a0fd77a99a348704a1d916de534a98d0b03448
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060858"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389327"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 
@@ -64,7 +64,7 @@ ms.locfileid: "39060858"
 
 ### <a name="scalability"></a>延展性
 
-此案例會使用 Azure App Service。 您可以使用 App Service，自動調整執行聊天機器人的執行個體數目。 這項功能可讓您的 Web 應用程式和聊天機器人掌握客戶需求。 如需自動調整規模的詳細資訊，請參閱架構中心的[自動調整規模最佳做法][autoscaling]。
+此案例會使用 Azure App Service。 您可以使用 App Service，自動調整執行聊天機器人的執行個體數目。 這項功能可讓您的 Web 應用程式和聊天機器人掌握客戶需求。 如需自動調整規模的詳細資訊，請參閱 Azure 架構中心的[自動調整規模最佳做法][autoscaling]。
 
 如需其他延展性主題，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
@@ -141,11 +141,11 @@ az bot create \
 
 為了探索執行此案例的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
 
-我們根據您期望聊天機器人處理的訊息量，提供了 3 個範例成本設定檔：
+我們根據您期望聊天機器人處理的訊息數，提供了 3 個範例成本設定檔：
 
-* [小型][small-pricing]：這個設定檔適用於每月處理 < 10000 則訊息。
-* [中型][medium-pricing]：這個設定檔適用於每月處理 < 500000 則訊息。
-* [大型][large-pricing]：這個設定檔適用於每月處理 < 1000 萬則訊息。
+* [小型][small-pricing]：這個定價範例適用於每月處理低於 10,000 個映像。
+* [中型][medium-pricing]：這個定價範例適用於每月處理低於 500,000 個映像。
+* [大型][large-pricing]：這個定價範例適用於每月處理低於 1,000 萬個映像。
 
 ## <a name="related-resources"></a>相關資源
 

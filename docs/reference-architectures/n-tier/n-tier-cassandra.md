@@ -3,12 +3,12 @@ title: 具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 description: 如何在 Microsoft Azure 上執行適用於多層式架構的 Linux VM。
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142228"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584709"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 
@@ -138,11 +138,13 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
+我們建議啟用 [Azure DDoS 保護標準](/azure/virtual-network/ddos-protection-overview)，該標準為 VNet 中的資源提供額外的 DDoS 安全防護功能。 雖然基本 DDoS 保護會隨著 Azure 平台而自動啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。  
+
 ## <a name="deploy-the-solution"></a>部署解決方案
 
 此參考架構的部署可在 [GitHub][github-folder] 上取得。 
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

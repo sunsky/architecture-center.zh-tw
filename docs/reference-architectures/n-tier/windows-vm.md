@@ -3,12 +3,12 @@ title: 在 Azure 上執行 Windows VM
 description: 如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: d790c9a6693dca751e0ba05f1fd3c23756cf53bb
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: a20359f90e7b20486defce3110b2db6f7e0027ba
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142211"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584692"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上執行 Windows VM
 
@@ -116,6 +116,8 @@ az vm list-sizes --location <location>
 
 **資料加密。** 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。 
 
+**DDoS 保護**. 我們建議啟用 [Azure DDoS 保護標準](/azure/virtual-network/ddos-protection-overview)，該標準為 VNet 中的資源提供額外的 DDoS 安全防護功能。 雖然基本 DDoS 保護會隨著 Azure 平台而自動啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。  
+
 ## <a name="deploy-the-solution"></a>部署解決方案
 
 適用於此架構的部署可在 [GitHub][github-folder] 上取得。 它會部署下列各項：
@@ -125,7 +127,7 @@ az vm list-sizes --location <location>
   * 執行最新版 Windows Server 2016 Datacenter Edition 的 VM。
   * 可將兩個資料磁碟格式化的範例自訂指令碼擴充功能，以及可部署 Internet Information Services (IIS) 的 PowerShell DSC 指令碼。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

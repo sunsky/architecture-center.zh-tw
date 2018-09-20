@@ -3,12 +3,12 @@ title: Azure 上的保險理賠映像分類
 description: 經過證明的案例，可以將映像處理建置到您的 Azure 應用程式。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060824"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389157"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保險理賠映像分類
 
@@ -16,7 +16,7 @@ ms.locfileid: "39060824"
 
 潛在的應用程式包含分類潮流網站的映像、分析保險理賠的文字和映像，或了解來自遊戲螢幕擷取畫面的遙測資料。 在過去，公司需要開發機器學習服務模型的專業知識、定型模型，最終透過其自訂程序執行映像，以取得映像中的資料。
 
-藉由使用 Azure 服務 (例如電腦視覺 API 和 Azure Functions)，公司可以消除管理個別伺服器的需求，同時減少成本及利用 Microsoft 已透過認知服務針對處理映像開發的專業知識。 這個案例特別說明映像處理案例。 如果您有不同的 AI 需求，請考慮整套的[認知服務][cognitive-docs]。
+藉由使用 Azure 服務 (例如電腦視覺 API 和 Azure Functions)，公司可以消除管理個別伺服器的需求，同時減少成本及利用 Microsoft 已透過認知服務針對處理映像開發的專業知識。 這個範例案例特別說明映像處理的使用案例。 如果您有不同的 AI 需求，請考慮整套的[認知服務][cognitive-docs]。
 
 ## <a name="related-use-cases"></a>相關使用案例
 
@@ -63,11 +63,11 @@ ms.locfileid: "39060824"
 
 ### <a name="scalability"></a>延展性
 
-大部分情況下，此案例的所有元件都是會自動調整的受控服務。 幾個值得注意的例外狀況：Azure Functions 的上限為 200 個執行個體。 如果您需要調整超過上限，請考慮多個區域或應用程式方案。
+此範例案例中使用的大部分元件都是會自動調整的受控服務。 幾個值得注意的例外狀況：Azure Functions 的上限為 200 個執行個體。 如果您需要調整超過此上限，請考慮多個區域或應用程式方案。
 
-Cosmos DB 不會依據佈建要求單位 (RU) 自動調整。  如需評估需求的指引，請參閱我們文件中的[要求單位][request-units]。 若要充分利用 Cosmos DB 中的調整，您也應該參閱[分割區索引鍵][partition-key]。
+Cosmos DB 不會依據佈建要求單位 (RU) 自動調整。  如需評估需求的指引，請參閱我們文件中的[要求單位][request-units]。 若要充分利用 Cosmos DB 中的調整，請探索[分割區索引鍵][partition-key]。
 
-NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP 定理的概念)。  不過，如果索引鍵-值資料模型用於此案例中，由於大部分作業定義為不可部分完成，所以不太需要交易一致性。 [選擇正確的資料存放區](../../guide/technology-choices/data-store-overview.md)的額外指引可於架構中心找到。
+NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP 定理的概念)。  在此範例案例中，會使用索引鍵-值資料模型，由於大部分作業定義為不可部分完成，所以不太需要交易一致性。 [選擇正確的資料存放區](../../guide/technology-choices/data-store-overview.md)的額外指引可於 Azure 架構中心找到。
 
 如需設計可調整解決方案的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
@@ -87,17 +87,17 @@ NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP
 
 為了探索執行此案例的成本，所有服務會在成本計算機中預先設定。 若要查看價格如何針對您的特定使用案例而變更，請變更適當的變數，以符合您預期的流量。
 
-我們根據流量 (假設所有映像的大小是 100kb)，提供了三個範例成本設定檔：
+我們根據流量 (假設所有映像的大小是 100 kb)，提供了三個範例成本設定檔：
 
-* [小型][pricing]：這個設定檔適用於每月處理 &lt; 5000 個映像。
-* [中型][medium-pricing]：這個設定檔適用於每月處理 500000 個映像。
-* [大型][large-pricing]：這個設定檔適用於每月處理 5000 萬個映像。
+* [小型][pricing]：這個定價範例適用於每月處理 &lt; 5000 個映像。
+* [中型][medium-pricing]：這個定價範例適用於每月處理 500,000 個映像。
+* [大型][large-pricing]：這個定價範例適用於每月處理 5,000 萬個映像。
 
 ## <a name="related-resources"></a>相關資源
 
 如需此案例的引導式學習路徑，請參閱[在 Azure 中建置無伺服器 Web 應用程式][serverless]。  
 
-在將這個解決方案放入生產環境之前，請檢閱 Azure Functions [最佳做法][functions-best-practices]。
+在將這個範例案例部署到生產環境之前，請檢閱 Azure Functions [最佳做法][functions-best-practices]。
 
 <!-- links -->
 [pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380

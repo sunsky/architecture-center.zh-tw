@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326315"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329873"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -45,7 +45,7 @@ ms.locfileid: "43326315"
 | Contoso |IT |InternalApps |Production |Contoso IT InternalApps Production |
 | Contoso |IT |InternalApps |Dev |Contoso IT InternalApps Dev |
 
-如需有關如何組織大型企業訂用帳戶的詳細資訊，請閱讀我們的[精準的訂用帳戶控管指引][scaffold]。
+如需有關如何組織大型企業訂用帳戶的詳細資訊，請參閱 [Azure 企業版 Scaffold - 規範性訂用帳戶治理][scaffold]。
 
 ## <a name="use-affixes-to-avoid-ambiguity"></a>使用詞綴以避免名稱不夠明確
 
@@ -195,4 +195,4 @@ Blob 名稱可以包含任何字元組合，但是必須正確逸出保留的 UR
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold
+[scaffold]: /azure/architecture/cloud-adoption/appendix/azure-scaffold

@@ -1,16 +1,16 @@
 ---
-title: Azure for AWS 專業人員
+title: 適用於 AWS 專業人員的 Azure
 description: 了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。
 keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012615"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329890"
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -96,7 +96,7 @@ Azure 提供數種方式來管理您的資源：
 
 在這些介面中，資源群組是 Azure 資源建立、部署或修改方式的核心。 這類似於「堆疊」在 CloudFormation 部署期間群組 AWS 資源所扮演的角色。
 
-這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](http://www.spinnaker.io/) 也會在 Azure 上提供。
+這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](http://www.spinnaker.io/))，也會在 Azure 上提供。
 
 ### <a name="see-also"></a>另請參閱
 
@@ -156,7 +156,7 @@ Azure [異地備援儲存體](https://azure.microsoft.com/documentation/articles
 
 ## <a name="services"></a>服務
 
-如需所有服務在平台之間對應方式的完整清單，請參閱[完成 AWS 和 Azure 服務比較矩陣](https://aka.ms/azure4aws-services)。
+如需服務在平台之間對應方式的清單，請參閱 [AWS 與 Azure 服務比較](./services.md)。
 
 並非所有區域中都可使用所有的 Azure 產品和服務。 如需詳細資料，請參閱[依區域的產品](https://azure.microsoft.com/regions/services/)頁面。 您可以在[服務等級協定](https://azure.microsoft.com/support/legal/sla/)頁面上找到每個 Azure 產品或服務的執行時間保證和停機時間信用原則。
 
@@ -175,8 +175,6 @@ Azure [異地備援儲存體](https://azure.microsoft.com/documentation/articles
 -   [Azure 中的虛擬機器大小 (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
 不同於 AWS 的每個第二個計費，Azure 隨選 VM 會依分鐘計費。
-
-Azure 與 EC2 Spot 執行個體或專用主機並沒有對等項目。
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>適用於 VM 磁碟的 EBS 和 Azure 儲存體
 
@@ -262,7 +260,7 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 
 -   [模式與做法：內容傳遞網路 (CDN) 指引](https://azure.microsoft.com/documentation/articles/best-practices-cdn/)
 
-### <a name="networking"></a>網路
+### <a name="networking"></a>網路功能
 
 #### <a name="elastic-load-balancing-azure-load-balancer-and-azure-application-gateway"></a>彈性負載平衡、Azure Load Balancer 以及 Azure 應用程式閘道
 
@@ -428,8 +426,6 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 
 ## <a name="next-steps"></a>後續步驟
 
--   [完成 AWS 和 Azure 服務比較矩陣](https://aka.ms/azure4aws-services)
-
 -   [互動式 Azure 平台概略圖](http://azureplatform.azurewebsites.net/)
 
 -   [開始使用 Azure](https://azure.microsoft.com/get-started/)
@@ -437,8 +433,6 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 -   [Azure 解決方案架構](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure 參考架構](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [模式與做法：Azure 指導方針](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [免費線上課程：AWS 專家適用的 Microsoft Azure](http://aka.ms/azureforaws)
 
