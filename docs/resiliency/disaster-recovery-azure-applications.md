@@ -2,13 +2,13 @@
 title: Azure 應用程式的災害復原
 description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
 author: adamglick
-ms.date: 05/26/2017
-ms.openlocfilehash: faae658d91ec0cb2dd5dc436e67aa9b494fd4b49
-ms.sourcegitcommit: 46ed67297e6247f9a80027cfe891a5e51ee024b4
+ms.date: 09/12/2018
+ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45556677"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584794"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 應用程式的災害復原
 
@@ -118,6 +118,9 @@ Azure Redis 快取從可提供災害復原優點的雲端服務部署，提供�
 
 Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔案複本。 不過，執行備份程序的頻率可決定您的 RPO，而 RPO 就是您在災害案例中可能會遺失的資料量。 例如，假設您在每個整點執行備份，而災害發生在整點前的兩分鐘。 您會遺失上次執行備份後所記錄的 58 分鐘資料。 此外，若要防止全區域的服務中斷，您應該將 BACPAC 檔案複製到替代區域。 然後，您可選擇在替代區域中還原這些備份。 如需詳細資訊，請參閱 [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](/azure/sql-database/sql-database-business-continuity/)。
 
+#### <a name="sql-data-warehouse"></a>SQL 資料倉儲
+對於 SQL 資料倉儲，請使用[異地備份](/azure/sql-data-warehouse/backup-and-restore#geo-backups)還原至配對區域以進行災害復原。 這些備份作業每隔 24 小時進行一次，且可於 20 分鐘內在配對區域內還原。 依預設，所有 SQL 資料倉儲都會啟用這項功能。 如需有關如何還原資料倉儲的詳細資訊，請參閱[使用 PowerShell 從 Azure 地理區域還原](/azure/sql-data-warehouse/sql-data-warehouse-restore#restore-from-an-azure-geographical-region-using-powershell)。
+
 #### <a name="azure-storage"></a>Azure 儲存體
 對於 Azure 儲存體，您可以開發自訂備份程序，或使用某個協力廠商備份工具。 請注意，在儲存體資源會相互參考的大多數應用程式設計中，有額外的複雜性。 比方說，假設 SQL Database 中有一個資料行連結至 Azure 儲存體中的 Blob。 如果備份未同時進行，則資料庫可能有失敗前未備份 Blob 的指標。 應用程式或災害復原計畫必須實作相關程序來處理復原後的此種不一致情況。
 
@@ -127,7 +130,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 ### <a name="reference-data-pattern-for-disaster-recovery"></a>災害復原的參考資料模式
 參考資料是可支援應用程式功能的唯讀資料。 它通常不會頻繁變更。 雖然備份和還原是一種用來處理全區域服務中斷的方法，但 RTO 相對較長。 當您將應用程式部署到次要地區時，有些策略可改善參考資料的 RTO。
 
-因為參考的資料變更很少，可以改善 RTO，藉由維護永久複本的次要地區中的參考資料。 這可排除在災害事件中還原備份所需的時間。 為了符合多重區域的災害復原需求，您必須在多個區域上一起部署應用程式和參考資料。 如 [高可用性的參考資料模式](high-availability-azure-applications.md#reference-data-pattern-for-high-availability)所述，您也可以將參考資料部署到角色本身、外部儲存體或兩者的組合。
+因為參考的資料變更很少，可以改善 RTO，藉由維護永久複本的次要地區中的參考資料。 這可排除在災害事件中還原備份所需的時間。 為了符合多重區域的災害復原需求，您必須在多個區域上一起部署應用程式和參考資料。 您也可以將參考資料部署到角色本身、外部儲存體或兩者的組合。
 
 計算節點內的參考資料部署模型暗中符合災害復原需求。 您必須將參考資料的複本部署到每個區域，才可將參考資料部署至 SQL Database。 Azure 儲存體適用相同的策略。 您必須將 Azure 儲存體上儲存的任何參考資料複本部署到主要和次要地區。
 
@@ -153,7 +156,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 
 > [!NOTE]
 > 本文件大部分著重於平台即服務 (PaaS)。 不過，有其他複寫和可用性選項可供使用 Azure 虛擬機器的混合式應用程式使用。 這些混合式應用程式會使用基礎結構即服務 (IaaS) 在 Azure 中的虛擬機器上裝載 SQL Server。 這允許 SQL Server 中的傳統可用性方法，例如 AlwaysOn 可用性群組或記錄傳送。 有些技術 (例如 AlwaysOn) 僅適用於內部部署 SQL Server 執行個體與 Azure 虛擬機器之間。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr/)。
-> 
+>
 > 
 
 #### <a name="reduced-application-functionality-for-transaction-capture"></a>降低應用程式功能以擷取交易
@@ -308,5 +311,4 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 | SQL Database | [還原 Azure SQL Database 或容錯移轉到次要資料庫](/azure/sql-database/sql-database-disaster-recovery) |
 | 虛擬機器 | [發生影響 Azure 虛擬機器的 Azure 服務中斷事件時該怎麼辦](/azure/virtual-machines/virtual-machines-disaster-recovery-guidance) |
 | 虛擬網路 | [虛擬網路 – 商務持續性](/azure/virtual-network/virtual-network-disaster-recovery-guidance) |
-
 
