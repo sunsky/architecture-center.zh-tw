@@ -65,30 +65,6 @@ items:
         href: guide/design-principles/build-for-business.md
     - name: 軟體品質的要素
       href: guide/pillars.md
-    - name: 雲端架構的最佳做法
-      items:
-      - name: API 設計
-        href: best-practices/api-design.md
-      - name: API 實作
-        href: best-practices/api-implementation.md
-      - name: 自動調整
-        href: best-practices/auto-scaling.md
-      - name: 背景作業作業
-        href: best-practices/background-jobs.md
-      - name: 快取
-        href: best-practices/caching.md
-      - name: 內容傳遞網路
-        href: best-practices/cdn.md
-      - name: 資料分割
-        href: best-practices/data-partitioning.md
-      - name: 監視和診斷
-        href: best-practices/monitoring.md
-      - name: 命名慣例
-        href: best-practices/naming-conventions.md
-      - name: 暫時性錯誤處理
-        href: best-practices/transient-faults.md
-      - name: 特定服務的重試指引
-        href: best-practices/retry-service-specific.md
   - name: 資料架構指南
     items:
     - name: 簡介
@@ -251,6 +227,30 @@ items:
       href: patterns/throttling.md
     - name: Valet 金鑰
       href: patterns/valet-key.md
+  - name: 雲端應用程式的最佳做法
+    items:
+    - name: API 設計
+      href: best-practices/api-design.md
+    - name: API 實作
+      href: best-practices/api-implementation.md
+    - name: 自動調整
+      href: best-practices/auto-scaling.md
+    - name: 背景作業作業
+      href: best-practices/background-jobs.md
+    - name: 快取
+      href: best-practices/caching.md
+    - name: 內容傳遞網路
+      href: best-practices/cdn.md
+    - name: 資料分割
+      href: best-practices/data-partitioning.md
+    - name: 監視和診斷
+      href: best-practices/monitoring.md
+    - name: 命名慣例
+      href: best-practices/naming-conventions.md
+    - name: 暫時性錯誤處理
+      href: best-practices/transient-faults.md
+    - name: 特定服務的重試指引
+      href: best-practices/retry-service-specific.md
   - name: 效能反模式
     items:
     - name: 概觀
@@ -271,62 +271,12 @@ items:
       href: antipatterns/no-caching/index.md
     - name: 同步 I/O
       href: antipatterns/synchronous-io/index.md
-  - name: 在 Azure 上建置微服務
+  - name: 適用於 AWS 專業人員的 Azure
     items:
-    - name: 簡介
-      href: microservices/index.md
-    - name: 網域分析
-      href: microservices/domain-analysis.md
-    - name: 識別微服務界限
-      href: microservices/microservice-boundaries.md
-    - name: 資料考量
-      href: microservices/data-considerations.md
-    - name: 服務間通訊
-      href: microservices/interservice-communication.md
-    - name: API 設計
-      href: microservices/api-design.md
-    - name: 擷取與工作流程
-      href: microservices/ingestion-workflow.md
-    - name: API 閘道
-      href: microservices/gateway.md
-    - name: 記錄和監視
-      href: microservices/logging-monitoring.md
-    - name: CI/CD
-      href: microservices/ci-cd.md
-  - name: 管理多組織用戶共享身分識別
-    items:
-    - name: 簡介
-      href: multitenant-identity/index.md
-    - name: Tailspin 情節
-      href: multitenant-identity/tailspin.md
-    - name: 驗證
-      href: multitenant-identity/authenticate.md
-    - name: 宣告式身分識別
-      href: multitenant-identity/claims.md
-    - name: 租用戶註冊
-      href: multitenant-identity/signup.md
-    - name: 應用程式角色
-      href: multitenant-identity/app-roles.md
-    - name: Authorization
-      href: multitenant-identity/authorize.md
-    - name: 保護 Web API
-      href: multitenant-identity/web-api.md
-    - name: 快取存取權杖
-      href: multitenant-identity/token-cache.md
-    - name: 用戶端判斷提示
-      href: multitenant-identity/client-assertion.md
-    - name: 保護應用程式祕密
-      href: multitenant-identity/key-vault.md
-    - name: 與客戶的 AD FS 同盟
-      href: multitenant-identity/adfs.md
-    - name: 執行問卷應用程式
-      href: multitenant-identity/run-the-app.md
-  - name: 從雲端服務移轉至 Service Fabric
-    items:
-    - name: 將雲端服務應用程式移轉至 Service Fabric
-      href: service-fabric/migrate-from-cloud-services.md
-    - name: 重構 Service Fabric 應用程式
-      href: service-fabric/refactor-migrated-app.md
+    - name: 概觀
+      href: aws-professional/index.md
+    - name: 服務比較
+      href: aws-professional/services.md
 - name: 範例案例
   items:
   - name: 概觀
@@ -389,14 +339,6 @@ items:
   items:
   - name: 概觀
     href: reference-architectures/index.md
-  - name: App Service Web 應用程式
-    items:
-    - name: 基本 Web 應用程式
-      href: reference-architectures/app-service-web-app/basic-web-app.md
-    - name: 改善的延展性
-      href: reference-architectures/app-service-web-app/scalable-web-app.md
-    - name: 多重區域部署
-      href: reference-architectures/app-service-web-app/multi-region.md
   - name: 巨量資料
     items:
     - name: 具 SQL 資料倉儲的 Enterprise BI
@@ -431,7 +373,7 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: 將 AD FS 擴充至 Azure
       href: reference-architectures/identity/adfs.md
-  - name: 多層式架構 (N-tier) 的應用程式
+  - name: 多層式架構 (N-Tier) 應用程式
     items:
     - name: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
       href: reference-architectures/n-tier/n-tier-sql-server.md
@@ -459,10 +401,78 @@ items:
       href: reference-architectures/sap/sap-s4hana.md
     - name: Azure 上的 SAP HANA 大型執行個體
       href: reference-architectures/sap/hana-large-instances.md
-  - name: Jenkins 伺服器
-    href: reference-architectures/jenkins/index.md
-  - name: SharePoint Server 2016
-    href: reference-architectures/sharepoint/index.md
+  - name: VM 工作負載
+    items:
+    - name: Jenkins 伺服器
+      href: reference-architectures/jenkins/index.md
+    - name: SharePoint Server 2016
+      href: reference-architectures/sharepoint/index.md
+  - name: Web 應用程式
+    items:
+    - name: 基本 Web 應用程式
+      href: reference-architectures/app-service-web-app/basic-web-app.md
+    - name: 改善的延展性
+      href: reference-architectures/app-service-web-app/scalable-web-app.md
+    - name: 多重區域部署
+      href: reference-architectures/app-service-web-app/multi-region.md
+- name: 設計指南
+  items:
+  - name: 在 Azure 上建置微服務
+    items:
+    - name: 簡介
+      href: microservices/index.md
+    - name: 網域分析
+      href: microservices/domain-analysis.md
+    - name: 識別微服務界限
+      href: microservices/microservice-boundaries.md
+    - name: 資料考量
+      href: microservices/data-considerations.md
+    - name: 服務間通訊
+      href: microservices/interservice-communication.md
+    - name: API 設計
+      href: microservices/api-design.md
+    - name: 擷取與工作流程
+      href: microservices/ingestion-workflow.md
+    - name: API 閘道
+      href: microservices/gateway.md
+    - name: 記錄和監視
+      href: microservices/logging-monitoring.md
+    - name: CI/CD
+      href: microservices/ci-cd.md
+  - name: 管理多組織用戶共享身分識別
+    items:
+    - name: 簡介
+      href: multitenant-identity/index.md
+    - name: Tailspin 情節
+      href: multitenant-identity/tailspin.md
+    - name: 驗證
+      href: multitenant-identity/authenticate.md
+    - name: 宣告式身分識別
+      href: multitenant-identity/claims.md
+    - name: 租用戶註冊
+      href: multitenant-identity/signup.md
+    - name: 應用程式角色
+      href: multitenant-identity/app-roles.md
+    - name: Authorization
+      href: multitenant-identity/authorize.md
+    - name: 保護 Web API
+      href: multitenant-identity/web-api.md
+    - name: 快取存取權杖
+      href: multitenant-identity/token-cache.md
+    - name: 用戶端判斷提示
+      href: multitenant-identity/client-assertion.md
+    - name: 保護應用程式祕密
+      href: multitenant-identity/key-vault.md
+    - name: 與客戶的 AD FS 同盟
+      href: multitenant-identity/adfs.md
+    - name: 執行問卷應用程式
+      href: multitenant-identity/run-the-app.md
+  - name: 從雲端服務移轉至 Service Fabric
+    items:
+    - name: 將雲端服務應用程式移轉至 Service Fabric
+      href: service-fabric/migrate-from-cloud-services.md
+    - name: 重構 Service Fabric 應用程式
+      href: service-fabric/refactor-migrated-app.md
 - name: 設計檢閱架構
   items:
   - name: 針對復原而設計
@@ -517,17 +527,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-- name: Azure 虛擬資料中心
-  href: vdc/index.md
-- name: 適用於 AWS 專業人員的 Azure
-  items:
-  - name: 概觀
-    href: aws-professional/index.md
-  - name: 服務比較
-    href: aws-professional/services.md
-ms.openlocfilehash: 804207bfa17a0ef1ef61d5f0729c8e5df6af2089
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.openlocfilehash: 87c781aabb78f339487dea41885a5e562be9df3e
+ms.sourcegitcommit: 36398937420b9a6a2c45759b90847a1819df4451
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46533944"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47175619"
