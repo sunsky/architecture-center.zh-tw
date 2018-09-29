@@ -3,12 +3,12 @@ title: 忙碌資料庫反模式
 description: 對資料庫伺服器進行卸載處理，可能會導致效能和延展性問題。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 9fdbde0731a1be570ef611894a9d23a1be87f4e7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538788"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428902"
 ---
 # <a name="busy-database-antipattern"></a>忙碌資料庫反模式
 
@@ -20,7 +20,7 @@ ms.locfileid: "24538788"
 
 - 資料庫伺服器可能會花費太多時間進行處理，而不接受新的用戶端要求及擷取資料。
 - 資料庫通常是共用的資源，所以會在高使用的期間成為瓶頸。
-- 如果資料存放區計量付費，執行階段成本可能過高。 受管理的資料庫服務更是如此。 例如，[資料庫交易單位][ dtu] (DTU) 的 Azure SQL Database 費用。
+- 如果資料存放區計量付費，執行階段成本可能過高。 受控資料庫服務更是如此。 例如，[資料庫交易單位][ dtu] (DTU) 的 Azure SQL Database 費用。
 - 資料庫具有有限的相應增加容量，所以水平調整資料庫並不簡單。 因此，最好是將處理移到可以輕易相應放大的運算資源，例如，VM 或 App Service 應用程式。
 
 此反模式會發生通常是因為：
@@ -266,7 +266,7 @@ CPU 和 DTU 使用率會顯示儘管增加了輸送量，系統花費較長的�
 - [沒有直接關聯的擷取反模式][ExtraneousFetching]
 
 
-[dtu]: /sql-database/sql-database-what-is-a-dtu
+[dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/BusyDatabase
 

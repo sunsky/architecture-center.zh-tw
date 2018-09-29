@@ -3,12 +3,12 @@ title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
 ms.date: 07/14/2018
-ms.openlocfilehash: 04c69309e9f96e3bf7cd7faabeedd9b6d9da1ebd
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: 6141c73dc8e71f5546395c12421c470e2d16cf78
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334125"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428987"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -197,7 +197,7 @@ ms.locfileid: "39334125"
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p connections.json --deploy
     ```
 
-3. 執行下列命令以部署 jumpbox、AD 網域控制站與 SQL Server 虛擬機器。
+3. 執行下列命令以部署 jumpbox、AD 網域控制站與 SQL Server VM。
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
@@ -307,7 +307,7 @@ TcpTestSucceeded : True
 [sharepoint-reqs]: https://technet.microsoft.com/library/cc262485(v=office.16).aspx
 [sharepoint-search]: https://technet.microsoft.com/library/dn342836.aspx
 [sql-always-on]: /sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server
-[sql-performance]: /virtual-machines/windows/sql/virtual-machines-windows-sql-performance
+[sql-performance]: /azure/virtual-machines/windows/sql/virtual-machines-windows-sql-performance
 [sql-server-capacity-planning]: https://technet.microsoft.com/library/cc298801(v=office.16).aspx
 [sql-quorum]: https://technet.microsoft.com/library/cc731739(v=ws.11).aspx
 [sql-sharepoint-best-practices]: https://technet.microsoft.com/library/hh292622(v=office.16).aspx

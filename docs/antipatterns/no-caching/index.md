@@ -3,12 +3,12 @@ title: 沒有快取的反模式
 description: 重複擷取相同資料可能會降低效能和延展性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8a2bc3b473a30536cc1bef9e1dcad87acb46c4a9
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27595980"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428938"
 ---
 # <a name="no-caching-antipattern"></a>沒有快取的反模式
 
@@ -102,7 +102,7 @@ public class CacheService
 
 請注意，`GetAsync` 方法現在會呼叫`CacheService` 類別，而不是直接呼叫資料庫。 `CacheService` 類別會先嘗試從 Azure Redis 快取中取得項目。 如果 Redis 快取中找不到該值，則 `CacheService` 會叫用由呼叫端傳遞給它的匿名函式。 匿名函式會負責從資料庫擷取資料。 這項實作會將存放庫從特定快取解決方案中分離，以及從資料庫中分離 `CacheService`。 
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 
 - 如果無法使用快取，可能是因為暫時性錯誤，請勿將錯誤傳回用戶端。 相反地，請從原始資料來源擷取資料。 但是，請注意，當快取正在復原時，原始資料存放區可能忙於處理要求，因而導致逾時和連線失敗。 (畢竟，這是一個優先使用快取的動機。)使用[斷路器模式][circuit-breaker]等技術可避免資料來源癱瘓。
 
@@ -211,7 +211,7 @@ WHERE [Extent1].[BusinessEntityId] = @p__linq__0
 [caching-guidance]: ../../best-practices/caching.md
 [circuit-breaker]: ../../patterns/circuit-breaker.md
 [api-implementation]: ../../best-practices/api-implementation.md#optimizing-client-side-data-access
-[NewRelic]: http://newrelic.com/azure
+[NewRelic]: https://newrelic.com/partner/azure
 [NewRelic-server-requests]: _images/New-Relic.jpg
 [Performance-Load-Test-Results-Uncached]:_images/InitialLoadTestResults.jpg
 [Dynamic-Management-Views]: _images/SQLServerManagementStudio.jpg

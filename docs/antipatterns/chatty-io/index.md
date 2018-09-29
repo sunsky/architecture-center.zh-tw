@@ -3,12 +3,12 @@ title: 多對話 I/O 反模式
 description: 大量 I/O 要求可能會損害效能及回應能力。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: daa0c581d31c9389e2853f84075dc44d1e5ba78b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325871"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428562"
 ---
 # <a name="chatty-io-antipattern"></a>多對話 I/O 反模式
 
@@ -217,7 +217,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - 寫入資料時，鎖定資源的時間應避免超過所需時間，如此可減少長時間作業期間發生競爭的機率。 如果寫入作業會跨越多個資料存放區、檔案或服務，那麼則採用結果會一致的方法。 請參閱[資料一致性指引][data-consistency-guidance]。
 
-- 如果在寫入資料之前，您在記憶體中緩衝處理資料，則處理程序若損毀，資料會容易受到攻擊。 如果資料速率通常有高載或是相對疏鬆，較安全的作法可能是在[事件中樞](http://azure.microsoft.com/services/event-hubs/)等外部長期佇列 (durable queue) 中緩衝資料。
+- 如果在寫入資料之前，您在記憶體中緩衝處理資料，則處理程序若損毀，資料會容易受到攻擊。 如果資料速率通常有高載或是相對疏鬆，較安全的作法可能是在[事件中樞](https://azure.microsoft.com/services/event-hubs/)等外部長期佇列 (durable queue) 中緩衝資料。
 
 - 考慮快取從服務或資料庫中擷取的資料。 這可藉由避免發生相同資料的重複要求，進而有助於減少 I/O 數量。 如需詳細資訊，請參閱[快取最佳作法][caching-guidance]。
 
@@ -308,7 +308,7 @@ await SaveCustomerListToFileAsync(customers);
 [api-design]: ../../best-practices/api-design.md
 [caching-guidance]: ../../best-practices/caching.md
 [code-sample]:  https://github.com/mspnp/performance-optimization/tree/master/ChattyIO
-[data-consistency-guidance]: http://https://msdn.microsoft.com/library/dn589800.aspx
+[data-consistency-guidance]: https://msdn.microsoft.com/library/dn589800.aspx
 [ef]: /ef/
 [extraneous-fetching]: ../extraneous-fetching/index.md
 [new-relic]: https://newrelic.com/application-monitoring

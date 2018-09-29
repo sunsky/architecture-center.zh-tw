@@ -3,12 +3,12 @@ title: 同步 I/O 反模式
 description: 在 I/O 完成時封鎖呼叫執行緒，會降低效能並且影響垂直延展性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d5b3635565c6b71ef7716f54ee8cccc76093c3a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538548"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429004"
 ---
 # <a name="synchronous-io-antipattern"></a>同步 I/O 反模式
 
@@ -166,7 +166,7 @@ await LibraryIOOperationAsync();
 
 ### <a name="monitor-web-server-performance"></a>監視網頁伺服器效能
 
-針對 Azure Web 應用程式和 Web 角色，值得監視 IIS 網頁伺服器的效能。 特別注意要建立的要求佇列長度，要求是否在高度活動期間等候可用執行緒而遭到封鎖。 您可以啟用 Azure 診斷來蒐集這項資訊。 如需詳細資訊，請參閱：
+針對 Azure Web 應用程式和 Web 角色，值得監視 IIS 網頁伺服器的效能。 特別注意要建立的要求佇列長度，要求是否在高度活動期間等候可用執行緒而遭到封鎖。 您可以啟用 Azure 診斷來蒐集這項資訊。 如需詳細資訊，請參閱
 
 - [監視 Azure App Service 中的應用程式][web-sites-monitor]
 - [在 Azure 應用程式中建立及使用效能計數器][performance-counters]
@@ -197,7 +197,7 @@ await LibraryIOOperationAsync();
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
 
 
-[async-wrappers]: http://blogs.msdn.com/b/pfxteam/archive/2012/03/24/10287244.aspx
+[async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 

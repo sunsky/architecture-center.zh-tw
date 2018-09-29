@@ -3,12 +3,12 @@ title: Azure 虛擬資料中心
 description: Microsoft Azure 虛擬資料中心的資源
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: 5b5b6f58911e39ae1296722194b58c601b9baea8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43324751"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428086"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虛擬資料中心和 Enterprise 控制平面
 
@@ -17,9 +17,9 @@ Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還�
 ## <a name="resources"></a>資源
 <table>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Concepts">Azure 虛擬資料中心：概念</a></h3>
+        <h3><a href="https://aka.ms/VDC/Concepts">Azure 虛擬資料中心：概念</a></h3>
         <p>此電子書會說明如何將企業工作負載部署至 Azure 雲端平台，同時又能採用您現有的安全性和網路原則。</p>
     </td>
 </tr>
@@ -31,16 +31,16 @@ Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還�
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Lift">Azure 虛擬資料中心：原形移轉指南</a></h3>
+        <h3><a href="https://aka.ms/VDC/Lift">Azure 虛擬資料中心：原形移轉指南</a></h3>
         <p>本白皮書討論企業 IT 人員和決策者可用來識別及規劃應用程式和伺服器移轉至 Azure 的程序，而在此程序中會使用原形移轉方法，以將任何額外開發成本降至最低，同時將雲端裝載選項最佳化。</p>
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Deck">Azure 虛擬資料中心：簡報投影片</a></h3>
+        <h3><a href="https://aka.ms/VDC/Deck">Azure 虛擬資料中心：簡報投影片</a></h3>
         <p>此簡報投影片可探索 Azure 虛擬資料中心指引和工具。 其中涵蓋 VDC 目標、客戶驅動程式、Azure 區域，VDC 自動化的元素、工業化和信任的 Azure VDC，而結尾是以 CIO 指引為主的行動計畫。 此外，也提供支援和訓練資訊。</p>
     </td>
 </tr>
@@ -57,4 +57,4 @@ Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還�
 在 Azure 虛擬資料中心模型中，您可以套用隔離原則、讓雲端更像您所知的實體資料中心，以及達到您所需的安全性和信任層級。 任何企業 IT 團隊認定可實現上述目標的四個元件：軟體定義的網路功能、加密、身分識別管理，以及 Azure 平台的基礎合規性標準和認證。 這四個元件是讓虛擬資料中心成為現有基礎結構投資之信任擴充的關鍵。
 
 
-請繼續閱讀 <a href="http://aka.ms/VDC/eBook">Azure 虛擬資料中心概念</a>電子書。
+請繼續閱讀 <a href="https://aka.ms/VDC/eBook">Azure 虛擬資料中心概念</a>電子書。

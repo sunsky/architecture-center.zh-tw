@@ -1,16 +1,16 @@
 ---
-title: 適用於 AWS 專業人員的 Azure
+title: Azure for AWS 專業人員
 description: 了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。
 keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329890"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429633"
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -96,7 +96,7 @@ Azure 提供數種方式來管理您的資源：
 
 在這些介面中，資源群組是 Azure 資源建立、部署或修改方式的核心。 這類似於「堆疊」在 CloudFormation 部署期間群組 AWS 資源所扮演的角色。
 
-這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](http://www.spinnaker.io/))，也會在 Azure 上提供。
+這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/) 也會在 Azure 上提供。
 
 ### <a name="see-also"></a>另請參閱
 
@@ -426,15 +426,11 @@ AWS 裝置伺服陣列會提供跨裝置測試服務。 在 Azure 中，[Xamarin
 
 ## <a name="next-steps"></a>後續步驟
 
--   [互動式 Azure 平台概略圖](http://azureplatform.azurewebsites.net/)
-
 -   [開始使用 Azure](https://azure.microsoft.com/get-started/)
 
 -   [Azure 解決方案架構](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Azure 參考架構](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [免費線上課程：AWS 專家適用的 Microsoft Azure](http://aka.ms/azureforaws)
 
 
 <!-- links -->
