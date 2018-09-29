@@ -5,20 +5,20 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: c363ac01e798b522fa95f39586e28fe3af5fae4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541668"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429429"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租用戶應用程式中的身分識別
 
 此系列文章會說明多租用戶使用 Azure AD 進行驗證和身分識別管理時的最佳做法。
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
-建置多租用戶應用程式時，最初會遇到管理使用者身分識別的難題，因為現在每位使用者各屬於一名租用戶。 例如：
+建置多租用戶應用程式時，最初會遇到管理使用者身分識別的難題，因為現在每位使用者各屬於一名租用戶。 例如︰
 
 * 使用者透過其組織認證登入。
 * 使用者應該可以存取其組織的資料，但不能存取屬於其他租用戶的資料。
@@ -88,12 +88,12 @@ Azure Active Directory (Azure AD) 有一些絕佳功能，能夠支援這些所�
 
 本指南不考量多組織用戶管理的其他層面，例如參與、個別租用戶設定等等。
 
-[**下一步**][tailpin]
+[**下一主題**][tailpin]
 
 
 
 <!-- Links -->
-[ADConnect]: /azure/active-directory/active-directory-aadconnect
+[ADConnect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [AzureAD]: /azure/active-directory
 
 [與客戶的 AD FS 聯合]: adfs.md
