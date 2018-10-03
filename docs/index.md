@@ -3,12 +3,13 @@ title: Azure Architecture Center
 description: Azure Architecture Center 是官方中心，在其中可找到使用 Microsoft Azure 建立解決方案的指引、藍圖、模式和最佳做法。 此中心是由 Microsoft 模式與做法小組所策劃。
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 6c3c14dbf1ce74ba927558f1407feb847e74e98e
-ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
+ms.date: 09/28/2018
+ms.openlocfilehash: d83adab02344e3a6ebd3fc703c563730c14f67e0
+ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47167365"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "48243592"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
