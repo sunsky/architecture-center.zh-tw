@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
-ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542404"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428364"
 ---
 # <a name="competing-consumers-pattern"></a>競爭取用者模式
 
@@ -26,7 +26,7 @@ ms.locfileid: "24542404"
 
 基於多種原因，要求數目可能會隨著時間而明顯起伏。 來自多個租用戶突增的使用者活動或彙總要求，可能會造成無法預期的工作負載。 在尖峰時間，系統每秒可能需要處理數百筆要求，而其他時間的數字可能非常小。 此外，處理這些要求所需執行工作的性質可能變化極大。 使用單一取用者服務執行個體，可能會導致該執行個體大量湧入要求，或傳訊系統可能因從應用程式大量湧進的訊息而超載。 為了處理此種變動的工作負載，系統可以執行多個取用者服務執行個體。 不過，這些取用者必須加以協調，以確保每個訊息只會傳遞給單一取用者。 工作負載必須在取用者之間進行負載平衡，以防止某個執行個體變成瓶頸。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 您可以使用訊息佇列來實作應用程式和取用者服務執行個體之間的通訊通道。 應用程式會以訊息形式將要求張貼至佇列，取用者服務執行個體會從佇列接收訊息並加以處理。 這個方法可讓相同取用者服務執行個體的集區得以處理來自應用程式所有執行個體的訊息。 此圖說明使用訊息佇列將工作分配給服務的執行個體。
 
@@ -48,7 +48,7 @@ ms.locfileid: "24542404"
 
 當您決定如何實作此模式時，請考慮下列幾點：
 
-- **訊息排序**。 取用者服務執行個體接收訊息的順序並不一定，而且不一定反映建立訊息的順序。 設計系統時，請確保訊息處理為等冪方式，因為這將有助避免對訊息處理順序有依賴性。 如需詳細資訊，請參閱 Jonathon Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/idempotency-patterns/) \(英文\)。
+- **訊息排序**。 取用者服務執行個體接收訊息的順序並不一定，而且不一定反映建立訊息的順序。 設計系統時，請確保訊息處理為等冪方式，因為這將有助避免對訊息處理順序有依賴性。 如需詳細資訊，請參閱 Jonathon Oliver 部落格上的[等冪模式](https://blog.jonathanoliver.com/idempotency-patterns/) \(英文\)。
 
     > Microsoft Azure 服務匯流排佇列可使用訊息工作階段，以實作保證先進先出的訊息順序。 如需詳細資訊，請參閱[使用工作階段的傳訊模式](https://msdn.microsoft.com/magazine/jj863132.aspx) \(機器翻譯\)。
 
@@ -180,9 +180,9 @@ private void OptionsOnExceptionReceived(object sender,
 
 下列是實作此模式時可能相關的模式和指導方針：
 
-- [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx) \(英文\)。 訊息佇列是非同步通訊機制。 如果取用者服務需要傳送回覆至應用程式，可能必須實作某種形式的回應訊息。 「非同步傳訊入門」提供如何使用訊息佇列實作要求/回覆訊息的資訊。
+- [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)。 訊息佇列是非同步通訊機制。 如果取用者服務需要傳送回覆至應用程式，可能必須實作某種形式的回應訊息。 「非同步傳訊入門」提供如何使用訊息佇列實作要求/回覆訊息的資訊。
 
-- [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 由於佇列應用程式張貼訊息的長度不盡相同，因此可以啟動和停止取用者服務的執行個體。 自動調整有助於維護尖峰處理時間的輸送量。
+- [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx)。 由於佇列應用程式張貼訊息的長度不盡相同，因此可以啟動和停止取用者服務的執行個體。 自動調整有助於維護尖峰處理時間的輸送量。
 
 - [計算資源彙總模式](compute-resource-consolidation.md)。 將多個取用者服務的執行個體合併成單一處理序，可降低成本和管理額外負荷。 「計算資源彙總」模式描述採用此方法的優缺點。
 

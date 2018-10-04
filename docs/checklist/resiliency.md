@@ -4,12 +4,12 @@ description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352639"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429089"
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -81,7 +81,7 @@ ms.locfileid: "39352639"
 
 ## <a name="security"></a>安全性
 
-**實作應用程式層級的防護來抵禦分散式阻斷服務 (DDoS) 攻擊。** Azure 服務會受到保護以免遭受網路層 DDos 攻擊。 不過，Azure 無法抵禦應用程式層攻擊，因為很難區分真正的使用者要求與惡意使用者要求。 如需有關如何抵禦應用程式層 DDoS 攻擊的詳細資訊，請參閱 [Microsoft Azure 網路安全性](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)的「抵禦 DDoS」一節 (PDF 下載)。
+**實作應用程式層級的防護來抵禦分散式阻斷服務 (DDoS) 攻擊。** Azure 服務會受到保護以免遭受網路層 DDos 攻擊。 不過，Azure 無法抵禦應用程式層攻擊，因為很難區分真正的使用者要求與惡意使用者要求。 如需有關如何抵禦應用程式層 DDoS 攻擊的詳細資訊，請參閱 [Microsoft Azure 網路安全性](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf)的「抵禦 DDoS」一節 (PDF 下載)。
 
 **對應用程式的資源存取實作最低權限原則。** 應用程式資源的預設存取權應儘可能受限制。 在核准時授與較高層級的權限。 依預設，授與過度寬鬆的應用程式資源權限可能會導致其他人刻意或意外地刪除資源。 Azure 提供[角色型存取控制](/azure/active-directory/role-based-access-built-in-roles/)來管理使用者權限，但務必針對擁有自備權限系統的其他資源 (例如 SQL Server ) 確認其最低權限。
 
@@ -99,7 +99,7 @@ ms.locfileid: "39352639"
 
 **自動執行應用程式的部署程序。** 如果操作人員必須以手動方式部署您的應用程式，人為錯誤可能會導致部署失敗。 
 
-**設計您的發行程序，以將應用程式的可用性最大化。** 如果您的發行程序要求服務在部署期間離線，您的應用程式將無法使用，直到它們重新上線為止。 使用[藍色/綠色](http://martinfowler.com/bliki/BlueGreenDeployment.html)或[淡黃色](http://martinfowler.com/bliki/CanaryRelease.html)部署技術，將應用程式部署到生產環境。 這兩種技術都牽涉到隨著生產程式碼部署您的發行程式碼，讓發行程式碼的使用者可以在失敗時重新導向至生產程式碼。
+**設計您的發行程序，以將應用程式的可用性最大化。** 如果您的發行程序要求服務在部署期間離線，您的應用程式將無法使用，直到它們重新上線為止。 使用[藍色/綠色](https://martinfowler.com/bliki/BlueGreenDeployment.html)或[淡黃色](https://martinfowler.com/bliki/CanaryRelease.html)部署技術，將應用程式部署到生產環境。 這兩種技術都牽涉到隨著生產程式碼部署您的發行程式碼，讓發行程式碼的使用者可以在失敗時重新導向至生產程式碼。
 
 **記錄和稽核應用程式的部署。** 如果您使用分段部署技術 (例如藍色/綠色或淡黃色版本)，您的應用程式會有一個以上的版本在生產環境中執行。 如果發生問題，請務必判斷哪一個應用程式版本造成問題。 實作強固的記錄策略，儘可能擷取較多的版本特有資訊。
 

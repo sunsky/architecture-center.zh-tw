@@ -3,12 +3,12 @@ title: 選擇資料儲存技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 496df68024aef0dcf030bb7e0138639610aa8a79
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847204"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429344"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
@@ -26,7 +26,7 @@ ms.locfileid: "30847204"
 **NoSQL 資料庫**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
-- [HDInsight 上的 HBase](http://hbase.apache.org/)
+- [HDInsight 上的 HBase](https://hbase.apache.org/)
 
 ## <a name="azure-storage-blobs"></a>Azure 儲存體 Blob
 
@@ -69,7 +69,7 @@ Azure Cosmos DB 功能：
 
 ## <a name="hbase-on-hdinsight"></a>HDInsight 上的 HBase
 
-[Apache HBase](http://hbase.apache.org/) 是開放原始碼的 NoSQL 資料庫，以 Hadoop 作為建置基礎，並仿照 Google BigTable 建立模型。 HBase 可針對依資料行系列組織的無結構描述資料庫中的大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
+[Apache HBase](https://hbase.apache.org/) 是開放原始碼的 NoSQL 資料庫，以 Hadoop 作為建置基礎，並仿照 Google BigTable 建立模型。 HBase 可針對依資料行系列組織的無結構描述資料庫中的大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 
 資料儲存在資料表的資料列中，而資料列中的資料會依據資料行系列進行分組。 HBase 沒有結構描述，也就是說，在使用資料行之前，並不需要先定義資料行和其中儲存之資料的類型。 開放原始碼的程式碼會以線性方式延展，以處理數千個節點上的 PB 資料。 它可依賴散佈在 Hadoop 生態系統中的應用程式所提供的資料備援、批次處理及其他功能。
 
@@ -113,8 +113,8 @@ Azure Cosmos DB 功能：
 |                                    |                                           Azure Cosmos DB                                           |                                                             HDInsight 上的 HBase                                                             |
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       主要資料庫模型       |                      文件存放區、圖表、索引鍵-值存放區、寬資料行存放區                      |                                                             寬資料行存放區                                                              |
-|         次要索引          |                                                 yes                                                 |                                                                     否                                                                     |
-|        SQL 語言支援        |                                                 yes                                                 |                                     是 (使用 [Phoenix](http://phoenix.apache.org/) JDBC 驅動程式)                                      |
+|         次要索引          |                                                 是                                                 |                                                                     否                                                                     |
+|        SQL 語言支援        |                                                 是                                                 |                                     是 (使用 [Phoenix](https://phoenix.apache.org/) JDBC 驅動程式)                                      |
 |            一致性             |                   強式、限定過期、工作階段、一致前置詞、最終                   |                                                                   強式                                                                   |
 | 原生 Azure Functions 整合 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
 |   自動全球發行    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 否 [HBase 叢集複寫可使用最終一致性跨區域設定](/azure/hdinsight/hbase/apache-hbase-replication) |

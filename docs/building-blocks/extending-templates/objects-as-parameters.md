@@ -3,12 +3,12 @@ title: 在 Azure Resource Manager 範本中使用物件作為參數
 description: 說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 76f8b9d459f4ab3147b52762b7c26552ec92c7a3
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 27bc4be02f202ae5d6a3c28553a8c8afe435f743
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847170"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429310"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中使用物件作為參數
 
@@ -242,7 +242,7 @@ ms.locfileid: "30847170"
             "mode":"Incremental",
             "parameters":{},
             "template": {
-                "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                 "contentVersion": "1.0.0.0",
                 "parameters": {},
                 "variables": {},
@@ -265,7 +265,7 @@ ms.locfileid: "30847170"
         "properties": {
           "mode": "Incremental",
           "template": {
-            "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+            "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
             "contentVersion": "1.0.0.0",
            "parameters": {},
             "variables": {},

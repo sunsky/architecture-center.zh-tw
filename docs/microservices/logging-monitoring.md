@@ -3,12 +3,12 @@ title: 記錄和監視微服務
 description: 記錄和監視微服務
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26652989"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428766"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>設計微服務：記錄和監視
 
@@ -32,7 +32,7 @@ ms.locfileid: "26652989"
 
 「記錄」是在執行應用程式時發生的事件記錄。 其中包括應用程式記錄 (追蹤陳述式) 或 Web 伺服器記錄之類的記錄。 記錄主要適合用於鑑證和根本原因分析。 
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 
 [監視和診斷](../best-practices/monitoring.md)一文會說明監視應用程式的一般最佳做法。 以下是微服務架構內容中需要思考的一些特定事項。
 
@@ -64,7 +64,7 @@ ms.locfileid: "26652989"
 
 ## <a name="distributed-tracing"></a>分散式追蹤
 
-如先前所述，微服務的其中一項挑戰是了解跨服務的事件流程。 單一作業或交易可能牽涉到對多項服務的呼叫。 若要重新建構一連串完整的步驟，每項服務應該傳播「相互關聯識別碼」，以作為該作業的唯一識別碼。 相互關聯識別碼能進行跨服務的[分散式追蹤](http://microservices.io/patterns/observability/distributed-tracing.html)。
+如先前所述，微服務的其中一項挑戰是了解跨服務的事件流程。 單一作業或交易可能牽涉到對多項服務的呼叫。 若要重新建構一連串完整的步驟，每項服務應該傳播「相互關聯識別碼」，以作為該作業的唯一識別碼。 相互關聯識別碼能進行跨服務的[分散式追蹤](https://microservices.io/patterns/observability/distributed-tracing.html)。
 
 接收用戶端要求的第一項服務應產生相互關聯識別碼。 如果服務對另一項服務進行 HTTP 呼叫，它會將相互關聯識別碼放在要求標頭中。 同樣地，如果服務傳送非同步訊息，它會將相互關聯識別碼放在訊息中。 下游服務會繼續傳播相互關聯識別碼，使其流經整個系統。 此外，所有寫入應用程式計量或記錄事件的程式碼都應該包含相互關聯識別碼。
 
@@ -114,7 +114,7 @@ ms.locfileid: "26652989"
 
 ## <a name="example-logging-with-correlation-ids"></a>範例：記錄相互關聯識別碼
 
-為了說明本章所討論的某些要點，以下是套件服務如何實作記錄功能的延伸範例。 套件服務是以 TypeScript 撰寫並使用 Node.js 適用的 [Koa](http://koajs.com/) Web 架構。 有幾個 Node.js 記錄程式庫可供選擇。 我們挑選了 [Winston](https://github.com/winstonjs/winston)，這是一個常見的記錄程式庫，經由測試，它可符合我們的效能需求。
+為了說明本章所討論的某些要點，以下是套件服務如何實作記錄功能的延伸範例。 套件服務是以 TypeScript 撰寫並使用 Node.js 適用的 [Koa](https://koajs.com/) Web 架構。 有幾個 Node.js 記錄程式庫可供選擇。 我們挑選了 [Winston](https://github.com/winstonjs/winston)，這是一個常見的記錄程式庫，經由測試，它可符合我們的效能需求。
 
 為了封裝實作詳細資料，我們定義了抽象 `ILogger` 介面：
 

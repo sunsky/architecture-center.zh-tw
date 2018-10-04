@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute-vpn-failover
 pnp.series.prev: vpn
 cardTitle: ExpressRoute
-ms.openlocfilehash: ada07f399925da6da28b24260f5c73f1e106fd7d
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: efaf1ef479f24d51a19236d401cbe5765d052235
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270314"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429514"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 將內部部署網路連線至 Azure
 
@@ -246,7 +246,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 若要部署解決方案，請執行下列步驟。
 
-1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待此連結在 Azure 入口網站中開啟，然後按照下列步驟進行：
    * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-hybrid-er-rg`。
    * 從 [位置] 下拉式方塊選取區域。
@@ -254,7 +254,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
    * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
    * 按一下 [購買] 按鈕。
 3. 等待部署完成。
-4. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+4. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 5. 等待此連結在 Azure 入口網站中開啟，然後按照下列步驟進行：
    * 選取 [資源群組] 區段中的 [使用現有的]，然後在文字方塊中輸入 `ra-hybrid-er-rg`。
    * 從 [位置] 下拉式方塊選取區域。

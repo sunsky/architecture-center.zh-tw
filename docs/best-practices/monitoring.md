@@ -4,12 +4,12 @@ description: 監視雲端中分散式應用程式的最佳作法。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8dd3979233b03db800bd9514263d9c6fedefa074
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4de9ce80a17a0ad429166ac2aa7f7f7f66c26db1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539012"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429667"
 ---
 # <a name="monitoring-and-diagnostics"></a>監視和診斷
 [!INCLUDE [header](../_includes/header.md)]
@@ -503,7 +503,7 @@ SLA 通常依據下列項目定義：
 * .NET EventSource
 * 以資訊清單為基礎的 ETW
 
-如需詳細資訊，請參閱 [Azure：遙測基本概念和疑難排解](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)文章。
+如需詳細資訊，請參閱 [Azure：遙測基本概念和疑難排解](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)文章。
 
 ### <a name="strategies-for-collecting-instrumentation-data"></a>收集檢測資料的策略
 考量雲端的彈性本質，以及避免需要從系統中每個節點手動擷取遙測資料，您應該安排將資料傳送到中央位置並進行合併。 在跨越多個資料中心的系統中，先根據區域收集、合併並儲存資料，然後將區域資料彙總成單一中央系統，可能很有幫助。
@@ -548,7 +548,7 @@ SLA 通常依據下列項目定義：
 ### <a name="storing-instrumentation-data"></a>儲存檢測資料
 先前的討論已描述檢測資料儲存方式相當簡單的檢視。 事實上，其可以合理使用最適合每一種類型可能使用方式的技術，儲存不同類型的資訊。
 
-例如，Azure Blob 和表格儲存體在其存取方式中有一些相似之處。 但對您可用其來執行的作業卻有所限制，而且其保留之資料的細微性相當不同。 如果您需要執行更多的分析作業或需要資料上的全文檢索搜尋功能，可能更適合使用資料儲存體，因為它提供的功能已針對特定類型的查詢和資料存取最佳化。 例如：
+例如，Azure Blob 和表格儲存體在其存取方式中有一些相似之處。 但對您可用其來執行的作業卻有所限制，而且其保留之資料的細微性相當不同。 如果您需要執行更多的分析作業或需要資料上的全文檢索搜尋功能，可能更適合使用資料儲存體，因為它提供的功能已針對特定類型的查詢和資料存取最佳化。 例如︰
 
 * 效能計數器資料可以儲存在 SQL Database 中，以啟用特定分析。
 * 追蹤記錄檔可能更適合儲存於 Azure Cosmos DB。
@@ -602,7 +602,7 @@ SLA 通常依據下列項目定義：
 操作員也可以使用冷分析來提供預測性健康狀況分析的資料。 操作員可以收集指定時段的歷程記錄資訊，並用於搭配目前的健康狀況資料 (擷取自最忙碌的路徑)，以找出可能很快就會導致健康狀況問題的趨勢。 在這些情況下，可能必須引發警示，以便採取更正動作。
 
 ### <a name="correlating-data"></a>使資料相互關聯
-檢測擷取的資料可提供系統狀態的快照，但分析的目的是為了使此資料可採取動作。 例如：
+檢測擷取的資料可提供系統狀態的快照，但分析的目的是為了使此資料可採取動作。 例如︰
 
 * 什麼會在特定時間於系統層級導致密集 I/O 載入？
 * 是大量資料庫作業的結果嗎？
@@ -688,7 +688,7 @@ SLA 通常依據下列項目定義：
 
 ## <a name="more-information"></a>詳細資訊
 * [監視、診斷與疑難排解 Microsoft Azure 儲存體](/azure/storage/storage-monitoring-diagnosing-troubleshooting)
-* [Azure︰遙測基本概念和疑難排解](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
+* [Azure︰遙測基本概念和疑難排解](https://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
 * [在 Azure 雲端服務和虛擬機器中啟用診斷](/azure/cloud-services/cloud-services-dotnet-diagnostics)
 * [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 和 [HDInsight](https://azure.microsoft.com/services/hdinsight/)
 * [如何使用服務匯流排佇列](/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues)

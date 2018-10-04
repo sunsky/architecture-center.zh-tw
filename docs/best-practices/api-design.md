@@ -4,12 +4,12 @@ description: 說明如何建立設計完善之 Web API 的指引。
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 1bd53a7ccc54d086978891f1df5fdc2e25a5d638
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016017"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429367"
 ---
 # <a name="api-design"></a>API 設計
 
@@ -34,7 +34,7 @@ REST 比起 HTTP 的主要優點是前者使用開放標準，因此不會讓 AP
 - 資源具有「識別碼」，這是可唯一識別該資源的 URI。 例如，特定客戶訂單的 URI 可能會是： 
  
     ```http
-    http://adventure-works.com/orders/1
+    https://adventure-works.com/orders/1
     ```
  
 - 用戶端會透過交換資源的「表示法」與服務進行互動。 許多 Web API 會使用 JSON 作為交換格式。 例如，對上面所列 URI 的 GET 要求，可能會傳回此回應本文：
@@ -56,8 +56,8 @@ REST 比起 HTTP 的主要優點是前者使用開放標準，因此不會讓 AP
         "quantity":4,
         "orderValue":16.60,
         "links": [
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"GET" },
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"PUT" } 
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"GET" },
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" } 
         ]
     } 
     ```
@@ -77,9 +77,9 @@ REST 比起 HTTP 的主要優點是前者使用開放標準，因此不會讓 AP
 將焦點放在 Web API 公開商業實體。 例如，在電子商務系統中，主要實體可能是客戶和訂單。 可藉由傳送包含訂單資訊的 HTTP POST 要求來建立訂單。 HTTP 回應會指出訂購成功與否。 如果可能的話，資源 URI 應該要依據名詞 (資源) 而不是動詞 (在資源上的作業)。 
 
 ```HTTP
-http://adventure-works.com/orders // Good
+https://adventure-works.com/orders // Good
 
-http://adventure-works.com/create-order // Avoid
+https://adventure-works.com/create-order // Avoid
 ```
 
 資源不一定要依據單一實體資料項目。 例如，訂單資源可能會以關聯式資料庫中數個資料表的形式在內部實作，但以單一實體的形式呈現給用戶端。 請避免建立只是反映資料庫內部結構的 API。 REST 的目的在於將實體，以及應用程式能在這些實體上所執行的作業加以模型化。 用戶端不應向內部實作公開。
@@ -87,7 +87,7 @@ http://adventure-works.com/create-order // Avoid
 實體通常會分組成集合 (訂單、客戶)。 集合與集合內的項目是不同的資源，而應具有自己的 URI。 例如，下列 URI 可能代表訂單的集合： 
 
 ```HTTP
-http://adventure-works.com/orders
+https://adventure-works.com/orders
 ```
 
 傳送對集合 URI 的 HTTP GET 要求，可擷取集合中的項目清單。 集合中的每個項目也會有自己的唯一 URI。 對項目 URI 的 HTTP GET 要求，會傳回該項目的詳細資料。 
@@ -148,7 +148,7 @@ PUT 要求必須具有等冪性。 若用戶端多次送出相同的 PUT 要求�
 要求或回應中的 Content-Type 標頭會指定表示法的格式。 以下是包括 JSON 資料的 POST 要求範例：
 
 ```HTTP
-POST http://adventure-works.com/orders HTTP/1.1
+POST https://adventure-works.com/orders HTTP/1.1
 Content-Type: application/json; charset=utf-8
 Content-Length: 57
 
@@ -160,7 +160,7 @@ Content-Length: 57
 用戶端要求可能會包含 Accept 標頭，而在回應訊息中，該標頭包含用戶端會從伺服器接受的媒體類型清單。 例如︰
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 Accept: application/json
 ```
 
@@ -273,7 +273,7 @@ Location: /api/orders/12345
 /orders?limit=25&offset=50
 ```
 
-也請考慮設定要傳回的項目上限，以協助避免拒絕服務的攻擊。 為了協助用戶端應用程式，傳回已分頁資料的 GET 要求也應該包含某種形式的中繼資料，以便指出集合中的可用資源總數。 您也可以考慮其他智慧型分頁策略。如需詳細資訊，請參閱 [API 設計注意事項：智慧型分頁](http://bizcoder.com/api-design-notes-smart-paging)
+也請考慮設定要傳回的項目上限，以協助避免拒絕服務的攻擊。 為了協助用戶端應用程式，傳回已分頁資料的 GET 要求也應該包含某種形式的中繼資料，以便指出集合中的可用資源總數。 
 
 您可以提供將欄位名稱當作值的排序參數 (例如 /orders?sort=ProductID)，來使用類似的策略在擷取資料時予以排序。 不過，這種方法可能會對快取造成不良影響 (因為查詢字串參數會構成部分資源識別碼，而許多快取實作會將該識別碼當做索引鍵來快取資料)。
 
@@ -288,7 +288,7 @@ Location: /api/orders/12345
 此外，也請考慮實作這些資源的 HTTP HEAD 要求。 HEAD 要求與 GET 要求相似，不過前者只會傳回描述資源的 HTTP 標頭和空白的訊息本文。 用戶端應用程式可以發出 HEAD 要求，以判斷是否要使用部分 GET 要求擷取資源。 例如︰
 
 ```HTTP
-HEAD http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+HEAD https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 ```
 
 以下是回應訊息的範例： 
@@ -304,7 +304,7 @@ Content-Length: 4580
 Content-Length 標頭會提供資源總大小，而 Accept-Ranges 標頭則會指出對應的 GET 作業支援部分結果。 用戶端應用程式可以使用這些資訊，以較小的區塊來擷取影像。 第一個要求會使用 Range 標頭擷取前 2500 個位元組：
 
 ```HTTP
-GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+GET https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 Range: bytes=0-2499
 ```
 
@@ -343,44 +343,44 @@ REST 背後的其中一個主要動機，是它應該可以在不需要事先知
   "links":[
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"GET",
       "types":["text/xml","application/json"] 
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3",
+      "href":"https://adventure-works.com/customers/3",
       "action":"DELETE",
       "types":[]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"GET",
       "types":["text/xml","application/json"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"DELETE",
       "types":[]
     }]
 }
 ```
 
-在此範例中，`links` 陣列有一組連結。 每個連結都代表相關實體上的作業。 每個連結的資料都包含關聯性 (「客戶」)、URI (`http://adventure-works.com/customers/3`)、HTTP 方法，以及支援的 MIME 類型。 這是用戶端應用程式要能夠叫用作業需要的所有資訊。 
+在此範例中，`links` 陣列有一組連結。 每個連結都代表相關實體上的作業。 每個連結的資料都包含關聯性 (「客戶」)、URI (`https://adventure-works.com/customers/3`)、HTTP 方法，以及支援的 MIME 類型。 這是用戶端應用程式要能夠叫用作業需要的所有資訊。 
 
 `links` 陣列也會包含關於已擷取資源本身的自我參考資訊。 這些項目具有自我關聯性。
 
@@ -395,7 +395,7 @@ Web API 維持靜態的可能性極低。 隨著商務需求變更，我們可�
 ### <a name="no-versioning"></a>無版本控制
 這是最簡單的方法，而且也是某些內部 API 可接收的方法。 重大變更可能會以新資源或新連結來呈現。  將內容加入現有資源可能不會成為重大變更，因為未預期要查看此內容的用戶端應用程式會直接忽略。
 
-例如，傳送給 URI *http://adventure-works.com/customers/3* 的要求應該會傳回單一客戶的詳細資料，其中包含用戶端應用程式所預期的 `id`、`name` 和 `address` 欄位：
+例如，傳送給 URI *https://adventure-works.com/customers/3* 的要求應該會傳回單一客戶的詳細資料，其中包含用戶端應用程式所預期的 `id`、`name` 和 `address` 欄位：
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -423,7 +423,7 @@ Content-Type: application/json; charset=utf-8
 ### <a name="uri-versioning"></a>URI 版本控制
 每次修改 Web API 或變更資源的結構描述時，您會在每個資源的 URI 加入版本號碼。 早已存在的 URI 應維持先前的運作，傳回符合原始結構描述的資源。
 
-延伸上述範例，如果將 `address` 欄位重建為包含位址之每個構成組件的子欄位 (如 `streetAddress`、`city`、`state` 及 `zipCode`)，您可以透過包含版本號碼的 URI (如 http://adventure-works.com/v2/customers/3:) 公開這個版本的資源：
+延伸上述範例，如果將 `address` 欄位重建為包含位址之每個構成組件的子欄位 (如 `streetAddress`、`city`、`state` 及 `zipCode`)，您可以透過包含版本號碼的 URI (如 https://adventure-works.com/v2/customers/3:) 公開這個版本的資源：
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 這個版本控制機制非常簡單，但需仰賴伺服器將要求路由傳送到適當端點。 不過，在經過數個反覆項目後當 Web API 成熟時，它會變得難以揮灑，因此伺服器必須支援許多不同的版本。 此外，從純化論者的觀點來看，在所有情況下用戶端應用程式都在擷取相同的資料 (客戶 3)，所以 URI 不應該因版本而有所不同。 此配置也會讓 HATEOAS 的實作變得更複雜，因為所有連結都需要在它們的 URI 中包含版本號碼。
 
 ### <a name="query-string-versioning"></a>查詢字串版本控制
-與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 *http://adventure-works.com/customers/3?version=2* 。 如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
+與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 *https://adventure-works.com/customers/3?version=2* 。 如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
 
 這個方法具有語意上的優點，因為您總是從相同的 URI 擷取相同的資源，不過這還是要取決於處理要求以剖析查詢字串，然後回傳適當 HTTP 回應的程式碼。 這個方法也需要面臨與實作 HATEOAS 同等複雜的 URI 版本控制機制。
 
@@ -450,7 +450,7 @@ Content-Type: application/json; charset=utf-8
 第 1 版：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=1
 ```
 
@@ -464,7 +464,7 @@ Content-Type: application/json; charset=utf-8
 第 2 版：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=2
 ```
 
@@ -481,7 +481,7 @@ Content-Type: application/json; charset=utf-8
 當用戶端應用程式將 HTTP GET 要求傳送至 Web 伺服器時，它應該會使用 Accept 標頭來規定可處理的內容格式 (如本指引稍早所述)。 Accept 標頭的目的經常是讓用戶端應用程式指定回應本文應該是 XML、JSON 或其他某些用戶端可剖析的通用格式。 不過，您也可以定義自訂媒體類型，加入讓用戶端應用程式指定預期之資源版本的資訊。 下列範例顯示將 Accept 標頭指定為 application/vnd.adventure-works.v1+json 值的要求。 Vnd.adventure works.v1 元素指示 Web 伺服器傳回第 1 版的資源，而 json 元素指定回應本文的格式應該是 JSON：
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Accept: application/vnd.adventure-works.v1+json
 ```
 
@@ -516,6 +516,5 @@ Content-Type: application/vnd.adventure-works.v1+json; charset=utf-8
 
 ## <a name="more-information"></a>詳細資訊
 * [Microsoft REST API 指導方針](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)。 設計公用 REST API 的詳細建議。
-* [REST 逐步指南](http://restcookbook.com/)。 建置 REST 式 API 的簡介。
 * [Web API 檢查清單](https://mathieu.fenniak.net/the-api-checklist/)。 在設計及實作 Web API 時應納入考量的實用項目清單。
 * [Open API Initiative](https://www.openapis.org/)。 Open API 的文件和實作詳細資料。

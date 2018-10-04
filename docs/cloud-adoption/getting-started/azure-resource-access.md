@@ -3,12 +3,12 @@ title: 企業雲端採用：在 Azure 中管理資源存取
 description: Azure 中資源存取權管理建構的說明：Azure 資源管理員、訂用帳戶、資源群組和資源
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 2e64d8828574ebe216da1e76b19ec3ce5aeda993
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389072"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428698"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企業雲端採用：在 Azure 中管理資源存取
 
@@ -84,7 +84,7 @@ Azure 資源管理員需要用戶端同時指定訂用帳戶和資源群組的�
 
 RBAC 角色指定了一組權限，使用者可能會在特定資源上採用那些權限。 當角色指派給使用者時，會套用這些權限。 例如，[內建**擁有者**角色](/azure/role-based-access-control/built-in-roles#owner)可讓使用者對資源執行任何動作。
 
-下一個控制項會檢查在針對 [Azure 資源原則](/azure/azure-policy/)指定的設定下，是否允許要求。 Azure 資源原則會指定對特定資源允許的作業。 例如，Azure 資源原則可以指定只允許使用者部署特定類型的虛擬機器。
+下一個控制項會檢查在針對 [Azure 資源原則](/azure/governance/policy/)指定的設定下，是否允許要求。 Azure 資源原則會指定對特定資源允許的作業。 例如，Azure 資源原則可以指定只允許使用者部署特定類型的虛擬機器。
 
 ![](../_images/governance-1-19.png)   
 *圖 11.Azure 資源原則。*

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - messaging
-ms.openlocfilehash: 2c17504f594843c10fcfe221f0087f1087a73fb8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847102"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429565"
 ---
 # <a name="pipes-and-filters-pattern"></a>管道與篩選器模式
 
@@ -59,7 +59,7 @@ ms.locfileid: "30847102"
 
 - **可靠性**。 使用基礎結構，確保管線中篩選器之間流動的資料不會遺失。
 
-- **等冪**。 如果管線中的篩選器在收到訊息之後失敗，且工作重新排程至篩選器的另一個執行個體，部分工作可能已經完成。 如果此工作會更新全域狀態 (例如儲存在資料庫中的資訊) 的某些層面，就無法重複相同的更新。 如果篩選器在將其結果張貼至管線中的下一個篩選器之後，但是在表示成功完成其工作之前失敗，可能會發生類似問題。 在這些情況下，相同工作會由篩選器的另一個執行個體重複，導致相同結果張貼兩次。 這樣可能會導致管線中的後續篩選器處理相同資料兩次。 因此管線中的篩選器應該設計為等冪。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/idempotency-patterns/)。
+- **等冪**。 如果管線中的篩選器在收到訊息之後失敗，且工作重新排程至篩選器的另一個執行個體，部分工作可能已經完成。 如果此工作會更新全域狀態 (例如儲存在資料庫中的資訊) 的某些層面，就無法重複相同的更新。 如果篩選器在將其結果張貼至管線中的下一個篩選器之後，但是在表示成功完成其工作之前失敗，可能會發生類似問題。 在這些情況下，相同工作會由篩選器的另一個執行個體重複，導致相同結果張貼兩次。 這樣可能會導致管線中的後續篩選器處理相同資料兩次。 因此管線中的篩選器應該設計為等冪。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](https://blog.jonathanoliver.com/idempotency-patterns/)。
 
 - **重複訊息**。 如果管線中的篩選器在將訊息張貼至管線的下一個階段之後失敗，篩選器的另一個執行個體可能會執行，它會將相同訊息的複本張貼至管線。 這可能會導致相同訊息的兩個執行個體傳遞至下一個篩選器。 若要避免這個問題，管線應該偵測並排除重複的訊息。
 
@@ -282,4 +282,4 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 - [競爭取用者模式](competing-consumers.md)。 管線可以包含一或多個篩選器的多個執行個體。 這個方法對於執行緩慢篩選器的平行執行個體很有用，讓系統分散負載及改善輸送量。 篩選器的每個執行個體會與其他執行個體爭用輸入，篩選器的兩個執行個體應該不能處理相同的資料。 提供這個方法的說明。
 - [計算資源彙總模式](compute-resource-consolidation.md)。 可以在相同處理中將應該調整的篩選器群組在一起。 提供有關此策略之優點和權衡取捨的詳細資訊。
 - [補償交易模式](compensating-transaction.md)。 篩選器可以實作為可反轉的作業，或者具有補償作業的作業，在失敗時將狀態還原為先前版本。 說明如何實作這個作業以維護或達到最終一致性。
-- Jonathan Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/idempotency-patterns/)。
+- Jonathan Oliver 部落格上的[等冪模式](https://blog.jonathanoliver.com/idempotency-patterns/)。

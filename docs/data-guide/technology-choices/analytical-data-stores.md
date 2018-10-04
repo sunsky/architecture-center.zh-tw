@@ -3,12 +3,12 @@ title: 選擇分析資料存放區
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 3cf7dc533cc6ae3e6d7e2326852b585da8613e18
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846877"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428868"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>在 Azure 中選擇分析資料存放區
 
@@ -55,10 +55,10 @@ ms.locfileid: "30846877"
 
 | | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
 | --- | --- | --- | --- | --- | --- | --- |
-| 屬於受控服務 | yes | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | yes | yes |
+| 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 | 是 |
 | 主要資料庫模型 | 關聯式 (使用資料行存放區索引時的單欄式格式) | 具有單欄式儲存體的關聯式資料表 | 寬資料行存放區 | Hive/記憶體內 | 表格式/MOLAP 語意模型 | 文件存放區、圖表、索引鍵-值存放區、寬資料行存放區 |
-| SQL 語言支援 | yes | yes | 是 (使用 [Phoenix](http://phoenix.apache.org/) JDBC 驅動程式) | yes | 否 | yes |
-| 已針對速度服務層最佳化 | 是 <sup>2</sup> | 否 | yes | yes | 否 | yes |
+| SQL 語言支援 | 是 | 是 | 是 (使用 [Phoenix](https://phoenix.apache.org/) JDBC 驅動程式) | 是 | 否 | 是 |
+| 已針對速度服務層最佳化 | 是 <sup>2</sup> | 否 | yes | yes | 否 | 是 |
 
 [1] 使用手動設定和調整。
 
@@ -68,9 +68,9 @@ ms.locfileid: "30846877"
 
 |                                                  | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
 |--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
-| 高可用性的備援區域伺服器 |     yes      |        yes         |            yes             |           否           |           否            |    yes    |
+| 高可用性的備援區域伺服器 |     yes      |        yes         |            yes             |           否           |           否            |    是    |
 |             支援查詢相應放大             |      否      |        yes         |            yes             |          yes           |           yes           |    yes    |
-|          動態延展性 (相應增加)          |     yes      |        yes         |             否             |           否           |           yes           |    yes    |
+|          動態延展性 (相應增加)          |     是      |        yes         |             否             |           否           |           yes           |    是    |
 |        支援資料的記憶體內快取        |     yes      |        yes         |             否             |          yes           |           yes           |    否     |
 
 ### <a name="security-capabilities"></a>安全性功能
@@ -78,10 +78,10 @@ ms.locfileid: "30846877"
 | | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
 | --- | --- | --- | --- | --- | --- | --- |
 | 驗證  | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD | 本機 / Azure AD <sup>1</sup> | 本機 / Azure AD <sup>1</sup> | Azure AD | 資料庫使用者 / 透過存取控制存取的 Azure AD (IAM) |
-| 待用資料加密 | 是 <sup>2</sup> | 是 <sup>2</sup> | 是 <sup>1</sup> | 是 <sup>1</sup> | yes | yes |
-| 資料列層級安全性 | yes | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 (透過模型中的物件等級安全性) | 否 |
-| 支援防火牆 | yes | yes | 是 <sup>3</sup> | 是 <sup>3</sup> | yes | yes |
-| 動態資料遮罩 | yes | 否 | 是 <sup>1</sup> | 是 * | 否 | 否 |
+| 待用資料加密 | 是 <sup>2</sup> | 是 <sup>2</sup> | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 | 是 |
+| 資料列層級安全性 | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 (透過模型中的物件等級安全性) | 否 |
+| 支援防火牆 | yes | yes | 是 <sup>3</sup> | 是 <sup>3</sup> | 是 | 是 |
+| 動態資料遮罩 | 是 | 否 | 是 <sup>1</sup> | 是 * | 否 | 否 |
 
 [1] 使用[已加入網域的 HDInsight 叢集](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)時所需。
 

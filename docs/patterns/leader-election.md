@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
-ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
+ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37348264"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429191"
 ---
 # <a name="leader-election-pattern"></a>選出領導者模式
 
@@ -43,7 +43,7 @@ ms.locfileid: "37348264"
 在分散式環境中的一組工作之間選擇領導者的數種策略包括：
 - 選取其執行個體排名或處理序識別碼最低的工作執行個體。
 - 競爭以取得共用、分散式 Mutex。 最先取得 Mutex 的工作執行個體就是領導者。 然而，系統必須確保如果領導者終止或和系統的其餘部分中斷連線，就會釋出 Mutex，以讓另一個工作執行個體成為領導者。
-- 實作其中一種常見的領導者選擇演算法，例如[強勢演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) \(英文\) 或 [通道演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html) \(英文\)。 這些演算法假設選擇中的每個候選項目都有唯一的識別碼，並能與其他候選項目可靠地進行通訊。
+- 實作其中一種常見的領導者選擇演算法，例如[強勢演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) \(英文\) 或 [通道演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html) \(英文\)。 這些演算法假設選擇中的每個候選項目都有唯一的識別碼，並能與其他候選項目可靠地進行通訊。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
@@ -198,7 +198,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 - [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx)。 工作主機的執行個體可以隨著應用程式的負載來啟動和停止。 自動調整規模有助於維護尖峰處理時間的輸送量和效能。
 - [計算分割指導方針](https://msdn.microsoft.com/library/dn589773.aspx) \(英文\)。 本指導方針說明如何以有助於將執行成本降至最低，同時維持服務延展性、效能、可用性及安全性的方式，將工作配置到雲端服務中的主機。
 - [工作式非同步模式](https://msdn.microsoft.com/library/hh873175.aspx)。
-- 說明[強勢演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)的範例。
-- 說明[通道演算法](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的範例。
-- [Apache Curator](http://curator.apache.org/) 是 Apache ZooKeeper 的用戶端程式庫。
+- 說明[強勢演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html)的範例。
+- 說明[通道演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html)的範例。
+- [Apache Curator](https://curator.apache.org/) 是 Apache ZooKeeper 的用戶端程式庫。
 - MSDN 上的[租用 Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) \(英文\) 一文。

@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359396"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428137"
 ---
 # <a name="compensating-transaction-pattern"></a>補償交易模式
 
@@ -38,9 +38,9 @@ ms.locfileid: "26359396"
 
 常見的方法是使用工作流程來實作需要補償的最終一致性作業。 系統會隨著原始作業不斷進行，記錄每個步驟和能如何復原該步驟所執行工作的相關資訊。 如果作業在任何時間點失敗，工作流程會倒轉回到已經完成的步驟，並執行可反轉每個步驟的工作。 請注意，補償交易可能不必依照原始作業的順序反向復原，而且能平行執行一些復原步驟。
 
-> 這種方法類似於 [Clemens Vasters 部落格](http://vasters.com/clemensv/2012/09/01/Sagas.aspx) \(英文\) 中所述的 Sagas 策略。
+> 這種方法類似於 [Clemens Vasters 部落格](https://vasters.com/clemensv/2012/09/01/Sagas.aspx) \(英文\) 中所述的 Sagas 策略。
 
-補償交易也是最終一致性作業，而且也可能會失敗。 系統應能夠在失敗時恢復補償交易並繼續。 因為可能需要重複失敗的步驟，所以應將補償交易中的步驟定義為等冪命令。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](http://blog.jonathanoliver.com/idempotency-patterns/) \(英文\)。
+補償交易也是最終一致性作業，而且也可能會失敗。 系統應能夠在失敗時恢復補償交易並繼續。 因為可能需要重複失敗的步驟，所以應將補償交易中的步驟定義為等冪命令。 如需詳細資訊，請參閱 Jonathan Oliver 部落格上的[等冪模式](https://blog.jonathanoliver.com/idempotency-patterns/) \(英文\)。
 
 在某些情況下，可能無法從失敗的步驟復原，除了手動介入，別無他法。 在這些情況下，系統應會引發警示，並儘可能提供失敗原因的詳細資訊。
 

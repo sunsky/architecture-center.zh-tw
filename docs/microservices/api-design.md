@@ -3,12 +3,12 @@ title: API 設計
 description: 設計微服務的 API
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653193"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429123"
 ---
 # <a name="designing-microservices-api-design"></a>設計微服務：API 設計
 
@@ -23,7 +23,7 @@ ms.locfileid: "26653193"
 
 這兩個使用案例有稍微不同的需求。 公用 API 必須與用戶端應用程式相容 (通常是指瀏覽器應用程式或原生行動裝置應用程式)。 大部分的情況下，這表示公用 API 會使用 REST over HTTP。 不過，對於後端 API，您需要將網路效能納入考量。 視您服務的精細度而定，服務間通訊可能會導致大量網路流量。 服務可能會快速地變成 I/O 密集型 (I/O Bound)。 基於這個理由，諸如序列化速度和承載大小等考量變得更加重要。 可取代 REST over HTTP 的一些常用方案包括 gRPC、Apache Avro 和 Apache Thrift。 這些通訊協定可支援二進位序列化，且通常比 HTTP 更有效率。
 
-## <a name="considerations"></a>注意事項
+## <a name="considerations"></a>考量
 
 以下是在選擇如何實作 API 時所要思考的一些事項。
 
@@ -124,10 +124,10 @@ export class Location {
 | DDD 概念 | REST 對等項目 | 範例 | 
 |-------------|-----------------|---------|
 | 彙總 | 資源 | `{ "1":1234, "status":"pending"... }` | 
-| 身分識別 | URL | `http://delivery-service/deliveries/1` |
+| 身分識別 | URL | `https://delivery-service/deliveries/1` |
 | 子實體 | 連結 | `{ "href": "/deliveries/1/confirmation" }` |
-| 更新值物件 | PUT 或 PATCH | `PUT http://delivery-service/deliveries/1/dropoff` |
-| 存放庫 | 集合 | `http://delivery-service/deliveries?status=pending` |
+| 更新值物件 | PUT 或 PATCH | `PUT https://delivery-service/deliveries/1/dropoff` |
+| 存放庫 | 集合 | `https://delivery-service/deliveries?status=pending` |
 
 
 ## <a name="api-versioning"></a>API 版本控制

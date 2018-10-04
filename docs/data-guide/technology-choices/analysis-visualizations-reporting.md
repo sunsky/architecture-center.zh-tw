@@ -3,12 +3,12 @@ title: 選擇資料分析和報告技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 830c61bba64a6971c815330887e5cdcc4f2b5f56
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 05e33a3da0933036a604d2bc4cc5a20ae70fe772
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288910"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428307"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中選擇資料分析技術
 
@@ -73,28 +73,28 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 
 ## <a name="capability-matrix"></a>相容性矩陣
 
-下表是主要功能差異的摘要。 
+下表摘要列出各項功能的主要差異。 
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | Power BI | Jupyter Notebook | Zeppelin Notebook | Microsoft Azure Notebook |
 | --- | --- | --- | --- | --- |
-| 連線到進階處理的巨量資料叢集 | yes | yes | yes | 否 |
-| 受控服務 | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | yes |
-| 連線到 100 個資料來源 | yes | 否 | 否 | 否 |
+| 連線到進階處理的巨量資料叢集 | 是 | yes | yes | 否 |
+| 受控服務 | 是 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
+| 連線到 100 個資料來源 | 是 | 否 | 否 | 否 |
 | 離線功能 | 是 <sup>2</sup> | 否 | 否 | 否 |
-| 內嵌功能 | yes | 否 | 否 | 否 |
-| 自動重新整理資料 | yes | 否 | 否 | 否 |
+| 內嵌功能 | 是 | 否 | 否 | 否 |
+| 自動重新整理資料 | 是 | 否 | 否 | 否 |
 | 眾多開放原始碼套件的存取權 | 否 | 是 <sup>3</sup> | 是 <sup>3</sup> | 是 <sup>4</sup> |
 | 資料轉換/清理選項 | [Power Query](https://powerbi.microsoft.com/blog/getting-started-with-power-query-part-i/)、R | 40 種語言，包含 Python、R、Julia 和 Scala | 20 種以上的解譯器，包含 Python、JDBC 和 R | Python、F#、R |
 | 價格 | 免費用於 Power BI Desktop (撰寫)，請參閱[定價](https://powerbi.microsoft.com/pricing/)以取得裝載選項 | 免費 | 免費 | 免費 |
-| 多使用者共同作業 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是 (透過共用或使用多使用者伺服器，如 [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | yes | 是 (透過共用) |
+| 多使用者共同作業 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是 (透過共用或使用多使用者伺服器，如 [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | 是 | 是 (透過共用) |
 
 [1] 作為受控 HDInsight 叢集的一部分使用時。
 
 [2] 與 Power BI Desktop 搭配使用。
 
-[2] 您可以搜尋 [Maven 存放庫](http://search.maven.org/)以取得社群貢獻的套件。
+[2] 您可以搜尋 [Maven 存放庫](https://search.maven.org/)以取得社群貢獻的套件。
 
 [3] 可使用 pip 或 conda 來安裝 Python 套件。 可以從 CRAN 或 GitHub 安裝 R 套件。 可使用 [Paket 相依性管理員](https://fsprojects.github.io/Paket/)，透過 nuget.org 以 F# 安裝套件。
 

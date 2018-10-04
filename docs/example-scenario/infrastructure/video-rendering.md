@@ -3,12 +3,12 @@ title: Azure 上的 3D 影片轉譯
 description: 使用 Azure Batch 服務在 Azure 中執行原生 HPC 工作負載
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1d51a9812c890a4877ec0edfdcbf344b27049812
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.openlocfilehash: 67dc8496656a75eab8f5d0ce45d00f8b1f4ea03f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46533927"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428052"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 影片轉譯
 
@@ -114,7 +114,7 @@ Azure Batch 帳戶內的集區可以透過手動介入來調整，或者根據 A
 * 節點集區一開始包含 0 部虛擬機器，需要手動調整以新增虛擬機器
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fhpc%2Fbatchcreatewithpools.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
+    <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
 [深入了解 Resource Manager 範本][azure-arm-templates]

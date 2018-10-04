@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/17/2018
-ms.locfileid: "29963205"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429327"
 ---
 # <a name="event-sourcing-pattern"></a>事件來源模式
 
@@ -82,7 +82,7 @@ CRUD 方法有一些限制：
 
 沒有任何標準方法或現有的機制 (例如 SQL 查詢) 可讀取事件以取得資訊。 唯一可以擷取的資料是使用事件識別碼作為準則的事件串流。 事件識別碼通常會對應至個別實體。 實體的目前狀態只能透過重新執行針對該實體原始狀態與其相關的所有事件來判斷。
 
-每個事件串流的長度會影響管理和更新系統。 如果串流很大，請考慮在特定時間間隔 (例如指定的事件數目) 建立快照集。 實體的目前狀態可從快照集，也可透過重新執行該時間點之後發生的任何事件取得。 如需建立資料之快照集的詳細資訊，請參閱 [Martin Fowler 企業應用程式架構網站上的快照集](http://martinfowler.com/eaaDev/Snapshot.html)和[主要從屬快照集複寫](https://msdn.microsoft.com/library/ff650012.aspx)。
+每個事件串流的長度會影響管理和更新系統。 如果串流很大，請考慮在特定時間間隔 (例如指定的事件數目) 建立快照集。 實體的目前狀態可從快照集，也可透過重新執行該時間點之後發生的任何事件取得。 如需建立資料之快照集的詳細資訊，請參閱 [Martin Fowler 企業應用程式架構網站上的快照集](https://martinfowler.com/eaaDev/Snapshot.html)和[主要從屬快照集複寫](https://msdn.microsoft.com/library/ff650012.aspx)。
 
 即使事件來源可大幅降低資料更新衝突的機會，應用程式仍必須能夠處理最終一致性所造成的不一致和缺乏交易。 例如，表示庫存降低的事件可能會在該項目的訂單下單時送達資料存放區，從而導致透過通知客戶或建立延期交貨訂單來協調這兩項作業的需求。
 
@@ -162,5 +162,3 @@ CRUD 方法有一些限制：
 - [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 使用事件來源搭配個別讀取存放區或具體化檢視時，讀取資料不會立即一致，而只會最終保持一致。 摘要說明透過分散式資料維護一致性的相關問題。
 
 - [資料分割指引](https://msdn.microsoft.com/library/dn589795.aspx)。 通常會在使用事件來源改善調整性、減少爭用並最佳化效能時，進行資料分割。 描述如何將資料分割成不連續的分割區，以及可能會發生的問題。
-
-- Greg Young 的貼文[為何要使用事件來源？](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/)。

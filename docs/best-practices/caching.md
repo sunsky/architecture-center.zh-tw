@@ -4,12 +4,12 @@ description: 用來改善效能和延展性的快取指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: fde1c3e8c65d357746e4ccaddebeebace943cf9d
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973139"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429463"
 ---
 # <a name="caching"></a>快取
 
@@ -132,7 +132,7 @@ ms.locfileid: "27973139"
 
 請小心不要將共用快取服務可用性上的重要相依性引入您的解決方案。 如果提供共用快取的服務無法使用，則應用程式應該能夠繼續運作。 應用程式應該不會在等候快取服務繼續時停止回應或失敗。
 
-因此，應用程式必須準備好偵測快取服務的可用性，並在無法存取快取時回復為原始資料存放區。 [Circuit Breaker Pattern (斷路器模式)](http://msdn.microsoft.com/library/dn589784.aspx) 在處理這種案例時相當實用。 提供快取的服務可以復原，而且當服務可供使用時，快取會在從原始資料存放區讀取資料時重新填入，並遵循下列策略，例如 [Cache-Aside Pattern (另行快取模式)](http://msdn.microsoft.com/library/dn589799.aspx)。
+因此，應用程式必須準備好偵測快取服務的可用性，並在無法存取快取時回復為原始資料存放區。 [Circuit Breaker Pattern (斷路器模式)](../patterns/circuit-breaker.md) 在處理這種案例時相當實用。 提供快取的服務可以復原，而且當服務可供使用時，快取會在從原始資料存放區讀取資料時重新填入，並遵循下列策略，例如 [Cache-Aside Pattern (另行快取模式)](../patterns/cache-aside.md)。
 
 不過，如果應用程式在快取暫時無法使用時回復至原始資料存放區，則可能會影響系統延展性。
 復原資料存放區時，原始資料存放區可能忙於處理資料要求，因而導致逾時和連接失敗。
@@ -148,7 +148,7 @@ ms.locfileid: "27973139"
 
 為了減少與寫入多個目的地相關聯的延遲，當資料寫入主要伺服器上的快取時，複寫到次要伺服器的作業可能會以非同步方式發生。 這種方法會導致某些快取的資訊可能會在發生錯誤時遺失，但此資料的比例應該小於快取的整體大小。
 
-如果共用快取很大，則在節點上分割快取資料可能很有幫助，可減少爭用的機會，並改善延展性。 許多的共用快取支援動態新增 (與移除) 節點，以及重新平衡分割之間資料的功能。 這種方法可能牽涉到叢集，節點的集合會向用戶端應用程式顯示為隨選即用的單一快取。 但內部的資料會分散在節點之間，並遵循某些預先定義的散發策略，以便平均地平衡負載。 Microsoft 網站上的 [資料分割指引文件](http://msdn.microsoft.com/library/dn589795.aspx) 提供關於可能分割策略的詳細資訊。
+如果共用快取很大，則在節點上分割快取資料可能很有幫助，可減少爭用的機會，並改善延展性。 許多的共用快取支援動態新增 (與移除) 節點，以及重新平衡分割之間資料的功能。 這種方法可能牽涉到叢集，節點的集合會向用戶端應用程式顯示為隨選即用的單一快取。 但內部的資料會分散在節點之間，並遵循某些預先定義的散發策略，以便平均地平衡負載。 Microsoft 網站上的 [資料分割指引文件](https://msdn.microsoft.com/library/dn589795.aspx) 提供關於可能分割策略的詳細資訊。
 
 叢集也可以進一步提高快取的可用性。 如果節點失敗，則快取的其餘部分仍然可以存取。
 使用叢集時經常搭配複寫和容錯移轉。 每個節點皆可複寫，且複本會在節點失敗時快速上線。
@@ -163,7 +163,7 @@ ms.locfileid: "27973139"
 
 一個應用程式的執行個體可以修改資料項目，使該項目的快取版本失效。 應用程式的另一個執行個體可能會嘗試從快取中讀取此項目 (這會導致快取遺漏)，因此它會從資料存放區讀取資料，並將它新增至快取。 不過，如果資料存放區沒有完全與其他複本同步，則應用程式執行個體可能會使用舊值來讀取並填入快取。
 
-如需處理資料一致性的詳細資訊，請參閱[資料一致性入門](http://msdn.microsoft.com/library/dn589800.aspx)。
+如需處理資料一致性的詳細資訊，請參閱[資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。
 
 ### <a name="protect-cached-data"></a>保護快取的資料
 無論您使用的快取服務為何，都要考慮如何保護保留於快取中的資料，以避免未經授權的存取。 其中有兩個主要的考量：
@@ -200,29 +200,29 @@ Azure Redis 快取是高效能的快取解決方案，提供可用性、延展�
 ### <a name="redis-as-an-in-memory-database"></a>Redis 作為記憶體中資料庫
 Redis 同時支援讀取和寫入作業。 在 Redis 中，寫入可以透過在本機快照集檔案或僅限附加的記錄檔中定期儲存，來提供保護以防止系統失敗。 這與許多快取不同 (應將其視為暫時性資料存放區)。
 
- 所有寫入皆為非同步，且不會封鎖用戶端讀取和寫入資料。 當 Redis 開始執行時，它會從快照集或記錄檔讀取資料，並使用它來建構記憶體中快取。 如需詳細資訊，請參閱 Redis 網站上的 [Redis Persistence (Redis 持續性)](http://redis.io/topics/persistence) 。
+ 所有寫入皆為非同步，且不會封鎖用戶端讀取和寫入資料。 當 Redis 開始執行時，它會從快照集或記錄檔讀取資料，並使用它來建構記憶體中快取。 如需詳細資訊，請參閱 Redis 網站上的 [Redis Persistence (Redis 持續性)](https://redis.io/topics/persistence) 。
 
 > [!NOTE]
-> Redis 不保證所有寫入在發生災難性失敗時皆能儲存，但最糟的情況是，您可能只會遺失幾秒鐘的資料價值。 請記住，快取並不適合用作授權資料來源，這是應用程式的責任，使用快取以確保重要資料已成功儲存到適當資料存放區。 如需詳細資訊，請參閱 [Cache-Aside Pattern (另行快取模式)](http://msdn.microsoft.com/library/dn589799.aspx)。
+> Redis 不保證所有寫入在發生災難性失敗時皆能儲存，但最糟的情況是，您可能只會遺失幾秒鐘的資料價值。 請記住，快取並不適合用作授權資料來源，這是應用程式的責任，使用快取以確保重要資料已成功儲存到適當資料存放區。 如需詳細資訊，請參閱 [Cache-Aside Pattern (另行快取模式)](../patterns/cache-aside.md)。
 > 
 > 
 
 #### <a name="redis-data-types"></a>Redis 資料類型
-Redis 是索引鍵值存放區，其中的值可以包含簡易類型或複雜資料結構，例如雜湊、清單，以及集合。 它針對這些資料類型支援一組不可部分完成的作業。 索引鍵可以永久存在或標記為有限的存留時間，屆時索引鍵及其對應值會自動從快取中移除。 如需有關 Redis 索引鍵和值的詳細資訊，請造訪 Redis 網站上的 [An introduction to Redis data types and abstractions (Redis 資料類型與抽象概念簡介)](http://redis.io/topics/data-types-intro) 頁面。
+Redis 是索引鍵值存放區，其中的值可以包含簡易類型或複雜資料結構，例如雜湊、清單，以及集合。 它針對這些資料類型支援一組不可部分完成的作業。 索引鍵可以永久存在或標記為有限的存留時間，屆時索引鍵及其對應值會自動從快取中移除。 如需有關 Redis 索引鍵和值的詳細資訊，請造訪 Redis 網站上的 [An introduction to Redis data types and abstractions (Redis 資料類型與抽象概念簡介)](https://redis.io/topics/data-types-intro) 頁面。
 
 #### <a name="redis-replication-and-clustering"></a>Redis 複寫和叢集
 Redis 支援主要/下層複寫，以協助確保可用性並維護輸送量。 Redis 主要節點的寫入作業會複寫至一或多個下層節點。 讀取作業可由主要或任何下層節點來提供。
 
-至於網路磁碟分割，下層項目可以繼續提供資料，然後在重新建立連接時以透明的方式與主要節點重新同步。 如需詳細資訊，請造訪 Redis 網站上的 [複寫 (英文)](http://redis.io/topics/replication) 頁面。
+至於網路磁碟分割，下層項目可以繼續提供資料，然後在重新建立連接時以透明的方式與主要節點重新同步。 如需詳細資訊，請造訪 Redis 網站上的 [複寫 (英文)](https://redis.io/topics/replication) 頁面。
 
 Redis 也提供叢集，其可讓您以透明方式在伺服器之間將資料分割成分區並分散負載。 此功能可改善延展性，因為可新增新的 Redis 伺服器，並增加資料可重新分割的快取大小。
 
-此外，叢集中的每一部伺服器都可以使用主要/下層複寫進行複寫。 這可確保整個叢集中每個節點的可用性 如需有關叢集和分區化的詳細資訊，請造訪 Redis 網站上的 [Redis 叢集教學課程頁面](http://redis.io/topics/cluster-tutorial)。
+此外，叢集中的每一部伺服器都可以使用主要/下層複寫進行複寫。 這可確保整個叢集中每個節點的可用性 如需有關叢集和分區化的詳細資訊，請造訪 Redis 網站上的 [Redis 叢集教學課程頁面](https://redis.io/topics/cluster-tutorial)。
 
 ### <a name="redis-memory-use"></a>Redis 記憶體使用
 Redis 快取的大小有限，其取決於主機電腦上可用的資源。 當您設定的 Redis 伺服器時，您可以指定伺服器可以使用的記憶體最大數量。 您也可以設定 Redis 快取中的索引鍵，使其具有到期時間，屆時會自動從快取中移除它。 此功能可協助避免記憶體內部快取中填滿老舊或過時的資料。
 
-當記憶體填滿時，Redis 可以遵循原則數目自動收回索引鍵及其值。 預設值是 LRU (最近最少使用的)，但您也可以選取其他原則，例如，隨機收回索引鍵或完全關閉收回 (在此情況下，當快取已滿時，嘗試將項目新增至快取就會失敗)。 [Using Redis as an LRU cache (使用 Redis 作為 LRU 快取)](http://redis.io/topics/lru-cache) 頁面提供了詳細資訊。
+當記憶體填滿時，Redis 可以遵循原則數目自動收回索引鍵及其值。 預設值是 LRU (最近最少使用的)，但您也可以選取其他原則，例如，隨機收回索引鍵或完全關閉收回 (在此情況下，當快取已滿時，嘗試將項目新增至快取就會失敗)。 [Using Redis as an LRU cache (使用 Redis 作為 LRU 快取)](https://redis.io/topics/lru-cache) 頁面提供了詳細資訊。
 
 ### <a name="redis-transactions-and-batches"></a>Redis 交易與批次
 Redis 可讓用戶端應用程式提交一系列的作業，以便在快取中讀取和寫入資料以作為不可部分完成的交易。 交易中的所有命令保證會循序執行，且其他並行用戶端所發出的命令將不會在兩者之間交互編排。
@@ -231,7 +231,7 @@ Redis 可讓用戶端應用程式提交一系列的作業，以便在快取中�
 
 在執行階段期間，Redis 會循序執行每個佇列中的命令。 如果命令在這個階段期間失敗，Redis 會繼續執行下一個佇列中的命令，且不會復原任何已經執行之命令的效果。 這個簡化的交易形式可協助維護效能，並避免爭用所造成的效能問題。
 
-Redis 會實作一種開放式鎖定，以便協助維護一致性。 如需使用 Redis 進行交易和鎖定的詳細資訊，請造訪 Redis 網站上的 [交易頁面 (英文)](http://redis.io/topics/transactions) 。
+Redis 會實作一種開放式鎖定，以便協助維護一致性。 如需使用 Redis 進行交易和鎖定的詳細資訊，請造訪 Redis 網站上的 [交易頁面 (英文)](https://redis.io/topics/transactions) 。
 
 Redis 也支援非交易式批次要求。 用戶端用來將命令傳送到 Redis 伺服器的 Redis 通訊協定，可讓用戶端將以相同要求的一部分來傳送一系列作業。 這有助於減少在網路上的封包分割。 處理批次時，系統會執行每個命令。 如果這些命令的任何格式不正確，將會遭到拒絕 (這不會在交易中發生)，但將會執行剩餘的命令。 此外，也不保證批次中處理命令的相關順序。
 
@@ -244,7 +244,7 @@ Redis 純粹著重於提供資料的快速存取，並設計為在受信任的�
 
 Redis 不直接支援任何形式的資料加密，因此所有編碼必須由用戶端應用程式執行。 此外，Redis 不提供任何形式的傳輸安全性。 如果您基於資料在網路上流通而需要保護資料，建議實作 SSL Proxy。
 
-如需詳細資訊，請造訪 Redis 網站上的 [Redis Security (Redis 安全性)](http://redis.io/topics/security) 頁面。
+如需詳細資訊，請造訪 Redis 網站上的 [Redis Security (Redis 安全性)](https://redis.io/topics/security) 頁面。
 
 > [!NOTE]
 > Azure Redis 快取透過所連接的用戶端提供自己的安全性層級。 基本的 Redis 伺服器不會向公用網路公開。
@@ -292,7 +292,7 @@ Azure Redis 快取可用來做為基礎 Redis 伺服器的表面。 目前它支
 
 因為您在想要實作複寫時可能需要建立數個 VM 做為主要和下層節點，所以這可能是個很複雜的程序。 此外，如果您想要建立叢集，則需要多部主要和下層伺服器。 可提供高可用性的最小叢集複寫拓撲，以及包含至少六個 VM 並組織成三組主要/下層伺服器配對 (叢集必須包含至少三個主要節點) 的延展性。
 
-每個主要/下層配對應彼此鄰近，以將延遲降至最低。 但若您想要找出靠近應用程式，且該應用程式最有可能使用的快取資料，每一組配對可以在位於不同區域的不同 Azure 資料中心內執行。  如需建置和設定作為 Azure VM 執行的 Redis 節點範例，請參閱[在 Azure 中的 CentOS Linux VM 上執行 Redis](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx)。
+每個主要/下層配對應彼此鄰近，以將延遲降至最低。 但若您想要找出靠近應用程式，且該應用程式最有可能使用的快取資料，每一組配對可以在位於不同區域的不同 Azure 資料中心內執行。  如需建置和設定作為 Azure VM 執行的 Redis 節點範例，請參閱[在 Azure 中的 CentOS Linux VM 上執行 Redis](https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/)。
 
 > [!NOTE]
 > 請注意，如果您以這種方式實作自己的 Redis 快取，則必須負責監視、管理和保護服務。
@@ -306,15 +306,15 @@ Azure Redis 快取可用來做為基礎 Redis 伺服器的表面。 目前它支
 * 在伺服器之間分配負載，藉此改善效能和延展性。
 * 將資料配置在鄰近供使用者存取的地理位置，因而可降低延遲。
 
-至於快取，最常見的資料分割形式是分區化。 在此策略中，每個分割區 (或分區) 都是獨立存在的 Redis 快取。 資料會使用分區化邏輯導向至特定的資料分割，可以使用各種不同的方法來散發資料。 [Sharding Pattern (分區化模式)](http://msdn.microsoft.com/library/dn589797.aspx) 提供有關實作分區化的詳細資訊。
+至於快取，最常見的資料分割形式是分區化。 在此策略中，每個分割區 (或分區) 都是獨立存在的 Redis 快取。 資料會使用分區化邏輯導向至特定的資料分割，可以使用各種不同的方法來散發資料。 [Sharding Pattern (分區化模式)](../patterns/sharding.md) 提供有關實作分區化的詳細資訊。
 
 若要在 Redis 快取中實作資料分割，您可以採用下列其中一種方法：
 
-* *伺服器端查詢路由。* 在這項技術中，用戶端應用程式將要求傳送到任何包含快取的 Redis 伺服器 (可能是最接近的伺服器)。 每個 Redis 伺服器會儲存描述資料分割的中繼資料，該資料分割會保存並同時包含關於其他伺服器上磁碟分割的資訊。 Redis 伺服器會檢查用戶端要求。 如果它可以在本機解析，就會執行要求的作業， 否則會將要求轉送到適當的伺服器。 此模型會由 Redis 叢集來實作，而更詳細的描述位於 Redis 網站上的 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)頁面。 Redis 叢集對用戶端應用程式而言是透明的，其他 Redis 伺服器可以加入至叢集 (資料會重新分割)，而不需要重新設定用戶端。
+* *伺服器端查詢路由。* 在這項技術中，用戶端應用程式將要求傳送到任何包含快取的 Redis 伺服器 (可能是最接近的伺服器)。 每個 Redis 伺服器會儲存描述資料分割的中繼資料，該資料分割會保存並同時包含關於其他伺服器上磁碟分割的資訊。 Redis 伺服器會檢查用戶端要求。 如果它可以在本機解析，就會執行要求的作業， 否則會將要求轉送到適當的伺服器。 此模型會由 Redis 叢集來實作，而更詳細的描述位於 Redis 網站上的 [Redis 叢集教學課程](https://redis.io/topics/cluster-tutorial)頁面。 Redis 叢集對用戶端應用程式而言是透明的，其他 Redis 伺服器可以加入至叢集 (資料會重新分割)，而不需要重新設定用戶端。
 * *用戶端資料分割。* 在此模型中，用戶端應用程式包含將要求路由傳送至適當 Redis 伺服器的邏輯 (可能是以程式庫的形式)。 這種方法可以搭配 Azure Redis 快取使用。 建立多個 Azure Redis 快取 (每個資料分割區一個快取)，並實作將要求路由傳送至正確快取的用戶端邏輯。 如果資料分割配置有所變更 (例如，如果建立了其他 Azure Redis 快取)，則用戶端應用程式可能需要重新設定。
 * *Proxy 輔助資料分割。* 在此配置中，用戶端應用程式會將要求傳送至一個了解如何分割資料的中繼 Proxy 服務，然後將要求路由傳送至適當的 Redis 伺服器。 這種方法也可以搭配 Azure Redis 快取使用；Proxy 服務可以實作為 Azure 雲端服務。 這種方法需要一層額外的複雜性來實作服務，而且要求的執行時間可能比使用用戶端資料分割的時間更長。
 
-Redis 網站上的 [資料分割：如何在多個 Redis 執行個體上劃分資料](http://redis.io/topics/partitioning) 頁面會提供關於使用 Redis 實作資料分割的進一步資訊。
+Redis 網站上的 [資料分割：如何在多個 Redis 執行個體上劃分資料](https://redis.io/topics/partitioning) 頁面會提供關於使用 Redis 實作資料分割的進一步資訊。
 
 ### <a name="implement-redis-cache-client-applications"></a>實作 Redis 快取用戶端應用程式
 Redis 支援以多種程式設計語言撰寫的用戶端應用程式。 如果您要使用.NET Framework 來建置新的應用程式，建議的方法是使用 StackExchange.Redis 用戶端程式庫。 此程式庫會提供.NET Framework 物件模型，用來擷取詳細資料以便連接到 Redis 伺服器連接、傳送命令，以及接收回應。 它是在 Visual Studio 中作為 NuGet 封裝提供使用。 您可以使用這個相同的程式庫，連接至 Azure Redis 快取或 VM 上裝載的自訂 Redis 快取。
@@ -325,7 +325,7 @@ Redis 支援以多種程式設計語言撰寫的用戶端應用程式。 如果�
 
 在您已連線到 Redis 伺服器之後，可以在作為快取的 Redis 資料庫上取得控制代碼。 Redis 連線提供 `GetDatabase` 方法來執行這項操作。 您可以使用 `StringGet` 和 `StringSet` 方法，從快取擷取項目並在快取中儲存資料。 這些方法預期索引鍵要做為參數使用，並傳回快取中具有相符值的項目 (`StringGet`)，或利用此索引鍵將項目新增至快取 (`StringSet`)。
 
-根據 Redis 伺服器的位置，許多作業可能會造成一些延遲，而要求會傳輸到伺服器，且回應會傳回給用戶端。 StackExchange 程式庫提供許多方法的非同步版本，它會進行公開以便協助用戶端應用程式保持回應狀態。 這些方法支援 .NET Framework 中的 [以工作為基礎的非同步模式 (TAP)](http://msdn.microsoft.com/library/hh873175.aspx) 。
+根據 Redis 伺服器的位置，許多作業可能會造成一些延遲，而要求會傳輸到伺服器，且回應會傳回給用戶端。 StackExchange 程式庫提供許多方法的非同步版本，它會進行公開以便協助用戶端應用程式保持回應狀態。 這些方法支援 .NET Framework 中的 [以工作為基礎的非同步模式 (TAP)](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) 。
 
 下列程式碼片段示範一個名為 `RetrieveItem`的方法。 其中說明根據 Redis 和 StackExchange 程式庫實作另行快取模式的範例。 此方法接受字串索引值，並透過呼叫 `StringGetAsync` 方法 (`StringGet` 的非同步版本)，嘗試從 Redis 快取中擷取對應的項目。
 
@@ -476,7 +476,7 @@ var customer2 = cache.Wait(task2);
 
 例如，使用結構化的索引鍵，像是 "customer:100" 來表示客戶識別碼為 100 的索引鍵，而非僅以 "100" 表示。 此配置可讓您輕鬆區別儲存不同資料類型之間的值。 例如，您也可以使用索引鍵 "orders:100" 來表示順序識別碼為 100 的索引鍵。
 
-除了一維的二進位字串，Redis 索引鍵/值配對中的值也可以保留更結構化資訊，包含清單、集合 (已排序和未排序)，以及雜湊。 Redis 提供一組完整的命令集，可處理這些類型，且這些命令當中有許多可透過例如 StackExchange 的用戶端程式庫，使用於 .NET Framework 應用程式。 Redis 網站上的 [Redis 資料類型和抽象概念簡介 (英文)](http://redis.io/topics/data-types-intro) 頁面可針對這些類型和可用來操作這些類型的命令，提供更詳細的概觀。
+除了一維的二進位字串，Redis 索引鍵/值配對中的值也可以保留更結構化資訊，包含清單、集合 (已排序和未排序)，以及雜湊。 Redis 提供一組完整的命令集，可處理這些類型，且這些命令當中有許多可透過例如 StackExchange 的用戶端程式庫，使用於 .NET Framework 應用程式。 Redis 網站上的 [Redis 資料類型和抽象概念簡介 (英文)](https://redis.io/topics/data-types-intro) 頁面可針對這些類型和可用來操作這些類型的命令，提供更詳細的概觀。
 
 本節將針對這些資料類型和命令摘要說明一些常用案例。
 
@@ -859,43 +859,42 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 
 - [Apache Avro](https://avro.apache.org/) 提供和 Protocol Buffers、Thrift 類似的功能，但是沒有編譯步驟。 而是序列化過的資料一定會包含描述結構的結構描述。 
 
-- [JSON](http://json.org/) 是一項開放標準，使用人類看得懂的文字欄位。 它有廣泛的跨平台支援。 JSON 不使用訊息結構描述。 它是文字型格式，透過線路不是非常有效率。 不過，在某些案例中，您可能會透過 HTTP 直接將已快取的項目傳回用戶端，在此情況下，JSON 可以省下成本將一種格式還原序列化，再序列化為 JSON 的成本。
+- [JSON](https://json.org/) 是一項開放標準，使用人類看得懂的文字欄位。 它有廣泛的跨平台支援。 JSON 不使用訊息結構描述。 它是文字型格式，透過線路不是非常有效率。 不過，在某些案例中，您可能會透過 HTTP 直接將已快取的項目傳回用戶端，在此情況下，JSON 可以省下成本將一種格式還原序列化，再序列化為 JSON 的成本。
 
 - [BSON](http://bsonspec.org/) 是二進位序列化格式，使用類似 JSON 的結構。 BSON 設計成輕量、能夠輕鬆瀏覽，而且相對於 JSON 可更快速序列化和還原序列化。 承載大小可與 JSON 比較。 BSON 承載可能小於或大於 JSON 酬載，取決於資料。 BSON 另外有一些 JSON 沒有的資料類型，值得注意的是 BinData (用於位元組陣列) 和 Date。
 
-- [MessagePack](http://msgpack.org/) 是二進位序列化格式，設計得更精巧以利透過網路傳輸。 沒有任何訊息結構描述或訊息類型檢查。
+- [MessagePack](https://msgpack.org/) 是二進位序列化格式，設計得更精巧以利透過網路傳輸。 沒有任何訊息結構描述或訊息類型檢查。
 
 - [Bond](https://microsoft.github.io/bond/) 是使用結構描述化資料的跨平台架構。 支援跨語言序列化和還原序列化。 此處列出與其他系統的差異之中值得注意的：繼承、類型別名和泛型的支援。 
 
-- [gRPC](http://www.grpc.io/) 是 Google 開發的開放原始碼 RPC 系統。 根據預設，它會使用 Protocol Buffers 作為其定義語言和基礎訊息交換格式。
+- [gRPC](https://www.grpc.io/) 是 Google 開發的開放原始碼 RPC 系統。 根據預設，它會使用 Protocol Buffers 作為其定義語言和基礎訊息交換格式。
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 在您的應用程式中實作快取時，下列模式也可能與您的案例相關：
 
-* [Cache-aside pattern (另行快取模式)](http://msdn.microsoft.com/library/dn589799.aspx)：這個模式描述如何從資料存放區將資料隨選載入快取中。 此模式也有助於維護快取中所保留的資料與原始資料存放區中的資料之間的一致性。
-* [Sharding pattern (分區化模式)](http://msdn.microsoft.com/library/dn589797.aspx) 會提供實作水平資料分割的資訊，以在儲存和存取大量資料時協助改善延展性。
+* [Cache-aside pattern (另行快取模式)](../patterns/cache-aside.md)：這個模式描述如何從資料存放區將資料隨選載入快取中。 此模式也有助於維護快取中所保留的資料與原始資料存放區中的資料之間的一致性。
+* [Sharding pattern (分區化模式)](../patterns/sharding.md) 會提供實作水平資料分割的資訊，以在儲存和存取大量資料時協助改善延展性。
 
 ## <a name="more-information"></a>詳細資訊
-* Microsoft 網站上的 [MemoryCache 類別](http://msdn.microsoft.com/library/system.runtime.caching.memorycache.aspx) 頁面
+* Microsoft 網站上的 [MemoryCache 類別](/dotnet/api/system.runtime.caching.memorycache) 頁面
 * Microsoft 網站上的 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/) 頁面
 * Microsoft 網站上的 [Azure Redis 快取常見問題集](/azure/redis-cache/cache-faq) 頁面
-* Microsoft 網站上的 [組態模型](http://msdn.microsoft.com/library/windowsazure/hh914149.aspx) 頁面
-* Microsoft 網站上的 [以工作為基礎的非同步模式 (TAP)](http://msdn.microsoft.com/library/hh873175.aspx) 頁面
+* Microsoft 網站上的 [以工作為基礎的非同步模式 (TAP)](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) 頁面
 * StackExchange.Redis GitHub 儲存機制上的 [Pipelines and multiplexers (管線和多工器)](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) 頁面
-* Redis 網站上的 [Redis Persistence (Redis 持續性)](http://redis.io/topics/persistence) 頁面
-* Redis 網站上的 [Replication (複寫)](http://redis.io/topics/replication) 頁面
-* Redis 網站上的 [Redis cluster tutorial (Redis 叢集教學課程)](http://redis.io/topics/cluster-tutorial) 頁面。
-* Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)](http://redis.io/topics/partitioning) 頁面
-* Redis 網站上的 [Using Redis as an LRU Cache (將 Redis 當做 LRU 快取來使用)](http://redis.io/topics/lru-cache) 頁面
-* Redis 網站上的 [Transactions (交易)](http://redis.io/topics/transactions) 頁面
-* Redis 網站上的 [Redis Security (Redis 安全性)](http://redis.io/topics/security) 頁面
+* Redis 網站上的 [Redis Persistence (Redis 持續性)](https://redis.io/topics/persistence) 頁面
+* Redis 網站上的 [Replication (複寫)](https://redis.io/topics/replication) 頁面
+* Redis 網站上的 [Redis cluster tutorial (Redis 叢集教學課程)](https://redis.io/topics/cluster-tutorial) 頁面。
+* Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)](https://redis.io/topics/partitioning) 頁面
+* Redis 網站上的 [Using Redis as an LRU Cache (將 Redis 當做 LRU 快取來使用)](https://redis.io/topics/lru-cache) 頁面
+* Redis 網站上的 [Transactions (交易)](https://redis.io/topics/transactions) 頁面
+* Redis 網站上的 [Redis Security (Redis 安全性)](https://redis.io/topics/security) 頁面
 * Azure 部落格上的 [Lap around Azure Redis Cache (瀏覽 Azure Redis 快取)](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/) 頁面
-* Microsoft 網站上的 [在 Azure 中的 CentOS Linux VM 上執行 Redis](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx) 頁面
+* Microsoft 網站上的 [在 Azure 中的 CentOS Linux VM 上執行 Redis](https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/) 頁面
 * Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](/azure/redis-cache/cache-aspnet-session-state-provider) 頁面
 * Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取供應器](/azure/redis-cache/cache-aspnet-output-cache-provider) 頁面
-* Redis 網站上的 [An Introduction to Redis data types and abstractions (Redis 資料類型與抽象概念簡介)](http://redis.io/topics/data-types-intro) 頁面
+* Redis 網站上的 [An Introduction to Redis data types and abstractions (Redis 資料類型與抽象概念簡介)](https://redis.io/topics/data-types-intro) 頁面
 * StackExchange.Redis 網站上的 [Basic usage (基本使用方式)](https://stackexchange.github.io/StackExchange.Redis/Basics) 頁面
 * StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://stackexchange.github.io/StackExchange.Redis/Transactions) 頁面
-* Microsoft 網站上的 [資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx) 。
+* Microsoft 網站上的 [資料分割指南](https://msdn.microsoft.com/library/dn589795.aspx) 。
 

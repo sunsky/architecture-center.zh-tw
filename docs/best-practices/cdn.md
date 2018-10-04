@@ -4,12 +4,12 @@ description: 內容傳遞網路 (CDN) 的指引，目的是傳遞 Azure 中裝�
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42b73db08ecef858f5279ea292cf8c0df77b847c
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: 9805b1b6df8cedd7668eb9e85f741ee81c3dfa58
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2018
-ms.locfileid: "29563552"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428885"
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>使用內容傳遞網路 (CDN) 的最佳作法
 
@@ -91,7 +91,7 @@ CDN 可以使用 CDN 所提供的憑證，透過 HTTPS (SSL) 傳遞內容，也�
 使用 CDN 傳遞靜態資產時 (如字型檔案)，如果使用 *XMLHttpRequest* 呼叫要求不同網域中的這些資源，可能會遇到相同來源原則問題。 許多網頁瀏覽器會防止跨原始來源資源分享 (CORS)，除非網頁伺服器已設定適當的回應標頭。 使用下列方法之一可以設定 CDN 支援 CORS：
 
 * 使用 CDN 以將 CORS 標頭新增至回應。 如需詳細資訊，請參閱[搭配使用 Azure CDN 與 CORS](/azure/cdn/cdn-cors)。 
-* 如果來源是 Azure Blob 儲存體，請將 CORS 規則新增至儲存體端點。 如需詳細資訊，請參閱 [跨原始資源共用 (CORS) 支援 Azure 儲存體服務](http://msdn.microsoft.com/library/azure/dn535601.aspx)。
+* 如果來源是 Azure Blob 儲存體，請將 CORS 規則新增至儲存體端點。 如需詳細資訊，請參閱 [跨原始資源共用 (CORS) 支援 Azure 儲存體服務](/rest/api/storageservices/Cross-Origin-Resource-Sharing--CORS--Support-for-the-Azure-Storage-Services)。
 * 設定應用程式以設定 CORS 標頭。 如需範例，請參閱 ASP.NET Core 文件中的[啟用跨源要求 (CORS)](/aspnet/core/security/cors)。
 
 ### <a name="cdn-fallback"></a>CDN 後援

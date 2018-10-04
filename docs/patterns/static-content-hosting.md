@@ -1,6 +1,6 @@
 ---
 title: 靜態內容裝載
-description: 將靜態內容部署到可以直接將其傳遞給用戶端的雲端式儲存體服務。
+description: 將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
@@ -9,18 +9,18 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: deb15001bea2598d56a2793be78bbc3e7473bdf3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541684"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428205"
 ---
 # <a name="static-content-hosting-pattern"></a>靜態內容裝載模式
 
 [!INCLUDE [header](../_includes/header.md)]
 
-將靜態內容部署到可以直接將其傳遞給用戶端的雲端式儲存體服務。 這可以降低對潛在昂貴之計算執行個體的需求。
+將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。 這可以降低對潛在昂貴之計算執行個體的需求。
 
 ## <a name="context-and-problem"></a>內容和問題
 
@@ -28,7 +28,7 @@ Web 應用程式通常包含靜態內容的某些元素。 這個靜態內容可
 
 雖然 Web 伺服器已調整成透過有效率的動態網頁程式碼執行和輸出快取來最佳化要求，但仍然需要處理下載靜態內容的要求。 這會取用通常可以更加適當使用的處理週期。
 
-## <a name="solution"></a>解決方式
+## <a name="solution"></a>解決方法
 
 在大部分的雲端裝載環境中，透過在儲存體服務中尋找應用程式的部分資源和靜態網頁，可以將計算執行個體的需求降到最低 (例如，使用較小的執行個體或較少的執行個體)。 雲端裝載儲存體的成本通常遠低於計算執行個體的成本。
 
@@ -74,7 +74,7 @@ Web 應用程式通常包含靜態內容的某些元素。 這個靜態內容可
 
 Azure Blob 儲存體中的靜態內容可以直接透過網頁瀏覽器存取。 Azure 在儲存體上提供一個可公開給用戶端的 HTTP 型介面。 例如，Azure Blob 儲存體容器中的內容會使用下列格式的 URL 來公開：
 
-`http://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
 
 
 上傳內容時，必須建立一或多個 Blob 容器來保存檔案和文件。 請注意，新的容器的預設權限為「私人」，您必須將其變更為「公開」以允許用戶端存取內容。 如果有必要避免匿名存取內容，則可以實作[有限權限金鑰模式](valet-key.md)，要求使用者必須出示有效權杖才能下載資源。
@@ -89,7 +89,7 @@ Azure Blob 儲存體中的靜態內容可以直接透過網頁瀏覽器存取。
 傳遞至用戶端的頁面中的連結，必須指定 Blob 容器及資源的完整 URL。 例如，包含公用容器中之影像連結的頁面，可能包含以下的 HTML。
 
 ```html
-<img src="http://mystorageaccount.blob.core.windows.net/myresources/image1.png"
+<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
      alt="My image" />
 ```
 
@@ -167,7 +167,6 @@ Views\Home 資料夾中的 Index.cshtml 檔案包含使用 `StaticContentUrl` �
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
-- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) \(英文\) 上有提供示範此模式的範例。
+- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 上有提供示範此模式的範例。
 - [有限權限金鑰模式](valet-key.md)。 如果目標資源不應該提供給匿名使用者使用，則必須在保存靜態內容的存放區上實作安全性。 描述如何使用權杖或金鑰為用戶端提供特定資源或服務 (例如雲端裝載儲存體服務) 的受限制直接存取。
-- Infosys 部落格上的[在 Azure 上部署靜態網站的有效方法](http://www.infosysblogs.com/microsoft/2010/06/an_efficient_way_of_deploying.html) \(英文\)。
 - [Blob 服務概念](https://msdn.microsoft.com/library/azure/dd179376.aspx) \(英文\)

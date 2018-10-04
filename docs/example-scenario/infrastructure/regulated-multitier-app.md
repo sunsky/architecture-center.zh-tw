@@ -3,12 +3,12 @@ title: 受規範產業的安全 Windows Web 應用程式
 description: 經過實證的案例，可透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 780b82791510b6ca06ef918b66d2547794dfcf87
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389266"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428749"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>受規範產業的安全 Windows Web 應用程式
 
@@ -90,7 +90,7 @@ ms.locfileid: "44389266"
 
 若要使用 Azure Resource Manager 範本部署此案例的核心基礎結構，請執行下列步驟。
 
-1. 選取 [部署至 Azure] 按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. 選取 [部署至 Azure] 按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待 Azure 入口網站中的範本部署開啟，然後完成下列步驟：
    * 選擇 [新建] 資源群組，然後在文字方塊中提供名稱，例如 myWindowsscenario。
    * 從 [位置] 下拉式方塊選取區域。
@@ -120,7 +120,7 @@ ms.locfileid: "44389266"
 [appgateway-docs]: /azure/application-gateway/overview
 [architecture]: ./media/regulated-multitier-app/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
-[availability]: /architecture/checklist/availability
+[availability]: ../../checklist/availability.md
 [azureaz-docs]: /azure/availability-zones/az-overview
 [azurecosmosdb-docs]: /azure/cosmos-db/introduction
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness

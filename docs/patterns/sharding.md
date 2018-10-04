@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091099"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428851"
 ---
 # <a name="sharding-pattern"></a>分區化模式
 
@@ -219,6 +219,3 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 - [資料分割指引](https://msdn.microsoft.com/library/dn589795.aspx)。 將資料存放區分區化會造成其他各種問題。 說明在雲端分割資料存放區的相關問題，可改善延展性、減少爭用，以及將效能最佳化。
 - [索引表格模式](index-table.md)。 有時不可能只透過分區化索引鍵的設計來完全支援查詢。 指定分區索引鍵以外的索引鍵，即可讓應用程式從大型資料存放區快速擷取資料。
 - [具體化檢視模式](materialized-view.md)。 若要維護某些查詢作業的效能，建立可彙總及摘要資料的具體化檢視很實用，尤其在此摘要資料是以分散於各分區的資訊為基礎時。 說明如何產生及填入這些檢視。
-- Adding Simplicity 部落格上的 [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html)。
-- CodeFutures 網站上的 [Database Sharding](http://dbshards.com/database-sharding/)。
-- Dare Obasanjo 部落格上的 [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx)。

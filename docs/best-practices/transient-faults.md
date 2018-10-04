@@ -4,12 +4,12 @@ description: 暫時性錯誤處理重試指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: 85264faa89e827821a71544f1bf8dc8e0619ef24
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/23/2017
-ms.locfileid: "25545973"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429242"
 ---
 # <a name="transient-fault-handling"></a>暫時性錯誤處理
 
@@ -62,16 +62,16 @@ ms.locfileid: "25545973"
   * 使用例外狀況類型及其包含的任何資料，或使用從服務傳回的錯誤碼與訊息，來最佳化重試的間隔和次數。 例如，某些例外狀況或錯誤代碼 (例如 HTTP 代碼 503：無法以回應中的 Retry-After 標頭提供服務) 會指出錯誤可能持續時間的長度，或服務失敗且不會回應任何後續的嘗試。
 * **避免反向模式**：
   * 在絕大多數情況下，您應該避免包含重複重試程式碼層的實作。 請避免包括階層式重試機制的設計，或避免在涉及要求階層之作業的每個階段實作重試，除非您有此特定的需求。 在這些例外狀況下，請使用原則避免過多的重試次數和延遲期間過長，並確定您瞭解後果。 例如，如果某個元件對另一個元件提出要求，然後存取目標服務，且您要對這兩個呼叫各實作重試三次，則總共會對該服務重試九次。 許多服務和資源會實作內建的重試機制，如果您需要在較高層級實作重試，您應該調查如何停用或修改此設定。
-  * 永遠不要實作無盡的重試機制。 這可能會防止資源或服務從過載的情況下復原，並造成節流與遭拒絕連線持續更長的時間。 使用有限的數目或重試次數，或使用如 [斷路器](http://msdn.microsoft.com/library/dn589784.aspx) 等模式，以允許服務復原。
+  * 永遠不要實作無盡的重試機制。 這可能會防止資源或服務從過載的情況下復原，並造成節流與遭拒絕連線持續更長的時間。 使用有限的數目或重試次數，或使用如 [斷路器](../patterns/circuit-breaker.md) 等模式，以允許服務復原。
   * 永遠不要執行立即重試一次以上。
   * 請避免使用固定重試間隔，尤其是當您在存取 Azure 的服務與資源時會重試非常多次時。 在此情況下的最佳方法是指數退避策略搭配斷路功能。
   * 防止同一個用戶端有多個執行個體，或不同用戶端有多個執行個體同時傳送重試。 如果這可能發生，請在重試間隔導入隨機策略。
 * **測試重試策略與實作：**
   * 請確定在儘可能最多的狀況下完整測試您的重試策略，尤其是當其使用的應用程式與目標資源是在極端負載下時。 若要檢查測試期間的行為，您可以：
-    * 將暫時性與非暫時性錯誤插入服務中。 例如，傳送無效要求，或新增程式碼來偵測不同錯誤類型的測試要求與回應。 例如使用 TestApi，請參閱 [TestApi 的錯誤插入測試](http://msdn.microsoft.com/magazine/ff898404.aspx)與 [TestApi 簡介 – 第 5 部：受管理的程式碼錯誤插入 API](http://blogs.msdn.com/b/ivo_manolov/archive/2009/11/25/9928447.aspx)。
+    * 將暫時性與非暫時性錯誤插入服務中。 例如，傳送無效要求，或新增程式碼來偵測不同錯誤類型的測試要求與回應。 例如使用 TestApi，請參閱 [TestApi 的錯誤插入測試](https://msdn.microsoft.com/magazine/ff898404.aspx)與 [TestApi 簡介 – 第 5 部：受控程式碼錯誤插入 API](https://blogs.msdn.microsoft.com/ivo_manolov/2009/11/25/introduction-to-testapi-part-5-managed-code-fault-injection-apis/)。
     * 建立資源或服務模型，以傳回實際服務可能傳回的錯誤範圍。 請確定您涵蓋了重試策略其設計要偵測的所有錯誤類型。
     * 如果服務是您建立及部署的自訂服務，則透過暫時停用或超載該服務，來強制暫時性錯誤發生 (當然，您不應該嘗試超載 Azure 內的任何共用資源或共用服務)。
-    * 對於以 HTTP 為基礎的 API，請考慮在您的自動化測試中使用 FiddlerCore 程式庫來變更 HTTP 要求的結果，方法是新增額外的往返次數或變更回應 (例如 HTTP 狀態碼、標頭、內文或其他因素)。 這會允許決定性測試錯誤狀況的子集，無論是暫時性錯誤或其他類型的錯誤。 如需詳細資訊，請參閱＜ [FiddlerCore](http://www.telerik.com/fiddler/fiddlercore)＞。 有關如何使用程式庫的範例，尤其是 **HttpMangler** 類別，請檢查 [Azure 儲存體 SDK 的原始程式碼](https://github.com/Azure/azure-storage-net/tree/master/Test)。
+    * 對於以 HTTP 為基礎的 API，請考慮在您的自動化測試中使用 FiddlerCore 程式庫來變更 HTTP 要求的結果，方法是新增額外的往返次數或變更回應 (例如 HTTP 狀態碼、標頭、內文或其他因素)。 這會允許決定性測試錯誤狀況的子集，無論是暫時性錯誤或其他類型的錯誤。 如需詳細資訊，請參閱＜ [FiddlerCore](https://www.telerik.com/fiddler/fiddlercore)＞。 有關如何使用程式庫的範例，尤其是 **HttpMangler** 類別，請檢查 [Azure 儲存體 SDK 的原始程式碼](https://github.com/Azure/azure-storage-net/tree/master/Test)。
     * 執行高負載因數和並行測試，確保重試機制與策略在這些條件下能正確運作，且不會對用戶端作業造成不良的影響或導致要求之間交叉污染。
 * **管理重試原則組態：**
   * 「重試原則」是所有重試策略元素的組合。 它定義了能判斷錯誤是否可能是暫時性的偵測機制、使用的間隔類型 (例如固定、指數退避法及隨機)、實際間隔值，以及重試次數。
@@ -88,7 +88,7 @@ ms.locfileid: "25545973"
   
   * 當每次嘗試後作業仍繼續失敗時，請務必考慮您將如何處理這種情況：
     * 雖然重試策略會定義作業應重試次數的上限，但它不會防止應用程式一再地重複作業，達與重試次數相同的次數。 例如，如果處理訂單服務因為嚴重錯誤失敗，而永久無法有動作，則重試策略會偵測連線逾時，並將它視為暫時性錯誤。 程式碼將會重試作業達指定的次數，然後放棄。 不過，當另一位客戶下單時，會再次嘗試該作業，即使是確定該作業每次都會失敗。
-    * 為防止不斷重試持續失敗的作業，請考慮實作 [斷器模式](http://msdn.microsoft.com/library/dn589784.aspx)。 在此模式中，如果在指定的時段內失敗次數超過臨界值，則會立即將要求傳回給呼叫者，並視為錯誤，而不會嘗試存取失敗的資源或服務。
+    * 為防止不斷重試持續失敗的作業，請考慮實作 [斷器模式](../patterns/circuit-breaker.md)。 在此模式中，如果在指定的時段內失敗次數超過臨界值，則會立即將要求傳回給呼叫者，並視為錯誤，而不會嘗試存取失敗的資源或服務。
     * 應用程式會定期測試服務，並間歇性地偵測服務何時可供使用，且要求之間的間隔非常長。 適當的間隔視案例而定，例如作業的重要性和服務的本質，可能是數分鐘到數個小時。 測試成功時，應用程式會恢復正常作業，並將要求傳遞到剛復原的服務。
     * 同時，可能會切換回服務的另一個執行個體 (或許在不同的資料中或應用程式中)、使用提供相容 (或許是更簡單) 功能的服務，或執行替代作業以期該服務能很快地恢復使用。 例如，可能適合將服務的要求儲存在佇列或資料存放區中，且於稍後重新執行。 否則您可能能夠將使用者重新導向至替代的應用程式執行個體、讓應用程式效能降級，但仍然可以提供可接受的功能，或將訊息傳回給使用者，表示應用程式目前無法使用。
 * **其他考量**
@@ -101,10 +101,9 @@ ms.locfileid: "25545973"
 
 ## <a name="more-information"></a>詳細資訊
 * [Azure 服務特定重試方針](./retry-service-specific.md)
-* [暫時性錯誤處理應用程式區塊](http://msdn.microsoft.com/library/hh680934.aspx)
-* [斷路器模式](http://msdn.microsoft.com/library/dn589784.aspx)
-* [補償交易模式 (英文)](http://msdn.microsoft.com/library/dn589804.aspx)
+* [斷路器模式](../patterns/circuit-breaker.md)
+* [補償交易模式 (英文)](../patterns/compensating-transaction.md)
 * [冪等性模式][idempotency-patterns]
 
-[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
+[idempotency-patterns]: https://blog.jonathanoliver.com/idempotency-patterns/
 

@@ -3,12 +3,12 @@ title: 在 Azure 大型執行個體上執行 SAP HANA
 description: 在 Azure 大型執行個體上高可用性環境中執行 SAP HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: 746161ac51335af5c48a559830d6e0345dcfb7b1
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: d9d619dd7fb17c7cf0a66ce73c1e067ec97a2401
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864516"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429701"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>在 Azure 大型執行個體上執行 SAP HANA
 
@@ -29,7 +29,7 @@ ms.locfileid: "37864516"
 
 - **虛擬機器**。 會在 SAP 應用程式層和共用服務層中使用虛擬機器。 後者包含 jumpbox，系統管理員會使用該 jumpbox 來設定 HANA 大型執行個體，並提供其他虛擬機器的存取權。 
 
-- **HANA 大型執行個體**。 經認證以符合 SAP HANA Tailored Datacenter Integration (TDI) 標準的[實體伺服器][physical]會執行 SAP HANA。 此架構會使用兩個 HANA 大型執行個體：主要和次要計算單位。 資料層的高可用性是透過 HANA 系統複寫 (HSR) 來提供。
+- **HANA 大型執行個體**。 經認證已符合 SAP HANA Tailored Datacenter Integration (TDI) 標準的[實體伺服器][physical]，用於執行 SAP HANA。 此架構會使用兩個 HANA 大型執行個體：主要和次要計算單位。 資料層的高可用性由 HANA 系統複寫 (HSR) 提供。
 
 - **高可用性配對**。 一組 HANA 大型執行個體刀鋒視窗會一起管理，以提供應用程式備援能力和可靠性。 
 
@@ -39,7 +39,7 @@ ms.locfileid: "37864516"
     
 - **網路檔案系統 (NFS) 儲存體**。 [NFS][nfs] 伺服器會支援網路檔案共用，它會為 HANA 大型執行個體提供安全資料持續性。
 
-- **ExpressRoute。** [ExpressRoute][expressroute] 是建議的 Azure 網路服務，用來建立不會經過公用網際網路的內部部署網路與 Azure 虛擬網路之間的私人連線。 Azure 虛擬機器會使用另一個 ExpressRoute 連線，以連線至 HANA 大型執行個體。 Azure 虛擬網路與 HANA 大型執行個體之間的 ExpressRoute 連線是設為 Microsoft 供應項目的一部分。
+- **ExpressRoute。** 若要在內部部署網路與 Azure 虛擬網路之間建立不會經過公開網際網路的私人連線，[ExpressRoute][expressroute] 是最建議您使用 Azure 網路服務。 Azure 虛擬機器會使用另一個 ExpressRoute 連線，以連線至 HANA 大型執行個體。 Azure 虛擬網路與 HANA 大型執行個體之間的 ExpressRoute 連線已設為 Microsoft 供應項目的一部分。
 
 - **閘道**。 使用 ExpressRoute 閘道以將用於 SAP 應用程式層的 Azure 虛擬網路連線至 HANA 大型執行個體網路。 使用[高效能或超級效能][sku] SKU。
 
@@ -49,7 +49,7 @@ ms.locfileid: "37864516"
 需求可能有所不同，因此請使用這些建議作為起點。
 
 ### <a name="hana-large-instances-compute"></a>HANA 大型執行個體計算
-[大型執行個體][physical]是以 Intel EX E7 CPU 架構為基礎且在大型執行個體戳記中設定的實體伺服器，也就是特定的一組伺服器或刀鋒視窗。 計算單位等於一個伺服器或刀鋒視窗，戳記是由多個伺服器或刀鋒視窗組成。 在大型執行個體戳記內，伺服器不會共用，而是專用於執行一個客戶的 SAP HANA 部署。
+[大型執行個體][physical]是以 Intel EX E7 CPU 架構為基礎且在大型執行個體戳記中設定的實體伺服器，也就是特定的一組伺服器或刀鋒視窗。 計算單位等於一個伺服器或刀鋒視窗，戳記由多個伺服器或刀鋒視窗組成。 在大型執行個體戳記內，伺服器不會共用，而是專用於執行一個客戶的 SAP HANA 部署。
 
 有各種 SKU 可用於 HANA 大型執行個體，針對單一執行個體的 S/4HANA 或其他 SAP HANA 工作負載，支援最多 20 TB (60 TB 相應放大) 的記憶體。 提供[兩個類別][classes]的伺服器：
 
@@ -57,18 +57,18 @@ ms.locfileid: "37864516"
 
 - 類型 II 類別：S384、S384m、S384xm、S576m、S768m 和 S960m
 
-例如，S72 SKU 隨附 768 GB RAM、3 terabytes (TB) 儲存體，以及具有 36 核心的 2 個 Intel Xeon 處理器 (E7-8890 v3)。 選擇符合您在架構和設計工作階段中所決定大小需求的 SKU。 務必確定您的大小會套用到正確的 SKU。 功能和部署需求會[因類型而異][type]，可用性會因[區域][region]而異。 您也可以從一個 SKU 升級到較大的 SKU。
+例如，S72 SKU 隨附 768 GB RAM、3 terabytes (TB) 儲存體，以及具有 36 核心的 2 個 Intel Xeon 處理器 (E7-8890 v3)。 選擇適合的 SKU，來滿足您在架構和設計工作階段中所推斷出的大小需求。 務必確定您的大小能與正確的 SKU 相符。 功能和部署需求會[因類型而異][type]，可用性會因[區域][region]而異。 您也可以從一個 SKU 升級到較大的 SKU。
 
 Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作業系統的組態設定。 請務必檢閱確切 Linux 版本的最新 SAP 附註。
 
 ### <a name="storage"></a>儲存體
-儲存體配置是根據適用於 SAP HANA 的 TDI 建議進行實作。 HANA 大型執行個體隨附標準 TDI 規格的特定儲存體組態。 不過，您可以 1 TB 為增量單位，購買額外的儲存體。 
+實作儲存體配置時應以適用於 SAP HANA 的 TDI 建議為基礎。 HANA 大型執行個體隨附標準 TDI 規格的特定儲存體組態。 不過，您可以 1 TB 為增量單位，購買額外的儲存體。 
 
 為了支援任務關鍵性環境的需求 (包括快速復原)，會使用 NFS 而不是直接連結儲存體。 適用於 HANA 大型執行個體的 NFS 儲存體伺服器是裝載於多租用戶環境，在其中會使用計算、網路和儲存體隔離來隔離及保護租用戶。
 
 若要在主要網站中支援高可用性，請使用不同的儲存體配置。 例如，在多主機相應放大中，會共用儲存體。 另一個高可用性選項是以應用程式為基礎的複寫 (例如 HSR)。 不過，針對 DR 會使用以快照集為基礎的儲存體複寫。
 
-### <a name="networking"></a>網路功能
+### <a name="networking"></a>網路
 此架構會同時使用虛擬和實體網路。 虛擬網路是 Azure IaaS 的一部分，而且會透過 [ExpressRoute][expressroute] 線路連線至離散 HANA 大型執行個體實體網路。 跨部署閘道會將您在 Azure 虛擬網路中的工作負載連線到內部部署網站。
 
 基於安全性考量，會將 HANA 大型執行個體網路彼此互相隔離。 除了專用的儲存體複寫，位於不同區域中的執行個體不會互相通訊。 不過，若要使用 HSR，需要區域間通訊。 [IP 路由表][ip]或 Proxy 可以用來啟用跨區域 HSR。
@@ -129,8 +129,6 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 | 記錄備份         | 時間點復原的必要項目。                                                                   |                                                            |
 | 其他備份工具 | 備援備份位置。                                                                             | 其他授權成本。                                |
 
-此外，SapHanaTutorial.com 提供有用的文章：[HANA 備份選項之間的比較][sap-hana-tutorial]。
-
 ## <a name="manageability-considerations"></a>管理性考量
 使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 及其他原生 Linux 工具，監視 HANA 大型執行個體資源 (例如 CPU、記憶體、網路頻寬及儲存體空間)。 HANA 大型執行個體未隨附內建監視工具。 Microsoft 提供的資源可協助您根據組織的需求[進行疑難排解和監視][hli-troubleshoot]，而且 Microsoft 支援小組可以在針對技術問題進行疑難排解方面為您提供協助。 
 
@@ -183,7 +181,7 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 [running-SAP]: https://blogs.msdn.microsoft.com/saponsqlserver/2016/06/07/sap-on-sql-general-update-for-customers-partners-june-2016/
 [region]: https://azure.microsoft.com/global-infrastructure/services/
 [running-sap-blog]: https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/
-[quick-sizer]: http://service.sap.com/quicksizing
+[quick-sizer]: https://service.sap.com/quicksizing
 [sap-1793345]: https://launchpad.support.sap.com/#/notes/1793345
 [sap-1872170]: https://launchpad.support.sap.com/#/notes/1872170
 [sap-2121330]: https://launchpad.support.sap.com/#/notes/2121330
@@ -191,12 +189,11 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 [sap-1736976]: https://launchpad.support.sap.com/#/notes/1736976
 [sap-2296290]: https://launchpad.support.sap.com/#/notes/2296290
 [sap-community]: https://www.sap.com/community.html
-[sap-hana-tutorial]: http://saphanatutorial.com/comparison-between-hana-backup-options/
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
 [scripts]: /azure/virtual-machines/workloads/sap/hana-overview-high-availability-disaster-recovery
 [sku]: /azure/expressroute/expressroute-about-virtual-network-gateways
 [sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
-[stack-overflow]: http://stackoverflow.com/tags/sap/info
+[stack-overflow]: https://stackoverflow.com/tags/sap/info
 [stonith]: /azure/virtual-machines/workloads/sap/ha-setup-with-stonith
 [subnet]: /azure/virtual-network/virtual-network-manage-subnet
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm

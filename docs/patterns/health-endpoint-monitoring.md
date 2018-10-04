@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847844"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428970"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>健康情況端點監視模式
 
@@ -89,7 +89,7 @@ ms.locfileid: "30847844"
 
      >  DoS 攻擊對於執行基本功能測試而不會危害應用程式作業之個別端點的影響較低。 在理想情況下，請避免使用可能會公開機密資訊的測試。 如果您必須傳回可能對攻擊者很有用的資訊，請考慮如何保護端點和資料免於未經授權的存取。 在此情況下，只依賴隱晦程度是不夠的。 您也應該考慮使用 HTTPS 連線並加密所有敏感性資料，雖然這樣會增加伺服器的負載。
 
-- 如何存取使用驗證保護的端點。 並非所有工具和架構都可以設定為包含具有健康情況驗證要求的認證。 例如，Microsoft Azure 內建健康情況驗證功能無法提供驗證認證。 某些協力廠商替代項目為 [Pingdom](https://www.pingdom.com/)、[Panopta](http://www.panopta.com/)、[NewRelic](https://newrelic.com/) 和 [Statuscake](https://www.statuscake.com/)。
+- 如何存取使用驗證保護的端點。 並非所有工具和架構都可以設定為包含具有健康情況驗證要求的認證。 例如，Microsoft Azure 內建健康情況驗證功能無法提供驗證認證。 某些協力廠商替代項目為 [Pingdom](https://www.pingdom.com/)、[Panopta](https://www.panopta.com/)、[NewRelic](https://newrelic.com/) 和 [Statuscake](https://www.statuscake.com/)。
 
 - 如何確定監視代理程式正確執行。 其中一個方法是公開端點，該端點只會傳回應用程式組態的值，或者可以用來測試代理程式的隨機值。
 

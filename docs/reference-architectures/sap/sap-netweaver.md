@@ -3,12 +3,12 @@ title: 在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: b4a254980dd9aac2847bb194f22f99f3f05376de
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016034"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428800"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -145,7 +145,7 @@ SAP Web Dispatcher 的高可用性是以備援執行個體來達成。 請參閱
 
 - **應用程式伺服器層**。 SAP 應用程式伺服器不包含商務資料。 在 Azure 上，簡易 DR 策略是在次要區域建立 SAP 應用程式伺服器，然後將它們關機。 在主要應用程式伺服器上進行任何組態變更或核心更新時，必須將相同的變更複製到次要區域中的虛擬機器。 例如，將核心可執行檔複製到 DR 虛擬機器。 如需將應用程式伺服器自動複寫到次要區域中，[Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 是建議的解決方案。
 
-- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在災害復原區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上發生，必須在執行中央服務的災害復原區域中的虛擬機器上重複執行這些變更或更新。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到災害復原區域。 如需這個簡易複寫方法之建置、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考「4.3. SAP SPOF layer (ASCS)。」
+- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在災害復原區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上發生，必須在執行中央服務的災害復原區域中的虛擬機器上重複執行這些變更或更新。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到災害復原區域。 如需這個簡易複寫方法之建置、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考「4.3. SAP SPOF layer (ASCS)。」
 
 - **資料庫層**。 DR 的最佳實作方式是使用資料庫自己的整合複寫技術。 舉例來說，如果是 SQL Server，我們建議使用 AlwaysOn 可用性群組以在遠端區域中建立複本，使用手動容錯移轉以非同步方式複寫交易。 非同步複寫可避免對主要網站的互動式工作負載效能造成影響。 手動容錯移轉讓人員有機會評估 DR 影響，並判斷透過 DR 網站的運作是否適當。
 

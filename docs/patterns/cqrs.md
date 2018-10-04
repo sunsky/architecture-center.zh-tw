@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: c2832aa806909c6f0aab8b6345ffb8162eb59903
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33811044"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429684"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令與查詢責任隔離 (CQRS) 模式
 
@@ -248,8 +248,6 @@ public interface IProductsDomain
 
 - [具體化檢視模式](materialized-view.md)。 CQRS 實作的讀取模型可以包含寫入模型資料的具體化檢視，或者讀取模型可以用來產生具體化檢視。
 
-- 模式與做法指南 [CQRS 旅程](http://aka.ms/cqrs)。 其中，[簡介命令查詢責任隔離模式](https://msdn.microsoft.com/library/jj591573.aspx)會探索模式及其適用時機，而[結語：學到的課程](https://msdn.microsoft.com/library/jj591568.aspx)可協助您了解使用此模式時出現的一些問題。
+- 模式與做法指南 [CQRS 旅程](https://aka.ms/cqrs)。 其中，[簡介命令查詢責任隔離模式](https://msdn.microsoft.com/library/jj591573.aspx)會探索模式及其適用時機，而[結語：學到的課程](https://msdn.microsoft.com/library/jj591568.aspx)可協助您了解使用此模式時出現的一些問題。
 
-- 文章 [CQRS by Martin Fowler](http://martinfowler.com/bliki/CQRS.html)，其中說明模式的基本概念以及其他有用資源的連結。
-
-- [Greg Young 的文章](http://codebetter.com/gregyoung/)，其中探索 CQRS 模式的許多層面。
+- 文章 [CQRS by Martin Fowler](https://martinfowler.com/bliki/CQRS.html)，其中說明模式的基本概念以及其他有用資源的連結。

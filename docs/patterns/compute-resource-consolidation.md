@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252919"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428834"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>計算資源彙總模式
 
@@ -85,7 +85,7 @@ ms.locfileid: "35252919"
 
 在 Azure 上建置雲端服務時，可以將多個工作執行的處理合併成單一角色。 一般而言，這是背景工作角色，可執行背景或非同步處理工作。
 
-> 在某些情況下，可能會包含 web 角色中的背景或非同步處理工作。 雖然這項技術可能會影響 web 角色所提供的公眾對應介面之延展性和回應性，但它有助於降低成本並簡化部署。 [將多個 Azure 背景工作角色結合為 Azure Web 角色](http://www.31a2ba2a-b718-11dc-8314-0800200c9a66.com/2012/02/combining-multiple-azure-worker-roles.html)文章中包含在 web 角色中實作背景或非同步處理工作的詳細描述。
+> 在某些情況下，可能會包含 web 角色中的背景或非同步處理工作。 雖然這項技術可能會影響 web 角色所提供的公眾對應介面之延展性和回應性，但它有助於降低成本並簡化部署。 
 
 角色負責啟動和停止工作。 當 Azure 網狀架構控制器載入角色時，會引發角色的 `Start` 事件。 您可以覆寫 `WebRole` 或 `WorkerRole` 類別的 `OnStart` 方法來處理此事件，或許還可以初始化這個方法中之工作所仰賴的資料和其他資源。
 

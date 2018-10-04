@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - resiliency
-ms.openlocfilehash: 03bfe2fe96b3b81d547cfedb075bcf855846b668
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542420"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428664"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>排程器代理程式監督員模式
 
@@ -29,13 +29,13 @@ ms.locfileid: "24542420"
 
 如果應用程式偵測到它無法輕鬆地復原的更永久性錯誤，就必須能夠將系統還原到一致的狀態，並確定整個作業的完整性。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 排程器代理程式監督員模式會定義下列執行者。 這些執行者會將步驟協調為以整體工作的一部分來執行。
 
 - **排程器**會針對組成要執行的工作步驟進行排列，並會協調其作業。 這些步驟可以結合成管線或工作流程。 排程器會負責確保此工作流程中的步驟是以正確的順序執行。 執行每個步驟時，排程器會記錄工作流程的狀態，例如「步驟尚未開始」、「步驟執行中」或「逐步完成」。 狀態資訊也應包含步驟完成所允許的時間上限，稱為完成期限時間。 如果步驟需要存取遠端服務或資源，排程器會叫用適當的代理程式，並將需執行工作的詳細資料傳遞給它。 排程器通常會使用非同步要求/回應傳訊來與代理程式通訊。 這可以使用佇列進行實作，雖然也可以改為使用其他分散式傳訊技術。
 
-    > 排程器會在[程序管理員模式](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)中，對程序管理員執行類似的函式。 實際工作流程通常是由排程器控制的工作流程引擎所定義及實作。 這種方法，會從排程器減少工作流程中的商務邏輯。
+    > 排程器會在[程序管理員模式](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)中，對程序管理員執行類似的函式。 實際工作流程通常是由排程器控制的工作流程引擎所定義及實作。 這種方法，會從排程器減少工作流程中的商務邏輯。
 
 - **代理程式**包含的邏輯會封裝呼叫遠端服務，或存取工作中步驟所參考的遠端資源。 每個代理程式通常會包裝對單一服務或資源的呼叫，從而實作適當的錯誤處理和重試邏輯 (受限於稍後所述的逾時條件約束)。 如果排程器所執行之工作流程中的步驟跨不同步驟使用數個服務和資源，，每個步驟可能會參考不同的代理程式 (這是模式的實作詳細資料)。
 
@@ -142,7 +142,7 @@ ms.locfileid: "24542420"
 - [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)。 排程器代理程式監督員模式中的元件通常會以互相減少的方式執行，並以非同步方式進行通訊。 描述一些可用來實作以訊息佇列作為基礎的非同步通訊方法。
 - [選出領導者模式](leader-election.md)。 可能必須協調監督員多個執行個體的動作，防止它們嘗試復原相同的失敗程序。 選出領導者模式描述如何執行這項操作。
 - Clemens Vasters 部落格上的[雲端架構：排程器代理程式監督員模式](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/)
-- [程序管理員模式](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
+- [程序管理員模式](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
 - [參考 6：Sagas 的冒險故事](https://msdn.microsoft.com/library/jj591569.aspx)。 顯示 CQRS 模式如何使用程序管理員 (CQRS Journey 指南的一部分) 的範例。
 - [Microsoft Azure 排程器](https://azure.microsoft.com/services/scheduler/)
 

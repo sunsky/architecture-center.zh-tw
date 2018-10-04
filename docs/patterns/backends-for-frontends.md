@@ -3,12 +3,12 @@ title: 前端模式的後端
 description: 建立由特定前端應用程式或介面取用的個別後端服務。
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270014"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428783"
 ---
 # <a name="backends-for-frontends-pattern"></a>前端模式的後端
 
@@ -34,7 +34,7 @@ ms.locfileid: "30270014"
 
 因為每個後端相對於一個特定介面，可以為該介面最佳化。 如此一來，它會較小、較簡單且可能快於嘗試滿足所有介面需求的一般後端。 每個介面小組有控制自己後端的自主權，並且不依賴於集中式後端開發小組。 這讓介面小組對於後端的語言選擇、發佈日程、工作負載的優先順序以及功能整合有彈性。
 
-如需詳細資訊，請參閱[模式：前端的後端](http://samnewman.io/patterns/architectural/bff/)。
+如需詳細資訊，請參閱[模式：前端的後端](https://samnewman.io/patterns/architectural/bff/)。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 

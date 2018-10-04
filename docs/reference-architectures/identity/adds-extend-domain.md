@@ -6,12 +6,12 @@ ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: ecf24a05d071c0d0283fc962b13285108b5ac4bd
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: 1e19d03998a18d997c2840f573e7bc79b24efbbc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142264"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47427967"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -103,7 +103,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 適用於此架構的部署可在 [GitHub][github] 上取得。 請注意，整個部署最多可能需要兩個小時，其中包括建立 VPN 閘道和執行設定 AD DS 的指令碼。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -175,7 +175,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-create-availability-set
 [azure-expressroute]: /azure/expressroute/expressroute-introduction
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
-[capacity-planning-for-adds]: http://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
+[capacity-planning-for-adds]: https://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
 [considerations]: ./considerations.md
 [GitHub]: https://github.com/mspnp/reference-architectures/tree/master/identity/adds-extend-domain
 [microsoft_systems_center]: https://www.microsoft.com/server-cloud/products/system-center-2016/

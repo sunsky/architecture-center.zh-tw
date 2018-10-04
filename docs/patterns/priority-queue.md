@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - performance-scalability
-ms.openlocfilehash: ecfbb38304bb95587e9ca15523ad9594898d9b32
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543140"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428494"
 ---
 # <a name="priority-queue-pattern"></a>優先順序佇列模式
 
@@ -25,7 +25,7 @@ ms.locfileid: "24543140"
 
 應用程式可以將特定工作委派給其他服務，例如用以執行背景處理，或是與其他應用程式或服務整合。 在雲端，訊息佇列通常是用來將工作委派給背景處理。 在許多情況下，服務接收要求的順序並不重要。 不過，在某些情況下，則有必要針對特定要求排列優先順序。 這些要求的處理順序應該要在應用程式先前傳送的低優先順序要求之前。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 佇列通常採用先進先出 (FIFO) 結構，而取用者接收訊息的順序通常與訊息被張貼至佇列的順序相同。 不過，有些訊息佇列可支援優先順序傳訊。 張貼訊息的應用程式可以指派優先順序，而佇列中的訊息將會自動重新排列順序，讓高優先順序訊息的接收順序在低優先順序訊息之前。 下圖說明使用優先順序傳訊的佇列。
 
@@ -166,7 +166,7 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 實作此模式時，下列模式和指導方針可能也相關：
 
-- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/priority-queue) \(英文\) 上有提供示範此模式的範例。
+- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/priority-queue) 上有提供示範此模式的範例。
 
 - [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx) \(英文\)。 處理要求的取用者服務可能需要傳送回覆給張貼要求的應用程式執行個體。 提供有關您可用來實作要求/回應傳訊之策略的資訊。
 
@@ -176,5 +176,5 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 - [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 您可以根據佇列的長度，調整處理佇列之取用者處理序集區的大小。 此策略有助於改善效能，特別是針對處理高優先順序訊息的集區。
 
-- Abhishek Lal 部落格上的[搭配服務匯流排的企業整合模式](http://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) \(英文\)。
+- Abhishek Lal 部落格上的[搭配服務匯流排的企業整合模式](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) \(英文\)。
 

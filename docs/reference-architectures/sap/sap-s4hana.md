@@ -3,12 +3,12 @@ title: Azure 上 Linux 虛擬機器的 SAP S/4HANA
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: ab056a01f05bde9e9dc7a4439baed367ee663f93
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864499"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429582"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>Azure 上 Linux 虛擬機器的 SAP S/4HANA
 
@@ -151,7 +151,7 @@ SAP 應用程式伺服器會執行與資料庫伺服器的持續通訊。 針對
 
 - **應用程式伺服器層**。 SAP 應用程式伺服器不包含商務資料。 在 Azure 上，簡易 DR 策略是在次要區域建立 SAP 應用程式伺服器，然後將它們關機。 在主要應用程式伺服器上進行任何組態變更或核心更新時，必須將相同的變更套用到次要區域中的虛擬機器。 例如，將 SAP 核心可執行檔複製到 DR 虛擬機器。 如需將應用程式伺服器自動複寫到次要區域中，[Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 是建議的解決方案。 在此文件撰寫當下，ASR 還無法支援在 Azure 虛擬機器中複寫加速網路組態設定。
 
-- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在次要區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上，它們必須在執行中央服務之次要區域中的虛擬機器上重複執行。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到 DR 端。 如需組建、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考 4.3 節：「SAP SPOF 層 (ASCS)」。 這份文件適用於在 Windows 中執行的 NetWeaver，但是您可以為 Linux 建立同等的組態。 針對中央服務，使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 以複寫叢集節點和儲存體。 針對 Linux，使用高可用性擴充建立三個節點地理叢集。 
+- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在次要區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上，它們必須在執行中央服務之次要區域中的虛擬機器上重複執行。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到 DR 端。 如需組建、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考 4.3 節：「SAP SPOF 層 (ASCS)」。 這份文件適用於在 Windows 中執行的 NetWeaver，但是您可以為 Linux 建立同等的組態。 針對中央服務，使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 以複寫叢集節點和儲存體。 針對 Linux，使用高可用性擴充建立三個節點地理叢集。 
 
 - **SAP 資料庫層**。 針對 HANA 支援複寫使用 HSR。 除了本機、兩個節點的高可用性安裝以外，HSR 還支援多層式複寫，其中位於不同 Azure 區域的第三個節點會作為外部實體而不是叢集的一部分，且登錄至叢集 HSR 配對的次要複本，作為其複寫目標。 這樣會形成複寫菊輪鍊。 對 DR 節點的容錯移轉是手動程序。
 
