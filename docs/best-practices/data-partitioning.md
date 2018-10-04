@@ -4,12 +4,12 @@ description: 如何分割要個別管理和存取的分割區指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: d1d9c1b3cf07f724eb010fc260d86ceb84b789ca
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 579f78004a662fe412cb8dcc25b9ad1db9782125
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "29059967"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429497"
 ---
 # <a name="data-partitioning"></a>資料分割
 
@@ -551,37 +551,37 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 [事件中樞的可用性和一致性]: /azure/event-hubs/event-hubs-availability-and-consistency
 [azure-limits]: /azure/azure-subscription-service-limits
 [Azure 內容傳遞網路]: /azure/cdn/cdn-overview
-[Azure Redis 快取]: http://azure.microsoft.com/services/cache/
+[Azure Redis 快取]: https://azure.microsoft.com/services/cache/
 [Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
 [Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
 [建置 Polyglot 解決方案]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
-[Data consistency primer (資料一致性入門) (資料一致性入門)]: http://aka.ms/Data-Consistency-Primer
+[Data consistency primer (資料一致性入門) (資料一致性入門)]: https://aka.ms/Data-Consistency-Primer
 [Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
-[Data Types]: http://redis.io/topics/data-types
+[Data Types]: https://redis.io/topics/data-types
 [cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [彈性資料庫功能概觀]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [Azure Service Fabric 中可靠集合的指導方針與建議]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
-[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
-[Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
+[Index Table Pattern]: ../patterns/index-table.md
+[Materialized View Pattern]: ../patterns/materialized-view.md
 [多分區查詢]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Azure Service Fabric 概觀]: /azure/service-fabric/service-fabric-overview
 [分割 Service Fabric 可靠服務]: /azure/service-fabric/service-fabric-concepts-partitioning
-[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)]: http://redis.io/topics/partitioning
+[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)]: https://redis.io/topics/partitioning
 [Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
-[Redis 叢集教學課程]: http://redis.io/topics/cluster-tutorial
-[在 Azure 中的 CentOS Linux VM 上執行 Redis]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
+[Redis 叢集教學課程]: https://redis.io/topics/cluster-tutorial
+[在 Azure 中的 CentOS Linux VM 上執行 Redis]: https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/
 [使用彈性資料庫分割合併工具來縮放]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
 [使用 Azure 的內容傳遞網路]: /azure/cdn/cdn-create-new-endpoint
 [服務匯流排配額]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
 [Azure 搜尋服務中的服務限制]:  /azure/search/search-limits-quotas-capacity
-[Sharding Pattern (分區化模式)]: http://aka.ms/Sharding-Pattern
+[Sharding Pattern (分區化模式)]: ../patterns/sharding.md
 [支援的資料類型 (Azure 搜尋服務)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
-[交易]: http://redis.io/topics/transactions
+[交易]: https://redis.io/topics/transactions
 [什麼是事件中樞？]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [何謂 Azure 搜尋服務？]: /azure/search/search-what-is-azure-search
 [什麼是 Azure SQL Database？]: /azure/sql-database/sql-database-technical-overview
