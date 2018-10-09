@@ -283,18 +283,18 @@ items:
     href: example-scenario/index.md
   - name: AI
     items:
+    - name: 飯店預約聊天機器人
+      href: example-scenario/ai/commerce-chatbot.md
     - name: 影像分類
       href: example-scenario/ai/intelligent-apps-image-processing.md
   - name: 應用程式
     items:
-    - name: 電腦輔助工程 SaaS
+    - name: 電腦輔助工程
       href: example-scenario/apps/hpc-saas.md
     - name: 銀行間的分散式信任
       href: example-scenario/apps/decentralized-trust.md
     - name: Web 應用程式監視
       href: example-scenario/apps/app-monitoring.md
-    - name: 飯店預約聊天機器人
-      href: example-scenario/apps/commerce-chatbot.md
     - name: 具有容器的 DevOps
       href: example-scenario/apps/devops-with-aks.md
     - name: 使用 Azure DevOps 進行 DevOps
@@ -315,7 +315,7 @@ items:
       href: example-scenario/data/big-data-with-iot.md
     - name: 資料倉儲和分析
       href: example-scenario/data/data-warehouse.md
-    - name: 汽車的 IOT 資料
+    - name: 汽車的 IoT 資料
       href: example-scenario/data/realtime-analytics-vehicle-iot.md
     - name: 即時詐欺偵測
       href: example-scenario/data/fraud-detection.md
@@ -328,7 +328,7 @@ items:
     - name: Linux 虛擬桌面
       href: example-scenario/infrastructure/linux-vdi-citrix.md
     - name: 將整合型應用程式分解
-      href: example-scenario/infrastructure/ServiceFabricMicroservices.md
+      href: example-scenario/infrastructure/service-fabric-microservices.md
     - name: 建立可高度擴充的 WordPress
       href: example-scenario/infrastructure/wordpress.md
     - name: 多層式 Windows
@@ -531,9 +531,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 2b5c74f9ce94b238c8787e0c684248ecae0467af
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.openlocfilehash: 9f2dcd31b5d3a36badf9db6ce5f64fae6085ff96
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243677"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819103"
