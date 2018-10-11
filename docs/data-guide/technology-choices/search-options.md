@@ -3,12 +3,12 @@ title: 選擇搜尋資料存放區
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: ead07e307e96696faa5ddf48505eee378027523c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9576bbba9609a04ccc7851d55dd28853ffc6b701
+ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848609"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48858175"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 
@@ -46,35 +46,35 @@ ms.locfileid: "30848609"
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
-| 屬於受控服務 | yes | 否 | yes | yes |  
-| REST API | yes | yes | yes | 否 |
+| 屬於受控服務 | yes | 否 | yes | 是 |  
+| REST API | 是 | yes | yes | 否 |
 | 可程式性 | .NET | Java | Java | T-SQL | 
-| 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | yes | 否 | yes | 否 |
+| 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | 是 | 否 | 是 | 否 |
 
 ### <a name="manageability-capabilities"></a>可管理性功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- |
-| 可更新的結構描述 | 否 | yes | yes | yes |
-| 支援相應放大  | yes | yes | yes | 否 |
+| 可更新的結構描述 | 否 | yes | yes | 是 |
+| 支援相應放大  | 是 | yes | yes | 否 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
-| 支援全文檢索搜尋以外的分析 | 否 | yes | yes | yes |
+| 支援全文檢索搜尋以外的分析 | 否 | yes | yes | 是 |
 | 記錄分析堆疊的一部分 | 否 | 是 (ELK) |  否 | 否 |
-| 支援語意搜尋 | 是 (僅尋找類似文件) | yes | yes | yes | 
+| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | yes | 是 | 
 
 ### <a name="security-capabilities"></a>安全性功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
-| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | yes | yes | 
-| 透明資料加密 | 否 | 否 | 否 | yes |  
-| 限制對特定 IP 位址的存取 | 否 | yes | yes | yes |   
-| 限定為僅允許虛擬網路存取 | 否 | yes | yes | yes |  
-| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | yes | 
+| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | 是 | 是 | 
+| 透明資料加密 | 否 | 否 | 否 | 是 |  
+| 限制對特定 IP 位址的存取 | 否 | yes | yes | 是 |   
+| 限定為僅允許虛擬網路存取 | 否 | yes | yes | 是 |  
+| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | 是 | 
 
 ## <a name="see-also"></a>另請參閱
 

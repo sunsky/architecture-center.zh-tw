@@ -4,12 +4,12 @@ description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429089"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819018"
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -39,7 +39,7 @@ ms.locfileid: "47429089"
 
 **使用負載平衡功能來分配要求。** 負載平衡功能可藉由從循環中移除狀況不良的執行個體，將應用程式的要求分配至狀況良好的服務執行個體。 如果您的服務使用 Azure App Service 或 Azure 雲端服務，它已經為您平衡負載。 不過，如果您的應用程式使用 Azure VM，您就需要佈建負載平衡器。 如需詳細資訊，請參閱 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview/)概觀。
 
-**將 Azure 應用程式閘道設定為使用多個執行個體。** 根據您應用程式的需求，[Azure 應用程式閘道](/azure/application-gateway/application-gateway-introduction/)可能更適合用於將要求分配至您應用程式的服務。 不過，SLA 不保證應用程式閘道服務的單一執行個體，所以如果應用程式閘道執行個體失敗，您的應用程式也可能會失敗。 佈建一個以上中型或大型應用程式閘道執行個體，可根據 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/) 條款保證服務的可用性。
+**將 Azure 應用程式閘道設定為使用多個執行個體。** 根據您應用程式的需求，[Azure 應用程式閘道](/azure/application-gateway/application-gateway-introduction/)可能更適合用於將要求分配至您應用程式的服務。 不過，SLA 不保證應用程式閘道服務的單一執行個體，所以如果應用程式閘道執行個體失敗，您的應用程式也可能會失敗。 佈建一個以上中型或大型應用程式閘道執行個體，可根據 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/) 條款保證服務的可用性。
 
 **使用每個應用程式層的可用性設定組。** 將執行個體放入[可用性設定組][availability-sets]中，可提供較高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
 
