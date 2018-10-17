@@ -3,12 +3,12 @@ title: 重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式
 description: 如何重構由 Azure 雲端服務移轉的現有 Azure Service Fabric 應用程式
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 7b5c115acdbfca0c105e2b861af9a8049b890dca
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782541"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819069"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>重構由 Azure 雲端服務移轉的 Azure Service Fabric 應用程式
 
@@ -44,7 +44,7 @@ ms.locfileid: "29782541"
 **Tailspin.AnswerAnalysisService** 服務是從原始的 Tailspin.Workers.Survey 背景工作角色移轉。
 
 > [!NOTE] 
-> 對每個 Web 角色和背景工作角色進行最少的程式碼變更時，**Tailspin.Web** 和 **Tailspin.Web.Survey.Public** 會修改以自我裝載 [Kestrel] 網頁伺服器。 舊版的 Surveys 應用程式是 ASP.Net 應用程式，它是使用 Internet Information Services (IIS) 所裝載的，但是無法在 Service Fabric 中執行 IIS 作為服務。 因此，任何網頁伺服器必須能夠自我裝載，例如 [Kestrel]。 在某些情況下可能可以在 Service Fabric 於容器中執行 IIS。 如需詳細資訊，請參閱[使用容器的案例][container-scenarios]。  
+> 對每個 Web 角色和背景工作角色進行最少的程式碼變更時，**Tailspin.Web** 和 **Tailspin.Web.Survey.Public** 會修改以自我裝載 [Kestrel] 網頁伺服器。 舊版的 Surveys 應用程式是 ASP.NET 應用程式，它是使用 Internet Information Services (IIS) 所裝載的，但是無法在 Service Fabric 中執行 IIS 作為服務。 因此，任何網頁伺服器必須能夠自我裝載，例如 [Kestrel]。 在某些情況下可能可以在 Service Fabric 於容器中執行 IIS。 如需詳細資訊，請參閱[使用容器的案例][container-scenarios]。  
 
 現在，Tailspin 將 Surveys 應用程式重構成更細微的架構。 Tailspin 重構的動機是讓開發、建置及部署 Surveys 應用程式更加容易。 透過將現有 Web 角色和背景工作角色分解成更細微的架構，Tailspin 想要移除這些角色之間現有的緊密結合通訊和資料相依性。
 
@@ -90,7 +90,7 @@ Surveys 應用程式中的所有服務都是可靠的無狀態服務，除了 Ta
 ## <a name="communication-framework"></a>通訊架構
 
 Surveys 應用程式中的每個服務都使用 RESTful Web API 來進行通訊。 RESTful API 提供下列優點：
-* 使用方便：每個服務都是使用 ASP.Net Core MVC 所建置，且原生支援 Web API 的建立。
+* 使用方便：每個服務都是使用 ASP.NET Core MVC 所建置，且原生支援 Web API 的建立。
 * 安全性：所有服務都不需要 SSL，但是 Tailspin 可以要求每個服務這樣做。 
 * 版本設定：用戶端可以根據特定版本的 Web API 撰寫及測試。
 
@@ -142,8 +142,8 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 Tailspin 使用 Azure 入口網站來部署叢集。 Service Fabric 叢集資源類型會部署所有必要的基礎結構，包括 VM 擴展集和負載平衡器。 建議的 VM 大小會在針對 Service Fabric 叢集佈建程序期間顯示於 Azure 入口網站中。 請注意，因為 VM 是部署在 VM 擴展集中，它們可以隨著使用者負載增加而相應增加和相應放大。
 
 > [!NOTE]
-> 如同先前的討論，在移轉版本的 Surveys 應用程式中，兩個 Web 前端是使用 ASP.Net Core 和 Kestrel 自我裝載為網頁伺服器。 雖然移轉的 Survey 應用程式未使用反向 Proxy，但是強烈建議使用反向 Proxy，例如 IIS、Nginx 或 Apache。 如需詳細資訊，請參閱 [ASP.NET Core 中的 Kestrel 網頁伺服器實作簡介][kestrel-intro]。
-> 在重構的 Surveys 應用程式中，兩個 Web 前端會使用 ASP.Net Core 與[WebListener][weblistener] 自我裝載為網頁伺服器，因此不需要反向 Proxy。
+> 如同先前的討論，在已遷移的 Surveys 應用程式版本中，兩個 Web 前端是使用 ASP.NET Core 和 Kestrel 自我裝載為網頁伺服器。 雖然移轉的 Survey 應用程式未使用反向 Proxy，但是強烈建議使用反向 Proxy，例如 IIS、Nginx 或 Apache。 如需詳細資訊，請參閱 [ASP.NET Core 中的 Kestrel 網頁伺服器實作簡介][kestrel-intro]。
+> 在重構的 Surveys 應用程式中，兩個 Web 前端會使用 ASP.NET Core 與[WebListener][weblistener] 自我裝載為網頁伺服器，因此不需要反向 Proxy。
 
 ## <a name="next-steps"></a>後續步驟
 

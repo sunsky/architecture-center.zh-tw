@@ -4,12 +4,12 @@ description: 用於設定重試機制的服務特定指引。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: c5a9bc99c4693f35c38dabcf07b3465add6a8cb1
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43016021"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429535"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -149,7 +149,7 @@ Azure IoT 裝置 SDK 可以偵測網路、通訊協定或應用程式中的錯�
 ## <a name="azure-redis-cache"></a>Azure Redis 快取
 Azure Redis 快取是快速資料存取與低延遲性的快取服務，以普遍的開放原始碼 Redis 快取為基礎。 它很安全，且由 Microsoft 管理，可使用 Azure 的任何應用程式存取。
 
-本節中的指引以使用 StackExchange.Redis 用戶端來存取快取為基礎。 有關其他適合的用戶端清單，請參閱 [Redis 網站](http://redis.io/clients)，這些用戶端可能有不同的重試機制。
+本節中的指引以使用 StackExchange.Redis 用戶端來存取快取為基礎。 有關其他適合的用戶端清單，請參閱 [Redis 網站](https://redis.io/clients)，這些用戶端可能有不同的重試機制。
 
 請注意 StackExchange.Redis 用戶端透過單一連接使用多工。 建議用法是在應用程式啟動時建立用戶端的執行個體，並對快取的所有作業使用此執行個體。 基於這個理由，對快取只連接一次，且因此本節中指引的所有一切都與此初始連接的重試原則有關，不適用於存取快取的每個作業。
 
@@ -202,7 +202,7 @@ var conn = ConnectionMultiplexer.Connect("redis0:6380,redis1:6380,connectRetry=3
 | ConfigurationOptions |ConnectRetry<br /><br />ConnectTimeout<br /><br />SyncTimeout<br /><br />ReconnectRetryPolicy |3<br /><br />最多 5000 毫秒加上 SyncTimeout<br />1000<br /><br />LinearRetry 5000 毫秒 |初始連線作業的重複連線嘗試次數。<br />連線作業的逾時 (毫秒)。 非重試嘗試之間的延遲。<br />允許同步作業的時間 (毫秒)。<br /><br />每 5000 毫秒重試一次。|
 
 > [!NOTE]
-> 針對同步作業，可以將 `SyncTimeout` 加入端對端延遲，但設定值過低可能會導致過多逾時。 請參閱[如何針對 Azure Redis 快取進行疑難排解][redis-cache-troubleshoot]。 一般來說，請避免使用同步作業，改為使用非同步作業。 如需詳細資訊，請參閱 [管線與多工器](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/PipelinesMultiplexers.md)。
+> 針對同步作業，可以將 `SyncTimeout` 加入端對端延遲，但設定值過低可能會導致過多逾時。 請參閱[如何針對 Azure Redis 快取進行疑難排解][redis-cache-troubleshoot]。 一般來說，請避免使用同步作業，改為使用非同步作業。 如需詳細資訊，請參閱 [管線與多工器](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/PipelinesMultiplexers.md)。
 >
 >
 
@@ -323,10 +323,10 @@ namespace RetryCodeSamples
 }
 ```
 
-如需其他範例，請參閱專案網站上的 [組態](http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md#configuration) 。
+如需其他範例，請參閱專案網站上的 [組態](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/Configuration.md) 。
 
 ### <a name="more-information"></a>詳細資訊
-* [Redis 網站](http://redis.io/)
+* [Redis 網站](https://redis.io/)
 
 ## <a name="azure-search"></a>Azure 搜尋服務
 Azure 搜尋服務可用來在網站或應用程式中加入強大且複雜的搜尋功能、快速輕鬆地微調搜尋結果，並建構豐富且微調的排名模型。
@@ -341,10 +341,10 @@ Azure 搜尋服務 SDK 中的重試行為是由 [SearchServiceClient] 和 [Searc
 服務匯流排是雲端傳訊平台，能夠提供鬆散結合的訊息交換，以及為在雲端託管或內部部署的應用程式元件改善擴充性和恢復能力。
 
 ### <a name="retry-mechanism"></a>重試機制
-服務匯流排使用 [RetryPolicy](http://msdn.microsoft.com/library/microsoft.servicebus.retrypolicy.aspx) 基底類別的實作來實作重試。 所有的服務匯流排用戶端皆會公開 **RetryPolicy** 屬性，此屬性可設為 **RetryPolicy** 基底類別的其中一個實作。 內建實作如下：
+服務匯流排使用 [RetryPolicy](/dotnet/api/microsoft.servicebus.retrypolicy) 基底類別的實作來實作重試。 所有的服務匯流排用戶端皆會公開 **RetryPolicy** 屬性，此屬性可設為 **RetryPolicy** 基底類別的其中一個實作。 內建實作如下：
 
-* [RetryExponential 類別](http://msdn.microsoft.com/library/microsoft.servicebus.retryexponential.aspx)。 這會公開控制退避間隔的屬性、重試計數，以及用來限制作業完成總時間的 **TerminationTimeBuffer** 屬性。
-* [NoRetry 類別](http://msdn.microsoft.com/library/microsoft.servicebus.noretry.aspx)。 這用於當不需要在服務匯流排 API 層級重試時，例如當在批次或多步驟作業期間由另一個處理序管理重試時。
+* [RetryExponential 類別](/dotnet/api/microsoft.servicebus.retryexponential)。 這會公開控制退避間隔的屬性、重試計數，以及用來限制作業完成總時間的 **TerminationTimeBuffer** 屬性。
+* [NoRetry 類別](/dotnet/api/microsoft.servicebus.noretry)。 這用於當不需要在服務匯流排 API 層級重試時，例如當在批次或多步驟作業期間由另一個處理序管理重試時。
 
 服務匯流排動作會傳回某個範圍的例外狀況，如[服務匯流排傳訊例外狀況](/azure/service-bus-messaging/service-bus-messaging-exceptions)中所列的清單。 此清單會提供這些重試作業的表示是否適合的資訊。 例如， **ServerBusyException** 表示用戶端應等待一段時間後，再重試作業。 **ServerBusyException** 的發生也會導致服務匯流排切換成不同的模式，在該模式中會在計算出的重試延遲中額外加上 10 秒的延遲。 此模式會在短時間後重設。
 
@@ -392,7 +392,7 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 使用服務匯流排時請考慮下列指引：
 
 * 當使用內建 **RetryExponential** 實作時，若原則回應伺服器忙碌例外狀況並自動切換到適當的重試模式時，請不要實作後援作業。
-* 服務匯流排支援名為「配對命名空間」的功能，如果主要命名空間中的佇列失敗，此功能會實作自動容錯移轉到備份的佇列。 主要佇列復原時，次要佇列中的訊息會傳回主要佇列。 此功能有助於處理暫時性錯誤。 如需詳細資訊，請參閱 [非同步傳訊模式和高可用性](http://msdn.microsoft.com/library/azure/dn292562.aspx)。
+* 服務匯流排支援名為「配對命名空間」的功能，如果主要命名空間中的佇列失敗，此功能會實作自動容錯移轉到備份的佇列。 主要佇列復原時，次要佇列中的訊息會傳回主要佇列。 此功能有助於處理暫時性錯誤。 如需詳細資訊，請參閱 [非同步傳訊模式和高可用性](/azure/service-bus-messaging/service-bus-async-messaging)。
 
 請考慮從重試作業的下列設定開始。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
 
@@ -510,7 +510,7 @@ namespace RetryCodeSamples
 ```
 
 ### <a name="more-information"></a>詳細資訊
-* [非同步傳訊模式和高可用性](http://msdn.microsoft.com/library/azure/dn292562.aspx)
+* [非同步傳訊模式和高可用性](/azure/service-bus-messaging/service-bus-async-messaging)
 
 ## <a name="service-fabric"></a>Service Fabric
 
@@ -551,10 +551,10 @@ SQL Database 在使用 ADO.NET 存取時，沒有內建的重試支援。 不過
 使用 ADO.NET 存取 SQL Database 時，請考慮下列指引：
 
 * 選擇適當的服務選項 (共用或高階)。 共用的執行個體可能會有延遲時間比一般連接長，及因為共用伺服器有其他租用戶使用而節流的問題。 如果需要更可預測的效能和可靠的低延遲作業，請考慮選擇高階選項。
-* 請確定您是在適當的層級或範圍執行重試，以避免非等冪作業導致資料不一致。 理想的狀況是，所有的作業應等冪，而因此能夠重複執行，而不會造成不一致。 若不是此狀況，則應在如果一個作業失敗，則允許復原所有相關變更的層級或範圍中執行重試；例如，從交易範圍內。 如需詳細資訊，請參閱 [雲端服務基礎資料存取層 – 暫時性錯誤處理](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee)。
+* 請確定您是在適當的層級或範圍執行重試，以避免非等冪作業導致資料不一致。 理想的狀況是，所有的作業應等冪，而因此能夠重複執行，而不會造成不一致。 若不是此狀況，則應在如果一個作業失敗，則允許復原所有相關變更的層級或範圍中執行重試；例如，從交易範圍內。 如需詳細資訊，請參閱 [雲端服務基礎資料存取層 – 暫時性錯誤處理](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx#Idempotent_Guarantee)。
 * 互動式案例除外，不建議將固定間隔策略搭配 Azure SQL Database 使用；互動式案例中只有一些間隔非常短的重試。 相反地，請考慮為大部分的案例使用指數退避策略。
 * 定義連接時，為連接與命令逾時選擇合適的值。 逾時值過短，會造成資料庫忙碌時連接永遠失敗。 逾時值過長，可能會因為在偵測失敗連接之前等待過久，而造成重試邏輯無法正確運作。 逾時值是端對端延遲的元件；它會有效地加到在重試原則中為每個重試嘗試指定的重試延遲。
-* 在重試特定次數後即關閉連接，即使使用的是指數退避策略，然後在新的連接上重試作業。 在同一個連接上多次重試同一個作業，也是造成連接問題的因素之一。 有關此技術的範例，請參閱 [雲端服務基礎資料存取層 – 暫時性錯誤處理](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)。
+* 在重試特定次數後即關閉連接，即使使用的是指數退避策略，然後在新的連接上重試作業。 在同一個連接上多次重試同一個作業，也是造成連接問題的因素之一。 有關此技術的範例，請參閱 [雲端服務基礎資料存取層 – 暫時性錯誤處理](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)。
 * 當使用連接共用時 (預設值)，有可能會從共用中選擇同一個連接，即使是在關閉並重新開啟連接後。 如果發生這種情況，則解決的技術是呼叫 **SqlConnection** 類別的 **ClearPool** 方法將連接標示為不可重複使用。 但只應在數次連接嘗試皆失敗後，及碰到與錯誤連接有關的特定類別暫時性錯誤時，如 SQL 逾時 (錯誤碼 -2)，才這麼做。
 * 如果資料存取程式碼使用交易做為起始的 **TransactionScope** 執行個體，則重試邏輯應重新開啟連接並啟動新的交易範圍。 基於這個原因，可以重試的程式碼區塊應包含交易的整個範圍。
 
@@ -614,15 +614,15 @@ using (var reader = await sqlCommand.ExecuteReaderWithRetryAsync())
 ```
 
 ### <a name="more-information"></a>詳細資訊
-* [雲端服務基礎資料存取層 – 暫時性錯誤處理。](http://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
+* [雲端服務基礎資料存取層 – 暫時性錯誤處理。](https://social.technet.microsoft.com/wiki/contents/articles/18665.cloud-service-fundamentals-data-access-layer-transient-fault-handling.aspx)
 
-如需充分使用 SQL Database 的一般指引，請參閱 [Azure SQL 資料庫效能和彈性指南](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)。
+如需充分使用 SQL Database 的一般指引，請參閱 [Azure SQL 資料庫效能和彈性指南](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)。
 
 ## <a name="sql-database-using-entity-framework-6"></a>使用 Entity Framework 6 的 SQL Database
 SQL Database 是託管的 SQL 資料庫，有各種大小，並以標準 (共用) 與高階 (非共用) 服務提供。 Entity Framework 是物件關聯式對應程式，可讓 .NET 開發人員使用網域特有的物件來處理關聯式資料。 有了 Entity Framework，開發人員便不再需要撰寫大多數必須撰寫的資料存取程式碼。
 
 ### <a name="retry-mechanism"></a>重試機制
-透過名為 [連接恢復/重試邏輯](http://msdn.microsoft.com/data/dn456835.aspx)的機制使用 Entity Framework 6.0 或更新版本存取 SQL Database 時，會提供重試支援。 重試機制的主要功能有：
+透過名為 [連接恢復/重試邏輯](/ef/ef6/fundamentals/connection-resiliency/retry-logic)的機制使用 Entity Framework 6.0 或更新版本存取 SQL Database 時，會提供重試支援。 重試機制的主要功能有：
 
 * 主要抽象層是 **IDbExecutionStrategy** 介面。 此介面會：
   * 定義同步和非同步 **Execute*** 方法。
@@ -666,7 +666,7 @@ DbConfiguration.SetConfiguration(new BloggingContextConfiguration());
 public class BloggingContext : DbContext
 ```
 
-如果您需要針對特定作業使用不同的重試策略，或針對特定作業停用重試，您可以建立組態類別來讓您透過在 **CallContext**中設定旗標，來暫停或切換策略。 組態類別可使用此旗標來切換策略，或停用您提供的策略並使用預設策略。 如需詳細資訊，請參閱「使用重試執行策略限制 (EF6 之後的版本)」一頁上的 [暫停執行策略](http://msdn.microsoft.com/dn307226#transactions_workarounds) 。
+如果您需要針對特定作業使用不同的重試策略，或針對特定作業停用重試，您可以建立組態類別來讓您透過在 **CallContext**中設定旗標，來暫停或切換策略。 組態類別可使用此旗標來切換策略，或停用您提供的策略並使用預設策略。 如需詳細資訊，請參閱[暫停執行策略](/ef/ef6/fundamentals/connection-resiliency/retry-logic#workaround-suspend-execution-strategy) (EF6 之後的版本)。
 
 針對個別作業使用特定重試策略的另一個方法，就是建立必要策略類別的執行個體，並透過參數提供所需的設定。 然後叫用其 **ExecuteAsync** 方法。
 
@@ -686,7 +686,7 @@ var blogs = await executionStrategy.ExecuteAsync(
 
 使用 **DbConfiguration** 類別最簡單的方式，就是在與 **DbContext** 類別相同的組件中找到該類別。 不過，這不適用在不同案例中需要相同的內容時，例如不同的互動式和背景重試策略。 如果不同的內容在不同的 AppDomain 中執行，您可以使用內建支援在組態檔案中指定組態類別，或使用程式碼明確地設定組態類別。 如果不同的內容必須在相同的 AppDomain 中執行，則需要自訂解決方案。
 
-如需詳細資訊，請參閱 [程式碼式組態 (EF6 之後版本)](http://msdn.microsoft.com/data/jj680699.aspx)。
+如需詳細資訊，請參閱[程式碼式組態 (EF6 之後的版本)](/ef/ef6/fundamentals/configuring/code-based)。
 
 下表顯示使用 EF6 時內建重試原則的預設設定。
 
@@ -765,10 +765,10 @@ namespace RetryCodeSamples
 }
 ```
 
-使用 Entity Framework 重試機制的更多範例位於 [連接恢復/重試邏輯](http://msdn.microsoft.com/data/dn456835.aspx)中。
+使用 Entity Framework 重試機制的更多範例位於 [連接恢復/重試邏輯](/ef/ef6/fundamentals/connection-resiliency/retry-logic)中。
 
 ### <a name="more-information"></a>詳細資訊
-* [Azure SQL Database 效能和彈性指南 (英文)](http://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
+* [Azure SQL Database 效能和彈性指南 (英文)](https://social.technet.microsoft.com/wiki/contents/articles/3507.windows-azure-sql-database-performance-and-elasticity-guide.aspx)
 
 ## <a name="sql-database-using-entity-framework-core"></a>使用 Entity Framework Core 的 SQL Database
 [Entity Framework Core](/ef/core/) 是物件關聯式對應程式，可讓 .NET Core 開發人員使用網域特有的物件來處理資料。 有了 Entity Framework，開發人員便不再需要撰寫大多數必須撰寫的資料存取程式碼。 這個版本的 Entity Framework 為從頭撰寫，不會自動繼承 EF6.x 的所有功能。
@@ -803,10 +803,10 @@ using (var db = new BloggingContext())
     {
         using (var transaction = db.Database.BeginTransaction())
         {
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/dotnet" });
             db.SaveChanges();
 
-            db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/visualstudio" });
+            db.Blogs.Add(new Blog { Url = "https://blogs.msdn.com/visualstudio" });
             db.SaveChanges();
 
             transaction.Commit();
@@ -819,13 +819,13 @@ using (var db = new BloggingContext())
 Azure 儲存體服務包括資料表、Blob 儲存體、檔案，以及儲存體佇列。
 
 ### <a name="retry-mechanism"></a>重試機制
-重試發生在個別的 REST 作業層級，是用戶端 API 實作不可或缺的一部分。 用戶端儲存體 SDK 使用實作 [IExtendedRetryPolicy 介面](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.aspx)的類別。
+重試發生在個別的 REST 作業層級，是用戶端 API 實作不可或缺的一部分。 用戶端儲存體 SDK 使用實作 [IExtendedRetryPolicy 介面](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy)的類別。
 
 有不同的實作的介面。 儲存體用戶端會選擇特別針對存取資料表、Blob 與佇列設計的原則。 每個實作會使用不同的重試策略，這些策略基本上定義重試間隔與其他詳細資料。
 
 內建類別支援線性 (固定延遲) 重試間隔和隨機指數重試間隔。 當另一個處理序在更高的層級處理重試時，沒有重試原則可使用。 但如果內建類別未提供您的特定需求，您可以實作您自己的重試類別。
 
-如果您正在使用讀取權限異地備援儲存體服務位置 (RA-GRS)，替代重試會在主要與次要儲存體服務位置之間切換，要求的結果是可重試的錯誤。 如需詳細資訊，請參閱 [Azure 儲存體備援選項](http://msdn.microsoft.com/library/azure/dn727290.aspx) 。
+如果您正在使用讀取權限異地備援儲存體服務位置 (RA-GRS)，替代重試會在主要與次要儲存體服務位置之間切換，要求的結果是可重試的錯誤。 如需詳細資訊，請參閱 [Azure 儲存體備援選項](/azure/storage/common/storage-redundancy) 。
 
 ### <a name="policy-configuration"></a>原則組態
 以程式設計方式設定重試原則。 一般程序是建立和填入 **TableRequestOptions**、**BlobRequestOptions**、**FileRequestOptions** 或 **QueueRequestOptions** 執行個體。
@@ -872,7 +872,7 @@ context.RequestCompleted += (sender, args) =>
 var stats = await client.GetServiceStatsAsync(null, context);
 ```
 
-除了指出錯誤是否適合重試外，擴充的重試原則會傳回 **RetryContext** 以表示重試次數、最後一個要求的結果，以及下一個重試會在主要或次要位置發生 (請參閱下表以取得詳細資料)。 **RetryContext** 物年的屬性可用於判定是否與何時嘗試重試。 如需詳細資料，請參閱 [IExtendedRetryPolicy.Evaluate Method](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate.aspx)。
+除了指出錯誤是否適合重試外，擴充的重試原則會傳回 **RetryContext** 以表示重試次數、最後一個要求的結果，以及下一個重試會在主要或次要位置發生 (請參閱下表以取得詳細資料)。 **RetryContext** 物年的屬性可用於判定是否與何時嘗試重試。 如需詳細資料，請參閱 [IExtendedRetryPolicy.Evaluate Method](/dotnet/api/microsoft.windowsazure.storage.retrypolicies.iextendedretrypolicy.evaluate)。
 
 下表顯示內建重試原則的預設設定。
 
@@ -918,9 +918,9 @@ var stats = await client.GetServiceStatsAsync(null, context);
 | 背景<br />或批次 |30 秒 |指數 |maxAttempt<br />deltaBackoff |5<br />4 秒 |嘗試 1 - 延遲 ~3 毫秒<br />嘗試 2 - 延遲 ~7 秒<br />嘗試 3 - 延遲 ~15 毫秒 |
 
 ### <a name="telemetry"></a>遙測
-重試嘗試會記錄到 **TraceSource**。 您必須設定 **TraceListener** 來擷取事件，並將事件寫入適當的目的地記錄中。 您可以使用 **TextWriterTraceListener** 或 **XmlWriterTraceListener** 將資料寫入記錄檔，使用 **EventLogTraceListener** 寫入 Windows 事件記錄檔，或使用 **EventProviderTraceListener** 將追蹤資料寫入 ETW 子系統。 您也可以設定自動排清緩衝區，並設定所記錄事件的詳細資訊 (例如錯誤、警告、資訊和詳細資訊)。 如需詳細資訊，請參閱 [使用 .NET 儲存體用戶端程式庫在用戶端記錄](http://msdn.microsoft.com/library/azure/dn782839.aspx)。
+重試嘗試會記錄到 **TraceSource**。 您必須設定 **TraceListener** 來擷取事件，並將事件寫入適當的目的地記錄中。 您可以使用 **TextWriterTraceListener** 或 **XmlWriterTraceListener** 將資料寫入記錄檔，使用 **EventLogTraceListener** 寫入 Windows 事件記錄檔，或使用 **EventProviderTraceListener** 將追蹤資料寫入 ETW 子系統。 您也可以設定自動排清緩衝區，並設定所記錄事件的詳細資訊 (例如錯誤、警告、資訊和詳細資訊)。 如需詳細資訊，請參閱 [使用 .NET 儲存體用戶端程式庫在用戶端記錄](/rest/api/storageservices/Client-side-Logging-with-the-.NET-Storage-Client-Library)。
 
-作業會接收 **OperationContext** 執行個體，以公開用於附加自訂遙測邏輯的 **Retrying** 事件。 如需詳細資訊，請參閱 [OperationContext.Retrying Event](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.operationcontext.retrying.aspx)。
+作業會接收 **OperationContext** 執行個體，以公開用於附加自訂遙測邏輯的 **Retrying** 事件。 如需詳細資訊，請參閱 [OperationContext.Retrying Event](/dotnet/api/microsoft.windowsazure.storage.operationcontext.retrying)。
 
 ### <a name="examples"></a>範例
 下列程式碼範例示範如何建立兩個具有不同重試設定的 **TableRequestOptions** 執行個體，一個用於互動式要求，一個用於背景要求。 然後此範例會在用戶端上設定這兩個重試原則，讓這些原則適用於所有要求，此外也在特定要求上設定互動式策略，讓該策略覆寫套用到用戶端的預設設定。
@@ -1000,7 +1000,7 @@ namespace RetryCodeSamples
 
 ### <a name="more-information"></a>詳細資訊
 * [Azure 儲存體用戶端程式庫重試原則建議](https://azure.microsoft.com/blog/2014/05/22/azure-storage-client-library-retry-policy-recommendations/)
-* [儲存體用戶端程式庫 2.0 – 實作重試原則](http://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
+* [儲存體用戶端程式庫 2.0 – 實作重試原則](https://gauravmantri.com/2012/12/30/storage-client-library-2-0-implementing-retry-policies/)
 
 ## <a name="general-rest-and-retry-guidelines"></a>一般 REST 與重試指引
 存取 Azure 或協力廠商服務時請考量下列事項：

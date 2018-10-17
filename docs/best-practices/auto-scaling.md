@@ -4,12 +4,12 @@ description: 如何自動調整以動態方式配置應用程式所需資源的�
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: a8489aaabab2b8523fbc9f026f4f435bb6d1ad29
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 1afbb7d48329d84979aa72b7e0707442cacfa45e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478454"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429412"
 ---
 # <a name="autoscaling"></a>自動調整
 [!INCLUDE [header](../_includes/header.md)]
@@ -70,14 +70,14 @@ Azure 針對多數運算選項提供內建的自動調整。
 
 如需內建計量的清單，請參閱 [Azure 監視器的自動調整常見計量][autoscale-metrics]。 您也可以使用 Application Insights 來實作自訂的計量。 
 
-您可以使用 PowerShell、Azure CLI、Azure Resource Manager 範本或 Azure 入口網站來設定自動調整。 如需更詳細的控制，請使用 [Azure Resource Manager REST API](https://msdn.microsoft.com//library/azure/dn790568.aspx)。 [Azure 監視服務管理程式庫](http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring)和 [Microsoft Insights 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Insights/) (預覽版) 是可讓您從不同的資源收集計量以及利用 REST API 執行自動調整的 SDK。 對於不支援 Azure Resource Manager 的資源，或是當您使用 Azure 雲端服務時，都可以使用服務管理 REST API 進行自動調整。 在所有其他情況下，請使用 Azure Resource Manager。
+您可以使用 PowerShell、Azure CLI、Azure Resource Manager 範本或 Azure 入口網站來設定自動調整。 如需更詳細的控制，請使用 [Azure Resource Manager REST API](https://msdn.microsoft.com//library/azure/dn790568.aspx)。 [Azure 監視服務管理程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring)和 [Microsoft Insights 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Insights/) (預覽版) 是可讓您從不同的資源收集計量以及利用 REST API 執行自動調整的 SDK。 對於不支援 Azure Resource Manager 的資源，或是當您使用 Azure 雲端服務時，都可以使用服務管理 REST API 進行自動調整。 在所有其他情況下，請使用 Azure Resource Manager。
 
 使用 Azure 自動調整時，請考慮下列幾點：
 
 * 請考慮您是否可以善加預測應用程式負載，以便只依賴排程自動調整，新增和移除執行個體以滿足要求的預期尖峰期。 如果不可行，請使用基於執行階段計量的反應式自動調整，以便處理無法預期的需求變更。 一般而言，您可以結合這些方法。 例如，建立會根據應用程式何時最忙碌的排程新增資源的策略。 這有助於確保容量在需要時可供使用，不會因啟動新執行個體發生任何延遲。 針對每個排程的規則，定義在該期間內允許被動式自動調整的計量，以確保應用程式能夠處理持續但無法預期的要求尖峰期。
 * 通常很難了解計量和容量需求之間的關聯性，尤其是在最初部署應用程式的時候。 一開始多佈建一些額外的容量，然後加以監視並調整自動調整規則，使容量更接近實際負載。
 * 設定自動調整規則，然後監視經過一段時間的應用程式效能。 如有必要，使用此監視結果來調整系統的調整方式。 不過，請記住，自動調整不是即時生效的程序 它需要時間來回應計量，例如平均 CPU 使用率超過 (或低於) 指定的臨界值。
-* 根據測量的觸發程序屬性 (例如 CPU 使用量或佇列長度) 使用偵測機制的自動調整規則，會使用經過一段時間的彙總值 (而不是瞬間值) 來觸發自動調整動作。 根據預設，彙總是值的平均。 這可防止系統反應太快，或造成快速震盪。 這也可以讓自動啟動的新執行個體順利進入執行模式，避免新執行個體正在啟動時，又發生其他自動調整動作。 若是 Azure 雲端服務和 Azure 虛擬機器，彙總的預設期間為 45 分鐘，因此，計量需要經過這段時間後再觸發自動調整以回應尖峰需求量。 您可以使用 SDK 來變更彙總期間，但請注意低於 25 分鐘可能會造成無法預期的結果 (如需詳細資訊，請參閱 [使用 Azure 監視服務管理資源庫，根據 CPU 百分比自動調整雲端服務](http://rickrainey.com/2013/12/15/auto-scaling-cloud-services-on-cpu-percentage-with-the-windows-azure-monitoring-services-management-library/))。 若是 Web Apps，平均期間較短，允許在平均觸發量值變更約五分鐘後提供新執行個體。
+* 根據測量的觸發程序屬性 (例如 CPU 使用量或佇列長度) 使用偵測機制的自動調整規則，會使用經過一段時間的彙總值 (而不是瞬間值) 來觸發自動調整動作。 根據預設，彙總是值的平均。 這可防止系統反應太快，或造成快速震盪。 這也可以讓自動啟動的新執行個體順利進入執行模式，避免新執行個體正在啟動時，又發生其他自動調整動作。 若是 Azure 雲端服務和 Azure 虛擬機器，彙總的預設期間為 45 分鐘，因此，計量需要經過這段時間後再觸發自動調整以回應尖峰需求量。 您可以使用 SDK 來變更彙總期間，但請注意，若其間低於 25 分鐘，可能會造成無法預期的結果。 若是 Web Apps，平均期間較短，允許在平均觸發量值變更約五分鐘後提供新執行個體。
 * 如果您使用 SDK 設定自動調整，而不是使用入口網站，您可以指定更詳細的作用中規則排程期間。 您也可以建立您自己的度量，並在自動調整規則中與現有度量一起使用。 例如，您可能想要使用替代計數器 (例如，每秒要求數或平均記憶體可用性)，或使用自訂計數器來測量特定商務程序。
 * 自動調整 Service Fabric 時，節點類型是由後端的 VM 擴展集建立，所以您必須為每個節點類型設定自動調整規則。 請先考慮一定要有的節點數目，再設定自動調整規模。 主要節點類型一定要有的節點數目下限是由您已選擇的可靠性層級決定。 如需詳細資訊，請參閱[使用自動調整規則相應縮小或放大 Service Fabric 叢集](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-scale-up-down)。
 * 您可以使用入口網站，將 SQL Database 執行個體和佇列之類的資源連結至雲端服務執行個體。 這可讓您更輕鬆地存取每個連結資源的個別手動和自動調整設定選項。 如需詳細資訊，請參閱[作法：將資源連結到雲端服務](/azure/cloud-services/cloud-services-how-to-manage)。

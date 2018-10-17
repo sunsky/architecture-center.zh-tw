@@ -1,22 +1,22 @@
 ---
 title: Azure 上的電子商務前端
-description: 經過證明的案例，可以在 Azure 上裝載電子商務網站
+description: 在 Azure 上裝載電子商務網站。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 340f60628bf932489a9fbd11ac3ff1be723a685c
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428069"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819086"
 ---
-# <a name="e-commerce-frontend-on-azure"></a>Azure 上的電子商務前端
+# <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
 
 此範例案例會逐步引導您使用 Azure 平台即服務 (PaaS) 工具，實作電子商務前端。 許多電子商務網站都會面臨隨著時間而異的季節性和流量變化。 當產品或服務的需求激增時 (不論預期或非預期的情況下)，使用 PaaS 工具可讓您自動服務更多客戶與處理更多交易。 此外，此案例可僅支付所需的容量，妥善發揮雲端的經濟效益。
 
 此文件會協助您了解一起用來部署範例電子商務應用程式 (Relecloud Concerts，這是一個線上演唱會購票平台) 的各種 Azure PaaS 元件。
 
-## <a name="potential-use-cases"></a>潛在使用案例
+## <a name="relevant-use-cases"></a>相關使用案例
 
 請針對下列使用案例考慮此案例：
 
@@ -25,7 +25,7 @@ ms.locfileid: "47428069"
 
 ## <a name="architecture"></a>架構
 
-![電子商務應用程式的範例案例架構][architecture-diagram]
+![電子商務應用程式的範例案例架構][architecture]
 
 此案例涵蓋了從電子商務網站購買票證，整個案例的資料流程如下所示：
 
@@ -69,7 +69,7 @@ Web 層和函式的其他選項包括：
 
 資料層的其他選項包括：
 
-* [Cosmos DB][docs-cosmosdb] - Microsoft 全球發行的多模型資料庫。 此服務提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。
+* [Cosmos DB](/azure/cosmos-db/introduction)：Microsoft 全球發行的多模型資料庫。 此服務提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。
 
 ## <a name="considerations"></a>考量
 
@@ -120,11 +120,11 @@ Web 層和函式的其他選項包括：
 * [容器上的 eShop 參考範例][microservices-ecommerce]
 
 <!-- links -->
+[architecture]: ./media/architecture-ecommerce-scenario.png
 [small-pricing]: https://azure.com/e/90fbb6a661a04888a57322985f9b34ac
 [medium-pricing]: https://azure.com/e/38d5d387e3234537b6859660db1c9973
 [large-pricing]: https://azure.com/e/f07f99b6c3134803a14c9b43fcba3e2f
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[architecture-diagram]: ./media/architecture-diagram-ecommerce-solution.png
 [availability]: /azure/architecture/checklist/availability
 [circuit-breaker]: /azure/architecture/patterns/circuit-breaker
 [design-patterns-availability]: /azure/architecture/patterns/category/availability
@@ -136,7 +136,6 @@ Web 層和函式的其他選項包括：
 [docs-cdn]: /azure/cdn/cdn-overview
 [docs-container-instances]: /azure/container-instances/
 [docs-kubernetes-service]: /azure/aks/
-[docs-cosmosdb]: /azure/cosmos-db/
 [docs-functions]: /azure/azure-functions/functions-overview
 [docs-redis-cache]: /azure/redis-cache/cache-overview
 [docs-search]: /azure/search/search-what-is-azure-search
@@ -154,6 +153,6 @@ Web 層和函式的其他選項包括：
 [resiliency-app-service]: /azure/architecture/checklist/resiliency-per-service#app-service
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
-[secure-development]: https://www.microsoft.com/en-us/SDL/process/design.aspx
+[secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

@@ -6,16 +6,16 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 61788d9759715b21ef1bdda59c5b54d923fd8f62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541908"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429363"
 ---
 # <a name="work-with-claims-based-identities"></a>使用宣告式身分識別
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 ## <a name="claims-in-azure-ad"></a>在 Azure AD 中的宣告
 當使用者登入時，Azure AD 會傳送識別碼權杖，其中包含一組使用者的相關宣告。 宣告就是以索引鍵/值組表示的資訊片段。 例如：`email`=`bob@contoso.com`。  宣告具有簽發者 &mdash; 在此情況下為 Azure AD &mdash; 它是驗證使用者並建立宣告的實體。 因為您信任簽發者，您會信任此宣告。 (相反地，如果您不信任簽發者，請不要信任該宣告！)
@@ -36,7 +36,7 @@ ms.locfileid: "24541908"
 | aud |權杖發行的對象。 這會是應用程式的用戶端識別碼。 一般而言，您應該不需要擔心這個宣告，因為中介軟體會自動驗證。 範例：`"91464657-d17a-4327-91f3-2ed99386406f"` |
 | groups |AAD 群組清單，使用者為其中的成員。 範例： `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
 | iss |OIDC 權杖的 [簽發者] 。 範例： `https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
-| 名稱 |使用者的顯示名稱。 範例： `"Alice A."` |
+| name |使用者的顯示名稱。 範例： `"Alice A."` |
 | oid |AAD 中使用者的物件識別碼。 這個值是使用者的識別碼，不可變且無法重複使用。 使用這個值，而非電子郵件，來做為唯一的使用者識別碼；電子郵件地址可以變更。 如果您在應用程式中使用 Azure AD Graph API，物件識別碼是用於查詢設定檔資訊的值。 範例： `"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
 | 角色 |使用者的應用程式角色清單。    範例： `["SurveyCreator"]` |
 | tid |租用戶識別碼。 這個值是 Azure AD 中租用戶的唯一識別碼。 範例： `"b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4"` |
@@ -112,14 +112,14 @@ ms.locfileid: "24541908"
 
 如需詳細資訊，請參閱[多租用戶應用程式中以角色和資源為基礎的授權][authorization]。
 
-[**下一步**][signup]
+[**下一主題**][signup]
 
 
 <!-- Links -->
 
-[範圍參數]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[範圍參數]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [支援的權杖和宣告類型]: /azure/active-directory/active-directory-token-and-claims/
-[簽發者]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[簽發者]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [驗證事件]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims

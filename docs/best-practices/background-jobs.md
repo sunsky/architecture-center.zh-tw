@@ -4,12 +4,12 @@ description: 獨立於使用者介面之外執行的背景工作指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 781d616dfcf24775525e2489e7e463174ec9bfa3
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: fa5c6352da289591d92b9427c44b8ba9f01245aa
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091082"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429616"
 ---
 # <a name="background-jobs"></a>背景作業作業
 [!INCLUDE [header](../_includes/header.md)]
@@ -27,7 +27,7 @@ ms.locfileid: "37091082"
 * 進行大量 I/O 動作的作業，例如執行一系列的儲存體交易或索引檔。
 * 如夜間資料更新或排程處理的批次作業。
 * 長時間執行的工作流程，例如訂單履行或佈建服務和系統。
-* 其中的工作移交至更安全的位置，以便進行處理的敏感性資料處理序。 例如，您可能不想在 Web 應用程式中處理敏感性資料。 相反的，您可以改用如 [閘道管理員](http://msdn.microsoft.com/library/dn589793.aspx) 的模式將資料傳送到隔離的背景處理序中，且該處理序擁有受保護儲存體的存取權。
+* 其中的工作移交至更安全的位置，以便進行處理的敏感性資料處理序。 例如，您可能不想在 Web 應用程式中處理敏感性資料。 相反的，您可以改用如 [閘道管理員](https://msdn.microsoft.com/library/dn589793.aspx) 的模式將資料傳送到隔離的背景處理序中，且該處理序擁有受保護儲存體的存取權。
 
 ## <a name="triggers"></a>觸發程序
 可利用數個不同的方式啟動背景工作。 它們全都屬於下列類別之一：
@@ -64,7 +64,7 @@ ms.locfileid: "37091082"
 如果您需要背景工作與呼叫工作通訊，以指出進度或完成，您必須為此實作一種機制。 部分範例如下：
 
 * 將狀態指標值寫入至可存取 UI 或呼叫者工作的儲存體，也就是可在必要時監視或檢查此值。 可將背景工作必須傳回給呼叫端的資料，放入相同的儲存體中。
-* 建立 UI 或呼叫端會接聽的回覆佇列。 背景工作可以將訊息傳送至佇列，此佇列表示出狀態和工作的完成。 可將背景工作必須傳回給呼叫端的資料放入訊息中。 如果您使用 Azure 服務匯流排，您可以使用 **ReplyTo** 和 **CorrelationId** 屬性來實作這項功能。 如需詳細資訊，請參閱 [服務匯流排代理傳訊中的相互關聯](http://www.cloudcasts.net/devguide/Default.aspx?id=13029)。
+* 建立 UI 或呼叫端會接聽的回覆佇列。 背景工作可以將訊息傳送至佇列，此佇列表示出狀態和工作的完成。 可將背景工作必須傳回給呼叫端的資料放入訊息中。 如果您使用 Azure 服務匯流排，您可以使用 **ReplyTo** 和 **CorrelationId** 屬性來實作這項功能。
 * 從 UI 或呼叫端可以存取來取得狀態資訊的背景工作中，公開 API 或端點。 可在回應中包含背景工作必須傳回給呼叫端的資料。
 * 讓背景工作透過 API 回呼至 UI 或呼叫端，以表示預先定義的時間點或完成時的狀態。 這可能是透過本機引發的事件，或透過發佈和訂閱機制。 可在要求或事件裝載中，包含背景工作必須傳回給呼叫端的資料。
 
@@ -95,7 +95,7 @@ Azure WebJobs 具有下列特性：
 
 * **安全性**：WebJobs 受到 Web 應用程式的部署認證所保護。
 * **支援的檔案類型**：您可以使用命令指令碼 (.cmd)、批次檔 (.bat)、PowerShell 指令碼 (.ps1)、Bash 殼層指令碼 (.sh)、PHP 指令碼 (.php)、Python 指令碼 (.py)、JavaScript 程式碼 (.js) 和可執行程式 (.exe、.jar 等等) 定義 Web 工作。
-* **部署**：您可以使用 [Azure 入口網站](/azure/app-service-web/web-sites-create-web-jobs)、使用 [Visual Studio](/azure/app-service-web/websites-dotnet-deploy-webjobs)、使用 [Azure WebJobs SDK](/azure/azure-webjobs-sdk)，或將它們直接複製到下列位置，來部署指令碼和可執行檔：
+* **部署**：您可以使用 [Azure 入口網站](/azure/app-service-web/web-sites-create-web-jobs)、使用 [Visual Studio](/azure/app-service-web/websites-dotnet-deploy-webjobs)、使用 [Azure WebJobs SDK](/azure/app-service/webjobs-sdk-get-started)，或將它們直接複製到下列位置，來部署指令碼和可執行檔：
   * 針對觸發執行：site/wwwroot/app_data/jobs/triggered/{job name}
   * 針對連續執行：site/wwwroot/app_data/jobs/continuous/{job name}
 * **記錄**：Console.Out 會被視為 (標示為) INFO。 Console.Error 會被視為 ERROR。 您可以使用 Azure 入口網站存取監視和診斷資訊。 您可以直接從網站下載記錄檔。 這些資訊會儲存在下列位置：
@@ -116,7 +116,7 @@ Azure WebJobs 具有下列特性：
 ### <a name="azure-virtual-machines"></a>Azure 虛擬機器
 背景工作的實作方式可能會讓它們無法部署到 Azure Web 應用程式或雲端服務，或是這些選項都不可行。 常見的範例有 Windows 服務、協力廠商公用程式和可執行程式。 另一個例子是針對某個執行環境 (和裝載應用程式的環境不同) 所撰寫的程式。 比方說，它可能是您想要從 Windows 或 .NET 應用程式執行的 Unix 或 Linux 程式。 您可以選擇各式各樣的 Azure 虛擬機器的作業系統，並在該虛擬機器上執行您的服務或可執行檔。
 
-如要了解如何選擇使用虛擬機器的時機，請參閱 [Azure App Services、雲端服務與虛擬機器之比較](/azure/app-service-web/choose-web-site-cloud-service-vm/)。 如需虛擬機器選項的相關資訊，請參閱 [Azure 的虛擬機器和雲端服務大小](http://msdn.microsoft.com/library/azure/dn197896.aspx)。 如需虛擬機器可用之作業系統和預先建立映像的詳細資訊，請參閱 [Azure 虛擬機器 Marketplace](https://azure.microsoft.com/gallery/virtual-machines/)。
+如要了解如何選擇使用虛擬機器的時機，請參閱 [Azure App Services、雲端服務與虛擬機器之比較](/azure/app-service-web/choose-web-site-cloud-service-vm/)。 如需虛擬機器選項的相關資訊，請參閱 [Azure 中的 Windows 虛擬機器大小](/azure/virtual-machines/windows/sizes)。 如需虛擬機器可用之作業系統和預先建立映像的詳細資訊，請參閱 [Azure 虛擬機器 Marketplace](https://azure.microsoft.com/gallery/virtual-machines/)。
 
 若要在個別虛擬機器中起始背景工作，您有一系列的選項可選：
 
@@ -131,7 +131,7 @@ Azure WebJobs 具有下列特性：
 
 * 在不同的 Azure 虛擬機器中裝載背景工作提供了彈性，並可透過起始、執行、排程及資源配置以精確控制。 不過，如果必須部署虛擬機器，並只是為了執行背景工作，則會增加執行階段成本。
 * 沒有任何設備可監視 Azure 入口網站中的工作，且沒有適用於失敗工作的自動重新啟動功能，但您可以監視虛擬機器的基本狀態，並使用 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 管理它。 不過，計算節點中沒有機制可用來控制程序和執行緒。 通常，使用虛擬機器將會需要額外的工作，才能在工作中實作機制，以便從檢測中收集資料，並從虛擬機器中的作業系統收集資料。 一個可能適當的解決方案是使用 [System Center Management Pack for Azure](https://www.microsoft.com/download/details.aspx?id=50013)。
-* 您可以考慮建立透過 HTTP 端點公開的監視探查。 這些探查的程式碼可執行健康狀態檢查、收集操作資訊和統計資料，或自動分頁錯誤資訊，以及將它傳回給管理應用程式。 如需詳細資訊，請參閱 [健康狀態端點監控模式](http://msdn.microsoft.com/library/dn589789.aspx)。
+* 您可以考慮建立透過 HTTP 端點公開的監視探查。 這些探查的程式碼可執行健康狀態檢查、收集操作資訊和統計資料，或自動分頁錯誤資訊，以及將它傳回給管理應用程式。 如需詳細資訊，請參閱 [健康狀態端點監控模式](../patterns/health-endpoint-monitoring.md)。
 
 #### <a name="more-information"></a>詳細資訊
 * [虛擬機器](https://azure.microsoft.com/services/virtual-machines/) 
@@ -177,7 +177,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 * [私人 Docker 容器登錄的簡介](/azure/container-registry/container-registry-intro) 
 
 ### <a name="azure-cloud-services"></a>Azure 雲端服務 
-你可以在 Web 角色或另一個背景工作角色中，執行背景工作。 當您決定是否使用背景工作角色時，應該根據考量延展性和彈性需求、工作存留期、釋放頻率、安全性、容錯、爭用、複雜度和邏輯結構。 如需詳細資訊，請參閱 [計算資源彙總模式](http://msdn.microsoft.com/library/dn589778.aspx)。
+你可以在 Web 角色或另一個背景工作角色中，執行背景工作。 當您決定是否使用背景工作角色時，應該根據考量延展性和彈性需求、工作存留期、釋放頻率、安全性、容錯、爭用、複雜度和邏輯結構。 如需詳細資訊，請參閱 [計算資源彙總模式](../patterns/compute-resource-consolidation.md)。
 
 有數種方式來實作雲端服務角色中的背景工作：
 
@@ -193,7 +193,7 @@ Azure Container Service 可讓您設定和管理 Azure 中的 VM 叢集，以執
 * 它可讓您為每種類型的角色個別管理調整。 例如，您可能需要 Web 角色的更多執行個體才能支援目前的負載，但僅需要較少執行背景工作的背景工作角色執行個體。 從 UI 角色調整背景工作分別計算執行個體可以減少裝載成本，同時維持可接受的效能。
 * 它會卸載來自 Web 角色的背景工作的處理負擔。 提供 UI 的 Web 角色可以保持回應性，而且也可能意味只需要較少的執行個體，即可支援指定使用者的給定要求數量。
 * 它可讓您實作關注的分離動作。 每種角色類型可以實作一組明確定義和相關的特定工作。 這使得設計和維護程式碼更容易，因為每個角色之間的程式碼和功能會有較少的相依關係。
-* 它有助於隔離機密的程序和資料。 比方說，實作 UI 的 Web 角色不需要存取背景工作角色所管理和控制的資料。 這可以用來加強安全性，尤其是當您使用 [Gatekeeper Pattern (閘道管理員模式)](http://msdn.microsoft.com/library/dn589793.aspx)之類的模式時。  
+* 它有助於隔離機密的程序和資料。 比方說，實作 UI 的 Web 角色不需要存取背景工作角色所管理和控制的資料。 這可以用來加強安全性，尤其是當您使用 [Gatekeeper Pattern (閘道管理員模式)](../patterns/gatekeeper.md)之類的模式時。  
 
 #### <a name="considerations"></a>考量
 如果使用雲端服務 Web 和背景工作角色，在選擇部署背景工作的方式和位置時，請考量下列重點：
@@ -218,7 +218,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 * Run 方法結束時，Azure 會先在應用程式的全域檔案 (若存在) 中呼叫 **Application_End()**，然後呼叫 **RoleEntryPoint.OnStop()**。 您覆寫 **OnStop** 方法停止您的背景工作、清除資源、處置物件，並關閉工作可能已經使用的連接。
 * Azure 背景工作角色主機程序已停止。 此時，角色會被回收並將重新啟動。
 
-如需 **RoleEntryPoint** 類別的使用方法詳細資訊和範例，請參閱 [計算資源彙總模式](http://msdn.microsoft.com/library/dn589778.aspx)(英文)。
+如需 **RoleEntryPoint** 類別的使用方法詳細資訊和範例，請參閱 [計算資源彙總模式](../patterns/compute-resource-consolidation.md)(英文)。
 
 #### <a name="implementation-considerations"></a>實作考量
 
@@ -248,7 +248,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
   * 針對角色，將 **Freeze** 設定的定義做為布林值新增至 ServiceDefinition.csdef 和 ServiceConfiguration.\*.cscfg 檔案，並將它設定為 **false**。 如果角色進入重複的重新啟動模式，您可以將設定變更為 **true** 以凍結角色執行，並允許它交換先前版本。
 
 #### <a name="more-information"></a>詳細資訊
-* [計算資源彙總模式 (英文)](http://msdn.microsoft.com/library/dn589778.aspx)
+* [計算資源彙總模式 (英文)](../patterns/compute-resource-consolidation.md)
 * [Get started with the Azure WebJobs SDK (開始使用 Azure WebJobs SDK)](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started/)
 
 
@@ -263,7 +263,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 * **可管理性**：相較於主應用程式程式碼或 UI，背景工作可能有不同的開發和部署節奏。 將它們部署到不同的計算執行個體可簡化更新與版本控制。
 * **成本**：加入計算執行個體來執行背景工作會增加裝載成本。 您應該仔細考量額外的容量與這些額外的成本之間的取捨。
 
-如需詳細資訊，請參閱 [Leader Election Pattern (前置選擇模式)](http://msdn.microsoft.com/library/dn568104.aspx) 和 [Competing Consumers Pattern (競爭取用者模式)](http://msdn.microsoft.com/library/dn568101.aspx)。
+如需詳細資訊，請參閱 [Leader Election Pattern (前置選擇模式)](../patterns/leader-election.md) 和 [Competing Consumers Pattern (競爭取用者模式)](../patterns/competing-consumers.md)。
 
 ## <a name="conflicts"></a>衝突
 如果您有背景作業的多個執行個體，它們就可能爭用資源和服務的存取權，例如資料庫和儲存體。 這個並行存取可能會導致資源爭用情況，其可能會造成服務可用性及儲存體中資料完整性衝突。 您可以使用悲觀鎖定方法來解決資源爭用的情況。 這可避免相互競爭的工作執行個體同時存取服務或損毀資料。
@@ -277,22 +277,22 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 
 協調多個工作和步驟可能相當困難，但是有三種常見的模式可用來引導您的實作方案：
 
-* **將一個工作分解成多個可重複使用的步驟**。 應用程式可能需要在其處理的資訊上，執行具有不同複雜度的各種工作。 有一項實作此應用程式簡單但具彈性的方法，此方法為將這項處理序作為整合模組執行。 不過，這種方法可能會降低重構程式碼、最佳化它，或在應用程式的其他位置需要相同處理程序的部分時，重複使用它的機會。 如需詳細資訊，請參閱 [管道與篩選模式](http://msdn.microsoft.com/library/dn568100.aspx)(英文)。
-* **管理工作的步驟執行**。 應用程式可能會執行包含數個步驟 (其中有些可能會叫用遠端服務或存取遠端資源) 的工作。 個別的步驟可能會彼此獨立，但是它們會由實作工作的應用程式邏輯進行協調。 如需詳細資訊，請參閱 [排程器代理程式監督員模式](http://msdn.microsoft.com/library/dn589780.aspx)(英文)。
-* **管理失敗工作步驟的復原**。 如果一個或多個步驟失敗，應用程式可能需要對執行一系列步驟的工作進行復原 (它們會共同定義最終的一致作業)。 如需詳細資訊，請參閱 [補償交易模式](http://msdn.microsoft.com/library/dn589804.aspx)(英文)。
+* **將一個工作分解成多個可重複使用的步驟**。 應用程式可能需要在其處理的資訊上，執行具有不同複雜度的各種工作。 有一項實作此應用程式簡單但具彈性的方法，此方法為將這項處理序作為整合模組執行。 不過，這種方法可能會降低重構程式碼、最佳化它，或在應用程式的其他位置需要相同處理程序的部分時，重複使用它的機會。 如需詳細資訊，請參閱 [管道與篩選模式](../patterns/pipes-and-filters.md)(英文)。
+* **管理工作的步驟執行**。 應用程式可能會執行包含數個步驟 (其中有些可能會叫用遠端服務或存取遠端資源) 的工作。 個別的步驟可能會彼此獨立，但是它們會由實作工作的應用程式邏輯進行協調。 如需詳細資訊，請參閱 [排程器代理程式監督員模式](../patterns/scheduler-agent-supervisor.md)(英文)。
+* **管理失敗工作步驟的復原**。 如果一個或多個步驟失敗，應用程式可能需要對執行一系列步驟的工作進行復原 (它們會共同定義最終的一致作業)。 如需詳細資訊，請參閱 [補償交易模式](../patterns/compensating-transaction.md)(英文)。
 
 
 ## <a name="resiliency-considerations"></a>恢復功能考量
 背景工作必須具有恢復功能，以便為應用程式提供可靠的服務。 當您規劃和設計背景工作時，請考慮下列幾點：
 
-* 背景工作必須能正常處理角色或服務重新啟動，而不會損毀資料或導致應用程式不一致。 對於長時間執行或多步驟的工作，請考慮使用「檢查指出」  ，方法是在永續性儲存體中儲存作業狀態，或在佇列中作為訊息儲存 (如果這是適當的)。 例如，您可以在佇列的訊息中永久保存狀態資訊，並使用工作進度累加地更新此狀態資訊，以便從上次已知的良好檢查點處理工作，而不是從頭重新啟動。 使用 Azure 服務匯流排佇列時，您可以使用訊息工作階段來啟用相同的案例。 工作階段可讓您使用 [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) 和 [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) 方法來儲存和擷取應用程式處理狀態。 如需設計可靠的多步驟處理序和工作流程詳細資訊，請參閱 [Scheduler Agent Supervisor Pattern (排程器代理程式監督員模式)](http://msdn.microsoft.com/library/dn589780.aspx)。
+* 背景工作必須能正常處理角色或服務重新啟動，而不會損毀資料或導致應用程式不一致。 對於長時間執行或多步驟的工作，請考慮使用「檢查指出」  ，方法是在永續性儲存體中儲存作業狀態，或在佇列中作為訊息儲存 (如果這是適當的)。 例如，您可以在佇列的訊息中永久保存狀態資訊，並使用工作進度累加地更新此狀態資訊，以便從上次已知的良好檢查點處理工作，而不是從頭重新啟動。 使用 Azure 服務匯流排佇列時，您可以使用訊息工作階段來啟用相同的案例。 工作階段可讓您使用 [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) 和 [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0) 方法來儲存和擷取應用程式處理狀態。 如需設計可靠的多步驟處理序和工作流程詳細資訊，請參閱 [Scheduler Agent Supervisor Pattern (排程器代理程式監督員模式)](../patterns/scheduler-agent-supervisor.md)。
 * 使用 Web 或背景工作角色來裝載多個背景工作時，請設計 **Run** 方法的覆寫來監視失敗或已停止的工作，並重新啟動它們。 若不實用，而且您正在使用背景工作角色，請從 **Run** 方法退出，以強制重新啟動背景工作角色。
-* 當您使用佇列與背景工作通訊時，佇列可在應用程式高於一般負載時，作為緩衝區來儲存傳送給工作的要求。 如此能讓工作在較空閒期間使用 UI。 這也表示回收角色不會封鎖 UI。 如需詳細資訊，請參閱 [佇列型負載調節模式](http://msdn.microsoft.com/library/dn589783.aspx)(英文)。 如果某些工作比其他工作更重要，請考慮實作 [優先順序佇列模式](http://msdn.microsoft.com/library/dn589794.aspx) (英文)，確保這些工作在較不重要的工作之前執行。
+* 當您使用佇列與背景工作通訊時，佇列可在應用程式高於一般負載時，作為緩衝區來儲存傳送給工作的要求。 如此能讓工作在較空閒期間使用 UI。 這也表示回收角色不會封鎖 UI。 如需詳細資訊，請參閱 [佇列型負載調節模式](../patterns/queue-based-load-leveling.md)(英文)。 如果某些工作比其他工作更重要，請考慮實作 [優先順序佇列模式](../patterns/priority-queue.md) (英文)，確保這些工作在較不重要的工作之前執行。
 * 必須將由訊息或處理訊息初始化的背景工作設計為能夠處理不一致情況，例如以錯誤順序到達的訊息、重複導致錯誤的訊息 (通常稱為「有害訊息」 )，以及多次傳遞的訊息。 請考慮下列：
   * 必須依特定順序處理訊息，像是根據其現有值變更資料的訊息 (例如，將值加入至現有值)，可能不會以其原始的傳送順序到達。 或者，可能因每個執行個體上變動的負載，而依不同順序由背景工作的不同執行個體處理。 必須依特定順序處理的訊息應該包含序號、金鑰或其他某些指標，好讓背景工作使用以確保能依正確的順序處理這些訊息。 如果您使用 Azure 服務匯流排，您可以使用訊息工作階段來保證傳遞順序。 不過，盡可能設計處理序以讓訊息順序變得不重要，通常會更有效率。
   * 一般而言，背景工作會在佇列中查看訊息，這會暫時對其他訊息取用者隱藏這些訊息。 然後它會在成功處理完畢後刪除訊息。 如果背景工作在處理訊息時失敗，該訊息將會在查看逾時到期之後重新出現在佇列上。 它將會由工作的另一個執行個體進行處理，或在此執行個體的下一個處理週期進行處理。 如果訊息在取用者中發生相同的錯誤，它會封鎖工作、佇列，最終在佇列已滿時封鎖應用程式本身。 因此，請務必從佇列偵測並移除有害訊息。 如果您使用 Azure 服務匯流排，造成錯誤的訊息可能會被自動或手動地移至相關聯的無效信件佇列。
   * 佇列會保證「至少一次」  使用傳遞機制，但它們可能會傳遞相同的訊息多次。 此外，如果背景工作在處理訊息後、但在從佇列刪除前失敗，訊息將會變成可再次處理。 背景工作應該具有等冪性，這表示超過一次處理相同的訊息不會造成錯誤，或使應用程式的資料不一致。 某些作業自然是等冪，例如將儲存的值設為特定的新值。 不過，將值加入到現有的儲存值，而不檢查儲存值是否仍然與原先傳送的訊息相同之類的作業，可能會導致不一致情況。 Azure 服務匯流排佇列可以設定為自動移除重複的訊息。
-  * 某些傳訊系統 (例如 Azure 儲存體佇列和 Azure 服務匯流排佇列) 支援 de-queue count 屬性，指出已從佇列讀取訊息的次數。 這在處理重複及有害訊息時很有用。 如需詳細資訊，請參閱[非同步傳訊入門](http://msdn.microsoft.com/library/dn589781.aspx)和[等冪性模式](http://blog.jonathanoliver.com/idempotency-patterns/)。
+  * 某些傳訊系統 (例如 Azure 儲存體佇列和 Azure 服務匯流排佇列) 支援 de-queue count 屬性，指出已從佇列讀取訊息的次數。 這在處理重複及有害訊息時很有用。 如需詳細資訊，請參閱[非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)和[等冪性模式](https://blog.jonathanoliver.com/idempotency-patterns/)。
 
 ## <a name="scaling-and-performance-considerations"></a>調整和效能考量
 背景工作必須提供足夠的效能，確保它們不會封鎖應用程式，或不會因系統負載不足而延遲作業時導致不一致。 一般而言，藉由調整裝載背景工作的計算執行個體可提升效能。 當您規劃和設計背景工作時，請考慮下列有關延展性和效能的重點：
@@ -304,24 +304,22 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 * 根據預設，WebJobs 會根據相關聯的 Azure Web 應用程式執行個體來調整。 不過，如果您只想要將 WebJob 當作單一執行個體來執行，您可以建立包含 JSON 資料 **{ "is_singleton": true }** 的 Settings.job 檔案。 這會強制 Azure 只能執行單一 Web 工作的執行個體，即使有多個相關聯的 Web 應用程式執行個體也一樣。 這可能是針對必須執行為單一執行個體之排程作業的有用技巧。
 
 ## <a name="related-patterns"></a>相關的模式
-* [非同步傳訊入門 (英文)](http://msdn.microsoft.com/library/dn589781.aspx)
-* [自動調整指引 (英文)](http://msdn.microsoft.com/library/dn589774.aspx)
-* [補償交易模式 (英文)](http://msdn.microsoft.com/library/dn589804.aspx)
-* [競爭取用者模式 (英文)](http://msdn.microsoft.com/library/dn568101.aspx)
-* [計算分割指引 (英文)](http://msdn.microsoft.com/library/dn589773.aspx)
-* [計算資源彙總模式 (英文)](http://msdn.microsoft.com/library/dn589778.aspx)
-* [閘道管理員模式 (英文)](http://msdn.microsoft.com/library/dn589793.aspx)
-* [選出領導者模式 (英文)](http://msdn.microsoft.com/library/dn568104.aspx)
-* [管道與篩選器 (英文)](http://msdn.microsoft.com/library/dn568100.aspx)
-* [優先順序佇列模式 (英文)](http://msdn.microsoft.com/library/dn589794.aspx)
-* [Queue-based Load Leveling Pattern (佇列型負載調節模式)](http://msdn.microsoft.com/library/dn589783.aspx)
-* [排程器代理程式監督員模式 (英文)](http://msdn.microsoft.com/library/dn589780.aspx)
+* [非同步傳訊入門 (英文)](https://msdn.microsoft.com/library/dn589781.aspx)
+* [自動調整指引 (英文)](https://msdn.microsoft.com/library/dn589774.aspx)
+* [補償交易模式 (英文)](../patterns/compensating-transaction.md)
+* [競爭取用者模式 (英文)](../patterns/competing-consumers.md)
+* [計算分割指引 (英文)](https://msdn.microsoft.com/library/dn589773.aspx)
+* [計算資源彙總模式 (英文)](https://msdn.microsoft.com/library/dn589778.aspx)
+* [閘道管理員模式 (英文)](../patterns/gatekeeper.md)
+* [選出領導者模式 (英文)](../patterns/leader-election.md)
+* [管道與篩選器 (英文)](../patterns/pipes-and-filters.md)
+* [優先順序佇列模式 (英文)](../patterns/priority-queue.md)
+* [Queue-based Load Leveling Pattern (佇列型負載調節模式)](../patterns/queue-based-load-leveling.md)
+* [排程器代理程式監督員模式 (英文)](../patterns/scheduler-agent-supervisor.md)
 
 ## <a name="more-information"></a>詳細資訊
-* [調整使用背景工作角色的 Azure 應用程式 (英文)](http://msdn.microsoft.com/library/hh534484.aspx#sec8)
-* [執行背景工作 (英文)](http://msdn.microsoft.com/library/ff803365.aspx)
-* [Azure 角色啟動生命週期](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (英文) (部落格文章)
-* [Azure 雲端服務角色生命週期](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (英文) (影片)
+* [執行背景工作 (英文)](https://msdn.microsoft.com/library/ff803365.aspx)
+* [Azure 雲端服務角色生命週期](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (英文) (影片)
 * [什麼是 Azure WebJob SDK](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
 * [使用 WebJob 執行背景工作](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
 * [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)

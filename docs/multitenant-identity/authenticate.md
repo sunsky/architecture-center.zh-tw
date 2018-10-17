@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359250"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428120"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 進行驗證
 
@@ -61,7 +61,7 @@ app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions {
 請注意，某些設定是取自執行階段的組態選項。 以下是中介軟體選項的意義：
 
 * **ClientId**。 當您在 Azure AD 中註冊應用程式時所得到之應用程式的用戶端識別碼。
-* **Authority**。 對於多租用戶應用程式，將此選項設定為 `https://login.microsoftonline.com/common/`。 這是 Azure AD 一般端點的 URL，可讓任何 Azure AD 租用戶的使用者進行登入。 如需一般端點的詳細資訊，請參閱 [此部落格文章](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/)。
+* **Authority**。 對於多租用戶應用程式，將此選項設定為 `https://login.microsoftonline.com/common/`。 這是 Azure AD 一般端點的 URL，可讓任何 Azure AD 租用戶的使用者進行登入。 如需一般端點的詳細資訊，請參閱 [此部落格文章](https://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/)。
 * 在 **TokenValidationParameters** 中，將 **ValidateIssuer** 設為 false。 這表示應用程式將會負責驗證識別碼權杖中的簽發者值。 (中介軟體仍會驗證權杖本身)。如需驗證簽發者的詳細資訊，請參閱[簽發者驗證](claims.md#issuer-validation)。
 * **PostLogoutRedirectUri**。 指定要在登出後重新導向使用者的 URL。這應該是允許匿名要求的頁面 &mdash; 通常是首頁。
 * **SignInScheme**。 將此選項設定為 `CookieAuthenticationDefaults.AuthenticationScheme`。 此設定表示在驗證使用者之後，使用者宣告就會儲存在本機在 Cookie 中。 此 Cookie 是使用者在瀏覽器工作階段期間保持已登入狀態的方法。

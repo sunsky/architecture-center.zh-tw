@@ -1,53 +1,52 @@
 ---
 title: Azure 上的 3D 影片轉譯
-description: 使用 Azure Batch 服務在 Azure 中執行原生 HPC 工作負載
+description: 使用 Azure Batch 服務在 Azure 中執行原生 HPC 工作負載。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 67dc8496656a75eab8f5d0ce45d00f8b1f4ea03f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428052"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818616"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 影片轉譯
 
-3D 轉譯是耗時的程序，需要大量 CPU 時間才能完成。  在單一電腦上，從靜態資產產生影片檔案的程序可能要數小時甚至數天，取決於您要產生的影片長度和複雜度。  許多公司購買昂貴的高階桌面電腦來執行這些工作，或者投資大量的轉譯伺服器陣列以將作業投入其中。  不過，利用 Azure Batch，在您需要時提供功能，不需要時則自行關閉，完全不需要資本投資。
+3D 影片轉譯是耗時的程序，需要大量 CPU 時間才能完成。 在單一電腦上，從靜態資產產生影片檔案的程序可能要數小時甚至數天，取決於您要產生的影片長度和複雜度。 許多公司購買昂貴的高階桌面電腦來執行這些工作，或者投資大量的轉譯伺服器陣列以將作業投入其中。 不過，利用 Azure Batch，在您需要時提供功能，不需要時則自行關閉，完全不需要資本投資。
 
 不論您選取 Windows Server 或 Linux 計算節點，Batch 都為您提供一致的管理體驗和作業排程。 有了 Batch，您可以使用現有的 Windows 或 Linux 應用程式，包括 AutoDesk Maya 和 Blender，在 Azure 中執行大規模轉譯作業。
 
-## <a name="related-use-cases"></a>相關使用案例
+## <a name="relevant-use-cases"></a>相關使用案例
 
 請針對下列類似使用案例考慮此案例：
 
 * 3D 模型化
 * Visual FX (VFX) 轉譯
 * 影片轉碼
-* 映像處理、色彩修正與調整大小
+* 影像處理、色彩修正及調整大小
 
 ## <a name="architecture"></a>架構
 
 ![使用 Azure Batch 的雲端原生 HPC 解決方案中所牽涉到的元件架構概觀][architecture]
 
-此範例案例涵蓋使用 Azure Batch 時的工作流程，資料流程如下所示：
+此案例示範使用 Azure Batch 的工作流程。 資料流程如下︰
 
-1. 將輸入檔案和處理這些檔案的應用程式上傳到您的 Azure 儲存體帳戶
+1. 將輸入檔案和處理這些檔案的應用程式上傳到您的 Azure 儲存體帳戶。
 2. 在您的 Batch 帳戶中建立計算節點的 Batch 集區、要在集區上執行工作負載的作業，以及作業中的工作。
-3. 將輸入檔案和應用程式下載至 Batch
-4. 監視工作執行
-5. 上傳工作輸出
-6. 下載輸出檔案
+3. 將輸入檔案和應用程式下載至 Batch。
+4. 監視工作執行。
+5. 上傳工作輸出。
+6. 下載輸出檔案。
 
-若要簡化此程序，您也可以使用[適用於 Maya 和 3ds Max 的 Batch 外掛程式][batch-plugins]
+若要簡化此程序，您也可以使用[適用於 Maya 和 3ds Max 的 Batch 外掛程式][batch-plugins]。
 
 ### <a name="components"></a>元件
 
 Azure Batch 是以下列 Azure 技術為基礎而建置的：
 
-* [資源群組][resource-groups]是 Azure 資源的邏輯容器。
-* [虛擬網路][vnet]是用於前端節點和計算資源
-* [儲存體][storage]帳戶是用於同步處理和資料保留
-* [虛擬機器擴展集][vmss]是由 CycleCloud 用於計算資源
+* [虛擬網路](/azure/virtual-network/virtual-networks-overview)是用於前端節點和計算資源。
+* [Azure 儲存體帳戶](/azure/storage/common/storage-introduction)是用於同步處理和資料保留。
+* [虛擬機器擴展集][vmss]是由 CycleCloud 用於計算資源。
 
 ## <a name="considerations"></a>考量
 
@@ -58,11 +57,11 @@ Azure Batch 是以下列 Azure 技術為基礎而建置的：
 * 應用程式是否執行記憶體繫結？
 * 應用程式是否需要使用 GPU？ 
 * 作業類型是否平行，或者針對緊密結合的工作需要 Infiniband 連線？
-* 需要計算節點上儲存體的快速 I/O
+* 需要快速 I/O 才能存取計算節點上的儲存體。
 
 Azure 有廣範圍的虛擬機器大小，可以解決每一個上述應用程式需求，部分是專屬於 HPC，但是即使是最小的大小也可以用來提供有效方格實作：
 
-* [HPC 虛擬機器大小][compute-hpc] 由於轉譯的 CPU 繫結本質，所以 Microsoft 通常會建議 Azure H 系列虛擬機器。  這種類型的 VM 特別針對高階計算的需求而建置，具有 8 和 16 核心 vCPU 大小可用，並且配備 DDR4 記憶體、SSD 暫時儲存體和 Haswell E5 Intel 技術。
+* [HPC 虛擬機器大小][compute-hpc] 由於轉譯的 CPU 繫結本質，所以 Microsoft 通常會建議 Azure H 系列虛擬機器。 這種類型的 VM 特別針對高階計算的需求而建置，具有 8 和 16 核心 vCPU 大小可用，並且配備 DDR4 記憶體、SSD 暫時儲存體和 Haswell E5 Intel 技術。
 * [GPU 虛擬機器大小][compute-gpu] GPU 最佳化的虛擬機器大小，為搭配單一或多個 NVIDIA GPU 提供的特製化虛擬機器。 這些大小是專門針對計算密集型、圖形密集型及視覺效果的工作負載所設計。
 * NC、NCv2、NCv3 及 ND 大小會對計算密集型和網路密集型應用程式和演算法 (包括 CUDA 和 OpenCL 型應用程式及模擬、AI 及深度學習) 進行最佳化。 NV 大小則會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。
 * [記憶體最佳化虛擬機器大小][compute-memory] 需要更多記憶體時，記憶體最佳化虛擬機器大小提供更高的記憶體對 CPU 比例。
@@ -99,11 +98,11 @@ Azure Batch 帳戶內的集區可以透過手動介入來調整，或者根據 A
 
 ### <a name="creating-an-azure-batch-account-and-pools-manually"></a>手動建立 Azure Batch 帳戶和集區
 
-此範例案例會在展示 Azure Batch Labs 作為可針對您自己的客戶開發的範例 SaaS 解決方案時，協助深入了解 Azure Batch 運作方式：
+此案例會展示 Azure Batch Labs 作為可針對您自己的客戶開發的範例 SaaS 解決方案時，示範 Azure Batch 的運作方式：
 
 [Azure Batch Masterclass][batch-labs-masterclass]
 
-### <a name="deploying-the-sample-scenario-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本部署範例案例
+### <a name="deploying-the-example-scenario-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本部署範例案例
 
 範本將會部署：
 
@@ -134,14 +133,15 @@ Azure Batch 帳戶內的集區可以透過手動介入來調整，或者根據 A
   50 x H16m (16 核心，225 GB RAM，進階儲存體 512 GB)，2 TB Blob 儲存體，1 TB 輸出
 
 * 10 個高效能 CPU 虛擬機器：[成本預估][hpc-est-low]
-  
+
   10 x H16m (16 核心，225 GB RAM，進階儲存體 512 GB)，2 TB Blob 儲存體，1 TB 輸出
 
-### <a name="low-priority-vm-pricing"></a>低優先順序虛擬機器價格
+### <a name="pricing-for-low-priority-vms"></a>低優先順序 VM 的定價
 
-Azure Batch 也支援在節點集區中使用低優先順序虛擬機器*，這樣也許可以提供大幅的成本節省。 如需標準虛擬機器與低優先順序虛擬機器之間的價格比較，以及深入了解低優先順序虛擬機器，請參閱 [Batch 價格][batch-pricing]。
+Azure Batch 也支援在節點集區中使用低優先順序虛擬機器，這樣也許可以提供大幅的成本節省。 如需詳細資訊，包括標準虛擬機器與低優先順序虛擬機器之間的價格比較，請參閱 [Azure Batch 定價][batch-pricing]。
 
-\* 請注意，只有特定應用程式和工作負載適合在低優先順序虛擬機器上執行。
+> [!NOTE] 
+> 低優先順序的 VM 只適合於某些應用程式和工作負載。
 
 ## <a name="related-resources"></a>相關資源
 
@@ -152,13 +152,12 @@ Azure Batch 也支援在節點集區中使用低優先順序虛擬機器*，這�
 [在 Azure Batch 上使用容器][batch-containers]
 
 <!-- links -->
-[architecture]: ./media/native-hpc-ref-arch.png
+[architecture]: ./media/architecture-video-rendering.png
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [security]: /azure/security/
 [resiliency]: /azure/architecture/resiliency/
 [scalability]: /azure/architecture/checklist/scalability
 [vmss]: /azure/virtual-machine-scale-sets/overview
-[vnet]: /azure/virtual-network/virtual-networks-overview
 [storage]: https://azure.microsoft.com/services/storage/
 [batch]: https://azure.microsoft.com/services/batch/
 [batch-arch]: https://azure.microsoft.com/solutions/architecture/big-compute-with-azure-batch/
@@ -177,7 +176,7 @@ Azure Batch 也支援在節點集區中使用低優先順序虛擬機器*，這�
 [batch-scaling]: /azure/batch/batch-automatic-scaling
 [hpc-alt-solutions]: /azure/virtual-machines/linux/high-performance-computing?toc=%2fazure%2fbatch%2ftoc.json
 [batch-monitor]: /azure/batch/monitoring-overview
-[batch-pricing]: https://azure.microsoft.com/en-gb/pricing/details/batch/
+[batch-pricing]: https://azure.microsoft.com/pricing/details/batch/
 [batch-doc]: /azure/batch/
 [batch-overview]: https://azure.microsoft.com/services/batch/
 [batch-containers]: https://github.com/Azure/batch-shipyard

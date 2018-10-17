@@ -4,12 +4,12 @@ description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584760"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819188"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
@@ -39,11 +39,11 @@ ms.locfileid: "45584760"
 
 **為記錄建立個別的儲存體帳戶。** 記錄和應用程式資料不可使用相同儲存體帳戶。 這有助於防止記錄作業降低應用程式效能。
 
-**監視效能。** 使用 [New Relic](http://newrelic.com/) 或 [Application Insights](/azure/application-insights/app-insights-overview/) 等效能監視服務，來監視負載下的應用程式效能和行為。  效能監視可讓您即時深入解析應用程式。 它可讓您診斷問題並執行失敗的根本原因分析。
+**監視效能。** 使用 [New Relic](https://newrelic.com/) 或 [Application Insights](/azure/application-insights/app-insights-overview/) 等效能監視服務，來監視負載下的應用程式效能和行為。  效能監視可讓您即時深入解析應用程式。 它可讓您診斷問題並執行失敗的根本原因分析。
 
 ## <a name="application-gateway"></a>應用程式閘道
 
-**佈建至少兩個執行個體。** 部署具有至少兩個執行個體的應用程式閘道。 單一執行個體為單一失敗點。 使用兩個或多個執行個體，可提供備援和延展性。 為了符合 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/) 的資格，您必須佈建兩個或更多中型或大型執行個體。
+**佈建至少兩個執行個體。** 部署具有至少兩個執行個體的應用程式閘道。 單一執行個體為單一失敗點。 使用兩個或多個執行個體，可提供備援和延展性。 為了符合 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway) 的資格，您必須佈建兩個或更多中型或大型執行個體。
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
@@ -77,6 +77,21 @@ ms.locfileid: "45584760"
 
   * 如果資料來源已在異地複寫，您通常應將每個區域性 Azure 搜尋服務的每個索引子指向其本機資料來源複本。 不過，該方法不建議用於儲存在 Azure SQL Database 中的大型資料集。 原因是 Azure 搜尋服務無法從次要 SQL Database 複本 (只能從主要複本) 執行增量編製索引。 請改為將所有索引子指向主要複本。 在容錯移轉之後，指著位於新主要複本的 Azure 搜尋服務索引子。  
   * 如果資料來源並未異地複寫，請指著位於相同資料來源的多個索引子，如此一來，多個區域中的 Azure 搜尋服務就能持續且獨立地從資料來源編製索引。 如需詳細資訊，請參閱 [Azure 搜尋服務效能和最佳化考量][search-optimization]。
+
+## <a name="service-bus"></a>服務匯流排
+
+**將進階層使用於生產工作負載**。 [服務匯流排進階傳訊](/azure/service-bus-messaging/service-bus-premium-messaging)提供專用和保留的處理資源和記憶體容量，以支援可預測的效能和輸送量。 進階傳訊層也可讓您存取僅一開始適用於進階客戶的新功能。 您可以根據預期的工作負載決定傳訊單位數目。
+
+**處理重複的訊息**。 如果發行者在傳送訊息後立即失敗，或遭遇網路或系統問題，則可能因錯誤而無法記錄訊息已傳遞，並可能將相同的訊息傳送到系統兩次。 服務匯流排可藉由啟用重複偵測來處理此問題。 如需詳細資訊，請參閱[重複偵測](/azure/service-bus-messaging/duplicate-detection)。
+
+**處理例外狀況**。 發生使用者錯誤、設定錯誤或其他錯誤時，傳訊 API 會產生例外狀況。 用戶端程式碼 (傳送者和接收者) 應在其程式碼中處理這些例外狀況。 這在批次處理時尤其重要，因為例外狀況處理可用來避免遺失整個批次的訊息。 如需詳細資訊，請參閱[服務匯流排傳訊例外狀況](/azure/service-bus-messaging/service-bus-messaging-exceptions)。
+
+**重試原則**。 服務匯流排可讓您挑選最適合您應用程式的重試原則。 預設原則是最多允許重試 9 次，並等候 30 秒，但可進一步調整。 如需詳細資訊，請參閱[重試原則 – 服務匯流排](/azure/architecture/best-practices/retry-service-specific#service-bus)。
+
+**使用無效信件佇列**。 在多次重試之後，如果無法處理訊息或傳遞給任何接收者，該訊息就會移至無效信件佇列。 實作從無效信件佇列讀取訊息、加以檢查，然後補救問題的程序。 視案例而定，您可能會按現況重試訊息、進行變更並重試，或捨棄該訊息。 如需詳細資訊，請參閱[服務匯流排寄不出的信件佇列的概觀](/azure/service-bus-messaging/service-bus-dead-letter-queues)。
+
+**使用異地災害復原**。 如果整個 Azure 區域或資料中心因為災害而無法使用，地理災害復原可確保資料處理會繼續在不同的區域或資料中心運作。 如需詳細資訊，請參閱 [Azure 服務匯流排地理災害復原](/azure/service-bus-messaging/service-bus-geo-dr)。
+
 
 ## <a name="storage"></a>儲存體
 

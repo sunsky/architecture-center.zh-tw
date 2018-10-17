@@ -3,12 +3,12 @@ title: 具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 description: 如何在 Microsoft Azure 上執行適用於多層式架構的 Linux VM。
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 9c186527a7f7980a5232186a52f9b0089612226f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 2c5a80309e5d4d180cc83422de0b462c8dffcd90
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429029"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876914"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
 

@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477439"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428919"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>與客戶的 AD FS 同盟
 
@@ -180,15 +180,15 @@ Set-ADFSClaimsProviderTrust -TargetName "name" -OrganizationalAccountSuffix @("s
 
 
 <!-- Links -->
-[Azure AD Connect]: /azure/active-directory/active-directory-aadconnect/
+[Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [同盟信任]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [帳戶夥伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [資源夥伴]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [驗證時刻]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
-[到期時間]: http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
+[到期時間]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [名稱識別碼]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
-[部落格文章]: http://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
+[部落格文章]: https://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
 [自訂 AD FS 登入頁面]: https://technet.microsoft.com/library/dn280950.aspx
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [client assertion]: client-assertion.md

@@ -4,12 +4,12 @@ description: 如何實作 API 的指示。
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: cc28864de36afdeed2f8a7155a307e312c3a398e
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: fff377d347ce93e9fb83fff1f5a44fe1c7b4dbea
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27596014"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429395"
 ---
 # <a name="api-implementation"></a>API 實作
 
@@ -24,7 +24,7 @@ ms.locfileid: "27596014"
 實作這些要求的程式碼應該不會造成任何副作用。 對相同資源重複提出的相同要求應該會導致相同的狀態。 例如，將多個 DELETE 要求傳送至相同的 URI 應該有相同的效果，雖然回應訊息中的 HTTP 狀態碼可能不同。 第一個 DELETE 要求可能會傳回狀態碼 204 (沒有內容)，而後續的 DELETE 要求可能會傳回狀態碼 404 (找不到)。
 
 > [!NOTE]
-> Jonathan Oliver 部落格上的 [冪等模式](http://blog.jonathanoliver.com/idempotency-patterns/) 一文提供冪等概觀，以及其與資料管理作業有何相關。
+> Jonathan Oliver 部落格上的 [冪等模式](https://blog.jonathanoliver.com/idempotency-patterns/) 一文提供冪等概觀，以及其與資料管理作業有何相關。
 >
 
 ### <a name="post-actions-that-create-new-resources-should-not-have-unrelated-side-effects"></a>建立新資源的 POST 動作不應有無關的副作用
@@ -35,7 +35,7 @@ ms.locfileid: "27596014"
 
 支援對資源集合的 POST、PUT 和 DELETE 要求。 POST 要求可以包含多項新資源的詳細資料，並將它們全部加入相同的集合中，PUT 要求可以取代集合中的整組資源，而 DELETE 要求可以移除整個集合。
 
-ASP.NET Web API 2 內含的 OData 支援可提供批次要求的功能。 用戶端應用程式可以封裝數個 Web API 要求並將它們傳送至單一 HTTP 要求中的伺服器，以及接收包含各要求之回覆的單一 HTTP 回應。 如需詳細資訊，請參閱 [Web API 和 Web API OData 中的 Batch 支援簡介](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx)。
+ASP.NET Web API 2 內含的 OData 支援可提供批次要求的功能。 用戶端應用程式可以封裝數個 Web API 要求並將它們傳送至單一 HTTP 要求中的伺服器，以及接收包含各要求之回覆的單一 HTTP 回應。 如需詳細資訊，請參閱 [Web API 和 Web API OData 中的 Batch 支援簡介](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)。
 
 ### <a name="follow-the-http-specification-when-sending-a-response"></a>傳送回應時請遵循 HTTP 規格 
 
@@ -56,7 +56,7 @@ HATEOAS 方法如何讓用戶端能夠從初始的起點瀏覽及探索資源。
 目前沒有標準可掌管 HATEOAS 的實作，但下列範例說明一個可能的方法。 在此範例中，尋找客戶詳細資料的 HTTP GET 要求會傳回包含 HATEOAS 連結 (用以參考該客戶的訂單) 的回應：
 
 ```HTTP
-GET http://adventure-works.com/customers/2 HTTP/1.1
+GET https://adventure-works.com/customers/2 HTTP/1.1
 Accept: text/json
 ...
 ```
@@ -69,23 +69,23 @@ Content-Type: application/json; charset=utf-8
 Content-Length: ...
 {"CustomerID":2,"CustomerName":"Bert","Links":[
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"PUT",
     "types":["application/x-www-form-urlencoded"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"DELETE",
     "types":[]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"POST",
     "types":["application/x-www-form-urlencoded"]}
 ]}
@@ -120,11 +120,11 @@ HTTP GET 作業會擷取儲存體中的客戶資料並建構 `Customer` 物件�
 
 範例 HTTP 回應中所示的 HATEOAS 連結表示用戶端應用程式可以執行下列作業：
 
-* 對 URI `http://adventure-works.com/customers/2` 的 HTTP GET 要求，用以 (再次) 擷取客戶的詳細資料。 此資料可以 XML 或 JSON 格式傳回。
-* 對 URI `http://adventure-works.com/customers/2` 的 HTTP PUT 要求，用以修改客戶的詳細資料。 新資料必須在要求訊息中以 x-www-form-urlencoded 格式提供。
-* 對 URI `http://adventure-works.com/customers/2` 的 HTTP DELETE 要求，用以刪除客戶。 此要求並不預期有任何其他資訊或在回應訊息內文中傳回資料。
-* 對 URI `http://adventure-works.com/customers/2/orders` 的 HTTP GET 要求，用以尋找客戶的所有訂單。 此資料可以 XML 或 JSON 格式傳回。
-* 對 URI `http://adventure-works.com/customers/2/orders` 的 HTTP PUT 要求，用以建立此客戶的新訂單。 此資料必須在要求訊息中以 x-www-form-urlencoded 格式提供。
+* 對 URI `https://adventure-works.com/customers/2` 的 HTTP GET 要求，用以 (再次) 擷取客戶的詳細資料。 此資料可以 XML 或 JSON 格式傳回。
+* 對 URI `https://adventure-works.com/customers/2` 的 HTTP PUT 要求，用以修改客戶的詳細資料。 新資料必須在要求訊息中以 x-www-form-urlencoded 格式提供。
+* 對 URI `https://adventure-works.com/customers/2` 的 HTTP DELETE 要求，用以刪除客戶。 此要求並不預期有任何其他資訊或在回應訊息內文中傳回資料。
+* 對 URI `https://adventure-works.com/customers/2/orders` 的 HTTP GET 要求，用以尋找客戶的所有訂單。 此資料可以 XML 或 JSON 格式傳回。
+* 對 URI `https://adventure-works.com/customers/2/orders` 的 HTTP PUT 要求，用以建立此客戶的新訂單。 此資料必須在要求訊息中以 x-www-form-urlencoded 格式提供。
 
 ## <a name="handling-exceptions"></a>處理例外狀況
 
@@ -132,7 +132,7 @@ HTTP GET 作業會擷取儲存體中的客戶資料並建構 `Customer` 物件�
 
 ### <a name="capture-exceptions-and-return-a-meaningful-response-to-clients"></a>擷取例外狀況，並將有意義的回應傳回給用戶端
 
-實作 HTTP 作業的程式碼應提供完善的例外狀況處理，而不是讓未攔截到的例外狀況傳播到架構。 如果例外狀況使作業無法成功完成，可以在回應訊息中傳回例外狀況，但應包含造成例外狀況之錯誤的有意義說明。 例外狀況也應包含適當的 HTTP 狀態碼，而不只是對每種狀況傳回狀態碼 500。 例如，如果使用者要求造成違反條件約束的資料庫更新 (例如嘗試刪除有未處理訂單的客戶)，您應傳回狀態碼 409 (衝突) 以及可指出衝突原因的訊息內本。 如果某些其他條件呈現要求無法達成，您可以傳回狀態碼 400 (不正確的要求)。 您可以在 W3C 網站上的 [狀態碼定義](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) 頁面找到 HTTP 狀態碼的完整清單。
+實作 HTTP 作業的程式碼應提供完善的例外狀況處理，而不是讓未攔截到的例外狀況傳播到架構。 如果例外狀況使作業無法成功完成，可以在回應訊息中傳回例外狀況，但應包含造成例外狀況之錯誤的有意義說明。 例外狀況也應包含適當的 HTTP 狀態碼，而不只是對每種狀況傳回狀態碼 500。 例如，如果使用者要求造成違反條件約束的資料庫更新 (例如嘗試刪除有未處理訂單的客戶)，您應傳回狀態碼 409 (衝突) 以及可指出衝突原因的訊息內本。 如果某些其他條件呈現要求無法達成，您可以傳回狀態碼 400 (不正確的要求)。 您可以在 W3C 網站上的 [狀態碼定義](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) 頁面找到 HTTP 狀態碼的完整清單。
 
 此程式碼範例會設陷不同的條件，並傳回適當的回應。
 
@@ -198,7 +198,7 @@ HTTP 通訊協定會區分用戶端應用程式 (HTTP 4xx 狀態碼) 所引起�
 HTTP 1.1 通訊協定支援在用戶端和中繼伺服器中的快取，要求會利用 Cache-Control 標頭透過它路由傳送。 當用戶端應用程式將 HTTP GET 要求傳送至 Web API，回應可以包含 Cache-Control 標頭，指出此用戶端或用以路由傳送此要求的中繼伺服器是否可以安全地快取回應內文中的資料，以及它多久後會到期並視為過期。 下列範例會顯示 HTTP GET 要求和包含 Cache-Control 標頭的對應回應：
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 ```
 
 ```HTTP
@@ -339,7 +339,7 @@ Content-Length: ...
 * 用戶端會建構一個 GET 要求，其中包含 If-None-Match HTTP 標頭中參考之資源的目前快取版本的 ETag：
 
     ```HTTP
-    GET http://adventure-works.com/orders/2 HTTP/1.1
+    GET https://adventure-works.com/orders/2 HTTP/1.1
     If-None-Match: "2147483648"
     ```
 * Web API 中的 GET 作業可取得所要求資料的目前 ETag (上述範例中的 order 2)，並將它與 If-None-Match 標頭中的值比較。
@@ -452,7 +452,7 @@ public class EmptyResultWithCaching : IHttpActionResult
 * 用戶端會建構一個 PUT 要求，其中包含資源的新詳細資料及 If-Match HTTP 標頭中參考之資源的目前快取版本的 ETag： 下列範例顯示更新訂單的 PUT 要求：
 
     ```HTTP
-    PUT http://adventure-works.com/orders/1 HTTP/1.1
+    PUT https://adventure-works.com/orders/1 HTTP/1.1
     If-Match: "2282343857"
     Content-Type: application/x-www-form-urlencoded
     Content-Length: ...
@@ -571,7 +571,7 @@ HTTP HEAD 要求和部份回應會在 [API 設計][api-design]中詳加說明。
 如果您要使用 .NET Framework 建置用戶端應用程式，則所有 POST 和 PUT 訊息都會先傳送預設具有 Expect: 100-Continue 標頭的訊息。 在伺服器端，此程序是由 .NET Framework 直接處理。 不過，此程序會導致每個 POST 和 PUT 要求引起兩次伺服器來回行程 (即使是小型要求)。 如果您的應用程式並未傳送具有大量資料的要求，您可以使用 `ServicePointManager` 類別在用戶端應用程式中建立 `ServicePoint` 物件，進而停用這項功能。 `ServicePoint` 物件會根據 URI 的配置和主機片段 (用以識別伺服器上的資源)，處理用戶端對伺服器的連線。 然後您可以將 `ServicePoint` 物件的 `Expect100Continue` 屬性設定為 false。 將會傳送用戶端透過 URI (其符合 `ServicePoint` 物件的配置和主機片段) 進行的所有後續 POST 和 PUT 要求，但不需 Expect: 100-Continue 標頭。 下列程式碼示範如何設定 `ServicePoint` 物件，用來設定所有傳送至具有 `http` 配置和 `www.contoso.com` 主機之 URI 的要求。
 
 ```csharp
-Uri uri = new Uri("http://www.contoso.com/");
+Uri uri = new Uri("https://www.contoso.com/");
 ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
@@ -601,7 +601,7 @@ public class OrdersController : ApiController
 }
 ```
 
-用戶端應用程式可以發出要求，使用 URI `http://www.adventure-works.com/api/orders?limit=30&offset=50` 來擷取從位移 50 開始的 30 張訂單。
+用戶端應用程式可以發出要求，使用 URI `https://www.adventure-works.com/api/orders?limit=30&offset=50` 來擷取從位移 50 開始的 30 張訂單。
 
 > [!TIP]
 > 避免讓用戶端應用程式指定會導致長度超過 2000 個字元的 URI 的查詢字串。 許多 Web 用戶端和伺服器都無法處理此種長度的 URI。
@@ -631,7 +631,7 @@ Web API 也應提供一種機制，將處理的結果傳回給用戶端應用程
 
 - 使用 Azure 通知中樞，將非同步回應推送至用戶端應用程式。 如需詳細資訊，請參閱 [Azure 通知中樞通知使用者](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)。
 - 使用 Comet 模型來保持用戶端與裝載 Web API 的伺服器之間的持續性網路連線，並使用此連線將訊息從伺服器推送回到用戶端。 MSDN 雜誌文章 [在 Microsoft .NET Framework 中建置簡單的 Comet 應用程式](https://msdn.microsoft.com/magazine/jj891053.aspx) 會舉例說明解決方案。
-- 使用 SignalR 並透過持續性網路連線，即時將資料從 Web 伺服器推送到用戶端。 SignalR 可以 NuGet 封裝形式使用於 ASP.NET Web 應用程式。 您可以在 [ASP.NET SignalR](http://signalr.net/) 網站上找到更多資訊。
+- 使用 SignalR 並透過持續性網路連線，即時將資料從 Web 伺服器推送到用戶端。 SignalR 可以 NuGet 封裝形式使用於 ASP.NET Web 應用程式。 您可以在 [ASP.NET SignalR](https://www.asp.net/signalr) 網站上找到更多資訊。
 
 ### <a name="ensure-that-each-request-is-stateless"></a>確保每個要求都是無狀態
 
@@ -662,7 +662,7 @@ HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入�
 * 法規需求可能會託管所有要求和回應的記錄與稽核。
 * 為了確保可用性，有可能需要監視裝載 Web API 的伺服器健全狀況，並在必要時重新啟動。
 
-讓這些問題能與 Web API 實作的相關技術問題脫鉤，很有助益。 基於這個理由，請考慮建立 [façade](http://en.wikipedia.org/wiki/Facade_pattern)，該 façade 會以個別程序的形式執行，並將要求路由傳送到 Web API。 façade 可以提供管理作業並將已驗證的要求轉送至 Web API。 使用 façade 也可帶來許多功能性優點，包括：
+讓這些問題能與 Web API 實作的相關技術問題脫鉤，很有助益。 基於這個理由，請考慮建立 [façade](https://en.wikipedia.org/wiki/Facade_pattern)，以作為個別的程序來執行，然後讓其將要求路由到 Web API。 façade 可以提供管理作業，並將經過驗證的要求轉送給 Web API。 使用 façade 也會帶來許多功能上的優點，包括：
 
 * 作為多個 Web API 的整合點。
 * 針對使用各種技術建置的用戶端，轉換訊息和轉譯通訊協定。
@@ -701,7 +701,7 @@ Web API 應與軟體的任何其他部分一樣徹底進行測試。 您應該�
 
 ## <a name="using-azure-api-management"></a>使用 Azure API 管理 
 
-在 Azure 上，請考慮使用 [Azue API 管理](https://azure.microsoft.com/documentation/services/api-management/)來發行和管理 Web API。 您可以使用這項工具來產生一個服務，以做為一或多個 Web API 的 façade。 此服務本身是可使用 Azure 管理入口網站建立及設定的可延伸 Web 服務。 您可以使用這項服務來發佈和管理 Web API，如下所示：
+在 Azure 上，請考慮使用 [Azue API 管理](https://azure.microsoft.com/documentation/services/api-management/)來發行和管理 Web API。 藉由使用此功能，您可以針對一個或多個 Web API 產生作為 façade 的服務。 此服務本身是可使用 Azure 管理入口網站建立及設定的可延伸 Web 服務。 您可以使用這項服務來發佈和管理 Web API，如下所示：
 
 1. 將 Web API 部署到網站、Azure 雲端服務或 Azure 虛擬機器。
 2. 將 API 管理服務連接到 Web API。 傳送至管理 API 之 URL 的要求會對應至 Web API 中的 URI。 相同的 API 管理服務可將要求路由傳送到多個 Web API。 這可讓您將多個 Web API 彙總成單一管理服務。 同樣地，如果您需要限制或分割不同應用程式可用的功能，可以從一個以上的 API 管理服務參考相同的 Web API。
@@ -784,10 +784,10 @@ Azure 管理入口網站可讓您自訂開發人員入口網站來變更樣式�
 >
 
 ## <a name="more-information"></a>詳細資訊
-* [ASP.NET Web API OData](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有關使用 ASP.NET 實作 OData Web API 的範例以及進一步資訊。
-* [Web API 和 Web API OData 中的批次支援簡介](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx)說明如何使用 OData 在 Web API 中實作批次作業。
-* Jonathan Oliver 部落格上的[冪等模式](http://blog.jonathanoliver.com/idempotency-patterns/)提供冪等概觀，以及其與資料管理作業有何相關。
-* W3C 網站上的[狀態碼定義](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)包含 HTTP 狀態碼的完整清單及其說明。
+* [ASP.NET Web API OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) 包含有關使用 ASP.NET 實作 OData Web API 的範例以及進一步資訊。
+* [Web API 和 Web API OData 中的批次支援簡介](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/)說明如何使用 OData 在 Web API 中實作批次作業。
+* Jonathan Oliver 部落格上的[冪等模式](https://blog.jonathanoliver.com/idempotency-patterns/)提供冪等概觀，以及其與資料管理作業有何相關。
+* W3C 網站上的[狀態碼定義](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)包含 HTTP 狀態碼的完整清單及其說明。
 * [使用 WebJob 執行背景工作](/azure/app-service-web/web-sites-create-web-jobs/)提供有關使用 WebJob 執行背景作業的資訊和範例。
 * [Azure 通知中樞通知使用者](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/)顯示如何使用 Azure 通知中樞將非同步回應推送至用戶端應用程式。
 * [API 管理](https://azure.microsoft.com/services/api-management/)說明如何發佈產品，以提供受控制且安全的 Web API 存取。

@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 283251d5b11f76985405410c5c237e5a64ee98fe
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0238c5d6f28bacbc32268d4586b30395de36384b
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060790"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876863"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
@@ -74,7 +74,7 @@ ms.locfileid: "39060790"
 
 ### <a name="security"></a>安全性
 
-當您從內部部署環境將工作負載移至 Azure 時，部分工作負載必須裝載在 VM 中。 基於相容性因素，您可能需要對周遊這些工作負載的流量強制執行限制。 
+當您從內部部署環境將工作負載移至 Azure 時，部分工作負載必須裝載在 VM 中。 基於合規性因素，您可能需要對周遊這些工作負載的流量強制執行限制。 
 
 您可以在 Azure 中使用網路虛擬設備 (NVA) 以裝載不同類型的安全性和效能服務。 如果您很熟悉現今一組特定的設備，建議在適用時於 Azure 中使用相同的虛擬設備。
 
@@ -116,7 +116,7 @@ ms.locfileid: "39060790"
 
 2. 開啟 `onprem.json` 檔案。 
 
-3. 搜尋 `Password` 和 `adminPassword` 的所有執行個體。 在參數中輸入使用者名稱和密碼的值，並儲存檔案。 
+3. 搜尋 `UserName`、`adminUserName`、`Password` 和 `adminPassword` 的所有執行個體。 在參數中輸入使用者名稱和密碼的值，並儲存檔案。 
 
 4. 執行以下命令：
 

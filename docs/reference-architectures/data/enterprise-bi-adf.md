@@ -3,12 +3,12 @@ title: 具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 description: 使用 Azure Data Factory 將 Azure 上的 ELT 工作流程自動化
 author: MikeWasson
 ms.date: 07/01/2018
-ms.openlocfilehash: ffd75ba8c57a9afbc6abad61f21f738c644c9bc8
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: f004c02da93335e74b07b9720236832ad7f744db
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142268"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876897"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 
@@ -194,7 +194,7 @@ SET [Integration].[Sale_Staging].[WWI Customer ID] =  CustomerHolder.[WWI Custom
   * 一個 Azure Analysis Services 執行個體。
   * Azure Data Factory 和 ELT 作業的 Data Factory 管線。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -202,15 +202,15 @@ SET [Integration].[Sale_Staging].[WWI Customer ID] =  CustomerHolder.[WWI Custom
 
 下列步驟包括了一些使用者定義的變數。 您會需要用您定義的值加以取代。
 
-- `<data_factory_name>`。 Data Factory 名稱。
-- `<analysis_server_name>`。 Analysis Services 伺服器名稱。
-- `<active_directory_upn>`。 您的 Azure Active Directory 使用者主體名稱 (UPN)。 例如： `user@contoso.com`。
-- `<data_warehouse_server_name>`。 SQL 資料倉儲的伺服器名稱。
-- `<data_warehouse_password>`。 SQL 資料倉儲的系統管理員密碼。
-- `<resource_group_name>`。 資源群組的名稱。
-- `<region>`。 將部署資源的 Azure 區域。
-- `<storage_account_name>`。 儲存體帳戶名稱。 您必須遵循儲存體帳戶的[命名規則](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。
-- `<sql-db-password>`。 SQL Server 登入密碼。
+- `<data_factory_name>` 。 Data Factory 名稱。
+- `<analysis_server_name>` 。 Analysis Services 伺服器名稱。
+- `<active_directory_upn>` 。 您的 Azure Active Directory 使用者主體名稱 (UPN)。 例如： `user@contoso.com`。
+- `<data_warehouse_server_name>` 。 SQL 資料倉儲的伺服器名稱。
+- `<data_warehouse_password>` 。 SQL 資料倉儲的系統管理員密碼。
+- `<resource_group_name>` 。 資源群組的名稱。
+- `<region>` 。 將部署資源的 Azure 區域。
+- `<storage_account_name>` 。 儲存體帳戶名稱。 您必須遵循儲存體帳戶的[命名規則](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。
+- `<sql-db-password>` 。 SQL Server 登入密碼。
 
 ### <a name="deploy-azure-data-factory"></a>部署 Azure Data Factory
 

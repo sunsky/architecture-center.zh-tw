@@ -1,14 +1,14 @@
 ---
 title: Azure 上的即時詐騙偵測
-description: 經過證明的案例，可以使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
+description: 使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: d80fab460938cceeb84f3ed2ecd97e9e149f8e2d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389123"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818661"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Azure 上的即時詐騙偵測
 
@@ -20,7 +20,7 @@ ms.locfileid: "44389123"
 
 這個範例代表更廣泛資料處理架構和策略的一部分。 這方面的其他選項和整體架構會在本文稍後討論。
 
-## <a name="related-use-cases"></a>相關使用案例
+## <a name="relevant-use-cases"></a>相關使用案例
 
 請針對下列使用案例考慮此案例：
 
@@ -30,7 +30,7 @@ ms.locfileid: "44389123"
 
 ## <a name="architecture"></a>架構
 
-![即時詐騙偵測案例的 Azure 元件架構概觀][architecture-diagram]
+![即時詐騙偵測案例的 Azure 元件架構概觀][architecture]
 
 此案例涵蓋了即時分析管線的後端元件。 整個案例的資料流程如下所示：
 
@@ -43,7 +43,7 @@ ms.locfileid: "44389123"
 
 * [Azure 事件中樞][docs-event-hubs]是即時串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 在此案例中，事件中樞會接收要分析是否有詐騙活動的所有通話中繼資料。
 * [Azure 串流分析][docs-stream-analytics]是事件處理引擎，可以分析來自裝置和其他資料來源的大量資料流。 它也支援從資料流擷取資訊，以識別模式和關聯性。 這些模式可以觸發其他下游動作。 在此案例中，串流分析會轉換來自事件中樞的輸入串流，以識別詐騙通話。
-* 在此案例中使用 [Blob 儲存體][docs-blob-storage]，以儲存串流分析作業的結果。
+* 在此案例中使用 [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)，以儲存串流分析作業的結果。
 
 ## <a name="considerations"></a>考量
 
@@ -61,7 +61,7 @@ ms.locfileid: "44389123"
 
 ### <a name="scalability"></a>延展性
 
-此案例的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。  事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
+此案例的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。 事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
 
 如需設計可調整案例的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
@@ -91,7 +91,7 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 
 ## <a name="related-resources"></a>相關資源
 
-更複雜的詐騙偵測案例受益於機器學習模型。 如需使用 Machine Learning Server 建置的案例，請參閱[使用 Machine Learning Server 的詐騙偵測][r-server-fraud-detection]。 如需使用 Machine Learning Server 的其他解決方案範本，請參閱[資料科學案例和解決方案範本][docs-r-server-sample-solutions]。 如需使用 Azure Data Lake Analytics 的範例解決方案，請參閱[使用 Azure Data Lake 和 R 進行詐騙偵測][technet-fraud-detection]。  
+更複雜的詐騙偵測案例受益於機器學習模型。 如需使用 Machine Learning Server 建置的案例，請參閱[使用 Machine Learning Server 的詐騙偵測][r-server-fraud-detection]。 如需使用 Machine Learning Server 的其他解決方案範本，請參閱[資料科學案例和解決方案範本][docs-r-server-sample-solutions]。 如需使用 Azure Data Lake Analytics 的範例解決方案，請參閱[使用 Azure Data Lake 和 R 進行詐騙偵測][technet-fraud-detection]。
 
 <!-- links -->
 [product-category]: https://azure.microsoft.com/product-categories/analytics/
@@ -99,11 +99,10 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 [small-pricing]: https://azure.com/e/74149ec312c049ccba79bfb3cfa67606
 [medium-pricing]: https://azure.com/e/4fc94f7376de484d8ae67a6958cae60a
 [large-pricing]: https://azure.com/e/7da8804396f9428a984578700003ba42
-[architecture-diagram]: ./media/architecture-diagram-fraud-detection.png
+[architecture]: ./media/architecture-fraud-detection.png
 [docs-event-hubs]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [docs-event-hubs-security-model]: /azure/event-hubs/event-hubs-authentication-and-security-model-overview
 [docs-stream-analytics]: /azure/stream-analytics/stream-analytics-introduction
-[docs-blob-storage]: /azure/storage/blobs/storage-blobs-introduction
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/

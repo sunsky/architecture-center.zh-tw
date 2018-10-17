@@ -3,12 +3,12 @@ title: 微服務中的擷取與工作流程
 description: 微服務中的擷取與工作流程
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 6477c3f2b0cc6d37dcd4637dc0dde4f7a6e3cc74
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2017
-ms.locfileid: "26678725"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429480"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>設計微服務：擷取與工作流程
 
@@ -83,7 +83,7 @@ ms.locfileid: "26678725"
 
 ### <a name="iothub-react"></a>IoTHub React 
 
-[IoTHub React](https://github.com/Azure/toketi-iothubreact) 是一個 Akka Streams 程式庫，可供從事件中樞讀取事件。 Akka Streams 是以串流為基礎並實作 [Reactive Streams](http://www.reactive-streams.org/) 規格的程式設計架構。 可用來建置有效的串流管線，其中的所有串流作業會以非同步方式執行，而管線則會依正常程序處理背壓。 當事件來源產生事件的速率比下游取用者可接收事件的速率更快時，就會發生背壓 &mdash; 這正是無人機遞送系統有流量高峰時的情況。 如果後端服務變慢，IoTHub React 將會變慢。 如果容量增加，IoTHub React 將會透過管線推送更多訊息。
+[IoTHub React](https://github.com/Azure/toketi-iothubreact) 是一個 Akka Streams 程式庫，可供從事件中樞讀取事件。 Akka Streams 是以串流為基礎並實作 [Reactive Streams](https://www.reactive-streams.org/) 規格的程式設計架構。 可用來建置有效的串流管線，其中的所有串流作業會以非同步方式執行，而管線則會依正常程序處理背壓。 當事件來源產生事件的速率比下游取用者可接收事件的速率更快時，就會發生背壓 &mdash; 這正是無人機遞送系統有流量高峰時的情況。 如果後端服務變慢，IoTHub React 將會變慢。 如果容量增加，IoTHub React 將會透過管線推送更多訊息。
 
 Akka Streams 也是非常自然的程式設計模型，可供從事件中樞串流事件。 您可以定義一組將套用到每個事件的作業，並且讓 Akka Streams 處理串流，而不用對一批事件執行迴圈處理。 Akka Streams 會從「來源」、「流程」和「接收」方面定義串流管線。 來源會產生輸出串流、流程會處理輸入串流及產生輸出串流，而接收端會取用串流但不產生任何輸出。
 

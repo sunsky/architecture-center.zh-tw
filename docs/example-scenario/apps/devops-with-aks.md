@@ -1,14 +1,14 @@
 ---
 title: 容器型工作負載的 CI/CD 管線
-description: 經過證明的案例，可以為使用 Jenkins、Azure Container Registry、Azure Kubernetes Service、Cosmos DB 及 Grafana 的 Node.js Web 應用程式，建置 DevOps 管線。
+description: 使用 Jenkins、Azure Container Registry、Azure Kubernetes Service、Cosmos DB 及 Grafana 的 Node.js Web 應用程式，建置 DevOps 管線。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d659916e3af0caa2128db25faab441a2af8f3f6a
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389378"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818729"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>容器型工作負載的 CI/CD 管線
 
@@ -18,7 +18,7 @@ ms.locfileid: "44389378"
 
 藉由使用 Azure 服務 (例如 Azure Kubernetes Service、Container Registry 和 Cosmos DB)，公司可以使用最新的應用程式開發技術和工具，來簡化實作高可用性的程序。
 
-## <a name="related-use-cases"></a>相關使用案例
+## <a name="relevant-use-cases"></a>相關使用案例
 
 請針對下列使用案例考慮此案例：
 
@@ -38,17 +38,17 @@ ms.locfileid: "44389378"
 4. Jenkins 建置作業會使用 Azure Kubernetes Service 中的動態建置代理程式，來執行容器建置程序。
 5. 容器映像會根據原始檔控制中的程式碼建立，接著推送至 Azure Container Registry。
 6. 透過持續部署 (CD)，Jenkins 會將此更新的容器映像部署到 Kubernetes 叢集。
-7. Node.js Web 應用程式會使用 Azure Cosmos DB 作為它的後端。 Cosmos DB 和 Azure Kubernetes Service 都會向 Azure 監視器報告計量。
+7. Node.js Web 應用程式會使用 Cosmos DB 作為其後端。 Cosmos DB 和 Azure Kubernetes Service 都會向 Azure 監視器報告計量。
 8. Grafana 執行個體根據 Azure 監視器的資料，提供應用程式效能的視覺效果儀表板。
 
 ### <a name="components"></a>元件
 
 * [Jenkins][jenkins] 是開放原始碼 Automation 伺服程式，可與 Azure 服務整合，以進行持續整合 (CI) 及持續部署 (CD)。 在此案例中，Jenkins 會根據對於原始檔控制的認可，協調新容器映像的建立，將這些映像推送至 Azure Container Registry，然後在 Azure Kubernetes Service 中更新應用程式執行個體。
-* [Azure Linux 虛擬機器][azurevm-docs]是用來執行 Jenkins 和 Grafana 執行個體的 IaaS 平台。
-* [Azure Container Registry][azureacr-docs] 會儲存及管理 Azure Kubernetes Service 叢集所使用的容器映像。 映像會安全地儲存，並且可以由 Azure 平台複寫到其他區域來加快部署速度。
-* [Azure Kubernetes Service][azureaks-docs] 是受控 Kubernetes 平台，讓您不需要具備容器協調流程專業知識，也可以部署及管理容器化應用程式。 以主控的 Kubernetes 服務形式，Azure 會為您處理像是健康狀態監視和維護等重要工作。
-* [Azure Cosmos DB] [azurecosmosdb-docs] 是全域分散式、多模型資料庫，可讓您從各種不同的資料庫和一致性模型中，選擇符合您需求的項目。 使用 Cosmos DB，您的資料可以全域複寫，不需要部署及設定叢集管理或複寫元件。
-* [Azure 監視器][azuremonitor-docs]有助於追蹤效能、維護安全性及找出趨勢。 監視器所取得的計量可以由其他資源和工具使用，例如 Grafana。
+* [Azure Linux 虛擬機器][docs-virtual-machines]是用來執行 Jenkins 和 Grafana 執行個體的 IaaS 平台。
+* [Azure Container Registry][docs-acr] 會儲存及管理 Azure Kubernetes Service 叢集所使用的容器映像。 映像會安全地儲存，並且可以由 Azure 平台複寫到其他區域來加快部署速度。
+* [Azure Kubernetes Service][docs-aks] 是受控 Kubernetes 平台，讓您不需要具備容器協調流程專業知識，也可以部署及管理容器化應用程式。 以主控的 Kubernetes 服務形式，Azure 會為您處理像是健康狀態監視和維護等重要工作。
+* [Azure Cosmos DB] [docs-cosmos-db] 是全域分散式、多模型資料庫，可讓您從各種不同的資料庫和一致性模型中，選擇符合您需求的項目。 使用 Cosmos DB，您的資料可以全域複寫，不需要部署及設定叢集管理或複寫元件。
+* [Azure 監視器][docs-azure-monitor]有助於追蹤效能、維護安全性及找出趨勢。 監視器所取得的計量可以由其他資源和工具使用，例如 Grafana。
 * [Grafana][grafana] 是開放原始碼解決方案，可以查詢、視覺化、警示及了解計量。 Azure 監視器的資料來源外掛程式可讓 Grafana 建立視覺效果儀表板，來監視在 Azure Kubernetes Service 中執行且使用 Cosmos DB 的應用程式效能。
 
 ### <a name="alternatives"></a>替代項目
@@ -129,18 +129,18 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 
 ## <a name="related-resources"></a>相關資源
 
-此案例使用 Azure Container Registry 和 Azure Kubernetes Service 來儲存及執行容器型應用程式。 Azure 容器執行個體也可以用來執行容器型應用程式，不需要佈建任何協調流程元件。 如需詳細資訊，請參閱 [Azure 容器執行個體概觀][azureaci-docs]。
+此案例使用 Azure Container Registry 和 Azure Kubernetes Service 來儲存及執行容器型應用程式。 Azure 容器執行個體也可以用來執行容器型應用程式，不需要佈建任何協調流程元件。 如需詳細資訊，請參閱 [Azure 容器執行個體概觀][docs-aci]。
 
 <!-- links -->
-[architecture]: ./media/devops-with-aks/architecture-devops-with-aks.png
+[architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
 [availability]: ../../checklist/availability.md
-[azureaci-docs]: /azure/container-instances/container-instances-overview
-[azureacr-docs]: /azure/container-registry/container-registry-intro
-[azurecosmosdb-docs]: /azure/cosmos-db/introduction
-[azureaks-docs]: /azure/aks/intro-kubernetes
-[azuremonitor-docs]: /azure/monitoring-and-diagnostics/monitoring-overview
-[azurevm-docs]: /azure/virtual-machines/linux/overview
+[docs-aci]: /azure/container-instances/container-instances-overview
+[docs-acr]: /azure/container-registry/container-registry-intro
+[docs-aks]: /azure/aks/intro-kubernetes
+[docs-azure-monitor]: /azure/monitoring-and-diagnostics/monitoring-overview
+[docs-cosmos-db]: /azure/cosmos-db/introduction
+[docs-virtual-machines]: /azure/virtual-machines/linux/overview
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/

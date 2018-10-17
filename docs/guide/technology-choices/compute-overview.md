@@ -3,12 +3,12 @@ title: Azure 計算選項的概觀
 description: Azure 計算選項的概觀
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: ceb70f8eeff42e6cadb8a63c2f36986f26322201
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: cb59c4472b183d9a14031497f0b6db673938c9a9
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206557"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818814"
 ---
 # <a name="overview-of-azure-compute-options"></a>Azure 計算選項的概觀
 
@@ -18,7 +18,7 @@ ms.locfileid: "36206557"
 
 頻譜的一端是**基礎結構即服務** (IaaS)。 有了 IaaS，您可以佈建您需要的 VM，以及相關聯的網路和儲存體元件。 然後您會部署您想放在這些 VM 上的任何軟體和應用程式。 此模型最接近傳統內部部署環境，不同之處在於 Microsoft 會管理基礎結構。 您還是可以管理個別的 VM。  
 
-**平台即服務** (PaaS) 提供受控的裝載環境，您可以在其中部署您的應用程式而不需要管理 VM 或網路資源。 例如，不要建立個別的 VM，您可以指定執行個體計數，而服務將會佈建、設定和管理所需的資源。 Azure App Service 是 PaaS 服務的範例。
+**平台即服務 (PaaS)** 提供受控的裝載環境，您可以在其中部署您的應用程式而不需要管理 VM 或網路資源。 例如，不要建立個別的 VM，您可以指定執行個體計數，而服務將會佈建、設定和管理所需的資源。 Azure App Service 是 PaaS 服務的範例。
 
 從 IaaS 到純 PaaS 有一個頻譜。 例如，Azure VM 可以使用 VM 擴展集來自動調整。 此自動調整功能不完全是 PaaS，但它是可能在 PaaS 服務中找到的管理功能類型。
 
