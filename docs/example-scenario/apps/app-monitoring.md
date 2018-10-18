@@ -3,12 +3,12 @@ title: Azure 上的 Web 應用程式監視
 description: 監視 Azure App Service 中裝載的 Web 應用程式。
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: b1beb5cf5e29ab1ceb760bf95eab85d819b69342
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
+ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876846"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49313211"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Azure 上的 Web 應用程式監視
 
@@ -99,7 +99,7 @@ Application Insights 會[限制][app-insights-limits]每秒可處理的要求數
 
 在部署之後，您可以觀看效能指標的[即時計量資料流][Live Metrics Stream]。 此資料不會儲存起來 (您正在檢視即時計量)，但是可以收集遙測，以便稍後分析。 即時資料流資料免費。
 
-Log Analytics 會依擷取至服務的資料 GB 量來計費。 每月擷取至 Azure Log Analytics 服務的前 5 GB 資料為免費提供，而且資料會在 Log Analytics 工作區中免費保留 31 天。
+Log Analytics 會依擷取至服務的資料 GB 量來計費。 每月擷取至 Azure Log Analytics 服務的前 5 GB 資料為免費提供，而且資料會在 Log Analytics 工作區中免費保留 31 天。 
 
 ## <a name="next-steps"></a>後續步驟
 
