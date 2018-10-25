@@ -2,13 +2,13 @@
 title: 微服務中的服務間通訊
 description: 微服務中的服務間通訊
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 19a54ffc362a1fc88c3255c9346bd697a319b143
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549122"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962954"
 ---
 # <a name="designing-microservices-interservice-communication"></a>設計微服務：服務間通訊
 
@@ -99,7 +99,7 @@ ms.locfileid: "27549122"
 > [!NOTE]
 > 服務網格是[大使模式](../patterns/ambassador.md)的範例 &mdash; 這是種會代表應用程式傳送網路要求的協助程式服務。 
 
-目前，Kubernetes 中服務網格的主要選項是 [linkerd](https://linkerd.io/) 和 [Istio](https://istio.io/)。 這兩種技術都在迅速發展中。 我們撰寫本指南時最新的 Istio 是 0.2 版，所以這仍是相當新的技術。 不過，linkerd 和 Istio 所具有的共通功能包括： 
+目前，Kubernetes 中服務網格的主要選項是 [linkerd](https://linkerd.io/) 和 [Istio](https://istio.io/)。 這兩種技術都在迅速發展中。 不過，linkerd 和 Istio 所具有的共通功能包括： 
 
 - 根據觀察到的延遲時間或未處理的要求數目，在工作階段層級進行負載平衡。 這可以透過 Kubernetes 所提供的第 4 層負載平衡來改善效能。 
 

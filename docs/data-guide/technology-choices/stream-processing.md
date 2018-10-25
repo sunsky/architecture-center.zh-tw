@@ -3,12 +3,12 @@ title: 選擇串流處理技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091058"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962905"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>在 Azure 中選擇串流處理技術
 
@@ -60,13 +60,12 @@ ms.locfileid: "37091058"
 
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
-| 內建時序/時間範圍支援 | yes | yes | yes | yes | 否 | 否 |
+| 內建時序/時間範圍支援 | 是 | yes | yes | yes | 否 | 否 |
 | 輸入資料格式 | Avro、JSON 或 CSV、UTF-8 編碼 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 |
 | 延展性 | [查詢分割區](/azure/stream-analytics/stream-analytics-parallelization) | 依叢集大小設定範圍 | 受限於 Databricks 叢集調整組態 | 依叢集大小設定範圍 | 最多可平行處理 200 個函式應用程式執行個體 | 依 App Service 方案容量設定範圍 | 
-| 延遲送達和失序事件處理支援 | yes | yes | yes | yes | 否 | 否 |
+| 延遲送達和失序事件處理支援 | 是 | yes | yes | yes | 否 | 否 |
 
 另請參閱：
 
 - [選擇即時訊息擷取技術](./real-time-ingestion.md)
-- [比較 Apache Storm 與 Azure Stream Analytics](/azure/stream-analytics/stream-analytics-comparison-storm)
 - [即時處理](../big-data/real-time-processing.md)

@@ -2,13 +2,13 @@
 title: Azure 計算服務的決策樹
 description: 選取計算服務的流程圖
 author: MikeWasson
-ms.date: 06/13/2018
-ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
-ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
+ms.date: 10/23/2018
+ms.openlocfilehash: 35002b4840b80bcc35b5baf36ec8e414ed8f20be
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/23/2018
-ms.locfileid: "36338178"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001893"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Azure 計算服務的決策樹
 
@@ -26,17 +26,13 @@ Azure 提供了多種方式來裝載您的應用程式程式碼。 *計算*一�
 
 如果您的應用程式包含多個工作負載，請個別評估每個工作負載。 完整的解決方案可能會納入兩個或更多計算服務。
 
-如需在 Azure 中裝載容器選項的詳細資訊，請參閱＜https://azure.microsoft.com/overview/containers/＞。
+如需在 Azure 中裝載容器選項的詳細資訊，請參閱＜ https://azure.microsoft.com/overview/containers/＞。
 
 ## <a name="flowchart"></a>流程圖
 
 ![](../images/compute-decision-tree.svg)
 
 ## <a name="definitions"></a>定義
-
-- **Greenfield (綠色領域)** 描述一個全新且從頭開始建立的軟體專案。 不包含舊版程式碼。 
-
-- **Brownfield (棕色領域)** 描述在現有的應用程式上建立的軟體專案。 它可能會繼承舊版的程式碼或架構。
 
 - **隨即轉移**是一種將工作負載移轉至雲端，而不需要重新設計應用程式或變更程式碼的策略。 也稱為*重新裝載*。 如需詳細資訊，請參閱 [Azure 移轉中心](https://azure.microsoft.com/migration/)。
 
