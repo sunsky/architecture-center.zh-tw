@@ -351,6 +351,10 @@ items:
       href: reference-architectures/data/enterprise-bi-adf.md
     - name: 串流處理搭配 Azure 串流分析
       href: reference-architectures/data/stream-processing-stream-analytics.md
+  - name: 企業整合
+    items:
+    - name: 簡單的企業整合
+      href: reference-architectures/enterprise-integration/simple-enterprise-integration.md
   - name: 混合式網路
     items:
     - name: 概觀
@@ -537,9 +541,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: a79c29c0673de7eb14371d60377dd589cdf78720
-ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
+ms.openlocfilehash: bb4f5188f3f85561a08331a15c797a15c375157f
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49313194"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001910"
