@@ -2,13 +2,13 @@
 title: 在 Azure 上使用 Kubernetes 設計、建置及操作微服務
 description: 在 Azure 上設計、建置及操作微服務
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.date: 10/23/2018
+ms.openlocfilehash: cac16c9212432c72aeaecac1a578828a00838431
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2018
-ms.locfileid: "27701097"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962767"
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>在 Azure 上設計、建置及操作微服務
 
@@ -85,7 +85,7 @@ Fabrikam, Inc. 正在推動無人機遞送服務。 該公司經營一個無人�
 > [!NOTE]
 > 如需選擇微服務架構或其他架構樣式的說明，請參閱 [Azure 應用程式架構指南](../guide/index.md)。
 
-我們的參考實作會使用 Kubernetes 搭配 [Azure Container Service (ACS)](/azure/container-service/kubernetes/)。 不過，任何容器協調工具 (包括 [Azure Service Fabric](/azure/service-fabric/)) 都會面臨許多高層級的架構決策和挑戰。 
+我們的參考實作會使用 Kubernetes 搭配 [Azure Kubernetes Service](/azure/aks/) (AKS)。 不過，任何容器協調工具 (包括 [Azure Service Fabric](/azure/service-fabric/)) 都會面臨許多高層級的架構決策和挑戰。 
 
 > [!div class="nextstepaction"]
 > [網域分析](./domain-analysis.md)
