@@ -60,7 +60,7 @@ ms.locfileid: "49962905"
 
 | | Azure 串流分析 | 使用 Spark Streaming 的 HDInsight | Azure Databricks 中的 Apache Spark | 使用 Storm 的 HDInsight | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
-| 內建時序/時間範圍支援 | 是 | yes | yes | yes | 否 | 否 |
+| 內建時序/時間範圍支援 | 是 | 是 | 是 | 是 | 否 | 否 |
 | 輸入資料格式 | Avro、JSON 或 CSV、UTF-8 編碼 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 | 任何使用自訂程式碼的格式 |
 | 延展性 | [查詢分割區](/azure/stream-analytics/stream-analytics-parallelization) | 依叢集大小設定範圍 | 受限於 Databricks 叢集調整組態 | 依叢集大小設定範圍 | 最多可平行處理 200 個函式應用程式執行個體 | 依 App Service 方案容量設定範圍 | 
 | 延遲送達和失序事件處理支援 | 是 | yes | yes | yes | 否 | 否 |
