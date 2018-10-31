@@ -2,13 +2,13 @@
 title: 記錄和監視微服務
 description: 記錄和監視微服務
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428766"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962869"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>設計微服務：記錄和監視
 
@@ -18,19 +18,19 @@ ms.locfileid: "47428766"
 
 在微服務架構中，要指出確切的錯誤原因或效能瓶頸特別具有挑戰性。 單一使用者作業可能橫跨多項服務。 服務可能會達到叢集內的網路 I/O 限制。 跨越服務的一連串呼叫可能會在系統中造成背壓，進而導致高延遲或連鎖性失敗。 此外，您通常不知道特定容器會在哪個節點中執行。 位於相同節點的容器可能會競爭有限的 CPU 或記憶體。 
 
-為了清楚了解發生什麼情況，應用程式必須發出遙測事件。 您可以將這些事件分類為計量和以文字為基礎的記錄。 
+為了清楚了解發生什麼情況，您必須收集應用程式的遙測資料。  遙測資料可分為「記錄」和「計量」。 [Azure 監視器](/azure/monitoring-and-diagnostics/monitoring-overview)會在 Azure 平台收集記錄和計量。
 
-「計量」是可以分析的數值。 您可以使用計量來即時 (或幾近即時) 觀察系統，或分析一段時間的效能趨勢。 計量包括：
+**記錄**是在執行應用程式時發生的事件文字型記錄。 其中包括應用程式記錄 (追蹤陳述式) 或 Web 伺服器記錄之類的記錄。 記錄主要適合用於鑑證和根本原因分析。 
 
-- 節點層級的系統計量，包括 CPU、記憶體、網路、磁碟和檔案系統使用狀況。 系統計量會協助您了解叢集中每個節點的資源配置，並針對極端值進行疑難排解。
- 
-- Kubernetes 計量。 因為服務是在容器中執行，您需要在容器層級收集計量，而不只是在 VM 層級上收集。 cAdvisor (Container Advisor) 是 Kubernetes 中的代理程式，可收集每個容器所用 CPU、記憶體、檔案系統和網路資源的統計資料。 Kubelet 精靈會從 cAdvisor 收集資源統計資料，並透過 REST API 公開這些資料。
-   
-- 應用程式計量。 其中包括可了解服務行為的任何相關計量。 範例包括已排入佇列的輸入 HTTP 要求數目、要求延遲、訊息佇列長度或每秒處理的交易數目。
+「計量」是可以分析的數值。 您可以使用計量來即時 (或幾近即時) 觀察系統，或分析一段時間的效能趨勢。 計量可以進一步分類如下：
 
-- 相依服務計量。 叢集內的服務可能會呼叫叢集之外的外部服務，例如受控 PaaS 服務。 您可使用 [Azure 監視器](/azure/monitoring-and-diagnostics/monitoring-overview)來監視 Azure 服務。 第三方服務可能會 (也可能不會) 提供任何計量。 若未提供，您必須憑藉自己的應用程式計量，來追蹤延遲和錯誤率的統計資料。
+- **節點層級**計量，包括 CPU、記憶體、網路、磁碟和檔案系統使用狀況。 系統計量會協助您了解叢集中每個節點的資源配置，並針對極端值進行疑難排解。
 
-「記錄」是在執行應用程式時發生的事件記錄。 其中包括應用程式記錄 (追蹤陳述式) 或 Web 伺服器記錄之類的記錄。 記錄主要適合用於鑑證和根本原因分析。 
+- **容器**計量。 如果服務是在容器內執行，您需要在容器層級收集計量，而不只是在虛擬機器層級上收集。 您可以設定 Azure 監視器來監視 Azure Kubernetes Service (AKS) 中的容器工作負載。 如需詳細資訊，請參閱[適用於容器的 Azure 監視器概觀](/azure/monitoring/monitoring-container-insights-overview)。 對於其他容器協調器，請使用 [Log Analytics 中的容器監視解決方案](/azure/log-analytics/log-analytics-containers)。
+
+- **應用程式**計量。 其中包括可了解服務行為的任何相關計量。 範例包括已排入佇列的輸入 HTTP 要求數目、要求延遲或訊息佇列長度。 應用程式也可以建立專屬於網域的自訂計量，例如每分鐘處理的商務交易數目。 使用 [Application Insights](/azure/application-insights/app-insights-overview) 啟用應用程式計量。 
+
+- **相依服務**計量。 服務可能會呼叫外部服務或端點，例如受控的 PaaS 服務或 SaaS 服務。 第三方服務可能會 (也可能不會) 提供任何計量。 若未提供，您必須憑藉自己的應用程式計量，來追蹤延遲和錯誤率的統計資料。
 
 ## <a name="considerations"></a>考量
 

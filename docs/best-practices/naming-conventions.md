@@ -4,12 +4,12 @@ description: Azure 資源的命名慣例。 如何為虛擬機器、儲存體帳
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 7a94e7b3a54f48a8b1996415e194ecacb4261399
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429650"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962971"
 ---
 # <a name="naming-conventions"></a>命名慣例
 
@@ -78,7 +78,7 @@ ms.locfileid: "47429650"
 
 | 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|資源群組 |訂用帳戶 |1-90 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) 及 Unicode 字元 |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|資源群組 |訂用帳戶 |1-90 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) 及符合規則運算式的 Unicode 字元皆記錄在[這裡](/rest/api/resources/resourcegroups/createorupdate)。  |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |相關聯的實體 |512 (名稱)、256 (值) |不區分大小寫 |英數字元 |`"key" : "value"` |`"department" : "Central IT"` |
 

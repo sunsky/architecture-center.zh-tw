@@ -2,13 +2,13 @@
 title: 識別微服務界限
 description: 識別微服務界限
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: d35b92ffd97c4fda5d6599340925ce3dfea7f15b
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 10/23/2018
+ms.openlocfilehash: 679696818d50b70a5116916bd9198a390abfd7fe
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673397"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962784"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>設計微服務：識別微服務界限
 
@@ -83,13 +83,18 @@ ms.locfileid: "33673397"
 
 ### <a name="service-orchestrators"></a>服務協調器
 
-協調器負責處理與一組服務的部署及管理有關的工作。 這些工作包括在節點上放置服務、監視服務的健康情況、重新啟動狀況不良的服務、在服務執行個體間負載平衡網路流量、服務探索、調整服務執行個體數目，以及套用組態更新。 熱門協調器包括 Kubernetes、DC/OS、Docker Swarm 和 Service Fabric。 
+協調器負責處理與一組服務的部署及管理有關的工作。 這些工作包括在節點上放置服務、監視服務的健康情況、重新啟動狀況不良的服務、在服務執行個體間負載平衡網路流量、服務探索、調整服務執行個體數目，以及套用組態更新。 熱門協調器包括 Kubernetes、Service Fabric、DC/OS 和 Docker Swarm。
 
-- [Azure Container Service](/azure/container-service/) (ACS) 這個 Azure 服務可讓您部署立即可以從事生產的 Kubernetes、DC/OS 或 Docker Swarm 叢集。
+在 Azure 平台上，請考慮下列選項：
 
-- [AKS (Azure Container Service)](/azure/aks/) 是受控的 Kubernetes 服務。 AKS 會佈建 Kubernetes 並公開 Kubernetes API 端點，但會裝載和管理 Kubernetes 控制平面，以便執行自動升級、自動修補、自動調整和其他管理工作。 您可以將 AKS 視為「Kubernetes API 即服務」。 在本文撰寫當下，AKS 仍屬預覽版。 然而，我們預期 AKS 將會成為在 Azure 中執行 Kubernetes 的慣用方法。 
+- [Azure Kubernetes Service](/azure/aks/) (AKS) 是受控 Kubernetes 服務。 AKS 會佈建 Kubernetes 並公開 Kubernetes API 端點，但會裝載和管理 Kubernetes 控制平面，以便執行自動升級、自動修補、自動調整和其他管理工作。 您可以將 AKS 視為「Kubernetes API 即服務」。 
 
 - [Service Fabric](/azure/service-fabric/) 是一個分散式系統平台，可讓您封裝、部署及管理微服務。 您可以將微服務部署至 Service Fabric，以作為容器、二進位可執行檔或作為 [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction)。 使用 Reliable Services 程式設計模型，服務便可直接使用 Service Fabric 程式設計 API 來查詢系統、回報健康情況、接收有關組態和程式碼變更的通知，並探索其他服務。 與 Service Fabric 的主要差異在於，其非常著重在使用 [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections) 來建置具狀態服務。
+
+- [Azure Container Service](/azure/container-service/) (ACS) 這個 Azure 服務可讓您部署立即可以從事生產的 DC/OS、Docker Swarm 或 Kubernetes 叢集。 
+
+  > [!NOTE]
+  > 雖然 Kubernetes 由 ACS 支援，我們建議在 Azure 上執行 Kubernetes 時使用 AKS。 AKS 提供增強的管理功能和成本效益。
 
 ### <a name="containers"></a>容器
 
@@ -103,7 +108,7 @@ ms.locfileid: "33673397"
 
 ### <a name="serverless-functions-as-a-service"></a>無伺服器 (函式即服務)
 
-使用無伺服器架構時，您就不會管理 VM 或虛擬網路基礎結構。 相反地，您會部署程式碼，而主機服務則負責將該程式碼放到 VM 並加以執行。 這種方法往往會偏好使用以事件型觸發程序來進行協調的小型函式。 例如，放到佇列的訊息可能會觸發函式，以讀取佇列並處理訊息。
+使用[無伺服器](https://azure.microsoft.com/solutions/serverless/)架構時，您不需管理 VM 或虛擬網路基礎結構。 相反地，您會部署程式碼，而主機服務則負責將該程式碼放到 VM 並加以執行。 這種方法往往會偏好使用以事件型觸發程序來進行協調的小型函式。 例如，放到佇列的訊息可能會觸發函式，以讀取佇列並處理訊息。
 
 [Azure Functions][functions] 是無伺服器的計算服務，可支援各種函式觸發程序，包括 HTTP 要求、服務匯流排佇列和事件中樞事件。 如需完整清單，請參閱 [Azure Functions 觸發程序和繫結概念][functions-triggers]。 也請考慮 [Azure Event Grid][event-grid]，這是 Azure 中的受控事件路由服務。
 

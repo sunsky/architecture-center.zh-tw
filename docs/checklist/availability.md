@@ -4,12 +4,12 @@ description: 提供設計期間可用性考量指引的檢查清單。
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: a09a8f77865bf127ae0a73e0da7e1d3fb8508826
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352622"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962886"
 ---
 # <a name="availability-checklist"></a>可用性檢查清單
 
@@ -41,7 +41,7 @@ ms.locfileid: "39352622"
 
 **使用平台的暫存和實際執行功能。** 例如，Azure App Service 可支援[部署位置](/azure/app-service/web-sites-staged-publishing)，可讓您在切換到生產環境之前用以暫存部署。 Azure Service Fabric 可支援應用程式服務的[輪流升級](/azure/service-fabric/service-fabric-application-upgrade)。
 
-**將虛擬機器 (VM) 放入可用性設定組中。** 若要將可用性最大化，請為每個虛擬機器角色建立多個執行個體，並將這些執行個體放在相同的可用性設定組中。 若有多部虛擬機器扮演不同的角色 (例如不同的應用程式層)，請為每個虛擬機器角色建立一個可用性設定組。 例如，為 Web 層建立一個可用性設定組，並為資料層建立另一個可用性設定組。
+**將虛擬機器 (VM) 放入可用性設定組中。** 若要將可用性最大化，請為每個虛擬機器角色建立多個執行個體，並將這些執行個體放在相同的可用性設定組中。 若您有多部虛擬機器扮演不同的角色 (例如不同的應用程式層)，請為每個虛擬機器角色建立一個可用性設定組。 例如，為 Web 層建立一個可用性設定組，並為資料層建立另一個可用性設定組。
 
 ## <a name="data-management"></a>資料管理
 
