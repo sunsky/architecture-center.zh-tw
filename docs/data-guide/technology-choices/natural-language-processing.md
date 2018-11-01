@@ -3,12 +3,12 @@ title: 選擇自然語言處理技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: dacf7bf9cf3e9efed212f34da93c1470954965cf
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288850"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251765"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>在 Azure 中選擇自然語言處理技術
 
@@ -19,7 +19,8 @@ ms.locfileid: "29288850"
 在 Azure 中，下列服務皆提供自然語言處理 (NLP) 功能：
 
 - [使用 Spark 和 Spark MLlib 的 Azure HDInsight](/azure/hdinsight/spark/apache-spark-overview)
-- [Microsoft 認知服務](/azure/#pivot=products&panel=cognitive)
+- [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks)
+- [Microsoft 認知服務](/azure/cognitive-services/welcome)
 
 ## <a name="key-selection-criteria"></a>關鍵選取準則
 
@@ -35,16 +36,16 @@ ms.locfileid: "29288850"
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。  
+下表摘要列出各項功能的主要差異。  
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | Azure HDInsight | Microsoft 認知服務 |
 | --- | --- | --- |
-| 提供預先訓練的模型作為服務 | 否 | yes |
-| REST API | yes | yes |
+| 提供預先訓練的模型作為服務 | 否 | 是 |
+| REST API | 是 | 是 |
 | 可程式性 | Python、Scala、Java | C#、Java、Node.js、Python、PHP、Ruby |
-| 支援對巨量資料集和大型文件進行處理 | yes | 否 |
+| 支援對巨量資料集和大型文件進行處理 | 是 | 否 |
 
 ### <a name="low-level-natural-language-processing-capabilities"></a>低階自然語言處理功能
 

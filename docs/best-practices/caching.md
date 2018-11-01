@@ -4,12 +4,12 @@ description: 用來改善效能和延展性的快取指引。
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 4db85df7331c805af6acbe0673dbcb993a895e03
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: e1c47c735bd618fc46fef3f1ee234f83d3b15bdf
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429463"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251986"
 ---
 # <a name="caching"></a>快取
 
@@ -288,7 +288,7 @@ Azure 入口網站包含便利的圖形化顯示，可讓您監視快取的效�
 同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存透過 ASP.NET Web 應用程式所產生的 HTTP 回應。 使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間。 產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。 如需詳細資訊，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
 
 ## <a name="building-a-custom-redis-cache"></a>建置自訂的 Redis 快取
-Azure Redis 快取可用來做為基礎 Redis 伺服器的表面。 目前它支援一組固定的組態，但不提供 Redis 叢集。 如果您需要 Azure Redis 快取未涵蓋的進階組態 (例如大於 53 GB 的快取)，您可以使用 Azure 虛擬機器來建置並裝載您自己的 Redis 伺服器。
+Azure Redis 快取可用來做為基礎 Redis 伺服器的表面。 如果您需要 Azure Redis 快取未涵蓋的進階組態 (例如大於 53 GB 的快取)，您可以使用 Azure 虛擬機器來建置並裝載您自己的 Redis 伺服器。
 
 因為您在想要實作複寫時可能需要建立數個 VM 做為主要和下層節點，所以這可能是個很複雜的程序。 此外，如果您想要建立叢集，則需要多部主要和下層伺服器。 可提供高可用性的最小叢集複寫拓撲，以及包含至少六個 VM 並組織成三組主要/下層伺服器配對 (叢集必須包含至少三個主要節點) 的延展性。
 
