@@ -2,13 +2,13 @@
 title: 在 Azure 上執行 Jenkins 伺服器
 description: 此參考架構會顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。
 author: njray
-ms.date: 01/21/18
-ms.openlocfilehash: 5f9c54e71a8750e88de1ae633ccc1316f8375d3a
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.date: 04/30/2018
+ms.openlocfilehash: 89839b0f1c9624176a7b51dca53713070c88b154
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2018
-ms.locfileid: "32323919"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916365"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
@@ -168,7 +168,7 @@ Azure 會提供幾個功能來[監視和診斷][monitoring-diag]整體架構。 
 
 若要部署這種架構，請遵循下列步驟來安裝[在 Azure 上的 Jenkins 的解決方案範本][azure-market]，然後安裝在下列步驟中設定監視和災害復原的指令碼。
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 - 此參考架構需要 Azure 訂用帳戶。 
 - 若要建立 Azure 服務主體，您必須擁有 Azure AD 租用戶的系統管理員權限，該租用戶與部署的 Jenkins 伺服器相關聯。
@@ -176,7 +176,7 @@ Azure 會提供幾個功能來[監視和診斷][monitoring-diag]整體架構。 
 
 ### <a name="step-1-deploy-the-jenkins-server"></a>步驟 1：部署 Jenkins 伺服器
 
-1.  在 Web 瀏覽器中開啟 [Jenkins 的 Microsoft Azure Marketplace 映像][][azure-market]，然後從頁面左側選取 [立即取得]。
+1.  在 Web 瀏覽器中開啟 [Jenkins 的 Microsoft Azure Marketplace 映像][azure-market]，然後從頁面左側選取 [立即取得]。
 
 2.  檢閱價格詳細資料並選取 [繼續]，然後選取 [建立] 以在 Azure 入口網站中設定 Jenkins 伺服器。
 
