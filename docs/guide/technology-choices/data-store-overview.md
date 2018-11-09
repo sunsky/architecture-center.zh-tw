@@ -2,12 +2,13 @@
 title: 選擇正確的資料存放區
 description: 在 Azure 中選擇資料存放區的概觀
 author: MikeWasson
-ms.openlocfilehash: 4836ae1997f86d35d8ab8aa66bbc63b4ef826d23
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 06/01/2018
+ms.openlocfilehash: e9053ec4601e5743d83465f31a883032ea854d6a
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252629"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916262"
 ---
 # <a name="choose-the-right-data-store"></a>選擇正確的資料存放區
 

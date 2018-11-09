@@ -3,12 +3,12 @@ title: 無伺服器 Web 應用程式
 description: 參考架構，顯示無伺服器 Web 應用程式和 Web API
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: c2b46a60a57381ac3fd3f77cffe53b2dab2dacd6
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349950"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983391"
 ---
 # <a name="serverless-web-application"></a>無伺服器 Web 應用程式 
 
@@ -148,20 +148,13 @@ public static Task<IActionResult> Run(
 
 - 在函式應用程式內啟用 Azure AD 驗證。 如需詳細資訊，請參閱 [Azure App Service 中的驗證與授權][app-service-auth]。
 
-- 藉由驗證存取權杖，將原則新增至 API 管理以預先授權要求：
-
-    ```xml
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.microsoftonline.com/[Azure AD tenant ID]/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>[Application ID]</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
-    ```
+- 藉由驗證存取權杖，將 [validate-jwt 原則][apim-validate-jwt]新增至 API 管理以預先授權要求。
 
 如需詳細資訊，請參閱 [GitHub 讀我檔案][readme]。
+
+建議您在 Azure AD 中，為用戶端應用程式和後端 API 建立個別的應用程式。 授予用戶端應用程式權限來呼叫 API。 這種方法可讓您彈性地定義多個 API 和用戶端，並控制每個 API 和用戶端的權限。 
+
+在 API 中，使用[範圍][scopes]來為應用程式提供對使用者要求權限的精確控制。 例如，API 可能包含 `Read` 和 `Write` 範圍，而特定用戶端應用程式可能會要求使用者僅授權 `Read` 權限。
 
 ### <a name="authorization"></a>Authorization
 
@@ -275,11 +268,21 @@ public static Task<IActionResult> Run(
 
 ## <a name="devops-considerations"></a>DevOps 考量
 
+### <a name="deployment"></a>部署
+
+若要部署函式應用程式，我們建議您使用[封裝檔案][functions-run-from-package] (「從套件執行」)。 使用此方法，您將 zip 檔案上傳至 Blob 儲存體容器，且 Functions 執行階段會將 zip 檔案裝載為唯讀檔案系統。 這是不可部分完成的作業，可以減少部署失敗而使應用程式處於不一致狀態的情況。 它也可以提升冷啟動時間，特別是針對 Node.js 應用程式，因為所有的檔案都是一次交換。
+
 ### <a name="api-versioning"></a>API 版本控制
 
-API 是服務與該服務用戶端或取用者之間的合約。 在您的 API 合約中支援版本控制。 如果您引入重大 API 變更，請引入新的 API 版本。 在個別函式應用程式中，並排部署新版本與原始版本。 這樣可讓您將現有的用戶端遷移至新的 API，而不會中斷用戶端應用程式。 最後，您可以取代舊版。 如需 API 版本控制的詳細資訊，請參閱 [RESTful Web API 版本控制][api-versioning]。
+API 是服務與用戶端之間的合約。 在此架構中，API 合約會在 API 管理層加以定義。 「API 管理」支援兩個截然不同但互補的[版本控制概念][apim-versioning]：
 
-如需不中斷 API 變更的更新，請將新版本部署到相同函式應用程式中的預備位置。 確認部署成功，然後將預備版本切換為生產環境版本。
+- *版本*可讓 API 取用者根據其需求選擇 API 版本，例如，v1 和 v2。 
+
+- *修訂*允許 API 管理員在 API 中進行非中斷變更，並部署這些變更以及變更記錄，以便告知 API 取用者所做變更。
+
+如果您在 API 中進行重大變更，請在 API 管理中發行新版本。 在個別函式應用程式中，並排部署新版本與原始版本。 這樣可讓您將現有的用戶端遷移至新的 API，而不會中斷用戶端應用程式。 最後，您可以取代舊版。 API 管理支援數個[版本控制配置][apim-versioning-schemes]：URL 路徑、HTTP 標頭或查詢字串。 如需 API 版本控制的詳細資訊，請參閱 [RESTful Web API 版本控制][api-versioning]。
+
+如需不中斷 API 變更的更新，請將新版本部署到相同函式應用程式中的預備位置。 確認部署成功，然後將預備版本切換為生產環境版本。 在 API 管理中發佈修訂版。
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
@@ -292,6 +295,9 @@ API 是服務與該服務用戶端或取用者之間的合約。 在您的 API �
 [apim-ip]: /azure/api-management/api-management-faq#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules
 [api-geo]: /azure/api-management/api-management-howto-deploy-multi-region
 [apim-scale]: /azure/api-management/api-management-howto-autoscale
+[apim-validate-jwt]: /azure/api-management/api-management-access-restriction-policies#ValidateJWT
+[apim-versioning]: /azure/api-management/api-management-get-started-publish-versions
+[apim-versioning-schemes]: /azure/api-management/api-management-get-started-publish-versions#choose-a-versioning-scheme
 [app-service-auth]: /azure/app-service/app-service-authentication-overview
 [app-service-ip-restrictions]: /azure/app-service/app-service-ip-restrictions
 [app-service-security]: /azure/app-service/app-service-security
@@ -310,9 +316,11 @@ API 是服務與該服務用戶端或取用者之間的合約。 在您的 API �
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure-functions/functions-proxies
+[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
+[functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
 [microservices-domain-analysis]: ../../microservices/domain-analysis.md
@@ -321,6 +329,7 @@ API 是服務與該服務用戶端或取用者之間的合約。 在您的 API �
 [partition-key]: /azure/cosmos-db/partition-data
 [pipelines]: /azure/devops/pipelines/index
 [ru]: /azure/cosmos-db/request-units
+[scopes]: /azure/active-directory/develop/v2-permissions-and-consent
 [static-hosting]: /azure/storage/blobs/storage-blob-static-website
 [static-hosting-preview]: https://azure.microsoft.com/blog/azure-storage-static-web-hosting-public-preview/
 [storage-https]: /azure/storage/common/storage-require-secure-transfer

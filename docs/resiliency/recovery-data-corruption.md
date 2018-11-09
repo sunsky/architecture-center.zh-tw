@@ -2,13 +2,13 @@
 title: 從資料損毀或意外刪除復原
 description: 有關如何從意外損毀資料或刪除資料恢復資料，和設計可恢復、高可用性、容錯的應用程式，以及規劃災害復原的文章
 author: MikeWasson
-ms.date: 01/10/2018
-ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.date: 11/11/2018
+ms.openlocfilehash: 1f3dd448ac6172727481c437fb8a113f25d83464
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012421"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916257"
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>從資料損毀或意外刪除復原 
 
@@ -30,7 +30,7 @@ Azure 儲存體可透過自動化複本提供資料復原功能。 不過，這�
 
 ## <a name="database"></a>資料庫
 
-### <a name="azure-sql-database"></a>Azure SQL database 
+### <a name="azure-sql-database"></a>連接字串 
 
 SQL Database 會每週自動執行完整資料庫備份、每小時自動執行差異資料庫備份，以及每 5 到 10 分鐘自動執行交易記錄備份，透過這樣的備份組合來防止您的企業遺失資料。 使用時間點還原可將資料庫還原到較早的時間。 如需詳細資訊，請參閱
 
@@ -52,5 +52,5 @@ Azure Cosmos DB 可以定期自動進行備份。 備份會儲存在另一個儲
 
 - [如何使用 Azure 入口網站，在適用於 MySQL 的 Azure 資料庫中備份和還原伺服器](/azure/mysql/howto-restore-server-portal)
 
-- [如何使用 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器](/azure/postgresql/howto-restore-server-portal)
+- [如何使用 Azure 入口網站，在適用於 PostreSQL 的 Azure 資料庫中備份和還原伺服器](/azure/postgresql/howto-restore-server-portal)
 

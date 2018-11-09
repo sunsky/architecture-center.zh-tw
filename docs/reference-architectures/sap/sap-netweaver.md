@@ -2,13 +2,13 @@
 title: 在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
-ms.date: 05/11/2018
-ms.openlocfilehash: b4a254980dd9aac2847bb194f22f99f3f05376de
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 08/03/2018
+ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428800"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916578"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 

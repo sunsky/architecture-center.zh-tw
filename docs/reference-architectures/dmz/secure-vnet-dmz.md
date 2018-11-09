@@ -2,17 +2,17 @@
 title: 實作 Azure 和網際網路之間的 DMZ
 description: 如何在 Azure 中使用網際網路存取實作安全的混合式網路架構。
 author: telmosampaio
-ms.date: 07/02/2018
+ms.date: 10/22/2018
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 7a062d2394ae8b3bd1b17c19cbdf512327f9a766
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: d12c76a08f028d54784de330c62311f294802cb9
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403142"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916323"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Azure 和網際網路之間的 DMZ
 
@@ -84,7 +84,7 @@ ms.locfileid: "37403142"
 
 在 [GitHub][github-folder] 中有實作這些建議的參考架構部署。 
 
-### <a name="prerequisites"></a>先決條件
+### <a name="prerequisites"></a>必要條件
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

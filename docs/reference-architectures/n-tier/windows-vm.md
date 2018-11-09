@@ -2,13 +2,13 @@
 title: 在 Azure 上執行 Windows VM
 description: 如何在 Azure 上執行 Windows VM，並注意延展性、恢復能力、管理性和安全性。
 author: telmosampaio
-ms.date: 04/03/2018
-ms.openlocfilehash: a20359f90e7b20486defce3110b2db6f7e0027ba
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.date: 09/13/2018
+ms.openlocfilehash: 59e7cf255fcc55c5124e7160d831217ba62a8b88
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584692"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916268"
 ---
 # <a name="run-a-windows-vm-on-azure"></a>在 Azure 上執行 Windows VM
 

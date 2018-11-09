@@ -2,15 +2,15 @@
 title: 在 Azure 中實作中樞輪輻網路拓撲與共用服務
 description: 如何在 Azure 中實作中樞輪輻網路拓撲與共用服務。
 author: telmosampaio
-ms.date: 06/19/2018
+ms.date: 10/09/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 0238c5d6f28bacbc32268d4586b30395de36384b
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 209791950c79760ea8aaafc77ff779d6207410ce
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876863"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916261"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
@@ -74,7 +74,7 @@ ms.locfileid: "48876863"
 
 ### <a name="security"></a>安全性
 
-當您從內部部署環境將工作負載移至 Azure 時，部分工作負載必須裝載在 VM 中。 基於合規性因素，您可能需要對周遊這些工作負載的流量強制執行限制。 
+當您從內部部署環境將工作負載移至 Azure 時，部分工作負載必須裝載在 VM 中。 基於相容性因素，您可能需要對周遊這些工作負載的流量強制執行限制。 
 
 您可以在 Azure 中使用網路虛擬設備 (NVA) 以裝載不同類型的安全性和效能服務。 如果您很熟悉現今一組特定的設備，建議在適用時於 Azure 中使用相同的虛擬設備。
 

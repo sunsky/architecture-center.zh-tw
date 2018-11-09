@@ -3,12 +3,12 @@ title: 在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 description: 在 Azure 上設定高可用性 SharePoint Server 2016 伺服器陣列的作法已經過驗證。
 author: njray
 ms.date: 07/26/2018
-ms.openlocfilehash: 1e44c2817a02cda919bfa94e0b8f07b73b35531f
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 5db146956134f9b297b520d666d8dabbc8793caf
+ms.sourcegitcommit: 77d62f966d910cd5a3d11ade7ae5a73234e093f2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916493"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51293254"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性的 SharePoint Server 2016 伺服器陣列
 
@@ -214,7 +214,7 @@ ms.locfileid: "50916493"
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
     ```
 
-此時，請確認您可以針對 SQL Server Always On 可用性群組，建立網路端點到負載平衡器的 TCP 連線。 若要進行，請執行下列步驟：
+此時，請確認您可以針對 SQL Server Always On 可用性群組，建立網路前端到負載平衡器的 TCP 連線。 若要進行，請執行下列步驟：
 
 1. 使用 Azure 入口網站尋找 `ra-sp2016-network-rg` 資源群組中名為 `ra-sp-jb-vm1` 的 VM。 這就是 jumpbox VM。
 
