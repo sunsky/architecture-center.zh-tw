@@ -2,13 +2,13 @@
 title: 在 Azure Resource Manager 範本中使用物件作為參數
 description: 說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 10/30/2018
+ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876747"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251884"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中使用物件作為參數
 
@@ -301,25 +301,21 @@ ms.locfileid: "48876747"
 
 ## <a name="try-the-template"></a>試用範本
 
-如果您想要實驗此範本，請遵循下列步驟︰ 
+您可以在 [GitHub][github] 上取得範本範例。 若要部署範本，請複製報告並執行下列 [Azure CLI][cli] 命令：
 
-1.  請移至 Azure 入口網站，選取 **+** 圖示，並搜尋 [範本部署] 資源類型，並選取它。
-2.  導覽至 [範本部署] 頁面，選取 [建立] 按鈕。 這個按鈕會開啟 [自訂部署] 刀鋒視窗。
-3.  選取 [編輯範本] 按鈕。
-4.  刪除空白範本。 
-5.  複製範例範本並貼到右窗格。
-6.  選取 [儲存] 按鈕。
-7.  當您返回 [自訂部署] 窗格時，選取 [編輯參數] 按鈕。
-8.  在 [編輯參數] 刀鋒視窗中，刪除現有範本。
-9.  複製並貼上前面的參數範本樣本。
-10. 選取 [儲存] 按鈕，此動作會讓您返回 [自訂部署] 刀鋒視窗。
-11. 在 [自訂部署] 刀鋒視窗上選取您的訂用帳戶，接著新建資源群組或使用現有資源群組，然後選取位置。 檢閱條款及條件，然後選取 [我同意] 核取方塊。
-12. 選取 [購買] 按鈕。
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example3-object-param
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example3-object-param/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 ## <a name="next-steps"></a>後續步驟
 
-* 您可以展開這些技術來實作[屬性物件轉換程式與收集器](./collector.md)。 轉換程式與收集器技術更為一般，而且可以從您的範本連結。
-* 此技術也可以在[範本建置區塊專案](https://github.com/mspnp/template-building-blocks)與 [Azure 參考架構](/azure/architecture/reference-architectures/)中實作。 您可以檢閱我們的範本，來查看我們如何實作這項技術。
+- 了解如何建立範本，逐一查看物件陣列，並將其轉換為 JSON 結構描述。 請參閱[在 Azure Resource Manager 範本中實作屬性轉換器與收集器](./collector.md)
+
 
 <!-- links -->
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
@@ -327,3 +323,5 @@ ms.locfileid: "48876747"
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple
 [azure-resource-manager-functions]: /azure/azure-resource-manager/resource-group-template-functions-resource
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

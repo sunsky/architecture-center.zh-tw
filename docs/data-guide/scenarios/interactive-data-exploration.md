@@ -3,12 +3,12 @@ title: 互動式資料探索
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: be27df79d445cf9949318e4483ce0f95c26b6e09
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325112"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251867"
 ---
 # <a name="interactive-data-exploration"></a>互動式資料探索
 
@@ -82,7 +82,7 @@ ms.locfileid: "43325112"
 ### <a name="analytics-and-reporting"></a>分析和報告
 
 - **Jupyter**。 Jupyter Notebook 提供的瀏覽器架構介面，可使用 R、Python 或 Scala 等語言執行程式碼。 使用 R 伺服器或 Spark 對資料進行批次處理時，或使用 Spark SQL 定義要查詢之資料表的結構描述時，Jupyter 可能是查詢資料的理想選擇。 使用 Spark 時，您可以使用標準 Spark 資料框架 API 或是 Spark SQL API 和內嵌的 SQL 陳述式，來查詢資料及產生視覺效果。
-- **深入探詢**。 如果您想要執行隨選資料瀏覽，[Apache Drill](https://drill.apache.org/) 是無結構描述的 SQL 查詢引擎。 它不需要結構描述，因此您可以從各種資料來源查詢資料，且引擎會自動了解資料的結構。
+- **深入探詢**。 如果您想要執行隨選資料瀏覽，[Apache Drill](https://drill.apache.org/) 是無結構描述的 SQL 查詢引擎。 它不需要結構描述，因此您可以從各種資料來源查詢資料，且引擎會自動了解資料的結構。  您也可以藉由使用 [Azure Blob 儲存體外掛程式](https://drill.apache.org/docs/azure-blob-storage-plugin/)，一起使用 Drill 和 Azure Blob 儲存體。 這可讓您對 Blob 儲存體中的資料執行查詢，而不需要移動資料。 
 - **Interactive Hive 用戶端**。 如果您使用 Interactive Hive 叢集來查詢資料，您將可使用 Ambari 叢集儀表板中的 Hive 檢視、Beeline 命令列工具，或任何以 ODBC 為基礎的工具 (使用 Hive ODBC 驅動程式)，例如 Microsoft Excel 或 Power BI。
 
 如需詳細資訊，請參閱[資料分析和報告技術](../technology-choices/analysis-visualizations-reporting.md)。

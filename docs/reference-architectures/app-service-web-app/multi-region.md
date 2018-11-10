@@ -2,14 +2,14 @@
 title: 多區域 Web 應用程式
 description: 在 Microsoft Azure 中執行的高可用性 Web 應用程式建議使用架構。
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876809"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136653"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>在多個區域中執行 Web 應用程式
 [!INCLUDE [header](../../_includes/header.md)]
@@ -70,9 +70,7 @@ ms.locfileid: "48876809"
 使用[作用中地理複寫][sql-replication] 在不同區域中建立可讀取的次要複本。 最多可以有四個可讀取的次要複本。 若您的主要資料庫失敗，或是需要離線，請容錯移轉至次要資料庫。 您可以為任何彈性資料庫集區中的任何資料庫設定作用中異地複寫。
 
 ### <a name="cosmos-db"></a>Cosmos DB
-Cosmos DB 支援跨區域異地複寫。 可指定一個區域為可寫入，而其他區域為唯讀複本。
-
-如果發生區域性中斷，您可以選取另一個區域作為寫入區域，達成容錯移轉。 用戶端 SDK 會自動傳送寫入要求到目前的寫入區域，因此您不需要在容錯移轉之後更新用戶端設定。 如需詳細資訊，請參閱[如何使用 Azure Cosmos DB 在全域散發資料][cosmosdb-geo]。
+Cosmos DB 支援跨多個主要區域 (多個寫入區域) 的異地複寫。 或者，您可以將一個區域指定為可寫入區域，將其他區域指定為唯讀複本。 如果發生區域性中斷，您可以選取另一個區域作為寫入區域，達成容錯移轉。 用戶端 SDK 會自動傳送寫入要求到目前的寫入區域，因此您不需要在容錯移轉之後更新用戶端設定。 如需詳細資訊，請參閱[透過 Azure Cosmos DB 進行全域資料散發][cosmosdb-geo]。
 
 > [!NOTE]
 > 所有複本皆隸屬於相同資源群組。
@@ -136,10 +134,11 @@ Set-AzureRmTrafficManagerEndpoint -TrafficManagerEndpoint $endpoint
 
 如需詳細資訊，請參閱 [Azure 流量管理員 Cmdlet][tm-ps]。
 
-**Azure 命令列介面 (CLI)**
+**Azure CLI**
 
 ```bat
-azure network traffic-manager endpoint set --name <endpoint> --profile-name <profile> --resource-group <resource-group> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile> \
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 ### <a name="sql-database"></a>SQL Database

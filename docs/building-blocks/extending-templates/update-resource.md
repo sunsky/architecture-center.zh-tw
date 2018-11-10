@@ -2,13 +2,13 @@
 title: 更新 Azure Resource Manager 範本中的資源
 description: 說明如何擴充 Azure Resource Manager 範本的功能，以更新資源
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: f235f0b4d54d65ccc2fa67876916e922d75f6d07
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/31/2018
+ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429025"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251816"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>更新 Azure Resource Manager 範本中的資源
 
@@ -122,16 +122,13 @@ ms.locfileid: "47429025"
 
 ## <a name="try-the-template"></a>試用範本
 
-如果您想要實驗此範本，請遵循下列步驟︰
+您可以在 [GitHub][github] 上取得範本範例。 若要部署範本，請執行下列 [Azure CLI][cli] 命令：
 
-1.  請移至 Azure 入口網站，選取 **+** 圖示，並搜尋 [範本部署] 資源類型，並選取它。
-2.  導覽至 [範本部署] 頁面，選取 [建立] 按鈕。 這個按鈕會開啟 [自訂部署] 刀鋒視窗。
-3.  選取 [編輯] 圖示。
-4.  刪除空白範本。
-5.  複製範例範本並貼到右窗格。
-6.  選取 [儲存] 按鈕。
-7.  您會返回 [自訂部署] 窗格，但這次窗格中會出現一些下拉式清單。 請選取您的訂閱，您可以建立新的或使用現有的資源群組，並選取一個位置。 檢閱條款及條件，然後選取 [我同意] 按鈕。
-8.  選取 [購買] 按鈕。
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
+```
 
 當部署完成之後，開啟您在入口網站中指定的資源群組。 您會看到名為 `firstVNet` 的虛擬網路和名為 `nic1` 的 NIC。 按一下 `firstVNet`，然後再按一下 `subnets`。 您會看到原先建立的 `firstSubnet`，並看到 `updateVNet` 資源中新增的 `secondSubnet`。 
 
@@ -145,4 +142,7 @@ ms.locfileid: "47429025"
 
 ## <a name="next-steps"></a>後續步驟
 
-* 此技術可以在[範本建置區塊專案](https://github.com/mspnp/template-building-blocks)與 [Azure 參考架構](/azure/architecture/reference-architectures/)中實作。 您可以使用它們來建立您自己的架構，或部署我們的其中一個參考架構。
+* 了解如何根據條件部署資源，例如參數值是否存在。 請參閱[在 Azure Resource Manager 範本中依條件部署資源](./conditional-deploy.md)。
+
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

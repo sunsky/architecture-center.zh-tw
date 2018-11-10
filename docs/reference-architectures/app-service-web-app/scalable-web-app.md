@@ -5,14 +5,14 @@ author: MikeWasson
 pnp.series.title: Azure App Service
 pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Improve scalability
-ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: 208413a49fe4a3f9ca308fa1a939ba426e7fa636
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958801"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136687"
 ---
 # <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
 
@@ -22,20 +22,20 @@ ms.locfileid: "37958801"
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-## <a name="architecture"></a>架構  
+## <a name="architecture"></a>架構
 
 此架構是根據[基本 Web 應用程式][basic-web-app]中的架構建置的。 包括下列元件：
 
 * **資源群組**。 [資源群組][resource-group]是 Azure 資源的邏輯容器。
-* **[Web 應用程式][app-service-web-app]** 和 **[API 應用程式][app-service-api-app]**。 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。    
-* **WebJob**。 使用 [Azure WebJobs][webjobs] 在背景中執行長時間工作。 WebJob 可以依照排程持續執行，或為了回應觸發程序 (例如將訊息放在佇列上) 而執行。 在 App Service 應用程式的環境中 WebJob 是以背景處理序執行。
-* **佇列**。 在此處的架構中，應用程式將訊息放到 [Azure 佇列儲存體][queue-storage]佇列上，藉此將背景工作排入佇列。 訊息會觸發 WebJob 中的函式。 或者，也可以使用服務匯流排佇列。 如需兩者的比較，請參閱 [Azure 佇列和服務匯流排佇列 - 異同比較][queues-compared]。
+* **[Web 應用程式][app-service-web-app]**. 典型的現代應用程式可能包含一個網站以及一個或多個符合 REST 的 Web API。 瀏覽器用戶端透過 AJAX、原生用戶端應用程式或伺服器端應用程式耗用 Web API。 如需 Web API 的設計考量，請參閱 [API 指導方針][api-guidance]。
+* **函式應用程式**。 使用[函式應用程式][functions]執行背景工作。 函式由觸發程序叫用，例如計時器事件或位於佇列上的訊息。 對於長時間執行具狀態的工作，使用 [Durable Functions][durable-functions]。
+* **佇列**。 在此處的架構中，應用程式將訊息放到 [Azure 佇列儲存體][queue-storage]佇列上，藉此將背景工作排入佇列。 訊息會觸發函式應用程式。 或者，也可以使用服務匯流排佇列。 如需兩者的比較，請參閱 [Azure 佇列和服務匯流排佇列 - 異同比較][queues-compared]。
 * **快取**。 在 [Azure Redis 快取][azure-redis]中儲存半靜態資料。  
 * <strong>CDN</strong>。 使用 [Azure 內容傳遞網路][azure-cdn] (CDN) 快取公開可用的內容，以降低延遲而且更快速傳遞內容。
-* **資料儲存體**。 使用 [SQL Database][sql-db] 儲存關聯式資料。 至於非關聯式資料，請考慮 NoSQL 存放區，例如 [Cosmos DB][cosmosdb]。
+* **資料儲存體**。 使用 [SQL Database][sql-db] 儲存關聯式資料。 針對非關聯式資料，請考慮 [Cosmos DB][cosmosdb]。
 * **Azure 搜尋服務**。 使用 [Azure 搜尋][azure-search] 新增搜尋功能，例如搜尋建議、模糊搜尋、特定語言搜尋。 Azure 搜尋服務通會搭配其他資料存放區，特別是當主要資料存放區需要嚴格的一致性。 這種方式會將授權的資料儲存在 Azure 搜尋服務中的另一個資料存放區和搜尋索引。 Azure 搜尋服務也可用於合併多個資料存放區中的單一搜尋索引。  
-* **電子郵件/文字簡訊**。 您可以使用 SendGrid、Twilio 等第三方服務來傳送電子郵件或文字簡訊，而不必直接在應用程式中建立這項功能。
 * **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+* **應用程式閘道**。 [應用程式閘道](/azure/application-gateway/)是第 7 層負載平衡器。 在此架構中，它會將 HTTP 要求路由傳送至 Web 前端。 應用程式閘道也會提供 [Web 應用程式防火牆](/azure/application-gateway/waf-overview) (WAF)，該防火牆會保護應用程式免於常見惡意探索和弱點。 
 
 ## <a name="recommendations"></a>建議
 
@@ -48,11 +48,6 @@ ms.locfileid: "37958801"
 > 在基本、標準和進階方案中，是依照方案中的 VM 執行個體計費，而不是依照應用程式。 請參閱 [App Service 價格][app-service-pricing]。
 > 
 > 
-
-如果您想要使用 App Service Mobile Apps 的「簡單資料表」或「簡單 API」功能，針對此用途建立個別的 App Service 應用程式。  這些功能依賴特定應用程式架構。
-
-### <a name="webjobs"></a>WebJobs
-請考慮將需耗用大量資源的 WebJob 部署到個別 App Service 方案中的空白 App Service 應用程式。 這可為 WebJob 提供專用的執行個體。 請參閱[背景作業指引][webjobs-guidance]。  
 
 ### <a name="cache"></a>快取
 您可以使用 [Azure Redis 快取][azure-redis]來快取某些資料，以改善效能和延展性。 請考慮將 Redis 快取用於：
@@ -86,6 +81,8 @@ ms.locfileid: "37958801"
 | 具有彈性結構描述且需要基本查詢的非關聯式資料 |產品目錄 |文件資料庫，例如 Azure Cosmos DB、MongoDB 或 Apache CouchDB |
 | 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |連接字串 |
 
+ 請參閱[選擇正確的資料存放區][datastore]。
+
 ## <a name="scalability-considerations"></a>延展性考量
 
 Azure App Service 的主要優點是能夠根據負載調整應用程式規模。 以下是規劃調整應用程式時，應記住的一些考量。
@@ -93,7 +90,7 @@ Azure App Service 的主要優點是能夠根據負載調整應用程式規模�
 ### <a name="app-service-app"></a>App Service 應用程式
 如果您的解決方案包含數個 App Service 應用程式，考慮將它們部署在不同的 App Service 方案中。 這種做法可讓您分別調整它們，因為它們在不同的執行個體上執行。 
 
-同樣地，請考慮將 WebJob 放入它自己的方案中，使背景工作不在處理 HTTP 要求的相同執行個體上執行。  
+同樣地，請考慮將函式應用程式放入它自己的方案中，使背景工作不在處理 HTTP 要求的相同執行個體上執行。 如果背景工作會間歇性地執行，請考慮使用[使用情況方案][functions-consumption-plan]，該方案是依據執行次數來計費，而不是每小時計費。 
 
 ### <a name="sql-database"></a>SQL Database
 藉由將資料庫「分區」，提高 SQL 資料庫的延展性。 分區是指以水平方式分割資料庫。 分區可讓您使用[彈性資料庫工具][sql-elastic]以水平方式相應放大資料庫。 分區的潛在優點包括：
@@ -133,7 +130,6 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [azure-redis]: https://azure.microsoft.com/services/cache/
 [azure-search]: https://azure.microsoft.com/documentation/services/search/
 [azure-search-scaling]: /azure/search/search-capacity-planning
-[background-jobs]: ../../best-practices/background-jobs.md
 [basic-web-app]: basic-web-app.md
 [basic-web-app-scalability]: basic-web-app.md#scalability-considerations
 [caching-guidance]: ../../best-practices/caching.md
@@ -142,6 +138,10 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [cdn-guidance]: ../../best-practices/cdn.md
 [cors]: /azure/app-service-api/app-service-api-cors-consume-javascript
 [cosmosdb]: /azure/cosmos-db/
+[datastore]: ../..//guide/technology-choices/data-store-overview.md
+[durable-functions]: /azure/azure-functions/durable-functions-overview
+[functions]: /azure/azure-functions/functions-overview
+[functions-consumption-plan]: /azure/azure-functions/functions-scale#consumption-plan
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups
@@ -151,6 +151,4 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [web-app-multi-region]: ./multi-region.md
-[webjobs-guidance]: ../../best-practices/background-jobs.md
-[webjobs]: /azure/app-service/app-service-webjobs-readme
 [0]: ./images/scalable-web-app.png "Azure 中 Web 應用程式的延展性改善"

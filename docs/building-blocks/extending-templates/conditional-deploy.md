@@ -2,23 +2,23 @@
 title: 在 Azure Resource Manager 範本中依條件部署資源
 description: 說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: e911e7dc41b4f71ebfaf13a00f8cdbb5b4e2578b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 10/30/2018
+ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538388"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251833"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中依條件部署資源
 
 在某些情況下，您需要將您的範本設計為根據條件部署資源，像是某個參數值是否存在。 例如，範本會部署虛擬網路，並包含參數來指定進行對等互連的其他虛擬網路。 如果您未指定任何對等互連的參數值，即表示您不想要 Resource Manager 部署對等互連資源。
 
-若要完成此操作，在資源中使用[`condition` 元素][azure-resource-manager-condition]測試參數陣列的長度。 如果長度為零，傳回 `false` 以阻止部署，但所有大於零的值都會傳回 `true` 以允許部署。
+若要完成此操作，在資源中使用[條件元素][azure-resource-manager-condition]以測試參數陣列的長度。 如果長度為零，傳回 `false` 以阻止部署，但所有大於零的值都會傳回 `true` 以允許部署。
 
 ## <a name="example-template"></a>範本範例
 
-讓我們看看示範這項操作的範例範本。 我們的範本使用[`condition` 元素][azure-resource-manager-condition]來控制 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 資源的部署。 這項資源會在相同區域中的兩個 Azure 虛擬網路之間建立對等互連。
+讓我們看看示範這項操作的範例範本。 我們的範本使用[條件元素][azure-resource-manager-condition]來控制 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 資源的部署。 這項資源會在相同區域中的兩個 Azure 虛擬網路之間建立對等互連。
 
 讓我們看看範本的每個區段。
 
@@ -40,12 +40,15 @@ ms.locfileid: "24538388"
 ```json
 "virtualNetworkPeerings": [
     {
-        "remoteVirtualNetwork": {
-            "name": "my-other-virtual-network"
-        },
-        "allowForwardedTraffic": true,
-        "allowGatewayTransit": true,
-        "useRemoteGateways": false
+      "name": "firstVNet/peering1",
+      "properties": {
+          "remoteVirtualNetwork": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks','secondVNet')]"
+          },
+          "allowForwardedTraffic": true,
+          "allowGatewayTransit": true,
+          "useRemoteGateways": false
+      }
     }
 ]
 ```
@@ -60,7 +63,7 @@ ms.locfileid: "24538388"
       "name": "[concat('vnp-', copyIndex())]",
       "condition": "[greater(length(parameters('virtualNetworkPeerings')), 0)]",
       "dependsOn": [
-        "virtualNetworks"
+        "firstVNet", "secondVNet"
       ],
       "copy": {
           "name": "iterator",
@@ -113,17 +116,29 @@ ms.locfileid: "24538388"
   },
 ```
 
-`workaround` 變數有兩個屬性，一個名為 `true`、一個名為 `false`。 `true` 屬性評估為 `virtualNetworkPeerings` 參數陣列的值。 `false` 屬性評估為空物件，包括Resource Manager 預期會看到的具名屬性 &mdash; 請注意，`false` 其實是一個陣列，和 `virtualNetworkPeerings`參數一樣，能滿足驗證。 
+`workaround` 變數有兩個屬性，一個名為 `true`、一個名為 `false`。 `true` 屬性評估為 `virtualNetworkPeerings` 參數陣列的值。 `false` 屬性評估為空物件，包括 Resource Manager 預期會看到的具名屬性 &mdash; 請注意，`false` 其實是一個陣列，和 `virtualNetworkPeerings` 參數一樣，能滿足驗證。 
 
-`peerings` 變數會再使用 `workaround` 變數一次，測試 `virtualNetworkPeerings`參數陣列的長度是否大於零。 如果是，`string` 評估為 `true`，且`workaround` 變數評估為 `virtualNetworkPeerings` 參數陣列。 否則，評估為 `false`，且 `workaround` 變數評估為空物件，是陣列的第一個元素。
+`peerings` 變數會再使用 `workaround` 變數一次，測試 `virtualNetworkPeerings`參數陣列的長度是否大於零。 如果是，`string` 評估為 `true`，且 `workaround` 變數評估為 `virtualNetworkPeerings` 參數陣列。 否則，評估為 `false`，且 `workaround` 變數評估為空物件，是陣列的第一個元素。
 
 既然我們已解決驗證問題，我們可以在巢狀範本中直接指定 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings` 資源的部署，傳遞 `virtualNetworkPeerings` 參數陣列中的 `name` 和 `properties`。 在巢狀置於資源的 `properties` 元素中的 `template` 元素中可以看到。
 
+## <a name="try-the-template"></a>試用範本
+
+您可以在 [GitHub][github] 上取得範本範例。 若要部署範本，請執行下列 [Azure CLI][cli] 命令：
+
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example2-conditional/deploy.json
+```
+
 ## <a name="next-steps"></a>後續步驟
 
-* 此技術可以在[範本建置區塊專案](https://github.com/mspnp/template-building-blocks)與 [Azure 參考架構](/azure/architecture/reference-architectures/)中實作。 您可以使用它們來建立您自己的架構，或部署我們的其中一個參考架構。
+* 使用物件做為範本參數，而不是使用純量值。 請參閱[在 Azure Resource Manager 範本中使用物件作為參數](./objects-as-parameters.md)
 
 <!-- links -->
 [azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples
