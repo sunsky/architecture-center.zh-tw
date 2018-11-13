@@ -345,8 +345,6 @@ items:
     items:
     - name: 深入學習模型的 Batch 評分
       href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Python 模型的即時評分
-      href: reference-architectures/ai/realtime-scoring-python.md
   - name: 巨量資料
     items:
     - name: 具 SQL 資料倉儲的 Enterprise BI
@@ -385,6 +383,18 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: 將 AD FS 擴充至 Azure
       href: reference-architectures/identity/adfs.md
+  - name: 多層式架構 (N-Tier) 應用程式
+    items:
+    - name: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
+      href: reference-architectures/n-tier/n-tier-sql-server.md
+    - name: 多重區域多層式架構 (N-tier) 應用程式
+      href: reference-architectures/n-tier/multi-region-sql-server.md
+    - name: 具有 Cassandra 的多層式架構 (N-tier) 應用程式
+      href: reference-architectures/n-tier/n-tier-cassandra.md
+    - name: 部署 Linux VM
+      href: reference-architectures/n-tier/linux-vm.md
+    - name: 部署 Windows VM
+      href: reference-architectures/n-tier/windows-vm.md
   - name: 網路 DMZ
     items:
     - name: Azure 和內部部署之間的 DMZ
@@ -409,18 +419,8 @@ items:
       href: reference-architectures/serverless/event-processing.md
   - name: VM 工作負載
     items:
-    - name: 單一 Linux VM
-      href: reference-architectures/n-tier/linux-vm.md
-    - name: 單一 Windows VM
-      href: reference-architectures/n-tier/windows-vm.md
     - name: Jenkins 伺服器
       href: reference-architectures/jenkins/index.md
-    - name: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
-      href: reference-architectures/n-tier/n-tier-sql-server.md
-    - name: 多重區域多層式架構 (N-tier) 應用程式
-      href: reference-architectures/n-tier/multi-region-sql-server.md
-    - name: 具有 Cassandra 的多層式架構 (N-tier) 應用程式
-      href: reference-architectures/n-tier/n-tier-cassandra.md
     - name: SharePoint Server 2016
       href: reference-architectures/sharepoint/index.md
   - name: Web 應用程式
@@ -543,9 +543,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 8df93c4b01953902e56a1cd2aab1231b3de3ae52
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.openlocfilehash: 087c1573a34735dd33b1c52a83bf4a11322540a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527672"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263791"
