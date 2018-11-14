@@ -1,22 +1,22 @@
 ---
 title: Azure 範例案例
-description: 解決特定商務使用案例的範例案例
+description: 特定商務使用案例的範例案例
 author: david-stanford
-ms:date: 08/01/2018
+ms:date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 63a566126168dba382792967b3625bd6e085c054
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 01b2db150c66eaa7f8911361dd39786f53c39c07
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818831"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610493"
 ---
 # <a name="azure-example-scenarios"></a>Azure 範例案例
 
-範例案例會逐步解說解決 Azure 上特定架構和商務問題的程序。  每個案例都是根據實際客戶範例，目的是提供快速、方便閱讀的指引，以協助加速您自己的實作。
+範例案例示範如何使用 Azure 解決特定商務或技術挑戰。 每個案例都是根據實際的客戶範例，並提供快速、方便閱讀的指引，以加速您自己的實作。
 
-您可以在每個案例中找到架構圖、資料流程和所有元件的詳細資料。  您也可以深入了解可能更適合您商務需求的替代技術、解決方案的大致價格，以及在生產環境中執行解決方案時的考量。  許多案例也會包含一種方法，可在您自己的 Azure 帳戶中輕鬆部署解決方案。
+您會在每個案例中找到架構圖、資料流程和技術元件的詳細資料。 您也會了解在生產環境中執行解決方案時的注意事項，解決方案的成本因素，以及解決類似問題的其他選項。 許多案例提供一種方法，可在您自己的 Azure 訂用帳戶中輕鬆部署解決方案。
 
 跳至：[AI 案例](#ai-scenarios) | [應用程式案例](#application-scenarios) | [資料案例](#data-scenarios) | [基礎結構案例](#infrastructure-scenarios)
 
