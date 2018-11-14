@@ -2,23 +2,25 @@
 title: 具 SQL 資料倉儲的 Enterprise BI
 description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業見解
 author: MikeWasson
-ms.date: 07/01/2018
-ms.openlocfilehash: e3542e40b4b6d1f604f93bb21528f34ba7f22fc6
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.date: 11/06/2018
+ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142330"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263808"
 ---
 # <a name="enterprise-bi-with-sql-data-warehouse"></a>具 SQL 資料倉儲的 Enterprise BI
 
-此參考架構會實作 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構會實作 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。 
+
+此架構的參考實作可在 [GitHub][github-folder] 上取得
 
 ![](./images/enterprise-bi-sqldw.png)
 
 **案例**：組織具有在內部部署的 SQL Server 資料庫中儲存的大型 OLTP 資料集。 組織想要使用 SQL 資料倉儲，透過 Power BI 執行分析。 
 
-此參考架構是針對一次性或隨需作業而設計的。 如果您需要持續移動資料 (每小時或每日)，建議您使用 Azure Data Factory 來定義自動化工作流程。 如需使用 Data Factory 的參考架構，請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI](./enterprise-bi-adf.md) (英文)。
+此參考架構是針對一次性或隨需作業而設計的。 如果您需要持續移動資料 (每小時或每日)，建議您使用 Azure Data Factory 來定義自動化工作流程。 如需使用 Data Factory 的參考架構，請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf-ra]。
 
 ## <a name="architecture"></a>架構
 
@@ -187,232 +189,21 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub][ref-arch-repo-folder] 上取得。 它會部署下列各項：
+若要部署及執行參考實作，請依照 [GitHub 讀我檔案][github-folder]中的步驟。 它會部署下列各項：
 
   * 一個 Windows VM，用以模擬內部部署資料庫伺服器。 其中包含 SQL Server 2017 和相關工具以及 Power BI Desktop。
   * 一個提供 Blob 儲存體的 Azure 儲存體帳戶，用以保存從 SQL Server 資料庫匯出的資料。
   * 一個 Azure SQL 資料倉儲執行個體。
   * 一個 Azure Analysis Services 執行個體。
 
-### <a name="prerequisites"></a>先決條件
-
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
-
-### <a name="deploy-the-simulated-on-premises-server"></a>部署模擬的內部部署伺服器
-
-首先，您會將 VM 部署為模擬的內部部署伺服器，其中包含 SQL Server 2017 和相關工具。 這個步驟也會將 [Wide World Importers OLTP 資料庫][wwi]載入 SQL Server 中。
-
-1. 巡覽至存放庫的 `data\enterprise_bi_sqldw\onprem\templates` 資料夾。
-
-2. 在 `onprem.parameters.json` 檔案中，取代 `adminUsername` 和 `adminPassword` 的值。 此外也應變更 `SqlUserCredentials` 區段中的值，以符合使用者名稱和密碼。 請留意 userName 屬性中的 `.\\` 前置詞。
-    
-    ```bash
-    "SqlUserCredentials": {
-      "userName": ".\\username",
-      "password": "password"
-    }
-    ```
-
-3. 依照下列方式執行 `azbb`，以部署內部部署伺服器。
-
-    ```bash
-    azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.parameters.json --deploy
-    ```
-
-    指定可支援 SQL 資料倉儲和 Azure Analysis Services 的區域。 請參閱[不同區域的產品](https://azure.microsoft.com/global-infrastructure/services/)
-
-4. 此部署可能需要 20 到 30 分鐘才能完成，其中包括執行 [DSC](/powershell/dsc/overview) 指令碼以安裝工具和還原資料庫。 在 Azure 入口網站中檢閱資源群組中的資源，以驗證部署。 您應該會看到 `sql-vm1` 虛擬機器及其相關聯的資源。
-
-### <a name="deploy-the-azure-resources"></a>部署 Azure 資源
-
-此步驟會佈建 SQL 資料倉儲和 Azure Analysis Services，以及儲存體帳戶。 如果您想，您可以將此步驟與上一個步驟平行執行。
-
-1. 巡覽至存放庫的 `data\enterprise_bi_sqldw\azure\templates` 資料夾。
-
-2. 請執行下列 Azure CLI 命令以建立資源群組。 您可以部署到與上一個步驟中不同的資源群組，但請選擇相同的區域。 
-
-    ```bash
-    az group create --name <resource_group_name> --location <region>  
-    ```
-
-3. 請執行下列 Azure CLI 命令以部署 Azure 資源。 請取代角括弧中所顯示的參數值。 
-
-    ```bash
-    az group deployment create --resource-group <resource_group_name> \
-     --template-file azure-resources-deploy.json \
-     --parameters "dwServerName"="<server_name>" \
-     "dwAdminLogin"="<admin_username>" "dwAdminPassword"="<password>" \ 
-     "storageAccountName"="<storage_account_name>" \
-     "analysisServerName"="<analysis_server_name>" \
-     "analysisServerAdmin"="user@contoso.com"
-    ```
-
-    - `storageAccountName` 參數必須遵循儲存體帳戶的[命名規則](../../best-practices/naming-conventions.md#naming-rules-and-restrictions)。
-    - 對於 `analysisServerAdmin` 參數，請使用您的 Azure Active Directory 使用者主體名稱 (UPN)。
-
-4. 在 Azure 入口網站中檢閱資源群組中的資源，以驗證部署。 您應該會看到儲存體帳戶、Azure SQL 資料倉儲執行個體和 Analysis Services 執行個體。
-
-5. 使用 Azure 入口網站取得儲存體帳戶的存取金鑰。 選取要開啟的儲存體帳戶。 在 [設定] 底下，選取 [存取金鑰]。 複製主要金鑰值。 您在下一個步驟將會用到此值。
-
-### <a name="export-the-source-data-to-azure-blob-storage"></a>將來源資料匯出至 Azure Blob 儲存體 
-
-在此步驟中，您將執行 PowerShell 指令碼以使用 bcp 將 SQL 資料庫匯出至 VM 上的一般檔案，然後使用 AzCopy 將這些檔案複製到 Azure Blob 儲存體中。
-
-1. 使用遠端桌面連線至模擬的內部部署 VM。
-
-2. 登入 VM 後，從 PowerShell 視窗執行下列命令。  
-
-    ```powershell
-    cd 'C:\SampleDataFiles\reference-architectures\data\enterprise_bi_sqldw\onprem'
-
-    .\Load_SourceData_To_Blob.ps1 -File .\sql_scripts\db_objects.txt -Destination 'https://<storage_account_name>.blob.core.windows.net/wwi' -StorageAccountKey '<storage_account_key>'
-    ```
-
-    針對 `Destination` 參數，請將 `<storage_account_name>` 取代為您先前建立的儲存體帳戶的名稱。 針對 `StorageAccountKey` 參數，請使用該儲存體帳戶的存取金鑰。
-
-3. 在 Azure 入口網站中，瀏覽至儲存體帳戶、選取 Blob 服務，並開啟 `wwi` 容器，以確認來源資料已複製到 Blob 儲存體。 您應該會看到以 `WorldWideImporters_Application_*` 開頭的資料表清單。
-
-### <a name="run-the-data-warehouse-scripts"></a>執行資料倉儲指令碼
-
-1. 在您的遠端桌面工作階段中，啟動 SQL Server Management Studio (SSMS)。 
-
-2. 連線到 SQL 資料倉儲
-
-    - 伺服器類型：資料庫引擎
-    
-    - 伺服器名稱：`<dwServerName>.database.windows.net`，其中，`<dwServerName>` 是您在部署 Azure 資源時所指定的名稱。 您可以從 Azure 入口網站中取得此名稱。
-    
-    - 驗證：SQL Server 驗證。 請使用您在部署 Azure 資源時指定於 `dwAdminLogin` 和 `dwAdminPassword` 參數中的認證。
-
-2. 瀏覽至 VM 上的 `C:\SampleDataFiles\reference-architectures\data\enterprise_bi_sqldw\azure\sqldw_scripts` 資料夾。 您將依數值順序執行此資料夾中的指令碼 `STEP_1` 到 `STEP_7`。
-
-3. 在 SSMS 中選取 `master` 資料庫，並開啟 `STEP_1` 指令碼。 請變更以下這一行中的密碼值，然後執行指令碼。
-
-    ```sql
-    CREATE LOGIN LoaderRC20 WITH PASSWORD = '<change this value>';
-    ```
-
-4. 在 SSMS 中選取 `wwi` 資料庫。 開啟 `STEP_2` 指令碼，並執行指令碼。 如果發生錯誤，請確定您是對 `wwi` 資料庫執行指令碼，而非對 `master` 執行。
-
-5. 使用 `STEP_1` 指令碼中指定的 `LoaderRC20` 使用者和密碼，開啟對 SQL 資料倉儲的新連線。
-
-6. 使用此連線開啟 `STEP_3` 指令碼。 在指令碼中設定下列值：
-
-    - 密碼：使用儲存體帳戶的存取金鑰。
-    - 位置︰使用儲存體帳戶的名稱，如下所示：`wasbs://wwi@<storage_account_name>.blob.core.windows.net`。
-
-7. 使用相同的連線，依序執行指令碼 `STEP_4` 到 `STEP_7`。 請確認一個指令碼順利完成後，再執行下一個。
-
-在 SMSS 中，您應該會在 `wwi` 資料庫中看到一組 `prd.*` 資料表。 若要確認資料已產生，請執行下列查詢： 
-
-```sql
-SELECT TOP 10 * FROM prd.CityDimensions
-```
-
-## <a name="build-the-analysis-services-model"></a>建置 Analysis Services 模型
-
-在此步驟中，您將建立會從資料倉儲匯入資料的表格式模型。 然後，您會將模型部署至 Azure Analysis Services。
-
-1. 在您的遠端桌面工作階段中，啟動 SQL Server Data Tools 2015。
-
-2. 選取 [檔案] > [新增] > [專案]。
-
-3. 在 [新增專案] 對話方塊中的 [範本] 下，選取 [商業智慧] > [Analysis Services] > [Analysis Services 表格式專案]。 
-
-4. 為專案命名，然後按一下 [確定]。
-
-5. 在 [表格式模型設計工具] 對話方塊中，選取 [整合式工作區]，然後將 [相容性層級] 設為 `SQL Server 2017 / Azure Analysis Services (1400)`。 按一下 [確定]。
-
-6. 在 [表格式模型總管] 視窗中，以滑鼠右鍵按一下專案，然後選取 [從資料來源匯入]。
-
-7. 選取 [Azure SQL 資料倉儲]，然後按一下 [連線]。
-
-8. 針對 [伺服器]，輸入 Azure SQL 資料倉儲伺服器的完整名稱。 針對 [資料庫]，輸入 `wwi`。 按一下 [確定]。
-
-9. 在下一個對話方塊中，選擇 [資料庫] 驗證，並輸入您的 Azure SQL 資料倉儲的使用者名稱和密碼，然後按一下 [確定]。
-
-10. 在 [導覽器] 對話方塊中，選取 **prd.CityDimensions**、**prd.DateDimensions** 和 **prd.SalesFact** 的核取方塊。 
-
-    ![](./images/analysis-services-import.png)
-
-11. 按一下 [載入]。 在處理完成時，按一下 [關閉]。 您現在應該會看到資料的表格式檢視。
-
-12. 在 [表格式模型總管] 視窗中，以滑鼠右鍵按一下專案，然後選取 [模型檢視] > [圖表檢視]。
-
-13. 將 **[prd.SalesFact].[WWI City ID]** 欄位拖曳至 **[prd.CityDimensions].[WWI City ID]** 欄位，以建立關聯性。  
-
-14. 將 **[prd.SalesFact].[Invoice Date Key]** 欄位拖曳至 **[prd.DateDimensions].[Date]** 欄位。  
-    ![](./images/analysis-services-relations.png)
-
-15. 在 [檔案] 功能表中，選擇 [全部儲存]。  
-
-16. 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選取 [屬性]。 
-
-17. 在 [伺服器] 下，輸入 Azure Analysis Services 執行個體的 URL。 您可以從 Azure 入口網站中取得此值。 在入口網站中選取 Analysis Services 資源，按一下 [概觀] 窗格，然後尋找 [伺服器名稱] 屬性。 該屬性將類似於 `asazure://westus.asazure.windows.net/contoso`。 按一下 [確定]。
-
-    ![](./images/analysis-services-properties.png)
-
-18. 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選取 [部署]。 在出現提示時，登入 Azure。 在處理完成時，按一下 [關閉]。
-
-19. 在 Azure 入口網站中，檢視 Azure Analysis Services 執行個體的詳細資料。 請確認您的模型出現在模型清單中。
-
-    ![](./images/analysis-services-models.png)
-
-## <a name="analyze-the-data-in-power-bi-desktop"></a>在 Power BI Desktop 中分析資料
-
-在此步驟中，您將使用 Power BI 從 Analysis Services 中的資料建立報告。
-
-1. 在您的遠端桌面工作階段中，啟動 Power BI Desktop。
-
-2. 在 [歡迎使用] 畫面中，按一下 [取得資料]。
-
-3. 選取 [Azure] > [Azure Analysis Services 資料庫]。 按一下 [連接] 
-
-    ![](./images/power-bi-get-data.png)
-
-4. 輸入 Analysis Services 執行個體的 URL，然後按一下 [確定]。 在出現提示時，登入 Azure。
-
-5. 在 [導覽器] 對話方塊中，展開您所部署的表格式專案，選取您所建立的模型，然後按一下 [確定]。
-
-2. 在 [視覺效果] 窗格中，選取 [堆疊橫條圖] 圖示。 在 [報告] 檢視中，將視覺效果調整得大一些。
-
-6. 在 [欄位] 窗格中，展開 **prd.CityDimensions**。
-
-7. 也請將 [prd.CityDimensions] > [WWI 城市識別碼] 拖曳至 [軸] 區。
-
-8. 將 **prd.CityDimensions** > [城市] 拖曳至 [圖例] 區。
-
-9. 在 [欄位] 窗格中，展開 **prd.SalesFact**。
-
-10. 將 **prd.SalesFact** > [未稅額總計] 拖曳至 [值] 區。
-
-    ![](./images/power-bi-visualization.png)
-
-11. 在 [視覺效果層級篩選] 下，選取 [WWI 城市識別碼]。
-
-12. 將 [篩選類型] 設為 `Top N`，並將 [顯示項目] 設為 `Top 10`。
-
-13. 將 **prd.SalesFact** > [未稅額總計] 拖曳至 [依據值] 區
-
-    ![](./images/power-bi-visualization2.png)
-
-14. 按一下 [套用篩選]。 視覺效果會依城市顯示前 10 個總銷售量。
-
-    ![](./images/power-bi-report.png)
-
-若要深入了解 Power BI Desktop，請參閱[開始使用 Power BI Desktop](/power-bi/desktop-getting-started)。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需關於此參考架構的詳細資訊，請瀏覽我們的 [GitHub 存放庫][ref-arch-repo-folder]。
-- 了解 [Azure 建置組塊][azbb-repo]。
+- 使用 Azure Data Factory 將 ELT 管線自動化。 請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf=ra]。
 
 <!-- links -->
 
-[azure-cli-2]: /azure/install-azure-cli
-[azbb-repo]: https://github.com/mspnp/template-building-blocks
-[azbb-wiki]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[adf-ra]: ./enterprise-bi-adf.md
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
-[ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[ref-arch-repo-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database
+

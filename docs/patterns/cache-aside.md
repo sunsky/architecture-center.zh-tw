@@ -3,17 +3,17 @@ title: 另行快取
 description: 依需要從資料存放區將資料載入快取中
 keywords: 設計模式
 author: dragon119
-ms.date: 06/23/2017
+ms.date: 11/01/2018
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: d4d7c9dcd612c780e3e494509a57b6b4a0144423
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 4c93ed02ff28e79cedc26f83364592baba96821d
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012455"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916359"
 ---
 # <a name="cache-aside-pattern"></a>另行快取模式
 
@@ -70,7 +70,7 @@ ms.locfileid: "31012455"
 
 在 Microsoft Azure 中，您可以使用 Azure Redis 快取建立可由多個應用程式執行個體共用的分散式快取。 
 
-若要連接至 Azure Redis 快取執行個體，請呼叫靜態 `Connect` 方法並傳入連接字串。 方法會傳回 `ConnectionMultiplexer`，代表連接。 在您的應用程式中共用 `ConnectionMultiplexer` 執行個體的其中一種方法，就是擁有可傳回已連接執行個體的靜態屬性，類似下列範例。 此方法提供安全執行緒方式，只初始化單一已連接的執行個體。
+下列程式碼範例使用 [StackExchange.Redis] 用戶端，這是為 .NET 撰寫的 Redis 用戶端程式庫。 若要連接至 Azure Redis 快取執行個體，請呼叫靜態 `ConnectionMultiplexer.Connect` 方法並傳入連接字串。 方法會傳回 `ConnectionMultiplexer`，代表連接。 在您的應用程式中共用 `ConnectionMultiplexer` 執行個體的其中一種方法，就是擁有可傳回已連接執行個體的靜態屬性，類似下列範例。 此方法提供安全執行緒方式，只初始化單一已連接的執行個體。
 
 ```csharp
 private static ConnectionMultiplexer Connection;
@@ -85,7 +85,7 @@ private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionM
 public static ConnectionMultiplexer Connection => lazyConnection.Value;
 ```
 
-下列程式碼範例中的 `GetMyEntityAsync` 方法示範如何實作以 Azure Redis 快取為基礎的另行快取模式。 此方法會使用貫穿式讀取方法從快取中擷取物件。
+下列程式碼範例中的 `GetMyEntityAsync` 方法示範如何實作另行快取模式。 此方法會使用貫穿式讀取方法從快取中擷取物件。
 
 物件的識別方式是使用整數識別碼做為索引鍵。 `GetMyEntityAsync` 方法會嘗試使用此金鑰從快取擷取項目。 如果找到相符的項目，就會傳回。 如果快取中沒有符合的項目，`GetMyEntityAsync` 方法就會從資料存放區擷取物件、將它加入快取，然後將它傳回。 實際從資料存放區中讀取資料的程式碼不會在這裡顯示，因為它取決於資料存放區。 請注意，快取的項目已設定為過期，以避免在其他地方經過更新而變成過時。
 
@@ -126,7 +126,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  範例使用 Azure Redis 快取 API 來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+>  範例使用 Redis 快取來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
 
 下面顯示的 `UpdateEntityAsync` 方法示範如何讓快取中的物件在值被應用程式變更時變成無效。 程式碼會更新原始資料存放區，然後從快取移除快取的項目。
 
@@ -155,3 +155,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 - [快取指引](https://docs.microsoft.com/azure/architecture/best-practices/caching)。 提供如何在雲端解決方案中快取資料，以及當您實作快取時應該考慮的問題的其他資訊。
 
 - [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 雲端應用程式通常使用分散在資料存放區各處的資料。 在此環境中管理和維護資料的一致性，是系統一個相當關鍵的部分，尤其是可能發生並行存取和可用性的問題。 此入門說明有關分散式資料之間一致性的問題，並摘要說明應用程式如何實作最終一致性，以維持資料的可用性。
+
+
+[StackExchange.Redis]: https://github.com/StackExchange/StackExchange.Redis

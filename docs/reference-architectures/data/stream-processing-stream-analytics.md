@@ -2,17 +2,19 @@
 title: 串流處理搭配 Azure 串流分析
 description: 在 Azure 中建立端對端串流處理管線
 author: MikeWasson
-ms.date: 08/09/2018
-ms.openlocfilehash: 82887bdd45f811ac733ead18c1f256098e575253
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.date: 11/06/2018
+ms.openlocfilehash: e16547ccdcb81007e154e341f09be555ac82d1a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "40025482"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263757"
 ---
 # <a name="stream-processing-with-azure-stream-analytics"></a>串流處理搭配 Azure 串流分析
 
-此參考架構會示範端對端串流處理管線。 管線會從兩個來源擷取資料、在兩個串流中將記錄相互關聯，並計算時間範圍內的移動平均。 結果會儲存以供進一步分析。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構會示範端對端串流處理管線。 管線會從兩個來源擷取資料、在兩個串流中將記錄相互關聯，並計算時間範圍內的移動平均。 結果會儲存以供進一步分析。 
+
+此架構的參考實作可在 [GitHub][github] 上取得。 
 
 ![](./images/stream-processing-asa/stream-processing-asa.png)
 
@@ -37,6 +39,8 @@ ms.locfileid: "40025482"
 ## <a name="data-ingestion"></a>資料擷取
 
 若要模擬資料來源，此參考架構會使用[紐約市計程車資料](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)資料集<sup>[[1]](#note1)</sup>。 此資料集包含紐約市在 4 年期間的計程車路程資料 (2010 &ndash; 2013)。 它包含兩種類型的記錄：車程資料和費用資料。 車程資料包括路程持續時間、路程距離和上下車地點。 費用資料包括費用、稅金和小費金額。 在這兩種記錄類型中共同欄位包含計程車牌照號碼、計程車執照和廠商識別碼。 這三個欄位可唯一識別一輛計程車加上司機。 資料會以 CSV 格式儲存。 
+
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016)：紐約市計程車路程資料 (2010-2013)。 伊利諾大學香檳分校。 https://doi.org/10.13012/J8PN93H8
 
 資料產生器為 .NET Core 應用程式，可讀取記錄並將其傳送到 Azure 事件中樞。 產生器會以 JSON 格式傳送車程資料，以 CSV 格式傳送費用資料。 
 
@@ -209,162 +213,7 @@ Cosmos DB 的輸送量容量會以[要求單位](/azure/cosmos-db/request-units)
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub](https://github.com/mspnp/reference-architectures/tree/master/data) 上取得。 
+若要部署及執行參考實作，請依照 [GitHub 讀我檔案][github]中的步驟。 
 
-### <a name="prerequisites"></a>必要條件
 
-1. 複製、派生或下載適用於[參考架構](https://github.com/mspnp/reference-architectures) GitHub 存放庫的 zip 檔案。
-
-2. 安裝 [Docker](https://www.docker.com/) 以執行資料產生器。
-
-3. 安裝 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
-
-4. 從命令提示字元、Bash 提示字元或 PowerShell 提示字元中登入 Azure 帳戶，如下所示：
-
-    ```
-    az login
-    ```
-
-### <a name="download-the-source-data-files"></a>下載來源資料檔案
-
-1. 在 GitHub 存放庫中 `data/streaming_asa` 目錄下建立名為 `DataFile` 的目錄。
-
-2. 開啟 web 瀏覽器並巡覽至 https://uofi.app.box.com/v/NYCtaxidata/folder/2332219935。
-
-3. 按一下此頁面上的 [下載] 按鈕，下載該年度所有計程車資料的 ZIP 檔案。
-
-4. 將 ZIP 檔案解壓縮至 `DataFile` 目錄。
-
-    > [!NOTE]
-    > 此 ZIP 檔案包含其他 ZIP 檔案。 請勿解壓縮子系 ZIP 檔案。
-
-目錄結構看起來應如下所示：
-
-```
-/data
-    /streaming_asa
-        /DataFile
-            /FOIL2013
-                trip_data_1.zip
-                trip_data_2.zip
-                trip_data_3.zip
-                ...
-```
-
-### <a name="deploy-the-azure-resources"></a>部署 Azure 資源
-
-1. 從殼層或 Windows 命令提示字元執行下列命令，並遵循登入提示：
-
-    ```bash
-    az login
-    ```
-
-2. 巡覽至 GitHub 存放庫的 `data/streaming_asa` 資料夾
-
-    ```bash
-    cd data/streaming_asa
-    ```
-
-2. 執行下列命令以部署 Azure 資源：
-
-    ```bash
-    export resourceGroup='[Resource group name]'
-    export resourceLocation='[Location]'
-    export cosmosDatabaseAccount='[Cosmos DB account name]'
-    export cosmosDatabase='[Cosmod DB database name]'
-    export cosmosDataBaseCollection='[Cosmos DB collection name]'
-    export eventHubNamespace='[Event Hubs namespace name]'
-
-    # Create a resource group
-    az group create --name $resourceGroup --location $resourceLocation
-
-    # Deploy resources
-    az group deployment create --resource-group $resourceGroup \
-      --template-file ./azure/deployresources.json --parameters \
-      eventHubNamespace=$eventHubNamespace \
-      outputCosmosDatabaseAccount=$cosmosDatabaseAccount \
-      outputCosmosDatabase=$cosmosDatabase \
-      outputCosmosDatabaseCollection=$cosmosDataBaseCollection
-
-    # Create a database 
-    az cosmosdb database create --name $cosmosDatabaseAccount \
-        --db-name $cosmosDatabase --resource-group $resourceGroup
-
-    # Create a collection
-    az cosmosdb collection create --collection-name $cosmosDataBaseCollection \
-        --name $cosmosDatabaseAccount --db-name $cosmosDatabase \
-        --resource-group $resourceGroup
-    ```
-
-3. 在 Azure 入口網站中，巡覽至建立的資源群組。
-
-4. 開啟串流分析作業的刀鋒視窗。
-
-5. 按一下 [啟動] 以啟動作業。 選取 [現在] 做為輸出開始時間。 等候作業開始。
-
-### <a name="run-the-data-generator"></a>執行資料產生器
-
-1. 取得事件中樞連接字串。 您可以從 Azure 入口網站取得，或藉由執行下列 CLI 命令：
-
-    ```bash
-    # RIDE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-ride \
-        --name taxi-ride-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-
-    # FARE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-fare \
-        --name taxi-fare-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-    ```
-
-2. 巡覽至 GitHub 存放庫的 `data/streaming_asa/onprem` 目錄
-
-3. 更新 `main.env` 檔案中的值，如下所示：
-
-    ```
-    RIDE_EVENT_HUB=[Connection string for taxi-ride event hub]
-    FARE_EVENT_HUB=[Connection string for taxi-fare event hub]
-    RIDE_DATA_FILE_PATH=/DataFile/FOIL2013
-    MINUTES_TO_LEAD=0
-    PUSH_RIDE_DATA_FIRST=false
-    ```
-
-4. 執行下列命令以建置 Docker 映像。
-
-    ```bash
-    docker build --no-cache -t dataloader .
-    ```
-
-5. 瀏覽回父代目錄 `data/stream_asa`。
-
-    ```bash
-    cd ..
-    ```
-
-6. 執行下列命令以執行 Docker 映像。
-
-    ```bash
-    docker run -v `pwd`/DataFile:/DataFile --env-file=onprem/main.env dataloader:latest
-    ```
-
-輸出應該看起來如下所示：
-
-```
-Created 10000 records for TaxiFare
-Created 10000 records for TaxiRide
-Created 20000 records for TaxiFare
-Created 20000 records for TaxiRide
-Created 30000 records for TaxiFare
-...
-```
-
-讓程式執行至少 5 分鐘，這是串流分析查詢中所定義的範圍。 若要確認串流分析作業正確執行，請開啟 Azure 入口網站並瀏覽至 Cosmos DB 資料庫。 開啟 [資料總管] 刀鋒視窗，然後檢視文件。 
-
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016)：紐約市計程車路程資料 (2010-2013)。 伊利諾大學香檳分校。 https://doi.org/10.13012/J8PN93H8
+[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa

@@ -6,12 +6,12 @@ ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 1e19d03998a18d997c2840f573e7bc79b24efbbc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: a96f13f8c7f3e79c6e5d50f17e662176257fdab3
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47427967"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263707"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -46,7 +46,7 @@ AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用�
 
 根據預期的驗證要求量，決定您的 [VM 大小][vm-windows-sizes]需求。 針對在內部部署環境中裝載 AD DS 的電腦，使用其規格作為起點，以比對 Azure VM 的大小。 一旦部署之後，請根據 VM 上的實際負載，監視使用量並相應增加或減少。 如需有關調整 AD DS 網域控制站大小的詳細資訊，請參閱 [Active Directory Domain Services 的容量規劃][capacity-planning-for-adds]。
 
-建立個別的虛擬資料磁碟，以儲存 Active Directory 的資料庫、記錄檔和 SYSVOL。 請不要將這些項目儲存在與作業系統相同的磁碟上。 請注意，連線到 VM 的資料磁碟預設會使用即刻寫入快取。 不過，這種形式的快取可能會與 AD DS 的需求發生衝突。 因此，請將資料磁碟上的 [主機快取偏好設定] 設定設為 [無]。 如需詳細資訊，請參閱 [Windows Server AD DS 資料庫和 SYSVOL 的位置][adds-data-disks]。
+建立個別的虛擬資料磁碟，以儲存 Active Directory 的資料庫、記錄檔和 SYSVOL。 請不要將這些項目儲存在與作業系統相同的磁碟上。 請注意，連線到 VM 的資料磁碟預設會使用即刻寫入快取。 不過，這種形式的快取可能會與 AD DS 的需求發生衝突。 因此，請將資料磁碟上的 [主機快取偏好設定] 設定設為 [無]。 如需詳細資訊，請參閱[在 Azure 虛擬機器中部署 Windows Server Active Directory 的指導方針][adds-data-disks]。
 
 至少將兩個執行 AD DS 的 VM 部署為網域控制站，並將其新增至[可用性設定組][availability-set]。
 
@@ -169,7 +169,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
 
-[adds-data-disks]: https://msdn.microsoft.com/library/azure/jj156090.aspx#BKMK_PlaceDB
+[adds-data-disks]: https://msdn.microsoft.com/en-us/library/mt674703.aspx
 [ad-ds-operations-masters]: https://technet.microsoft.com/library/cc779716(v=ws.10).aspx
 [ad-ds-ports]: https://technet.microsoft.com/library/dd772723(v=ws.11).aspx
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-create-availability-set
