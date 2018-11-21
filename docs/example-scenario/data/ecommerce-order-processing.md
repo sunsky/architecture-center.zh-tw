@@ -3,12 +3,12 @@ title: Azure 上可調整的訂單處理
 description: 使用 Azure Cosmos DB 建置高度可調整訂單處理管線。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe642ffde733914389c36c5be50f35d242a22edf
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818508"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610850"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上可調整的訂單處理
 
@@ -20,7 +20,7 @@ ms.locfileid: "48818508"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 電子商務或零售銷售點後端系統。
 * 庫存管理系統。
