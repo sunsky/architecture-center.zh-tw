@@ -3,12 +3,12 @@ title: 容器型工作負載的 CI/CD 管線
 description: 使用 Jenkins、Azure Container Registry、Azure Kubernetes Service、Cosmos DB 及 Grafana 的 Node.js Web 應用程式，建置 DevOps 管線。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818729"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610833"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>容器型工作負載的 CI/CD 管線
 
@@ -20,7 +20,7 @@ ms.locfileid: "48818729"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 將應用程式開發做法現代化為微服務、容器型方法。
 * 加速應用程式開發和部署生命週期。

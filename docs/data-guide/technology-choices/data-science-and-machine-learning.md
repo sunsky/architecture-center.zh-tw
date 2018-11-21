@@ -3,12 +3,12 @@ title: 選擇機器學習技術
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 995349c795066ec3067b20ad2615e40b0fb152db
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 50167bafa49f8e6016f6ec12680db016830e2b81
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288930"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577152"
 ---
 # <a name="choosing-a-machine-learning-technology-in-azure"></a>在 Azure 中選擇機器學習技術
 
@@ -109,6 +109,10 @@ Apache Spark 包括機器學習模型的 Spark MLlib、架構和程式庫。 Spa
 考量：
 
 * Spark 在 HDinsght 叢集中執行的整個時間會產生費用。 如果只是偶爾使用機器學習服務，這可能會導致不必要的成本。
+
+### <a name="azure-databricks"></a>Azure Databricks
+
+[Azure Databricks](/azure/azure-databricks/) 是 Apache Spark 型分析平台。 您可以將它視為「Spark 即服務」。 它是在 Azure 平台上使用 Spark 的最簡單方式。 對於機器學習，您可以使用 [MLFlow](https://www.mlflow.org/)、[Databricks Runtime ML](https://docs.azuredatabricks.net/user-guide/clusters/mlruntime.html)、Apache Spark MLlib 和其他。 如需詳細資訊，請參閱 [Azure Databricks：Machine Learning](https://docs.azuredatabricks.net/spark/latest/mllib/index.html)。 
 
 ### <a name="web-service-in-a-container"></a>容器中的 Web 服務
 

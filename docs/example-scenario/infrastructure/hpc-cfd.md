@@ -3,12 +3,12 @@ title: 在 Azure 上執行計算流體力學 (CFD) 模擬
 description: 在 Azure 上執行計算流體力學 (CFD) 模擬。
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: 5734e6fe707e3beb5e23f2ad2b4344ba289803bb
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818565"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610629"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上執行計算流體力學 (CFD) 模擬
 
@@ -20,7 +20,7 @@ Azure 提供您在 GPU 和 CPU 虛擬機器上執行 CFD 作業所需的硬體�
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列可能使用 CFD 應用程式的產業考慮此案例：
+其他 CFD 應用程式相關產業包括：
 
 * 航空
 * 汽車
@@ -30,7 +30,7 @@ Azure 提供您在 GPU 和 CPU 虛擬機器上執行 CFD 作業所需的硬體�
 
 ## <a name="architecture"></a>架構
 
-![架構圖][architecture]
+![架構圖表][architecture]
 
 下圖顯示典型混合式設計的高階概觀，以供監視 Azure 中隨選節點的作業：
 

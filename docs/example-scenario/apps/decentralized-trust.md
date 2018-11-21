@@ -3,12 +3,12 @@ title: Azure 上銀行間的分散式信任
 description: 建立適用於通訊和資訊共用的受信任環境，不需要重新排序至集中式資料庫。
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: fe27f885635ce5ae4ce368992affa1a85d7af416
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876746"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610561"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上銀行間的分散式信任
 
@@ -22,13 +22,13 @@ ms.locfileid: "48876746"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-下列使用案例有類似的設計模式：
+其他相關的使用案例包括：
 
 * 在多語系公司的不同業務單位之間移動已配置的預算
 * 跨境支付
 * 貿易融資案例
 * 涉及不同公司的忠誠度系統
-* 供應鏈生態系統和其他項目
+* 供應鏈生態系統
 
 ## <a name="architecture"></a>架構
 
@@ -70,9 +70,9 @@ ms.locfileid: "48876746"
 
 ### <a name="scalability"></a>延展性
 
-區塊鏈的常見疑慮是區塊鏈在預先設定的時間量內可以包含的交易數目。 此案例使用權威證明，其可比工作量證明更妥善地管理這類延展性。 在權威證明型網路中，共識參與者為已知且受到管理，使其更適合於彼此相識之組織聯盟的私密區塊鏈。 透過自訂儀表板，可以輕鬆地監視平均封鎖時間、每分鐘交易數和計算資源取用量等參數。 然後可根據規模需求來調整資源。
+區塊鏈的常見疑慮是區塊鏈在預先設定的時間量內可以包含的交易數目。 此案例使用權威證明，其可比工作量證明更妥善地管理這類延展性。 在權威證明&ndash;型網路中，共識參與者為已知且受到管理，使其更適合於彼此相識之組織聯盟的私密區塊鏈。 透過自訂儀表板，可以輕鬆地監視平均封鎖時間、每分鐘交易數和計算資源取用量等參數。 然後可根據規模需求來調整資源。
 
-如需設計可調整案例的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
+如需設計可調整解決方案的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 
@@ -82,7 +82,7 @@ ms.locfileid: "48876746"
 
 ### <a name="resiliency"></a>災害復原
 
-以太坊 PoA 區塊鏈本身可提供某種程度的復原能力，因為驗證程式節點可以部署在不同的區域中。 Azure 具有全球超過 54 個區域的部署選項。 例如此案例中的區塊鏈可提供唯一和全新的合作可能性，以增加復原能力。 網路的復原能力不只是針對單一集中式對象，而是針對聯盟的所有成員提供。 以權威證明為基礎的區塊鏈可讓網路復原變得更有規劃和審慎。
+以太坊 PoA 區塊鏈本身可提供某種程度的復原能力，因為驗證程式節點可以部署在不同的區域中。 Azure 具有全球超過 54 個區域的部署選項。 例如此案例中的區塊鏈可提供唯一和全新的合作可能性，以增加復原能力。 網路的復原能力不只是針對單一集中式對象，而是針對聯盟的所有成員提供。 以權威證明&ndash;為基礎的區塊鏈可讓網路復原變得更有規劃和審慎。
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
@@ -100,7 +100,7 @@ ms.locfileid: "48876746"
 
 ## <a name="next-steps"></a>後續步驟
 
-若要查看此案例的範例，請在 Azure 上部署[以太坊 PoA 區塊鏈示範應用程式][ deploy]，然後瀏覽[案例原始程式碼的讀我檔案][source]。
+若要查看此案例的範例，請在 Azure 上部署[以太坊 PoA 區塊鏈示範應用程式][deploy]。 然後檢閱[案例原始程式碼的讀我檔案][source]。
 
 ## <a name="related-resources"></a>相關資源
 

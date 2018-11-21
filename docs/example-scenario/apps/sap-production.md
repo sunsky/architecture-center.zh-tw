@@ -3,12 +3,12 @@ title: 在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負�
 description: 在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 4c0e054a9024cd50581acd5b472a09d6e98d2bed
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818561"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610901"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 
@@ -20,7 +20,7 @@ SAP 系統用來執行任務關鍵性商務應用程式。 任何中斷情況都
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列案例考慮此範例：
+其他相關的使用案例包括：
 
 * 在 SAP 上執行的任務關鍵性工作負載。
 * 非關鍵性 SAP 工作負載。
@@ -65,7 +65,7 @@ Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 
 
 我們根據您預期接收的流量，提供了四個範例成本設定檔：
 
-|大小|SAP|DB VM 類型|DB 儲存體|(A)SCS VM|(A)SCS 儲存體|應用程式 VM 類型|應用程式儲存體|Azure 定價計算機|
+|大小|SAP|DB VM 類型|DB 儲存體|(A)SCS VM|(A)SCS 儲存體|應用程式 VM 類型|應用程式儲存體|Azure 價格計算機|
 |----|----|-------|-------|-----|---|---|--------|---------------|
 |小型|30000|DS13_v2|4xP20、1xP20|DS11_v2|1x P10|DS13_v2|1x P10|[小型](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c)|
 |中|70000|DS14_v2|6xP20、1xP20|DS11_v2|1x P10|4x DS13_v2|1x P10|[中型](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a)|

@@ -3,16 +3,14 @@ title: 多區域 Web 應用程式
 description: 在 Microsoft Azure 中執行的高可用性 Web 應用程式建議使用架構。
 author: MikeWasson
 ms.date: 10/25/2018
-cardTitle: Run in multiple regions
-ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
-ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
+ms.openlocfilehash: 7780a3d2f39f398d2776c783fbc3922c3353e44c
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50136653"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527655"
 ---
-# <a name="run-a-web-application-in-multiple-regions"></a>在多個區域中執行 Web 應用程式
-[!INCLUDE [header](../../_includes/header.md)]
+# <a name="run-a-web-application-in-multiple-azure-regions"></a>在多個 Azure 區域中執行 Web 應用程式
 
 此參考架構示範如何在多個區域中執行 Azure App Service 應用程式以實現高可用性。 
 

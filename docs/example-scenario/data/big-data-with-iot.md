@@ -3,12 +3,12 @@ title: 營建產業的 IoT 和資料分析
 description: 使用 IoT 裝置和資料分析，提供營建專案的全方位管理和作業。
 author: alexbuckgit
 ms.date: 08/29/2018
-ms.openlocfilehash: 7ab0de50b0eba1ab420e450f3408fe5dc45f04ac
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 74868191687e63a54a69fdacb7276983d98faf74
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818491"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610918"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>營建產業的 IoT 和資料分析
 
@@ -29,7 +29,7 @@ ms.locfileid: "48818491"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此解決方案：
+其他相關的使用案例包括：
 
 * 營建、 採礦或設備製造案例
 * 大規模收集裝置資料以便儲存和分析
@@ -47,7 +47,7 @@ ms.locfileid: "48818491"
 4. 所收集的原始資料會直接從 IoT 中樞傳送至 Azure blob 儲存體，且立即可供檢視和分析。
 5. 透過 IoT 中樞所收集的資料是由 Azure Stream Analytics 作業以近乎即時的方式處理，並儲存在 Azure SQL 資料庫中。
 6. Smart Construction Cloud Web 應用程式可供分析師和使用者檢視，並分析感應器資料和影像。 
-7. Web 應用程式的使用者可以視需要起始批次作業。 批次作業會在 HDInsight 上的 Apache Spark 中執行，並分析 Cassandra 叢集中儲存的新資料。 
+7. Web 應用程式的使用者可以視需要起始批次作業。 批次作業會在 HDInsight 上的 Apache Spark 中執行，並分析 Cassandra 叢集中儲存的新資料。 
 
 ### <a name="components"></a>元件
 

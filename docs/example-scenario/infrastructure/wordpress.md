@@ -3,12 +3,12 @@ title: Azure 上高度可調整且安全的 WordPress 網站
 description: 針對媒體事件建置高度可調整且安全的 WordPress 網站。
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: f7dd73524b2b63cd7d38e8e03bfd4b8edac251a9
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818474"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610595"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高擴充性且安全的 WordPress 網站
 
@@ -16,7 +16,7 @@ ms.locfileid: "48818474"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 導致流量激增的媒體事件。
 * 使用 WordPress 作為其內容管理系統的部落格。

@@ -3,12 +3,12 @@ title: Azure 上的即時詐騙偵測
 description: 使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818661"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610602"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Azure 上的即時詐騙偵測
 
@@ -22,7 +22,7 @@ ms.locfileid: "48818661"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 偵測電子通訊案例中的詐騙行動電話通話。
 * 識別銀行機構的詐騙信用卡交易。
@@ -63,7 +63,7 @@ ms.locfileid: "48818661"
 
 此案例的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。 事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
 
-如需設計可調整案例的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
+如需設計可調整解決方案的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
 ### <a name="security"></a>安全性
 

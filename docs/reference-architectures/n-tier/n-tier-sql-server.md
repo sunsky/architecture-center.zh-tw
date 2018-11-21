@@ -2,15 +2,15 @@
 title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
-ms.date: 09/13/2018
-ms.openlocfilehash: 6ddad853240b9a51ac904c06783a5c0b56dedec5
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.date: 11/12/2018
+ms.openlocfilehash: 857b666ef8af8fec21d7a8a9756508344aa07acc
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916510"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577118"
 ---
-# <a name="n-tier-application-with-sql-server"></a>具有 SQL Server 的多層式架構 (N-tier) 應用程式
+# <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Azure 上具有 SQL Server 的 Windows 多層式架構 (N-tier) 應用程式
 
 此參考架構展示如何在 Windows 上使用 SQL Server 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的 VM 和虛擬網路。 [**部署這個解決方案**。](#deploy-the-solution) 
 
@@ -24,17 +24,17 @@ ms.locfileid: "50916510"
 
 * **資源群組。** [資源群組][resource-manager-overview]可用來將資源組合在一起，讓它們可以依存留期、擁有者或其他準則管理。
 
-* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成多個子網路的 VNet。 針對每一層建立不同的子網路。 
+* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成子網路的 VNet。 針對每一層建立不同的子網路。 
 
 * **應用程式閘道**。 [Azure 應用程式閘道](/azure/application-gateway/)是第 7 層負載平衡器。 在此架構中，它會將 HTTP 要求路由傳送至 Web 前端。 應用程式閘道也會提供 [Web 應用程式防火牆](/azure/application-gateway/waf-overview) (WAF)，該防火牆會保護應用程式免於常見惡意探索和弱點。 
 
-* **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的 3 層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
+* **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的三層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
+
+* **DDoS 保護**。 雖然 Azure 平台提供基本的保護，可抵禦分散式阻斷服務 (DDoS) 攻擊，但我們建議您使用 [DDoS 保護標準][ddos]，其中具有增強的 DDoS 風險降低功能。 請參閱[安全性考量](#security-considerations)。
 
 * **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
 
-* **可用性設定組。** 針對每一層建立[可用性設定組][azure-availability-sets]，並且在每一層中至少佈建兩個 VM。 這讓 VM 能夠符合適用於 VM 之較高[服務等級協定 (SLA)][vm-sla] 的資格。 
-
-* **VM 擴展集** (未顯示)。 [VM 擴展集][vmss]是使用可用性設定組的替代方案。 擴展集可讓您輕鬆地根據預先定義的規則，手動或自動相應放大層中的 VM。
+* **可用性設定組。** 為每個層級建立[可用性設定組][azure-availability-sets]，並在每層中佈建至少兩部虛擬機器，可讓虛擬機器符合較高的[服務等級協定 (SLA)][vm-sla]。
 
 * **負載平衡器。** 使用 [Azure Load Balancer][load-balancer] 將來自 Web 層的流量散佈到商務層，以及將來自商務層的流量散佈到 SQL Server。
 
@@ -48,7 +48,7 @@ ms.locfileid: "50916510"
 
 * **雲端見證**。 容錯移轉叢集需要它一半以上的節點執行，也就是具有仲裁。 如果叢集只有兩個節點，網路磁碟分割可能會導致每個節點都認為它是主要節點。 在此情況下，您需要「見證」以打破和局，並建立仲裁。 見證是例如共用磁碟的資源，可以作為打破和局項目以建立仲裁。 雲端見證是使用 Azure Blob 儲存體的見證類型。 若要深入了解有關仲裁的概念，請參閱＜[了解叢集和集區仲裁](/windows-server/storage/storage-spaces/understand-quorum)＞。 如需雲端見證的詳細資訊，請參閱＜[為容錯移轉叢集部署雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)＞。 
 
-* **Azure DNS**。 [Azure DNS][azure-dns] 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+* **Azure DNS**。 [Azure DNS][azure-dns] 是適用於 DNS 網域的主機服務。 其使用 Microsoft Azure 基礎結構來提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 ## <a name="recommendations"></a>建議
 
@@ -66,11 +66,11 @@ ms.locfileid: "50916510"
 
 不要直接將 VM 公開至網際網路，而是改為每個 VM 提供私人 IP 位址。 用戶端會使用與應用程式閘道相關聯的公用 IP 位址來進行連線。
 
-定義負載平衡器規則，以將網路流量導向至 VM。 例如，若要啟用 HTTP 流量，請建立一個規則，將前端設定的連接埠 80 對應至後端位址集區的連接埠 80。 當用戶端將 HTTP 要求傳送到連接埠 80 時，負載平衡器會藉由使用[雜湊演算法][load-balancer-hashing] (其中包含來源 IP 位址) 來選取後端 IP 位址。 如此一來，就會將用戶端要求散發到所有 VM。
+定義負載平衡器規則，以將網路流量導向至 VM。 例如，若要啟用 HTTP 流量，請將前端設定的連接埠 80 對應至後端位址集區的連接埠 80。 當用戶端將 HTTP 要求傳送到連接埠 80 時，負載平衡器會藉由使用[雜湊演算法][load-balancer-hashing] (其中包含來源 IP 位址) 來選取後端 IP 位址。 用戶端要求會散發到後端位址集區中的所有 VM。
 
 ### <a name="network-security-groups"></a>網路安全性群組
 
-使用 NSG 規則來限制各層之間的流量。 例如，在如上所示的 3 層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。  
+使用 NSG 規則來限制各層之間的流量。 在如上所示的三層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。  
 
 1. 拒絕來自 VNet 的所有輸入流量。 (在規則中使用 `VIRTUAL_NETWORK` 標記)。 
 2. 允許來自 Business 層子網路的輸入流量。  
@@ -98,7 +98,7 @@ ms.locfileid: "50916510"
    > 
    > 
 
-當 SQL 用戶端嘗試連線時，負載平衡器會將連線要求路由傳送到主要複本。 如果已容錯移轉至另一個複本，負載平衡器會自動將後續要求路由傳送到新的主要複本。 如需詳細資訊，請參閱[設定 SQL Server Always On 可用性群組的 ILB 接聽程式][sql-alwayson-ilb]。
+當 SQL 用戶端嘗試連線時，負載平衡器會將連線要求路由傳送到主要複本。 如果已容錯移轉至另一個複本，負載平衡器會自動將新要求路由傳送到新的主要複本。 如需詳細資訊，請參閱[設定 SQL Server Always On 可用性群組的 ILB 接聽程式][sql-alwayson-ilb]。
 
 在容錯移轉期間，會關閉現有的用戶端連線。 當容錯移轉完成之後，會將新的連線路由傳送到新的主要複本。
 
@@ -116,15 +116,15 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-[VM 擴展集][vmss]可協助您部署及管理一組完全相同的 VM。 擴展集支援根據效能計量自動調整規模。 當 VM 上的負載增加時，就會將其他 VM 自動新增到負載平衡器。 如果您需要快速相應放大 VM 數目，或需要自動調整規模，請考慮擴展集。
+針對 Web 和 Business 層，請考慮使用[虛擬機器擴展集][vmss]，而不是將個別虛擬機器部署至可用性設定組。 擴展集可讓您輕鬆部署及管理一組完全相同的虛擬機器，並根據效能計量自動調整虛擬機器。 當 VM 上的負載增加時，就會將其他 VM 自動新增到負載平衡器。 如果您需要快速相應放大 VM 數目，或需要自動調整規模，請考慮擴展集。
 
 有兩種基本方法可用來設定擴展集中部署的 VM：
 
-- 佈建 VM 之後，使用擴充功能來設定它。 透過此方法，新的 VM 執行個體可能需要較長的時間來啟動不具擴充功能的 VM。
+- 部署虛擬機器之後，使用擴充功能來設定它。 透過此方法，新的 VM 執行個體可能需要較長的時間來啟動不具擴充功能的 VM。
 
 - 利用自訂的磁碟映像來部署[受控磁碟](/azure/storage/storage-managed-disks-overview)。 這個選項可能會更快速地部署。 不過，它會要求您讓映像保持最新狀態。
 
-如需其他考量，請參閱[擴展集的設計考量][vmss-design]。
+如需詳細資訊，請參閱[擴展集的設計考量][vmss-design]。
 
 > [!TIP]
 > 使用任何自動調整規模解決方案時，事前也要利用生產層級的工作負載來進行測試。
@@ -133,16 +133,16 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 ## <a name="availability-considerations"></a>可用性考量
 
-如果您不是使用 VM 擴展集，請將同一層中的 VM 放入可用性設定組。 在可用性設定組中至少建立兩部 VM，以支援[適用於 Azure VM 的可用性 SLA][vm-sla]。 如需詳細資訊，請參閱[管理虛擬機器的可用性][availability-set]。 
+如果您未使用虛擬機器擴展集，請在相同層級中將虛擬機器放置於可用性設定組中。 在可用性設定組中至少建立兩部 VM，以支援[適用於 Azure VM 的可用性 SLA][vm-sla]。 如需詳細資訊，請參閱[管理虛擬機器的可用性][availability-set]。 擴展集會自動使用*放置群組*，其可做為隱含的可用性設定組。
 
 負載平衡器會使用[健康情況探查][health-probes]來監視 VM 執行個體的可用性。 如果探查無法在逾時期間內連線到執行個體，負載平衡器就會停止將流量傳送到該 VM。 不過，負載平衡器將會繼續探查，而且如果 VM 再次變成可用，負載平衡器就會繼續將流量傳送到該 VM。
 
 以下是關於負載平衡器健康情況探查的建議：
 
 * 探查可以測試 HTTP 或 TCP。 如果您的 VM 執行 HTTP 伺服器，請建立 HTTP 探查。 否則，建立 TCP 探查。
-* 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 這可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
-* 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請確定您並未在任何防火牆原則或網路安全性群組 (NSG) 規則中封鎖往返此 IP 位址的流量。
-* 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示後端有多少個 VM 因探查回應失敗而不會接收網路流量。
+* 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 此路徑可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
+* 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請勿在任何防火牆原則或 NSG 規則中封鎖往返此 IP 位址的流量。
+* 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示多少虛擬機器因探查回應失敗而未取得網路流量。
 
 如果您需要比[適用於 VM 的 Azure SLA][vm-sla] 所提供更高的可用性，請考慮跨兩個區域複寫應用程式，同時使用 Azure 流量管理員進行容錯移轉。 如需詳細資訊，請參閱[適用於高可用性的多重區域多層式架構 (N-tier) 應用程式][multi-dc]。  
 
@@ -150,15 +150,15 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 虛擬網路是 Azure 中的流量隔離界限。 某一個 VNet 中的 VM 無法直接與不同 VNet 中的 VM 通訊。 除非您建立[網路安全性群組][nsg] (NSG) 來限制流量，否則，相同 VNet 中的 VM 可以彼此通訊。 如需詳細資訊，請參閱 [Microsoft 雲端服務和網路安全性][network-security]。
 
-請考慮新增網路虛擬設備 (NVA)，在網際網路和 Azure 虛擬網路之間建立 DMZ。 NVA 是虛擬設備的通稱，可以執行網路相關的工作，例如防火牆、封包檢查、稽核和自訂路由傳送。 如需詳細資訊，請參閱[實作 Azure 和網際網路之間的 DMZ][dmz]。
+**DMZ**。 請考慮新增網路虛擬設備 (NVA)，在網際網路和 Azure 虛擬網路之間建立 DMZ。 NVA 是虛擬設備的通稱，可以執行網路相關的工作，例如防火牆、封包檢查、稽核和自訂路由傳送。 如需詳細資訊，請參閱[實作 Azure 和網際網路之間的 DMZ][dmz]。
 
-將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure Key Vault 整合][sql-keyvault]。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
+**加密**。 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure Key Vault 整合][sql-keyvault]。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
-我們建議啟用 [Azure DDoS 保護標準](/azure/virtual-network/ddos-protection-overview)，該標準為 VNet 中的資源提供額外的 DDoS 安全防護功能。 雖然基本 DDoS 保護會隨著 Azure 平台而自動啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。  
+**DDoS 保護**. Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub][github-folder] 上取得。 請注意，整個部署可能需要長達 2 小時的時間，包括執行指令碼以設定 AD DS、Windows Server 容錯移轉叢集和 SQL Server 可用性設定組。
+此參考架構的部署可在 [GitHub][github-folder] 上取得。 整個部署可能需要長達 2 小時的時間，包括執行指令碼以設定 AD DS、Windows Server 容錯移轉叢集和 SQL Server 可用性設定組。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -240,22 +240,19 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-dc]: multi-region-sql-server.md
 [n-tier]: n-tier.md
-[azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-windows-manage-availability#configure-each-application-tier-into-separate-availability-sets
-[azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-dns]: /azure/dns/dns-overview
 [azure-key-vault]: https://azure.microsoft.com/services/key-vault
 [防禦主機]: https://en.wikipedia.org/wiki/Bastion_host
 [cidr]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[chef]: https://www.chef.io/solutions/azure/
+[ddos]: /azure/virtual-network/ddos-protection-overview
+[ddos-best-practices]: /azure/security/azure-ddos-best-practices
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-windows
 [nsg]: /azure/virtual-network/virtual-networks-nsg
-[operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [公用 IP 位址]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
-[puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-alwayson-force-failover]: https://msdn.microsoft.com/library/ff877957.aspx
 [sql-alwayson-getting-started]: https://msdn.microsoft.com/library/gg509118.aspx
@@ -266,9 +263,6 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
-[Nagios]: https://www.nagios.org/
-[Zabbix]: https://www.zabbix.com/
-[Icinga]: https://www.icinga.org/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [0]: ./images/n-tier-sql-server.png "使用 Microsoft Azure 的多層式架構"
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 

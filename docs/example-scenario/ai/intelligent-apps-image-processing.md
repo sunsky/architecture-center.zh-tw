@@ -3,12 +3,12 @@ title: Azure 上的保險理賠映像分類
 description: 將影像處理建置到您的 Azure 應用程式。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818526"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610527"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保險理賠映像分類
 
@@ -20,7 +20,7 @@ ms.locfileid: "48818526"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 分類潮流網站上的映像。
 * 分類來自遊戲螢幕擷取畫面的遙測資料。
@@ -58,7 +58,7 @@ ms.locfileid: "48818526"
 
 Cosmos DB 不會依據佈建要求單位 (RU) 自動調整。 如需評估需求的指引，請參閱我們文件中的[要求單位](/azure/cosmos-db/request-units)。 若要充分利用 Cosmos DB 中的調整，請探索[分割區索引鍵](/azure/cosmos-db/partition-data)。
 
-NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP 定理的概念)。 在此範例案例中，會使用索引鍵-值資料模型，由於大部分作業定義為不可部分完成，所以不太需要交易一致性。 [選擇正確的資料存放區](../../guide/technology-choices/data-store-overview.md)的額外指引可於 Azure 架構中心找到。  如果您的實作需要高度一致性，您可以在 CosmosDB 中[選擇您的一致性層級](/azure/cosmos-db/consistency-levels)。
+NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP 定理的概念)。 在此範例案例中，會使用索引鍵-值資料模型，由於大部分作業定義為不可部分完成，所以不太需要交易一致性。 [選擇正確的資料存放區](../../guide/technology-choices/data-store-overview.md)的額外指引可於 Azure 架構中心找到。 如果您的實作需要高度一致性，您可以在 CosmosDB 中[選擇您的一致性層級](/azure/cosmos-db/consistency-levels)。
 
 如需設計可調整解決方案的一般指引，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
 
@@ -86,9 +86,9 @@ NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP
 
 ## <a name="related-resources"></a>相關資源
 
-如需此案例的引導式學習路徑，請參閱[在 Azure 中建置無伺服器 Web 應用程式][serverless]。
+如需引導式學習路徑，請參閱[在 Azure 中建置無伺服器 Web 應用程式][serverless]。
 
-在將這個範例案例部署到生產環境之前，請檢閱 Azure Functions [最佳做法][functions-best-practices]。
+在生產環境中部署此範例案例之前，請檢閱[最佳化 Azure Functions 的效能和可靠性][functions-best-practices]的建議做法。
 
 <!-- links -->
 [architecture]: ./media/architecture-intelligent-apps-image-processing.png

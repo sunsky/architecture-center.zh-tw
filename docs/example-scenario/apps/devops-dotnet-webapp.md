@@ -3,12 +3,12 @@ title: 利用 Azure DevOps 的 CI/CD 管線
 description: 使用 Azure DevOps 建置 .NET 應用程式並且發行至 Azure Web Apps。
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: 80890784d4c97aac418cef4e49f9075dbef10b8a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 97f16b2d3d9c15bc6f5db6fad4c9d8097243ad3d
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818933"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610782"
 ---
 # <a name="cicd-pipeline-with-azure-devops"></a>利用 Azure DevOps 的 CI/CD 管線
 
@@ -109,7 +109,7 @@ DevOps 是開發、品質保證和 IT 作業的整合。 DevOps 需要統一的�
 
 ### <a name="resiliency"></a>災害復原
 
-檢閱[獲得復原的典型設計模式][design-patterns-resiliency]，並考量在適當時實作。
+考量在適當時實作[復原的典型設計模式][design-patterns-resiliency]。
 
 您可以在 Azure 架構中心上找到一些 [App Service 的建議做法][resiliency-app-service]。
 

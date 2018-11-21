@@ -3,12 +3,12 @@ title: 電子商務的智慧產品搜尋引擎
 description: 提供電子商務應用程式中的世界級搜尋體驗。
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: f18e9fd3705c24da71da747c46ab42f263fd06af
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818746"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610663"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>電子商務的智慧產品搜尋引擎
 
@@ -20,13 +20,13 @@ ms.locfileid: "48818746"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-下列使用案例有類似的設計模式：
+其他相關的使用案例包括：
 
 * 尋找使用者實體位置附近的房地產清單或商店。
 * 搜尋新聞網站中的文章，或尋找運動賽事結果，而且偏好比較「近期」的資訊。
 * 在大型存放庫中搜尋「以文件為主」的組織，例如政策制定者和公證人。
 
-最終「任何」具有某種形式搜尋功能的應用程式均可受益於擁有專用的搜尋服務。
+最終「任何」具有某種形式搜尋功能的應用程式均可受益於專用的搜尋服務。
 
 ## <a name="architecture"></a>架構
 
@@ -42,7 +42,7 @@ ms.locfileid: "48818746"
 
 ### <a name="components"></a>元件
 
-* [App Services - Web 應用程式][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
+* [應用程式服務 - Web Apps][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
 * [SQL Database][docs-sql-database] 是 Microsoft Azure 中的一般用途關聯式資料庫受控服務，可支援關聯式資料、JSON、空間和 XML 等結構。
 * [Azure 搜尋服務][docs-search]是搜尋即服務雲端解決方案，透過 Web、行動和企業應用程式中的私用和異質內容來提供豐富的搜尋體驗。
 * [Bot 服務][docs-botservice] 提供工具，可以建置、測試、部署及管理智慧型聊天機器人。

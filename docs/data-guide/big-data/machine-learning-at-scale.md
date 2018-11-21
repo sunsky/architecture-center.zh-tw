@@ -3,12 +3,12 @@ title: 大規模機器學習
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4e584da18893ac7405fa00863fe034e45b2e3903
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
+ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/11/2018
-ms.locfileid: "34062811"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51577135"
 ---
 # <a name="machine-learning-at-scale"></a>大規模機器學習
 
@@ -59,7 +59,7 @@ ms.locfileid: "34062811"
 - 使用認知工具組所提供的預先定型類神經網路模型。
 - 內嵌 iOS 應用程式的核心 ML 所提供的序列化模型。 
 
-如果預先建置的模型不適用於您的資料或案例，您可以使用 Azure 中的選項，包括 Azure Machine Learning、使用 Spark MLlib 和 MMLSpark 的 HDInsight、認知工具組，以及 SQL 機器學習服務。 如果您決定使用自訂模型，您必須設計包含模型訓練和操作化的管線。 
+如果預先建置的模型不適用於您的資料或案例，您可以使用 Azure 中的選項，包括 Azure Machine Learning、使用 Spark MLlib 和 MMLSpark 的 HDInsight、Azure Databricks、Cognitive Toolkit，以及 SQL 機器學習服務。 如果您決定使用自訂模型，您必須設計包含模型訓練和操作化的管線。 
 
 ![Azure 中的模型選項](./images/machine-learning-model-training-and-deployment.png)
 

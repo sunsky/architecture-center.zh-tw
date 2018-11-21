@@ -3,12 +3,12 @@ title: Azure 上適用於預約旅館的交談聊天機器人
 description: 使用 Azure Bot 服務建置適用於商務應用程式的對話聊天機器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 826aa36da5f30a871abd90fd8ab2b202ffdf93f0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819634"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610765"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 
@@ -20,7 +20,7 @@ ms.locfileid: "48819634"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 檢視餐廳外帶菜單及訂購餐點
 * 檢查旅館空房狀況及預約房間
@@ -96,7 +96,7 @@ ms.locfileid: "48819634"
 
 ### <a name="deploy-infrastructure-components"></a>部署基礎結構元件
 
-若要使用 Azure Resource Manager 範本部署基礎結構元件，請執行下列步驟。
+若要使用 Resource Manager 範本部署基礎結構元件，請執行下列步驟。
 
 1. 按一下 [部署至 Azure] 按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待 Azure 入口網站中的範本部署開啟，然後完成下列步驟：
@@ -149,7 +149,8 @@ az bot create \
 
 ## <a name="related-resources"></a>相關資源
 
-如需關於利用 Azure Bot 服務的一套引導式教學課程，請參閱文件的[教學課程節點][botservice-docs]。
+如需 Azure Bot 服務的一套引導式教學課程，請參閱文件的[教學課程區段][botservice-docs]。
+
 
 <!-- links -->
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview

@@ -3,22 +3,22 @@ title: Azure 上的 Web 應用程式監視
 description: 監視 Azure App Service 中裝載的 Web 應用程式。
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
-ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
+ms.openlocfilehash: ba008035c37d1d4e2d2f823463344e4941c0b4c4
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49313211"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610748"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Azure 上的 Web 應用程式監視
 
-Azure 上的平台即服務 (PaaS) 供應項目可為您管理計算資源，並且在某些方面改變您監視部署的方式。 Azure 包含多項監視服務，各自會執行特定的角色。 這些服務可共同提供一套全面性解決方案，以便收集、分析來自您的應用程式和所用 Azure 資源的遙測，並採取行動。
+Azure 平台即服務 (PaaS) 供應項目可為您管理計算資源，並且改變您監視部署的方式。 Azure 包含多項監視服務，各自會執行特定的角色。 這些服務可共同提供一套全面性解決方案，以便收集、分析來自您的應用程式和所用 Azure 資源的遙測，並採取行動。
 
 此案例說明您可以使用的監視服務，以及描述可搭配多個資料來源使用的資料流程模型。 說到監視，許多工具和服務都會使用 Azure 部署。 在此案例中，我們明確地選擇立即可用的服務，因為這些服務取用方便。 本文稍後會討論其他監視選項。
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 - 檢測用於監視遙測的 Web 應用程式。
 - 針對 Azure 上部署的應用程式收集前端和後端遙測。
@@ -48,7 +48,7 @@ Azure 上的平台即服務 (PaaS) 供應項目可為您管理計算資源，並
 
 ## <a name="considerations"></a>考量
 
-最佳做法是在開發時使用 [Application Insights SDK][Application Insights SDKs] 將 Application Insights 新增至您的程式碼，以及針對每個應用程式加以自訂。 這些開放原始碼 SDK 可供大部分的應用程式架構使用。 若要擴充及控制您所收集的資料，請將用於測試和生產部署的兩個 SDK 併入您的開發程序中。 主要需求是讓應用程式能夠直接或間接檢視使用網際網路對應位址裝載的 Application Insights 擷取端點。 然後，您可以新增遙測，或擴充現有的遙測集合。
+建議做法是在開發期間使用 [Application Insights SDK][Application Insights SDKs] 將 Application Insights 新增至您的程式碼，以及針對每個應用程式加以自訂。 這些開放原始碼 SDK 可供大部分的應用程式架構使用。 若要擴充及控制您所收集的資料，請將用於測試和生產部署的兩個 SDK 併入您的開發程序中。 主要需求是讓應用程式能夠直接或間接檢視使用網際網路對應位址裝載的 Application Insights 擷取端點。 然後，您可以新增遙測，或擴充現有的遙測集合。
 
 執行階段監視是另一個簡單的開始使用方法。 所收集的遙測必須透過組態檔控制。 例如，您可以包含可啟用 [Application Insights 狀態監視器][Application Insights Status Monitor] 等工具的執行階段方法，以將 SDK 部署到正確的資料夾，並新增正確的組態以開始監視。
 
@@ -60,7 +60,7 @@ Azure 監視器、Application Insights 及 Log Analytics 全都會傳送[警示]
 
 ### <a name="alternatives"></a>替代項目
 
-本文說明具有熱門功能且方便使用的監視選項，但您有許多選擇，包括用來建立自己的記錄機制的選項。 最佳做法是當您在解決方案中建置階層時，新增監視服務。 以下是一些可能的擴充功能和替代項目：
+本文說明具有熱門功能且方便使用的監視選項，但您有許多選擇，包括用來建立自己的記錄機制的選項。 建議做法是當您在解決方案中建置階層時，新增監視服務。 以下是一些可能的擴充功能和替代項目：
 
 - 使用[適用於 Grafana 的 Azure 監視器資料來源][Azure Monitor Data Source For Grafana]，在 Grafana 中合併 Azure 監視器和 Application Insights 計量。
 - [Data Dog][data-dog] 可當作 Azure 監視器的連接器
@@ -72,7 +72,7 @@ Azure 監視器、Application Insights 及 Log Analytics 全都會傳送[警示]
 
 此案例大部分著重於用來監視的 PaaS 解決方案，因為它們方便為您處理可用性和延展性，而且受服務等級協定 (SLA) 支援。 例如，App Services 會針對其可用性提供保證的 [SLA][SLA]。
 
-Application Insights 會[限制][app-insights-limits]每秒可處理的要求數目。 如果您超過要求限制，則可能遇到訊息節流。 若要避免這個問題，請實作[篩選][message-filtering]或[取樣][message-sampling]，以降低資料速率
+Application Insights 會[限制][app-insights-limits]每秒可處理的要求數目。 如果您超過要求限制，則可能遇到訊息節流。 若要避免節流，請實作[篩選][message-filtering]或[取樣][message-sampling]，以降低資料速率
 
 不過，您所執行的應用程式的高可用性考量是開發人員的責任。 比方說，如需縮放的相關資訊，請參閱基本 Web 應用程式參考架構中的[延展性考量](#scalability-considerations)一節。 部署應用程式之後，您可以使用 Application Insights 設定測試來[監視其可用性][monitor its availability]。
 
@@ -97,7 +97,7 @@ Application Insights 會[限制][app-insights-limits]每秒可處理的要求數
 
 在偵測期間以及在您發佈應用程式之後，來自 Application Insights 的遙測會傳送至 Azure 入口網站。 基於測試目的，以及為了避免產生費用，檢測的遙測資料數量有限。 若要新增更多指標，您可以提出遙測限制。 如需更精細的控制，請參閱[在 Application Insights 中取樣][Sampling in Application Insights]。
 
-在部署之後，您可以觀看效能指標的[即時計量資料流][Live Metrics Stream]。 此資料不會儲存起來 (您正在檢視即時計量)，但是可以收集遙測，以便稍後分析。 即時資料流資料免費。
+在部署之後，您可以觀看效能指標的[即時計量資料流][Live Metrics Stream]。 此資料不會儲存起來 (&mdash;您正在檢視即時計量&mdash;)，但是可以收集遙測，以便稍後分析。 即時資料流資料免費。
 
 Log Analytics 會依擷取至服務的資料 GB 量來計費。 每月擷取至 Azure Log Analytics 服務的前 5 GB 資料為免費提供，而且資料會在 Log Analytics 工作區中免費保留 31 天。 
 

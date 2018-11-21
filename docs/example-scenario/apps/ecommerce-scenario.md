@@ -3,12 +3,12 @@ title: Azure 上的電子商務前端
 description: 在 Azure 上裝載電子商務網站。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819086"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610816"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
 
@@ -18,7 +18,7 @@ ms.locfileid: "48819086"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 建置應用程式，該應用程式需要彈性的規模以便處理不同時間爆量的使用者。
 * 建置應用程式，該應用程式的設計目的是在世界各地不同 Azure 區域中以高可用性運作。
@@ -45,7 +45,7 @@ ms.locfileid: "48819086"
 
 * [Azure CDN][docs-cdn] 從使用者附近的位置傳遞靜態、快取的內容，以減少延遲。
 * [Azure 流量管理員][docs-traffic-manager]會為不同 Azure 區域的服務端點，控制使用者流量的散佈情況。
-* [App Services - Web 應用程式][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
+* [應用程式服務 - Web Apps][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
 * [Azure Active Directory - B2C][docs-b2c] 是一項身分識別管理服務，可以自訂和控制客戶在應用程式中如何註冊、登入及管理其設定檔。
 * [儲存體佇列][docs-storage-queues]會儲存可以由應用程式存取的大量佇列訊息。
 * [Functions][docs-functions] 是無伺服器計算選項，可以讓應用程式隨選執行，不需要管理基礎結構。

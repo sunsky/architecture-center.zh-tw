@@ -3,16 +3,14 @@ title: 適用於高可用性的多重區域多層式架構 (N-tier) 應用程式
 description: 如何在 Azure 上的多個區域中部署 VM 以獲得高可用性和復原能力。
 author: MikeWasson
 ms.date: 07/19/2018
-pnp.series.title: Windows VM workloads
-pnp.series.prev: n-tier
-ms.openlocfilehash: 34dd47175e7fd0002cba577ad6c1034968ed4098
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 3b1c419182322b2fa0b555230465f41562e8e6c1
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819120"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527621"
 ---
-# <a name="multi-region-n-tier-application-for-high-availability"></a>適用於高可用性的多重區域多層式架構 (N-tier) 應用程式
+# <a name="n-tier-application-in-multiple-azure-regions-for-high-availability"></a>多個 Azure 區域中的多層式架構 (N-Tier) 應用程式以獲得高可用性
 
 此參考架構顯示一組經過證實的作法，其可在多個 Azure 區域中執行多層式架構應用程式，以實現可用性和強固的災害復原基礎結構。 
 

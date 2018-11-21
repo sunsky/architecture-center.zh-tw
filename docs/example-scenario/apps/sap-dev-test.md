@@ -3,12 +3,12 @@ title: Azure 上 SAP 工作負載的開發/測試環境
 description: 為 SAP 工作負載建置開發/測試環境。
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876784"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610799"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上 SAP 工作負載的開發/測試環境
 
@@ -22,7 +22,7 @@ ms.locfileid: "48876784"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-請針對下列使用案例考慮此案例：
+其他相關的使用案例包括：
 
 * 非關鍵性的 SAP 非產能工作負載 (沙箱、開發、測試、品質保證)
 * 非關鍵性的 SAP 商務工作負載
@@ -70,7 +70,7 @@ ms.locfileid: "48876784"
 
 我們根據您預期接收的流量，提供了四個範例成本設定檔：
 
-|大小|SAP|VM 類型|儲存體|Azure 定價計算機|
+|大小|SAP|VM 類型|儲存體|Azure 價格計算機|
 |----|----|-------|-------|---------------|
 |小型|8000|D8s_v3|2xP20、1xP10|[小型](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)|
 |中|16000|D16s_v3|3xP20、1xP10|[中型](https://azure.com/e/465bd07047d148baab032b2f461550cd)|

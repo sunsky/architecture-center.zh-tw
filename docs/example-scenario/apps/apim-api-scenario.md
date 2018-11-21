@@ -3,12 +3,12 @@ title: 將舊版 Web 應用程式移轉至 Azure 上的 API 型架構
 description: 使用 Azure API 管理讓舊版 Web 應用程式變成現代化。
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: 1aa7ea6dc895146e13677dd9867fb2530f0a8f04
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876780"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610578"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>將舊版 Web 應用程式移轉至 Azure 上的 API 型架構
 
@@ -20,13 +20,13 @@ ms.locfileid: "48876780"
 * 內部開發小組會撰寫新的商務功能，該功能會透過新的 HTTP API 公開。
 * 合約開發小組會建置新的瀏覽器型 UI，並將其裝載在 Azure 中。
 
-新的應用程式功能會分階段提供。 它們會「逐漸取代」現今支援其電子商務的現有瀏覽器型用戶端-伺服器 UI 功能 (裝載於內部部署環境)。
+新的應用程式功能會分階段提供。 這些功能會逐漸取代現今支援其電子商務的現有瀏覽器型用戶端-伺服器 UI 功能 (裝載於內部部署環境)。
 
 管理小組不想進行多餘的現代化。 他們也想要控管範圍與成本。 為了達到目的，他們決定要保留其現有的 SOAP HTTP 服務。 他們也想要將現有 UI 的變更降至最低。 [Azure API 管理 (APIM)][apim] 可用於解決許多專案的需求和限制。
 
 ## <a name="architecture"></a>架構
 
-![架構圖][architecture]
+![架構圖表][architecture]
 
 新的 UI 會在 Azure 上當作平台即服務 (PaaS) 應用程式裝載，並且會相依於現有和新的 HTTP API。 這些 API 會隨附一組設計更完善的介面，以達到更佳的效能、更容易整合，以及具備未來擴充性。
 
@@ -81,11 +81,12 @@ API 管理以四種階層提供：開發人員、基本、標準和進階。 您
 > [!NOTE]
 > 開發人員階層可用於 API 管理功能的評估。 開發人員階層不得用於生產環境。
 
-若要檢視預估的成本並自訂部署需求，您可以在 [Azue 定價計算機][pricing-calculator]中修改縮放單位和 App Service 執行個體的數目。
+若要檢視預估的成本並自訂部署需求，您可以在 [Azure 定價計算機][pricing-calculator]中修改縮放單位和 App Service 執行個體的數目。
 
 ## <a name="related-resources"></a>相關資源
 
-請參閱廣泛的 Azure API 管理[文件和參考文章][apim]。
+請檢閱廣泛的 Azure API 管理[文件和參考文章][apim]。
+
 
 <!-- links -->
 [architecture]: ./media/architecture-apim-api-scenario.png

@@ -2,19 +2,15 @@
 title: 可調整規模的 Web 應用程式
 description: 改善 Microsoft Azure 中執行之 Web 應用程式的延展性。
 author: MikeWasson
-pnp.series.title: Azure App Service
-pnp.series.prev: basic-web-app
-pnp.series.next: multi-region-web-app
 ms.date: 10/25/2018
-cardTitle: Improve scalability
-ms.openlocfilehash: 208413a49fe4a3f9ca308fa1a939ba426e7fa636
-ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
+ms.openlocfilehash: dd1fa30b6ac8d978ad0151c8753951d848d60664
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50136687"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527604"
 ---
-# <a name="improve-scalability-in-a-web-application"></a>改善 Web 應用程式的延展性
+# <a name="improve-scalability-in-an-azure-web-application"></a>改善 Azure Web 應用程式的延展性
 
 此參考架構顯示經過證實的改善 Azure App Service Web 應用程式延展性和效能的作法。
 

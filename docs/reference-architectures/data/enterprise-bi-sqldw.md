@@ -3,14 +3,14 @@ title: 具 SQL 資料倉儲的 Enterprise BI
 description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業見解
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263808"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527706"
 ---
-# <a name="enterprise-bi-with-sql-data-warehouse"></a>具 SQL 資料倉儲的 Enterprise BI
+# <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Azure 中具 SQL 資料倉儲的 Enterprise BI
 
 此參考架構會實作 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。 
 
@@ -199,7 +199,7 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 
 ## <a name="next-steps"></a>後續步驟
 
-- 使用 Azure Data Factory 將 ELT 管線自動化。 請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf=ra]。
+- 使用 Azure Data Factory 將 ELT 管線自動化。 請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf-ra]。
 
 <!-- links -->
 

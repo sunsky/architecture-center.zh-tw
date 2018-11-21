@@ -3,12 +3,12 @@ title: 適用於銷售和行銷的資料倉儲和分析
 description: 合併多個來源的資料，並最佳化資料分析。
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: f9ca9785b65f18098a91aedc1f3157f49456a6e1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: e4c0a37f61f3edfb1f29d26df546f02d31fd40f7
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818644"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610697"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>適用於銷售和行銷的資料倉儲和分析
 
@@ -24,7 +24,7 @@ ms.locfileid: "48818644"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-您也可以使用此方法來完成下列各項：
+這個方法也可用來：
 
 * 建立資料倉儲，以成為您資料的單一真相來源。
 * 整合關聯式資料來源與其他非結構化資料集。

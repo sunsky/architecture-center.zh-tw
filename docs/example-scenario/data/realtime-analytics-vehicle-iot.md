@@ -1,14 +1,14 @@
 ---
 title: 擷取和處理即時汽車 IoT 資料
 description: 使用 IoT 擷取和處理即時車輛資料。
-author: meeral
+author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 663332185f64987215384a1d4af4b7ed9b50847c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876880"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610731"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>擷取和處理即時汽車 IoT 資料
 
@@ -23,7 +23,7 @@ ms.locfileid: "48876880"
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-在建立車載資通訊擷取和處理系統時，請針對下列使用案例及上述目標考量此案例：
+其他相關的使用案例包括：
 
 * 車輛維護提醒和警示。
 * 車輛乘客的行動定位服務 (也就是 SOS)。

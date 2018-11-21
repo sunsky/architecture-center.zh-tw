@@ -3,12 +3,12 @@ title: 使用 Citrix 的 Linux 虛擬桌面
 description: 在 Azure 上使用 Citrix 建置適用於 Linux 桌面的 VDI 環境。
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.openlocfilehash: 374d59f7a528bd89870baa601a49a30ea00a08f1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 383642b05926c5a09abf0b2f95fef10539d95aec
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819137"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610646"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>使用 Citrix 的 Linux 虛擬桌面
 
@@ -96,7 +96,7 @@ ms.locfileid: "48819137"
 
 ## <a name="pricing"></a>價格
 
-- Citrix XenDestop 授權不會包含在 Azure 服務費用中。
+- Citrix XenDesktop 授權不會包含在 Azure 服務費用中。
 - Citrix NetScaler 授權包含在預付型方案中。
 - 使用保留的執行個體，可大幅降低解決方案的計算成本。
 - 不包含 ExpressRoute 費用。
