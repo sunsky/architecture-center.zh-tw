@@ -4,12 +4,12 @@ description: 如何在 Azure 中建置復原應用程式，如高可用性和災
 author: MikeWasson
 ms.date: 07/29/2018
 ms.custom: resiliency
-ms.openlocfilehash: b925748e1d3d4a8d490bbd5d7cb76f3961ffcfb2
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 73600650dc96fe85ad59e286079a3523ef25d055
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916595"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305956"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>為 Azure 設計復原應用程式
 
@@ -174,7 +174,9 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 **可用性設定組**。 若要防範局部硬體失敗 (例如，磁碟或網路交換器失敗)，請在可用性設定組中部署兩個以上的 VM。 可用性設定組包含兩個以上的「容錯網域」，這些網域會共用電力來源和網路交換器。 可用性設定組中的 VM 會分散於這些容錯網域中，因此如果某個硬體失敗影響其中一個容錯網域，網路流量仍可路由傳送至其他容錯網域中的 VM。 如需可用性設定組的詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性](/azure/virtual-machines/windows/manage-availability)。
 
-**可用性區域**。  可用性區域實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。 
+**可用性區域**。  可用性區域實際上是 Azure 地區內的個別區域。 每個可用性區域各有不同的電力來源、網路和冷卻系統。 跨可用性區域部署 VM 可協助應用程式防範全資料中心的失敗。
+
+**Azure Site Recovery**。  將 Azure 虛擬機複寫到另一個 Azure 區域，以實現商務持續性和災害復原。 您可以進行定期 DR 鑽研，以確保符合合規性需求。 會以指定的設定將 VM 複寫到選取的區域，以便您可以在來源區域的中斷事件中復原應用程式。 如需詳細資訊，請參閱 [使用 ASR 複寫 Azure VM][site-recovery]。
 
 **配對的區域**。 若要協助應用程式防範區域性中斷，您可以將應用程式部署至多個區域，並使用 Azure 流量管理員將網際網路流量分散到不同區域。 每個 Azure 區域都會與另一個區域配對。 這些區域集合在一起就構成了[區域性配對](/azure/best-practices-availability-paired-regions)。 區域性配對會位於相同的地理位置內 (巴西南部除外)，以符合資料常駐地之稅務和執法管轄區的要求。
 
@@ -202,9 +204,11 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 * 將 Azure App Service 應用程式相應放大至多個執行個體。 App Service 會自動平衡執行個體之間的負載。 請參閱[基本 Web 應用程式][ra-basic-web]。
 * 使用 [Azure 流量管理員][tm]來散發一組端點之間的流量。
 
-**複寫資料**。 複寫資料是處理資料存放區中非暫時性失敗的一般策略。 許多儲存體技術都會提供內建的複寫，包括 Azure SQL Database、Cosmos DB 和 Apache Cassandra。 請務必考慮讀取和寫入的路徑。 根據儲存體技術，您可能有多個可寫入複本，或單一可寫入複本及多個唯讀複本。 
+**複寫資料**。 複寫資料是處理資料存放區中非暫時性失敗的一般策略。 許多儲存體技術都會提供內建的複寫，包括 Azure SQL Database、Cosmos DB 和 Apache Cassandra。 請務必考慮讀取和寫入的路徑。 根據儲存體技術，您可能有多個可寫入複本，或單一可寫入複本及多個唯讀複本。
 
-若要將可用性最大化，可將複本放在多個區域。 不過，這會在複寫資料時增加延遲。 一般而言，跨區域複寫會以非同步方式進行，這表示複本失敗時，會有最終一致性模型和資料遺失。 
+若要將可用性最大化，可將複本放在多個區域。 不過，這會在複寫資料時增加延遲。 一般而言，跨區域複寫會以非同步方式進行，這表示複本失敗時，會有最終一致性模型和資料遺失。
+
+您可以使用 [Azure Site Recovery][site-recovery]，將 Azure 虛擬機器從一個區域複寫到另一個區域。 Site Recovery 持續將資料複寫至目標區域。 當您的主要站台發生中斷時，您會容錯移轉到次要位置
 
 **正常降級**。 如果服務失敗且沒有容錯移轉路徑，應用程式就可以正常降級，但仍會提供可接受的使用者體驗。 例如︰
 
@@ -355,3 +359,4 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/

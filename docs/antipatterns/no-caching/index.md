@@ -3,12 +3,12 @@ title: 沒有快取的反模式
 description: 重複擷取相同資料可能會降低效能和延展性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428938"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295577"
 ---
 # <a name="no-caching-antipattern"></a>沒有快取的反模式
 
@@ -59,7 +59,7 @@ public class PersonRepository : IPersonRepository
 - 進行讀取時，應用程式會嘗試從快取讀取資料。 如果資料不在快取中，則應用程式會從資料來源擷取資料，並將它新增至快取。
 - 進行寫入時，應用程式會直接將變更寫入資料來源，並從快取中移除舊的值。 下一次需要這些資料時，資料會被擷取並新增至快取中。
 
-此方法適用於經常變更的資料。 以下是上一個範例的更新，改為使用 [另行快取] 模式。  
+此方法適用於經常變更的資料。 以下是上一個範例的更新，改為使用 [另行快取][cache-aside-pattern] 模式。  
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository

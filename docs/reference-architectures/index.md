@@ -4,18 +4,18 @@ description: Azure 上一般工作負載的參考架構、藍圖和精準實作�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 43c780876e903f7d4f86d3877fb961b0dc0ba60b
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.openlocfilehash: e7bbd797ba4b8bfc193b146f080cedf299dd47b4
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527587"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295509"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
 我們參考架構是依情節排列，將相關架構群組在一起。 每個架構都包含建議的做法，以及延展性、可用性、管理性和安全性的考量。 大部分還包含可部署的解決方案。
 
-跳至：[AI](#ai-and-machine-learning) | [巨量資料](#big-data-solutions) | [無伺服器](##serverless-applications) | [虛擬網路](#virtual-networks) | [VM 工作負載](#vm-workloads) | [SAP](#sap) | [Web 應用程式](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+跳至：[AI](#ai-and-machine-learning) | [巨量資料](#big-data-solutions) | [無伺服器](#serverless-applications) | [虛擬網路](#virtual-networks) | [VM 工作負載](#vm-workloads) | [SAP](#sap) | [Web 應用程式](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 ## <a name="ai-and-machine-learning"></a>AI 和機器學習
 
@@ -98,6 +98,26 @@ ms.locfileid: "51527587"
                     <div class="cardText">
                         <h3>具 Azure Data Factory 的自動化 Enterprise BI</h3>
                         <p>將 ELT 管線自動化以從內部部署資料庫執行增量載入。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>串流處理搭配 Azure Databricks</h3>
+                        <p>將兩個串流的記錄相互關聯擴充結果，並計算移動平均的資料流處理管線。</p>
                     </div>
                 </div>
             </div>
