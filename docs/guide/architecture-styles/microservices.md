@@ -2,17 +2,17 @@
 title: 微服務架構樣式
 description: 說明 Azure 上微服務架構的優點、挑戰和最佳做法
 author: MikeWasson
-ms.date: 08/30/2018
-ms.openlocfilehash: fb23ac3e408f3a202d925a1bf684bc30d423f218
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 11/13/2018
+ms.openlocfilehash: 4e5d50f829323829c953977257e690354566ebf6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325438"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295526"
 ---
 # <a name="microservices-architecture-style"></a>微服務架構樣式
 
-微服務架構是由一組小型的自發服務所組成。 每個服務各自獨立，並且應該實作單一的商務功能。 如需在 Azure 上建置微服務架構的詳細指引，請參閱[在 Azure 上設計、建置及操作微服務](../../microservices/index.md)。
+微服務架構是由一組小型的自發服務所組成。 每個服務各自獨立，並且應該實作單一的商務功能。 
 
 ![](./images/microservices-logical.svg)
  
@@ -111,39 +111,9 @@ ms.locfileid: "43325438"
 
 - 隔離失敗。 請使用復原策略來避免某個服務的失敗產生連鎖反應。 請參閱[恢復模式][resiliency-patterns]和[設計復原應用程式][resiliency-overview]。
 
-## <a name="microservices-using-azure-container-service"></a>使用 Azure Container Service 的微服務 
+## <a name="next-steps"></a>後續步驟
 
-您可以使用 [Azure Container Service](/azure/container-service/) 來設定和佈建 Docker 叢集。 Azure Container Service 支援數種熱門的容器 Orchestrator，包括 Kubernetes、DC/OS 和 Docker Swarm。
-
-![](./images/microservices-acs.png)
- 
-**公用節點**。 這些節點可透過對外公開的負載平衡器來聯繫到。 API 閘道裝載在這些節點上。
-
-**後端節點**。 這些節點會執行用戶端透過 API 閘道所連線的服務。 這些節點不會直接收到網際網路流量。 後端節點可能會包含不只一個的 VM 集區，其各有不同的硬體設定檔。 例如，您可以建立不同的集區來應付一般的計算工作負載、高 CPU 的工作負載和高記憶體的工作負載。 
-
-**管理 VM**。 這些 VM 會執行容器 Orchestrator 的主要節點。 
-
-**網路**。 公用節點、後端節點和管理 VM 會位於相同虛擬網路 (VNet) 內的不同子網路。 
-
-**負載平衡器**。  對外公開的負載平衡器位於公用節點前面。 它會將網際網路要求散發給公用節點。 另一個負載平衡器會位於管理 VM，以使用 NAT 規則允許安全殼層 (ssh) 流量進入管理 VM。
-
-為了保有可靠性和延展性，每個服務都會跨多個 VM 來複寫。 不過，由於這些服務相當輕量 (相較於單體式應用程式)，因此通常會將多個服務封裝到單一 VM 中。 密度越高，資源使用率就越好。 如果特定服務不會使用大量資源，您就不需要專門準備一整個 VM 來執行該服務。
-
-下圖顯示執行了四個不同服務的三個節點 (以不同形狀表示)。 請注意每個服務都有至少兩個執行個體。 
- 
-![](./images/microservices-node-density.png)
-
-## <a name="microservices-using-azure-service-fabric"></a>使用 Azure Service Fabric 的微服務
-
-下圖顯示使用 [Azure Service Fabric](/azure/service-fabric/) 的微服務架構。
-
-![](./images/service-fabric.png)
-
-Service Fabric 叢集會部署到一個或多個虛擬機器擴展集。 您可以在叢集中放入多個 VM 擴展集，以便混用 VM 類型。 API 閘道會位於 Service Fabric 叢集前面，並有外部負載平衡器可接收用戶端要求。
-
-Service Fabric 執行階段會執行叢集管理，包括服務放置、節點容錯移轉以及健康情況監視。 執行階段會部署在叢集節點本身之中。 沒有不同組的叢集管理 VM。
-
-服務會使用內建於 Service Fabric 的反向 Proxy 彼此通訊。 Service Fabric 會提供可解析具名服務端點的探索服務。
+如需在 Azure 上建置微服務架構的詳細指引，請參閱[在 Azure 上設計、建置及操作微服務](../../microservices/index.md)。
 
 
 <!-- links -->

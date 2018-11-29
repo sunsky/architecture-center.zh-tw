@@ -3,16 +3,18 @@ title: 具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 description: 使用 Azure Data Factory 將 Azure 上的 ELT 工作流程自動化
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 39089d80047b584ac590d285097020212ab72911
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263724"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295614"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 
-此參考架構示範如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線中執行累加式載入。 該架構會使用 Azure Data Factory 將 ELT 管線自動化。 管線會以累加方式，將最新的 OLTP 資料從內部部署 SQL Server 資料庫載入 SQL 資料倉儲中。 交易資料會轉換成表格式模型以供分析。 
+此參考架構示範如何在 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線中執行累加式載入。 該架構會使用 Azure Data Factory 將 ELT 管線自動化。 管線會以累加方式，將最新的 OLTP 資料從內部部署 SQL Server 資料庫載入 SQL 資料倉儲中。 交易資料會轉換成表格式模型以供分析。
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 此架構的參考實作可在 [GitHub][github] 上取得。
 
