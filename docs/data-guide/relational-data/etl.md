@@ -3,12 +3,12 @@ title: 擷取、轉換和載入 (ETL)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b10b0cb3cbc98ff9fadda6915b01b6f6564c4d00
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298636"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295543"
 ---
 # <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
 
@@ -76,6 +76,13 @@ ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支�
 ## <a name="technology-choices"></a>技術選擇
 
 - [線上交易處理 (OLTP) 資料存放區](./online-transaction-processing.md#oltp-in-azure)
-- [線上分析處理 (OLTP) 資料存放區](./online-analytical-processing.md#olap-in-azure)
+- [線上分析處理 (OLAP) 資料存放區](./online-analytical-processing.md#olap-in-azure)
 - [資料倉儲](./data-warehousing.md)
 - [管線協調流程](../technology-choices/pipeline-orchestration-data-movement.md)
+
+## <a name="next-steps"></a>後續步驟
+
+下列參考架構顯示 Azure 上的端對端 ELT 管線：
+
+- [Azure 中具 SQL 資料倉儲的 Enterprise BI](../../reference-architectures/data/enterprise-bi-sqldw.md)
+- [具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI](../../reference-architectures/data/enterprise-bi-adf.md)

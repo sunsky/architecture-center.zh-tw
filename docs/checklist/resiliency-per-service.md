@@ -4,12 +4,12 @@ description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916697"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305922"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
@@ -139,6 +139,8 @@ ms.locfileid: "50916697"
 
 **將每個應用程式層放在不同的可用性設定組中。** 在多層式架構應用程式中，請勿將不同層的 VM 放在相同的可用性設定組中。 可用性設定組中的 VM 會置於各個容錯網域 (FD) 與更新網域 (UD) 中。 不過，若要取得 FD 和 UD 的備援優勢，可用性設定組中的每個 VM 必須能夠處理相同的用戶端要求。
 
+**使用 Azure Site Recovery 複寫 VM。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的復原點目標 (RPO)。 您可以依需求執行不限次數的災害復原演練，而不會影響生產應用程式或進行中的複寫。 如需詳細資訊，請參閱[執行 Azure 的災害復原演練][site-recovery-test]。
+
 **根據效能需求選擇正確的 VM 大小。** 將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和 IOPS 測量您的實際工作負載效能，並視需要調整大小。 這有助於確保應用程式如預期般在雲端環境中運作。 此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。
 
 **對 VHD 使用受控磁碟。** [受控磁碟][managed-disks]可為可用性設定組中的 VM 提供更高的可靠性，因為磁碟彼此充分隔離，以避免單一失敗點。 此外，受控磁碟不受儲存體帳戶中建立之 VHD 的 IOPS 限制所約束。 如需詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性][vm-manage-availability]。
@@ -166,6 +168,8 @@ ms.locfileid: "50916697"
 [diagnostics-logs]: /azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs/
 [managed-disks]: /azure/storage/storage-managed-disks-overview
 [search-optimization]: /azure/search/search-performance-optimization/
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [sql-backup]: /azure/sql-database/sql-database-automated-backups/
 [sql-restore]: /azure/sql-database/sql-database-recovery-using-backups/
 [vm-manage-availability]: /azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set

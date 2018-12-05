@@ -3,12 +3,12 @@ title: 批次處理
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298656"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550473"
 ---
 # <a name="batch-processing"></a>批次處理
 
@@ -40,7 +40,7 @@ ms.locfileid: "30298656"
 
 - **分析資料存放區。** 許多巨量資料解決方案皆設計為準備資料以供分析，然後以可使用分析工具來查詢的結構化格式提供處理過的資料。 
 
-- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供深入判讀資料的能力。 
+- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供對資料的深入見解。 
 
 - **協調流程**。 使用批次處理時，通常需要某些協調流程，以將資料移轉或複製到您的資料儲存體、批次處理、分析資料存放區和報告層中。
 
@@ -75,7 +75,7 @@ ms.locfileid: "30298656"
 
 ### <a name="analytics-and-reporting"></a>分析和報告
 
-- **Azure Analysis Services**。 許多巨量資料解決方案皆模擬傳統企業商業智慧架構，而納入了可供報表、儀表板和互動式「切割與細分」分析作為基礎的集中式線上分析處理 (OLAP) 資料模型 (通常稱為 Cube)。 Azure Analysis Services 可支援您建立多維度和表格式模型，以符合此需求。
+- **Azure Analysis Services**。 許多巨量資料解決方案皆模擬傳統企業商業智慧架構，而納入了可供報表、儀表板和互動式「切割與細分」分析作為基礎的集中式線上分析處理 (OLAP) 資料模型 (通常稱為 Cube)。 Azure Analysis Services 可支援您建立表格式模型，以符合此需求。
 - **Power BI**。 Power BI 可讓資料分析師根據 OLAP 模型中的資料模型建立互動式資料視覺效果，或直接從分析資料存放區建立。
 - **Microsoft Excel**。 Microsoft Excel 是全世界最廣受使用的軟體應用程式之一，可提供豐富的資料分析和視覺效果功能。 資料分析師可使用 Excel 從分析資料存放區建置文件資料模型，或將 OLAP 資料模型中的資料擷取到互動式樞紐分析表和圖表中。
 

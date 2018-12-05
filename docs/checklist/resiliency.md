@@ -4,12 +4,12 @@ description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819018"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305939"
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -43,6 +43,8 @@ ms.locfileid: "48819018"
 
 **使用每個應用程式層的可用性設定組。** 將執行個體放入[可用性設定組][availability-sets]中，可提供較高的 [SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
 
+**使用 Azure Site Recovery 複寫 VM。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的復原點目標 (RPO)。
+
 **請考慮在多個區域中部署您的應用程式。** 如果您的應用程式已部署到單一區域，在少數情況下，整個區域會變得無法使用，您的應用程式也將無法使用。 您應用程式的 SLA 條款可能無法接受這種情況。 若是如此，請考慮在多個區域中部署您的應用程式及其服務。 多區域部署可以使用主動-主動模式 (將要求分散於多個作用中執行個體) 或主動-被動模式 (保留「暖的」執行個體，以防主要執行個體失敗)。 我們建議您跨越區域配對來部署應用程式服務的多個執行個體。 如需詳細資訊，請參閱[商務持續性和災害復原 (BCDR)：Azure 配對區域](/azure/best-practices-availability-paired-regions)。
 
 **使用 Azure 流量管理員將應用程式的流量傳送到不同的區域。**  [Azure 流量管理員][traffic-manager] 會在 DNS 層級執行負載平衡，並根據您指定的[流量傳送][traffic-manager-routing]方法和您的應用程式端點的健康情況，將流量傳送到不同的區域。 若未使用流量管理員，您會受限於您部署的單一區域，這會限制規模，增加某些使用者的延遲時間，並且在整個區域服務中斷的情況下造成應用程式停機。
@@ -64,7 +66,7 @@ ms.locfileid: "48819018"
 
 ## <a name="data-management"></a>資料管理
 
-**了解您的應用程式資料來源的複寫方法。** 應用程式資料會儲存於不同的資料來源，而且有不同的可用性需求。 評估 Azure 中每種資料儲存體的複寫方法，包括 [Azure 儲存體複寫](/azure/storage/storage-redundancy/)和 [SQL Database 作用中異地複寫](/azure/sql-database/sql-database-geo-replication-overview/)，確保滿足您應用程式的資料需求。
+**了解您的應用程式資料來源的複寫方法。** 應用程式資料會儲存於不同的資料來源，而且有不同的可用性需求。 評估 Azure 中每種資料儲存體的複寫方法，包括 [Azure 儲存體複寫](/azure/storage/storage-redundancy/)和 [SQL Database 作用中異地複寫](/azure/sql-database/sql-database-geo-replication-overview/)，確保滿足您應用程式的資料需求。 如果您使用 [Site Recovery][site-recovery] 來複寫 Azure VM，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 
 
 **確保所有單一使用者帳戶均無法同時存取生產和備份資料。** 如果有單一使用者帳戶同時具有寫入生產與備份來源的權限，您的資料備份就會受到危害。 惡意使用者可能會刻意刪除您所有的資料，而一般使用者可能會不小心刪除它。 將您的應用程式設計成限制每個使用者帳戶的權限，只讓需要寫入權限的使用者具有寫入權限，而且只能寫入生產或備份來源 (但非兩者)。
 
@@ -87,7 +89,7 @@ ms.locfileid: "48819018"
 
 ## <a name="testing"></a>測試
 
-**對您的應用程式執行容錯移轉和容錯回復測試。** 如果您尚未完整測試容錯移轉和容錯回復，您就無法確定應用程式中的相依服務會在災害復原期間以同步處理方式進行備份。 確保您應用程式的相依服務以正確的順序容錯移轉及容錯回復。
+**對您的應用程式執行容錯移轉和容錯回復測試。** 如果您尚未完整測試容錯移轉和容錯回復，您就無法確定應用程式中的相依服務會在災害復原期間以同步處理方式進行備份。 確保您應用程式的相依服務以正確的順序容錯移轉及容錯回復。 如果您使用 [Azure Site Recovery][site-recovery] 來複寫 VM，請定期進行測試容錯移轉，以執行災害復原演練。 如需詳細資訊，請參閱[執行 Azure 的災害復原演練][site-recovery-test]。
 
 **對您的應用程式執行錯誤插入測試。** 您的應用程式可能會因為許多不同原因而失敗，例如，憑證到期、VM 中的系統資源耗盡，或儲存體失敗。 藉由模擬或觸發真正的失敗，在儘可能接近生產的環境中測試您的應用程式。 例如，刪除憑證、以人為方式取用系統資源，或刪除儲存體來源。 確認您的應用程式能夠從各類型的錯誤 (獨立錯誤和錯誤組合) 中復原。 檢查失敗並未在您的系統中傳播或串聯。
 
@@ -176,6 +178,8 @@ ms.locfileid: "48819018"
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/

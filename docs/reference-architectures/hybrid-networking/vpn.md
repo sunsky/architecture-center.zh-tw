@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: 6e705c40663eff421e79067f916a1ebad6e72822
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: a494ff952dd6c8be3b38c2ca7f6740a44b5b30e1
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916544"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295662"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 閘道將內部部署網路連線至 Azure
 
@@ -413,7 +413,7 @@ ms.locfileid: "50916544"
 
     ![[3]][3]
 
-    您應比較使用 VPN 閘道可用頻寬的結果 (基本與標準 SKU 是 100 Mbps，而高效能 SKU 是 200 Mbps)：
+    您應比較 VPN 閘道的可用頻寬所產生的結果 (從基本 SKU 的 100 Mbps 到 VpnGw3 SKU 的 1.25 Gbps)：
 
     ![[4]][4]
 

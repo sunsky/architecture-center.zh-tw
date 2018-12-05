@@ -3,16 +3,16 @@ title: 無伺服器 Web 應用程式
 description: 參考架構，顯示無伺服器 Web 應用程式和 Web API
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
-ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
+ms.openlocfilehash: 9263c8bec794e4b2bb9f397289b23307eb02f0c7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "50983391"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295679"
 ---
 # <a name="serverless-web-application"></a>無伺服器 Web 應用程式 
 
-此參考架構會顯示無伺服器 Web 應用程式。 應用程式會為 Azure Blob 儲存體的靜態內容提供服務，並且使用 Azure Functions 來實作 API。 API 會從 Cosmos DB 讀取資料，並且將結果傳回至 Web 應用程式。 此架構的參考實作可在 [GitHub][github] 上取得。
+此參考架構顯示[無伺服器](https://azure.microsoft.com/solutions/serverless/) Web 應用程式。 應用程式會為 Azure Blob 儲存體的靜態內容提供服務，並且使用 Azure Functions 來實作 API。 API 會從 Cosmos DB 讀取資料，並且將結果傳回至 Web 應用程式。 此架構的參考實作可在 [GitHub][github] 上取得。
 
 ![](./_images/serverless-web-app.png)
  

@@ -3,12 +3,12 @@ title: 大規模機器學習
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a44785b61faec8a45160fa2895fbc03e2c580a77
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: f2d35f7344a1e760fc6d3ce2292f33b8d3dd7df7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577135"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295478"
 ---
 # <a name="machine-learning-at-scale"></a>大規模機器學習
 
@@ -68,3 +68,10 @@ ms.locfileid: "51577135"
 - [選擇認知服務技術](../technology-choices/cognitive-services.md)
 - [選擇機器學習技術](../technology-choices/data-science-and-machine-learning.md)
 - [選擇自然語言處理技術](../technology-choices/natural-language-processing.md)
+
+## <a name="next-steps"></a>後續步驟
+
+下列參考架構顯示 Azure 中的機器學習案例：
+
+- [Azure 上適用於深度學習模型的批次評分](../../reference-architectures/ai/batch-scoring-deep-learning.md)
+- [Azure 上的 Python Scikit-Learn 和深度學習模型的即時評分](../../reference-architectures/ai/realtime-scoring-python.md)
