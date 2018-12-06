@@ -363,8 +363,10 @@ items:
       href: reference-architectures/data/stream-processing-stream-analytics.md
   - name: 企業整合
     items:
-    - name: 簡單的企業整合
-      href: reference-architectures/enterprise-integration/simple-enterprise-integration.md
+    - name: 基本企業整合
+      href: reference-architectures/enterprise-integration/basic-enterprise-integration.md
+    - name: 搭配佇列和事件的企業整合
+      href: reference-architectures/enterprise-integration/queues-events.md
   - name: 混合式網路
     items:
     - name: 概觀
@@ -549,9 +551,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: c8893c9769bff3a9fbb0b7bcaffdf2746b58abf2
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.openlocfilehash: 79bb5441b72d85f410d57b0f030772ac34a6e2b3
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52550490"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902794"
