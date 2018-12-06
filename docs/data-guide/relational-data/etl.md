@@ -2,13 +2,13 @@
 title: 擷取、轉換和載入 (ETL)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: b10b0cb3cbc98ff9fadda6915b01b6f6564c4d00
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.date: 02/12/2018
+ms.openlocfilehash: 6f56da72bd7a93ecd40b0be2a19e93d9062038fb
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295543"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901536"
 ---
 # <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
 
@@ -76,7 +76,7 @@ ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支�
 ## <a name="technology-choices"></a>技術選擇
 
 - [線上交易處理 (OLTP) 資料存放區](./online-transaction-processing.md#oltp-in-azure)
-- [線上分析處理 (OLAP) 資料存放區](./online-analytical-processing.md#olap-in-azure)
+- [線上分析處理 (OLTP) 資料存放區](./online-analytical-processing.md#olap-in-azure)
 - [資料倉儲](./data-warehousing.md)
 - [管線協調流程](../technology-choices/pipeline-orchestration-data-movement.md)
 

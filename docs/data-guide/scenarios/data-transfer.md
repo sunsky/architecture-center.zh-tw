@@ -2,13 +2,13 @@
 title: 選擇資料傳輸技術
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: d5fbdc3a49ab16be2626b772ffd1af782963a2f0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252748"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902660"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>在 Azure 來回傳輸資料
 
@@ -61,7 +61,7 @@ ms.locfileid: "35252748"
 
 **Azure Data Factory**。 [Azure Data Factory](/azure/data-factory/) 是受控服務，最適合在眾多 Azure 服務和 (或) 內部部署環境之間定期傳輸檔案。 您可以使用 Azure Data Factory 建立並排程資料驅動的工作流程 (稱為管線)，以從不同的資料存放區擷取資料。 使用計算服務 (例如，Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics 和 Azure Machine Learning) 可以處理或轉換資料。 建立資料驅動的工作流程，以便[協調](../technology-choices/pipeline-orchestration-data-movement.md)及自動進行資料移動和資料轉換。
 
-## <a name="key-selection-criteria"></a>關鍵選取準則
+## <a name="key-selection-criteria"></a>重要選取準則
 
 在資料傳輸案例中，請回答下列問題來選擇適合您需求的系統：
 
@@ -77,16 +77,16 @@ ms.locfileid: "35252748"
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表是各項功能主要差異的摘要。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="physical-transfer"></a>實體傳輸
 
 | | Azure 匯入/匯出服務 | Azure 資料箱 |
 | --- | --- | --- |
 | 板型規格 | 內部 SATA HDD 或 SDD | 安全且防篡改的單一硬體設備 |
-| Microsoft 會管理運送物流 | 否 | yes |
-| 與合作夥伴的產品整合 | 否 | yes |
-| 自訂設備 | 否 | yes |
+| Microsoft 會管理運送物流 | 否 | 是 |
+| 與合作夥伴的產品整合 | 否 | 是 |
+| 自訂設備 | 否 | 是 |
 
 ### <a name="command-line-tools"></a>命令列工具。
 
@@ -94,13 +94,13 @@ ms.locfileid: "35252748"
 
 | | Distcp | Sqoop | Hadoop CLI |
 | --- | --- | --- | --- |
-| 已針對巨量資料最佳化 | yes | yes |  yes |
-| 複製到關聯式資料庫 |  否 | yes | 否 |
-| 從關聯式資料庫複製 |  否 | yes | 否 |
-| 複製到 Blob 儲存體 |  yes | yes | yes |
-| 從 Blob 儲存體複製 | yes |  yes | 否 |
-| 複製到 Data Lake Store | yes | yes | yes |
-| 從 Data Lake Store 複製 | yes | yes | 否 |
+| 已針對巨量資料最佳化 | 是 | 是 |  是 |
+| 複製到關聯式資料庫 |  否 | 是 | 否 |
+| 從關聯式資料庫複製 |  否 | 是 | 否 |
+| 複製到 Blob 儲存體 |  是 | 是 | 是 |
+| 從 Blob 儲存體複製 | 是 |  是 | 否 |
+| 複製到 Data Lake Store | 是 | 是 | 是 |
+| 從 Data Lake Store 複製 | 是 | 是 | 否 |
 
 **其他**
 
@@ -108,12 +108,12 @@ ms.locfileid: "35252748"
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 相容平台 | Linux、OS X、Windows | Linux、Windows | Windows | Linux、OS X、Windows | SQL Server、Azure SQL 資料倉儲 | 
 | 已針對巨量資料最佳化 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>2</sup> |
-| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | yes | 
-| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | yes | 
-| 複製到 Blob 儲存體 | yes | yes | yes | 否 | yes | 
-| 從 Blob 儲存體複製 | yes | yes | yes | yes | yes |
-| 複製到 Data Lake Store | 否 | 否 | yes | yes |  yes | 
-| 從 Data Lake Store 複製 | 否 | 否 | yes | yes | yes | 
+| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | 是 | 
+| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | 是 | 
+| 複製到 Blob 儲存體 | 是 | 是 | 是 | 否 | 是 | 
+| 從 Blob 儲存體複製 | 是 | 是 | 是 | 是 | 是 |
+| 複製到 Data Lake Store | 否 | 否 | yes | 是 |  是 | 
+| 從 Data Lake Store 複製 | 否 | 否 | yes | 是 | 是 | 
 
 
 [1] AdlCopy 已針對使用 Data Lake Analytics 帳戶來傳輸巨量資料的作業予以最佳化。
@@ -124,17 +124,17 @@ ms.locfileid: "35252748"
 
 | | Azure 儲存體總管 | Azure 入口網站 * | Azure Data Factory |
 | --- | --- | --- | --- |
-| 已針對巨量資料最佳化 | 否 | 否 | yes | 
-| 複製到關聯式資料庫 | 否 | 否 | yes |
-| 複製到關聯式資料庫 | 否 | 否 | yes |
-| 複製到 Blob 儲存體 | yes | 否 | yes |
-| 從 Blob 儲存體複製 | yes | 否 | yes |
-| 複製到 Data Lake Store | 否 | 否 | yes |
-| 從 Data Lake Store 複製 | 否 | 否 | yes |
-| 上傳到 Blob 儲存體 | yes | yes | yes |
-| 上傳到 Data Lake Store | yes | yes | yes |
-| 協調資料傳輸 | 否 | 否 | yes |
-| 自訂資料轉換 | 否 | 否 | yes |
+| 已針對巨量資料最佳化 | 否 | 否 | 是 | 
+| 複製到關聯式資料庫 | 否 | 否 | 是 |
+| 複製到關聯式資料庫 | 否 | 否 | 是 |
+| 複製到 Blob 儲存體 | 是 | 否 | 是 |
+| 從 Blob 儲存體複製 | 是 | 否 | 是 |
+| 複製到 Data Lake Store | 否 | 否 | 是 |
+| 從 Data Lake Store 複製 | 否 | 否 | 是 |
+| 上傳到 Blob 儲存體 | 是 | 是 | 是 |
+| 上傳到 Data Lake Store | 是 | 是 | 是 |
+| 協調資料傳輸 | 否 | 否 | 是 |
+| 自訂資料轉換 | 否 | 否 | 是 |
 | 定價模式 | 免費 | 免費 | 依使用量付費 |
 
 \* Azure 入口網站在此案例中代表會針對 Blob 儲存體和 Data Lake Store 使用 Web 型瀏覽工具。
