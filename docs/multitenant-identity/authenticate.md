@@ -2,16 +2,16 @@
 title: 在多租用戶應用程式中驗證
 description: 多租用戶應用程式如何才能從 Azure AD 驗證使用者
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 58ccf75cd34f8efec17898c85295587da282cf45
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428120"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902709"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>使用 Azure AD 和 OpenID Connect 進行驗證
 
@@ -142,7 +142,7 @@ ASP.NET 中的 OpenID Connect 中介軟體會隱藏大部分的通訊協定詳�
 * **RedirectToIdentityProvider**。 緊接在中介軟體重新導向至驗證端點前呼叫。 您可以使用此事件來修改重新導向 URL；例如，以便新增要求參數。 請參閱[新增系統管理員同意提示](signup.md#adding-the-admin-consent-prompt)，以取得範例。
 * **AuthorizationCodeReceived**。 使用授權碼來呼叫。
 * **TokenResponseReceived**。 在中介軟體從 IDP 取得存取權杖後，但在其通過驗證前呼叫。 僅適用於授權碼流程。
-* **TokenValidated**。 在中介軟體驗證 ID 權杖之後呼叫。 此時，應用程式有一組關於使用者的已驗證宣告。 您可以使用此事件對宣告執行額外的驗證，或轉換宣告。 請參閱[使用宣告](claims.md)。
+* **TokenValidated**。 在中介軟體驗證 ID 權杖之後呼叫。 此時，應用程式有一組關於使用者的已驗證宣告。 您可以使用此事件對宣告執行額外的驗證，或轉換宣告。 請參閱 [使用宣告](claims.md)。
 * **UserInformationReceived**。 如果中介軟體從使用者資訊端點取得使用者設定檔，則會呼叫。 僅適用於授權碼流程，而且只有在中介軟體選項中的 `GetClaimsFromUserInfoEndpoint = true` 時使用。
 * **TicketReceived**。 在驗證完成時呼叫。 這是最後一個事件，並假設驗證成功。 在此事件處理之後，使用者就會登入應用程式。
 * **AuthenticationFailed**。 如果驗證失敗時，則會呼叫。 請使用此事件來處理驗證失敗，例如，藉由重新導向至錯誤頁面。
@@ -161,8 +161,8 @@ Azure AD 支援 [OpenID Connect 探索](https://openid.net/specs/openid-connect-
 ### <a name="openid-connect-flows"></a>OpenID Connect 流程
 根據預設，OIDC 中介軟體會使用混合式流程搭配表單 POST 回應模式。
 
-* 「混合式流程」表示用戶端可以在同一回往返存取授權伺服器時取得 ID 權杖和授權碼。
-* 「表單 POST 回應模式」表示授權伺服器會使用 HTTP POST 要求將 ID 權杖和授權碼傳送至應用程式。 這些值會使用表單 URL 方式進行編碼 (content type = "application/x-www-form-urlencoded")。
+*  表示用戶端可以在同一回往返存取授權伺服器時取得 ID 權杖和授權碼。
+*  表示授權伺服器會使用 HTTP POST 要求將 ID 權杖和授權碼傳送至應用程式。 這些值會使用表單 URL 方式進行編碼 (content type = "application/x-www-form-urlencoded")。
 
 當 OIDC 中介軟體重新導向至授權端點時，重新導向 URL 會包含 OIDC 所需的所有查詢字串參數。 混合式流程：
 

@@ -2,13 +2,13 @@
 title: 選擇分析資料存放區
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 3cf7dc533cc6ae3e6d7e2326852b585da8613e18
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 02/12/2018
+ms.openlocfilehash: 166361c73a3a9c812e07445f6b039e843e5e32f8
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428868"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902326"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>在 Azure 中選擇分析資料存放區
 
@@ -58,7 +58,7 @@ ms.locfileid: "47428868"
 | 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 | 是 |
 | 主要資料庫模型 | 關聯式 (使用資料行存放區索引時的單欄式格式) | 具有單欄式儲存體的關聯式資料表 | 寬資料行存放區 | Hive/記憶體內 | 表格式/MOLAP 語意模型 | 文件存放區、圖表、索引鍵-值存放區、寬資料行存放區 |
 | SQL 語言支援 | 是 | 是 | 是 (使用 [Phoenix](https://phoenix.apache.org/) JDBC 驅動程式) | 是 | 否 | 是 |
-| 已針對速度服務層最佳化 | 是 <sup>2</sup> | 否 | yes | yes | 否 | 是 |
+| 已針對速度服務層最佳化 | 是 <sup>2</sup> | 否 | yes | 是 | 否 | 是 |
 
 [1] 使用手動設定和調整。
 
@@ -68,10 +68,10 @@ ms.locfileid: "47428868"
 
 |                                                  | SQL Database | SQL 資料倉儲 | HDInsight 上的 HBase/Phoenix | HDInsight 上的 Hive LLAP | Azure Analysis Services | Cosmos DB |
 |--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
-| 高可用性的備援區域伺服器 |     yes      |        yes         |            yes             |           否           |           否            |    是    |
-|             支援查詢相應放大             |      否      |        yes         |            yes             |          yes           |           yes           |    yes    |
-|          動態延展性 (相應增加)          |     是      |        yes         |             否             |           否           |           yes           |    是    |
-|        支援資料的記憶體內快取        |     yes      |        yes         |             否             |          yes           |           yes           |    否     |
+| 高可用性的備援區域伺服器 |     yes      |        是         |            是             |           否           |           否            |    是    |
+|             支援查詢相應放大             |      否      |        yes         |            是             |          是           |           是           |    yes    |
+|          動態延展性 (相應增加)          |     是      |        是         |             否             |           否           |           yes           |    是    |
+|        支援資料的記憶體內快取        |     yes      |        是         |             否             |          yes           |           是           |    否     |
 
 ### <a name="security-capabilities"></a>安全性功能
 

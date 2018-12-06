@@ -2,16 +2,16 @@
 title: 多租用戶應用程式中的租用戶註冊和上線
 description: 如何在多組織用戶共享應用程式中上架租用戶
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: 512fd37080b99a7e6249db70f0d2bc673cf87978
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 541a4dd9abb2168eef4a60a0ec99e1e7c06049b5
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429157"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902471"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>租用戶註冊和上線
 

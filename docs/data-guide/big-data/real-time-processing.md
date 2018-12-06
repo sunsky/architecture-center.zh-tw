@@ -2,13 +2,13 @@
 title: 即時處理
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 1499fecc20dcbf51472b92bb588b91db0fb58a7f
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.date: 02/12/2018
+ms.openlocfilehash: ccd098ab0d5393231eeb26eb1c56c52cdcb78fbe
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295594"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901604"
 ---
 # <a name="real-time-processing"></a>即時處理
 
@@ -34,7 +34,7 @@ ms.locfileid: "52295594"
 
 - **分析資料存放區。** 許多巨量資料解決方案皆設計為準備資料以供分析，然後以可使用分析工具來查詢的結構化格式提供處理過的資料。 
 
-- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供對資料的深入見解。 
+- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供資料的深入見解。 
 
 ## <a name="technology-choices"></a>技術選擇
 
@@ -72,7 +72,7 @@ ms.locfileid: "52295594"
 
 - **Azure Analysis Services**、**Power BI** 和 **Microsoft Excel**。 經過處理且儲存在分析資料存放區中的即時資料，可用來建立歷程記錄報告和分析 (如同批次處理資料的使用方式)。 此外，Power BI 可從延遲夠低的分析資料來源，或在某些情況下，直接從串流處理輸出中，發行即時 (或接近即時) 報表和視覺效果。
 
-如需詳細資訊，請參閱[分析和報告](../technology-choices/analysis-visualizations-reporting.md)。
+如需詳細資訊，請參閱 [分析和報告](../technology-choices/analysis-visualizations-reporting.md)。
 
 在單純的即時解決方案中，大部分處理協調流程是由訊息擷取和串流處理元件所管理。 不過，在結合批次處理和即時處理的 lambda 架構中，您可能需要使用協調流程架構 (例如 Azure Data Factory 或 Apache Oozie 和 Sqoop) 來管理所擷取之即時資料的批次工作流程。
 

@@ -2,13 +2,13 @@
 title: 線上交易處理 (OLTP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 8650b919fc1a59240343015493a1fe41c8729a72
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: be24bc173359539785385de4a188e7536f6d2ffe
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848694"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902749"
 ---
 # <a name="online-transaction-processing-oltp"></a>線上交易處理 (OLTP)
 
@@ -34,10 +34,10 @@ ms.locfileid: "30848694"
 | 結構描述 | 寫入結構描述，強制執行|
 | 一致性 | 強式一致性、ACID 保證 |
 | 完整性 | 高度完整性 |
-| 使用交易 | yes |
+| 使用交易 | 是 |
 | 鎖定策略 | 封閉式或開放式|
-| 可更新 | yes |
-| 可附加 | yes |
+| 可更新 | 是 |
+| 可附加 | 是 |
 | 工作負載 | 大量寫入，中度讀取 |
 | 編製索引 | 主要和次要索引 |
 | 資料大小 | 中小型 |
@@ -98,7 +98,7 @@ OLTP 系統是設計成能夠有效率地處理和儲存交易，以及查詢交
 
 |                              | 連接字串 | Azure 虛擬機器中的 SQL Server | 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫 |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|      為受控服務      |        yes         |                   否                   |           yes            |              yes              |
+|      為受控服務      |        是         |                   否                   |           yes            |              是              |
 |       執行平台       |        N/A         |         Windows、Linux、Docker         |           N/A            |              N/A              |
 | 可程式性 <sup>1</sup> |   T-SQL、.NET、R   |         T-SQL、.NET、R、Python         |  T-SQL、.NET、R、Python  |              SQL              |
 
@@ -109,40 +109,40 @@ OLTP 系統是設計成能夠有效率地處理和儲存交易，以及查詢交
 | | 連接字串 | Azure 虛擬機器中的 SQL Server| 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫|
 | --- | --- | --- | --- | --- | --- |
 | 資料庫執行個體大小上限 | [4 TB](/azure/sql-database/sql-database-resource-limits) | 256 TB | [1 TB](/azure/mysql/concepts-limits) | [1 TB](/azure/postgresql/concepts-limits) |
-| 支援容量集區  | yes | yes | 否 | 否 |
-| 支援叢集相應放大  | 否 | yes | 否 | 否 |
-| 動態延展性 (相應增加)  | yes | 否 | yes | yes |
+| 支援容量集區  | 是 | 是 | 否 | 否 |
+| 支援叢集相應放大  | 否 | 是 | 否 | 否 |
+| 動態延展性 (相應增加)  | yes | 否 | yes | 是 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
 
 | | 連接字串 | Azure 虛擬機器中的 SQL Server| 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫|
 | --- | --- | --- | --- | --- | --- | 
-| 暫存資料表 | yes | yes | 否 | 否 |
-| 記憶體內部 (記憶體最佳化) 資料表 | yes | yes | 否 | 否 |
-| 資料行存放區支援 | yes | yes | 否 | 否 |
-| 自適性查詢處理 | yes | yes | 否 | 否 |
+| 暫存資料表 | 是 | 是 | 否 | 否 |
+| 記憶體內部 (記憶體最佳化) 資料表 | 是 | 是 | 否 | 否 |
+| 資料行存放區支援 | 是 | 是 | 否 | 否 |
+| 自適性查詢處理 | 是 | 是 | 否 | 否 |
 
 ### <a name="availability-capabilities"></a>可用性功能
 
 | | 連接字串 | Azure 虛擬機器中的 SQL Server| 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫|
 | --- | --- | --- | --- | --- | --- | 
-| 可讀取次要 | yes | yes | 否 | 否 | 
-| 地理複寫 | yes | yes | 否 | 否 | 
-| 自動容錯移轉至次要 | yes | 否 | 否 | 否|
-| 還原時間點 | yes | yes | yes | yes |
+| 可讀取次要 | 是 | 是 | 否 | 否 | 
+| 地理複寫 | 是 | 是 | 否 | 否 | 
+| 自動容錯移轉至次要 | 是 | 否 | 否 | 否|
+| 還原時間點 | 是 | 是 | 是 | 是 |
 
 ### <a name="security-capabilities"></a>安全性功能
 
 |                                                                                                             | 連接字串 | Azure 虛擬機器中的 SQL Server | 適用於 MySQL 的 Azure 資料庫 | 適用於 PostgreSQL 的 Azure 資料庫 |
 |-------------------------------------------------------------------------------------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|                                             資料列層級安全性                                              |        yes         |                  yes                   |           yes            |              yes              |
-|                                                資料遮罩                                                 |        yes         |                  yes                   |            否            |              否               |
-|                                         透明資料加密                                         |        yes         |                  yes                   |           yes            |              yes              |
-|                                  限制對特定 IP 位址的存取                                   |        yes         |                  yes                   |           yes            |              yes              |
-|                                  限定為僅允許 VNET 存取                                  |        yes         |                  yes                   |            否            |              否               |
-|                                    Azure Active Directory 驗證                                    |        yes         |                  yes                   |            否            |              否               |
-|                                       Active Directory 驗證                                       |         否         |                  yes                   |            否            |              否               |
-|                                         Multi-Factor Authentication                                         |        yes         |                  yes                   |            否            |              否               |
-| 支援[一律加密](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        yes         |                  yes                   |           yes            |              否               |
-|                                                 私人 IP                                                  |         否         |                  yes                   |           yes            |              否               |
+|                                             資料列層級安全性                                              |        是         |                  是                   |           是            |              是              |
+|                                                資料遮罩                                                 |        是         |                  是                   |            否            |              否               |
+|                                         透明資料加密                                         |        是         |                  是                   |           是            |              是              |
+|                                  限制對特定 IP 位址的存取                                   |        是         |                  是                   |           是            |              是              |
+|                                  限定為僅允許 VNET 存取                                  |        是         |                  是                   |            否            |              否               |
+|                                    Azure Active Directory 驗證                                    |        是         |                  是                   |            否            |              否               |
+|                                       Active Directory 驗證                                       |         否         |                  是                   |            否            |              否               |
+|                                         Multi-Factor Authentication                                         |        是         |                  是                   |            否            |              否               |
+| 支援[一律加密](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        是         |                  是                   |           是            |              否               |
+|                                                 私人 IP                                                  |         否         |                  yes                   |           是            |              否               |
 

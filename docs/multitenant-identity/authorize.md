@@ -2,16 +2,16 @@
 title: 多組織用戶共享應用程式中的授權
 description: 如何在多組織用戶共享應用程式中執行授權
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327648"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902488"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>角色和資源型授權
 
@@ -22,7 +22,7 @@ ms.locfileid: "36327648"
 * **Role-based authorization**。 根據指派給使用者的角色授權動作。 例如，某些動作需要系統管理員角色。
 * **以資源為基礎的授權**。 根據特定的資源授權動作。 例如，每個資源都有一個擁有者。 擁有者可以刪除該資源；其他使用者則不行。
 
-一般的應用程式會採用兩種的混合。 例如，若要刪除資源，使用者必須是資源擁有者*或*系統管理員。
+一般的應用程式會採用兩種的混合。 例如，若要刪除資源，使用者必須是資源擁有者「或」  系統管理員。
 
 ## <a name="role-based-authorization"></a>以角色為基礎的授權
 [Tailspin Surveys][Tailspin] 應用程式會定義下列角色：
@@ -31,7 +31,7 @@ ms.locfileid: "36327648"
 * 建立者。 可以建立新的問卷
 * 讀取者。 可以讀取任何屬於該租用戶的問卷
 
-套用至應用程式*使用者*的規則。 在 Surveys 應用程式中，使用者可能是系統管理員、建立者或讀取者其中之一。
+套用至應用程式「使用者」  的規則。 在 Surveys 應用程式中，使用者可能是系統管理員、建立者或讀取者其中之一。
 
 如需如何定義及管理角色的討論，請參閱 [應用程式角色]。
 
@@ -59,7 +59,7 @@ public class SurveyCreatorRequirement : AuthorizationHandler<SurveyCreatorRequir
 
 這個類別會定義使用者建立新問卷的需求。 使用者必須是 SurveyAdmin 或 SurveyCreator 角色。
 
-在您的啟動類別中，定義包含一或多個需求的具名原則。 如果有多個需求，使用者必須符合*每個*需求才能獲得授權。 下列程式碼定義兩個原則：
+在您的啟動類別中，定義包含一或多個需求的具名原則。 如果有多個需求，使用者必須符合「每個」  需求才能獲得授權。 下列程式碼定義兩個原則：
 
 ```csharp
 services.AddAuthorization(options =>
@@ -112,7 +112,7 @@ ASP.NET Core 中仍支援這樣設定，但相較於授權原則它有一些缺�
 * 原則可支援簡單的角色成員資格無法表示的更複雜授權決策 (例如，年齡 >= 21)。
 
 ## <a name="resource-based-authorization"></a>以資源為基礎的授權。
-*以資源為基礎的授權*發生在授權取決於將受作業影響的特定資源的情況下。 在 Tailspin Surveys 應用程式中，每個問卷都有一個擁有者，以及零至多個參與者。
+*以資源為基礎的授權。* 。 在 Tailspin Surveys 應用程式中，每個問卷都有一個擁有者，以及零至多個參與者。
 
 * 擁有者可以讀取、更新、刪除、發佈及取消發佈問卷。
 * 擁有者可將參與者指派至問卷。

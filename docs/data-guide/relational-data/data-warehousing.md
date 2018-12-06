@@ -2,13 +2,13 @@
 title: 資料倉儲和資料超市
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252800"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902777"
 ---
 # <a name="data-warehousing-and-data-marts"></a>資料倉儲和資料超市
 
@@ -114,18 +114,18 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表是各項功能主要差異的摘要。
+下表是主要功能差異的摘要。
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | 連接字串 | SQL Server (VM) | SQL 資料倉儲 | HDInsight 上的 Apache Hive | HDInsight 上的 Hive LLAP |
 | --- | --- | --- | --- | --- | --- | -- |
 | 為受控服務 | yes | 否 | yes | 是 <sup>1</sup> | 是 <sup>1</sup> |
-| 需要資料協調流程 (保存資料/歷程記錄資料的複本) | 否 | 否 | yes | yes | yes |
-| 輕鬆整合多個資料來源 | 否 | 否 | yes | yes | yes |
+| 需要資料協調流程 (保存資料/歷程記錄資料的複本) | 否 | 否 | yes | 是 | yes |
+| 輕鬆整合多個資料來源 | 否 | 否 | yes | 是 | yes |
 | 支援計算暫停 | 否 | 否 | yes | 否 <sup>2</sup> | 否 <sup>2</sup> |
-| 關聯式資料存放區 | yes | yes |  yes | 否 | 否 |
-| 即時報告 | yes | yes | 否 | 否 | yes |
+| 關聯式資料存放區 | yes | 是 |  是 | 否 | 否 |
+| 即時報告 | yes | 是 | 否 | 否 | yes |
 | 彈性備份還原點 | yes | yes | 否 <sup>3</sup> | 是 <sup>4</sup> | 是 <sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
@@ -141,10 +141,10 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 | | 連接字串 | SQL Server (VM) |  SQL 資料倉儲 | HDInsight 上的 Apache Hive | HDInsight 上的 Hive LLAP |
 | --- | --- | --- | --- | --- | --- | -- |
-| 高可用性的備援區域伺服器  | yes | yes | yes | 否 | 否 |
-| 支援查詢相應放大 (分散式查詢)  | 否 | 否 | yes | yes | yes |
-| 動態延展性 | yes | 否 | 是 <sup>1</sup> | 否 | 否 |
-| 支援資料的記憶體內快取 | yes |  yes | 否 | yes | yes |
+| 高可用性的備援區域伺服器  | yes | 是 | 是 | 否 | 否 |
+| 支援查詢相應放大 (分散式查詢)  | 否 | 否 | yes | 是 | 是 |
+| 動態延展性 | 是 | 否 | 是 <sup>1</sup> | 否 | 否 |
+| 支援資料的記憶體內快取 | yes |  是 | 否 | yes | 是 |
 
 [1] SQL 資料倉儲可讓您調整資料倉儲單位 (DWU) 數目以相應增加或減少。 請參閱[管理 Azure SQL 資料倉儲中的計算能力](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview)。
 
@@ -153,12 +153,12 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 |                         |           連接字串            |  虛擬機器中的 SQL Server  | SQL 資料倉儲 |   HDInsight 上的 Apache Hive    |    HDInsight 上的 Hive LLAP     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
 |     驗證      | SQL / Azure Active Directory (Azure AD) | SQL / Azure AD / Active Directory |   SQL / Azure AD   | 本機 / Azure AD <sup>1</sup> | 本機 / Azure AD <sup>1</sup> |
-|      Authorization      |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>1</sup>        |
-|        稽核         |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>1</sup>        |
+|      Authorization      |                   yes                   |                是                |        是         |              yes              |       是 <sup>1</sup>        |
+|        稽核         |                   yes                   |                是                |        是         |              yes              |       是 <sup>1</sup>        |
 | 待用資料加密 |            是 <sup>2</sup>             |         是 <sup>2</sup>          |  是 <sup>2</sup>  |       是 <sup>2</sup>        |       是 <sup>1</sup>        |
-|   資料列層級安全性    |                   yes                   |                yes                |        yes         |              否               |       是 <sup>1</sup>        |
-|   支援防火牆    |                   yes                   |                yes                |        yes         |              yes              |       是 <sup>3</sup>        |
-|  動態資料遮罩   |                   yes                   |                yes                |        yes         |              否               |       是 <sup>1</sup>        |
+|   資料列層級安全性    |                   yes                   |                是                |        是         |              否               |       是 <sup>1</sup>        |
+|   支援防火牆    |                   yes                   |                是                |        是         |              yes              |       是 <sup>3</sup>        |
+|  動態資料遮罩   |                   yes                   |                是                |        是         |              否               |       是 <sup>1</sup>        |
 
 [1] 使用[已加入網域的 HDInsight 叢集](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)時所需。
 

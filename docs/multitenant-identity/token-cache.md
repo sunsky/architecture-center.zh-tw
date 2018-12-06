@@ -2,16 +2,16 @@
 title: 在多租用戶應用程式中快取存取權杖
 description: 快取用於叫用後端 Web API 的存取權杖
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: cffc15686ef9d77fafb40982efdbcd4a79f5aaf2
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359234"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901706"
 ---
 # <a name="cache-access-tokens"></a>快取存取權杖
 
@@ -19,7 +19,7 @@ ms.locfileid: "26359234"
 
 相對於取得 OAuth 存取權杖，它的成本較高，因為它需要向權杖端點進行 HTTP 要求。 因此，盡可能地快取權杖是不錯的做法。 [Azure AD 驗證程式庫][ADAL] (ADAL) 會自動快取取自 Azure AD 的權杖，包括重新整理權杖。
 
-ADAL 提供預設的權杖快取實作。 不過，此權杖快取是適用於原生用戶端應用程式，而**不**適用於 Web 應用程式：
+ADAL 提供預設的權杖快取實作。 不過，此權杖快取是適用於原生用戶端應用程式，而「不」  適用於 Web 應用程式：
 
 * 它是靜態的執行個體，且不具備執行緒安全。
 * 它不適用於大量的使用者，因為所有使用者的權杖都會移入相同的字典。

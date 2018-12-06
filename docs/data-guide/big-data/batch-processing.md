@@ -2,13 +2,13 @@
 title: 批次處理
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.date: 02/12/2018
+ms.openlocfilehash: fe07d4d6501d4778025b75807f4d6be5854c3e09
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52550473"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901978"
 ---
 # <a name="batch-processing"></a>批次處理
 
@@ -40,7 +40,7 @@ ms.locfileid: "52550473"
 
 - **分析資料存放區。** 許多巨量資料解決方案皆設計為準備資料以供分析，然後以可使用分析工具來查詢的結構化格式提供處理過的資料。 
 
-- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供對資料的深入見解。 
+- **分析和報告。** 大部分巨量資料解決方案的目標，是要透過分析和報告提供深入判讀資料的能力。 
 
 - **協調流程**。 使用批次處理時，通常需要某些協調流程，以將資料移轉或複製到您的資料儲存體、批次處理、分析資料存放區和報告層中。
 

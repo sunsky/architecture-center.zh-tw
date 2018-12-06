@@ -2,13 +2,13 @@
 title: 選擇資料管線協調流程技術
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 7d1fddf54216b756a5dc2c183a43449a2f45a122
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288800"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902363"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>在 Azure 中選擇資料管線協調流程技術
 
@@ -38,14 +38,14 @@ ms.locfileid: "29288800"
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 受控 | yes | 否 | yes |
-| 雲端式 | yes | 否 (本機) | yes |
+| 受控 | 是 | 否 | 是 |
+| 雲端式 | 是 | 否 (本機) | 是 |
 | 必要條件 | Azure 訂閱 | SQL Server  | Azure 訂用帳戶、HDInsight 叢集 |
 | 管理工具 | Azure 入口網站、PowerShell、CLI、.NET SDK | SSMS、PowerShell | Bash 殼層、Oozie REST API、Oozie Web UI |
 | 價格 | 依使用量付費 | 功能的授權/付費 | 除了執行 HDInsight 叢集以外不另收費用 |
@@ -54,22 +54,22 @@ ms.locfileid: "29288800"
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 複製資料 | yes | yes | yes |
-| 自訂轉換 | yes | yes | 是 (MapReduce、Pig 和 Hive 作業) |
-| Azure Machine Learning 評分 | yes | 是 (使用指令碼) | 否 |
-| HDInsight (隨選) | yes | 否 | 否 |
-| Azure Batch | yes | 否 | 否 |
-| Pig、Hive、MapReduce | yes | 否 | yes |
-| Spark | yes | 否 | 否 |
-| 執行 SSIS 套件 | yes | yes | 否 |
-| 控制流程 | yes | yes | yes |
-| 存取內部部署資料 | yes | yes | 否 |
+| 複製資料 | 是 | 是 | 是 |
+| 自訂轉換 | 是 | 是 | 是 (MapReduce、Pig 和 Hive 作業) |
+| Azure Machine Learning 評分 | 是 | 是 (使用指令碼) | 否 |
+| HDInsight (隨選) | 是 | 否 | 否 |
+| Azure Batch | 是 | 否 | 否 |
+| Pig、Hive、MapReduce | 是 | 否 | 是 |
+| Spark | 是 | 否 | 否 |
+| 執行 SSIS 套件 | 是 | 是 | 否 |
+| 控制流程 | 是 | 是 | 是 |
+| 存取內部部署資料 | 是 | 是 | 否 |
 
 ### <a name="scalability-capabilities"></a>延展性功能
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 相應增加 | yes | 否 | 否 |
-| 相應放大 | yes | 否 | 是 (藉由將背景工作節點新增至叢集) |
-| 為巨量資料最佳化 | yes | 否 | yes |
+| 相應增加 | 是 | 否 | 否 |
+| 相應放大 | 是 | 否 | 是 (藉由將背景工作節點新增至叢集) |
+| 已針對巨量資料最佳化 | 是 | 否 | 是 |
 

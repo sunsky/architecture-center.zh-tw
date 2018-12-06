@@ -2,19 +2,19 @@
 title: 時間序列資料
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 80ff6c45988062afcb0eb92cc79e640d39dbb21f
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: 9664940729430b08d7be52564e4971ec5e2b94d8
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298102"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901961"
 ---
 # <a name="time-series-solutions"></a>時間序列解決方案
 
 時間序列是一組依時間編排的值。 時間序列資料的範例，包括感應器資料、股票價格、點選流資料和應用程式遙測等。 時間序列資料的分析可用來建立歷史趨勢、即時警示或預測模型。
 
-![Time Series Insights](./images/time-series-insights.png) 
+![時間序列深入解析](./images/time-series-insights.png) 
 
 時間序列資料代表資產或處理程序如何隨著時間改變。 資料具有時間戳記，但更重要的是，時間是檢視或分析資料時最具意義的軸。 時間序列資料通常會依照時間順序送達，而且通常會被視為對資料庫的插入，而不是更新資料庫。 因此，系統會隨著時間測量變更，讓您回顧和預測未來的變更。 由此觀之，時間序列資料最適合以散佈圖或折線圖呈現。
 

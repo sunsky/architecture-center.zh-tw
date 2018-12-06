@@ -2,13 +2,13 @@
 title: 選擇批次處理技術
 description: ''
 author: zoinerTejada
-ms:date: 11/03/2018
-ms.openlocfilehash: 2314a1413fa674f43bd7a4bcb868a5322ad99497
-ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
+ms.date: 11/03/2018
+ms.openlocfilehash: 51de9ab5a0d8e3f91ddcc4dceb4a748f49fa925b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/04/2018
-ms.locfileid: "50981992"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902284"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中選擇批次處理技術
 
@@ -81,9 +81,9 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 | | Azure Data Lake Analytics | Azure SQL 資料倉儲 | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| 屬於受控服務 | 是 | 是 | 是 <sup>1</sup> | 是 | 
-| 關聯式資料存放區 | 是 | 是 | 否 | 否 |
-| 定價模式 | 以每個批次作業為單位 | 依叢集時數 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
+| 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 | 
+| 關聯式資料存放區 | yes | 是 | 否 | 否 |
+| 定價模式 | 以每個批次作業為單位 | 依叢集小時 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
 
 [1] 使用手動設定和調整。
 
@@ -95,12 +95,12 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 | --- | --- | --- | --- | --- | --- | --- |
 | 自動調整 | 否 | 否 | 否 | 否 | 否 | 是 |
 | 向外延展細微性  | 每個作業 | 每個叢集 | 每個叢集 | 每個叢集 | 每個叢集 | 每個叢集 |
-| 資料的記憶體快取 | 否 | 是 | 是 | 否 | 是 | 是 |
+| 資料的記憶體快取 | 否 | yes | 是 | 否 | yes | 是 |
 | 從外部關聯式存放區查詢 | 是 | 否 | 是 | 否 | 否 | 是 |
 | 驗證  | Azure AD | SQL / Azure AD | 否 | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
-| 稽核  | 是 | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
+| 稽核  | yes | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
 | 資料列層級安全性 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
-| 支援防火牆 | 是 | 是 | 是 | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |
+| 支援防火牆 | yes | 是 | 是 | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |
 | 動態資料遮罩 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
 
 [1] 使用[已加入網域的 HDInsight 叢集](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)時所需。

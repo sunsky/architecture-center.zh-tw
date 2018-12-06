@@ -2,13 +2,13 @@
 title: 選擇搜尋資料存放區
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9576bbba9609a04ccc7851d55dd28853ffc6b701
-ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
+ms.date: 02/12/2018
+ms.openlocfilehash: b5943cd1410777b974a8cefcd77c7c2f1f2bfe67
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/08/2018
-ms.locfileid: "48858175"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902315"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 
@@ -47,7 +47,7 @@ ms.locfileid: "48858175"
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | 屬於受控服務 | yes | 否 | yes | 是 |  
-| REST API | 是 | yes | yes | 否 |
+| REST API | 是 | 是 | 是 | 否 |
 | 可程式性 | .NET | Java | Java | T-SQL | 
 | 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | 是 | 否 | 是 | 否 |
 
@@ -55,16 +55,16 @@ ms.locfileid: "48858175"
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- |
-| 可更新的結構描述 | 否 | yes | yes | 是 |
-| 支援相應放大  | 是 | yes | yes | 否 |
+| 可更新的結構描述 | 否 | yes | 是 | 是 |
+| 支援相應放大  | 是 | 是 | 是 | 否 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
 | --- | --- | --- | --- | --- | 
-| 支援全文檢索搜尋以外的分析 | 否 | yes | yes | 是 |
+| 支援全文檢索搜尋以外的分析 | 否 | yes | 是 | 是 |
 | 記錄分析堆疊的一部分 | 否 | 是 (ELK) |  否 | 否 |
-| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | yes | 是 | 
+| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | 是 | 是 | 
 
 ### <a name="security-capabilities"></a>安全性功能
 
@@ -72,8 +72,8 @@ ms.locfileid: "48858175"
 | --- | --- | --- | --- | --- | 
 | 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | 是 | 是 | 
 | 透明資料加密 | 否 | 否 | 否 | 是 |  
-| 限制對特定 IP 位址的存取 | 否 | yes | yes | 是 |   
-| 限定為僅允許虛擬網路存取 | 否 | yes | yes | 是 |  
+| 限制對特定 IP 位址的存取 | 否 | yes | 是 | 是 |   
+| 限定為僅允許虛擬網路存取 | 否 | yes | 是 | 是 |  
 | Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | 是 | 
 
 ## <a name="see-also"></a>另請參閱
