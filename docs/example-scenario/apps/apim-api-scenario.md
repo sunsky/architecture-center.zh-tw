@@ -36,12 +36,12 @@ ms.locfileid: "51610578"
 2. 從現有的 Web 應用程式呼叫現有的 HTTP 服務將維持不變。 這些呼叫位於公司網路內部。
 3. 從 Azure 對現有內部服務進行傳入呼叫：
     * 安全性小組會[使用安全傳輸 (HTTPS/SSL)][apim-ssl]，允許來自 APIM 執行個體的流量通過公司防火牆，到達現有的內部部署服務。
-    * 營運小組只允許從 APIM 執行個體對服務進行傳入呼叫。 [將公司網路周邊的 APIM 執行個體 IP 位址列入白名單][apim-whitelist-ip]，以滿足此需求。
+    * 營運小組只允許從 APIM 執行個體對服務進行傳入呼叫。 [將公司網路周邊的 APIM 執行個體 IP 位址列入允許清單][apim-whitelist-ip]，以滿足此需求。
     * 新的模組會設定到內部部署 HTTP 服務要求管線中 (**只**對源自外部的連線採取行動)，該管線會驗證 [APIM 將要提供的憑證][apim-mutualcert-auth]。
 1. 新的 API：
     * 只會透過 APIM 執行個體呈現，以提供 API 外觀。 新的 API 無法直接存取。
     * 會開發並發佈為 [Azure PaaS Web API 應用程式][azure-api-apps]。
-    * 會列入白名單 (透過 [Web 應用程式設定][azure-appservice-ip-restrict])，只接受 [APIM VIP][apim-faq-vip]。
+    * 會列入允許清單 (透過 [Web 應用程式設定][azure-appservice-ip-restrict])，只接受 [APIM VIP][apim-faq-vip]。
     * 會裝載於已開啟安全傳輸/SSL 的 Azure Web Apps 中。
     * 已啟用[由 Azure App Service 所提供][azure-appservice-auth] (使用 Azure Active Directory 和 OAuth2) 的授權。
 2. 新的瀏覽器型 Web 應用程式會相依於現有 HTTP API 和新 API **兩者**的 Azure API 管理執行個體。

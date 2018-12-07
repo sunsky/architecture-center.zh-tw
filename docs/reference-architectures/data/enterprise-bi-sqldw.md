@@ -174,9 +174,9 @@ Azure Analysis Services 依設計可用來處理 BI 儀表板的查詢需求，�
 
 ## <a name="security-considerations"></a>安全性考量
 
-### <a name="ip-whitelisting-of-analysis-services-clients"></a>Analysis Services 用戶端的 IP 白名單
+### <a name="ip-whitelisting-of-analysis-services-clients"></a>Analysis Services 用戶端的 IP 允許清單
 
-請考慮使用 Analysis Services 防火牆功能，將用戶端 IP 位址列入白清單中。 防火牆啟用時，會封鎖未指定於防火牆規則中的所有用戶端連線。 預設規則會將 Power BI 服務列入白名單中，但您可以視需要停用此規則。 如需詳細資訊，請參閱[使用新的防火牆功能強化 Azure Analysis Services](https://azure.microsoft.com/blog/hardening-azure-analysis-services-with-the-new-firewall-capability/)。
+請考慮使用 Analysis Services 防火牆功能，將用戶端 IP 位址列入允許清單中。 防火牆啟用時，會封鎖未指定於防火牆規則中的所有用戶端連線。 預設規則會將 Power BI 服務列入允許清單中，但您可以視需要停用此規則。 如需詳細資訊，請參閱[使用新的防火牆功能強化 Azure Analysis Services](https://azure.microsoft.com/blog/hardening-azure-analysis-services-with-the-new-firewall-capability/)。
 
 ### <a name="authorization"></a>Authorization
 
