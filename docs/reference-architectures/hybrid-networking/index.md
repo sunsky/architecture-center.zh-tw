@@ -1,16 +1,17 @@
 ---
-title: 選擇將內部部署網路連線到 Azure 的解決方案
+title: 將內部部署網路連線到 Azure
+titleSuffix: Azure Reference Architectures
 description: 比較將內部部署網路連線到 Azure 的參考架構。
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: de509b6d95805f4fc871f6dbd76a87d2c0bec6f1
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295477"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119909"
 ---
-# <a name="connect-an-on-premises-network-to-azure"></a>將內部部署網路連線到 Azure
+# <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>選擇將內部部署網路連線到 Azure 的解決方案
 
 本文會比較將內部部署網路連線到 Azure 虛擬網路 (VNet) 的選項。 對於每個選項都可以使用更詳細的參考架構。
 
@@ -75,11 +76,9 @@ ms.locfileid: "52295477"
 
 - [使用 ExpressRoute 和 VPN 容錯移轉的混合式網路](./expressroute-vpn-failover.md)
 
-
 ## <a name="hub-spoke-network-topology"></a>中樞輪輻網路拓撲
 
 中樞輪輻網路拓撲是一種在共用服務 (例如身分識別和安全性) 時隔離工作負載的方式。 「中樞」是 Azure 中的虛擬網路 (VNet)，可當作內部部署網路的連線中心點。 「輪輻」是與中樞對等的 VNet。 共用的服務會部署在中樞中，而個別的工作負載會部署為輪輻。
-
 
 **參考架構**
 
