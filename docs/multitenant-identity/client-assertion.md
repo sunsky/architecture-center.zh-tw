@@ -2,20 +2,20 @@
 title: 使用用戶端判斷提示從 Azure AD 取得存取權杖
 description: 使用用戶端判斷提示從 Azure AD 取得存取權杖的方式。
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 9fe1ee2ec5a540edc41c3a310476507f8d862f0c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540276"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902256"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>使用用戶端判斷提示從 Azure AD 取得存取權杖
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 ## <a name="background"></a>背景
 在 OpenID Connect 中使用授權碼流程或混合式流程時，用戶端會交換授權碼以取得存取權杖。 在此步驟中，用戶端必須向伺服器驗證自身。
@@ -41,7 +41,7 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
 
 不過，任何可存取 Azure 訂用帳戶的使用者，都可以檢視應用程式設定。 此外，一定會有嘗試將密碼簽入原始檔控制 (例如簽入部署指令碼中)，透過電子郵件共用它們等等。
 
-為了增加安全性，您可以使用[用戶端判斷提示]來取代用戶端密碼。 透過用戶端判斷提示，用戶端使用 X.509 憑證提供來自用戶端的權杖要求。 用戶端憑證會安裝在 Web 伺服器上。 一般而言，限制憑證的存取會比確保不讓任何人不慎揭露用戶端密碼更為容易。 如需在 Web 應用程式中設定憑證的相關資訊，請參閱 [在 Azure 網站應用程式中使用憑證][using-certs-in-websites]。
+為了增加安全性，您可以使用[用戶端判斷提示] 來取代用戶端密碼。 透過用戶端判斷提示，用戶端使用 X.509 憑證提供來自用戶端的權杖要求。 用戶端憑證會安裝在 Web 伺服器上。 一般而言，限制憑證的存取會比確保不讓任何人不慎揭露用戶端密碼更為容易。 如需在 Web 應用程式中設定憑證的相關資訊，請參閱 [在 Azure 網站應用程式中使用憑證][using-certs-in-websites]。
 
 以下是使用用戶端判斷提示的權杖要求：
 
@@ -98,7 +98,7 @@ public class CertificateCredentialService : ICredentialService
 
 如需在 Surveys 應用程式中設定用戶端判斷提示的詳細資訊，請參閱[使用 Azure Key Vault 保護應用程式密碼][key vault]。
 
-[**下一步**][key vault]
+[**下一主題**][key vault]
 
 <!-- Links -->
 [configure-web-app]: /azure/app-service-web/web-sites-configure/

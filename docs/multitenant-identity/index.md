@@ -2,15 +2,15 @@
 title: 多組織用戶共享應用程式的身分識別管理
 description: 在多租用戶應用程式中進行驗證、授權和身分識別管理的最佳作法。
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 24e09720d3257cbfae350995fa5238663da1d26e
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429429"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902046"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租用戶應用程式中的身分識別
 
@@ -40,13 +40,13 @@ Azure Active Directory (Azure AD) 有一些絕佳功能，能夠支援這些所�
 
 範例：Tailspin 銷售其 SaaS 應用程式的訂閱。 Contoso 與 Fabrikam 註冊該應用程式。 當 Alice (`alice@contoso`) 登入時，應用程式應該會知道 Alice 隸屬於 Contoso。
 
-* Alice 應該有 Contoso 資料的存取權。
+* Alice *應該有* Contoso 資料的存取權。
 * Alice 應該沒有 Fabrikam 資料的存取權。
 
 此指南將向您說明如何使用 [Azure Active Directory][AzureAD] (Azure AD) 處理登入與驗證，於多組織用戶共享應用程式中管理使用者身分識別。
 
 ## <a name="what-is-multitenancy"></a>何謂多組織用戶管理？
-租用戶是一群使用者。 在 SaaS 應用程式中，租用戶是應用程式的訂閱者或客戶。 多組織用戶管理是多個租用戶共用同一應用程式實際執行個體的架構。 雖然租用戶共用實際資源 (例如 VM 或儲存體)，但每個租用戶都會獲得自己的應用程式邏輯執行個體。
+*租用戶* 是一群使用者。 在 SaaS 應用程式中，租用戶是應用程式的訂閱者或客戶。 *多組織用戶管理* 是多個租用戶共用同一應用程式實際執行個體的架構。 雖然租用戶共用實際資源 (例如 VM 或儲存體)，但每個租用戶都會獲得自己的應用程式邏輯執行個體。
 
 通常，應用程式資料會在租用戶的使用者之間共用，但是不會與其他租用戶共用。
 

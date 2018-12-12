@@ -2,20 +2,20 @@
 title: 有關 Tailspin Surveys 應用程式
 description: Tailspin Surveys 應用程式概觀
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: index
 pnp.series.next: authenticate
-ms.openlocfilehash: 028f7940d2e3cd7e8e629554f8af290ec5fdd184
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a1c357bd1b5306d1255c66aaea96d86be55e7b77
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540052"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902063"
 ---
 # <a name="the-tailspin-scenario"></a>Tailspin 情節
 
-[![GitHub](../_images/github.png) 範例程式碼][sample application]
+[![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 Tailspin 是虛構的公司，他們正在開發名為 Surveys 的 SaaS 應用程式。 此應用程式可讓組織建立並發佈線上問卷。
 
@@ -24,7 +24,7 @@ Tailspin 是虛構的公司，他們正在開發名為 Surveys 的 SaaS 應用�
 * 使用者可以建立、編輯和發佈問卷。
 
 > [!NOTE]
-> 若要開始使用應用程式，請參閱[執行調查應用程式]。
+> 若要開始使用應用程式，請參閱[執行 Surveys 應用程式]。
 > 
 > 
 
@@ -61,12 +61,12 @@ Surveys 應用程式由 Web 前端和 Web API 後端組成。 兩者都使用 [A
 
 ![架構](./images/architecture.png)
 
-[**下一步**][authentication]
+[**下一主題**][authentication]
 
 <!-- Links -->
 
 [authentication]: authenticate.md
 
-[執行調查應用程式]: ./run-the-app.md
+[執行 Surveys 應用程式]: ./run-the-app.md
 [ASP.NET Core]: /aspnet/core
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
