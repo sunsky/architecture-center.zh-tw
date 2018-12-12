@@ -2,13 +2,13 @@
 title: 雲端設計模式
 description: Microsoft Azure 的雲端設計模式
 keywords: Azure
-ms.date: 06/23/2017
-ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 12/10/2018
+ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
+ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326192"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53234045"
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
@@ -104,6 +104,7 @@ ms.locfileid: "43326192"
 |              [具體化檢視模式](./materialized-view.md)              |                                        當資料格式對必要的查詢作業而言不理想時，對一或多個資料存放區中的資料產生預先填入的檢視。                                        |
 |              [管道與篩選器](./pipes-and-filters.md)              |                                                        將執行複雜處理程序的工作，細分成一系列可重複使用的個別元素。                                                        |
 |                 [優先順序佇列](./priority-queue.md)                 |                                 針對傳送給服務的要求排列優先順序，讓高優先順序要求的接收和處理順序在低優先順序要求之前。                                  |
+| [發行者/訂閱者](./publisher-subscriber.md) | 讓應用程式能夠非同步地向多個感興趣的取用者宣告事件，而不需要將傳送者與取用者結合。 |
 |      [佇列型負載調節](./queue-based-load-leveling.md)      |                                               使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。                                               |
 |                          [重試](./retry.md)                          |               讓應用程式可以在嘗試連線到服務或網路資源時，藉由明確地重試先前失敗的作業，處理預期的暫時性失敗。                |
 |     [排程器代理程式監督員](./scheduler-agent-supervisor.md)     |                                                              在一組分散的服務和其他遠端資源中協調一組動作。                                                               |
