@@ -110,11 +110,11 @@
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./apps/media/architecture-devops-dotnet-webapp.png" height="140px" />
+                            <img src="./apps/media/architecture-devops-dotnet-webapp.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>利用 Azure DevOps 的 CI/CD 管線</h3>
+                        <h3>使用 Azure DevOps 設計 CI/CD 管線</h3>
                         <p>使用 Azure DevOps 建置 .NET 應用程式並且發行至 Azure Web Apps。</p>
                     </div>
                 </div>
@@ -411,8 +411,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上建立高可用性和災害復原的多層式 Web 應用程式</h3>
-                        <p>使用 Azure 虛擬機器、可用性集合、可用性區域、Azure Site Recovery 和 Azure 流量管理員，在 Azure 上建立建立高可用性和災害復原的多層式 Web 應用程式</p>
+                        <h3>在 Azure 上為高可用性和災害復原而建置的多層式 Web 應用程式</h3>
+                        <p>使用 Azure 虛擬機器、可用性集合、可用性區域、Azure Site Recovery 和 Azure 流量管理員，在 Azure 上建立為高可用性和災害復原而建置的多層式 Web 應用程式</p>
                     </div>
                 </div>
             </div>
@@ -430,7 +430,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>受規範產業的安全 Windows Web 應用程式</h3>
+                        <h3>使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式</h3>
                         <p>透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。</p>
                     </div>
                 </div>
