@@ -1,15 +1,16 @@
 ---
 title: Azure 服務的復原檢查清單
+titleSuffix: Azure Design Review Framework
 description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
-ms.date: 03/02/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305922"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307175"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
@@ -19,15 +20,15 @@ ms.locfileid: "52305922"
 
 **使用標準或進階層。** 這些服務層可支援預備位置和自動化備份。 如需詳細資訊，請參閱 [Azure App Service 方案深入概觀](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/)
 
-**避免相應增加或相應減少。** 請改為選取在一般負載下符合您效能需求的服務層和執行個體大小，然後[相應放大](/azure/app-service-web/web-sites-scale/)執行個體來處理流量的變更。 相應增加和減少可能會觸發應用程式重新啟動。  
+**避免相應增加或相應減少。** 請改為選取在一般負載下符合您效能需求的服務層和執行個體大小，然後[相應放大](/azure/app-service-web/web-sites-scale/)執行個體來處理流量的變更。 相應增加和減少可能會觸發應用程式重新啟動。
 
 **將組態儲存為應用程式設定。** 使用應用程式設定，將組態設定保留為應用程式設定。 在您的 Resource Manager 範本 中或使用 PowerShell 來定義設定，以便您在更可靠的自動化部署 / 更新程序中套用它們。 如需詳細資訊，請參閱[在 Azure App Service 中設定 Web 應用程式](/azure/app-service-web/web-sites-configure/)。
 
-**為生產和測試環境建立不同的 App Service 方案。** 請勿使用生產部署上的位置進行測試。  相同 App Service 方案中的所有應用程式會共用相同的 VM 執行個體。 如果您將生產和測試部署放在相同的方案中，可能會對生產部署造成負面影響。 例如，負載測試可能會使實際作用的生產網站降級。 透過將測試部署放在不同方案內，您可以使其與生產版本隔離。  
+**為生產和測試環境建立不同的 App Service 方案。** 請勿使用生產部署上的位置進行測試。  相同 App Service 方案中的所有應用程式會共用相同的 VM 執行個體。 如果您將生產和測試部署放在相同的方案中，可能會對生產部署造成負面影響。 例如，負載測試可能會使實際作用的生產網站降級。 透過將測試部署放在不同方案內，您可以使其與生產版本隔離。
 
 **分隔 Web 應用程式與 Web API。** 如果您的解決方案具有 Web 前端與 Web API，請考慮將它們分解成個別的 App Service 應用程式。 此設計可讓您更輕鬆地依照工作負載來分解解決方案。 您可以在個別的 App Service 方案中執行 Web 應用程式與 API，以便獨立調整其規模。 如果您一開始不需要這種程度的延展性，可以將應用程式部署到相同的方案中，之後有需要時再將它們移到別的方案。
 
-**避免使用 App Service 備份功能來備份 Azure SQL 資料庫。** 請改用 [SQL Database 自動化備份][sql-backup]。 App Service 備份會將資料庫匯出至 SQL .bacpac 檔案，這會使用 DTU。  
+**避免使用 App Service 備份功能來備份 Azure SQL 資料庫。** 請改用 [SQL Database 自動化備份][sql-backup]。 App Service 備份會將資料庫匯出至 SQL .bacpac 檔案，這會使用 DTU。
 
 **部署到預備位置。** 建立預備的部署位置。 將應用程式更新部署到預備位置，並先確認部署，再將它交換至生產環境。 這可降低生產環境使用不正確更新的可能性。 也可確保所有執行個體在交換至生產環境之前就已準備就緒。 許多應用程式都有重要的暖機和冷啟動時間。 如需詳細資訊，請參閱[針對 Azure App Service 中的 Web 應用程式設定預備環境](/azure/app-service-web/web-sites-staged-publishing/)。
 
@@ -57,7 +58,7 @@ ms.locfileid: "52305922"
 
 **處理例外狀況。** 事件取用者通常會處理迴圈中的一批訊息。 您應該處理此處理迴圈中的例外狀況，以避免在單一訊息造成例外狀況時遺失整個批次的訊息。
 
-**使用無效信件佇列。** 如果處理訊息導致非暫時性失敗，請將訊息放置到無效信件佇列，以便追蹤狀態。 根據這種案例，您可能會在稍後重試訊息、套用補償交易，或採取其他動作。 請注意，事件中樞沒有任何內建無效信件佇列功能。 您可以使用 Azure 佇列儲存體或服務匯流排來實作無效信件佇列，或使用 Azure Functions 或其他事件處理機制。  
+**使用無效信件佇列。** 如果處理訊息導致非暫時性失敗，請將訊息放置到無效信件佇列，以便追蹤狀態。 根據這種案例，您可能會在稍後重試訊息、套用補償交易，或採取其他動作。 請注意，事件中樞沒有任何內建無效信件佇列功能。 您可以使用 Azure 佇列儲存體或服務匯流排來實作無效信件佇列，或使用 Azure Functions 或其他事件處理機制。
 
 **藉由容錯移轉至次要事件中樞命名空間來實作災害復原。** 如需詳細資訊，請參閱 [Azure 事件中樞地理災害復原](/azure/event-hubs/event-hubs-geo-dr)。
 
@@ -67,7 +68,7 @@ ms.locfileid: "52305922"
 
 **設定資料永續性。** Redis 永續性可讓您保存儲存在 Redis 中的資料。 您也可以擷取快照和備份資料，以在硬體失敗時載入。 如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的資料永續性](/azure/redis-cache/cache-how-to-premium-persistence)
 
-若您將 Redis 快取當作暫存資料快取而非持續性存放區，這些建議可能不適用。 
+若您將 Redis 快取當作暫存資料快取而非持續性存放區，這些建議可能不適用。
 
 ## <a name="search"></a>Search
 
@@ -75,8 +76,9 @@ ms.locfileid: "52305922"
 
 **設定多區域部署的索引子。** 如果您有多區域部署，請考慮索引連續性的選項。
 
-  * 如果資料來源已在異地複寫，您通常應將每個區域性 Azure 搜尋服務的每個索引子指向其本機資料來源複本。 不過，該方法不建議用於儲存在 Azure SQL Database 中的大型資料集。 原因是 Azure 搜尋服務無法從次要 SQL Database 複本 (只能從主要複本) 執行增量編製索引。 請改為將所有索引子指向主要複本。 在容錯移轉之後，指著位於新主要複本的 Azure 搜尋服務索引子。  
-  * 如果資料來源並未異地複寫，請指著位於相同資料來源的多個索引子，如此一來，多個區域中的 Azure 搜尋服務就能持續且獨立地從資料來源編製索引。 如需詳細資訊，請參閱 [Azure 搜尋服務效能和最佳化考量][search-optimization]。
+- 如果資料來源已在異地複寫，您通常應將每個區域性 Azure 搜尋服務的每個索引子指向其本機資料來源複本。 不過，該方法不建議用於儲存在 Azure SQL Database 中的大型資料集。 原因是 Azure 搜尋服務無法從次要 SQL Database 複本 (只能從主要複本) 執行增量編製索引。 請改為將所有索引子指向主要複本。 在容錯移轉之後，指著位於新主要複本的 Azure 搜尋服務索引子。
+
+- 如果資料來源並未異地複寫，請指著位於相同資料來源的多個索引子，如此一來，多個區域中的 Azure 搜尋服務就能持續且獨立地從資料來源編製索引。 如需詳細資訊，請參閱 [Azure 搜尋服務效能和最佳化考量][search-optimization]。
 
 ## <a name="service-bus"></a>服務匯流排
 
@@ -92,14 +94,13 @@ ms.locfileid: "52305922"
 
 **使用異地災害復原**。 如果整個 Azure 區域或資料中心因為災害而無法使用，地理災害復原可確保資料處理會繼續在不同的區域或資料中心運作。 如需詳細資訊，請參閱 [Azure 服務匯流排地理災害復原](/azure/service-bus-messaging/service-bus-geo-dr)。
 
-
 ## <a name="storage"></a>儲存體
 
 **對於應用程式資料，請使用讀取權限異地備援儲存體 (RA-GRS)。** RA-GRS 儲存體會將資料複寫到次要區域，並提供從次要區域的唯讀存取權。 如果主要區域發生儲存體中斷，應用程式可以從次要區域讀取資料。 如需詳細資訊，請參閱 [Azure 儲存體複寫](/azure/storage/storage-redundancy/)。
 
 **若為 VM 磁碟，請使用受控磁碟。** [受控磁碟][managed-disks]可為可用性設定組中的 VM 提供更高的可靠性，因為磁碟彼此充分隔離，以避免單一失敗點。 此外，受控磁碟不受儲存體帳戶中建立之 VHD 的 IOPS 限制所約束。 如需詳細資訊，請參閱[管理 Azure 中 Windows 虛擬機器的可用性][vm-manage-availability]。
 
-**若為佇列儲存體，請在另一個區域中建立備份佇列。** 對於佇列儲存體，唯讀複本的用途有限，因為您無法將項目排入佇列或從佇列中清除。 請改為在其他區域的儲存體帳戶中建立備份佇列。 如果發生儲存體中斷，應用程式可以使用備份佇列，直到主要區域再次變為可使用為止。 這樣一來，應用程式仍然可以處理新的要求。  
+**若為佇列儲存體，請在另一個區域中建立備份佇列。** 對於佇列儲存體，唯讀複本的用途有限，因為您無法將項目排入佇列或從佇列中清除。 請改為在其他區域的儲存體帳戶中建立備份佇列。 如果發生儲存體中斷，應用程式可以使用備份佇列，直到主要區域再次變為可使用為止。 這樣一來，應用程式仍然可以處理新的要求。
 
 ## <a name="sql-database"></a>SQL Database
 
@@ -155,7 +156,7 @@ ms.locfileid: "52305922"
 
 ## <a name="virtual-network"></a>虛擬網路
 
-**若要允許或封鎖公用 IP 位址，請將 NSG 新增至子網路。** 封鎖來自惡意使用者的存取，或只允許有權存取應用程式的使用者存取。  
+**若要允許或封鎖公用 IP 位址，請將 NSG 新增至子網路。** 封鎖來自惡意使用者的存取，或只允許有權存取應用程式的使用者存取。
 
 **建立自訂健康情況探查。** Load Balancer 健康情況探查可以測試 HTTP 或 TCP。 如果 VM 執行 HTTP 伺服器，則 HTTP 探查是比 TCP 探查更佳的健康狀態指標。 對於 HTTP 探查，使用可報告應用程式整體健康情況 (包括所有重要相依性) 的自訂端點。 如需詳細資訊，請參閱 [Azure Load Balancer 概觀](/azure/load-balancer/load-balancer-overview/)。
 
