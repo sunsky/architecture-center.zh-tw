@@ -297,8 +297,6 @@ items:
       href: example-scenario/apps/hpc-saas.md
     - name: 銀行間的分散式信任
       href: example-scenario/apps/decentralized-trust.md
-    - name: Web 應用程式監視
-      href: example-scenario/apps/app-monitoring.md
     - name: 具有容器的 DevOps
       href: example-scenario/apps/devops-with-aks.md
     - name: 使用 Azure DevOps 進行 DevOps
@@ -373,7 +371,7 @@ items:
       href: reference-architectures/enterprise-integration/queues-events.md
   - name: 混合式網路
     items:
-    - name: 概觀
+    - name: 選擇混合式網路架構
       href: reference-architectures/hybrid-networking/index.md
     - name: VPN
       href: reference-architectures/hybrid-networking/vpn.md
@@ -385,9 +383,11 @@ items:
       href: reference-architectures/hybrid-networking/hub-spoke.md
     - name: 具有共用服務的中樞輪輻拓撲
       href: reference-architectures/hybrid-networking/shared-services.md
+    - name: 針對混合式 VPN 連線進行疑難排解
+      href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
   - name: 身分識別管理
     items:
-    - name: 概觀
+    - name: 選擇 Active Directory 整合架構
       href: reference-architectures/identity/index.md
     - name: 整合內部部署 AD 與 Azure AD
       href: reference-architectures/identity/azure-ad.md
@@ -443,6 +443,8 @@ items:
       href: reference-architectures/app-service-web-app/scalable-web-app.md
     - name: 多重區域部署
       href: reference-architectures/app-service-web-app/multi-region.md
+    - name: Web 應用程式監視
+      href: reference-architectures/app-service-web-app/app-monitoring.md
 - name: 設計指南
   items:
   - name: 在 Azure 上建置微服務
@@ -577,9 +579,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: fee468da7720c26920c6dab4c810e2ebb408c75c
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: d3f9b76294ab25fed8ebc5cd3391d87ea6305858
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307012"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329444"
