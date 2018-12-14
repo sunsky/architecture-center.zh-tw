@@ -4,12 +4,12 @@ description: Azure 上一般工作負載的參考架構、藍圖和精準實作�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: efac05ff95431f9551c6fb76939dbb91cfa01d1d
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6a86256c504737b5f747a690d27fdf178ac8b4fe
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307006"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329376"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
@@ -683,6 +683,25 @@ ms.locfileid: "53307006"
                     <div class="cardText">
                         <h3>高可用性 Web 應用程式</h3>
                         <p>在多個區域中執行 App Service Web 應用程式來達到高可用性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/app-monitoring.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 上的 Web 應用程式監視</h3>
+                        <p>監視 Azure App Service 中裝載的 Web 應用程式。</p>
                     </div>
                 </div>
             </div>
