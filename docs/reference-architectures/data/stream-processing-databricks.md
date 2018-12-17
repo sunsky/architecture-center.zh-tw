@@ -1,20 +1,22 @@
 ---
 title: 串流處理搭配 Azure Databricks
-description: 使用 Azure Databricks 在 Azure 中建立端對端串流處理管線
+titleSuffix: Azure Reference Architectures
+description: 使用 Azure Databricks 在 Azure 中建立端對端串流處理管線。
 author: petertaylor9999
 ms.date: 11/30/2018
-ms.openlocfilehash: 0640e900c212d2b75cc9cdd5bec3a4f7c050490d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: seodec18
+ms.openlocfilehash: 822a3c448dcc2bdd4ae77ef2a2b7a9ffad633440
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902828"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120297"
 ---
-# <a name="stream-processing-with-azure-databricks"></a>串流處理搭配 Azure Databricks
+# <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>使用 Azure Databricks 建立串流處理管線
 
-此參考架構顯示端對端[串流處理](/azure/architecture/data-guide/big-data/real-time-processing)管線。 此類型的管線有四個階段：擷取、處理、儲存，以及分析和報告。 在此參考架構中，管線會從兩個來源擷取資料、對來自每個資料流的相關記錄執行聯結、擴充結果，並即時計算平均值。 結果會儲存以供進一步分析。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構顯示端對端[串流處理](/azure/architecture/data-guide/big-data/real-time-processing)管線。 此類型的管線有四個階段：擷取、處理、儲存，以及分析和報告。 在此參考架構中，管線會從兩個來源擷取資料、對來自每個資料流的相關記錄執行聯結、擴充結果，並即時計算平均值。 結果會儲存以供進一步分析。 [**部署這個解決方案**](#deploy-the-solution)。
 
-![](./images/stream-processing-databricks.png)
+![使用 Azure Databricks 的串流處理參考架構](./images/stream-processing-databricks.png)
 
 **案例**：計程車公司會收集有關每趟計程車車程的資料。 在此案例中，我們假設有兩個不同的裝置會傳送資料。 計程車的其中一個計量會傳送關於每趟車程的資訊，如車程時間、距離和上下車地點等。 另一個裝置會接收客戶付款，並傳送費用相關資料。 為了找出乘客數趨勢，計程車公司想要對每個鄰近地區即時計算出平均每英里的小費。
 
@@ -34,15 +36,15 @@ ms.locfileid: "52902828"
 
 ## <a name="data-ingestion"></a>資料擷取
 
-若要模擬資料來源，此參考架構會使用[紐約市計程車資料](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)資料集<sup>[[1]](#note1)</sup>。 此資料集包含紐約市在四年期間的計程車路程資料 (2010 &ndash; 2013)。 它包含兩種類型的記錄：車程資料和費用資料。 車程資料包括路程持續時間、路程距離和上下車地點。 費用資料包括費用、稅金和小費金額。 在這兩種記錄類型中共同欄位包含計程車牌照號碼、計程車執照和廠商識別碼。 這三個欄位可唯一識別一輛計程車加上司機。 資料會以 CSV 格式儲存。 
+若要模擬資料來源，此參考架構會使用[紐約市計程車資料](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)資料集<sup>[[1]](#note1)</sup>。 此資料集包含紐約市在四年期間的計程車路程資料 (2010 &ndash; 2013)。 其包含兩種類型的記錄：車程資料和費用資料。 車程資料包括路程持續時間、路程距離和上下車地點。 費用資料包括費用、稅金和小費金額。 在這兩種記錄類型中共同欄位包含計程車牌照號碼、計程車執照和廠商識別碼。 這三個欄位可唯一識別一輛計程車加上司機。 資料會以 CSV 格式儲存。
 
-資料產生器為 .NET Core 應用程式，可讀取記錄並將其傳送到 Azure 事件中樞。 產生器會以 JSON 格式傳送車程資料，以 CSV 格式傳送費用資料。 
+資料產生器為 .NET Core 應用程式，可讀取記錄並將其傳送到 Azure 事件中樞。 產生器會以 JSON 格式傳送車程資料，以 CSV 格式傳送費用資料。
 
-事件中樞使用[分割區](/azure/event-hubs/event-hubs-features#partitions)來分割資料。 資料分割可讓取用者平行讀取每個分割。 將資料傳送至事件中樞時，您可以明確指定分割區索引鍵。 否則，記錄會以循環配置資源的方式指派給分割區。 
+事件中樞使用[分割區](/azure/event-hubs/event-hubs-features#partitions)來分割資料。 資料分割可讓取用者平行讀取每個分割。 將資料傳送至事件中樞時，您可以明確指定分割區索引鍵。 否則，記錄會以循環配置資源的方式指派給分割區。
 
 在此案例中，車程資料和費用資料最後應具有指定計程車的同一分割區識別碼。 這可讓 Databricks 在將兩個資料流相互關聯時套用一定程度的平行處理原則。 車程資料分割區 *n* 中的記錄會比對到費用資料分割區 *n* 中的記錄。
 
-![](./images/stream-processing-databricks-eh.png)
+![使用 Azure Databricks 和事件中樞的串流處理圖表](./images/stream-processing-databricks-eh.png)
 
 在資料產生器中，這兩種記錄類型的共同資料模型具有 `PartitionKey` 屬性，其為 `Medallion`、`HackLicense` 和 `VendorId` 的串連。
 
@@ -84,13 +86,13 @@ using (var client = pool.GetObject())
 
 ### <a name="event-hubs"></a>事件中樞
 
-事件中樞的輸送量容量會以[輸送量單位](/azure/event-hubs/event-hubs-features#throughput-units)來測量。 您可以啟用[自動擴充](/azure/event-hubs/event-hubs-auto-inflate)以自動調整事件中樞，這會根據流量 (上限為設定的最大值) 自動調整輸送量單位。 
+事件中樞的輸送量容量會以[輸送量單位](/azure/event-hubs/event-hubs-features#throughput-units)來測量。 您可以啟用[自動擴充](/azure/event-hubs/event-hubs-auto-inflate)以自動調整事件中樞，這會根據流量 (上限為設定的最大值) 自動調整輸送量單位。
 
 ## <a name="stream-processing"></a>串流處理
 
 在 Azure Databricks 中會以作業執行資料處理。 作業會指派給叢集並於其上執行。 作業可以是以 Java 撰寫的自訂程式碼或是 Spark [Notebook](https://docs.databricks.com/user-guide/notebooks/index.html)。
 
-在此參考架構中，作業是以 Scala 和 Java 撰寫類別的 Java 封存檔。 在指定 Databricks 作業的 Java 封存檔時，Databricks 叢集會指定要執行的類別。 在此，**com.microsoft.pnp.TaxiCabReader** 類別的 **Main** 方法包含資料處理邏輯。 
+在此參考架構中，作業是以 Scala 和 Java 撰寫類別的 Java 封存檔。 在指定 Databricks 作業的 Java 封存檔時，Databricks 叢集會指定要執行的類別。 在此，**com.microsoft.pnp.TaxiCabReader** 類別的 **Main** 方法包含資料處理邏輯。
 
 ### <a name="reading-the-stream-from-the-two-event-hub-instances"></a>從兩個事件中樞執行個體讀取資料流
 
@@ -116,9 +118,9 @@ val rideEventHubOptions = EventHubsConf(rideEventHubConnectionString)
 
 ### <a name="enriching-the-data-with-the-neighborhood-information"></a>以鄰近地區資訊擴充資料
 
-車程資料包含載客與下車位置的緯度和經度座標。 雖然這些座標有其效用，但要加以取用並進行分析並不容易。 因此，這項資料會使用讀取自[形狀檔](https://en.wikipedia.org/wiki/Shapefile)的鄰近地區資料進行擴充。 
+車程資料包含載客與下車位置的緯度和經度座標。 雖然這些座標有其效用，但要加以取用並進行分析並不容易。 因此，這項資料會使用讀取自[形狀檔](https://en.wikipedia.org/wiki/Shapefile)的鄰近地區資料進行擴充。
 
-形狀檔屬於二進位格式且無法輕易剖析，但 [GeoTools](http://geotools.org/) 程式庫針對地理空間資料而提供的工具即使用形狀檔格式。 此程式庫用於 **com.microsoft.pnp.GeoFinder** 類別中，可根據載客和下車座標判斷鄰近地區名稱。 
+形狀檔屬於二進位格式且無法輕易剖析，但 [GeoTools](http://geotools.org/) 程式庫針對地理空間資料而提供的工具即使用形狀檔格式。 此程式庫用於 **com.microsoft.pnp.GeoFinder** 類別中，可根據載客和下車座標判斷鄰近地區名稱。
 
 ```scala
 val neighborhoodFinder = (lon: Double, lat: Double) => {
@@ -223,7 +225,6 @@ databricks secrets put --scope "azure-databricks-job" --key "taxi-ride"
 
 在程式碼中，會透過 Azure Databricks [祕密公用程式](https://docs.databricks.com/user-guide/dev-tools/dbutils.html#secrets-utilities)來存取祕密。
 
-
 ## <a name="monitoring-considerations"></a>監視功能考量
 
 Azure Databricks 以 Apache Spark 為基礎，且兩者都以 [log4j](https://logging.apache.org/log4j/2.x/) 作為記錄的標準程式庫。 除了 Apache Spark 所提供的預設記錄外，此參考架構也會將記錄和計量傳送至 [Azure Log Analytics](/azure/log-analytics/)。
@@ -267,48 +268,49 @@ spark.streams.addListener(new StreamingMetricsListener())
 
 每當結構化串流事件發生時，Apache Spark 執行階段就會呼叫 StreamingMetricsListener 中的方法，將記錄訊息和計量傳送至 Azure Log Analytics 工作區。 您可以在工作區中使用下列查詢來監視應用程式：
 
-### <a name="latency-and-throughput-for-streaming-queries"></a>串流查詢的延遲和輸送量 
+### <a name="latency-and-throughput-for-streaming-queries"></a>串流查詢的延遲和輸送量
 
 ```shell
 taxijob_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
-| project  mdc_inputRowsPerSecond_d, mdc_durationms_triggerExecution_d  
+| project  mdc_inputRowsPerSecond_d, mdc_durationms_triggerExecution_d
 | render timechart
-``` 
+```
+
 ### <a name="exceptions-logged-during-stream-query-execution"></a>在資料流查詢執行期間記錄的例外狀況
 
 ```shell
 taxijob_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
-| where Level contains "Error" 
+| where Level contains "Error"
 ```
 
 ### <a name="accumulation-of-malformed-fare-and-ride-data"></a>格式不正確的費用和車程資料的累計
 
 ```shell
-SparkMetric_CL 
+SparkMetric_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
-| render timechart 
+| render timechart
 | where name_s contains "metrics.malformedrides"
 
-SparkMetric_CL 
+SparkMetric_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
-| render timechart 
-| where name_s contains "metrics.malformedfares" 
+| render timechart
+| where name_s contains "metrics.malformedfares"
 ```
 
 ### <a name="job-execution-to-trace-resiliency"></a>追蹤復原情形的作業執行
 
 ```shell
-SparkMetric_CL 
+SparkMetric_CL
 | where TimeGenerated > startofday(datetime(<date>)) and TimeGenerated < endofday(datetime(<date>))
-| render timechart 
-| where name_s contains "driver.DAGScheduler.job.allJobs" 
+| render timechart
+| where name_s contains "driver.DAGScheduler.job.allJobs"
 ```
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics) 上取得。 
+此參考架構的部署可在 [GitHub](https://github.com/mspnp/azure-databricks-streaming-analytics) 上取得。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -353,7 +355,7 @@ SparkMetric_CL
             ...
     ```
 
-5. 開啟 web 瀏覽器並巡覽至 https://www.zillow.com/howto/api/neighborhood-boundaries.htm。 
+5. 開啟 web 瀏覽器並巡覽至 https://www.zillow.com/howto/api/neighborhood-boundaries.htm。
 
 6. 按一下 [紐約鄰近地區界限] 以下載檔案。
 
@@ -399,7 +401,7 @@ SparkMetric_CL
 
 4. 部署的輸出會在完成後隨即寫入至主控台。 請搜尋下列 JSON 的輸出：
 
-```JSON
+```json
 "outputs": {
         "cosmosDb": {
           "type": "Object",
@@ -425,6 +427,7 @@ SparkMetric_CL
         }
 },
 ```
+
 這些值是將在後續小節中新增至 Databricks 祕密的祕密。 在您將其新增至這些小節前，請妥善加以保存。
 
 ### <a name="add-a-cassandra-table-to-the-cosmos-db-account"></a>將 Cassandra 資料表新增至 Cosmos DB 帳戶
@@ -433,14 +436,14 @@ SparkMetric_CL
 
 2. 在 [概觀] 刀鋒視窗中，按一下 [新增資料表]。
 
-3. 當 [新增資料表] 刀鋒視窗開啟時，在 [Keyspace 名稱] 文字方塊輸入 `newyorktaxi`。 
+3. 當 [新增資料表] 刀鋒視窗開啟時，在 [Keyspace 名稱] 文字方塊輸入 `newyorktaxi`。
 
 4. 在 [輸入建立資料表的 CQL 命令] 區段中，於 `newyorktaxi` 旁邊的文字方塊中輸入 `neighborhoodstats`。
 
 5. 在下方的文字方塊中，輸入下列項目：
-```shell
-(neighborhood text, window_end timestamp, number_of_rides bigint,total_fare_amount double, primary key(neighborhood, window_end))
-```
+    ```shell
+    (neighborhood text, window_end timestamp, number_of_rides bigint,total_fare_amount double, primary key(neighborhood, window_end))
+    ```
 6. 在 [輸送量 (1,000 - 1,000,000 RU/s)] 文字方塊中，輸入 `4000` 值。
 
 7. 按一下 [確定]。
@@ -499,7 +502,7 @@ SparkMetric_CL
 
 ### <a name="add-the-azure-log-analytics-workspace-id-and-primary-key-to-configuration-files"></a>將 Log Analytics 工作區識別碼和主要金鑰新增至組態檔
 
-在本節中，您將需要 Log Analytics 工作區識別碼和主要金鑰。 工作區識別碼是*部署 Azure 資源*一節步驟 4 中的 **logAnalytics** 輸出區段所包含的 **workspaceId** 值。 主要金鑰是輸出區段中的 **secret**。 
+在本節中，您將需要 Log Analytics 工作區識別碼和主要金鑰。 工作區識別碼是*部署 Azure 資源*一節步驟 4 中的 **logAnalytics** 輸出區段所包含的 **workspaceId** 值。 主要金鑰是輸出區段中的 **secret**。
 
 1. 若要設定 log4j 記錄，請開啟 `\azure\AzureDataBricksJob\src\main\resources\com\microsoft\pnp\azuredatabricksjob\log4j.properties`。 請編輯以下兩個值：
     ```shell
@@ -515,9 +518,9 @@ SparkMetric_CL
 
 ### <a name="build-the-jar-files-for-the-databricks-job-and-databricks-monitoring"></a>建置 Databricks 作業和 Databricks 監視的 .jar 檔案
 
-1. 使用您的 Java IDE，匯入根目錄中名為 **pom.xml** 的 Maven 專案檔。 
+1. 使用您的 Java IDE，匯入根目錄中名為 **pom.xml** 的 Maven 專案檔。
 
-2. 執行清除組建。 此組建的輸出是名為 **azure-databricks-job-1.0-SNAPSHOT.jar** 和 **azure-databricks-monitoring-0.9.jar** 的檔案。 
+2. 執行清除組建。 此組建的輸出是名為 **azure-databricks-job-1.0-SNAPSHOT.jar** 和 **azure-databricks-monitoring-0.9.jar** 的檔案。
 
 ### <a name="configure-custom-logging-for-the-databricks-job"></a>設定 Databricks 作業的自訂記錄
 
@@ -532,13 +535,13 @@ SparkMetric_CL
     ```
 
 3. 您尚未決定 Databricks 叢集的名稱，請先選取此名稱。 後續您將在叢集的 Databricks 檔案系統路徑中輸入此名稱。 輸入下列命令，以從 `\azure\azure-databricks-monitoring\scripts\spark.metrics` 將初始化指令碼複製到 Databricks 檔案系統：
-    ```
+    ```shell
     databricks fs cp --overwrite spark-metrics.sh dbfs:/databricks/init/<cluster-name>/spark-metrics.sh
     ```
 
 ### <a name="create-a-databricks-cluster"></a>建立 Databricks 叢集
 
-1. 在 Databricks 工作區中按一下 [叢集]，然後按一下 [建立叢集]。 輸入您在上述**設定 Databricks 作業的自訂記錄**一節的步驟 3 中建立的叢集名稱。 
+1. 在 Databricks 工作區中按一下 [叢集]，然後按一下 [建立叢集]。 輸入您在上述**設定 Databricks 作業的自訂記錄**一節的步驟 3 中建立的叢集名稱。
 
 2. 選取 [標準] 叢集模式。
 
@@ -552,9 +555,9 @@ SparkMetric_CL
 
 7. 將 [背景工作數下限] 設為 **2**。
 
-8. 取消選取 [啟用自動調整]。 
+8. 取消選取 [啟用自動調整]。
 
-9. 在 [自動終止] 對話方塊下方，按一下 [Init 指令碼]。 
+9. 在 [自動終止] 對話方塊下方，按一下 [Init 指令碼]。
 
 10. 輸入 **dbfs:/databricks/init/<cluster-name>/spark-metrics.sh**，替換在 <cluster-name> 的步驟 1 中所建立的叢集名稱。
 
@@ -576,50 +579,51 @@ SparkMetric_CL
 
 6. 在引數欄位中，輸入下列項目：
     ```shell
-    -n jar:file:/dbfs/azure-databricks-jobs/ZillowNeighborhoods-NY.zip!/ZillowNeighborhoods-NY.shp --taxi-ride-consumer-group taxi-ride-eh-cg --taxi-fare-consumer-group taxi-fare-eh-cg --window-interval "1 minute" --cassandra-host <Cosmos DB Cassandra host name from above> 
-    ``` 
+    -n jar:file:/dbfs/azure-databricks-jobs/ZillowNeighborhoods-NY.zip!/ZillowNeighborhoods-NY.shp --taxi-ride-consumer-group taxi-ride-eh-cg --taxi-fare-consumer-group taxi-fare-eh-cg --window-interval "1 minute" --cassandra-host <Cosmos DB Cassandra host name from above>
+    ```
 
 7. 依照下列步驟安裝相依程式庫：
-    
+
     1. 在 Databricks 使用者介面中，按一下 [首頁] 按鈕。
-    
+
     2. 在 [使用者] 下拉式清單中按一下您的使用者帳戶名稱，以開啟您的帳戶工作區設定。
-    
+
     3. 按一下您帳戶名稱旁邊的下拉式箭號，再按一下 [建立]，然後按一下 [程式庫] 以開啟 [新增文件庫] 對話方塊。
-    
+
     4. 在 [來源] 下拉式控制項中，選取 [Maven 座標]。
-    
-    5. 在 [安裝 Maven 成品] 標題下方，於 [座標] 文字方塊中輸入 `com.microsoft.azure:azure-eventhubs-spark_2.11:2.3.5`。 
-    
+
+    5. 在 [安裝 Maven 成品] 標題下方，於 [座標] 文字方塊中輸入 `com.microsoft.azure:azure-eventhubs-spark_2.11:2.3.5`。
+
     6. 按一下 [建立程式庫] 以開啟 [成品] 視窗。
-    
+
     7. 在 [執行叢集的狀態] 下方，勾選 [自動連結至所有叢集] 核取方塊。
-    
+
     8. 針對 `com.microsoft.azure.cosmosdb:azure-cosmos-cassandra-spark-helper:1.0.0` Maven 座標重複執行步驟 1 - 7。
-    
+
     9. 針對 `org.geotools:gt-shapefile:19.2` Maven 座標重複執行步驟 1 - 6。
-    
+
     10. 按一下 [進階選項]。
-    
-    11. 在 [存放庫] 文字方塊中輸入 `http://download.osgeo.org/webdav/geotools/`。 
-    
+
+    11. 在 [存放庫] 文字方塊中輸入 `http://download.osgeo.org/webdav/geotools/`。
+
     12. 按一下 [建立程式庫] 以開啟 [成品] 視窗。 
-    
+
     13. 在 [執行叢集的狀態] 下方，勾選 [自動連結至所有叢集] 核取方塊。
 
 8. 將在步驟 7 中新增的相依程式庫新增至在步驟 6 的結尾建立的作業：
+
     1. 在 Azure Databricks 工作區中，按一下 [作業]。
 
-    2. 按一下在**建立 Databricks 作業**一節的步驟 2 中建立的作業名稱。 
-    
-    3. 在 [相依程式庫] 區段旁邊按一下 [新增]，以開啟 [新增相依程式庫] 對話方塊。 
-    
+    2. 按一下在**建立 Databricks 作業**一節的步驟 2 中建立的作業名稱。
+
+    3. 在 [相依程式庫] 區段旁邊按一下 [新增]，以開啟 [新增相依程式庫] 對話方塊。
+
     4. 在 [程式庫來源] 下方，選取 [工作區]。
-    
-    5. 依序按一下 [使用者]、您的使用者名稱，然後按一下 `azure-eventhubs-spark_2.11:2.3.5`。 
-    
+
+    5. 依序按一下 [使用者]、您的使用者名稱，然後按一下 `azure-eventhubs-spark_2.11:2.3.5`。
+
     6. 按一下 [確定]。
-    
+
     7. 針對 `spark-cassandra-connector_2.11:2.3.1` 和 `gt-shapefile:19.2` 重複執行步驟 1 - 6。
 
 9. 在 [叢集：] 旁邊，按一下 [編輯]。 這會開啟 [設定叢集] 對話方塊。 在 [叢集類型] 下拉式清單中，選取 [現有的叢集]。 在 [選取叢集] 下拉式清單中，選取在**建立 Databricks 叢集**一節中建立的叢集。 按一下 [確認]。
@@ -672,4 +676,4 @@ Created 30000 records for TaxiFare
 
 若要確認 Databricks 作業正確執行，請開啟 Azure 入口網站並瀏覽至 Cosmos DB 資料庫。 開啟 [資料總管] 刀鋒視窗，並檢查**計程車記錄**資料表中的資料。 
 
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016)：紐約市計程車路程資料 (2010-2013)。 伊利諾大學香檳分校。 https://doi.org/10.13012/J8PN93H8
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016)：紐約市計程車車程資料 (2010-2013)。 伊利諾大學香檳分校。 https://doi.org/10.13012/J8PN93H8

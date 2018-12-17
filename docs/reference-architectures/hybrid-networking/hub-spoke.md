@@ -1,58 +1,59 @@
 ---
 title: 在 Azure 中實作中樞輪輻網路拓撲
-description: 如何在 Azure 中實作中樞輪輻網路拓撲。
+titleSuffix: Azure Reference Architectures
+description: 在 Azure 中實作中樞輪輻網路拓撲。
 author: telmosampaio
 ms.date: 10/08/2018
+ms.custom: seodec18
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e14abb5526b6ecd8637fb89c4ef7154d3b26f7a4
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 23821353fe943d3e389ed89ca26b946ff6afeed3
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916332"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120284"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
-此參考架構會顯示如何在 Azure 中實作中樞輪輻拓撲。 「中樞」是 Azure 中的虛擬網路 (VNet)，可當作內部部署網路的連線中心點。 「輪輻」是與中樞對等互連的 VNet，可用於隔離工作負載。 流量會透過 ExpressRoute 或 VPN 閘道連線，在內部部署資料中心和中樞之間流動。  [**部署這個解決方案**](#deploy-the-solution)。
+此參考架構會顯示如何在 Azure 中實作中樞輪輻拓撲。 「中樞」是 Azure 中的虛擬網路 (VNet)，可當作內部部署網路的連線中心點。 「輪輻」是與中樞對等互連的 VNet，可用於隔離工作負載。 流量會透過 ExpressRoute 或 VPN 閘道連線，在內部部署資料中心和中樞之間流動。 [**部署這個解決方案**](#deploy-the-solution)。
 
 ![[0]][0]
 
 *下載這個架構的 [Visio 檔案][visio-download]*
 
-
 此拓撲的優點包括：
 
-* **節省成本**：將可由多個工作負載共用的服務 (例如網路虛擬裝置 (NVA) 和 DNS 伺服器) 集中在單一位置。
-* **克服訂用帳戶限制**：將不同訂用帳戶中的 VNet 對等互連到中心中樞。
-* **關注點分離**：中央 IT (SecOps、InfraOps) 和工作負載 (DevOps)。
+- **節省成本**：將可由多個工作負載共用的服務 (例如網路虛擬裝置 (NVA) 和 DNS 伺服器) 集中在單一位置。
+- **克服訂用帳戶限制**：將不同訂用帳戶中的 VNet 對等互連到中心中樞。
+- **關注點分離**：中央 IT (SecOps、InfraOps) 和工作負載 (DevOps)。
 
 此架構的一般使用案例包括：
 
-* 在不同環境 (例如開發、測試和生產環境) 下部署，且需要共用服務 (例如 DNS、IDS、NTP 或 AD DS) 的工作負載。 系統會將共用服務置於中樞 VNet，同時將每個環境部署至輪輻以維持隔離。
-* 不需要彼此連線，但需要存取共用服務的工作負載。
-* 需要集中控制安全性層面 (例如，在中樞當作 DMZ 的防火牆)，並對每個輪輻中的工作負載進行分離管理的企業。
+- 在不同環境 (例如開發、測試和生產環境) 下部署，且需要共用服務 (例如 DNS、IDS、NTP 或 AD DS) 的工作負載。 系統會將共用服務置於中樞 VNet，同時將每個環境部署至輪輻以維持隔離。
+- 不需要彼此連線，但需要存取共用服務的工作負載。
+- 需要集中控制安全性層面 (例如，在中樞當作 DMZ 的防火牆)，並對每個輪輻中的工作負載進行分離管理的企業。
 
 ## <a name="architecture"></a>架構
 
 此架構由下列元件組成。
 
-* **內部部署網路**。 在組織內執行的私用區域網路。
+- **內部部署網路**。 在組織內執行的私用區域網路。
 
-* **VPN 裝置**。 可對內部部署網路提供外部連線的裝置或服務。 VPN 裝置可能是硬體裝置或軟體解決方案，例如，Windows Server 2012 中的路由及遠端存取服務 (RRAS)。 如需支援的 VPN 設備清單，以及設定選取的 VPN 設備以連線至 Azure 的相關資訊，請參閱[關於站對站 VPN 閘道連線的 VPN 裝置][vpn-appliance]。
+- **VPN 裝置**。 可對內部部署網路提供外部連線的裝置或服務。 VPN 裝置可能是硬體裝置或軟體解決方案，例如，Windows Server 2012 中的路由及遠端存取服務 (RRAS)。 如需支援的 VPN 設備清單，以及設定選取的 VPN 設備以連線至 Azure 的相關資訊，請參閱[關於站對站 VPN 閘道連線的 VPN 裝置][vpn-appliance]。
 
-* **VPN 虛擬網路閘道或 ExpressRoute 閘道**。 虛擬網路閘道可讓 VNet 連線到與內部部署網路連線所使用的 VPN 裝置或 ExpressRoute 線路。 如需詳細資訊，請參閱[將內部部署網路連線至 Microsoft Azure 虛擬網路][connect-to-an-Azure-vnet]。
+- **VPN 虛擬網路閘道或 ExpressRoute 閘道**。 虛擬網路閘道可讓 VNet 連線到與內部部署網路連線所使用的 VPN 裝置或 ExpressRoute 線路。 如需詳細資訊，請參閱[將內部部署網路連線至 Microsoft Azure 虛擬網路][connect-to-an-Azure-vnet]。
 
 > [!NOTE]
 > 此參考架構的部署指令碼會使用 VPN 閘道進行連線，並使用 Azure 中的 VNet 模擬內部部署網路。
 
-* **中樞 VNet**。 在中樞輪輻拓撲當作中樞使用的 Azure VNet。 中樞是內部部署網路的連線中心點，也是裝載可由輪輻 VNet 中裝載的不同工作負載使用之服務的位置。
+- **中樞 VNet**。 在中樞輪輻拓撲當作中樞使用的 Azure VNet。 中樞是內部部署網路的連線中心點，也是裝載可由輪輻 VNet 中裝載的不同工作負載使用之服務的位置。
 
-* **閘道子網路**。 虛擬網路閘道會保留在相同的子網路中。
+- **閘道子網路**。 虛擬網路閘道會保留在相同的子網路中。
 
-* **輪輻 VNet**。 在中樞輪輻拓撲中用來當作輪輻的一個或多個 Azure VNet。 輪輻可在自己的 VNet 中，用來隔離從其他輪輻分開管理的工作負載。 每個工作負載在透過 Azure 負載平衡器連線多個子網路的情況下，都可能包括多層。 如需有關應用程式基礎結構的詳細資訊，請參閱[執行 Windows VM 工作負載][windows-vm-ra]和[執行 Linux VM 工作負載][linux-vm-ra]。
+- **輪輻 VNet**。 在中樞輪輻拓撲中用來當作輪輻的一個或多個 Azure VNet。 輪輻可在自己的 VNet 中，用來隔離從其他輪輻分開管理的工作負載。 每個工作負載在透過 Azure 負載平衡器連線多個子網路的情況下，都可能包括多層。 如需有關應用程式基礎結構的詳細資訊，請參閱[執行 Windows VM 工作負載][windows-vm-ra]和[執行 Linux VM 工作負載][linux-vm-ra]。
 
-* **VNet 對等互連**。 使用[對等連線][vnet-peering]可以連線兩個 VNet。 對等連線是 VNet 之間不可轉移的低延遲連線。 因此，一旦對等互連之後，VNet 就會使用 Azure 骨幹交換流量，而不需要使用路由器。 在中樞輪輻網路拓撲中，您可以使用 VNet 對等互連，將中樞連線至每個輪輻。 您可以將相同區域或不同區域中的虛擬網路對等互連。 如需詳細資訊，請參閱[需求和限制][vnet-peering-requirements]。
+- **VNet 對等互連**。 使用[對等連線][vnet-peering]可以連線兩個 VNet。 對等連線是 VNet 之間不可轉移的低延遲連線。 因此，一旦對等互連之後，VNet 就會使用 Azure 骨幹交換流量，而不需要使用路由器。 在中樞輪輻網路拓撲中，您可以使用 VNet 對等互連，將中樞連線至每個輪輻。 您可以將相同區域或不同區域中的虛擬網路對等互連。 如需詳細資訊，請參閱[需求和限制][vnet-peering-requirements]。
 
 > [!NOTE]
 > 本文僅涵蓋 [Resource Manager](/azure/azure-resource-manager/resource-group-overview) 部署，但是您也可以在相同的訂用帳戶中，將傳統 VNet 連線至 Resource Manager VNet。 如此一來，您的輪輻就可以裝載傳統部署，而且仍然受益於中樞中共用的服務。
@@ -63,7 +64,7 @@ ms.locfileid: "50916332"
 
 ### <a name="resource-groups"></a>資源群組
 
-中樞 VNet 以及每個輪輻 VNet 都可以在不同的資源群組，甚至是不同的訂用帳戶中實作。 當您將不同訂用帳戶中的虛擬網路對等互連時，這兩個訂用帳戶可以與相同或不同的 Azure Active Directory 租用戶相關聯。 如此可對每個工作負載進行非集中式管理，同時在中樞 VNet 中維護共用服務。 
+中樞 VNet 以及每個輪輻 VNet 都可以在不同的資源群組，甚至是不同的訂用帳戶中實作。 當您將不同訂用帳戶中的虛擬網路對等互連時，這兩個訂用帳戶可以與相同或不同的 Azure Active Directory 租用戶相關聯。 如此可對每個工作負載進行非集中式管理，同時在中樞 VNet 中維護共用服務。
 
 ### <a name="vnet-and-gatewaysubnet"></a>VNet 和 GatewaySubnet
 
@@ -76,7 +77,7 @@ ms.locfileid: "50916332"
 
 如需高可用性，您可以使用 ExpressRoute 加上 VPN 進行容錯移轉。 請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][hybrid-ha]。
 
-如果您不需要與內部部署網路連線，則不需要閘道也可以使用中樞輪輻拓撲。 
+如果您不需要與內部部署網路連線，則不需要閘道也可以使用中樞輪輻拓撲。
 
 ### <a name="vnet-peering"></a>VNet 對等互連
 
@@ -86,9 +87,9 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 您也可以將輪輻設定為使用中樞 VNet 閘道，與遠端網路進行通訊。 若要允許閘道流量從輪輻流向中樞，然後連線至遠端網路，您必須：
 
-  - 將中樞中的 VNet 對等連線設定為**允許閘道傳輸**。
-  - 將每個輪輻中的 VNet 對等連線設定為**使用遠端閘道**。
-  - 將所有 VNet 對等連線設定為**允許轉送的流量**。
+- 將中樞中的 VNet 對等連線設定為**允許閘道傳輸**。
+- 將每個輪輻中的 VNet 對等連線設定為**使用遠端閘道**。
+- 將所有 VNet 對等連線設定為**允許轉送的流量**。
 
 ## <a name="considerations"></a>考量
 
@@ -135,7 +136,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 2. 開啟 `onprem.json` 檔案。 取代 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -156,7 +157,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 1. 開啟 `hub-vnet.json` 檔案。 取代 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -165,7 +166,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 3. 尋找 `sharedKey` 的兩個執行個體，輸入 VPN 連線的共用金鑰。 這兩個值必須相符。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -192,6 +193,7 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 輸出應如下所示：
 
 ```powershell
@@ -216,7 +218,7 @@ TcpTestSucceeded : True
 
 4. 使用 `ping` 命令來測試中樞 VNet 中的 jumpbox VM 的連線：
 
-   ```bash
+   ```shell
    ping 10.0.0.68
    ```
 
@@ -226,7 +228,7 @@ TcpTestSucceeded : True
 
 1. 開啟 `spoke1.json` 檔案。 取代 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -238,7 +240,7 @@ TcpTestSucceeded : True
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. 對 `spoke2.json` 檔案重複步驟 1-2。
 
 5. 執行以下命令：
@@ -276,11 +278,11 @@ TcpTestSucceeded : True
 
 1. 使用 Azure 入口網站尋找 `onprem-jb-rg` 資源群組中名為 `jb-vm1` 的 VM。
 
-2. 按一下 `Connect`，並複製入口網站中顯示的 `ssh` 命令。 
+2. 按一下 `Connect`，並複製入口網站中顯示的 `ssh` 命令。
 
 3. 在 Linux 提示字元中執行 `ssh`，以連線至模擬的內部部署環境。 請使用您在 `onprem.json` 參數檔案中指定的密碼。
 
-5. 使用 `ping` 命令來測試每個輪輻中的 jumpbox VM 的連線：
+4. 使用 `ping` 命令來測試每個輪輻中的 jumpbox VM 的連線：
 
    ```bash
    ping 10.1.0.68
@@ -293,7 +295,7 @@ TcpTestSucceeded : True
 
 1. 開啟 `hub-nva.json` 檔案。 取代 `adminUsername` 和 `adminPassword` 的值。
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -322,9 +324,9 @@ TcpTestSucceeded : True
 [vnet-peering-requirements]: /azure/virtual-network/virtual-network-manage-peering#requirements-and-constraints
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
+
 [0]: ./images/hub-spoke.png "Azure 中的中樞輪輻拓撲"
 [1]: ./images/hub-spoke-gateway-routing.svg "Azure 中具有可轉移路由的中樞輪輻拓撲"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Azure 中具有使用 NVA 之可轉移路由的中樞輪輻拓撲"
