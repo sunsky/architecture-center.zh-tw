@@ -1,19 +1,20 @@
 ---
 title: 可用性檢查清單
+titleSuffix: Azure Design Review Framework
 description: 提供設計期間可用性考量指引的檢查清單。
 author: dragon119
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: checklist
-ms.openlocfilehash: 5a819c5612fba9623c239bcc43f9004cd97dfb76
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 37e61b35d73007b9bac1ebaecfbf42792ae3903b
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305888"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307226"
 ---
 # <a name="availability-checklist"></a>可用性檢查清單
 
-可用性是指系統可正常運作的時間比例，且是[軟體品質要素](../guide/pillars.md)的其中一項。 請使用此檢查清單，從可用性的觀點來檢閱您的應用程式架構。 
+可用性是指系統可正常運作的時間比例，且是[軟體品質要素](../guide/pillars.md)的其中一項。 請使用此檢查清單，從可用性的觀點來檢閱您的應用程式架構。
 
 ## <a name="application-design"></a>應用程式設計
 
@@ -29,7 +30,7 @@ ms.locfileid: "52305888"
 
 **設計可依正常程序降級的應用程式。** 應用程式上的負載可能會超出其中一或多個組件的容量，而導致可用性降低和連線失敗。 縮放比例有助於減輕這點，但是它可能會到達資源可用性或成本等其他因素所加諸的限制。 應用程式達到資源限制時，應該採取適當的動作，將對於使用者的影響降到最低。 例如，在電子商務系統中，若訂單處理子系統處於疲勞狀態或失敗，可以暫時將其停用，同時允許其他功能 (例如瀏覽產品目錄) 繼續運作。 適當作法是延後對失敗子系統的要求，例如讓客戶可以提交訂單，但是將訂單儲存以供訂單子系統稍後再次可用時加以處理。
 
-**適當處理急促高載事件。** 大部分的應用程式所需要處理的工作負載，會隨著時間而有所不同。 自動調整有助於處理負載，但是它可能需要一些時間，讓其他執行個體上線並處理要求。 防止突然和非預期的活動高載導致超出應用程式的處理能力：將應用程式設計為將要求加入其使用之服務的佇列，並在佇列接近完整容量時適當降級。 請確定有足夠的效能和容量可供非高載條件清空佇列和處理未完成的要求。 如需詳細資訊，請參閱 [佇列型負載調節模式](https://msdn.microsoft.com/library/dn589783.aspx)。
+**適當處理急促高載事件。** 大部分的應用程式所需要處理的工作負載，會隨著時間而有所不同。 自動調整有助於處理負載，但是它可能需要一些時間，讓其他執行個體上線並處理要求。 防止突然和非預期的活動高載導致超出應用程式的處理能力：將應用程式設計為將要求加入其使用之服務的佇列，並在佇列接近完整容量時適當降級。 請確定有足夠的效能和容量可供非高載條件清空佇列和處理未完成的要求。 如需詳細資訊，請參閱[佇列型負載調節模式](../patterns/queue-based-load-leveling.md)。
 
 ## <a name="deployment-and-maintenance"></a>部署和維護
 
@@ -55,7 +56,7 @@ ms.locfileid: "52305888"
 
 **使用定期備份和時間點還原**。 定期自動備份未保留在其他位置的資料，並確認您可以在失敗發生時，可靠地還原資料和應用程式本身。 請確保備份符合您的復原點目標 (RPO)。 資料複寫不是備份功能，因為人為錯誤或惡意作業都可能會損毀所有複本上的資料。 備份程序必須是安全的，才能保護傳輸和儲存體中的資料。 資料庫或部分的資料存放區通常可以使用交易紀錄檔復原至先前的時間點。 如需詳細資訊，請參閱[從資料損毀或意外刪除復原](../resiliency/recovery-data-corruption.md)
 
-**使用 Azure Site Recovery 複寫 VM 磁碟。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的 RPO。 
+**使用 Azure Site Recovery 複寫 VM 磁碟。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的 RPO。
 
 ## <a name="errors-and-failures"></a>錯誤和失敗
 
@@ -87,4 +88,3 @@ ms.locfileid: "52305888"
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
-
