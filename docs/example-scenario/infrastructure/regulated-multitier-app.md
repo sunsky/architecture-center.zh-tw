@@ -1,40 +1,41 @@
 ---
-title: 受規範產業的安全 Windows Web 應用程式
+title: 使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式
 description: 透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。
 author: iainfoulds
-ms.date: 07/11/2018
-ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.date: 12/06/2018
+ms.custom: seodec18
+ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610714"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307056"
 ---
-# <a name="secure-windows-web-application-for-regulated-industries"></a>受規範產業的安全 Windows Web 應用程式
+# <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式
 
-此範例案例適用於需要保護多層式應用程式的受規範產業。 在此案例中，前端 ASP.NET 應用程式會安全地連線到受保護的後端 Microsoft SQL Server 叢集。
+此案例提供在 Microsoft Azure 上執行安全、多層式 Web 應用程式的架構和設計指引。 在此範例中，ASP.NET 應用程式會使用虛擬機器安全地連線到受保護的後端 Microsoft SQL Server 叢集。
 
-範例應用程式案例包括執行手術室應用程式、病患預約與記錄保留，或處方再配以及訂購。 傳統上，組織必須維護這些案例的舊版內部部署應用程式和服務。 使用安全的方式和可擴充的方式，在 Azure 中部署這些 Windows Server 應用程式，組織可以將其部署現代化，從而降低內部部署成本和管理額外負荷。
+傳統上，組織必須維護舊版內部部署應用程式和服務，才能提供安全的基礎結構。 藉由在 Azure 中安全地部署這些 Windows Server 應用程式，組織可以將其部署現代化，從而降低內部部署成本和管理額外負荷。
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
-其他相關的使用案例包括：
+可能適用此案例的一些範例：
 
 * 在安全的雲端環境中將應用程式部署現代化。
-* 減少舊版內部部署應用程式和服務管理。
+* 減少舊版內部部署應用程式和服務的管理額外負荷。
 * 利用新的應用程式平台來改善病患的醫療保健與體驗。
 
 ## <a name="architecture"></a>架構
 
 ![受規範產業的多層式 Windows Server 應用程式相關 Azure 元件的架構概觀][architecture]
 
-此案例中會討論使用 ASP.NET 和 Microsoft SQL Server 的多層式受規範產業應用程式。 整個案例的資料流程如下所示：
+此案例顯示前端 Web 應用程式如何連線至後端資料庫 (這兩者皆在 Windows Server 2016 上執行)。 整個案例的資料流程如下所示：
 
-1. 使用者會透過 Azure 應用程式閘道存取前端 ASP.NET 的受規範產業應用程式。
+1. 使用者會透過 Azure 應用程式閘道存取前端 ASP.NET 應用程式。
 2. 應用程式閘道會將流量散發至 Azure 虛擬機器擴展集內的 VM 執行個體。
-3. ASP.NET 應用程式會透過 Azure 負載平衡器連線到後端層中的 Microsoft SQL Server 叢集。 這些後端 SQL Server 執行個體位於不同的 Azure 虛擬網路，受到限制流量的網路安全性群組規則保護。
+3. 應用程式會透過 Azure 負載平衡器連線到後端層中的 Microsoft SQL Server 叢集。 這些後端 SQL Server 執行個體位於不同的 Azure 虛擬網路，受到限制流量的網路安全性群組規則保護。
 4. 負載平衡器會將 SQL Server 流量散發到另一個虛擬機器擴展集中的 VM 執行個體。
-5. Azure Blob 儲存體會在後端層中作為 SQL Server 叢集的雲端見證。 已利用 Azure 儲存體的 VNet 服務端點啟用 VNet 內的連線。
+5. Azure Blob 儲存體會在後端層中作為 SQL Server 叢集的[雲端見證][cloud-witness]。 已利用 Azure 儲存體的 VNet 服務端點啟用 VNet 內的連線。
 
 ### <a name="components"></a>元件
 
@@ -47,7 +48,7 @@ ms.locfileid: "51610714"
 
 ### <a name="alternatives"></a>替代項目
 
-* 您可以輕鬆使用各種其他作業系統來取代 *nix、windows，因為基礎結構中沒有任何項目是取決於作業系統。
+* 您可以交換使用 Linux 和 Windows，因為基礎結構並不相依於作業系統。
 
 * [適用於 Linux 的 SQL Server][sql-linux] 可取代後端資料存放區。
 
@@ -61,7 +62,7 @@ ms.locfileid: "51610714"
 
 您可以將資料庫層設定為使用 Always On 可用性群組。 使用此 SQL Server 設定時，會使用最多八個次要資料庫來設定叢集內的一個主要資料庫。 如果主要資料庫發生問題，叢集就會容錯移轉至其中一個次要資料庫，讓應用程式能夠繼續使用。 如需詳細資訊，請參閱[適用於 SQL Server 的 Always On 可用性群組概觀][sqlalwayson-docs]。
 
-如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
+如需詳細的可用性指引，請參閱 Azure 架構中心內的[可用性檢查清單][availability]。
 
 ### <a name="scalability"></a>延展性
 
@@ -112,9 +113,9 @@ ms.locfileid: "51610714"
 
 ## <a name="related-resources"></a>相關資源
 
-此案例中使用執行 Microsoft SQL Server 叢集的後端虛擬機器擴展集。 Cosmos DB 也可用來作為應用程式資料的可調整及安全資料庫層。 [Azure 虛擬網路服務][vnetendpoint-docs]端點可讓您將重要的 Azure 服務資源只放到您的虛擬網路保護。 在此案例中，VNet 端點可讓您保護前端應用程式層與 Cosmos DB 之間的流量。 如需詳細資訊，請參閱 [Azure Cosmos DB 概觀][docs-cosmos-db](/azure/cosmos-db/introduction)。
+此案例中使用執行 Microsoft SQL Server 叢集的後端虛擬機器擴展集。 Cosmos DB 也可用來作為應用程式資料的可調整及安全資料庫層。 [Azure 虛擬網路服務][vnetendpoint-docs]端點可讓您將重要的 Azure 服務資源只放到您的虛擬網路保護。 在此案例中，VNet 端點可讓您保護前端應用程式層與 Cosmos DB 之間的流量。 如需詳細資訊，請參閱 [Azure Cosmos DB 概觀](/azure/cosmos-db/introduction)。
 
-您也可以檢視[使用 SQL Server 的泛型多層式架構 (N-tier) 應用程式的詳細參考架構][ntiersql-ra]。
+如需詳細的實作指南，請檢閱[使用 SQL Server 的多層式架構 (N-Tier) 應用程式參考架構][ntiersql-ra]。
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
@@ -137,7 +138,7 @@ ms.locfileid: "51610714"
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
-
+[cloud-witness]: /windows-server/failover-clustering/deploy-cloud-witness
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72
 [medium-pricing]: https://azure.com/e/b622d82d79b34b8398c4bce35477856f
 [large-pricing]: https://azure.com/e/1d99d8b92f90496787abecffa1473a93
