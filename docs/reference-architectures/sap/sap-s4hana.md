@@ -1,33 +1,35 @@
 ---
 title: Azure 上 Linux 虛擬機器的 SAP S/4HANA
+titleSuffix: Azure Reference Architectures
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: ab056a01f05bde9e9dc7a4439baed367ee663f93
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 356b80c79aeb13ac951654350eafa904ff5e5ec1
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429582"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120232"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>Azure 上 Linux 虛擬機器的 SAP S/4HANA
 
-此參考架構會顯示一組經過證實的做法，能在 Azure 上支援災害復原的高可用性環境中執行 S/4HANA。 這個架構是以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。 
+此參考架構會顯示一組經過證實的做法，能在 Azure 上支援災害復原的高可用性環境中執行 S/4HANA。 這個架構是以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。
 
-![](./images/sap-s4hana.png)
+![Azure 上 Linux 虛擬機器的 SAP S/4HANA 參考架構](./images/sap-s4hana.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-> [!NOTE] 
+> [!NOTE]
 > 部署此參考架構需要 SAP 產品的適當授權和其他非 Microsoft 技術。
 
 ## <a name="architecture"></a>架構
- 
+
 此參考架構描述企業等級、生產環境層級系統。 若要符合您的業務需求，此組態可縮減為單一虛擬機器。 但是需要下列元件：
 
 **虛擬網路**。 [Azure 虛擬網路](/azure/virtual-network/virtual-networks-overview)服務會安全地讓 Azure 資源彼此連線。 在此架構中，虛擬網路是透過在[中樞輪輻拓撲](../hybrid-networking/hub-spoke.md)中樞中所部署的閘道，連線至內部部署環境。 輪輻是虛擬網路，用於 SAP 應用程式。
 
-**子網路**。 虛擬網路會針對以下每個層級細分為個別[子網路](/azure/virtual-network/virtual-network-manage-subnet)：閘道、應用程式、資料庫和共用服務。 
+**子網路**。 虛擬網路會針對以下每個層級細分為個別[子網路](/azure/virtual-network/virtual-network-manage-subnet)：閘道、應用程式、資料庫和共用服務。
 
 **虛擬機器**。 此架構會針對應用程式層和資料庫層使用執行 Linux 的虛擬機器，群組如下：
 
@@ -38,15 +40,15 @@ ms.locfileid: "47429582"
 
 **負載平衡器**。 內建 SAP 負載平衡器和 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) 兩者都可用來達到高可用性。 會使用 Azure Load Balancer 執行個體，將流量分配到應用程式層子網路中的虛擬機器。
 
-**可用性設定組**。 所有集區和叢集 (Web Dispatcher、SAP 應用程式伺服器、中央服務、NFS 及 HANA) 的虛擬機器會分組到個別[可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)，每個角色都會佈建至少兩部虛擬機器。 這讓虛擬機器能夠符合適用於較高[服務等級協定](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) 的資格。 
+**可用性集合**。 所有集區和叢集 (Web Dispatcher、SAP 應用程式伺服器、中央服務、NFS 及 HANA) 的虛擬機器會分組到個別[可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)，每個角色都會佈建至少兩部虛擬機器。 這讓虛擬機器能夠符合適用於較高[服務等級協定](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) 的資格。
 
 **NIC**。 [網路介面卡](/azure/virtual-network/virtual-network-network-interface) (NIC) 會啟用虛擬網路上虛擬機器的所有通訊。
 
 **網路安全性群組**。 若要限制虛擬網路中的傳入、傳出及內部子網路流量，請使用[網路安全性群組](/azure/virtual-network/virtual-networks-nsg) (NSG)。
 
-**閘道**。 閘道會將您的內部部署網路擴充至 Azure 虛擬網路。 [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) 是建議的 Azure 服務，用來建立不會經過公用網際網路的私人連線，但是也可以使用[站對站](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)連線。 
+**閘道**。 閘道會將您的內部部署網路擴充至 Azure 虛擬網路。 [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) 是建議的 Azure 服務，用來建立不會經過公用網際網路的私人連線，但是也可以使用[站對站](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)連線。
 
-**Azure 儲存體**。 若要提供虛擬機器虛擬硬碟 (VHD) 的持續性儲存體，則需要 [Azure 儲存體](/azure/storage/)。 
+**Azure 儲存體**。 若要提供虛擬機器虛擬硬碟 (VHD) 的持續性儲存體，則需要 [Azure 儲存體](/azure/storage/)。
 
 ## <a name="recommendations"></a>建議
 
@@ -56,11 +58,11 @@ ms.locfileid: "47429582"
 
 在應用程式伺服器集區和叢集中，根據您的需求來調整虛擬機器數目。 [Azure 虛擬機器規劃和實作指南](/azure/virtual-machines/workloads/sap/planning-guide)包含關於在虛擬機器上執行 SAP NetWeaver 的詳細資訊，但是該資訊也適用於 SAP S/4HANA。
 
-如需針對 Azure 虛擬機器類型和輸送量計量 (SAPS) 的 SAP 支援相關詳細資訊，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533)。 
+如需針對 Azure 虛擬機器類型和輸送量計量 (SAPS) 的 SAP 支援相關詳細資訊，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533)。
 
 ### <a name="sap-web-dispatcher-pool"></a>SAP Web Dispatcher 集區
 
-Web Dispatcher 元件是用來作為 SAP 應用程式伺服器之間 SAP 流量的負載平衡器。 若要達到 Web Dispatcher 元件的高可用性，使用 Azure Load Balancer 以針對平衡器後端集區中可用 Web Dispatcher 之間的 HTTP(S) 流量分配，在循環配置資源組態中實作平行 Web Dispatcher 設定。 
+Web Dispatcher 元件是用來作為 SAP 應用程式伺服器之間 SAP 流量的負載平衡器。 若要達到 Web Dispatcher 元件的高可用性，使用 Azure Load Balancer 以針對平衡器後端集區中可用 Web Dispatcher 之間的 HTTP(S) 流量分配，在循環配置資源組態中實作平行 Web Dispatcher 設定。
 
 ### <a name="fiori-front-end-server"></a>Fiori 前端伺服器
 
@@ -68,7 +70,7 @@ Fiori 前端伺服器使用 [NetWeaver 閘道](https://help.sap.com/doc/saphelp_
 
 ### <a name="application-servers-pool"></a>應用程式伺服器集區
 
-若要管理 ABAP 應用程式伺服器的登入群組，請使用 SMLG 交易。 它會在中央服務的訊息伺服器內使用負載平衡函式，以針對 SAPGUI 和 RFC 流量，分配 SAP 應用程式伺服器集區之間的工作負載。 與高可用性中央服務的應用程式伺服器連線是透過叢集虛擬網路名稱。 這樣可避免必須在本機容錯移轉之後變更中央服務連線的應用程式伺服器設定檔。 
+若要管理 ABAP 應用程式伺服器的登入群組，請使用 SMLG 交易。 它會在中央服務的訊息伺服器內使用負載平衡函式，以針對 SAPGUI 和 RFC 流量，分配 SAP 應用程式伺服器集區之間的工作負載。 與高可用性中央服務的應用程式伺服器連線是透過叢集虛擬網路名稱。 這樣可避免必須在本機容錯移轉之後變更中央服務連線的應用程式伺服器設定檔。
 
 ### <a name="sap-central-services-cluster"></a>SAP 中央服務叢集
 
@@ -98,13 +100,13 @@ DRBD (分散複寫區塊裝置) 會用於 NFS 叢集節點之間的複寫。
 
 ### <a name="load-balancers"></a>負載平衡器
 
-[SAP Web Dispatcher](https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/48/8fe37933114e6fe10000000a421937/frameset.htm) 會處理到 SAP 應用程式伺服器集區之 HTTP(S) 流量 (包含 Fiori 樣式應用程式) 的負載平衡。 
+[SAP Web Dispatcher](https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/48/8fe37933114e6fe10000000a421937/frameset.htm) 會處理到 SAP 應用程式伺服器集區之 HTTP(S) 流量 (包含 Fiori 樣式應用程式) 的負載平衡。
 
-針對透過 DIAG 或遠端函式呼叫 (RFC)，從 SAP GUI 用戶端連線 SAP 伺服器的流量，中央服務訊息伺服器會透過 SAP 應用程式伺服器[登入群組](https://wiki.scn.sap.com/wiki/display/SI/ABAP+Logon+Group+based+Load+Balancing)進行負載平衡，因此不需要額外負載平衡器。 
+針對透過 DIAG 或遠端函式呼叫 (RFC)，從 SAP GUI 用戶端連線 SAP 伺服器的流量，中央服務訊息伺服器會透過 SAP 應用程式伺服器[登入群組](https://wiki.scn.sap.com/wiki/display/SI/ABAP+Logon+Group+based+Load+Balancing)進行負載平衡，因此不需要額外負載平衡器。
 
 ### <a name="azure-storage"></a>Azure 儲存體
 
-我們建議針對資料庫伺服器虛擬機器使用 Azure 進階儲存體。 進階儲存體提供一致的讀取/寫入延遲。 如需針對單一執行個體虛擬機器的作業系統磁碟和資料磁碟使用進階儲存體的詳細資訊，請參閱[虛擬機器的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 
+我們建議針對資料庫伺服器虛擬機器使用 Azure 進階儲存體。 進階儲存體提供一致的讀取/寫入延遲。 如需針對單一執行個體虛擬機器的作業系統磁碟和資料磁碟使用進階儲存體的詳細資訊，請參閱[虛擬機器的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。
 
 針對所有生產環境 SAP 系統，我們建議使用進階 [Azure 受控磁碟](/azure/storage/storage-managed-disks-overview)。 受控磁碟是用來管理磁碟的 VHD 檔案，可增加可靠性。 它們也會確保可用性設定組內的虛擬機器磁碟是各自獨立的，以避免發生單一失敗點。
 
@@ -120,7 +122,7 @@ SAP 應用程式伺服器會執行與資料庫伺服器的持續通訊。 針對
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-在 SAP 應用程式層中，Azure 會提供各種不同的虛擬機器大小可進行相應增加或相應放大。如需完整清單，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533) - Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型 (需要 SAP Service Marketplace 帳戶才能進行存取)。 隨著我們持續認證更多虛擬機器類型，您可以使用相同的雲端部署相應增加或相應減少。 
+在 SAP 應用程式層中，Azure 會提供各種不同的虛擬機器大小可進行相應增加或相應放大。如需完整清單，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533) - Azure 上的 SAP 應用程式︰支援的產品和 Azure 虛擬機器類型 (需要 SAP Service Marketplace 帳戶才能進行存取)。 隨著我們持續認證更多虛擬機器類型，您可以使用相同的雲端部署相應增加或相應減少。
 
 在資料庫層，此基礎架構會在虛擬機器上執行 HANA。 如果您的工作負載超過虛擬機器大小上限，Microsoft 也會提供適用於 SAP HANA 的 [Azure 大型執行個體](/azure/virtual-machines/workloads/sap/hana-overview-architecture)。 這些實體伺服器共同位於 Microsoft Azure 經過認證的資料中心，在此文件撰寫當下，為單一執行個體提供最多 20 TB 的記憶體容量。 多重節點組態也可具有多達 60 TB 的記憶體總容量。
 
@@ -128,7 +130,7 @@ SAP 應用程式伺服器會執行與資料庫伺服器的持續通訊。 針對
 
 資源備援是高可用性基礎結構解決方案中的一般主題。 針對具有寬鬆 SLA 的企業，單一執行個體 Azure 虛擬機器會提供執行時間 SLA。 如需詳細資訊，請參閱 [Azure 服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
-在 SAP 應用程式的這個分散式安裝中，會複寫基底安裝來達到高可用性。 針對每一層的架構，高可用性設計會有所不同。 
+在 SAP 應用程式的這個分散式安裝中，會複寫基底安裝來達到高可用性。 針對每一層的架構，高可用性設計會有所不同。
 
 ### <a name="application-tier"></a>應用程式層
 
@@ -142,20 +144,21 @@ SAP 應用程式伺服器會執行與資料庫伺服器的持續通訊。 針對
 此參考基本架構描述由兩部 Azure 虛擬機器所組成的高可用性 SAP HANA 資料庫系統。 資料庫層的原生系統複寫功能提供複寫節點之間手動或自動容錯移轉：
 
 - 針對手動容錯移轉，部署多個 HANA 執行個體，並使用 HANA 系統複寫 (HSR)。
-- 針對自動容錯移轉，同時使用適用於您的 Linux 散佈的 HSR 和 高可用性擴充 (HAE)。 Linux HAE 為 HANA 資源提供叢集服務，偵測失敗事件並且協調錯誤服務前往狀況良好節點的容錯移轉。 
+- 針對自動容錯移轉，同時使用適用於您的 Linux 散佈的 HSR 和 高可用性擴充 (HAE)。 Linux HAE 為 HANA 資源提供叢集服務，偵測失敗事件並且協調錯誤服務前往狀況良好節點的容錯移轉。
 
 請參閱[於 Microsoft Azure 上執行的 SAP 認證和設定](/azure/virtual-machines/workloads/sap/sap-certifications)。
 
 ### <a name="disaster-recovery-considerations"></a>災害復原考量
+
 每一層會使用不同的策略來提供災害復原 (DR) 保護。
 
 - **應用程式伺服器層**。 SAP 應用程式伺服器不包含商務資料。 在 Azure 上，簡易 DR 策略是在次要區域建立 SAP 應用程式伺服器，然後將它們關機。 在主要應用程式伺服器上進行任何組態變更或核心更新時，必須將相同的變更套用到次要區域中的虛擬機器。 例如，將 SAP 核心可執行檔複製到 DR 虛擬機器。 如需將應用程式伺服器自動複寫到次要區域中，[Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 是建議的解決方案。 在此文件撰寫當下，ASR 還無法支援在 Azure 虛擬機器中複寫加速網路組態設定。
 
-- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在次要區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上，它們必須在執行中央服務之次要區域中的虛擬機器上重複執行。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到 DR 端。 如需組建、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考 4.3 節：「SAP SPOF 層 (ASCS)」。 這份文件適用於在 Windows 中執行的 NetWeaver，但是您可以為 Linux 建立同等的組態。 針對中央服務，使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 以複寫叢集節點和儲存體。 針對 Linux，使用高可用性擴充建立三個節點地理叢集。 
+- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在次要區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上，它們必須在執行中央服務之次要區域中的虛擬機器上重複執行。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到 DR 端。 如需組建、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考 4.3 節：「SAP SPOF 層 (ASCS)」。 這份文件適用於在 Windows 中執行的 NetWeaver，但是您可以為 Linux 建立同等的組態。 針對中央服務，使用 [Azure Site Recovery](/en-us/azure/site-recovery/site-recovery-overview) 以複寫叢集節點和儲存體。 針對 Linux，使用高可用性擴充建立三個節點地理叢集。
 
 - **SAP 資料庫層**。 針對 HANA 支援複寫使用 HSR。 除了本機、兩個節點的高可用性安裝以外，HSR 還支援多層式複寫，其中位於不同 Azure 區域的第三個節點會作為外部實體而不是叢集的一部分，且登錄至叢集 HSR 配對的次要複本，作為其複寫目標。 這樣會形成複寫菊輪鍊。 對 DR 節點的容錯移轉是手動程序。
 
-若要使用 Azure Site Recovery 自動建置原始的完整複寫生產環境網站，您必須執行自訂[部署指令碼](/azure/site-recovery/site-recovery-runbook-automation)。 Site Recovery 首先會在可用性設定組中部署虛擬機器，然後執行指令碼以新增負載平衡器之類的資源。 
+若要使用 Azure Site Recovery 自動建置原始的完整複寫生產環境網站，您必須執行自訂[部署指令碼](/azure/site-recovery/site-recovery-runbook-automation)。 Site Recovery 首先會在可用性設定組中部署虛擬機器，然後執行指令碼以新增負載平衡器之類的資源。
 
 ## <a name="manageability-considerations"></a>管理性考量
 
@@ -165,13 +168,13 @@ SAP HANA 具有備份功能，會使用基本 Azure 基礎結構。 若要備份
 
 藉由在所有層級使用集中式身分識別管理系統，以控制資源的存取權：
 
-- 透過[角色型存取控制](/azure/active-directory/role-based-access-control-what-is) (RBAC) 提供 Azure 資源的存取權。 
-- 透過 LDAP、Azure Active Directory、Kerberos 或其他系統，授與 Azure 虛擬機器的存取權。 
-- 支援透過 SAP 提供的服務在應用程式本身內存取，或者使用 [OAuth 2.0 和 Azure Active Directory](/azure/active-directory/develop/active-directory-protocols-oauth-code)。 
+- 透過[角色型存取控制](/azure/active-directory/role-based-access-control-what-is) (RBAC) 提供 Azure 資源的存取權。
+- 透過 LDAP、Azure Active Directory、Kerberos 或其他系統，授與 Azure 虛擬機器的存取權。
+- 支援透過 SAP 提供的服務在應用程式本身內存取，或者使用 [OAuth 2.0 和 Azure Active Directory](/azure/active-directory/develop/active-directory-protocols-oauth-code)。
 
 ### <a name="monitoring"></a>監視
 
-Azure 會提供幾個函式來[監視和診斷](/azure/architecture/best-practices/monitoring)整體基礎結構。 此外，Azure 虛擬機器 (Linux 或 Windows) 的增強型監視會由 Azure Operations Management Suite (OMS) 處理。 
+Azure 會提供幾個函式來[監視和診斷](/azure/architecture/best-practices/monitoring)整體基礎結構。 此外，Azure 虛擬機器 (Linux 或 Windows) 的增強型監視會由 Azure Operations Management Suite (OMS) 處理。
 
 若要提供以 SAP 作為基礎的 SAP 基礎結構之資源與服務效能監視，請使用 [Azure SAP 增強型監視](/azure/virtual-machines/workloads/sap/deployment-guide#d98edcd3-f2a1-49f7-b26a-07448ceb60ca)延伸模組。 此延伸模組會將 Azure 監視統計資料輸入 SAP 應用程式，以進行作業系統監視和 DBA Cockpit 函式。 SAP 增強型監視是在 Azure 上執行 SAP 的必要先決條件。 如需詳細資訊，請參閱 [SAP 附註 2191498](https://launchpad.support.sap.com/#/notes/2191498) -「Linux 上的 SAP 搭配 Azure：增強型監視」。
 
@@ -181,11 +184,11 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 
 如需額外的網路安全性，請考慮實作[網路 DMZ](/azure/architecture/reference-architectures/dmz/secure-vnet-hybrid)，它會使用網路虛擬設備，在 Web Dispatcher 的子網路和 Fiori 前端伺服器集區前面建立防火牆。
 
-針對基礎結構安全性，資料在傳輸中和靜止時會加密。 [Azure 虛擬機器上的 SAP NetWeaver - 規劃和實作指南](/azure/virtual-machines/workloads/sap/planning-guide)的「安全性考量」一節會開始說明網路安全性並套用至 S/4HANA。 本指南也會指定您在防火牆上必須開啟才能允許應用程式通訊的網路連接埠。 
+針對基礎結構安全性，資料在傳輸中和靜止時會加密。 [Azure 虛擬機器上的 SAP NetWeaver - 規劃和實作指南](/azure/virtual-machines/workloads/sap/planning-guide)的「安全性考量」一節會開始說明網路安全性並套用至 S/4HANA。 本指南也會指定您在防火牆上必須開啟才能允許應用程式通訊的網路連接埠。
 
 如需加密 Linux IaaS 虛擬機器磁碟，您可以使用 [Azure 磁碟加密](/azure/security/azure-security-disk-encryption)。 它會使用 Linux 的 DM-Crypt 功能來提供作業系統和資料磁碟的磁碟區加密。 此解決方案也可與 Azure Key Vault 搭配使用，協助您控制及管理金鑰保存庫訂用帳戶中的磁碟加密金鑰與祕密。 虛擬機器磁碟上的所有待用資料都會在您的 Azure 儲存體中加密。
 
-針對 SAP HANA 靜止資料加密，建議您使用 SAP HANA 原生加密技術。 
+針對 SAP HANA 靜止資料加密，建議您使用 SAP HANA 原生加密技術。
 
 > [!NOTE]
 > 請勿在相同的伺服器上使用 HANA 靜止資料加密搭配 Azure 磁碟加密。 針對 Hana，僅使用 HANA 資料加密。

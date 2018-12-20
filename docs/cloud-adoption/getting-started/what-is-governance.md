@@ -3,12 +3,12 @@ title: 企業雲端採用：什麼是雲端資源治理？
 description: Azure 上資源存取權治理的概念說明
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 14c26cbccdbea524a7c7220b3bb98ed2a118c30d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389208"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179275"
 ---
 # <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>企業雲端採用：什麼是雲端資源治理？
 
@@ -20,7 +20,7 @@ ms.locfileid: "44389208"
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
-這些目標和需求對於每個組織都是獨特的，所以不可能有一體適用的治理方法。 相反地，Azure 會實作兩個主要的治理工具，**資源型存取控制 (RBAC)** 和**資源原則**，由每個組織設計其治理模型並使用。
+這些目標和需求對於每個組織都是獨特的，所以不可能有一體適用的治理方法。 相反地，Azure 會實作兩個主要的治理工具，**角色型存取控制 (RBAC)** 和**資源原則**，由每個組織設計其治理模型並使用。
 
 RBAC 會定義角色，而角色會定義獲指派角色的使用者功能。 例如，**擁有者**角色可以對資源啟用所有功能 (建立、讀取、更新和刪除)，而**讀者**角色僅可啟用讀取功能。 角色可以定義為套用至許多資源類型的廣範圍，或者套用至少數資源的狹窄範圍。 
 

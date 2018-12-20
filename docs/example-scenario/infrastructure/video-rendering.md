@@ -3,12 +3,13 @@ title: Azure 上的 3D 影片轉譯
 description: 使用 Azure Batch 服務在 Azure 中執行原生 HPC 工作負載。
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 7dacefd5179c426912dd97af9af7b5a39505392d
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610680"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004820"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Azure 上的 3D 影片轉譯
 
@@ -124,15 +125,15 @@ Azure Batch 帳戶內的集區可以透過手動介入來調整，或者根據 A
 
 以下是使用不同伺服器數目在 8 小時內完成作業所產生的成本範例：
 
-* 100 個高效能 CPU 虛擬機器：[成本預估][hpc-est-high]
+* 100 個高效能 CPU VM：[成本預估值][hpc-est-high]
 
   100 x H16m (16 核心，225 GB RAM，進階儲存體 512 GB)，2 TB Blob 儲存體，1 TB 輸出
 
-* 50 個高效能 CPU 虛擬機器：[成本預估][hpc-est-med]
+* 50 個高效能 CPU VM：[成本預估值][hpc-est-med]
 
   50 x H16m (16 核心，225 GB RAM，進階儲存體 512 GB)，2 TB Blob 儲存體，1 TB 輸出
 
-* 10 個高效能 CPU 虛擬機器：[成本預估][hpc-est-low]
+* 10 個高效能 CPU VM：[成本預估值][hpc-est-low]
 
   10 x H16m (16 核心，225 GB RAM，進階儲存體 512 GB)，2 TB Blob 儲存體，1 TB 輸出
 

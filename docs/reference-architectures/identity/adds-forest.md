@@ -1,33 +1,31 @@
 ---
 title: 在 Azure 中建立 AD DS 資源樹系
+titleSuffix: Azure Reference Architectures
 description: >-
   如何在 Azure 中建立受信任的 Active Directory 網域。
 
   指引,vpn 閘道,expressroute,負載平衡器,虛擬網路,active directory
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: adds-extend-domain
-pnp.series.next: adfs
-cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: 0bbf8aff91aaec8718e44f4450711ff96cfc1878
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: e8ad2efd24286f23698bb8e294b15d88232c1166
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332318"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120368"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
-此參考架構會顯示如何在 Azure 中建立受到內部部署 AD 樹系內網域信任的另一個 Active Directory 網域。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構會顯示如何在 Azure 中建立受到內部部署 AD 樹系內網域信任的另一個 Active Directory 網域。 [**部署這個解決方案**](#deploy-the-solution)。
 
-[![0]][0] 
+![使用不同的 Active Directory 網域保護混合式網路架構的安全](./images/adds-forest.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-Active Directory Domain Services (AD DS) 會以階層式結構儲存身分識別資訊。 階層式結構中的最上層節點稱為樹系。 樹系包含網域，而網域則包含其他類型的物件。 此參考架構會在 Azure 中建立與內部部署網域具有單向連出信任關係的 AD DS 樹系。 Azure 中的樹系包含不存在於內部部署的網域。 因為信任關係，才能夠信任針對內部部署網域的登入，以存取個別 Azure 網域中的資源。 
+Active Directory Domain Services (AD DS) 會以階層式結構儲存身分識別資訊。 階層式結構中的最上層節點稱為樹系。 樹系包含網域，而網域則包含其他類型的物件。 此參考架構會在 Azure 中建立與內部部署網域具有單向連出信任關係的 AD DS 樹系。 Azure 中的樹系包含不存在於內部部署的網域。 因為信任關係，才能夠信任針對內部部署網域的登入，以存取個別 Azure 網域中的資源。
 
-這個架構的典型用途包括維持雲端中保留之物件和身分識別的安全性隔離，以及將個別網域從內部部署移轉到雲端。 
+這個架構的典型用途包括維持雲端中保留之物件和身分識別的安全性隔離，以及將個別網域從內部部署移轉到雲端。
 
 如需了解其他考量，請參閱[選擇解決方案以整合內部部署 Active Directory 與 Azure][considerations]。 
 
@@ -35,17 +33,17 @@ Active Directory Domain Services (AD DS) 會以階層式結構儲存身分識別
 
 此架構具有下列元件。
 
-* **內部部署網路**。 內部部署網路包含自己的 Active Directory 樹系和網域。
-* **Active Directory 伺服器**。 這些是雲端中實作當作 VM 執行之網域服務的網域控制站。 這些伺服器會裝載包含一個或多個網域的樹系，而且與內部部署的網域不同。
-* **單向信任關係**。 圖表中的範例顯示 Azure 中網域到內部部署網域的單向信任。 這種關係可讓內部部署使用者在 Azure 中存取網域內的資源，但不適用於反向。 如果雲端使用者也需要存取內部部署資源，您可以建立雙向信任。
-* **Active Directory 子網路**。 AD DS 伺服器會裝載在不同的子網路中。 網路安全性群組 (NSG) 規則可保護 AD DS 伺服器，並提供防火牆以防禦來自非預期來源的流量。
-* **Azure 閘道**。 Azure 閘道會提供內部部署網路與 Azure VNet 之間的連線。 這可能是 [VPN 連線][azure-vpn-gateway]或 [Azure ExpressRoute][azure-expressroute]。 如需詳細資訊，請參閱[在 Azure 中實作安全的混合式網路架構][implementing-a-secure-hybrid-network-architecture]。
+- **內部部署網路**。 內部部署網路包含自己的 Active Directory 樹系和網域。
+- **Active Directory 伺服器**。 這些是雲端中實作當作 VM 執行之網域服務的網域控制站。 這些伺服器會裝載包含一個或多個網域的樹系，而且與內部部署的網域不同。
+- **單向信任關係**。 圖表中的範例顯示 Azure 中網域到內部部署網域的單向信任。 這種關係可讓內部部署使用者在 Azure 中存取網域內的資源，但不適用於反向。 如果雲端使用者也需要存取內部部署資源，您可以建立雙向信任。
+- **Active Directory 子網路**。 AD DS 伺服器會裝載在不同的子網路中。 網路安全性群組 (NSG) 規則可保護 AD DS 伺服器，並提供防火牆以防禦來自非預期來源的流量。
+- **Azure 閘道**。 Azure 閘道會提供內部部署網路與 Azure VNet 之間的連線。 這可能是 [VPN 連線][azure-vpn-gateway]或 [Azure ExpressRoute][azure-expressroute]。 如需詳細資訊，請參閱[在 Azure 中實作安全的混合式網路架構][implementing-a-secure-hybrid-network-architecture]。
 
 ## <a name="recommendations"></a>建議
 
 如需在 Azure 中實作 Active Directory 的特定建議，請參閱下列文章：
 
-- [將 Active Directory Domain Services (AD DS) 擴充至 Azure][adds-extend-domain]。 
+- [將 Active Directory Domain Services (AD DS) 擴充至 Azure][adds-extend-domain]。
 - [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針][ad-azure-guidelines]。
 
 ### <a name="trust"></a>信任
@@ -56,8 +54,8 @@ Active Directory Domain Services (AD DS) 會以階層式結構儲存身分識別
 
 信任可以是單向或雙向：
 
-* 單向信任可讓一個網域或樹系 (稱為「連入」網域或樹系) 中的使用者存取另一個網域或樹系 (「連出」網域或樹系) 中保留的資源。
-* 雙向信任可讓網域或樹系中的使用者存取其他網域或樹系中保留的資源。
+- 單向信任可讓一個網域或樹系 (稱為「連入」網域或樹系) 中的使用者存取另一個網域或樹系 (「連出」網域或樹系) 中保留的資源。
+- 雙向信任可讓網域或樹系中的使用者存取其他網域或樹系中保留的資源。
 
 下表摘要說明一些簡單案例的信任設定：
 
@@ -79,8 +77,8 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
 ## <a name="manageability-considerations"></a>管理性考量
 
-如需管理與監視考量的相關資訊，請參閱[將 Active Directory 擴充至 Azure][adds-extend-domain]。 
- 
+如需管理與監視考量的相關資訊，請參閱[將 Active Directory 擴充至 Azure][adds-extend-domain]。
+
 如需其他資訊，請參閱[監視 Active Directory][monitoring_ad]。 您可以在管理子網路中的監視伺服器上安裝工具 (例如 [Microsoft Systems Center][microsoft_systems_center]) 以協助執行這些工作。
 
 ## <a name="security-considerations"></a>安全性考量
@@ -113,9 +111,9 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
 1. 開啟 `azure.json` 檔案。 搜尋 `adminPassword` 和 `Password` 的執行個體，並新增密碼的值。
 
-2. 在同一個檔案中，搜尋 `sharedKey` 的執行個體，並輸入 VPN 連線的共用金鑰。 
+2. 在同一個檔案中，搜尋 `sharedKey` 的執行個體，並輸入 VPN 連線的共用金鑰。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -127,30 +125,28 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 
    部署至與內部 VNet 相同的資源群組。
 
-
 ### <a name="test-the-ad-trust-relation"></a>測試 AD 信任關係
 
 1. 使用 Azure 入口網站，巡覽至您所建立的資源群組。
 
 2. 使用 Azure 入口網站尋找名為 `ra-adt-mgmt-vm1` 的 VM。
 
-2. 按一下 `Connect` 以開啟 VM 的遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `onprem.json` 參數檔案中指定的密碼。
+3. 按一下 `Connect` 以開啟 VM 的遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `onprem.json` 參數檔案中指定的密碼。
 
-3. 從遠端桌面工作階段中開啟連至 192.168.0.4 (此為 VM `ra-adtrust-onpremise-ad-vm1` 的 IP 位址) 的另一個遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `azure.json` 參數檔案中指定的密碼。
+4. 從遠端桌面工作階段中開啟連至 192.168.0.4 (此為 VM `ra-adtrust-onpremise-ad-vm1` 的 IP 位址) 的另一個遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `azure.json` 參數檔案中指定的密碼。
 
-4. 從 `ra-adtrust-onpremise-ad-vm1` 的遠端桌面工作階段中移至 [伺服器管理員]，然後按一下 [工具] > [Active Directory 網域及信任]。 
+5. 從 `ra-adtrust-onpremise-ad-vm1` 的遠端桌面工作階段中移至 [伺服器管理員]，然後按一下 [工具] > [Active Directory 網域及信任]。
 
-5. 在左窗格中，以滑鼠右鍵按一下 contoso.com，然後選取 [內容]。
+6. 在左窗格中，以滑鼠右鍵按一下 contoso.com，然後選取 [內容]。
 
-6. 按一下 [信任] 索引標籤。您應該會看到 treyresearch.net 列為連入信任。
+7. 按一下 [信任] 索引標籤。您應該會看到 treyresearch.net 列為連入信任。
 
-![](./images/ad-forest-trust.png)
-
+![Active Directory 樹系信任對話方塊的螢幕擷取畫面](./images/ad-forest-trust.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-* 了解[將內部部署 AD DS 網域擴充至 Azure][adds-extend-domain] 的最佳做法
-* 了解[在 Azure 中建立 AD FS 基礎結構][adfs]的最佳做法。
+- 了解[將內部部署 AD DS 網域擴充至 Azure][adds-extend-domain] 的最佳做法
+- 了解[在 Azure 中建立 AD FS 基礎結構][adfs]的最佳做法。
 
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
@@ -179,4 +175,3 @@ Active Directory 會針對屬於相同網域的網域控制站自動進行調整
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/identity-reference-architectures/master/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
-[0]: ./images/adds-forest.png "使用不同的 Active Directory 網域保護混合式網路架構的安全"

@@ -3,12 +3,13 @@ title: Azure 上 SAP 工作負載的開發/測試環境
 description: 為 SAP 工作負載建置開發/測試環境。
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 84665bfeb6ada568c631e1db72b97269d79f2e60
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610799"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004671"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上 SAP 工作負載的開發/測試環境
 

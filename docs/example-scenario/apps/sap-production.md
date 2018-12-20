@@ -3,12 +3,13 @@ title: 在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負�
 description: 在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。
 author: DharmeshBhagat
 ms.date: 9/12/2018
-ms.openlocfilehash: 75942b4d9b18b7bbe7a162826bcf4fe9ece22dce
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610901"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004959"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 
@@ -48,7 +49,7 @@ SAP 系統用來執行任務關鍵性商務應用程式。 任何中斷情況都
 
 ### <a name="alternatives"></a>替代項目
 
-SAP 針對 Azure 環境中不同的作業系統、資料庫管理系統和 VM 類型組合，提供有彈性的選項。 如需詳細資訊，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533) Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型。
+SAP 針對 Azure 環境中不同的作業系統、資料庫管理系統和 VM 類型組合，提供有彈性的選項。 如需完整清單，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533)：「Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型」。
 
 ## <a name="considerations"></a>考量
 

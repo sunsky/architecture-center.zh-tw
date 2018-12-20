@@ -3,12 +3,13 @@ title: 使用 Service Fabric 來分解整合型應用程式
 description: 將大型整合型應用程式分解成微服務。
 author: timomta
 ms.date: 09/20/2018
-ms.openlocfilehash: 9194ddd53a6d78f49fea2f7bb36fbc8721a502ea
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.custom: fasttrack
+ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819635"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004618"
 ---
 # <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 來分解整合型應用程式
 

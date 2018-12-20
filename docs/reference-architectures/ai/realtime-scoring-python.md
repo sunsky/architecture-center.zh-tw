@@ -1,22 +1,24 @@
 ---
-title: Azure 上 Python Scikit-Learn 和深度學習模型的即時評分
+title: Python 模型的即時評分
+titleSuffix: Azure Reference Architectures
 description: 此參考架構會示範如何在 Azure 上將 Python 模型部署為 Web 服務，以進行即時預測。
 author: njray
 ms.date: 11/09/2018
-ms.openlocfilehash: ff385e232c69e46b0afc6b15e73983bd856b9b2b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.custom: azcat-ai
+ms.openlocfilehash: e2312d1d1d2444f9915f4e6aa067c1487e096d3e
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902573"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120351"
 ---
-# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上 Python Scikit-Learn 和深度學習模型的即時評分
+# <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上的 Python Scikit-Learn 和深度學習模型的即時評分
 
 此參考架構會示範如何將 Python 模型部署為 Web 服務，以進行即時預測。 涵蓋兩個案例：部署一般的 Python 模型，以及部署深度學習模型的特定需求。 兩個案例皆使用顯示的架構。
 
 此架構的兩個參考實作可在 GitHub 上取得，一個用於[一般 Python 模型][github-python]，另一個用於[深度學習模型][github-dl]。
 
-![](./_images/python-model-architecture.png)
+![Azure 上 Python 模型的即時評分架構圖](./_images/python-model-architecture.png)
 
 ## <a name="scenarios"></a>案例
 
@@ -28,33 +30,33 @@ ms.locfileid: "52902573"
 
 此架構的應用程式流程如下所示：
 
-1.  用戶端會傳送 HTTP POST 要求與編碼的問題資料。
+1. 用戶端會傳送 HTTP POST 要求與編碼的問題資料。
 
-2.  Flask 應用程式會擷取要求中的問題。
+2. Flask 應用程式會擷取要求中的問題。
 
-3.  問題會傳送至 scikit-learn 管線模型，以進行特徵化和評分。
+3. 問題會傳送至 scikit-learn 管線模型，以進行特徵化和評分。
 
-4.  比對符合的常見問題及其評分會輸送到 JSON 物件，並傳回給用戶端。
+4. 比對符合的常見問題及其評分會輸送到 JSON 物件，並傳回給用戶端。
 
 以下是取用結果的範例應用程式螢幕擷取畫面：
 
-![](./_images/python-faq-matches.png)
+![應用程式範例的螢幕擷取畫面](./_images/python-faq-matches.png)
 
-**案例 2：影像分類。** 此案例會示範如何將卷積神經網路 (CNN) 模型部署為 Web 服務，以提供影像上的預測。 此案例中，架構圖中的「輸入資料」是指影像檔案。 CNN 可有效處理電腦視覺等工作，例如影像分類和物件偵測。 此案例設計用於 TensorFlow、Keras (具有 TensorFlow 後端)，以及 PyTorch 等架構。 不過，它可以一般化為使用深度學習模型進行即時預測的任何案例。
+**案例 2：影像分類**。 此案例會示範如何將卷積神經網路 (CNN) 模型部署為 Web 服務，以提供影像上的預測。 此案例中，架構圖中的「輸入資料」是指影像檔案。 CNN 可有效處理電腦視覺等工作，例如影像分類和物件偵測。 此案例設計用於 TensorFlow、Keras (具有 TensorFlow 後端)，以及 PyTorch 等架構。 不過，它可以一般化為使用深度學習模型進行即時預測的任何案例。
 
 此案例使用在 ImageNet-1K (1,000 個類別) 資料集上定型的 ResNet-152 預先定型模型，來預測影像所屬類別 (請參閱下圖)。 這些預測使用 REST API 端點即時進行。
 
-![](./_images/python-example-predictions.png)
+![預測的範例](./_images/python-example-predictions.png)
 
 深度學習模型的應用程式流程如下所示：
 
-1.  用戶端會傳送 HTTP POST 要求與編碼的影像資料。
+1. 用戶端會傳送 HTTP POST 要求與編碼的影像資料。
 
-2.  Flask 應用程式會擷取要求中的影像。
+2. Flask 應用程式會擷取要求中的影像。
 
-3.  影像已前置處理並傳送至模型進行評分。
+3. 影像已前置處理並傳送至模型進行評分。
 
-4.  評分結果會輸送到 JSON 物件，並傳回給用戶端。
+4. 評分結果會輸送到 JSON 物件，並傳回給用戶端。
 
 ## <a name="architecture"></a>架構
 
@@ -70,7 +72,7 @@ ms.locfileid: "52902573"
 
 ## <a name="performance-considerations"></a>效能考量
 
-對於即時評分架構，輸送量效能會成為主要的考量。 對於一般的 Python 模型，普遍認為 CPU 足以處理工作負載。 
+對於即時評分架構，輸送量效能會成為主要的考量。 對於一般的 Python 模型，普遍認為 CPU 足以處理工作負載。
 
 不過，對於深度學習工作負載，當速度造成瓶頸時，相較於 CPU，GPU 通常可提供更佳的[效能][gpus-vs-cpus]。 若要使用 CPU 達到 GPU 效能，通常需要具有大量 CPU 的叢集。
 
@@ -90,11 +92,11 @@ ms.locfileid: "52902573"
 
 在部署您的應用程式時，監視 AKS 叢集，確定叢集正常運作、所有節點功能正常，且所有 Pod 都在執行。 雖然您可以使用 [kubectl][kubectl] 命令列工具來擷取 Pod 狀態，Kubernetes 也包含 Web 儀表板，可對叢集狀態和管理進行基本監視。
 
-![](./_images/python-kubernetes-dashboard.png)
+![Kubernetes 儀表板的螢幕擷取畫面](./_images/python-kubernetes-dashboard.png)
 
 若要查看叢集和節點的整體狀態，請前往 Kubernetes 儀表板的**節點**區段。 如果節點處於非使用中或已失敗，您可以從該頁面顯示錯誤記錄檔。 同樣地，請前往 **Pod** 和**部署**區段，以取得 Pod 數目和部署狀態的相關資訊。
 
-### <a name="aks-logs"></a>AKS 記錄 
+### <a name="aks-logs"></a>AKS 記錄
 
 AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使用 kubectl 來查看，以及節點層級事件和記錄。 如需詳細資料，請參閱部署步驟。
 
@@ -114,16 +116,18 @@ AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使�
 
 **容器登錄**。 此解決方案會使用公用登錄來儲存 Docker 映像。 應用程式相依的程式碼以及模型都包含在此映像中。 企業應用程式應使用私人登錄，有助於防止惡意程式碼執行，並協助將資訊保存在容器內而不會遭到入侵。
 
-**DDoS 保護**. 考慮啟用 [DDoS 保護標準][ddos]。 雖然基本 DDoS 保護會隨著 Azure 平台而啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。
+**DDoS 保護**。 考慮啟用 [DDoS 保護標準][ddos]。 雖然基本 DDoS 保護會隨著 Azure 平台而啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。
 
 **記錄**。 在儲存記錄資料前請使用最佳做法，例如清除使用者密碼以及其他可能用來認可安全性詐騙的資訊。
 
 ## <a name="deployment"></a>部署
 
-若要部署此參考架構，請遵循 GitHub 存放庫中所述步驟： 
+若要部署此參考架構，請遵循 GitHub 存放庫中所述步驟：
 
-  - [一般的 Python 模型][github-python]
-  - [深度學習模型][github-dl]
+- [一般的 Python 模型][github-python]
+- [深度學習模型][github-dl]
+
+<!-- links -->
 
 [aad-auth]: /azure/aks/aad-integration
 [acr]: /azure/container-registry/
@@ -150,4 +154,3 @@ AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使�
 [scikit]: https://pypi.org/project/scikit-learn/
 [security-center]: /azure/security-center/security-center-intro
 [vm]: /azure/virtual-machines/
-

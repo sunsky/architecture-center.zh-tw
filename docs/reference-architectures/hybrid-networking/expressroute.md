@@ -1,22 +1,20 @@
 ---
 title: 使用 ExpressRoute 將內部部署網路連線至 Azure
-description: 如何在透過 Azure ExpressRoute 連線的 Azure 虛擬網路與內部部署網路間，實作安全的站對站網路架構。
+titleSuffix: Azure Reference Architectures
+description: 在透過 Azure ExpressRoute 連線的 Azure 虛擬網路與內部部署網路間，實作安全的站對站網路架構。
 author: telmosampaio
 ms.date: 10/22/2017
-pnp.series.title: Connect an on-premises network to Azure
-pnp.series.next: expressroute-vpn-failover
-pnp.series.prev: vpn
-cardTitle: ExpressRoute
-ms.openlocfilehash: 16711acb179c05152fc5ef8c7bf3eeb8d067a382
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916612"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120385"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 將內部部署網路連線至 Azure
 
-此參考架構會示範如何使用 [Azure ExpressRoute][expressroute-introduction] 將內部部署網路連線至 Azure 上的虛擬網路。 ExpressRoute 連線會透過第三方連線提供者，使用私人的專用連線。 私人連線會將內部部署網路延伸到 Azure。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構會示範如何使用 [Azure ExpressRoute][expressroute-introduction] 將內部部署網路連線至 Azure 上的虛擬網路。 ExpressRoute 連線會透過第三方連線提供者，使用私人的專用連線。 私人連線會將內部部署網路延伸到 Azure。 [**部署這個解決方案**](#deploy-the-solution)。
 
 ![[0]][0]
 
@@ -26,20 +24,20 @@ ms.locfileid: "50916612"
 
 此架構由下列元件組成。
 
-* **內部部署的公司網路**。 在組織內執行的私用區域網路。
+- **內部部署的公司網路**。 在組織內執行的私用區域網路。
 
-* **ExpressRoute 線路**。 透過邊緣路由器聯結內部部署網路與 Azure 之連線提供者所提供的第 2 層或第 3 層線路。 此線路使用連線提供者所管理的硬體基礎結構。
+- **ExpressRoute 線路**。 透過邊緣路由器聯結內部部署網路與 Azure 之連線提供者所提供的第 2 層或第 3 層線路。 此線路使用連線提供者所管理的硬體基礎結構。
 
-* **本機邊緣路由器**。 該路由器會將內部部署網路連線至提供者管理的線路。 根據您佈建連線的方式，您可能需要提供路由器使用的公用 IP 位址。
-* **Microsoft 邊緣路由器**。 使用主動-主動高可用性設定的兩個路由器。 這類路由器可讓連線提供者將他們的線路直接連線至資料中心。 根據您佈建連線的方式，您可能需要提供路由器使用的公用 IP 位址。
+- **本機邊緣路由器**。 該路由器會將內部部署網路連線至提供者管理的線路。 根據您佈建連線的方式，您可能需要提供路由器使用的公用 IP 位址。
+- **Microsoft 邊緣路由器**。 使用主動-主動高可用性設定的兩個路由器。 這類路由器可讓連線提供者將他們的線路直接連線至資料中心。 根據您佈建連線的方式，您可能需要提供路由器使用的公用 IP 位址。
 
-* **Azure 虛擬網路 (VNet)**。 每個 VNet 都位於單一 Azure 區域，而且可以裝載多個應用程式層。 應用程式層可以使用每個 VNet 中的子網路區隔。
+- **Azure 虛擬網路 (VNet)**。 每個 VNet 都位於單一 Azure 區域，而且可以裝載多個應用程式層。 應用程式層可以使用每個 VNet 中的子網路區隔。
 
-* **Azure 公用服務**。 可以在混合式應用程式中使用的 Azure 服務。 這些服務可透過網際網路存取，但使用 ExpressRoute 線路存取這些服務可提供低延遲且更能預測的效能，因為流量不會進出網際網路。 連線會透過您組織所擁有或連線提供者提供的位址，使用[公用對等互連][expressroute-peering]來執行。
+- **Azure 公用服務**。 可以在混合式應用程式中使用的 Azure 服務。 這些服務可透過網際網路存取，但使用 ExpressRoute 線路存取這些服務可提供低延遲且更能預測的效能，因為流量不會進出網際網路。 連線會透過您組織所擁有或連線提供者提供的位址，使用[公用對等互連][expressroute-peering]來執行。
 
-* **Office 365 服務**。 由 Microsoft 所提供可公開使用的 Office 365 應用程式和服務。 連線會透過您組織所擁有或連線提供者提供的位址，使用[Microsoft 對等互連][expressroute-peering]來執行。 您也可以透過 Microsoft 對等互連直接連線至 Microsoft CRM Online。
+- **Office 365 服務**。 由 Microsoft 所提供可公開使用的 Office 365 應用程式和服務。 連線會透過您組織所擁有或連線提供者提供的位址，使用[Microsoft 對等互連][expressroute-peering]來執行。 您也可以透過 Microsoft 對等互連直接連線至 Microsoft CRM Online。
 
-* **連線提供者** (未顯示)。 使用第 2 層和第 3 層連線，在您資料中心和 Azure 資料中心之間提供連線的公司。
+- **連線提供者** (未顯示)。 使用第 2 層和第 3 層連線，在您資料中心和 Azure 資料中心之間提供連線的公司。
 
 ## <a name="recommendations"></a>建議
 
@@ -55,9 +53,9 @@ Get-AzureRmExpressRouteServiceProvider
 
 ExpressRoute 連線提供者會使用下列方法將您的資料中心連線至 Microsoft：
 
-* **共置於雲端 Exchange**。 如果您共置於具有雲端 Exchange 的設施中，您可以訂購虛擬交叉連線，透過共置提供者的乙太網路交換而連線至 Azure。 共置提供者可以在您於共置設施中的基礎結構與 Azure 之間，提供第 2 層交叉連線或受控第 3 層交叉連線。
-* **點對點乙太網路連線**。 您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連線到 Azure。 點對點乙太網路提供者可以在您的網路與 Azure 之間，提供第 2 層連線或受控第 3 層連線。
-* **任意點對任意點 (IPVPN) 網路**。 您可以將您的廣域網路 (WAN) 整合至 Azure。 網際網路通訊協定虛擬私人網路 (IPVPN) 提供者 (通常是多重通訊協定標籤交換 VPN) 可在您的分公司與資料中心之間提供任意點對任意點連線。 Azure 可以相互連線到您的 WAN，看起來就像任何其他分公司一樣。 WAN 提供者通常會提供受控第 3 層連線能力。
+- **共置於雲端 Exchange**。 如果您共置於具有雲端 Exchange 的設施中，您可以訂購虛擬交叉連線，透過共置提供者的乙太網路交換而連線至 Azure。 共置提供者可以在您於共置設施中的基礎結構與 Azure 之間，提供第 2 層交叉連線或受控第 3 層交叉連線。
+- **點對點乙太網路連線**。 您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連線到 Azure。 點對點乙太網路提供者可以在您的網路與 Azure 之間，提供第 2 層連線或受控第 3 層連線。
+- **任意點對任意點 (IPVPN) 網路**。 您可以將您的廣域網路 (WAN) 整合至 Azure。 網際網路通訊協定虛擬私人網路 (IPVPN) 提供者 (通常是多重通訊協定標籤交換 VPN) 可在您的分公司與資料中心之間提供任意點對任意點連線。 Azure 可以相互連線到您的 WAN，看起來就像任何其他分公司一樣。 WAN 提供者通常會提供受控第 3 層連線能力。
 
 如需連線提供者的詳細資訊，請參閱 [ExpressRoute 簡介][expressroute-introduction]。
 
@@ -70,14 +68,14 @@ ExpressRoute 連線提供者會使用下列方法將您的資料中心連線至 
 建立 ExpressRoute 線路，如下所示：
 
 1. 執行下列 PowerShell 命令：
-   
+
     ```powershell
     New-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>> -Location <<location>> -SkuTier <<sku-tier>> -SkuFamily <<sku-family>> -ServiceProviderName <<service-provider-name>> -PeeringLocation <<peering-location>> -BandwidthInMbps <<bandwidth-in-mbps>>
     ```
 2. 將新線路的 `ServiceKey` 傳送給服務提供者。
 
 3. 等候提供者佈建線路。 若要確認線路的佈建狀態，請執行下列 PowerShell 命令：
-   
+
     ```powershell
     Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
     ```
@@ -86,15 +84,15 @@ ExpressRoute 連線提供者會使用下列方法將您的資料中心連線至 
 
     > [!NOTE]
     > 如果您使用第 3 層連線，提供者應為您設定及管理路由。 您須提供必要資訊，讓提供者實作適當的路由。
-    > 
-    > 
+    >
+    >
 
 4. 如果您使用第 2 層連線：
 
-    1. 針對您要實作的每個對等互連類型，保留兩個由有效公用 IP 位址組成的 /30 子網路。 這些 /30 子網路將用來提供線路所需的路由器 IP 位址。 如果您實作私人、公用及 Microsoft 對等互連，您必須有 6 個包含有效公用 IP 位址的 /30 子網路。     
+    1. 針對您要實作的每個對等互連類型，保留兩個由有效公用 IP 位址組成的 /30 子網路。 這些 /30 子網路將用來提供線路所需的路由器 IP 位址。 如果您實作私人、公用及 Microsoft 對等互連，您必須有 6 個包含有效公用 IP 位址的 /30 子網路。
 
     2. 設定 ExpressRoute 線路的路由。 針對您要設定的每個對等互連類型 (私人、公用和 Microsoft)，執行下列 PowerShell 命令。 如需詳細資訊，請參閱[建立和修改 ExpressRoute 路線的路由][configure-expressroute-routing]。
-   
+
         ```powershell
         Set-AzureRmExpressRouteCircuitPeeringConfig -Name <<peering-name>> -Circuit <<circuit-name>> -PeeringType <<peering-type>> -PeerASN <<peer-asn>> -PrimaryPeerAddressPrefix <<primary-peer-address-prefix>> -SecondaryPeerAddressPrefix <<secondary-peer-address-prefix>> -VlanId <<vlan-id>>
 
@@ -113,7 +111,7 @@ ExpressRoute 連線提供者會使用下列方法將您的資料中心連線至 
 
 您可以將不同區域中的多個 VNet 連線至相同 ExpressRoute 線路，前提是所有 VNet 和 ExpressRoute 線路皆位於相同的地緣政治區域內。
 
-### <a name="troubleshooting"></a>疑難排解 
+### <a name="troubleshooting"></a>疑難排解
 
 如果先前可運作的 ExpressRoute 線路現在無法連線，且內部部署或私人 VNet 內的設定皆沒有變更，則您可能需要連絡連線提供者，並與他們一起修正問題。 您可以使用下列 Powershell 命令來確認 ExpressRoute 線路是否已佈建：
 
@@ -123,7 +121,7 @@ Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resou
 
 此命令的輸出會顯示數個線路屬性，包括 `ProvisioningState`、`CircuitProvisioningState` 和 `ServiceProviderProvisioningState`，如下所示。
 
-```
+```powershell
 ProvisioningState                : Succeeded
 Sku                              : {
                                      "Name": "Standard_MeteredData",
@@ -144,19 +142,19 @@ Remove-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<re
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-ExpressRoute 線路會在網路間提供高頻寬路徑。 一般而言，頻寬較高，成本也會提高。 
+ExpressRoute 線路會在網路間提供高頻寬路徑。 一般而言，頻寬較高，成本也會提高。
 
 ExpressRoute 提供兩個[價格方案][expressroute-pricing]給客戶，計量方案和無限制資料方案。 費用會因為線路頻寬不同而有所差異。 可用的頻寬也可能因為提供者不同而有所差異。 使用 `Get-AzureRmExpressRouteServiceProvider` Cmdlet 可查看您區域中可用的提供者，以及他們所提供的頻寬。
- 
+
 單一 ExpressRoute 線路可以支援特定數量的對等互連和 VNet 連結。 如需詳細資訊，請參閱 [ExpressRoute 限制](/azure/azure-subscription-service-limits)。
 
 包含在額外費用中的 ExpressRoute 進階附加元件會提供一些額外的功能：
 
-* 提高公開和私人對等互連的路由限制數量。 
-* 提高每個 ExpressRoute 線路的 VNet 連結數目。 
-* 從全球連線到服務。
+- 提高公開和私人對等互連的路由限制數量。
+- 提高每個 ExpressRoute 線路的 VNet 連結數目。
+- 從全球連線到服務。
 
-如需詳細資訊，請參閱 [ExpressRoute 價格][expressroute-pricing]。 
+如需詳細資訊，請參閱 [ExpressRoute 價格][expressroute-pricing]。
 
 在 ExpressRoute 線路的設計中，可允許暫時性網路的頻寬突增為所採購頻寬限制的兩倍，且無需另外付費。 能達成這項功能，是因為使用了備援連結。 不過，並非所有連線提供者都支援這項功能。 需要此功能前，請確認連線提供者已啟用此功能。
 
@@ -186,8 +184,8 @@ ExpressRoute 提供兩個[價格方案][expressroute-pricing]給客戶，計量�
 
     > [!IMPORTANT]
     > 請確定 `Sku.Name` 屬性符合 `Sku.Tier` 和 `Sku.Family`。 如果您變更系列和層次，而不是變更名稱，您的連線將會停用。
-    > 
-    > 
+    >
+    >
 
     您可以在不中斷連線的情況下升級 SKU，但您不能從無限制的價格方案切換為計量方案。 將 SKU 降級時，您的頻寬耗用量必須維持在標準 SKU 的預設限制內。
 
@@ -199,26 +197,26 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 根據您使用的提供者類型，以及 ExpressRoute 線路數量和您要設定的虛擬網路閘道連線數量，您可以使用不同方式來設定 Azure 連線的高可用性。 以下是可用性選項的摘要：
 
-* 如果您使用第 2 層連線，可使用主動-主動設定將備援路由器部署在內部部署網路中。 將主要線路連線至一個路由器，然後將次要線路連線至另一個路由器。 這樣可讓您的連線兩端都有高可用性連線。 如果您需要 ExpressRoute 服務等級協定 (SLA)，這會是必要項目。 如需詳細資訊，請參閱 [Azure ExpressRoute SLA][sla-for-expressroute]。
+- 如果您使用第 2 層連線，可使用主動-主動設定將備援路由器部署在內部部署網路中。 將主要線路連線至一個路由器，然後將次要線路連線至另一個路由器。 這樣可讓您的連線兩端都有高可用性連線。 如果您需要 ExpressRoute 服務等級協定 (SLA)，這會是必要項目。 如需詳細資訊，請參閱 [Azure ExpressRoute SLA][sla-for-expressroute]。
 
     下圖顯示的設定中，包含與主要和次要線路連線的備援內部部署路由器。 每個線路都會處理公用對等互連和私人對等互連的流量 (如上一節中所述，每個對等互連會指定一組 /30 的位址空)。
 
     ![[1]][1]
 
-* 如果您使用第 3 層連線，請確認此連線會為您提供處理可用性的備援 BGP 工作階段。
+- 如果您使用第 3 層連線，請確認此連線會為您提供處理可用性的備援 BGP 工作階段。
 
-* 將 VNet 連線至不同服務提供者提供的多個 ExpressRoute 線路。 此策略會提供額外的高可用性和災害復原功能。
+- 將 VNet 連線至不同服務提供者提供的多個 ExpressRoute 線路。 此策略會提供額外的高可用性和災害復原功能。
 
-* 設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑。 如需此選像的詳細資訊，請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][highly-available-network-architecture]。
- 此選項僅適用於私人對等互連。 針對 Azure 和 Office 365 服務，網際網路是唯一的容錯移轉路徑。 
+- 設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑。 如需此選像的詳細資訊，請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][highly-available-network-architecture]。
+ 此選項僅適用於私人對等互連。 針對 Azure 和 Office 365 服務，網際網路是唯一的容錯移轉路徑。
 
 ## <a name="manageability-considerations"></a>管理性考量
 
-您可以使用 [Azure 連線工具組 (AzureCT)][azurect] 來監視您內部部署資料中心與 Azure 之間的連線。 
+您可以使用 [Azure 連線工具組 (AzureCT)][azurect] 來監視您內部部署資料中心與 Azure 之間的連線。
 
 ## <a name="security-considerations"></a>安全性考量
 
-根據您的安全性考量和相容性需求，您可以使用不同方法來設定 Azure 連線的安全性選項。 
+根據您的安全性考量和相容性需求，您可以使用不同方法來設定 Azure 連線的安全性選項。
 
 第 3 層中的 ExpressRoute 運作。 透過使用網路安全性裝備，限制流量只能傳送到合法的資源，就可以防止應用程式層中的威脅。 此外，使用公用對等互連的 ExpressRoute 連線只能從內部部署中起始。 這可防止惡意服務的存取，並防止內部部署資料從網際網路洩露出去。
 
@@ -235,36 +233,43 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 如果您必須在外部網路中公開虛擬機器的管理端點，請使用 NSG 或存取控制清單，以 IP 位址或網路允許清單來限制這些連接埠的可見性。
 
 > [!NOTE]
-> 依預設，透過 Azure 入口網站部署的 Azure 虛擬機器包含提供登入存取的公用 IP 位址。  
-> 
-> 
-
+> 依預設，透過 Azure 入口網站部署的 Azure 虛擬機器包含提供登入存取的公用 IP 位址。
+>
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-**必要條件。** 您必須已經使用適當的網路設備，設定現有的內部部署基礎結構。
+**必要條件**。 您必須已經使用適當的網路設備，設定現有的內部部署基礎結構。
 
 若要部署解決方案，請執行下列步驟。
 
+<!-- markdownlint-disable MD033 -->
+
 1. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+
 2. 等待此連結在 Azure 入口網站中開啟，然後按照下列步驟進行：
-   * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-hybrid-er-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
+   - **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-hybrid-er-rg`。
+   - 從 [位置] 下拉式方塊選取區域。
+   - 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
+   - 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
+   - 按一下 [購買] 按鈕。
+
 3. 等待部署完成。
+
 4. 按一下下方的按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fhybrid-networking%2Fexpressroute%2Fazuredeploy-expressRouteCircuit.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+
 5. 等待此連結在 Azure 入口網站中開啟，然後按照下列步驟進行：
-   * 選取 [資源群組] 區段中的 [使用現有的]，然後在文字方塊中輸入 `ra-hybrid-er-rg`。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
-   * 按一下 [購買] 按鈕。
+   - 選取 [資源群組] 區段中的 [使用現有的]，然後在文字方塊中輸入 `ra-hybrid-er-rg`。
+   - 從 [位置] 下拉式方塊選取區域。
+   - 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
+   - 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
+   - 按一下 [購買] 按鈕。
+
 6. 等待部署完成。
 
+<!-- markdownlint-enable MD033 -->
 
 <!-- links -->
+
 [forced-tuneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
@@ -283,8 +288,9 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+
 [0]: ./images/expressroute.png "使用 Azure ExpressRoute 的混合式網路架構"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "搭配 ExpressRoute 主要和次要線路使用備援路由器"
 [2]: ../_images/guidance-hybrid-network-expressroute/figure3.png "將安全性裝置新增至內部部署網路"
 [3]: ../_images/guidance-hybrid-network-expressroute/figure4.png "使用強制通道來稽核網際網路繫結流量"
-[4]: ../_images/guidance-hybrid-network-expressroute/figure5.png "找出 ExpressRoute 線路的 ServiceKey"  
+[4]: ../_images/guidance-hybrid-network-expressroute/figure5.png "找出 ExpressRoute 線路的 ServiceKey"

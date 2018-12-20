@@ -3,12 +3,13 @@ title: 使用 Citrix 的 Linux 虛擬桌面
 description: 在 Azure 上使用 Citrix 建置適用於 Linux 桌面的 VDI 環境。
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.openlocfilehash: 383642b05926c5a09abf0b2f95fef10539d95aec
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: d48163638da05fa075814d3a255ca783610741f8
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610646"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004768"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>使用 Citrix 的 Linux 虛擬桌面
 
@@ -45,10 +46,10 @@ ms.locfileid: "51610646"
 在此案例中，使用下列 SKU：
 
 - Citrix ADC (NetScaler)：2 x D4sv3 與 [NetScaler 12.0 VPX Standard Edition 200 MBPS PAYG 映像](https://azuremarketplace.microsoft.com/pt-br/marketplace/apps/citrix.netscalervpx-120?tab=PlansAndPrice)
-- Citrix License Server：1 x D2s v3
+- Citrix 授權伺服器：1 x D2s v3
 - Citrix VDA：4 x D8s v3
-- Citrix Storefront：2 x D2s v3
-- Citrix Delivery Controller：2 x D2s v3
+- Citrix 店面：2 x D2s v3
+- Citrix 傳遞控制站：2 x D2s v3
 - 網域控制站：2 x D2sv3
 - Azure 檔案伺服器：2 x D2sv3
 

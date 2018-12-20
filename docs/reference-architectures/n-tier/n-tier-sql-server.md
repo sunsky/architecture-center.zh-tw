@@ -1,58 +1,59 @@
 ---
-title: 具有 SQL Server 的多層式架構 (N-tier) 應用程式
-description: 如何在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
+title: 具有 SQL Server 的 Windows 多層式架構 (N-tier) 應用程式
+titleSuffix: Azure Reference Architectures
+description: 在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: 857b666ef8af8fec21d7a8a9756508344aa07acc
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: 38983dec83718f53fc1ffd79c1347582200f5db0
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577118"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120115"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Azure 上具有 SQL Server 的 Windows 多層式架構 (N-tier) 應用程式
 
-此參考架構展示如何在 Windows 上使用 SQL Server 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的 VM 和虛擬網路。 [**部署這個解決方案**。](#deploy-the-solution) 
+此參考架構展示如何在 Windows 上使用 SQL Server 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的 VM 和虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。
 
-![[0]][0]
+![使用 Microsoft Azure 的多層式架構](./images/n-tier-sql-server.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-## <a name="architecture"></a>架構 
+## <a name="architecture"></a>架構
 
 此架構具有下列元件：
 
-* **資源群組。** [資源群組][resource-manager-overview]可用來將資源組合在一起，讓它們可以依存留期、擁有者或其他準則管理。
+- **資源群組**。 [資源群組][resource-manager-overview]可用來將資源組合在一起，讓它們可以依存留期、擁有者或其他準則管理。
 
-* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成子網路的 VNet。 針對每一層建立不同的子網路。 
+- **虛擬網路 (VNet) 和子網路**。 每部 Azure VM 都會部署到可以分割成子網路的 VNet。 針對每一層建立不同的子網路。
 
-* **應用程式閘道**。 [Azure 應用程式閘道](/azure/application-gateway/)是第 7 層負載平衡器。 在此架構中，它會將 HTTP 要求路由傳送至 Web 前端。 應用程式閘道也會提供 [Web 應用程式防火牆](/azure/application-gateway/waf-overview) (WAF)，該防火牆會保護應用程式免於常見惡意探索和弱點。 
+- **應用程式閘道**。 [Azure 應用程式閘道](/azure/application-gateway/)是第 7 層負載平衡器。 在此架構中，它會將 HTTP 要求路由傳送至 Web 前端。 應用程式閘道也會提供 [Web 應用程式防火牆](/azure/application-gateway/waf-overview) (WAF)，該防火牆會保護應用程式免於常見惡意探索和弱點。
 
-* **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的三層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
+- **NSG**。 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的三層式架構中，資料庫層不接受來自 Web 前端的流量，只接受來自 Business 層和管理子網路的流量。
 
-* **DDoS 保護**。 雖然 Azure 平台提供基本的保護，可抵禦分散式阻斷服務 (DDoS) 攻擊，但我們建議您使用 [DDoS 保護標準][ddos]，其中具有增強的 DDoS 風險降低功能。 請參閱[安全性考量](#security-considerations)。
+- **DDoS 保護**。 雖然 Azure 平台提供基本的保護，可抵禦分散式阻斷服務 (DDoS) 攻擊，但我們建議您使用 [DDoS 保護標準][ddos]，其中具有增強的 DDoS 風險降低功能。 請參閱[安全性考量](#security-considerations)。
 
-* **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
+- **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
 
-* **可用性設定組。** 為每個層級建立[可用性設定組][azure-availability-sets]，並在每層中佈建至少兩部虛擬機器，可讓虛擬機器符合較高的[服務等級協定 (SLA)][vm-sla]。
+- **可用性集合**。 為每個層級建立[可用性設定組][azure-availability-sets]，並在每層中佈建至少兩部虛擬機器，可讓虛擬機器符合較高的[服務等級協定 (SLA)][vm-sla]。
 
-* **負載平衡器。** 使用 [Azure Load Balancer][load-balancer] 將來自 Web 層的流量散佈到商務層，以及將來自商務層的流量散佈到 SQL Server。
+- **負載平衡器**。 使用 [Azure Load Balancer][load-balancer] 將來自 Web 層的流量散佈到商務層，以及將來自商務層的流量散佈到 SQL Server。
 
-* **公用 IP 位址**。 應用程式需要公用 IP 位址才能接收網際網路流量。
+- **公用 IP 位址**。 應用程式需要公用 IP 位址才能接收網際網路流量。
 
-* **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，能夠儘允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許遠端桌面 (RDP) 流量。
+- **Jumpbox**。 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，只允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應該允許遠端桌面 (RDP) 流量。
 
-* **SQL Server Always On 可用性群組。** 藉由啟用複寫和容錯移轉，在資料層提供高可用性。 它會使用 Windows Server 容錯移轉叢集 (WSFC) 技術來進行容錯移轉。
+- **SQL Server Always On 可用性群組**。 藉由啟用複寫和容錯移轉，在資料層提供高可用性。 它會使用 Windows Server 容錯移轉叢集 (WSFC) 技術來進行容錯移轉。
 
-* **Active Directory Domain Services (AD DS) 伺服器**。 容錯移轉叢集及其相關聯叢集角色的電腦物件，是在 Active Directory Domain Services (AD DS) 中建立。
+- **Active Directory Domain Services (AD DS) 伺服器**。 容錯移轉叢集及其相關聯叢集角色的電腦物件，是在 Active Directory Domain Services (AD DS) 中建立。
 
-* **雲端見證**。 容錯移轉叢集需要它一半以上的節點執行，也就是具有仲裁。 如果叢集只有兩個節點，網路磁碟分割可能會導致每個節點都認為它是主要節點。 在此情況下，您需要「見證」以打破和局，並建立仲裁。 見證是例如共用磁碟的資源，可以作為打破和局項目以建立仲裁。 雲端見證是使用 Azure Blob 儲存體的見證類型。 若要深入了解有關仲裁的概念，請參閱＜[了解叢集和集區仲裁](/windows-server/storage/storage-spaces/understand-quorum)＞。 如需雲端見證的詳細資訊，請參閱＜[為容錯移轉叢集部署雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)＞。 
+- **雲端見證**。 容錯移轉叢集需要它一半以上的節點執行，也就是具有仲裁。 如果叢集只有兩個節點，網路磁碟分割可能會導致每個節點都認為它是主要節點。 在此情況下，您需要「見證」以打破和局，並建立仲裁。 見證是例如共用磁碟的資源，可以作為打破和局項目以建立仲裁。 雲端見證是使用 Azure Blob 儲存體的見證類型。 若要深入了解有關仲裁的概念，請參閱＜[了解叢集和集區仲裁](/windows-server/storage/storage-spaces/understand-quorum)＞。 如需雲端見證的詳細資訊，請參閱＜[為容錯移轉叢集部署雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)＞。
 
-* **Azure DNS**。 [Azure DNS][azure-dns] 是適用於 DNS 網域的主機服務。 其使用 Microsoft Azure 基礎結構來提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+- **Azure DNS**。 [Azure DNS][azure-dns] 是適用於 DNS 網域的主機服務。 其使用 Microsoft Azure 基礎結構來提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。 
+您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。
 
 ### <a name="vnet--subnets"></a>VNet / 子網路
 
@@ -70,15 +71,14 @@ ms.locfileid: "51577118"
 
 ### <a name="network-security-groups"></a>網路安全性群組
 
-使用 NSG 規則來限制各層之間的流量。 在如上所示的三層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。  
+使用 NSG 規則來限制各層之間的流量。 在如上所示的三層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。
 
-1. 拒絕來自 VNet 的所有輸入流量。 (在規則中使用 `VIRTUAL_NETWORK` 標記)。 
-2. 允許來自 Business 層子網路的輸入流量。  
+1. 拒絕來自 VNet 的所有輸入流量。 (在規則中使用 `VIRTUAL_NETWORK` 標記)。
+2. 允許來自 Business 層子網路的輸入流量。
 3. 允許來自資料庫層子網路本身的輸入流量。 此規則允許資料庫 VM 之間的通訊，是進行資料庫複寫和容錯移轉所需的。
 4. 允許來自 Jumpbox 子網路的 RDP 流量 (連接埠 3389)。 此規則讓系統管理員能夠從 Jumpbox 連線到資料庫層。
 
 建立規則 2 &ndash; 4，其優先順序高於第一個規則，因此它們會覆寫它。
-
 
 ### <a name="sql-server-always-on-availability-groups"></a>SQL Server Always On 可用性群組
 
@@ -88,15 +88,14 @@ ms.locfileid: "51577118"
 
 設定 SQL Server Always On 可用性群組，如下：
 
-1. 建立 Windows Server 容錯移轉叢集 (WSFC) 叢集、SQL Server Always On 可用性群組，以及主要複本。 如需詳細資訊，請參閱[開始使用 Always On 可用性群組][sql-alwayson-getting-started]。 
+1. 建立 Windows Server 容錯移轉叢集 (WSFC) 叢集、SQL Server Always On 可用性群組，以及主要複本。 如需詳細資訊，請參閱[開始使用 Always On 可用性群組][sql-alwayson-getting-started]。
 2. 建立具有靜態私人 IP 位址的內部負載平衡器。
-3. 建立可用性群組接聽程式，並將接聽程式的 DNS 名稱對應到內部負載平衡器的 IP 位址。 
+3. 建立可用性群組接聽程式，並將接聽程式的 DNS 名稱對應到內部負載平衡器的 IP 位址。
 4. 建立 SQL Server 接聽連接埠的負載平衡器規則 (預設為 TCP 連接埠 1433)。 負載平衡器規則必須啟用「浮動 IP」，也稱為「伺服器直接回傳」。 這樣會導致 VM 直接回覆用戶端，以啟用與主要複本的直接連線。
-  
+
    > [!NOTE]
    > 啟用浮動 IP 時，前端連接埠號碼必須與負載平衡器規則中的後端連接埠號碼相同。
-   > 
-   > 
+   >
 
 當 SQL 用戶端嘗試連線時，負載平衡器會將連線要求路由傳送到主要複本。 如果已容錯移轉至另一個複本，負載平衡器會自動將新要求路由傳送到新的主要複本。 如需詳細資訊，請參閱[設定 SQL Server Always On 可用性群組的 ILB 接聽程式][sql-alwayson-ilb]。
 
@@ -139,12 +138,12 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 以下是關於負載平衡器健康情況探查的建議：
 
-* 探查可以測試 HTTP 或 TCP。 如果您的 VM 執行 HTTP 伺服器，請建立 HTTP 探查。 否則，建立 TCP 探查。
-* 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 此路徑可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
-* 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請勿在任何防火牆原則或 NSG 規則中封鎖往返此 IP 位址的流量。
-* 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示多少虛擬機器因探查回應失敗而未取得網路流量。
+- 探查可以測試 HTTP 或 TCP。 如果您的 VM 執行 HTTP 伺服器，請建立 HTTP 探查。 否則，建立 TCP 探查。
+- 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 此路徑可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
+- 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請勿在任何防火牆原則或 NSG 規則中封鎖往返此 IP 位址的流量。
+- 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示多少虛擬機器因探查回應失敗而未取得網路流量。
 
-如果您需要比[適用於 VM 的 Azure SLA][vm-sla] 所提供更高的可用性，請考慮跨兩個區域複寫應用程式，同時使用 Azure 流量管理員進行容錯移轉。 如需詳細資訊，請參閱[適用於高可用性的多重區域多層式架構 (N-tier) 應用程式][multi-dc]。  
+如果您需要比[適用於 VM 的 Azure SLA][vm-sla] 所提供更高的可用性，請考慮跨兩個區域複寫應用程式，同時使用 Azure 流量管理員進行容錯移轉。 如需詳細資訊，請參閱[適用於高可用性的多重區域多層式架構 (N-tier) 應用程式][multi-dc]。
 
 ## <a name="security-considerations"></a>安全性考量
 
@@ -154,7 +153,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 **加密**。 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure Key Vault 整合][sql-keyvault]。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
-**DDoS 保護**. Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
+**DDoS 保護**。 Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
@@ -164,17 +163,17 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>部署解決方案
+### <a name="deployment-steps"></a>部署步驟
 
 1. 執行下列命令以建立資源群組。
 
-    ```bash
+    ```azurecli
     az group create --location <location> --name <resource-group-name>
     ```
 
 2. 執行下列命令為雲端見證建立儲存體帳戶。
 
-    ```bash
+    ```azurecli
     az storage account create --location <location> \
       --name <storage-account-name> \
       --resource-group <resource-group-name> \
@@ -183,7 +182,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 3. 瀏覽至參考架構 GitHub 存放庫的 `virtual-machines\n-tier-windows` 資料夾。
 
-4. 開啟 `n-tier-windows.json` 檔案。 
+4. 開啟 `n-tier-windows.json` 檔案。
 
 5. 搜尋 "witnessStorageBlobEndPoint" 的所有執行個體，並且將預留位置文字取代為步驟 2 中儲存體帳戶的名稱。
 
@@ -193,7 +192,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 6. 執行下列命令以列出儲存體帳戶的帳戶金鑰。
 
-    ```bash
+    ```azurecli
     az storage account keys list \
       --account-name <storage-account-name> \
       --resource-group <resource-group-name>
@@ -225,16 +224,15 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 8. 在 `n-tier-windows.json` 檔案中，搜尋 `[replace-with-password]` 和 `[replace-with-sql-password]` 的所有執行個體，並以強式密碼加以取代。 儲存檔案。
 
     > [!NOTE]
-    > 如果您變更系統管理員使用者名稱，您也必須在 JSON 檔案中更新 `extensions` 區塊。 
+    > 如果您變更系統管理員使用者名稱，您也必須在 JSON 檔案中更新 `extensions` 區塊。
 
 9. 執行下列命令來部署架構。
 
-    ```bash
+    ```azurecli
     azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
     ```
 
 如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
-
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md
@@ -264,8 +262,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[0]: ./images/n-tier-sql-server.png "使用 Microsoft Azure 的多層式架構"
-[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
+[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [load-balancer]: /azure/load-balancer/
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features

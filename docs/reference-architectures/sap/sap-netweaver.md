@@ -1,33 +1,36 @@
 ---
-title: 在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
+title: 在 Azure VM 上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
+titleSuffix: Azure Reference Architectures
 description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HANA 的經過證實做法。
 author: lbrader
 ms.date: 08/03/2018
-ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916578"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120181"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
 此參考架構會顯示一組經過證實的做法，能在 Windows 環境中具有高可用性的 Azure 上執行 SAP NetWeaver。 資料庫是 AnyDB，這是任何支援 DBMS 的 SAP 字詞，不包括 SAP HANA。 這個架構是以特定虛擬機器 (VM) 大小進行部署，大小可以變更以符合您的組織需求。
 
-![](./images/sap-netweaver.png)
+![Azure 虛擬機器上適用於 AnyDB 的 SAP NetWeaver (Windows) 參考架構](./images/sap-netweaver.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-> [!NOTE] 
+> [!NOTE]
 > 部署此參考架構需要 SAP 產品的適當授權和其他非 Microsoft 技術。
 
 ## <a name="architecture"></a>架構
+
 此架構由下列基礎結構和關鍵軟體元件組成。
 
 **虛擬網路**。 Azure 虛擬網路服務會安全地讓 Azure 資源彼此連線。 在此架構中，虛擬網路是透過在[中樞輪輻](../hybrid-networking/hub-spoke.md)中樞中所部署的 VPN 閘道，連線至內部部署環境。 輪輻是虛擬網路，用於 SAP 應用程式和資料庫層。
 
 **子網路**。 虛擬網路會針對以下各個層級細分為不同的子網路：應用程式 (SAP NetWeaver)、資料庫、共用服務 (jumpbox) 和 Active Directory。
-    
+
 **虛擬機器**。 此架構會針對應用程式層和資料庫層使用虛擬機器，群組如下：
 
 - **SAP NetWeaver**。 應用程式層會使用 Windows 虛擬機器，並執行 SAP 中央服務和 SAP 應用程式伺服器。 執行中央服務的虛擬機器會設定為 Windows Server 容錯移轉叢集以取得高可用性，受 SIOS DataKeeper 叢集版本所支援。
@@ -35,9 +38,9 @@ ms.locfileid: "50916578"
 - **Jumpbox**。 也稱為防禦主機。 這是網路上系統管理員用來連線到其他虛擬機器的安全虛擬機器。
 - **Windows Server Active Directory 網域控制站**。 會針對所有虛擬機器和網域中的使用者使用網域控制站。
 
-**負載平衡器**。 會使用 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) 執行個體，將流量分配到應用程式層子網路中的虛擬機器。 您可以在資料層中使用內建的 SAP 負載平衡器、Azure Load Balancer 或其他機制，根據 DBMS 來達到高可用性。 如需詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。 
+**負載平衡器**。 會使用 [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) 執行個體，將流量分配到應用程式層子網路中的虛擬機器。 您可以在資料層中使用內建的 SAP 負載平衡器、Azure Load Balancer 或其他機制，根據 DBMS 來達到高可用性。 如需詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署](/azure/virtual-machines/workloads/sap/dbms-guide)。
 
-**可用性設定組**。 SAP Web Dispatcher、SAP 應用程式伺服器和 (A)SCS 的虛擬機器角色會分組到個別[可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)，每個角色都會佈建至少兩部虛擬機器。 這讓虛擬機器能夠符合適用於較高[服務等級協定](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) 的資格。
+**可用性集合**。 SAP Web Dispatcher、SAP 應用程式伺服器和 (A)SCS 的虛擬機器角色會分組到個別[可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)，每個角色都會佈建至少兩部虛擬機器。 這讓虛擬機器能夠符合適用於較高[服務等級協定](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) 的資格。
 
 **NIC**。 [網路介面卡](/azure/virtual-network/virtual-network-network-interface) (NIC) 會啟用虛擬網路上虛擬機器的所有通訊。
 
@@ -45,9 +48,10 @@ ms.locfileid: "50916578"
 
 **閘道**。 閘道會將您的內部部署網路擴充至 Azure 虛擬網路。 [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) 是建議的 Azure 服務，用來建立不會經過公用網際網路的私人連線，但是也可以使用[站對站](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)連線。
 
-**Azure 儲存體**。 若要提供虛擬機器虛擬硬碟 (VHD) 的持續性儲存體，則需要 [Azure 儲存體](/azure/storage/storage-standard-storage)。 [雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)也會使用它來實作容錯移轉叢集作業。 
+**Azure 儲存體**。 若要提供虛擬機器虛擬硬碟 (VHD) 的持續性儲存體，則需要 [Azure 儲存體](/azure/storage/storage-standard-storage)。 [雲端見證](/windows-server/failover-clustering/deploy-cloud-witness)也會使用它來實作容錯移轉叢集作業。
 
 ## <a name="recommendations"></a>建議
+
 您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。
 
 ### <a name="sap-web-dispatcher-pool"></a>SAP Web Dispatcher 集區
@@ -68,7 +72,7 @@ Web Dispatcher 元件是用來作為 SAP 應用程式伺服器之間 SAP 流量�
 
 如需詳細資訊，請參閱「3. 在 Azure 上的 SIOS 執行 ASCS 的 SAP 客戶重要更新」，位於[在 Microsoft 平台上執行 SAP 應用程式](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/)。
 
-處理叢集的另一種方式是使用 Windows Server 容錯移轉叢集實作檔案共用叢集。 [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) 最近修改了中央服務部署模式，來透過 UNC 路徑存取 /sapmnt 全域目錄。 這項變更會針對 SIOS，或中央服務虛擬機器上的其他共用磁碟解決方案[移除需求](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/)。 但是仍然建議確保 /sapmnt UNC 共用是[高可用性](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/)。 可以藉由使用 Windows Server 容錯移轉叢集與[相應放大檔案伺服器](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) 和 Windows Server 2016 中的[儲存空間直接存取](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) 功能，在中央服務執行個體上完成這個操作。 
+處理叢集的另一種方式是使用 Windows Server 容錯移轉叢集實作檔案共用叢集。 [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) 最近修改了中央服務部署模式，來透過 UNC 路徑存取 /sapmnt 全域目錄。 這項變更會針對 SIOS，或中央服務虛擬機器上的其他共用磁碟解決方案[移除需求](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/)。 但是仍然建議確保 /sapmnt UNC 共用是[高可用性](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/)。 可以藉由使用 Windows Server 容錯移轉叢集與[相應放大檔案伺服器](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) 和 Windows Server 2016 中的[儲存空間直接存取](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) 功能，在中央服務執行個體上完成這個操作。
 
 ### <a name="availability-sets"></a>可用性設定組
 
@@ -112,7 +116,7 @@ SAP 應用程式伺服器會執行與資料庫伺服器的持續通訊。 針對
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-在 SAP 應用程式層中，Azure 會提供各種不同的虛擬機器大小可進行相應增加或相應放大。如需完整清單，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533) - Azure 上的 SAP 應用程式︰支援的產品和 Azure 虛擬機器類型。 (需要 SAP Service Marketplace 帳戶才能進行存取)。 SAP 應用程式伺服器和中央服務叢集可以藉由新增更多執行個體來相應增加/相應減少或相應放大。 AnyDB 資料庫可以相應增加/相應減少，但是無法相應放大。AnyDB 的 SAP 資料庫容器不支援分區化。
+在 SAP 應用程式層中，Azure 會提供各種不同的虛擬機器大小可進行相應增加或相應放大。如需完整清單，請參閱 [SAP 附註 1928533](https://launchpad.support.sap.com/#/notes/1928533) - Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型。 (需要 SAP Service Marketplace 帳戶才能進行存取)。 SAP 應用程式伺服器和中央服務叢集可以藉由新增更多執行個體來相應增加/相應減少或相應放大。 AnyDB 資料庫可以相應增加/相應減少，但是無法相應放大。AnyDB 的 SAP 資料庫容器不支援分區化。
 
 ## <a name="availability-considerations"></a>可用性考量
 
@@ -145,7 +149,7 @@ SAP Web Dispatcher 的高可用性是以備援執行個體來達成。 請參閱
 
 - **應用程式伺服器層**。 SAP 應用程式伺服器不包含商務資料。 在 Azure 上，簡易 DR 策略是在次要區域建立 SAP 應用程式伺服器，然後將它們關機。 在主要應用程式伺服器上進行任何組態變更或核心更新時，必須將相同的變更複製到次要區域中的虛擬機器。 例如，將核心可執行檔複製到 DR 虛擬機器。 如需將應用程式伺服器自動複寫到次要區域中，[Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 是建議的解決方案。
 
-- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在災害復原區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上發生，必須在執行中央服務的災害復原區域中的虛擬機器上重複執行這些變更或更新。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到災害復原區域。 如需這個簡易複寫方法之建置、複製及測試容錯移轉程序的詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考「4.3. SAP SPOF layer (ASCS)。」
+- **中央服務**。 這個 SAP 應用程式堆疊的元件也不會保存商務資料。 您可以在災害復原區域中建置虛擬機器，來執行中央服務角色。 主要中央服務節點中同步處理的唯一內容是 /sapmnt 共用內容。 另外，如果組態變更或核心更新是在主要中央服務伺服器上發生，必須在執行中央服務的災害復原區域中的虛擬機器上重複執行這些變更或更新。 若要同步處理兩部伺服器，您可以使用 Azure Site Recovery 複寫叢集節點，或者只使用定期排程備份作業將 /sapmnt 複製到災害復原區域。 如需複寫方法的組建、複製及測試容錯移轉程序等詳細資訊，請下載 [SAP NetWeaver：建置 Hyper-V 和以 Microsoft Azure 作為基礎的災害復原解決方案](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx)，並參考 4.3 節： SAP SPOF layer (ASCS)。」
 
 - **資料庫層**。 DR 的最佳實作方式是使用資料庫自己的整合複寫技術。 舉例來說，如果是 SQL Server，我們建議使用 AlwaysOn 可用性群組以在遠端區域中建立複本，使用手動容錯移轉以非同步方式複寫交易。 非同步複寫可避免對主要網站的互動式工作負載效能造成影響。 手動容錯移轉讓人員有機會評估 DR 影響，並判斷透過 DR 網站的運作是否適當。
 
@@ -159,7 +163,7 @@ Azure 會提供幾個函式來[監視和診斷](/azure/architecture/best-practic
 
 ## <a name="security-considerations"></a>安全性考量
 
-SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取和 SAP 應用程式內的授權。 如需詳細資訊，請參閱[適用於 ABAP 的 SAP NetWeaver 應用程式伺服器安全性指南](https://help.sap.com/doc/7b932ef4728810148a4b1a83b0e91070/1610 001/en-US/frameset.htm?4dde53b3e9142e51e10000000a42189c.html)和 [SAP NetWeaver 應用程式伺服器 Java 安全性指南](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm)。
+SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取和 SAP 應用程式內的授權。 如需詳細資訊，請參閱[適用於 ABAP 的 SAP NetWeaver 應用程式伺服器安全性指南](https://help.sap.com/viewer/864321b9b3dd487d94c70f6a007b0397/7.4.19)和 [SAP NetWeaver 應用程式伺服器 Java 安全性指南](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm)。
 
 如需額外的網路安全性，請考慮實作[網路 DMZ](../dmz/secure-vnet-hybrid.md)，它會使用網路虛擬設備，在 Web Dispatcher 的子網路前面建立防火牆。
 

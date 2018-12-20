@@ -6,12 +6,12 @@ ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 8ff2317eb85197ed93e048b6a2d836405436cc17
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902488"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307158"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>角色和資源型授權
 
@@ -167,7 +167,7 @@ if (await _authorizationService.AuthorizeAsync(User, survey, Operations.Read) ==
 * 更新
 * 刪除
 * 發佈
-* Unpublsh
+* 取消發行
 
 下列程式碼會針對特定使用者和問卷建立權限清單。 請注意，此程式碼會同時察看使用者的應用程式角色，以及問卷中的 owner/contributor 欄位。
 

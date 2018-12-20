@@ -3,12 +3,13 @@ title: 擷取和處理即時汽車 IoT 資料
 description: 使用 IoT 擷取和處理即時車輛資料。
 author: msdpalam
 ms.date: 09/12/2018
-ms.openlocfilehash: 6562e3277e6b6eb38993132284ad43542ef4c0d3
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 8c123403f21ce96549fe075675ec2275b79493a3
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610731"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004877"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>擷取和處理即時汽車 IoT 資料
 
@@ -64,7 +65,7 @@ ms.locfileid: "51610731"
 根據處理事件、服務 SLA、成本管理和元件管理方便性所需的規模，選擇此架構中的技術。
 * 隨附 99.9% SLA 的受控 [HDInsight Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) 會與 Azure 受控磁碟整合
 * [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) 已針對在雲端中的效能和成本效益，從零開始最佳化。 Databricks Runtime 將數個重要功能新增至 Apache Spark 工作負載，以提升效能並降低成本 (效能是在 Azure 上執行時的 10-100 倍)，這些功能包括：
-* Azure Databricks 會與 Azure 資料庫和存放區深入整合：[Azure SQL Data Warehouse](/azure/sql-data-warehouse)、[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)、[Azure Data Lake Storage](https://azure.microsoft.com/services/storage/data-lake-storage) 和 [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs)
+* Azure Databricks 會與 Azure 資料庫和存放區深入整合：[Azure SQL 資料倉儲](/azure/sql-data-warehouse)、[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)、[Azure Data Lake Storage](https://azure.microsoft.com/services/storage/data-lake-storage) 和 [Azure Blob 儲存體](https://azure.microsoft.com/services/storage/blobs)
     * 自動調整和自動終止 Spark 叢集，以自動將成本降至最低。
     * 效能最佳化包括快取、編製索引，以及進階查詢最佳化，這可改善效能，達到雲端或內部部署環境中傳統 Apache Spark 部署的 10-100 倍。
     * 與 Azure Active Directory 整合可讓您使用 Azure Databricks 執行完整的 Azure 型解決方案。

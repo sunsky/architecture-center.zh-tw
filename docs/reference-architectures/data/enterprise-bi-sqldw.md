@@ -1,24 +1,26 @@
 ---
-title: 具 SQL 資料倉儲的 Enterprise BI
-description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業見解
+title: 企業商業智慧
+titleSuffix: Azure Reference Architectures
+description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業見解。
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
-ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
+ms.custom: seodec18
+ms.openlocfilehash: 656bf6f1bd342856fd8a2d2aa0b62a9dd4d4f87f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/11/2018
-ms.locfileid: "51527706"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120079"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Azure 中具 SQL 資料倉儲的 Enterprise BI
 
-此參考架構會實作 [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (擷取-載入-轉換) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。 
+此參考架構會實作[擷取、載入和轉換 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管線，將資料從內部部署 SQL Server 資料庫移至 SQL 資料倉儲，並轉換資料以供分析。
 
-此架構的參考實作可在 [GitHub][github-folder] 上取得
+此架構的參考實作可在 [GitHub][github-folder] 上取得。
 
-![](./images/enterprise-bi-sqldw.png)
+![Azure 中企業 BI 搭配 SQL 資料倉儲的架構圖](./images/enterprise-bi-sqldw.png)
 
-**案例**：組織具有在內部部署的 SQL Server 資料庫中儲存的大型 OLTP 資料集。 組織想要使用 SQL 資料倉儲，透過 Power BI 執行分析。 
+**案例**：組織具有在內部部署的 SQL Server 資料庫中儲存的大型 OLTP 資料集。 組織想要使用 SQL 資料倉儲，透過 Power BI 執行分析。
 
 此參考架構是針對一次性或隨需作業而設計的。 如果您需要持續移動資料 (每小時或每日)，建議您使用 Azure Data Factory 來定義自動化工作流程。 如需使用 Data Factory 的參考架構，請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf-ra]。
 
@@ -34,7 +36,7 @@ ms.locfileid: "51527706"
 
 **Blob 儲存體**。 Blob 儲存體會作為在資料載入至 SQL 資料倉儲之前用來複製資料的臨時區域。
 
-**Azure SQL 資料倉儲**。 [SQL 資料倉儲](/azure/sql-data-warehouse/)是為了對大型資料執行分析而設計的分散式系統。 它支援大量平行處理 (MPP)，因而適合用來執行高效能分析。 
+**Azure SQL 資料倉儲**。 [SQL 資料倉儲](/azure/sql-data-warehouse/)是為了對大型資料執行分析而設計的分散式系統。 它支援大量平行處理 (MPP)，因而適合用來執行高效能分析。
 
 ### <a name="analysis-and-reporting"></a>分析和報告
 
@@ -49,7 +51,7 @@ ms.locfileid: "51527706"
 **Azure Active Directory** (Azure AD) 會驗證透過 Power BI 連線至 Analysis Services 伺服器的使用者。
 
 ## <a name="data-pipeline"></a>Data Pipeline
- 
+
 此參考架構會使用 [WorldWideImporters](/sql/sample/world-wide-importers/wide-world-importers-oltp-database) 範例資料庫作為資料來源。 資料管線具有下列階段：
 
 1. 將資料從 SQL Server 匯出至一般檔案 (bcp 公用程式)。
@@ -58,10 +60,11 @@ ms.locfileid: "51527706"
 4. 將資料轉換為星型結構描述 (T-SQL)。
 5. 將語意模型載入 Analysis Services 中 (SQL Server Data Tools)。
 
-![](./images/enterprise-bi-sqldw-pipeline.png)
- 
+![企業 BI 管線的圖表](./images/enterprise-bi-sqldw-pipeline.png)
+
 > [!NOTE]
-> 在步驟 1 &ndash; 3 中，請考慮使用 Redgate Data Platform Studio。 Data Platform Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。 如需詳細資訊，請參閱[使用 Redgate Data Platform Studio 載入資料](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。 
+> 在步驟 1 &ndash; 3 中，請考慮使用 Redgate Data Platform Studio。 Data Platform Studio 會套用最適當的相容性修正檔與最佳化，因此它是開始使用 SQL 資料倉儲最快的方式。 如需詳細資訊，請參閱[使用 Redgate Data Platform Studio 載入資料](/azure/sql-data-warehouse/sql-data-warehouse-load-with-redgate)。
+>
 
 以下幾節將詳細說明這些階段。
 
@@ -71,7 +74,7 @@ ms.locfileid: "51527706"
 
 **建議**
 
-可能的話，請將資料擷取排程於離峰時間，以盡可能避免生產環境中的資源爭用。 
+可能的話，請將資料擷取排程於離峰時間，以盡可能避免生產環境中的資源爭用。
 
 請避免在資料庫伺服器上執行 bcp。 改以其他機器來執行。 請將檔案寫入至本機磁碟機。 請確定您有足夠的 I/O 資源可處理並行寫入。 為了達到最佳效能，請將檔案匯出至專用的快速儲存磁碟機。
 
@@ -83,11 +86,11 @@ ms.locfileid: "51527706"
 
 **建議**
 
-儲存體帳戶請建立在來源資料所在位置的鄰近區域中。 請將儲存體帳戶和 SQL 資料倉儲執行個體部署在相同區域中。  
+儲存體帳戶請建立在來源資料所在位置的鄰近區域中。 請將儲存體帳戶和 SQL 資料倉儲執行個體部署在相同區域中。 
 
-請勿在執行生產工作負載的相同機器上執行 AzCopy，因為 CPU 和 I/O 的耗用可能會影響到生產工作負載。 
+請勿在執行生產工作負載的相同機器上執行 AzCopy，因為 CPU 和 I/O 的耗用可能會影響到生產工作負載。
 
-請先測試上傳，以確認上傳速度。 您可以使用 AzCopy 中的 /NC 選項來指定並行複製作業數目。 一開始請先使用預設值，然後再試著以這項設定調整效能。 在低頻寬環境中，過多的並行作業有可能會拖垮網路連線，而使作業無法順利完成。  
+請先測試上傳，以確認上傳速度。 您可以使用 AzCopy 中的 /NC 選項來指定並行複製作業數目。 一開始請先使用預設值，然後再試著以這項設定調整效能。 在低頻寬環境中，過多的並行作業有可能會拖垮網路連線，而使作業無法順利完成。
 
 AzCopy 會透過公用網際網路將資料移至儲存體。 若其速度不夠快，請考慮設定 [ExpressRoute](/azure/expressroute/) 線路。 ExpressRoute 是一項服務，它會透過專用私人連線將您的資料路由傳送至 Azure。 當網路連線速度太慢時，您也可以考慮將磁碟上的資料傳送至 Azure 資料中心。 如需詳細資訊，請參閱[從 Azure 來回傳輸資料](/azure/architecture/data-guide/scenarios/data-transfer)。
 
@@ -95,7 +98,7 @@ AzCopy 會透過公用網際網路將資料移至儲存體。 若其速度不夠
 
 ### <a name="load-data-into-sql-data-warehouse"></a>將資料載入至 SQL 資料倉儲
 
-使用 [PolyBase](/sql/relational-databases/polybase/polybase-guide) 可將檔案從 Blob 儲存體載入資料倉儲中。 PolyBase 依設計會運用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此能夠以最快的速度將資料載入 SQL 資料倉儲中。 
+使用 [PolyBase](/sql/relational-databases/polybase/polybase-guide) 可將檔案從 Blob 儲存體載入資料倉儲中。 PolyBase 依設計會運用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此能夠以最快的速度將資料載入 SQL 資料倉儲中。
 
 載入資料的程序由兩個步驟組成：
 
@@ -114,7 +117,7 @@ PolyBase 可讀取 Gzip 壓縮檔案。 不過，每個壓縮檔案只會使用�
 
 請留意以下限制：
 
-- PolyBase 支援的資料行大小上限為 `varchar(8000)`、`nvarchar(4000)` 或 `varbinary(8000)`。 如果您有超出這些限制的資料，其中一個選項是在資料匯出時將其分成多個區塊，並等到匯入後再重組區塊。 
+- PolyBase 支援的資料行大小上限為 `varchar(8000)`、`nvarchar(4000)` 或 `varbinary(8000)`。 如果您有超出這些限制的資料，其中一個選項是在資料匯出時將其分成多個區塊，並等到匯入後再重組區塊。
 
 - PolyBase 會使用固定的資料列結束字元 \n 或新行。 如果來源資料中出現新行字元，這可能會造成問題。
 
@@ -154,7 +157,7 @@ Power BI 支援兩個連線至 Azure Analysis Services 的選項：
 
 **建議**
 
-請避免直接對資料倉儲執行 BI 儀表板查詢。 BI 儀表板需要非常短的回應時間，直接對倉儲執行的查詢可能達不到此需求。 此外，重新整理儀表板將會計入並行查詢數目，而可能會影響效能。 
+請避免直接對資料倉儲執行 BI 儀表板查詢。 BI 儀表板需要非常短的回應時間，直接對倉儲執行的查詢可能達不到此需求。 此外，重新整理儀表板將會計入並行查詢數目，而可能會影響效能。
 
 Azure Analysis Services 依設計可用來處理 BI 儀表板的查詢需求，因此，建議的作法是從 Power BI 查詢 Analysis Services。
 
@@ -168,7 +171,7 @@ Azure Analysis Services 依設計可用來處理 BI 儀表板的查詢需求，�
 
 對於生產工作負載，建議您使用 Azure Analysis Services 的標準層，因為它支援分割區和 DirectQuery。 在一層之中，執行個體大小會決定記憶體和處理能力。 處理能力會以查詢處理單位 (QPU) 來測量。 請監視 QPU 使用量以選取適當的大小。 如需詳細資訊，請參閱[監視伺服器計量](/azure/analysis-services/analysis-services-monitor)。
 
-在高負載的情況下，查詢效能可能會因為查詢並行而下降。 您可以建立用來處理查詢的複本集區以相應放大 Analysis Services，以便同時執行多個查詢。 處理資料模型的工作一律會在主要伺服器上執行。 根據預設，主要伺服器也會處理查詢。 您可以選擇性地指定以獨佔方式執行處理的主要伺服器，讓查詢集區可處理所有查詢。 如果您的處理需求較高，則應將處理獨立於查詢集區以外。 如果您的查詢負載較高，且處理負載相對較低，則可以將主要伺服器包含在查詢集區中。 如需詳細資訊，請參閱 [Azure Analysis Services 相應放大](/azure/analysis-services/analysis-services-scale-out)。 
+在高負載的情況下，查詢效能可能會因為查詢並行而下降。 您可以建立用來處理查詢的複本集區以相應放大 Analysis Services，以便同時執行多個查詢。 處理資料模型的工作一律會在主要伺服器上執行。 根據預設，主要伺服器也會處理查詢。 您可以選擇性地指定以獨佔方式執行處理的主要伺服器，讓查詢集區可處理所有查詢。 如果您的處理需求較高，則應將處理獨立於查詢集區以外。 如果您的查詢負載較高，且處理負載相對較低，則可以將主要伺服器包含在查詢集區中。 如需詳細資訊，請參閱 [Azure Analysis Services 相應放大](/azure/analysis-services/analysis-services-scale-out)。
 
 若要減少非必要的處理量，請考慮使用分割區將表格式模型分成多個邏輯部分。 每個分割區將可個別處理。 如需詳細資訊，請參閱[分割區](/sql/analysis-services/tabular-models/partitions-ssas-tabular)。
 
@@ -191,11 +194,10 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 
 若要部署及執行參考實作，請依照 [GitHub 讀我檔案][github-folder]中的步驟。 它會部署下列各項：
 
-  * 一個 Windows VM，用以模擬內部部署資料庫伺服器。 其中包含 SQL Server 2017 和相關工具以及 Power BI Desktop。
-  * 一個提供 Blob 儲存體的 Azure 儲存體帳戶，用以保存從 SQL Server 資料庫匯出的資料。
-  * 一個 Azure SQL 資料倉儲執行個體。
-  * 一個 Azure Analysis Services 執行個體。
-
+- 一個 Windows VM，用以模擬內部部署資料庫伺服器。 其中包含 SQL Server 2017 和相關工具以及 Power BI Desktop。
+- 一個提供 Blob 儲存體的 Azure 儲存體帳戶，用以保存從 SQL Server 資料庫匯出的資料。
+- 一個 Azure SQL 資料倉儲執行個體。
+- 一個 Azure Analysis Services 執行個體。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -206,4 +208,3 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 [adf-ra]: ./enterprise-bi-adf.md
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database
-

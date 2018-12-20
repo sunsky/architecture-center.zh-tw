@@ -3,12 +3,13 @@ title: Azure 上的電子商務前端
 description: 在 Azure 上裝載電子商務網站。
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e48f7607fcef6e5048c57f4f8f63b2f6bdd4f183
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610816"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004869"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
 

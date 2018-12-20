@@ -1,20 +1,22 @@
 ---
 title: 在 Azure 大型執行個體上執行 SAP HANA
+titleSuffix: Azure Reference Architectures
 description: 在 Azure 大型執行個體上高可用性環境中執行 SAP HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/16/2018
-ms.openlocfilehash: d9d619dd7fb17c7cf0a66ce73c1e067ec97a2401
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429701"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120135"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>在 Azure 大型執行個體上執行 SAP HANA
 
-此參考架構會顯示一組經過證實的做法，能在具有高可用性和災害復原 (DR) 的 Azure (大型執行個體) 上執行 SAP HANA。 這個供應項目名為 HANA 大型執行個體，部署在 Azure 區域中的實體伺服器上。 
+此參考架構會顯示一組經過證實的做法，能在具有高可用性和災害復原 (DR) 的 Azure (大型執行個體) 上執行 SAP HANA。 這個供應項目名為 HANA 大型執行個體，部署在 Azure 區域中的實體伺服器上。
 
-![0][0]
+![使用 Azure 大型執行個體的 SAP HANA 架構](./images/sap-hana-large-instances.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
@@ -27,28 +29,30 @@ ms.locfileid: "47429701"
 
 - **虛擬網路**。 [Azure 虛擬網路][vnet]服務會安全地讓 Azure 資源彼此連線，且系統會針對每個層將其細分為個別[子網路][subnet]。 SAP 應用程式層會部署在 Azure 虛擬機器 (VM) 上，以連線至位於大型執行個體上的 HANA 資料庫層。
 
-- **虛擬機器**。 會在 SAP 應用程式層和共用服務層中使用虛擬機器。 後者包含 jumpbox，系統管理員會使用該 jumpbox 來設定 HANA 大型執行個體，並提供其他虛擬機器的存取權。 
+- **虛擬機器**。 會在 SAP 應用程式層和共用服務層中使用虛擬機器。 後者包含 jumpbox，系統管理員會使用該 jumpbox 來設定 HANA 大型執行個體，並提供其他虛擬機器的存取權。
 
 - **HANA 大型執行個體**。 經認證已符合 SAP HANA Tailored Datacenter Integration (TDI) 標準的[實體伺服器][physical]，用於執行 SAP HANA。 此架構會使用兩個 HANA 大型執行個體：主要和次要計算單位。 資料層的高可用性由 HANA 系統複寫 (HSR) 提供。
 
-- **高可用性配對**。 一組 HANA 大型執行個體刀鋒視窗會一起管理，以提供應用程式備援能力和可靠性。 
+- **高可用性配對**。 一組 HANA 大型執行個體刀鋒視窗會一起管理，以提供應用程式備援能力和可靠性。
 
-- **MSEE (Microsoft Enterprise Edge)**。 MSEE 是透過 ExpressRoute 線路來自連線提供者或您網路邊線的連接點。 
+- **MSEE (Microsoft Enterprise Edge)**。 MSEE 是透過 ExpressRoute 線路來自連線提供者或您網路邊線的連接點。
 
 - **網路介面卡 (NIC)**。 為了啟用通訊，HANA 大型執行個體伺服器預設會提供 4 個虛擬 NIC。 這個架構需要一個 NIC 才能進行用戶端通訊，需要第二個 NIC 才能進行 HSR 所需的端點對端點連線，需要第三個 NIC 才能啟用 HANA 大型執行個體儲存體，以及需要第四個才能讓 iSCSI 用於高可用性叢集。
-    
+
 - **網路檔案系統 (NFS) 儲存體**。 [NFS][nfs] 伺服器會支援網路檔案共用，它會為 HANA 大型執行個體提供安全資料持續性。
 
-- **ExpressRoute。** 若要在內部部署網路與 Azure 虛擬網路之間建立不會經過公開網際網路的私人連線，[ExpressRoute][expressroute] 是最建議您使用 Azure 網路服務。 Azure 虛擬機器會使用另一個 ExpressRoute 連線，以連線至 HANA 大型執行個體。 Azure 虛擬網路與 HANA 大型執行個體之間的 ExpressRoute 連線已設為 Microsoft 供應項目的一部分。
+- **ExpressRoute**。 若要在內部部署網路與 Azure 虛擬網路之間建立不會經過公開網際網路的私人連線，[ExpressRoute][expressroute] 是最建議您使用 Azure 網路服務。 Azure 虛擬機器會使用另一個 ExpressRoute 連線，以連線至 HANA 大型執行個體。 Azure 虛擬網路與 HANA 大型執行個體之間的 ExpressRoute 連線已設為 Microsoft 供應項目的一部分。
 
 - **閘道**。 使用 ExpressRoute 閘道以將用於 SAP 應用程式層的 Azure 虛擬網路連線至 HANA 大型執行個體網路。 使用[高效能或超級效能][sku] SKU。
 
-- **災害復原 (DR)**。 收到要求時，會支援儲存體複寫，並且該複寫的設定是從主要儲存體到位於其他區域中的 [DR 網站][DR-site]。  
- 
+- **災害復原 (DR)**。 收到要求時，會支援儲存體複寫，並且該複寫的設定是從主要儲存體到位於其他區域中的 [DR 網站][DR-site]。
+
 ## <a name="recommendations"></a>建議
+
 需求可能有所不同，因此請使用這些建議作為起點。
 
 ### <a name="hana-large-instances-compute"></a>HANA 大型執行個體計算
+
 [大型執行個體][physical]是以 Intel EX E7 CPU 架構為基礎且在大型執行個體戳記中設定的實體伺服器，也就是特定的一組伺服器或刀鋒視窗。 計算單位等於一個伺服器或刀鋒視窗，戳記由多個伺服器或刀鋒視窗組成。 在大型執行個體戳記內，伺服器不會共用，而是專用於執行一個客戶的 SAP HANA 部署。
 
 有各種 SKU 可用於 HANA 大型執行個體，針對單一執行個體的 S/4HANA 或其他 SAP HANA 工作負載，支援最多 20 TB (60 TB 相應放大) 的記憶體。 提供[兩個類別][classes]的伺服器：
@@ -62,13 +66,15 @@ ms.locfileid: "47429701"
 Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作業系統的組態設定。 請務必檢閱確切 Linux 版本的最新 SAP 附註。
 
 ### <a name="storage"></a>儲存體
-實作儲存體配置時應以適用於 SAP HANA 的 TDI 建議為基礎。 HANA 大型執行個體隨附標準 TDI 規格的特定儲存體組態。 不過，您可以 1 TB 為增量單位，購買額外的儲存體。 
+
+實作儲存體配置時應以適用於 SAP HANA 的 TDI 建議為基礎。 HANA 大型執行個體隨附標準 TDI 規格的特定儲存體組態。 不過，您可以 1 TB 為增量單位，購買額外的儲存體。
 
 為了支援任務關鍵性環境的需求 (包括快速復原)，會使用 NFS 而不是直接連結儲存體。 適用於 HANA 大型執行個體的 NFS 儲存體伺服器是裝載於多租用戶環境，在其中會使用計算、網路和儲存體隔離來隔離及保護租用戶。
 
 若要在主要網站中支援高可用性，請使用不同的儲存體配置。 例如，在多主機相應放大中，會共用儲存體。 另一個高可用性選項是以應用程式為基礎的複寫 (例如 HSR)。 不過，針對 DR 會使用以快照集為基礎的儲存體複寫。
 
 ### <a name="networking"></a>網路
+
 此架構會同時使用虛擬和實體網路。 虛擬網路是 Azure IaaS 的一部分，而且會透過 [ExpressRoute][expressroute] 線路連線至離散 HANA 大型執行個體實體網路。 跨部署閘道會將您在 Azure 虛擬網路中的工作負載連線到內部部署網站。
 
 基於安全性考量，會將 HANA 大型執行個體網路彼此互相隔離。 除了專用的儲存體複寫，位於不同區域中的執行個體不會互相通訊。 不過，若要使用 HSR，需要區域間通訊。 [IP 路由表][ip]或 Proxy 可以用來啟用跨區域 HSR。
@@ -78,6 +84,7 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 在佈建期間預設會包含適用於 HANA 大型執行個體的 ExpressRoute。 針對安裝，需要特定網路配置 (包括必要的 CIDR 位址範圍和網域路由)。 如需詳細資訊，請參閱 [Azure 上 SAP HANA (大型執行個體) 的基礎結構和連線][HLI-infrastructure]。
 
 ## <a name="scalability-considerations"></a>延展性考量
+
 若要相應增加或相應減少，您可以從適用於 HANA 大型執行個體之各種尺寸的伺服器中選擇。 這些伺服器的分類為[類型 I 和類型 II][ classes]且是為不同的工作負載而量身訂做的。 請選擇可以隨著未來三年工作負載而成長的大小。 一年認可也可行。
 
 多主機相應放大部署通常用於 BW/4HANA 部署，作為一種資料庫資料分割策略。 若要相應放大，請在安裝之前規劃 HANA 資料表的位置。 從基礎結構的觀點而言，多主機會連線到共用儲存體磁碟區，萬一 HANA 系統中其中一個計算背景工作角色節點失敗時，可以讓待命主機快速接管。
@@ -86,7 +93,7 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 
 針對嶄新的案例，可使用 [SAP Quick Sizer][quick-sizer] 來計算在 HANA 上實作 SAP 軟體時的記憶體需求。 Hana 的記憶體需求會隨著資料磁碟區擴大而增加。 使用您系統目前的記憶體耗用量作為基礎，來預測未來的耗用量，然後將需求對應至其中一個 HANA 大型執行個體大小。
 
-如果您已經有 SAP 部署，SAP 會提供報告，您可使用該報告來檢查現有系統所使用的資料和計算 HANA 執行個體的記憶體需求。 如需範例，請參閱下列 SAP 附註： 
+如果您已經有 SAP 部署，SAP 會提供報告，您可使用該報告來檢查現有系統所使用的資料和計算 HANA 執行個體的記憶體需求。 如需範例，請參閱下列 SAP 附註：
 
 - SAP 附註 [1793345][sap-1793345] - 調整 HANA 上 SAP Suite 的大小
 - SAP 附註 [1872170][sap-1872170] - HANA 與 S/4 HANA 上套件大小調整報告
@@ -106,19 +113,21 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 
 針對高可用性，在 HA 配對中部署一個以上的執行個體，並且在同步模式中使用 HSR 以將資料遺失與停機時間降到最低。 除了本機、兩個節點的高可用性安裝以外，HSR 還支援多層式複寫，在其中位於不同 Azure 區域的第三個節點會登錄至叢集 HSR 配對的次要複本，作為其複寫目標。 這樣會形成複寫菊輪鍊。 對 DR 節點的容錯移轉是手動程序。
 
-當您設定具有自動容錯移轉的 HANA 大型執行個體 HSR 時，您可以要求 Microsoft 服務管理小組為您現有的伺服器設定 [STONITH 裝置][stonith]。 
+當您設定具有自動容錯移轉的 HANA 大型執行個體 HSR 時，您可以要求 Microsoft 服務管理小組為您現有的伺服器設定 [STONITH 裝置][stonith]。
 
 ## <a name="disaster-recovery-considerations"></a>災害復原考量
+
 這個架構支援不同 Azure 區域中 HANA 大型執行個體之間的[災害復原][hli-dr]。 有兩種方式可支援 HANA 大型執行個體的 DR：
 
 - 儲存體複寫。 主要儲存體內容會持續複寫到指定 DR HANA 大型執行個體伺服器上可用的遠端 DR 儲存體系統。 在儲存體複寫中，HANA 資料庫不會載入記憶體。 此 DR 選項從管理的觀點而言更簡單。 若要判斷這是否為合適的策略，請針對可用性 SLA 考量資料庫載入時間。 儲存體複寫也可讓您執行時間點復原。 如果已設定多用途 (成本最佳化) DR，您必須購買與 DR 位置相同大小的額外儲存體。 Microsoft 為 HANA 容錯移轉提供自助式[儲存體快照集和容錯移轉指令碼][scripts]，作為 HANA 大型執行個體供應項目的一部分。
 
-- DR 區域中具有第三個複本的多層 HSR (其中 HANA 資料庫會載入記憶體)。 此選項支援較快的復原時間，但是不支援時間點復原。 HSR 需要次要系統。 針對 DR 網站的 HANA 系統複寫是透過 Proxy (例如 nginx 或 IP 資料表) 進行處理。 
+- DR 區域中具有第三個複本的多層 HSR (其中 HANA 資料庫會載入記憶體)。 此選項支援較快的復原時間，但是不支援時間點復原。 HSR 需要次要系統。 針對 DR 網站的 HANA 系統複寫是透過 Proxy (例如 nginx 或 IP 資料表) 進行處理。
 
 > [!NOTE]
-> 您可以在單一執行個體環境中執行，以針對成本最佳化此參考架構。 這個[成本最佳化案例](https://blogs.sap.com/2016/07/19/new-whitepaper-for-high-availability-for-sap-hana-cost-optimized-scenario/)適用於非生產 HANA 工作負載。 
+> 您可以在單一執行個體環境中執行，以針對成本最佳化此參考架構。 這個[成本最佳化案例](https://blogs.sap.com/2016/07/19/new-whitepaper-for-high-availability-for-sap-hana-cost-optimized-scenario/)適用於非生產 HANA 工作負載。
 
 ## <a name="backup-considerations"></a>備份考量
+
 根據您的業務需求，從適用於[備份與復原][hli-backup]的數個選項中選擇。
 
 | 備份選項                   | 優點                                                                                                   | 缺點                                                       |
@@ -130,11 +139,13 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 | 其他備份工具 | 備援備份位置。                                                                             | 其他授權成本。                                |
 
 ## <a name="manageability-considerations"></a>管理性考量
-使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 及其他原生 Linux 工具，監視 HANA 大型執行個體資源 (例如 CPU、記憶體、網路頻寬及儲存體空間)。 HANA 大型執行個體未隨附內建監視工具。 Microsoft 提供的資源可協助您根據組織的需求[進行疑難排解和監視][hli-troubleshoot]，而且 Microsoft 支援小組可以在針對技術問題進行疑難排解方面為您提供協助。 
 
-如果您需要更多計算功能，您必須取得更大的 SKU。 
+使用 SAP HANA Studio、SAP HANA Cockpit、SAP Solution Manager 及其他原生 Linux 工具，監視 HANA 大型執行個體資源 (例如 CPU、記憶體、網路頻寬及儲存體空間)。 HANA 大型執行個體未隨附內建監視工具。 Microsoft 提供的資源可協助您根據組織的需求[進行疑難排解和監視][hli-troubleshoot]，而且 Microsoft 支援小組可以在針對技術問題進行疑難排解方面為您提供協助。
+
+如果您需要更多計算功能，您必須取得更大的 SKU。
 
 ## <a name="security-considerations"></a>安全性考量
+
 - 根據預設，HANA 大型執行個體會根據待用資料的 TDE (透明資料加密)，使用儲存體加密。
 
 - 不會對 HANA 大型執行個體與虛擬機器之間傳輸中的資料進行加密。 若要加密資料傳輸，請啟用應用程式特定加密。 請參閱 SAP 附註 [2159014][sap-2159014] - 常見問題集：SAP HANA 安全性。
@@ -150,12 +161,13 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 如需詳細資訊，請參閱 [SAP HANA 安全性 - 概觀][sap-security]。(需要 SAP Service Marketplace 帳戶才能進行存取。)
 
 ## <a name="communities"></a>社群
+
 社群可以回答問題並協助您設定成功的部署。 請考慮下列：
 
-* [在 Microsoft 平台上執行 SAP 應用程式部落格][running-sap-blog]
-* [Azure 社群支援][azure-forum]
-* [SAP 社群][sap-community]
-* [堆疊溢位 SAP][stack-overflow]
+- [在 Microsoft 平台上執行 SAP 應用程式部落格][running-sap-blog]
+- [Azure 社群支援][azure-forum]
+- [SAP 社群][sap-community]
+- [堆疊溢位 SAP][stack-overflow]
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture
@@ -199,6 +211,4 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm
 [type]: /azure/virtual-machines/workloads/sap/hana-installation
 [vnet]: /azure/virtual-network/virtual-networks-overview
-[0]: ./images/sap-hana-large-instances.png "使用 Azure 大型執行個體的 SAP HANA 架構"
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

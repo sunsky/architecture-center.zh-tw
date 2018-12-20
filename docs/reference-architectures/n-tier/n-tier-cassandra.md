@@ -1,52 +1,54 @@
 ---
 title: 具有 Apache Cassandra 的多層式架構 (N-tier) 應用程式
-description: 如何在 Microsoft Azure 上執行適用於多層式架構的 Linux VM。
+titleSuffix: Azure Reference Architectures
+description: 搭配 Microsoft Azure 中的 Apache Cassandra 執行適用於多層式架構 (N-tier) 的 Linux 虛擬機器。
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: ec2d6f8310e5b7ae5b135aa0e16f14f572149f7f
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.custom: seodec18
+ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577169"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120154"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>Azure 中具有 Apache Cassandra 的 Linux 多層式架構 (N-tier) 應用程式
 
-此參考架構展示如何在 Linux 上使用 Apache Cassandra 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的 VM 和虛擬網路。 [**部署這個解決方案**。](#deploy-the-solution) 
+此參考架構展示如何在 Linux 上使用 Apache Cassandra 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的虛擬機器 (VM) 和虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。
 
-![[0]][0]
+![使用 Microsoft Azure 的多層式架構](./images/n-tier-cassandra.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-## <a name="architecture"></a>架構 
+## <a name="architecture"></a>架構
 
 此架構具有下列元件：
 
-* **資源群組。** [資源群組][resource-manager-overview]可用來將資源組合在一起，讓它們可以依存留期、擁有者或其他準則管理。
+- **資源群組**。 [資源群組][resource-manager-overview]可用來將資源組合在一起，讓它們可以依存留期、擁有者或其他準則管理。
 
-* **虛擬網路 (VNet) 和子網路。** 每部 Azure VM 都會部署到可以分割成子網路的 VNet。 針對每一層建立不同的子網路。 
+- **虛擬網路 (VNet) 和子網路**。 每部 Azure VM 都會部署到可以分割成子網路的 VNet。 針對每一層建立不同的子網路。
 
-* **NSG。** 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的三層式架構中，資料庫層接受來自 Business 層和管理子網路的流量，但不接受來自 Web 前端的流量。
+- **NSG**。 使用[網路安全性群組][nsg] (NSG) 來限制 VNet 內的網路流量。 例如，在如下所示的三層式架構中，資料庫層接受來自 Business 層和管理子網路的流量，但不接受來自 Web 前端的流量。
 
-* **DDoS 保護**。 雖然 Azure 平台提供基本的保護，可抵禦分散式阻斷服務 (DDoS) 攻擊，但我們建議您使用 [DDoS 保護標準][ddos]，其中具有增強的 DDoS 風險降低功能。 請參閱[安全性考量](#security-considerations)。
+- **DDoS 保護**。 雖然 Azure 平台提供基本的保護，可抵禦分散式阻斷服務 (DDoS) 攻擊，但我們建議您使用 [DDoS 保護標準][ddos]，其中具有增強的 DDoS 風險降低功能。 請參閱[安全性考量](#security-considerations)。
 
-* **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
+- **虛擬機器**。 如需有關設定 VM 的建議，請參閱[在 Azure 上執行 Windows VM](./windows-vm.md) 和[在 Azure 上執行 Linux VM](./linux-vm.md)。
 
-* **可用性設定組。** 為每個層級建立[可用性設定組][azure-availability-sets]，並在每層中佈建至少兩部虛擬機器，可讓虛擬機器符合較高的[服務等級協定 (SLA)][vm-sla]。
+- **可用性集合**。 為每個層級建立[可用性設定組][azure-availability-sets]，並在每層中佈建至少兩部虛擬機器，可讓虛擬機器符合較高的[服務等級協定 (SLA)][vm-sla]。
 
-* **Azure 負載平衡器。** [負載平衡器][load-balancer]會將連入網際網路要求散發到 VM 執行個體。 使用[公用負載平衡器][load-balancer-external]，可將連入的網際網路流量散發到 Web 層，使用[內部負載平衡器][load-balancer-internal]，則可將來自 Web 層的網路流量散發到 Business 層。
+- **Azure 負載平衡器**。 [負載平衡器][load-balancer]會將連入網際網路要求散發到 VM 執行個體。 使用[公用負載平衡器][load-balancer-external]，可將連入的網際網路流量散發到 Web 層，使用[內部負載平衡器][load-balancer-internal]，則可將來自 Web 層的網路流量散發到 Business 層。
 
-* **公用 IP 位址**。 公用負載平衡器需要公用 IP 位址才能接收網際網路流量。
+- **公用 IP 位址**。 公用負載平衡器需要公用 IP 位址才能接收網際網路流量。
 
-* **Jumpbox。** 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，能夠儘允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應允許 SSH 流量。
+- **Jumpbox**。 也稱為[防禦主機]。 網路上系統管理員用來連線到其他 VM 的安全 VM。 Jumpbox 具有 NSG，只允許來自安全清單上公用 IP 位址的遠端流量。 NSG 應允許 SSH 流量。
 
-* **Apache Cassandra 資料庫**。 藉由啟用複寫和容錯移轉，在資料層提供高可用性。
+- **Apache Cassandra 資料庫**。 藉由啟用複寫和容錯移轉，在資料層提供高可用性。
 
-* **Azure DNS**。 [Azure DNS][azure-dns] 是適用於 DNS 網域的主機服務。 其使用 Microsoft Azure 基礎結構來提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+- **Azure DNS**。 [Azure DNS][azure-dns] 是適用於 DNS 網域的主機服務。 其使用 Microsoft Azure 基礎結構來提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。 
+您的需求可能和此處所述的架構不同。 請使用以下建議作為起點。
 
 ### <a name="vnet--subnets"></a>VNet / 子網路
 
@@ -64,10 +66,10 @@ ms.locfileid: "51577169"
 
 ### <a name="network-security-groups"></a>網路安全性群組
 
-使用 NSG 規則來限制各層之間的流量。 例如，在如上所示的三層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。  
+使用 NSG 規則來限制各層之間的流量。 例如，在如上所示的三層式架構中，Web 層不會直接與資料庫層通訊。 若要強制執行此動作，資料庫層應該封鎖來自 Web 層子網路的連入流量。
 
-1. 拒絕來自 VNet 的所有輸入流量。 (在規則中使用 `VIRTUAL_NETWORK` 標記)。 
-2. 允許來自 Business 層子網路的輸入流量。  
+1. 拒絕來自 VNet 的所有輸入流量。 (在規則中使用 `VIRTUAL_NETWORK` 標記)。
+2. 允許來自 Business 層子網路的輸入流量。
 3. 允許來自資料庫層子網路本身的輸入流量。 此規則允許資料庫 VM 之間的通訊，是進行資料庫複寫和容錯移轉所需的。
 4. 允許來自 Jumpbox 子網路的 ssh 流量 (連接埠 22)。 此規則讓系統管理員能夠從 Jumpbox 連線到資料庫層。
 
@@ -75,18 +77,17 @@ ms.locfileid: "51577169"
 
 ### <a name="cassandra"></a>Cassandra
 
-我們建議針對生產環境使用 [DataStax Enterprise][datastax]，但這些建議適用於所有的 Cassandra 版本。 如需在 Azure 中執行 DataStax 的詳細資訊，請參閱[適用於 Azure 的DataStax Enterprise 部署指南][cassandra-in-azure]。 
+我們建議針對生產環境使用 [DataStax Enterprise][datastax]，但這些建議適用於所有的 Cassandra 版本。 如需在 Azure 中執行 DataStax 的詳細資訊，請參閱[適用於 Azure 的DataStax Enterprise 部署指南][cassandra-in-azure]。
 
-將適用於 Cassandra 叢集的 VM 放置於可用性設定組，以確保會將 Cassandra 複本散發到多個容錯網域和升級網域。 如需容錯網域和升級網域的詳細資訊，請參閱[管理虛擬機器的可用性][azure-availability-sets]。 
+將適用於 Cassandra 叢集的 VM 放置於可用性設定組，以確保會將 Cassandra 複本散發到多個容錯網域和升級網域。 如需容錯網域和升級網域的詳細資訊，請參閱[管理虛擬機器的可用性][azure-availability-sets]。
 
-針對每個可用性設定組設定三個錯誤網域 (最大值)，以及針對每個可用性設定組設定 18 個升級網域。 這提供仍能平均散發到容錯網域的升級網域數目上限。   
+針對每個可用性設定組設定三個錯誤網域 (最大值)，以及針對每個可用性設定組設定 18 個升級網域。 這提供仍能平均散發到容錯網域的升級網域數目上限。
 
 在機架感知的模式中設定節點。 在 `cassandra-rackdc.properties` 檔案中，將容錯網域對應到機架。
 
 您不需要叢集前方的負載平衡器。 用戶端會直接連線至用戶端中的節點。
 
 如需高可用性，在多個 Azure 區域中部署 Cassandra。 在每個區域中，會在機架感知的模式中使用錯誤和升級網域來設定節點，以便在區域內部提供復原能力。
-
 
 ### <a name="jumpbox"></a>Jumpbox
 
@@ -121,10 +122,10 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 以下是關於負載平衡器健康情況探查的建議：
 
-* 探查可以測試 HTTP 或 TCP。 如果您的 VM 執行 HTTP 伺服器，請建立 HTTP 探查。 否則，建立 TCP 探查。
-* 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 這可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
-* 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請確認您未在任何防火牆原則或 NSG 規則中封鎖往返此 IP 位址的流量。
-* 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示多少虛擬機器因探查回應失敗而未取得網路流量。
+- 探查可以測試 HTTP 或 TCP。 如果您的 VM 執行 HTTP 伺服器，請建立 HTTP 探查。 否則，建立 TCP 探查。
+- 針對 HTTP 探查，指定 HTTP 端點的路徑。 探查會檢查來自此路徑的 HTTP 200 回應。 這可以是根路徑 ("/")，或是實作一些自訂邏輯來檢查應用程式健康情況的健康情況監視端點。 端點必須允許匿名的 HTTP 要求。
+- 探查會從[已知的 IP 位址][health-probe-ip] 168.63.129.16 傳送出來。 請確認您未在任何防火牆原則或 NSG 規則中封鎖往返此 IP 位址的流量。
+- 使用[健康情況探查記錄][health-probe-log]來檢視健康情況探查的狀態。 能夠針對每個負載平衡器登入 Azure 入口網站。 記錄會寫入 Azure Blob 儲存體。 記錄會顯示多少虛擬機器因探查回應失敗而未取得網路流量。
 
 針對 Cassandra 叢集，容錯移轉案例取決於應用程式所使用的一致性層級，以及複本數目。 如需 Cassandra 中的一致性層級和使用方式，請參閱[設定資料一致性][cassandra-consistency]和 [Cassandra：有多少節點會與仲裁交談？][cassandra-consistency-usage] Cassandra 中的資料可用性取決於應用程式所使用的一致性層級和複寫機制。 如需 Cassandra 中的複寫，請參閱 [NoSQL 資料庫的資料複寫說明][cassandra-replication]。
 
@@ -138,11 +139,11 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 **加密**。 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
-**DDoS 保護**. Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
+**DDoS 保護**。 Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-此參考架構的部署可在 [GitHub][github-folder] 上取得。 
+此參考架構的部署可在 [GitHub][github-folder] 上取得。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -158,13 +159,14 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 3. 使用如下所示的 **azbb** 工具來部署參考架構。
 
-   ```bash
+   ```azurecli
    azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
    ```
 
 如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
 
 <!-- links -->
+
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
@@ -193,9 +195,8 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 [公用 IP 位址]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[0]: ./images/n-tier-cassandra.png "使用 Microsoft Azure 的多層式架構"
 
-[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
+[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [load-balancer]: /azure/load-balancer/load-balancer-get-started-internet-arm-cli
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features

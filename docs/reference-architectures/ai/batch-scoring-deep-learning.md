@@ -1,25 +1,26 @@
 ---
-title: Azure 上適用於深入學習模型的批次評分
-description: 此參考架構會示範如何使用 Azure Batch AI 將類神經樣式傳輸套用到影片
+title: 深入學習模型的 Batch 評分
+titleSuffix: Azure Reference Architectures
+description: 此參考架構會示範如何使用 Azure Batch AI 將類神經樣式傳輸套用到影片。
 author: jiata
 ms.date: 10/02/2018
-ms.author: jiata
-ms.openlocfilehash: 1f3f3d3882b2b30eb29acd26c9eab9ff128028e2
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.custom: azcat-ai
+ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243718"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119875"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上適用於深入學習模型的批次評分
 
 此參考架構會示範如何使用 Azure Batch AI 將類神經樣式傳輸套用到影片。 「樣式傳輸」是一種深入學習技術，可使用另一個影像的樣式來編撰現有影像。 此架構可以廣泛應用到任何搭配使用深入學習的批次評分案例。 [**部署這個解決方案**](#deploy-the-solution)。
- 
-![](./_images/batch-ai-deep-learning.png)
+
+![使用 Azure Batch AI 的深度學習模型架構圖](./_images/batch-ai-deep-learning.png)
 
 **案例**：媒體組織想要讓他們的影片樣式看起來像是特定畫作。 組織想要及時且自動地將此樣式套用至影片的所有畫面。 如需類神經樣式傳輸演算法的詳細背景，請參閱[使用卷積神經網路的影像樣式傳輸][image-style-transfer] (PDF)。
 
-| 樣式影像： | 輸入/內容影片： | 輸出影片： | 
+| 樣式影像： | 輸入/內容影片： | 輸出影片： |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "輸入影片") 按一下以檢視影片 | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "輸出影片") 按一下以檢視影片 |
 
@@ -35,6 +36,7 @@ ms.locfileid: "48243718"
 1. 下載產生的畫面，然後將影像拼接到影片中。
 
 ## <a name="architecture"></a>架構
+
 此架構由下列元件組成。
 
 ### <a name="compute"></a>計算
@@ -62,7 +64,7 @@ ms.locfileid: "48243718"
 3. 使用 FFmpeg 將影片分成個別的畫面。 畫面會以平行方式獨立處理。
 4. 使用 AzCopy 將個別畫面複製到您的 Blob 容器。
 
-在此階段，影片畫面的形式已可以用於類神經樣式傳輸。 
+在此階段，影片畫面的形式已可以用於類神經樣式傳輸。
 
 ## <a name="performance-considerations"></a>效能考量
 
@@ -74,7 +76,7 @@ ms.locfileid: "48243718"
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>在 VM 與核心上平行處理
 
-若以批次作業的形式來執行樣式傳輸程序，主要在 GPU 上執行的作業將必須在 VM 上平行進行處理。 這可能會有兩種方法：您可以建立較大的叢集，使用具有單一 GPU 的 VM，或建立較小的叢集，使用具有許多 GPU 的 VM。 
+若以批次作業的形式來執行樣式傳輸程序，主要在 GPU 上執行的作業將必須在 VM 上平行進行處理。 這可能會有兩種方法：您可以建立較大的叢集，使用具有單一 GPU 的 VM，或建立較小的叢集，使用具有許多 GPU 的 VM。
 
 針對此工作負載，這兩個選項會有相當的效能。 使用較少 VM (每個 VM 有多個 GPU) 有助於減少資料移動。 不過，此功能流程上每項作業的資料量都不是非常大，因此您不會看到 Blob 儲存體有太多節流動作。
 
@@ -96,7 +98,7 @@ ms.locfileid: "48243718"
 
 ### <a name="data-encryption-and-data-movement"></a>資料加密和資料移動
 
-此參考架構會使用樣式傳輸作為批次評分程序的範例。 針對資料敏感性更高的案例，儲存體中的資料應該使用待用加密。 每當資料從一個位置移至下一個位置時，應使用 SSL 來保護資料轉送。 如需詳細資料，請參閱 [Azure 儲存體安全性指南][storage-security]。 
+此參考架構會使用樣式傳輸作為批次評分程序的範例。 針對資料敏感性更高的案例，儲存體中的資料應該使用待用加密。 每當資料從一個位置移至下一個位置時，應使用 SSL 來保護資料轉送。 如需詳細資料，請參閱 [Azure 儲存體安全性指南][storage-security]。
 
 ### <a name="securing-data-in-a-virtual-network"></a>保護虛擬網路中的資料
 
@@ -108,26 +110,25 @@ ms.locfileid: "48243718"
 
 - 使用 RBAC 來限制使用者只能存取所需資源。
 - 佈建兩個不同的儲存體帳戶。 將輸入和輸出資料儲存在第一個帳戶。 此帳戶可讓外部使用者存取。 將可執行檔的指令碼及輸出的記錄檔放在其他帳戶。 外部使用者不可存取此帳戶。 這可確保外部使用者無法修改任何可執行檔 (插入惡意程式碼)，並且無法存取可能保存著敏感資訊的記錄檔。
-- 惡意使用者可以對作業佇列發動 DDOS，或將格式有誤的有害訊息插入作業佇列中，造成系統鎖住或導致清除佇列錯誤。 
+- 惡意使用者可以對作業佇列發動 DDOS，或將格式有誤的有害訊息插入作業佇列中，造成系統鎖住或導致清除佇列錯誤。
 
 ## <a name="monitoring-and-logging"></a>監視和記錄
 
 ### <a name="monitoring-batch-ai-jobs"></a>監視 Batch AI 作業
 
-當您執行工作時，務必監視進度，並確定一切運作正常。 不過，監視整個叢集上的使用中節點可能不容易。 
+當您執行工作時，務必監視進度，並確定一切運作正常。 不過，監視整個叢集上的使用中節點可能不容易。
 
-若要了解叢集的整體狀態，請移至 Azure 入口網站的 Batch AI 刀鋒視窗，以檢查叢集中的節點狀態。 如果節點狀態是非使用中或作業已失敗，則錯誤記錄會儲存在 Blob 儲存體中，您也可在 Azure 入口網站的 [作業] 刀鋒視窗中存取錯誤記錄。 
+若要了解叢集的整體狀態，請移至 Azure 入口網站的 Batch AI 刀鋒視窗，以檢查叢集中的節點狀態。 如果節點狀態是非使用中或作業已失敗，則錯誤記錄會儲存在 Blob 儲存體中，您也可在 Azure 入口網站的 [作業] 刀鋒視窗中存取錯誤記錄。
 
 若要進一步擴充監視功能，您可以將記錄連線到 Application Insights，或執行不同處理程序來對 Batch AI 叢集和其作業的狀態進行輪詢。
 
 ### <a name="logging-in-batch-ai"></a>Batch AI 中的記錄功能
 
-Batch AI 會自動記錄相關 Blob 儲存體帳戶的所有 stdout/stderr。 使用儲存體總管之類的儲存體瀏覽工具，可讓您更輕鬆地瀏覽記錄檔。 
+Batch AI 會自動記錄相關 Blob 儲存體帳戶的所有 stdout/stderr。 使用儲存體總管之類的儲存體瀏覽工具，可讓您更輕鬆地瀏覽記錄檔。
 
-此參考架構的部署步驟也會示範如何設定更簡單的記錄系統，像是讓不同作業的所有記錄都儲存到您 Blob 容器中的相同目錄，如下所示。
-使用這些記錄可監視每個作業和每個影像的處理時間。 如此可讓您更了解如何進一步最佳化程序。
+此參考架構的部署步驟也會示範如何設定更簡單的記錄系統，像是讓不同作業的所有記錄都儲存到您 Blob 容器中的相同目錄，如下所示。 使用這些記錄可監視每個作業和每個影像的處理時間。 如此可讓您更了解如何進一步最佳化程序。
 
-![](./_images/batch-ai-logging.png)
+![Azure Batch AI 記錄的螢幕擷取畫面](./_images/batch-ai-logging.png)
 
 ## <a name="cost-considerations"></a>成本考量
 
@@ -142,6 +143,8 @@ Batch AI 叢集大小可根據佇列中的作業，自動地相應增加和減�
 ## <a name="deploy-the-solution"></a>部署解決方案
 
 若要部署此參考架構，請遵循 [GitHub 存放庫][deployment]中所述的步驟。
+
+<!-- links -->
 
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/

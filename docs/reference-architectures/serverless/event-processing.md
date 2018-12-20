@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Functions 進行無伺服器事件處理
+titleSuffix: Azure Reference Architectures
 description: 參考架構，該架構顯示無伺服器事件擷取和處理
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295645"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119892"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>使用 Azure Functions 進行無伺服器事件處理
 
 此參考架構顯示[無伺服器](https://azure.microsoft.com/solutions/serverless/)、事件驅動的架構，該架構會擷取資料流、處理資料，並將結果寫入至後端資料庫。 此架構的參考實作可在 [GitHub][github] 上取得。
 
-![](./_images/serverless-event-processing.png)
+![使用 Azure Functions 的無伺服器事件處理參考架構](./_images/serverless-event-processing.png)
 
 ## <a name="architecture"></a>架構
 
@@ -49,16 +51,16 @@ Cosmos DB 的輸送量容量會以[要求單位][ru] (RU) 來測量。 若要將
 
 以下是良好分割區索引鍵的一些特性：
 
-- 索引鍵值空間很大。 
+- 索引鍵值空間很大。
 - 會針對每個索引鍵值平均分配讀取/寫入，避免熱門索引鍵。
-- 針對任何單一索引鍵值所儲存的資料上限不會超過最大實體分割區大小 (10 GB)。 
-- 文件的分割區索引鍵不會變更。 您無法更新現有文件上的分割區索引鍵。 
+- 針對任何單一索引鍵值所儲存的資料上限不會超過最大實體分割區大小 (10 GB)。
+- 文件的分割區索引鍵不會變更。 您無法更新現有文件上的分割區索引鍵。
 
 在此參考架構的案例中，函式會針對傳送資料的各個裝置，確實儲存一個文件。 函式會使用 upsert 作業，持續以最新的裝置狀態來更新文件。 裝置識別碼對於此案例是很好的分割區索引鍵，因為寫入會平均分配到索引鍵，而且每個分割區的大小會嚴格限定，因為每個索引鍵值有單一文件。 如需有關分割區索引鍵的詳細資訊，請參閱[在 Azure Cosmos DB 中進行資料分割和調整][cosmosdb-scale]。
 
 ## <a name="resiliency-considerations"></a>恢復功能考量
 
-搭配 Functions 使用事件中樞觸發程序時，攔截您處理迴圈內的例外狀況。 如果發生無法處理的例外狀況，Functions 執行階段不會重試訊息。 如果無法處理訊息，請將訊息放入無效信件佇列。 使用頻外程序來檢查訊息並判斷矯正措施。 
+搭配 Functions 使用事件中樞觸發程序時，攔截您處理迴圈內的例外狀況。 如果發生無法處理的例外狀況，Functions 執行階段不會重試訊息。 如果無法處理訊息，請將訊息放入無效信件佇列。 使用頻外程序來檢查訊息並判斷矯正措施。
 
 下列程式碼示範擷取函式如何攔截例外狀況，並將未處理的訊息放入無效信件佇列。
 
@@ -99,9 +101,9 @@ public static async Task RunAsync(
 
 請注意，函式會使用[佇列儲存體輸出繫結][queue-binding]將項目放入佇列。
 
-如上所示的程式碼也會將例外狀況記錄至 Application Insights。 您可以使用分割區索引鍵和序號，將無效信件訊息與記錄中的例外狀況相互關聯。 
+如上所示的程式碼也會將例外狀況記錄至 Application Insights。 您可以使用分割區索引鍵和序號，將無效信件訊息與記錄中的例外狀況相互關聯。
 
-無效信件佇列中的訊息應該有足夠的資訊，讓您可以了解錯誤的內容。 在此範例中，`DeadLetterMessage` 類別包含例外狀況訊息、原始事件資料，以及還原序列化事件訊息 (如果有的話)。 
+無效信件佇列中的訊息應該有足夠的資訊，讓您可以了解錯誤的內容。 在此範例中，`DeadLetterMessage` 類別包含例外狀況訊息、原始事件資料，以及還原序列化事件訊息 (如果有的話)。
 
 ```csharp
 public class DeadLetterMessage
@@ -128,7 +130,7 @@ public class DeadLetterMessage
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-若要部署此參考架構，請檢視 [GitHub 讀我檔案][readme]。 
+若要部署此參考架構，請檢視 [GitHub 讀我檔案][readme]。
 
 <!-- links -->
 

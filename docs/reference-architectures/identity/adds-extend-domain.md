@@ -1,46 +1,45 @@
 ---
 title: 將 Active Directory Domain Services (AD DS) 擴充至 Azure
+titleSuffix: Azure Reference Architectures
 description: 將您的內部部署 Active Directory 網域擴充至 Azure
 author: telmosampaio
 ms.date: 05/02/2018
-pnp.series.title: Identity management
-pnp.series.prev: azure-ad
-pnp.series.next: adds-forest
-ms.openlocfilehash: ff3ef7565b692ad63b7ff779497df0f85d3bca3a
-ms.sourcegitcommit: 1287d635289b1c49e94f839b537b4944df85111d
+ms.custom: seodec18
+ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52332301"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120402"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
-此參考架構說明如何將 Active Directory 環境擴充至 Azure，以使用 Active Directory Domain Services (AD DS) 提供分散式驗證服務。 [**部署這個解決方案**。](#deploy-the-solution)
+此參考架構說明如何將 Active Directory 環境擴充至 Azure，以使用 Active Directory Domain Services (AD DS) 提供分散式驗證服務。 [**部署這個解決方案**](#deploy-the-solution)。
 
-[![0]][0] 
+![使用 Active Directory 保護混合式網路架構的安全](./images/adds-extend-domain.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用程式或其他身分識別。 它可以裝載在內部部署環境，但如果您的應用程式部分裝載在內部部署環境且部分裝載在 Azure 中，則在 Azure 中複寫此功能可能更有效率。 如此可以減少將驗證和本機授權要求從雲端傳回執行內部部署之 AD DS 所造成的延遲。 
+AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用程式或其他身分識別。 它可以裝載在內部部署環境，但如果您的應用程式部分裝載在內部部署環境且部分裝載在 Azure 中，則在 Azure 中複寫此功能可能更有效率。 如此可以減少將驗證和本機授權要求從雲端傳回執行內部部署之 AD DS 所造成的延遲。
 
 當內部部署網路與 Azure 虛擬網路透過 VPN 或 ExpressRoute 連線連接時，通常會使用這個架構。 此架構也支援雙向複寫，也就是說，您可以在內部部署或雲端上進行變更，而且這兩個來源會保持一致。 此架構的典型用途包括在內部部署與 Azure 之間散佈功能的混合式應用程式，以及使用 Active Directory 執行驗證的應用程式和服務。
 
-如需了解其他考量，請參閱[選擇解決方案以整合內部部署 Active Directory 與 Azure][considerations]。 
+如需了解其他考量，請參閱[選擇解決方案以整合內部部署 Active Directory 與 Azure][considerations]。
 
-## <a name="architecture"></a>架構 
+## <a name="architecture"></a>架構
 
 此架構可擴充 [Azure 與網際網路之間的 DMZ][implementing-a-secure-hybrid-network-architecture-with-internet-access] 所示的架構。 其元件如下。
 
-* **內部部署網路**。 內部部署網路包括可以針對內部部署元件執行驗證和授權的本機 Active Directory 伺服器。
-* **Active Directory 伺服器**。 這些網域控制站是雲端中執行的 VM，負責實作目錄服務 (AD DS)。 這些伺服器可以驗證在 Azure 虛擬網路中執行的元件。
-* **Active Directory 子網路**。 AD DS 伺服器會裝載在不同的子網路中。 網路安全性群組 (NSG) 規則可保護 AD DS 伺服器，並提供防火牆以防禦來自非預期來源的流量。
-* **Azure 閘道和 Active Directory 同步處理**。 Azure 閘道會提供內部部署網路與 Azure VNet 之間的連線。 這可能是 [VPN 連線][azure-vpn-gateway]或 [Azure ExpressRoute][azure-expressroute]。 雲端與與內部部署環境中 Active Directory 伺服器之間的所有同步處理要求都會通過閘道。 使用者定義的路由 (UDR) 會針對傳送至 Azure 的內部部署流量處理路由傳送。 往返 Active Directory 伺服器的流量不會通過此案例中使用的網路虛擬設備 (NVA)。
+- **內部部署網路**。 內部部署網路包括可以針對內部部署元件執行驗證和授權的本機 Active Directory 伺服器。
+- **Active Directory 伺服器**。 這些網域控制站是雲端中執行的 VM，負責實作目錄服務 (AD DS)。 這些伺服器可以驗證在 Azure 虛擬網路中執行的元件。
+- **Active Directory 子網路**。 AD DS 伺服器會裝載在不同的子網路中。 網路安全性群組 (NSG) 規則可保護 AD DS 伺服器，並提供防火牆以防禦來自非預期來源的流量。
+- **Azure 閘道和 Active Directory 同步處理**。 Azure 閘道會提供內部部署網路與 Azure VNet 之間的連線。 這可能是 [VPN 連線][azure-vpn-gateway]或 [Azure ExpressRoute][azure-expressroute]。 雲端與與內部部署環境中 Active Directory 伺服器之間的所有同步處理要求都會通過閘道。 使用者定義的路由 (UDR) 會針對傳送至 Azure 的內部部署流量處理路由傳送。 往返 Active Directory 伺服器的流量不會通過此案例中使用的網路虛擬設備 (NVA)。
 
-如需有關設定 UDR 與 NVA 的詳細資訊，請參閱[在 Azure 中實作安全的混合式網路架構][implementing-a-secure-hybrid-network-architecture]。 
+如需有關設定 UDR 與 NVA 的詳細資訊，請參閱[在 Azure 中實作安全的混合式網路架構][implementing-a-secure-hybrid-network-architecture]。
 
 ## <a name="recommendations"></a>建議
 
-下列建議適用於大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。 
+下列建議適用於大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。
 
 ### <a name="vm-recommendations"></a>VM 建議
 
@@ -56,10 +55,9 @@ AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用�
 
 > [!NOTE]
 > 請不要使用公用 IP 位址設定任何 AD DS 的 VM NIC。 如需詳細資料，請參閱[安全性考量][security-considerations]。
-> 
-> 
+>
 
-Active Directory 子網路 NSG 需要有允許來自內部部署環境傳入流量的規則。 如需有關 AD DS 使用之連接埠的詳細資訊，請參閱 [Active Directory 和 Active Directory Domain Services 連接埠需求][ad-ds-ports]。 此外，也請確定 UDR 表格沒有透過此架構中使用的 NVA 來路由傳送 AD DS 流量。 
+Active Directory 子網路 NSG 需要有允許來自內部部署環境傳入流量的規則。 如需有關 AD DS 使用之連接埠的詳細資訊，請參閱 [Active Directory 和 Active Directory Domain Services 連接埠需求][ad-ds-ports]。 此外，也請確定 UDR 表格沒有透過此架構中使用的 NVA 來路由傳送 AD DS 流量。
 
 ### <a name="active-directory-site"></a>Active Directory 站台
 
@@ -75,7 +73,7 @@ Active Directory 子網路 NSG 需要有允許來自內部部署環境傳入流�
 
 ### <a name="monitoring"></a>監視
 
-監視網域控制站 VM 的資源以及 AD DS 服務，並建立計劃以快速修正任何問題。 如需詳細資訊，請參閱[監視 Active Directory][monitoring_ad]。 您也可以在監視伺服器上安裝 [Microsoft Systems Center][microsoft_systems_center] 之類的工具 (請參見架構圖表)，以協助執行這些工作。  
+監視網域控制站 VM 的資源以及 AD DS 服務，並建立計劃以快速修正任何問題。 如需詳細資訊，請參閱[監視 Active Directory][monitoring_ad]。 您也可以在監視伺服器上安裝 [Microsoft Systems Center][microsoft_systems_center] 之類的工具 (請參見架構圖表)，以協助執行這些工作。
 
 ## <a name="scalability-considerations"></a>延展性考量
 
@@ -121,11 +119,11 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 ### <a name="deploy-the-azure-vnet"></a>部署 Azure VNet
 
-1. 開啟 `azure.json` 檔案。  搜尋 `adminPassword` 和 `Password` 的執行個體，並新增密碼的值。 
+1. 開啟 `azure.json` 檔案。  搜尋 `adminPassword` 和 `Password` 的執行個體，並新增密碼的值。
 
-2. 在同一個檔案中，搜尋 `sharedKey` 的執行個體，並輸入 VPN 連線的共用金鑰。 
+2. 在同一個檔案中，搜尋 `sharedKey` 的執行個體，並輸入 VPN 連線的共用金鑰。
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -149,16 +147,16 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 4. 從遠端桌面工作階段中開啟連至 10.0.4.4 (此為 VM `adds-vm1` 的 IP 位址) 的另一個遠端桌面工作階段。 使用者名稱是 `contoso\testuser`，而密碼是您在 `azure.json` 參數檔案中指定的密碼。
 
-5. 從 `adds-vm1` 的遠端桌面工作階段中移至**伺服器管理員**，然後按一下 [新增其他要管理的伺服器]。 
+5. 從 `adds-vm1` 的遠端桌面工作階段中移至**伺服器管理員**，然後按一下 [新增其他要管理的伺服器]。
 
 6. 在 [Active Directory] 索引標籤中，按一下 [立即尋找]。 您應該會看到 AD、AD DS 和 Web VM 的清單。
 
-   ![](./images/add-servers-dialog.png)
+   ![新增伺服器對話方塊的螢幕擷取畫面](./images/add-servers-dialog.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-* 了解[在 Azure 中建立 AD DS 資源樹系][adds-resource-forest]的最佳作法。
-* 了解[在 Azure 中建立 Active Directory Federation Services (AD FS) 基礎結構][adfs]的最佳作法。
+- 了解[在 Azure 中建立 AD DS 資源樹系][adds-resource-forest]的最佳作法。
+- 了解[在 Azure 中建立 Active Directory Federation Services (AD FS) 基礎結構][adfs]的最佳作法。
 
 <!-- links -->
 
@@ -178,7 +176,7 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 [capacity-planning-for-adds]: https://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
 [considerations]: ./considerations.md
 [GitHub]: https://github.com/mspnp/identity-reference-architectures/tree/master/adds-extend-domain
-[microsoft_systems_center]: https://www.microsoft.com/server-cloud/products/system-center-2016/
+[microsoft_systems_center]: https://www.microsoft.com/download/details.aspx?id=50013
 [monitoring_ad]: https://msdn.microsoft.com/library/bb727046.aspx
 [security-considerations]: #security-considerations
 [set-a-static-ip-address]: /azure/virtual-network/virtual-networks-static-private-ip-arm-pportal
