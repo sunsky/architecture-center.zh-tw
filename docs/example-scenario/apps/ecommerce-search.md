@@ -1,15 +1,16 @@
 ---
 title: 電子商務的智慧產品搜尋引擎
+titleSuffix: Azure Example Scenarios
 description: 提供電子商務應用程式中的世界級搜尋體驗。
 author: jelledruyts
 ms.date: 09/14/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 9e24f7ab2104f877fcc3aec310dd21677160608c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004898"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643459"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>電子商務的智慧產品搜尋引擎
 
@@ -23,9 +24,9 @@ ms.locfileid: "53004898"
 
 其他相關的使用案例包括：
 
-* 尋找使用者實體位置附近的房地產清單或商店。
-* 搜尋新聞網站中的文章，或尋找運動賽事結果，而且偏好比較「近期」的資訊。
-* 在大型存放庫中搜尋「以文件為主」的組織，例如政策制定者和公證人。
+- 尋找使用者實體位置附近的房地產清單或商店。
+- 搜尋新聞網站中的文章，或尋找運動賽事結果，而且偏好比較「近期」的資訊。
+- 在大型存放庫中搜尋「以文件為主」的組織，例如政策制定者和公證人。
 
 最終「任何」具有某種形式搜尋功能的應用程式均可受益於專用的搜尋服務。
 
@@ -34,6 +35,7 @@ ms.locfileid: "53004898"
 ![電子商務用智慧型產品搜尋引擎相關 Azure 元件的架構概觀][architecture]
 
 此案例涵蓋客戶可以搜尋產品目錄的電子商務解決方案。
+
 1. 客戶可以從任何裝置瀏覽至**電子商務 Web 應用程式**。
 2. 產品目錄會保留在 **Azure SQL Database**中進行交易處理。
 3. Azure 搜尋服務會使用**搜尋索引子**，透過整合式變更追蹤使其搜尋索引自動保持最新狀態。
@@ -43,21 +45,21 @@ ms.locfileid: "53004898"
 
 ### <a name="components"></a>元件
 
-* [應用程式服務 - Web Apps][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
-* [SQL Database][docs-sql-database] 是 Microsoft Azure 中的一般用途關聯式資料庫受控服務，可支援關聯式資料、JSON、空間和 XML 等結構。
-* [Azure 搜尋服務][docs-search]是搜尋即服務雲端解決方案，透過 Web、行動和企業應用程式中的私用和異質內容來提供豐富的搜尋體驗。
-* [Bot 服務][docs-botservice] 提供工具，可以建置、測試、部署及管理智慧型聊天機器人。
-* [認知服務][docs-cognitive]可讓您使用智慧型演算法，透過自然的溝通方式，來查看、聆聽、述說、了解及詮釋您的使用者需求。
+- [應用程式服務 - Web Apps][docs-webapps] 會裝載 Web 應用程式，允許自動調整及高可用性，而不需要管理基礎結構。
+- [SQL Database][docs-sql-database] 是 Microsoft Azure 中的一般用途關聯式資料庫受控服務，可支援關聯式資料、JSON、空間和 XML 等結構。
+- [Azure 搜尋服務][docs-search]是搜尋即服務雲端解決方案，透過 Web、行動和企業應用程式中的私用和異質內容來提供豐富的搜尋體驗。
+- [Bot 服務][docs-botservice] 提供工具，可以建置、測試、部署及管理智慧型聊天機器人。
+- [認知服務][docs-cognitive]可讓您使用智慧型演算法，透過自然的溝通方式，來查看、聆聽、述說、了解及詮釋您的使用者需求。
 
 ### <a name="alternatives"></a>替代項目
 
-* 您可以使用**資料庫內搜尋**功能，例如，透過 SQL Server 全文檢索搜尋，但是您的交易存放區也會處理查詢 (增加處理能力的需求)，而且資料庫內的搜尋功能更加有限。
-* 您可以在 Azure 虛擬機器上裝載開放原始碼的 [Apache Lucene][apache-lucene] (Azure 搜尋服務的建置基礎)，但是您會回到管理基礎結構即服務 (IaaS)，而且並未受益於 Azure 搜尋服務根據 Lucene 所提供的許多功能。
-* 您也可以考慮從 Azure Marketplace 部署 [Elastic Search][elastic-marketplace]，這是來自第三方廠商的替代搜尋產品，但在此情況下您也會執行 IaaS 工作負載。
+- 您可以使用**資料庫內搜尋**功能，例如，透過 SQL Server 全文檢索搜尋，但是您的交易存放區也會處理查詢 (增加處理能力的需求)，而且資料庫內的搜尋功能更加有限。
+- 您可以在 Azure 虛擬機器上裝載開放原始碼的 [Apache Lucene][apache-lucene] (Azure 搜尋服務的建置基礎)，但是您會回到管理基礎結構即服務 (IaaS)，而且並未受益於 Azure 搜尋服務根據 Lucene 所提供的許多功能。
+- 您也可以考慮從 Azure Marketplace 部署 [Elastic Search][elastic-marketplace]，這是來自第三方廠商的替代搜尋產品，但在此情況下您也會執行 IaaS 工作負載。
 
 資料層的其他選項包括：
 
-* [Cosmos DB](/azure/cosmos-db/introduction) - Microsoft 全球發行的多模型資料庫。 Cosmos DB 提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。 Azure 搜尋服務也支援直接從 Cosmos DB 將資料編製索引。
+- [Cosmos DB](/azure/cosmos-db/introduction) - Microsoft 全球發行的多模型資料庫。 Cosmos DB 提供平台來執行其他資料模型，例如 Mongo DB、Cassandra、Graph 資料或簡單的資料表儲存體。 Azure 搜尋服務也支援直接從 Cosmos DB 將資料編製索引。
 
 ## <a name="considerations"></a>考量
 
@@ -85,11 +87,11 @@ Azure 搜尋服務符合許多[安全性和資料隱私權標準][search-securit
 
 微調搜尋服務的典型方式包括：
 
-* 使用[評分設定檔][search-scoring]來影響搜尋結果的相關性，比方說，根據哪個欄位與查詢相符、資料有多新、使用者的地理距離等等。
-* 使用 [Microsoft 提供的語言分析器][search-languages]，以便使用進階自然語言處理 (NLP) 堆疊進一步解譯查詢。
-* 使用[自訂分析器][ search-analyzers]，確保正確找到您的產品，尤其在您想要搜尋非語言型資訊時，例如產品的製造商和型號。
+- 使用[評分設定檔][search-scoring]來影響搜尋結果的相關性，比方說，根據哪個欄位與查詢相符、資料有多新、使用者的地理距離等等。
+- 使用 [Microsoft 提供的語言分析器][search-languages]，以便使用進階自然語言處理 (NLP) 堆疊進一步解譯查詢。
+- 使用[自訂分析器][ search-analyzers]，確保正確找到您的產品，尤其在您想要搜尋非語言型資訊時，例如產品的製造商和型號。
 
-## <a name="deploy-this-scenario"></a>部署此案例
+## <a name="deploy-the-scenario"></a>部署案例
 
 若要部署此案例更完整的電子商務版本，您可以遵循此[逐步教學課程][end-to-end-walkthrough]，其中提供執行簡單票證購買應用程式的 .NET 範例應用程式。 它還包含 Azure 搜尋服務，並使用許多討論的功能。 此外，還有 Resource Manager 範本，可以將大部分 Azure 資源的部署自動化。
 
@@ -99,9 +101,9 @@ Azure 搜尋服務符合許多[安全性和資料隱私權標準][search-securit
 
 我們根據您預期取得的流量，提供了三個範例成本設定檔：
 
-* [小型][small-pricing]：在此設定檔中，我們會使用單一 `Standard S1` Web 應用程式，來裝載網站、Azure Bot 服務的免費層、單一 `Basic` Azure 搜尋服務及 `Standard S2` SQL Database。
-* [中型][medium-pricing]：在此我們會將 Web 應用程式相應增加為兩個 `Standard S3` 層執行個體、將搜尋服務升級為 `Standard S1` 層，以及使用 `Standard S6` SQL Database。
-* [大型][large-pricing]：在最大的設定檔中，我們會使用四個 `Premium P2V2` Web 應用程式執行個體、將 Azure Bot 服務升級為 `Standard S1` 層 (進階通道中有 1.000.000 則訊息)、使用 2 單位的 `Standard S3` Azure 搜尋服務以及 `Premium P6` SQL Database。
+- [小型][small-pricing]：在此設定檔中，我們會使用單一 `Standard S1` Web 應用程式，來裝載網站、Azure Bot 服務的免費層、單一 `Basic` Azure 搜尋服務及 `Standard S2` SQL Database。
+- [中型][medium-pricing]：在此我們會將 Web 應用程式相應增加為兩個 `Standard S3` 層執行個體、將搜尋服務升級為 `Standard S1` 層，以及使用 `Standard S6` SQL Database。
+- [大型][large-pricing]：在最大的設定檔中，我們會使用四個 `Premium P2V2` Web 應用程式執行個體、將 Azure Bot 服務升級為 `Standard S1` 層 (進階通道中有 1.000.000 則訊息)、使用 2 單位的 `Standard S3` Azure 搜尋服務以及 `Premium P6` SQL Database。
 
 ## <a name="related-resources"></a>相關資源
 

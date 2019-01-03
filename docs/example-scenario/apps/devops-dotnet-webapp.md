@@ -1,21 +1,22 @@
 ---
 title: 使用 Azure DevOps 設計 CI/CD 管線
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure DevOps 建置 .NET 應用程式並且發行至 Azure Web Apps。
 author: christianreddington
 ms.date: 12/06/2018
 ms.custom:
 - fasttrack
 - seodec18
-ms.openlocfilehash: 23945493115522d099b6b26922f567653da0367e
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: ae2dddd7567c6b69f936b3b9c9339313389e3bf6
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307277"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643793"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>使用 Azure DevOps 設計 CI/CD 管線
 
-本案例提供建置持續整合 (CI) 和持續部署 (CD) 管線的架構和設計指導方針。  在此範例中，CI/CD 管線會將兩層式 .NET Web 應用程式部署至 Azure App Service。
+本案例提供建置持續整合 (CI) 和持續部署 (CD) 管線的架構和設計指導方針。 在此範例中，CI/CD 管線會將兩層式 .NET Web 應用程式部署至 Azure App Service。
 
 遷移至新式 CI/CD 程序可為應用程式的建置、部署、測試及監視帶來許多好處。 藉由使用 Azure DevOps 搭配 App Service 等其他服務，組織即可專注於其應用程式的開發，而不是支援基礎結構的管理。
 
@@ -84,7 +85,7 @@ ms.locfileid: "53307277"
 
 ### <a name="prerequisites"></a>必要條件
 
-- 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [[免費帳戶]][azure-free-account]。
+- 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 - 您必須註冊 Azure DevOps 組織。 如需詳細資訊，請參閱[快速入門：建立您的組織][vsts-account-create]。
 
@@ -119,7 +120,6 @@ Azure DevOps 會按每個使用者的每月使用量來計費。 除了任何額
 [ansible]: /azure/ansible/
 [application-insights]: /azure/application-insights/app-insights-overview
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[azure-free-account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [arm-templates]: /azure/azure-resource-manager/resource-group-overview#template-deployment
 [architecture]: ./media/architecture-devops-dotnet-webapp.svg
 [chef]: /azure/chef/

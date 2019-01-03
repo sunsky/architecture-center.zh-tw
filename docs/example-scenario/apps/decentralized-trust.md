@@ -1,15 +1,16 @@
 ---
-title: Azure 上銀行間的分散式信任
+title: 銀行間的分散式信任
+titleSuffix: Azure Example Scenarios
 description: 建立適用於通訊和資訊共用的受信任環境，不需要重新排序至集中式資料庫。
 author: vitoc
 ms.date: 09/09/2018
 ms.custom: csa-team
-ms.openlocfilehash: 91c41f7bd6bd6f4eb8cd00859f7ce9065f8a86be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: bd38986a86055305cec97db7a3f3f3e75ff600b0
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004729"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643693"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上銀行間的分散式信任
 
@@ -25,11 +26,11 @@ ms.locfileid: "53004729"
 
 其他相關的使用案例包括：
 
-* 在多語系公司的不同業務單位之間移動已配置的預算
-* 跨境支付
-* 貿易融資案例
-* 涉及不同公司的忠誠度系統
-* 供應鏈生態系統
+- 在多語系公司的不同業務單位之間移動已配置的預算
+- 跨境支付
+- 貿易融資案例
+- 涉及不同公司的忠誠度系統
+- 供應鏈生態系統
 
 ## <a name="architecture"></a>架構
 
@@ -45,11 +46,11 @@ ms.locfileid: "53004729"
 
 ### <a name="components"></a>元件
 
-* 虛擬機器擴展集內的虛擬機器會提供隨選計算設施，來裝載區塊鏈的驗證程式程序
-* Key Vault 可作為每個驗證程式私密金鑰的安全儲存設備
-* Load Balancer 會分散 RPC、對等互連和 Governance DApp 要求
-* 裝載持續性網路資訊和協調租用的儲存體
-* Operations Management Suite (一組 Azure 服務) 提供可用節點、每分鐘交易數和聯盟成員的見解
+- 虛擬機器擴展集內的虛擬機器會提供隨選計算設施，來裝載區塊鏈的驗證程式程序
+- Key Vault 可作為每個驗證程式私密金鑰的安全儲存設備
+- Load Balancer 會分散 RPC、對等互連和 Governance DApp 要求
+- 裝載持續性網路資訊和協調租用的儲存體
+- Operations Management Suite (一組 Azure 服務) 提供可用節點、每分鐘交易數和聯盟成員的見解
 
 ### <a name="alternatives"></a>替代項目
 
@@ -57,15 +58,15 @@ ms.locfileid: "53004729"
 
 在其他擴充或不同的情況下，可能會引發交易隱私權等疑慮。 比方說，在證券轉讓案例中，聯盟中的成員可能不希望其他成員看到其交易。 以太坊 PoA 有其他替代項目會以其各自的方式處理這些疑慮：
 
-* Corda
-* Quorum
-* Hyperledger
+- Corda
+- Quorum
+- Hyperledger
 
 ## <a name="considerations"></a>考量
 
 ### <a name="availability"></a>可用性
 
-[Azure 監視器][ monitor]用來持續監視區塊鏈網路的問題，以確保可用性。 此案例中使用的區塊鏈解決方案範本部署成功時，系統就會傳送以 Azure 監視器為基礎的自訂監視儀表板連結給您。 此儀表板顯示的節點會報告過去 30 分鐘內的活動訊號，以及其他有用的統計資料。 
+[Azure 監視器][ monitor]用來持續監視區塊鏈網路的問題，以確保可用性。 此案例中使用的區塊鏈解決方案範本部署成功時，系統就會傳送以 Azure 監視器為基礎的自訂監視儀表板連結給您。 此儀表板顯示的節點會報告過去 30 分鐘內的活動訊號，以及其他有用的統計資料。
 
 如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
 
@@ -93,9 +94,9 @@ ms.locfileid: "53004729"
 
 我們根據執行應用程式的擴展集 VM 執行個體數目 (這些執行個體可位於不同的區域)，提供了 3 個範例成本設定檔。
 
-* [小型][small-pricing]：此定價範例與已關閉監視功能的每個月 2 部 VM 相互關聯
-* [中型][medium-pricing]：此定價範例與已開啟監視功能的每個月 7 部 VM 相互關聯
-* [大型][large-pricing]：此定價範例與已開啟監視功能的每個月 15 部 VM 相互關聯
+- [小型][small-pricing]：此定價範例與已關閉監視功能的每個月 2 部 VM 相互關聯
+- [中型][medium-pricing]：此定價範例與已開啟監視功能的每個月 7 部 VM 相互關聯
+- [大型][large-pricing]：此定價範例與已開啟監視功能的每個月 15 部 VM 相互關聯
 
 上述定價適用於要開始或加入區塊鏈網路的一個聯盟成員。 通常在涉及多家公司或組織的聯盟中，每個成員都會取得自己的 Azure 訂用帳戶。
 
