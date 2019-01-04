@@ -1,14 +1,17 @@
 ---
 title: 雲端設計模式
+titleSuffix: Azure Architecture Center
 description: 雲端設計模式用於在雲端中建置可靠、可擴充且安全的應用程式
 keywords: Azure
+author: dragon119
 ms.date: 12/10/2018
-ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 003bef866b0cd873122cfb8d4730b95ba49d3d7f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450848"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011288"
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
@@ -18,6 +21,7 @@ ms.locfileid: "53450848"
 
 ## <a name="challenges-in-cloud-development"></a>雲端開發中的挑戰
 
+<!-- markdownlint-disable MD033 -->
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
@@ -76,6 +80,7 @@ ms.locfileid: "53450848"
     </td>
 </tr>
 </table>
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="catalog-of-patterns"></a>模式的目錄
 
@@ -114,4 +119,3 @@ ms.locfileid: "53450848"
 |                      [Strangler](./strangler.md)                      |                                            透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。                                            |
 |                     [節流](./throttling.md)                     |                                                 控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。                                                 |
 |                      [Valet 金鑰](./valet-key.md)                      |                                                        使用可提供用戶端對特定資源或服務受限制的直接存取的權杖或金鑰。                                                        |
-
