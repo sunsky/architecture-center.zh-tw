@@ -1,18 +1,20 @@
 ---
 title: 沒有直接關聯的擷取反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 擷取超過商務作業所需的資料，會導致不必要的 I/O 額外負荷並且降低回應能力。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7a72bfd3e4b2e206f3266a046fac2083224ecb4f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: dac1b4c1422b447b8a0a9ebe317d5ac246c38da5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846598"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010234"
 ---
 # <a name="extraneous-fetching-antipattern"></a>沒有直接關聯的擷取反模式
 
-擷取超過商務作業所需的資料，會導致不必要的 I/O 額外負荷並且降低回應能力。 
+擷取超過商務作業所需的資料，會導致不必要的 I/O 額外負荷並且降低回應能力。
 
 ## <a name="problem-description"></a>問題說明
 
@@ -52,7 +54,7 @@ public async Task<IHttpActionResult> AggregateOnClientAsync()
 }
 ```
 
-下一個範例示範 Entity Framework 使用 LINQ to Entities 所造成的輕微問題。 
+下一個範例示範 Entity Framework 使用 LINQ to Entities 所造成的輕微問題。
 
 ```csharp
 var query = from p in context.Products.AsEnumerable()
@@ -62,13 +64,13 @@ var query = from p in context.Products.AsEnumerable()
 List<Product> products = query.ToList();
 ```
 
-應用程式嘗試尋找 `SellStartDate` 超過一週的產品。 在大部分情況下，LINQ to Entities 會將 `where` 子句轉譯為資料庫執行的 SQL 陳述式。 不過在此情況下，LINQ to Entities 無法將 `AddDays` 方法對應至 SQL。 相反地，會傳回 `Product` 資料表的每個資料列，並且在記憶體中篩選結果。 
+應用程式嘗試尋找 `SellStartDate` 超過一週的產品。 在大部分情況下，LINQ to Entities 會將 `where` 子句轉譯為資料庫執行的 SQL 陳述式。 不過在此情況下，LINQ to Entities 無法將 `AddDays` 方法對應至 SQL。 相反地，會傳回 `Product` 資料表的每個資料列，並且在記憶體中篩選結果。
 
-對 `AsEnumerable` 的呼叫就是有問題的提示。 這個方法會將結果轉換至 `IEnumerable` 介面。 雖然 `IEnumerable` 支援篩選，但是篩選是在「用戶端」完成，而不是資料庫。 根據預設，LINQ to Entities 會使用 `IQueryable`，它會將篩選的責任傳送給資料來源。 
+對 `AsEnumerable` 的呼叫就是有問題的提示。 這個方法會將結果轉換至 `IEnumerable` 介面。 雖然 `IEnumerable` 支援篩選，但是篩選是在「用戶端」完成，而不是資料庫。 根據預設，LINQ to Entities 會使用 `IQueryable`，它會將篩選的責任傳送給資料來源。
 
 ## <a name="how-to-fix-the-problem"></a>如何修正問題
 
-避免擷取很快就過時或被捨棄的大量資料，而且只擷取執行之作業所需的資料。 
+避免擷取很快就過時或被捨棄的大量資料，而且只擷取執行之作業所需的資料。
 
 並非從資料表取得每個資料行然後篩選它們，而是從資料庫選取您需要的資料行。
 
@@ -103,7 +105,7 @@ public async Task<IHttpActionResult> AggregateOnDatabaseAsync()
 當使用 Entity Framework 時，請確定使用 `IQueryable` 介面而非 `IEnumerable` 介面來解析 LINQ 查詢。 您可能需要調整查詢，僅使用可以對應至資料來源的函式。 先前的範例可以重構，以從查詢移除 `AddDays`，讓篩選由資料庫完成。
 
 ```csharp
-DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out. 
+DateTime dateSince = DateTime.Now.AddDays(-7); // AddDays has been factored out.
 var query = from p in context.Products
             where p.SellStartDate < dateSince // This criterion can be passed to the database by LINQ to Entities
             select ...;
@@ -117,22 +119,21 @@ List<Product> products = query.ToList();
 
 - 對於必須支援無限制查詢的作業，實作編頁並且一次僅擷取有限數目的實體。 例如，如果客戶瀏覽產品目錄，您可以一次顯示一頁的結果。
 
-- 盡可能利用資料存放區的內建功能。 例如，SQL 資料庫通常會提供彙總函式。 
+- 盡可能利用資料存放區的內建功能。 例如，SQL 資料庫通常會提供彙總函式。
 
 - 如果您使用不支援特定函式 (例如彙總) 的資料存放區，您可以將計算的結果儲存在其他位置，當新增或更新記錄時更新值，讓應用程式不需要每次重新計算值。
 
-- 如果您看到要求擷取大量的欄位，檢查原始程式碼以判斷這些欄位實際上是否都有需要。 有時候這些要求是不良設計 `SELECT *` 查詢的結果。 
+- 如果您看到要求擷取大量的欄位，檢查原始程式碼以判斷這些欄位實際上是否都有需要。 有時候這些要求是不良設計 `SELECT *` 查詢的結果。
 
-- 同樣地，擷取大量實體的要求可能是應用程式未正確篩選資料的徵兆。 請確認這些實體實際上都有需要。 可能的話，使用資料庫端篩選，例如，SQL 中的 `WHERE` 子句。 
+- 同樣地，擷取大量實體的要求可能是應用程式未正確篩選資料的徵兆。 請確認這些實體實際上都有需要。 可能的話，使用資料庫端篩選，例如，SQL 中的 `WHERE` 子句。
 
 - 資料庫的卸載處理不一定最佳選項。 只在資料庫是設計或最佳化來執行這項操作時，才使用這個策略。 大部分資料庫系統都針對特定函式高度最佳化，但是並非設計來作為一般用途應用程式引擎。 如需詳細資訊，請參閱[忙碌資料庫反模式][BusyDatabase]。
-
 
 ## <a name="how-to-detect-the-problem"></a>如何偵測問題
 
 沒有直接關聯的擷取之徵兆包括高延遲及低輸送量。 如果資料是從資料存放區擷取，也可能會增加爭用。 使用者可能會回報服務逾時造成的擴充回應時間或失敗。這些失敗可能會傳回 HTTP 500 (內部伺服器) 錯誤或 HTTP 503 (服務無法使用) 錯誤。 檢查網頁伺服器的事件記錄，其中可能包含錯誤原因和情況的詳細資訊。
 
-這個反模式的徵兆和所獲得的部分遙測可能非常類似於[整合的持續性反模式][MonolithicPersistence]。 
+這個反模式的徵兆和所獲得的部分遙測可能非常類似於[整合的持續性反模式][MonolithicPersistence]。
 
 您可以執行下列步驟來協助識別原因：
 
@@ -140,8 +141,8 @@ List<Product> products = query.ToList();
 2. 觀察系統所展現的任何行為模式。 每秒交易數或使用者數量是否有特定限制？
 3. 讓緩慢工作負載的執行個體與行為模式相互關聯。
 4. 識別正在使用的資料存放區。 對於每個資料來源，執行較低層級的遙測，以觀察作業的行為。
-6. 識別參考這些資料來源的任何執行緩慢查詢。
-7. 執行執行緩慢查詢的資源特定分析，並確認使用及取用資料的方式。
+5. 識別參考這些資料來源的任何執行緩慢查詢。
+6. 執行執行緩慢查詢的資源特定分析，並確認使用及取用資料的方式。
 
 尋找任何徵兆：
 
@@ -150,13 +151,13 @@ List<Product> products = query.ToList();
 - 頻繁透過網路接收大量資料的作業。
 - 應用程式和服務花費很長的時間等候 I/O 完成。
 
-## <a name="example-diagnosis"></a>範例診斷    
+## <a name="example-diagnosis"></a>範例診斷
 
 下列各節會將這些步驟套用到先前的範例。
 
 ### <a name="identify-slow-workloads"></a>識別緩慢工作負載
 
-這個圖表會顯示模擬最多 400 個並行使用者執行先前所示 `GetAllFieldsAsync` 方法之負載測試的結果。 輸送量隨著負載增加而緩慢減少。 平均回應時間隨著工作負載增加而提升。 
+這個圖表會顯示模擬最多 400 個並行使用者執行先前所示 `GetAllFieldsAsync` 方法之負載測試的結果。 輸送量隨著負載增加而緩慢減少。 平均回應時間隨著工作負載增加而提升。
 
 ![GetAllFieldsAsync 方法的負載測試結果][Load-Test-Results-Client-Side1]
 
@@ -174,7 +175,7 @@ List<Product> products = query.ToList();
 
 ### <a name="identify-data-sources-in-slow-workloads"></a>識別緩慢工作負載中的資料來源
 
-如果您懷疑服務因為其擷取資料的方式而效能不佳，請調查應用程式與其使用之存放庫的互動方式。 監視即時系統，以查看在效能不佳的期間存取了哪些來源。 
+如果您懷疑服務因為其擷取資料的方式而效能不佳，請調查應用程式與其使用之存放庫的互動方式。 監視即時系統，以查看在效能不佳的期間存取了哪些來源。
 
 對於每個資料來源，檢測系統以擷取下列項目：
 
@@ -203,7 +204,6 @@ List<Product> products = query.ToList();
 
 ![Windows Azure SQL Database 管理入口網站中的 [查詢詳細資料] 窗格][QueryDetails]
 
-
 ## <a name="implement-the-solution-and-verify-the-result"></a>實作解決方案並確認結果
 
 將 `GetRequiredFieldsAsync` 方法變更為在資料庫端使用 SELECT 陳述式之後，負載測試會顯示下列結果。
@@ -218,19 +218,17 @@ List<Product> products = query.ToList();
 
 ![AggregateOnDatabaseAsync 方法的負載測試結果][Load-Test-Results-Database-Side2]
 
-平均回應時間現在最少。 這是效能範圍改善的順序，主要是由大量減少資料庫的 I/O 所造成。 
+平均回應時間現在最少。 這是效能範圍改善的順序，主要是由大量減少資料庫的 I/O 所造成。
 
 以下是 `AggregateOnDatabaseAsync` 方法的對應遙測。 從資料庫擷取的資料數量大幅減少，由每筆交易 280 Kb 減少為 53 個位元組。 如此一來，每分鐘持續要求數目上限會從大約 2000 提升至 25000。
 
 ![`AggregateOnDatabaseAsync` 方法的遙測][TelemetryAggregateInDatabaseAsync]
-
 
 ## <a name="related-resources"></a>相關資源
 
 - [忙碌資料庫反模式][BusyDatabase]
 - [多對話 I/O 反模式][chatty-io]
 - [資料分割的最佳做法][data-partitioning]
-
 
 [BusyDatabase]: ../busy-database/index.md
 [data-partitioning]: ../../best-practices/data-partitioning.md

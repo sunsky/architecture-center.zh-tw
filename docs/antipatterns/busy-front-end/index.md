@@ -1,14 +1,16 @@
 ---
 title: 忙碌前端反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 在大量背景執行緒上進行的非同步工作，會讓資源的其他前景工作無資源可用。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: f52cedde5a17f098fb9218c48479fae981a2c7df
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428290"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011492"
 ---
 # <a name="busy-front-end-antipattern"></a>忙碌前端反模式
 
@@ -62,11 +64,11 @@ public class UserProfileController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>如何修正問題
 
-將耗用大量資源的處理程序移至個別後端。 
+將耗用大量資源的處理程序移至個別後端。
 
 使用此方法，前端會將耗用大量資源的工作放入訊息佇列。 後端會挑選工作以進行非同步處理。 佇列也會作為負載架橋，緩衝後端的要求。 如果佇列長度變得太長，您可以設定自動調整以相應放大後端。
 
-以下是先前程式碼的修訂版本。 在此版本中，`Post` 方法會將訊息放在服務匯流排佇列。 
+以下是先前程式碼的修訂版本。 在此版本中，`Post` 方法會將訊息放在服務匯流排佇列。
 
 ```csharp
 public class WorkInBackgroundController : ApiController
@@ -121,7 +123,7 @@ public async Task RunAsync(CancellationToken cancellationToken)
 - 這個方法會將一些額外的複雜性新增至應用程式。 您必須安全地處理佇列和清除佇列，以避免在失敗事件中遺失要求。
 - 應用程式會接受訊息佇列之其他服務的相依性。
 - 處理環境必須有足夠的可擴充空間，來處理預期的工作負載，並符合所需的輸送量目標。
-- 雖然這個方法應該會改善整體回應性，但是移至後端的工作可能需要更久的時間才能完成。 
+- 雖然這個方法應該會改善整體回應性，但是移至後端的工作可能需要更久的時間才能完成。
 
 ## <a name="how-to-detect-the-problem"></a>如何偵測問題
 
@@ -130,12 +132,12 @@ public async Task RunAsync(CancellationToken cancellationToken)
 您可以執行下列步驟來協助識別此問題：
 
 1. 執行生產系統的處理程序監視，以識別回應時間變慢的時間點。
-2. 檢查在這些點所擷取的遙測資料，來判斷執行之作業與使用之資源的混合。 
+2. 檢查在這些點所擷取的遙測資料，來判斷執行之作業與使用之資源的混合。
 3. 尋找回應時間不佳與當時發生之作業量和組合之間的任何相互關聯。
-4. 對每個懷疑的作業進行負載測試，以識別哪些作業耗用資源，並且讓其他作業無資源可用。 
+4. 對每個懷疑的作業進行負載測試，以識別哪些作業耗用資源，並且讓其他作業無資源可用。
 5. 檢閱這些作業的原始程式碼，來判斷為何它們可能會導致過量的資源耗用。
 
-## <a name="example-diagnosis"></a>範例診斷 
+## <a name="example-diagnosis"></a>範例診斷
 
 下列各節會將這些步驟套用到稍早所述的範例應用程式。
 
@@ -155,18 +157,17 @@ public async Task RunAsync(CancellationToken cancellationToken)
 
 此時，`WorkInFrontEnd` 控制器中的 `Post` 方法似乎是供進一步調查的主要候選項目。 必須在受控制的環境中執行進一步的工作，才能確認假設。
 
-### <a name="perform-load-testing"></a>執行負載測試 
+### <a name="perform-load-testing"></a>執行負載測試
 
 下一個步驟是在受控制的環境中執行測試。 例如，執行所包含的一系列負載測試，然後省略每個要求以查看效果。
 
-下圖顯示對先前測試中使用之雲端服務的相同部署執行的負載測試結果。 測試使用 500 個使用者的常數負載，在 `UserProfile` 控制器中執行 `Get` 作業，以及使用者的步驟負載，在 `WorkInFrontEnd` 控制器中執行 `Post` 作業。 
+下圖顯示對先前測試中使用之雲端服務的相同部署執行的負載測試結果。 測試使用 500 個使用者的常數負載，在 `UserProfile` 控制器中執行 `Get` 作業，以及使用者的步驟負載，在 `WorkInFrontEnd` 控制器中執行 `Post` 作業。
 
 ![WorkInFrontEnd 控制器的初始負載測試結果][Initial-Load-Test-Results-Front-End]
 
 一開始，步驟負載是 0，因此只有一個作用中使用者執行 `UserProfile` 要求。 系統可以回應大約 500 個每秒要求數。 60 秒之後，100 個額外使用者的負載會開始將 POST 要求傳送至 `WorkInFrontEnd` 控制器。 工作負載幾乎是立即傳送至 `UserProfile` 控制器，下降到大約 150 個每秒要求數。 這是由於負載測試執行器函式的方式。 它會在傳送下一個要求之前等候回應，因此收到回應的時間越久，要求速率越低。
 
 隨著越來越多使用者將 POST 要求傳送至 `WorkInFrontEnd` 控制器，`UserProfile` 控制器的回應速率持續下降。 不過請注意，由 `WorkInFrontEnd` 控制器處理的要求量仍然相對穩定。 系統的飽和度變得很明顯，因為這兩個要求的整體速率都傾向於穩定但低限制。
-
 
 ### <a name="review-the-source-code"></a>檢閱原始程式碼
 
@@ -175,11 +176,11 @@ public async Task RunAsync(CancellationToken cancellationToken)
 不過，這個方法所執行的工作仍會耗用 CPU、記憶體和其他資源。 啟用此處理程序以非同步方式執行實際上可能會損害效能，因為使用者可以未受控制的方式同時觸發這些大量作業。 伺服器可以執行的執行緒數目有限制。 超過此限制，應用程式很可能會在嘗試啟動新執行緒時，發生例外狀況。
 
 > [!NOTE]
-> 這並不表示您應該避免非同步作業。 在網路呼叫上執行非同步等候是建議的做法。 (請參閱[同步 I/O][sync-io] 反模式。)此處的問題是需要大量 CPU 的工作已在另一個執行緒上繁衍。 
+> 這並不表示您應該避免非同步作業。 在網路呼叫上執行非同步等候是建議的做法。 (請參閱[同步 I/O][sync-io] 反模式。)此處的問題是需要大量 CPU 的工作已在另一個執行緒上繁衍。
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>實作解決方案並確認結果
 
-下圖顯示實作解決方案之後的效能監視。 負載與稍早所示類似，但是 `UserProfile` 控制器的回應時間現在更快。 相同持續期間內增加的要求數量，從 2759 到 23565。 
+下圖顯示實作解決方案之後的效能監視。 負載與稍早所示類似，但是 `UserProfile` 控制器的回應時間現在更快。 相同持續期間內增加的要求數量，從 2759 到 23565。
 
 ![AppDynamics 業務交易窗格顯示當使用 WorkInBackground 控制器時，所有要求之回應時間的影響][AppDynamics-Transactions-Background-Requests]
 
@@ -218,5 +219,3 @@ CPU 和網路使用率也會顯示改善的效能。 CPU 使用率永遠不會�
 [AppDynamics-Transactions-Background-Requests]: ./_images/AppDynamicsBackgroundPerformanceStats.jpg
 [AppDynamics-Metrics-Background-Requests]: ./_images/AppDynamicsBackgroundMetrics.jpg
 [Load-Test-Results-Background]: ./_images/LoadTestResultsBackground.jpg
-
-

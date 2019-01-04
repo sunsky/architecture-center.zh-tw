@@ -1,14 +1,16 @@
 ---
 title: 多對話 I/O 反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 大量 I/O 要求可能會損害效能及回應能力。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c018e365d0a6244f77d119ad59f601e9c7ea965c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428562"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011220"
 ---
 # <a name="chatty-io-antipattern"></a>多對話 I/O 反模式
 
@@ -26,7 +28,7 @@ ms.locfileid: "47428562"
 2. 藉由查詢 `Product` 資料表，找出此子類別中所有產品。
 3. 針對每個產品，從 `ProductPriceListHistory` 資料表查詢定價資料。
 
-應用程式會使用 [Entity Framework][ef] 查詢資料庫。 您可以在[這裡][code-sample]找到完整的範例。 
+應用程式會使用 [Entity Framework][ef] 查詢資料庫。 您可以在[這裡][code-sample]找到完整的範例。
 
 ```csharp
 public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcategoryId)
@@ -57,11 +59,11 @@ public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcatego
 }
 ```
 
-此範例會明確顯示問題，但如果 O/RM 以隱含方式一次提取一個子記錄，則可能會遮蓋問題。 這稱為「N+1 問題」。 
+此範例會明確顯示問題，但如果 O/RM 以隱含方式一次提取一個子記錄，則可能會遮蓋問題。 這稱為「N+1 問題」。
 
 ### <a name="implementing-a-single-logical-operation-as-a-series-of-http-requests"></a>將單一邏輯運算實作為一系列 HTTP 要求
 
-這通常會在開發人員嘗試遵循物件導向的範例，並將遠端物件視為記憶體中的本機物件時發生。 這會導致過多的網路往返。 例如，下列 Web API 會透過個別 HTTP GET 方法，公開 `User` 物件的個別屬性。 
+這通常會在開發人員嘗試遵循物件導向的範例，並將遠端物件視為記憶體中的本機物件時發生。 這會導致過多的網路往返。 例如，下列 Web API 會透過個別 HTTP GET 方法，公開 `User` 物件的個別屬性。
 
 ```csharp
 public class UserController : ApiController
@@ -89,7 +91,7 @@ public class UserController : ApiController
 }
 ```
 
-雖然此方法沒有技術上的錯誤，但大部分用戶端可能需要取得每個 `User` 的數個屬性，產生的用戶端程式碼如下所示。 
+雖然此方法沒有技術上的錯誤，但大部分用戶端可能需要取得每個 `User` 的數個屬性，產生的用戶端程式碼如下所示。
 
 ```csharp
 HttpResponseMessage response = await client.GetAsync("users/1/username");
@@ -107,7 +109,7 @@ var dob = await response.Content.ReadAsStringAsync();
 
 ### <a name="reading-and-writing-to-a-file-on-disk"></a>讀取和寫入磁碟上的檔案
 
-檔案 I/O 包括：在讀取或寫入資料前開啟檔案和將檔案移至適當的位置。 作業完成時，檔案可能會關閉以儲存作業系統資源。 如果應用程式持續讀取和寫入少量資訊到檔案，則會產生大量 I/O 額外負荷。 小型寫入要求也可能導致檔案分散，進一步拖慢後續的 I/O 作業。 
+檔案 I/O 包括：在讀取或寫入資料前開啟檔案和將檔案移至適當的位置。 作業完成時，檔案可能會關閉以儲存作業系統資源。 如果應用程式持續讀取和寫入少量資訊到檔案，則會產生大量 I/O 額外負荷。 小型寫入要求也可能導致檔案分散，進一步拖慢後續的 I/O 作業。
 
 下列範例會使用 `FileStream` 來將 `Customer` 物件寫入檔案。 建立 `FileStream` 會開啟檔案，而加以處理則會關閉檔案。 (`using` 陳述式會自動處理 `FileStream` 物件。)如果應用程式在新取用者加入時，重複呼叫此方法，就會快速累積 I/O 額外負荷。
 
@@ -211,7 +213,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - 前兩個範例會產生較少的 I/O 呼叫，但每個呼叫會擷取較多資訊。 您必須考慮這兩項因素之間的取捨。 正確的答案將取決於實際使用模式。 例如，在 Web API 範例中，您可能會發現用戶端通常只需要使用者名稱。 在此情況下，將其公開為個別 API 呼叫是有意義的。 如需詳細資訊，請參閱[沒有直接關聯的擷取][extraneous-fetching]反模式。
 
-- 讀取資料時，請勿產生太大的 I/O 要求。 應用程式應該只擷取可能會使用的資訊。 
+- 讀取資料時，請勿產生太大的 I/O 要求。 應用程式應該只擷取可能會使用的資訊。
 
 - 有時候將資料分割分成兩個區塊是有幫助的，可分為佔據大部分要求的經常存取資料，以及較少使用的不常存取資料。 通常，最常存取的資料是物件總資料量中相對較少的部分，因此只傳回該部分可降低大量 I/O 額外負荷。
 
@@ -231,7 +233,7 @@ await SaveCustomerListToFileAsync(customers);
 2. 對上一個步驟中所識別的每一項作業，執行負載測試。
 3. 在負載測試期間，針對每一項作業產生的資料存取要求，收集相關遙測資料。
 4. 針對每個傳送至資料存放區的要求，收集其詳細統計資料。
-5. 分析測試環境中的應用程式，以建立可能發生 I/O 瓶頸的情況。 
+5. 分析測試環境中的應用程式，以建立可能發生 I/O 瓶頸的情況。
 
 尋找任何徵兆：
 
@@ -246,16 +248,16 @@ await SaveCustomerListToFileAsync(customers);
 
 ### <a name="load-test-the-application"></a>對應用程式進行負載測試
 
-此圖表顯示負載測試的結果。 回應時間中間值是在每個要求 10 幾秒時測量的。 圖表顯示非常高的延遲。 因為有 1000 位使用者的負載，一個使用者可能幾乎必須等候 1 分鐘才可看到查詢結果。 
+此圖表顯示負載測試的結果。 回應時間中間值是在每個要求 10 幾秒時測量的。 圖表顯示非常高的延遲。 因為有 1000 位使用者的負載，一個使用者可能幾乎必須等候 1 分鐘才可看到查詢結果。
 
 ![多對話 I/O 範例應用程式的主要指標負載測試結果][key-indicators-chatty-io]
 
 > [!NOTE]
-> 應用程式已使用 Azure SQL Database 部署為 Azure App Service Web 應用程式。 負載測試使用的模擬步驟工作負載，有最多 1000 位並行使用者。 資料庫已透過連接集區設定，可支援最多 1000 位並行使用者，以減少發生影響結果的連線競爭。 
+> 應用程式已使用 Azure SQL Database 部署為 Azure App Service Web 應用程式。 負載測試使用的模擬步驟工作負載，有最多 1000 位並行使用者。 資料庫已透過連接集區設定，可支援最多 1000 位並行使用者，以減少發生影響結果的連線競爭。
 
 ### <a name="monitor-the-application"></a>監視應用程式
 
-您可以使用應用程式效能監視 (APM) 套件，來擷取及分析可能會識別多對話 I/O 的關鍵度量。 度量的重要程度會將取決於 I/O 工作負載。 針對此範例，令人關注的 I/O 要求是資料庫查詢。 
+您可以使用應用程式效能監視 (APM) 套件，來擷取及分析可能會識別多對話 I/O 的關鍵度量。 度量的重要程度會將取決於 I/O 工作負載。 針對此範例，令人關注的 I/O 要求是資料庫查詢。
 
 下圖顯示使用 [New Relic APM][new-relic] 產生的結果。 在最大的工作負載期間，每個要求的平均資料庫回應時間尖峰大約在 5.6 秒。 在整個測試中，系統已能夠支援每分鐘平均 410 個要求。
 
@@ -279,7 +281,7 @@ await SaveCustomerListToFileAsync(customers);
 
 ![測試中範例應用程式的查詢詳細資料][queries3]
 
-如果您使用 Entity Framework 等 O/RM 追蹤 SQL 查詢，則可以深入了解 O/RM 如何將程式設計的呼叫轉譯成 SQL 陳述式，並指定資料存取可能會進行最佳化的區域。 
+如果您使用 Entity Framework 等 O/RM 追蹤 SQL 查詢，則可以深入了解 O/RM 如何將程式設計的呼叫轉譯成 SQL 陳述式，並指定資料存取可能會進行最佳化的區域。
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>實作解決方案並確認結果
 
@@ -293,7 +295,7 @@ await SaveCustomerListToFileAsync(customers);
 
 ![區塊 API 的交易概觀][databasetraffic2]
 
-追蹤 SQL 陳述式會顯示所有資料已在 SELECT 陳述式進行擷取。 雖然此查詢可能更複雜，但是每個作業只須執行一次。 雖然複雜的聯結會產生較高成本，但相關資料庫系統會為此類型的查詢進行最佳化。  
+追蹤 SQL 陳述式會顯示所有資料已在 SELECT 陳述式進行擷取。 雖然此查詢可能更複雜，但是每個作業只須執行一次。 雖然複雜的聯結會產生較高成本，但相關資料庫系統會為此類型的查詢進行最佳化。
 
 ![區塊 API 的查詢詳細資料][queries4]
 
@@ -322,4 +324,3 @@ await SaveCustomerListToFileAsync(customers);
 [queries2]: _images/DatabaseQueries2.jpg
 [queries3]: _images/DatabaseQueries3.jpg
 [queries4]: _images/DatabaseQueries4.jpg
-

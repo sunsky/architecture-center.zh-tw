@@ -1,18 +1,20 @@
 ---
 title: 忙碌資料庫反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 對資料庫伺服器進行卸載處理，可能會導致效能和延展性問題。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 11bce03aed2e988d0a814b3298818715ba42c1c5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428902"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011458"
 ---
 # <a name="busy-database-antipattern"></a>忙碌資料庫反模式
 
-對資料庫伺服器進行卸載處理，可能會導致它花費大部分時間執行程式碼，而不是回應儲存和擷取資料的要求。 
+對資料庫伺服器進行卸載處理，可能會導致它花費大部分時間執行程式碼，而不是回應儲存和擷取資料的要求。
 
 ## <a name="problem-description"></a>問題說明
 
@@ -217,9 +219,9 @@ using (var command = new SqlCommand(...))
 
 ## <a name="how-to-detect-the-problem"></a>如何偵測問題
 
-忙碌資料庫的徵兆包含在存取資料庫的作業中不成比例的拒絕輸送量和回應時間。 
+忙碌資料庫的徵兆包含在存取資料庫的作業中不成比例的拒絕輸送量和回應時間。
 
-您可以執行下列步驟來協助識別此問題： 
+您可以執行下列步驟來協助識別此問題：
 
 1. 使用效能監視，以識別生產系統執行資料庫活動所花費的時間。
 
@@ -261,10 +263,9 @@ CPU 和 DTU 使用率會顯示儘管增加了輸送量，系統花費較長的�
 
 ![Azure SQL Database 監視會顯示在用戶端應用程式中執行處理時的資料庫效能][ProcessingInClientApplicationMonitor]
 
-## <a name="related-resources"></a>相關資源 
+## <a name="related-resources"></a>相關資源
 
 - [沒有直接關聯的擷取反模式][ExtraneousFetching]
-
 
 [dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md

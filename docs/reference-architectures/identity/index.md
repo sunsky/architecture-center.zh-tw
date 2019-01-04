@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: 比較用於整合內部部署 Active Directory 與 Azure 的參考架構。
 ms.date: 07/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 905dedda6de1a107f55b2f7651441780a685aea7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 99a64f0a5fbe5624aa8ad05bd3565ab2aef618b3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119858"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011781"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>選擇解決方案以整合內部部署 Active Directory 與 Azure
 
@@ -46,7 +46,7 @@ Azure AD 目錄不是內部部署目錄的擴充功能。 而是包含相同物�
 **挑戰**
 
 - 識別服務受到使用者和群組的限制。 無法驗證服務與電腦帳戶。
-- 您必須設定與內部部署網域的連線，讓 Azure AD 目錄維持同步。 
+- 您必須設定與內部部署網域的連線，讓 Azure AD 目錄維持同步。
 - 應用程式可能需要重寫，才能透過 Azure AD 啟用驗證。
 
 **參考架構**
@@ -55,9 +55,9 @@ Azure AD 目錄不是內部部署目錄的擴充功能。 而是包含相同物�
 
 ## <a name="ad-ds-in-azure-joined-to-an-on-premises-forest"></a>Azure 中的 AD DS 會加入內部部署樹系
 
-將 AD 網域服務 (AD DS) 伺服器部署到 Azure。 在 Azure 中建立網域，並將其加入至您的內部部署 AD 樹系。 
+將 AD 網域服務 (AD DS) 伺服器部署到 Azure。 在 Azure 中建立網域，並將其加入至您的內部部署 AD 樹系。
 
-如果您需要使用 Azure AD 目前尚未實作的 AD DS 功能，請考慮此選項。 
+如果您需要使用 Azure AD 目前尚未實作的 AD DS 功能，請考慮此選項。
 
 **優點**
 
@@ -97,13 +97,13 @@ Azure AD 目錄不是內部部署目錄的擴充功能。 而是包含相同物�
 
 ## <a name="extend-ad-fs-to-azure"></a>將 AD FS 擴充至 Azure
 
-將 Active Directory Federation Services (AD FS) 部署複寫至 Azure，以便針對在 Azure 中執行的元件，執行同盟驗證和授權。 
+將 Active Directory Federation Services (AD FS) 部署複寫至 Azure，以便針對在 Azure 中執行的元件，執行同盟驗證和授權。
 
 此架構的一般用途包括：
 
 - 驗證和授權夥伴組織的使用者。
 - 可讓使用者從組織防火牆外部執行的網頁瀏覽器進行驗證。
-- 可讓使用者從授權的外部裝置 (例如行動裝置) 連線。 
+- 可讓使用者從授權的外部裝置 (例如行動裝置) 連線。
 
 **優點**
 
