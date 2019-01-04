@@ -1,14 +1,16 @@
 ---
 title: 同步 I/O 反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 在 I/O 完成時封鎖呼叫執行緒，會降低效能並且影響垂直延展性。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 209295cfc911ae168bca2f1c64dc930a27a9a4ba
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429004"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009333"
 ---
 # <a name="synchronous-io-antipattern"></a>同步 I/O 反模式
 
@@ -27,9 +29,9 @@ I/O 的常見範例包括：
 
 此反模式會發生通常是因為：
 
-- 它似乎是執行作業最直覺的方式。 
+- 它似乎是執行作業最直覺的方式。
 - 應用程式需要來自要求的回應。
-- 應用程式會使用程式庫，它針對 I/O 僅提供同步方法。 
+- 應用程式會使用程式庫，它針對 I/O 僅提供同步方法。
 - 外部程式庫會在內部執行同步 I/O 作業。 單一同步 I/O 呼叫會封鎖整個呼叫鏈結。
 
 下列程式碼會將檔案上傳到 Azure Blob 儲存體。 程式碼區塊會在兩個位置等候同步 I/O，`CreateIfNotExists` 方法和 `UploadFromStream` 方法。
@@ -77,7 +79,7 @@ public class SyncController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>如何修正問題
 
-將同步 I/O 作業取代為非同步作業。 這會釋出目前的執行緒以繼續執行有意義的工作，而不是封鎖，並且協助改善計算資源的使用率。 以非同步方式執行 I/O 對於處理來自用戶端應用程式之要求的非預期突波特別有效率。 
+將同步 I/O 作業取代為非同步作業。 這會釋出目前的執行緒以繼續執行有意義的工作，而不是封鎖，並且協助改善計算資源的使用率。 以非同步方式執行 I/O 對於處理來自用戶端應用程式之要求的非預期突波特別有效率。
 
 許多程式庫同時提供同步和非同步方法版本。 盡可能使用非同步版本。 以下是將檔案上傳至 Azure blob 儲存體之上一個範例的非同步版本。
 
@@ -123,7 +125,7 @@ public class AsyncController : ApiController
 }
 ```
 
-對於未提供非同步版本作業的程式庫，可能無法在選取之同步方法周圍建立非同步包裝函式。 請謹慎遵循此方法。 雖然這樣可以改善叫用非同步包裝函式之執行緒的回應性，但是實際上會耗用更多資源。 可能會建立額外的執行緒，而且會有與這個執行緒所完成之工作同步處理相關聯的額外負荷。 這個部落格文章中會討論一些利弊：[是否應該為同步方法公開非同步包裝函式？][async-wrappers]
+對於未提供非同步版本作業的程式庫，可能無法在選取之同步方法周圍建立非同步包裝函式。 請謹慎遵循此方法。 雖然這樣可以改善叫用非同步包裝函式之執行緒的回應性，但是實際上會耗用更多資源。 可能會建立額外的執行緒，而且會有與這個執行緒所完成之工作同步處理相關聯的額外負荷。 此部落格文章中會討論一些利弊：[是否應該為同步方法公開非同步包裝函式？][async-wrappers]
 
 以下是同步方法周圍非同步包裝函式的範例。
 
@@ -193,16 +195,10 @@ await LibraryIOOperationAsync();
 
 輸送量遠遠高出許多。 在與前一個測試相同的持續時間裡面，系統成功處理增加將近十倍的輸送量，以每秒的要求進行測量。 此外，平均回應時間相對穩定，而且維持比前一個測試少了大約 25 倍。
 
-
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
-
-
 [async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 
 [sync-performance]: _images/SyncPerformance.jpg
 [async-performance]: _images/AsyncPerformance.jpg
-
-
-

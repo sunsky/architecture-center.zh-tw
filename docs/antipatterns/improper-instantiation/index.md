@@ -1,25 +1,27 @@
 ---
 title: 不適當的具現化反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 避免對只需建立一次然後進行共用的物件持續建立新執行個體。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 4d5ef9ad9e675b46df94b51e81d7a4bd4c1b25e9
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: b92ae5f5e79a0ababf44d7aa2d771d4d72900cae
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477575"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009913"
 ---
 # <a name="improper-instantiation-antipattern"></a>不適當的具現化反模式
 
-有些物件只需建立一次並分享即可，持續為此類物件建立新的執行個體會傷害效能。 
+有些物件只需建立一次並分享即可，持續為此類物件建立新的執行個體會傷害效能。
 
 ## <a name="problem-description"></a>問題說明
 
 許多程式庫都提供對外部資源的抽象功能。 就內部而言，這些類別通常會管理自己的資源連線，並作為用戶端可用來存取資源的代理程式。 以下是一些與 Azure 應用程式相關的代理程式類別範例：
 
 - `System.Net.Http.HttpClient`。 使用 HTTP 與 Web 服務通訊。
-- `Microsoft.ServiceBus.Messaging.QueueClient`。 發佈和接收服務匯流排佇列的訊息。 
+- `Microsoft.ServiceBus.Messaging.QueueClient`。 發佈和接收服務匯流排佇列的訊息。
 - `Microsoft.Azure.Documents.Client.DocumentClient`。 連線至 Cosmos DB 執行個體
 - `StackExchange.Redis.ConnectionMultiplexer`。 連線至 Redis，包括 Azure Redis 快取。
 
@@ -100,15 +102,17 @@ public class SingleHttpClientInstanceController : ApiController
 
 - 您在多個要求間共用的物件「必須」是安全執行緒。 `HttpClient` 類別是為使用此方法而設計，但其他類別可能不支援並行要求，因此請查看相關文件。
 
+- 在共用物件上設定屬性時請小心，因為這可能會導致競爭條件。 例如，在每個要求之前先於 `HttpClient` 上設定 `DefaultRequestHeaders` 類別，才能建立競爭條件。 如果您需要配置不同的設定，請設定這類屬性一次 (例如，在啟動期間)，並建立個別的執行個體。
+
 - 某些資源類型十分稀缺，不應久佔。 資料庫連線就是個例子。 保留不需要的開放式資料庫連線，可能會阻止其他並行使用者存取資料庫。
 
-- 在.NET Framework 中，許多與外部資源建立連線的物件，皆是在管理這些連線的其他類別上使用靜態 Factory 方法所建立的。 這些處理站物件的用途是儲存和重複使用，而不是處置和重新建立。 例如，在 Azure 服務匯流排中，`QueueClient` 物件是透過 `MessagingFactory` 物件建立的。 就內部而言，`MessagingFactory` 會管理連線。 如需詳細資訊，請參閱[使用服務匯流排傳訊的效能改進最佳作法][service-bus-messaging]。
+- 在.NET Framework 中，許多與外部資源建立連線的物件，皆是在管理這些連線的其他類別上使用靜態 Factory 方法所建立的。 這些物件的用途是儲存和重複使用，而不是處置和重新建立。 例如，在 Azure 服務匯流排中，`QueueClient` 物件是透過 `MessagingFactory` 物件建立的。 就內部而言，`MessagingFactory` 會管理連線。 如需詳細資訊，請參閱[使用服務匯流排傳訊的效能改進最佳作法][service-bus-messaging]。
 
 ## <a name="how-to-detect-the-problem"></a>如何偵測問題
 
-此問題的徵兆包括輸送量降低或錯誤率增加，以及以下一個或多個狀況： 
+此問題的徵兆包括輸送量降低或錯誤率增加，以及以下一個或多個狀況：
 
-- 例外狀況增加，這表示通訊端、資料庫連線或檔案控制代碼等資源耗盡。 
+- 例外狀況增加，這表示通訊端、資料庫連線或檔案控制代碼等資源耗盡。
 - 記憶體使用量和記憶體回收量增加。
 - 網路、磁碟或資料庫活動增加。
 
@@ -119,7 +123,7 @@ public class SingleHttpClientInstanceController : ApiController
 3. 在受控制的測試環境中 (不要使用生產系統)，對每個可疑作業進行負載測試。
 4. 檢閱原始碼，並檢查代理程式物件的管理方式。
 
-針對負載系統上執行緩慢或產生例外狀況的作業，查看堆疊追蹤。 這項資訊可協助識別這些作業使用資源的方式。 例外狀況可以協助判斷錯誤是否是因為共用資源即將耗盡所致。 
+針對負載系統上執行緩慢或產生例外狀況的作業，查看堆疊追蹤。 這項資訊可協助識別這些作業使用資源的方式。 例外狀況可以協助判斷錯誤是否是因為共用資源即將耗盡所致。
 
 ## <a name="example-diagnosis"></a>範例診斷
 
@@ -127,7 +131,7 @@ public class SingleHttpClientInstanceController : ApiController
 
 ### <a name="identify-points-of-slow-down-or-failure"></a>識別速度變慢或失敗的點
 
-下圖顯示使用 [New Relic APM][new-relic] 產生的結果，其中顯示回應時間不佳的作業。 在此情況下，`NewHttpClientInstancePerRequest` 控制器中的 `GetProductAsync` 方法值得您深入調查。 請注意，當這些作業正在執行時，錯誤率也會增加。 
+下圖顯示使用 [New Relic APM][new-relic] 產生的結果，其中顯示回應時間不佳的作業。 在此情況下，`NewHttpClientInstancePerRequest` 控制器中的 `GetProductAsync` 方法值得您深入調查。 請注意，當這些作業正在執行時，錯誤率也會增加。
 
 ![顯示範例應用程式為每個要求建立新 HttpClient 物件執行個體的 New Relic 監視器儀表板][dashboard-new-HTTPClient-instance]
 
@@ -143,7 +147,7 @@ public class SingleHttpClientInstanceController : ApiController
 
 ![範例應用程式為每個要求建立新 HttpClient 物件執行個體的輸送量][throughput-new-HTTPClient-instance]
 
-首先，工作負載增加時，每秒處理的要求數量就會增加。 但是，在大約有 30 位使用者時，成功的要求數量達到限制，而且系統開始產生例外狀況。 從那時起，例外狀況的數量會隨著使用者負載量增加而逐漸增加。 
+首先，工作負載增加時，每秒處理的要求數量就會增加。 但是，在大約有 30 位使用者時，成功的要求數量達到限制，而且系統開始產生例外狀況。 從那時起，例外狀況的數量會隨著使用者負載量增加而逐漸增加。
 
 負載測試會將這些失敗回報為 HTTP 500 (內部伺服器) 錯誤。 檢閱遙測資料後顯示，造成這些錯誤的原因是系統即將用完通訊端資源，因為建立了越來越多的 `HttpClient` 物件。
 
@@ -163,11 +167,9 @@ public class SingleHttpClientInstanceController : ApiController
 
 ![顯示範例應用程式為所有要求建立單一 HttpClient 物件執行個體的 New Relic 執行緒分析工具][thread-profiler-single-HTTPClient-instance]
 
-下圖顯示使用 `ExpensiveToCreateService` 物件的共用執行個體所進行的類似測試。 同樣地，已處理的要求數量會隨著使用者負載量增加而增加，但平均回應時間仍然很低。 
+下圖顯示使用 `ExpensiveToCreateService` 物件的共用執行個體所進行的類似測試。 同樣地，已處理的要求數量會隨著使用者負載量增加而增加，但平均回應時間仍然很低。
 
 ![範例應用程式為每個要求重新使用相同 HttpClient 物件執行個體的輸送量][throughput-single-ExpensiveToCreateService-instance]
-
-
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/ImproperInstantiation
 [service-bus-messaging]: /azure/service-bus-messaging/service-bus-performance-improvements

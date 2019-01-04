@@ -1,16 +1,16 @@
 ---
-title: Azure for AWS 專業人員
+title: 適用於 AWS 專業人員的 Azure
 description: 了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。
 keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws
 author: lbrader
 ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: e6077349a285df56d234f3cc2a14dc0d0d33da55
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916680"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011662"
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -63,7 +63,7 @@ Azure 和 AWS 會隨時間獨立建置其功能，讓每個都有重要實作和
 
 Azure 中的「資源」一詞與 AWS 中的使用方式相同，這表示您可以在平台內建立或設定的任何計算執行個體、儲存物件、網路裝置或其他實體。
 
-會使用下列兩個模型其中之一來部署及管理 Azure 資源：[Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) 或較舊的 Azure [傳統部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
+使用下列其中一種模型來部署和管理 Azure 資源：[Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview)，或較舊的 Azure [傳統部署模型](/azure/azure-resource-manager/resource-manager-deployment-model)。
 使用 Resource Manager 模型來建立任何新的資源。
 
 ### <a name="resource-groups"></a>資源群組
@@ -174,7 +174,7 @@ Azure [異地備援儲存體](https://azure.microsoft.com/documentation/articles
 
 -   [Azure 中的虛擬機器大小 (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
-不同於 AWS 的每個第二個計費，Azure 隨選 VM 會依分鐘計費。
+與 AWS 的每個第二個計費相似，Azure 隨選 VM 會依秒計費。
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>適用於 VM 磁碟的 EBS 和 Azure 儲存體
 
@@ -221,9 +221,9 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 
 -   [在 Azure App Service 中開始使用 Node.js Web 應用程式](https://azure.microsoft.com/documentation/articles/app-service-web-nodejs-get-started/)
 
--   [Azure 參考架構︰基本 Web 應用程式](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
+-   [Azure 參考架構：基本 Web 應用程式](https://azure.microsoft.com/documentation/articles/guidance-web-apps-basic/)
 
--   [建立您的第一個 Azure 函式](https://azure.microsoft.com/documentation/articles/functions-create-first-azure-function/)
+-   [建立您的第一個Azure Functions](https://azure.microsoft.com/documentation/articles/functions-create-first-azure-function/)
 
 ### <a name="storage"></a>儲存體
 

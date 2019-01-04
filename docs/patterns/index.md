@@ -1,14 +1,14 @@
 ---
 title: 雲端設計模式
-description: Microsoft Azure 的雲端設計模式
+description: 雲端設計模式用於在雲端中建置可靠、可擴充且安全的應用程式
 keywords: Azure
 ms.date: 12/10/2018
-ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
-ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
+ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53234045"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450848"
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 

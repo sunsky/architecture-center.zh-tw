@@ -4,12 +4,12 @@ description: Azure 上一般工作負載的參考架構、藍圖和精準實作�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 6a86256c504737b5f747a690d27fdf178ac8b4fe
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 173698aee0a67578beaa806a59e1c7b0265cdd61
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329376"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011798"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
@@ -17,10 +17,32 @@ ms.locfileid: "53329376"
 
 跳至：s[AI](#ai-and-machine-learning) | [巨量資料](#big-data-solutions) | [無伺服器](#serverless-applications) | [虛擬網路](#virtual-networks) | [VM 工作負載](#vm-workloads) | [SAP](#sap) | [Web 應用程式](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
+<!-- markdownlint-disable MD033 -->
+
 ## <a name="ai-and-machine-learning"></a>AI 和機器學習
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
+<!-- Batch scoring of Python models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Python 模型的批次評分</h3>
+                        <p>依照排程使用 Azure Batch AI 平行地對許多 Python 模型進行批次評分。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -41,7 +63,7 @@ ms.locfileid: "53329376"
         </div>
     </a>
 </li>
-<!-- Batch scoring for deep learning models -->
+<!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -61,7 +83,7 @@ ms.locfileid: "53329376"
         </div>
     </a>
 </li>
-<!-- Batch scoring for R models -->
+<!-- Real-time scoring of R models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -75,6 +97,26 @@ ms.locfileid: "53329376"
                     <div class="cardText">
                         <h3>R 機器學習模型的即時評分</h3>
                         <p>使用在 Azure Kubernetes Service (AKS) 中執行的 Microsoft Machine Learning Server 在 R 中實作即時預測服務。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Real-time Recommendation API -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/real-time-recommendation.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/machine-learning.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>即時建議 API</h3>
+                        <p>使用 Azure Databricks 定型建議模型，並使用 Azure Machine Learning 將其部署為 API。</p>
                     </div>
                 </div>
             </div>
@@ -710,3 +752,4 @@ ms.locfileid: "53329376"
 </li>
 </ul>
 
+<!-- markdownlint-disable MD033 -->

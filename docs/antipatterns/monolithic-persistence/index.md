@@ -1,14 +1,16 @@
 ---
 title: 整合的持續性反模式
+titleSuffix: Performance antipatterns for cloud apps
 description: 將所有應用程式的資料放入單一資料存放區會降低效能。
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c54a99dd0754cb2cb6cf4ad85b23a518c14a978b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429106"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010251"
 ---
 # <a name="monolithic-persistence-antipattern"></a>整合的持續性反模式
 
@@ -16,12 +18,12 @@ ms.locfileid: "47429106"
 
 ## <a name="problem-description"></a>問題說明
 
-以前應用程式經常使用單一資料存放區，不論需要儲存之應用程式資料的類型是否不同。 通常這是為了簡化應用程式設計，或是符合開發小組的現有技能集。 
+以前應用程式經常使用單一資料存放區，不論需要儲存之應用程式資料的類型是否不同。 通常這是為了簡化應用程式設計，或是符合開發小組的現有技能集。
 
 現代化雲端式系統通常會有其他的功能性和非功能性需求，而且需要儲存許多異質性類型的資料，例如文件、映像、快取資料、已佇列的訊息、應用程式記錄檔和遙測。 遵循將這項資訊全部放入相同資料存放區的傳統方法會降低效能，有兩個主要原因：
 
 - 在相同資料存放區中儲存和擷取大量不相關的資料，可能會造成爭用，進而導致緩慢回應時間和連線失敗。
-- 無論選擇哪個資料存放區，無法適合所有不同類型的資料，或無法針對應用程式執行的作業最佳化。 
+- 無論選擇哪個資料存放區，無法適合所有不同類型的資料，或無法針對應用程式執行的作業最佳化。
 
 下列範例會顯示 ASP.NET Web API 控制器，它會將新記錄新增至資料庫，也會將結果記錄到記錄檔。 記錄會保留在與商務資料相同的資料庫。 您可以在[這裡][sample-app]找到完整的範例。
 
@@ -43,7 +45,7 @@ public class MonoController : ApiController
 
 ## <a name="how-to-fix-the-problem"></a>如何修正問題
 
-根據其使用分隔資料。 針對每個資料集，選取最符合該資料集使用方式的資料存放區。 在上一個範例中，應用程式應該會記錄到與保存商務資料之資料庫不同的個別存放區： 
+根據其使用分隔資料。 針對每個資料集，選取最符合該資料集使用方式的資料存放區。 在上一個範例中，應用程式應該會記錄到與保存商務資料之資料庫不同的個別存放區：
 
 ```csharp
 public class PolyController : ApiController
@@ -76,10 +78,10 @@ public class PolyController : ApiController
 您可以執行下列步驟來協助識別原因。
 
 1. 檢測系統以記錄關鍵效能統計資料。 擷取每個作業的計時資訊，以及應用程式讀取及寫入資料的位置點。
-1. 盡可能監視在生產環境中執行數天的系統，以取得系統使用方式的實際檢視。 如果不可行，以執行典型系列作業的虛擬使用者實際數量執行指令碼式負載測試。
-2. 使用遙測資料來識別效能不佳的期間。
-3. 識別在這些期間存取了哪些資料存放區。
-4. 識別可能經歷爭用的資料儲存體資源。
+2. 盡可能監視在生產環境中執行數天的系統，以取得系統使用方式的實際檢視。 如果不可行，以執行典型系列作業的虛擬使用者實際數量執行指令碼式負載測試。
+3. 使用遙測資料來識別效能不佳的期間。
+4. 識別在這些期間存取了哪些資料存放區。
+5. 識別可能經歷爭用的資料儲存體資源。
 
 ## <a name="example-diagnosis"></a>範例診斷
 
@@ -107,7 +109,7 @@ public class PolyController : ApiController
 
 ### <a name="examine-the-telemetry-for-the-data-stores"></a>檢查資料存放區的遙測
 
-檢測資料存放區以擷取活動的低層級詳細資料。 在範例應用程式中，資料存取統計資料會顯示針對 `PurchaseOrderHeader` 資料表和 `MonoLog` 資料表執行的大量插入作業。 
+檢測資料存放區以擷取活動的低層級詳細資料。 在範例應用程式中，資料存取統計資料會顯示針對 `PurchaseOrderHeader` 資料表和 `MonoLog` 資料表執行的大量插入作業。
 
 ![範例應用程式的資料存取統計資料][MonolithicDataAccessStats]
 
@@ -133,12 +135,11 @@ public class PolyController : ApiController
 
 ![Azure 傳統入口網站中的資料庫監視會顯示 polyglot 案例中記錄資料庫的資源使用率][LogDatabaseUtilization]
 
-
 ## <a name="related-resources"></a>相關資源
 
 - [選擇正確的資料存放區][data-store-overview]
 - [選擇資料存放區的準則][data-store-comparison]
-- [可高度擴充解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性][Data-Access-Guide]
+- [高度可調整解決方案的資料存取：使用 SQL、NoSQL 和 Polyglot 持續性][Data-Access-Guide]
 - [資料分割][DataPartitioningGuidance]
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence

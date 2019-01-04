@@ -5,12 +5,12 @@ description: 建議的架構顯示如何在受到單一登入 (SSO) 保護的 Az
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 9dc4eb27f6c2bc8896770a2d0cd01b738c18c593
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120266"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644150"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
@@ -210,11 +210,17 @@ Jenkins 系統管理員會執行此步驟以設定已安裝的 Azure 認證外�
 
 若要設定 Jenkins 伺服器的監視，請依照[在 Azure 監視器中為 Azure 服務建立度量警示][create-metric]中的指示。
 
-### <a name="step-7-provision-jenkins-server-with-managed-disks-for-disaster-recovery"></a>步驟 7：佈建具災害復原的受控磁碟之 Jenkins 伺服器
+### <a name="step-7-provision-jenkins-server-with-managed-disks-for-disaster-recovery"></a>步驟 7：佈建具受控磁碟的 Jenkins 伺服器以用於災害復原
 
 Microsoft Jenkins 產品群組已建立災害復原指令碼，其會建置用於儲存 Jenkins 狀態的受控磁碟。 如果伺服器當機時，該指令碼可以還原至其最新狀態。
 
 從 [GitHub][disaster] 下載並執行災害復原指令碼。
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [容器型工作負載的 CI/CD 管線](/azure/architecture/example-scenario/apps/devops-with-aks)
+
+<!-- links -->
 
 [acs]: https://aka.ms/azjenkinsacs
 [ad-sp]: /azure/active-directory/develop/active-directory-integrating-applications
