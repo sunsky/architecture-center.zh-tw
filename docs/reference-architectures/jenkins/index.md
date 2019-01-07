@@ -5,12 +5,12 @@ description: 建議的架構顯示如何在受到單一登入 (SSO) 保護的 Az
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 3500e05631ad34af0abc8e0f7a3e2b4919157746
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644150"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011339"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
@@ -192,7 +192,7 @@ Azure 會提供幾個功能來[監視和診斷][monitoring-diag]整體架構。 
 
 Jenkins 系統管理員會執行此步驟以設定已安裝的 Azure 虛擬機器代理程式外掛程式。
 
-[請遵循這些步驟來設定該外掛程式][configure-agent]。 對於設定外掛程式的服務主體之相關教學課程中，請參閱[調整 Jenkins 部署的大小以符合與 Azure 虛擬機器代理程式的需求][scale-agent]。
+[請遵循這些步驟來設定該外掛程式][configure-agent]。 對於設定外掛程式的服務主體之相關教學課程中，請參閱[使用 Azure VM 代理程式調整 Jenkins 部署以滿足需求][scale-agent]。
 
 ### <a name="step-4-provision-jenkins-server-with-azure-storage"></a>步驟 4：佈建具 Azure 儲存體的 Jenkins 伺服器
 
