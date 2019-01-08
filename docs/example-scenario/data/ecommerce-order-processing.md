@@ -1,18 +1,19 @@
 ---
-title: Azure 上可調整的訂單處理
+title: 可調整的訂單處理
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure Cosmos DB 建置高度可調整訂單處理管線。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610850"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644184"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上可調整的訂單處理
 
-此範例案例與需要線上訂單處理高度可調整和彈性架構的組織相關。 潛在的應用程式包括電子商務和零售銷售點、訂單履行及庫存保留和追蹤。 
+此範例案例與需要線上訂單處理高度可調整和彈性架構的組織相關。 潛在的應用程式包括電子商務和零售銷售點、訂單履行及庫存保留和追蹤。
 
 此案例會採用事件來源方法，使用透過微服務實作的功能程式設計模型。 系統會將每個微服務視為串流處理器，所有商務邏輯都是透過微服務實作。 這個方法可提供高可用性和復原、異地複寫及快速效能。
 
@@ -22,10 +23,10 @@ ms.locfileid: "51610850"
 
 其他相關的使用案例包括：
 
-* 電子商務或零售銷售點後端系統。
-* 庫存管理系統。
-* 訂單履行系統。
-* 其他與訂單處理管線相關的整合案例。
+- 電子商務或零售銷售點後端系統。
+- 庫存管理系統。
+- 訂單履行系統。
+- 其他與訂單處理管線相關的整合案例。
 
 ## <a name="architecture"></a>架構
 
@@ -41,12 +42,12 @@ ms.locfileid: "51610850"
 
 ### <a name="components"></a>元件
 
-* [Cosmos DB](/azure/cosmos-db/introduction) 是 Microsoft 的全域分散式、多模型資料庫，可讓您的解決方案有彈性且獨立地調整任意數量地理區域之間的輸送量和儲存體。 它利用完整的服務等級協定 (SLA) 提供了輸送量、延遲、可用性和一致性的保證。 此案例會針對事件串流儲存體與快照集儲存體使用 Cosmos DB，而且會利用 [Cosmos DB 的變更摘要][docs-cosmos-db-change-feed]功能來提供資料一致性和錯誤復原。
-* [HDInsight 上的 Apache Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) 是 Apache Kafka 的受控服務實作，這是一個開放原始碼分散式串流平台，可以建置即時串流資料管線和應用程式。 Kafka 也提供類似於訊息佇列的訊息代理程式功能，可以發佈和訂閱具名資料流。 此案例會使用 Kafka 來處理傳入事件以及訂單處理管線中的下游事件。 
+- [Cosmos DB](/azure/cosmos-db/introduction) 是 Microsoft 的全域分散式、多模型資料庫，可讓您的解決方案有彈性且獨立地調整任意數量地理區域之間的輸送量和儲存體。 它利用完整的服務等級協定 (SLA) 提供了輸送量、延遲、可用性和一致性的保證。 此案例會針對事件串流儲存體與快照集儲存體使用 Cosmos DB，而且會利用 [Cosmos DB 的變更摘要][docs-cosmos-db-change-feed]功能來提供資料一致性和錯誤復原。
+- [HDInsight 上的 Apache Kafka](/azure/hdinsight/kafka/apache-kafka-introduction) 是 Apache Kafka 的受控服務實作，這是一個開放原始碼分散式串流平台，可以建置即時串流資料管線和應用程式。 Kafka 也提供類似於訊息佇列的訊息代理程式功能，可以發佈和訂閱具名資料流。 此案例會使用 Kafka 來處理傳入事件以及訂單處理管線中的下游事件。
 
 ## <a name="considerations"></a>考量
 
-許多技術選項都適用於即時訊息擷取、資料儲存、串流處理、分析資料儲存，以及分析和報告。 如需這些選項、其功能及重要選取準則的概觀，請參閱《[Azure 資料架構指南](/azure/architecture/data-guide)》中的[巨量資料架構：即時處理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
+許多技術選項都適用於即時訊息擷取、資料儲存、串流處理、分析資料儲存，以及分析和報告。 如需這些選項、其功能及重要選取準則的概觀，請參閱[巨量資料架構：即時處理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)，出處：[Azure 資料架構指南](/azure/architecture/data-guide)。
 
 微服務已成為熱門的架構樣式，用於建置可復原、高延展性、可獨立部署，以及能夠快速發展的雲端應用程式。 微服務需要不同的方法來設計和建置應用程式。 例如 Docker、Kubernetes、Azure Service Fabric 及 Nomad 的工具可以進行微服務型架構的開發。 如需建置及執行微服務型架構的指引，請參閱 Azure Architecture Center 中的 [在 Azure 上設計微服務](/azure/architecture/microservices)。
 
@@ -54,7 +55,7 @@ ms.locfileid: "51610850"
 
 此案例的事件來源方法可讓系統元件鬆散結合，並且彼此獨立地部署。 Cosmos DB 提供[高可用性][docs-cosmos-db-regional-failover]並且協助組織管理與一致性、可用性及效能相關聯的利弊取捨，都有[對應保證][docs-cosmos-db-guarantees]。 HDInsight 上的 Apache Kafka 也是針對[高可用性][docs-kafka-high-availability]進行設計的。
 
-「Azure 監視器」提供統一的使用者介面，可供您監視各個不同的 Azure 服務。 如需詳細資訊，請參閱[在 Microsoft Azure 中監視](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中樞和串流分析都與 Azure 監視器整合在一起。 
+「Azure 監視器」提供統一的使用者介面，可供您監視各個不同的 Azure 服務。 如需詳細資訊，請參閱[在 Microsoft Azure 中監視](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中樞和串流分析都與 Azure 監視器整合在一起。
 
 如需其他可用性考量，請參閱[可用性檢查清單][availability]。
 
@@ -83,21 +84,23 @@ Azure Cosmos DB 的貨幣是「要求單位 (RU)」。 使用要求單位，就�
 
 我們根據您預期的活動量，提供了三個範例成本設定檔：
 
-* [小型][small-pricing]：這個定價範例適用於已保留 5 RU，且在 Cosmos DB 和小型 (D3 v2) Kafka 叢集中具有 1 TB 資料存放區。
-* [中型][medium-pricing]：這個定價範例適用於已保留 50 RU，且在 Cosmos DB 和小型 (D4 v2) Kafka 叢集中具有 10 TB 資料存放區。
-* [大型][large-pricing]：這個定價範例適用於已保留 500 RU，且在 Cosmos DB 和小型 (D5 v2) Kafka 叢集中具有 30 TB 資料存放區。
+- [小型][small-pricing]：這個定價範例適用於已保留 5 RU，且在 Cosmos DB 和小型 (D3 v2) Kafka 叢集中具有 1 TB 資料存放區。
+- [中型][medium-pricing]：這個定價範例適用於已保留 50 RU，且在 Cosmos DB 和小型 (D4 v2) Kafka 叢集中具有 10 TB 資料存放區。
+- [大型][large-pricing]：這個定價範例適用於已保留 500 RU，且在 Cosmos DB 和小型 (D5 v2) Kafka 叢集中具有 30 TB 資料存放區。
 
 ## <a name="related-resources"></a>相關資源
 
 此範例案例是根據由 [Jet.com](https://jet.com) 針對其端對端訂單處理管線建置的此架構更廣泛版本。 如需詳細資訊，請參閱 [jet.com 技術客戶設定檔][source-document]和 [jet.com 的 Build 2018 簡報][source-presentation]。
 
 其他相關資源包括：
-* _[設計資料密集應用程式](https://dataintensive.net)_ (英文)，Martin Kleppmann (O'Reilly Media，2017 年)。
-* _[網域模型實用：使用網域驅動的設計和 F# 來解決軟體複雜度](https://pragprog.com/book/swdddf/domain-modeling-made-functional)_ (英文)，Scott Wlaschin (Pragmatic Programmers LLC，2018 年)。
-* 其他 [Cosmos DB 使用案例][docs-cosmos-db-use-cases]
-* [Azure 資料架構指南](/azure/architecture/data-guide)中的[即時處理架構](/azure/architecture/data-guide/big-data/real-time-processing)。
+
+- *[設計資料密集應用程式](https://dataintensive.net)* (英文)，Martin Kleppmann (O'Reilly Media，2017 年)。
+- *[網域模型實用：使用網域驅動的設計和 F# 來解決軟體複雜度](https://pragprog.com/book/swdddf/domain-modeling-made-functional)* (英文)，Scott Wlaschin (Pragmatic Programmers LLC，2018 年)。
+- 其他 [Cosmos DB 使用案例][docs-cosmos-db-use-cases]
+- [Azure 資料架構指南](/azure/architecture/data-guide)中的[即時處理架構](/azure/architecture/data-guide/big-data/real-time-processing)。
 
 <!-- links -->
+
 [architecture]: ./media/architecture-ecommerce-order-processing.png
 [product-category]: https://azure.microsoft.com/product-categories/databases/
 [source-document]: https://customers.microsoft.com/story/jet-com-powers-innovative-e-commerce-engine-on-azure-in-less-than-12-months
