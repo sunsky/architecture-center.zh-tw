@@ -1,26 +1,28 @@
 ---
-title: 使用 Service Fabric 來分解整合型應用程式
+title: 使用 Service Fabric 來分解應用程式
+titleSuffix: Azure Example Scenarios
 description: 將大型整合型應用程式分解成微服務。
 author: timomta
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 90159b0cbfd3e7af542a79d050d153b4a3435a0d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004618"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643810"
 ---
 # <a name="using-service-fabric-to-decompose-monolithic-applications"></a>使用 Service Fabric 來分解整合型應用程式
 
 在此範例案例中，我們將逐步說明如何使用 [Service Fabric](/azure/service-fabric/service-fabric-overview) 作為平台來分解笨重的整合型應用程式。 在這裡，我們考慮採用反覆性方法將 IIS/ASP.NET 網站分解為由多個可管理的微服務所組成的應用程式。
 
 從整合型架構移至微服務架構，具有下列優點：
-* 您可以變更一個小型、可理解的程式碼單元，並且只部署該單元。
-* 每個程式碼單元都只需要幾分鐘或更少的時間來部署。
-* 若該小型單元中發生錯誤，只有該單元會停止運作，而不是整個應用程式都停止運作。
-* 小型的程式碼單元可以輕鬆地以分散式方式散發給多個開發團隊。
-* 新的開發人員可以快速且輕鬆地掌握每個單元的分散式功能。
+
+- 您可以變更一個小型、可理解的程式碼單元，並且只部署該單元。
+- 每個程式碼單元都只需要幾分鐘或更少的時間來部署。
+- 若該小型單元中發生錯誤，只有該單元會停止運作，而不是整個應用程式都停止運作。
+- 小型的程式碼單元可以輕鬆地以分散式方式散發給多個開發團隊。
+- 新的開發人員可以快速且輕鬆地掌握每個單元的分散式功能。
 
 我們在此範例中使用伺服器陣列上的大型 IIS 應用程式，但反覆分解並裝載的概念可用於任何類型的大型應用程式。 雖然此解決方案使用 Windows，但 Service Fabric 也可以在 Linux 上執行。 它可以在內部部署環境、雲端或您選擇之雲端提供者中的 VM 節點上執行。
 
@@ -36,7 +38,7 @@ ms.locfileid: "53004618"
 
 使用 Service Fabric 作為裝載平台時，我們可以將大型 IIS 網站轉換為微服務集合，如下所示：
 
-![架構圖](./media/architecture-service-fabric-complete.png)
+![架構圖表](./media/architecture-service-fabric-complete.png)
 
 在上圖中，我們將大型 IIS 應用程式的所有元件分解為：
 

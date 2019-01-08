@@ -1,15 +1,16 @@
 ---
-title: 使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式
+title: 使用 Windows VM 建置安全的 Web 應用程式
+titleSuffix: Azure Example Scenarios
 description: 透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。
 author: iainfoulds
 ms.date: 12/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 2c5f77f265c10388f42138e7d3f6da9e3ead1cd8
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307056"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643528"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式
 
@@ -21,9 +22,9 @@ ms.locfileid: "53307056"
 
 可能適用此案例的一些範例：
 
-* 在安全的雲端環境中將應用程式部署現代化。
-* 減少舊版內部部署應用程式和服務的管理額外負荷。
-* 利用新的應用程式平台來改善病患的醫療保健與體驗。
+- 在安全的雲端環境中將應用程式部署現代化。
+- 減少舊版內部部署應用程式和服務的管理額外負荷。
+- 利用新的應用程式平台來改善病患的醫療保健與體驗。
 
 ## <a name="architecture"></a>架構
 
@@ -39,26 +40,26 @@ ms.locfileid: "53307056"
 
 ### <a name="components"></a>元件
 
-* [Azure 應用程式閘道][appgateway-docs]是第 7 層 web 流量負載平衡器，會感知應用程式且可以根據特定的路由規則來散發流量。 應用程式閘道也可以處理 SSL 卸載，以獲得改善的 Web 伺服器效能。
-* [Azure 虛擬網路][vnet-docs]可讓 VM 等資源安全地互相通訊，以及與網際網路和內部部署網路通訊。 虛擬網路會提供隔離與分割、篩選與路由流量，並允許位置之間的連線。 此案例中會使用與適當 NSG 結合的兩個虛擬網路，來提供[周邊網路][ dmz] (DMZ) 和應用程式元件隔離。 虛擬網路對等互連會將兩個網路連線在一起。
-* [Azure 虛擬機器擴展集][scaleset-docs]可讓您建立和管理一組負載平衡的相同 VM。 VM 執行個體的數目可以自動增加或減少，以因應需求或已定義的排程。 此案例中會使用兩個不同的虛擬機器擴展集 - 一個用於前端 ASP.NET 應用程式執行個體，另一個則用於後端 SQL Server 叢集 VM 執行個體。 PowerShell 預期的狀態設定 (DSC) 或 Azure 自訂指令碼擴充功能可用來佈建使用所需軟體和組態設定的 VM 執行個體。
-* [Azure 網路安全性群組 (NSG)][nsg-docs] 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。 此案例中的虛擬網路會受到網路安全性群組規則保護，這些規則會限制應用程式元件之間的流量。
-* [Azure 負載平衡器][loadbalancer-docs]會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例中會使用內部負載平衡器，從前端應用程式層將流量散發到後端 SQL Server 叢集。
-* [Azure Blob 儲存體][cloudwitness-docs]會作為 SQL Server 叢集的雲端見證。 此見證用於需要額外投票來決定仲裁的叢集作業及決策。 使用雲端見證不需要額外的 VM 來作為傳統的檔案共用見證。
+- [Azure 應用程式閘道][appgateway-docs]是第 7 層 web 流量負載平衡器，會感知應用程式且可以根據特定的路由規則來散發流量。 應用程式閘道也可以處理 SSL 卸載，以獲得改善的 Web 伺服器效能。
+- [Azure 虛擬網路][vnet-docs]可讓 VM 等資源安全地互相通訊，以及與網際網路和內部部署網路通訊。 虛擬網路會提供隔離與分割、篩選與路由流量，並允許位置之間的連線。 此案例中會使用與適當 NSG 結合的兩個虛擬網路，來提供[周邊網路][ dmz] (DMZ) 和應用程式元件隔離。 虛擬網路對等互連會將兩個網路連線在一起。
+- [Azure 虛擬機器擴展集][scaleset-docs]可讓您建立和管理一組負載平衡的相同 VM。 VM 執行個體的數目可以自動增加或減少，以因應需求或已定義的排程。 此案例中會使用兩個不同的虛擬機器擴展集 - 一個用於前端 ASP.NET 應用程式執行個體，另一個則用於後端 SQL Server 叢集 VM 執行個體。 PowerShell 預期的狀態設定 (DSC) 或 Azure 自訂指令碼擴充功能可用來佈建使用所需軟體和組態設定的 VM 執行個體。
+- [Azure 網路安全性群組 (NSG)][nsg-docs] 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。 此案例中的虛擬網路會受到網路安全性群組規則保護，這些規則會限制應用程式元件之間的流量。
+- [Azure 負載平衡器][loadbalancer-docs]會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例中會使用內部負載平衡器，從前端應用程式層將流量散發到後端 SQL Server 叢集。
+- [Azure Blob 儲存體][cloudwitness-docs]會作為 SQL Server 叢集的雲端見證。 此見證用於需要額外投票來決定仲裁的叢集作業及決策。 使用雲端見證不需要額外的 VM 來作為傳統的檔案共用見證。
 
 ### <a name="alternatives"></a>替代項目
 
-* 您可以交換使用 Linux 和 Windows，因為基礎結構並不相依於作業系統。
+- 您可以交換使用 Linux 和 Windows，因為基礎結構並不相依於作業系統。
 
-* [適用於 Linux 的 SQL Server][sql-linux] 可取代後端資料存放區。
+- [適用於 Linux 的 SQL Server][sql-linux] 可取代後端資料存放區。
 
-* [Cosmos DB](/azure/cosmos-db/introduction) 是資料存放區的替代項目。
+- [Cosmos DB](/azure/cosmos-db/introduction) 是資料存放區的替代項目。
 
 ## <a name="considerations"></a>考量
 
 ### <a name="availability"></a>可用性
 
-此案例中的 VM 執行個體會部署在可用性區域之間。 每個區域皆由一或多個配備獨立電力、冷卻系統及網路的資料中心所組成。 所有已啟用的區域中至少有三個可用的區域。 這個跨區域 VM 執行個體的分佈能為應用程式層提供高可用性。 如需詳細資訊，請參閱[什麼是 Azure 中的可用性區域？][azureaz-docs]
+此案例中的 VM 執行個體會部署在[可用性區域](/azure/availability-zones/az-overview)之間。 每個區域皆由一或多個配備獨立電力、冷卻系統及網路的資料中心所組成。 每個已啟用的區域最少有三個可用性區域。 這個跨區域 VM 執行個體的分佈能為應用程式層提供高可用性。
 
 您可以將資料庫層設定為使用 Always On 可用性群組。 使用此 SQL Server 設定時，會使用最多八個次要資料庫來設定叢集內的一個主要資料庫。 如果主要資料庫發生問題，叢集就會容錯移轉至其中一個次要資料庫，讓應用程式能夠繼續使用。 如需詳細資訊，請參閱[適用於 SQL Server 的 Always On 可用性群組概觀][sqlalwayson-docs]。
 
@@ -84,20 +85,27 @@ ms.locfileid: "53307056"
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
-**必要條件。**
+### <a name="prerequisites"></a>必要條件
 
-* 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
-* 若要將 SQL Server 叢集部署到後端擴展集，您需要 Azure Active Directory (AD) Domain Services 中的網域。
+- 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+
+- 若要將 SQL Server 叢集部署到後端擴展集，您需要 Azure Active Directory (AD) Domain Services 中的網域。
+
+### <a name="deploy-the-components"></a>部署元件
 
 若要使用 Azure Resource Manager 範本部署此案例的核心基礎結構，請執行下列步驟。
 
+<!-- markdownlint-disable MD033 -->
+
 1. 選取 [部署至 Azure] 按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Finfrastructure%2Fregulated-multitier-app%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待 Azure 入口網站中的範本部署開啟，然後完成下列步驟：
-   * 選擇 [新建] 資源群組，然後在文字方塊中提供名稱，例如 myWindowsscenario。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 提供虛擬機器擴展集執行個體的使用者名稱和安全的密碼。
-   * 檢閱條款及條件，然後按一下 [我同意上方所述的條款及條件]。
-   * 選取 [購買] 按鈕。
+   - 選擇 [新建] 資源群組，然後在文字方塊中提供名稱，例如 myWindowsscenario。
+   - 從 [位置] 下拉式方塊選取區域。
+   - 提供虛擬機器擴展集執行個體的使用者名稱和安全的密碼。
+   - 檢閱條款及條件，然後按一下 [我同意上方所述的條款及條件]。
+   - 選取 [購買] 按鈕。
+
+<!-- markdownlint-enable MD033 -->
 
 需要 15-20 分鐘的時間才能完成部署。
 
@@ -107,9 +115,9 @@ ms.locfileid: "53307056"
 
 我們根據執行應用程式的擴展集 VM 執行個體數目，提供了 3 個範例成本設定檔。
 
-* [小型][small-pricing]：這個定價範例與兩個前端和兩個後端 VM 執行個體相互關聯。
-* [中型][medium-pricing]：這個定價範例與 20 個前端和 5 個後端 VM 執行個體相互關聯。
-* [大型][large-pricing]：這個定價範例與 100 個前端和 10 個後端 VM 執行個體相互關聯。
+- [小型][small-pricing]：這個定價範例與兩個前端和兩個後端 VM 執行個體相互關聯。
+- [中型][medium-pricing]：這個定價範例與 20 個前端和 5 個後端 VM 執行個體相互關聯。
+- [大型][large-pricing]：這個定價範例與 100 個前端和 10 個後端 VM 執行個體相互關聯。
 
 ## <a name="related-resources"></a>相關資源
 
@@ -122,14 +130,13 @@ ms.locfileid: "53307056"
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
 [availability]: ../../checklist/availability.md
-[azureaz-docs]: /azure/availability-zones/az-overview
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/ 
+[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
-[scalability]: /azure/architecture/checklist/scalability 
+[scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview
 [sqlalwayson-docs]: /sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server
 [vmssautoscale-docs]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview

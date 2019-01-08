@@ -5,12 +5,12 @@ description: 在 Azure 中建立端對端串流處理管線。
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 44eaf51f2180be250defbeb0d141ab24f7f17d4b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119926"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643742"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>使用 Azure 串流分析建立串流處理管線
 
@@ -221,4 +221,14 @@ Cosmos DB 的輸送量容量會以[要求單位](/azure/cosmos-db/request-units)
 
 若要部署及執行參考實作，請依照 [GitHub 讀我檔案][github]中的步驟。
 
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [營建產業的 IoT 和資料分析](/azure/architecture/example-scenario/data/big-data-with-iot)
+- [即時詐欺偵測](/azure/architecture/example-scenario/data/fraud-detection)
+
+<!-- links -->
+
+[github]: https://github.com/mspnp/azure-stream-analytics-data-pipeline
+

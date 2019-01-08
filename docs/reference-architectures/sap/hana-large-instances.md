@@ -5,12 +5,12 @@ description: 在 Azure 大型執行個體上高可用性環境中執行 SAP HANA
 author: lbrader
 ms.date: 05/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: c21a5ac83d8d8ee9a9b9d7edad07288c85544994
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ef3c57f292024af0abbeb4ead62ab4b3aeb57a90
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120135"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644082"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>在 Azure 大型執行個體上執行 SAP HANA
 
@@ -168,6 +168,15 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 - [Azure 社群支援][azure-forum]
 - [SAP 社群][sap-community]
 - [堆疊溢位 SAP][stack-overflow]
+
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載](/azure/architecture/example-scenario/apps/sap-production)
+- [Azure 上 SAP 工作負載的開發/測試環境](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [azure-forum]: https://azure.microsoft.com/support/forums/
 [azure-large-instances]: /azure/virtual-machines/workloads/sap/hana-overview-architecture

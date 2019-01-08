@@ -4,12 +4,12 @@ description: 查看 Microsoft Azure 雲端服務在多重雲端解決方案上�
 keywords: 雲端服務比較, 比較雲端服務, 多重雲端, 比較 Azure AWS, 比較 Azure 和 AWS, 比較 AWS 和 Azure, IT 功能
 author: lbrader
 ms.date: 11/09/2018
-ms.openlocfilehash: ddfbf637ba820a9785e6698c8655dda4d971aaa0
-ms.sourcegitcommit: cc234a522b7fc35af3bcacdc044c2e2b529e54ed
+ms.openlocfilehash: 30b852d964d2c1c39b5343c09680bb4efaa5476f
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51347622"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450916"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 與 Azure 服務相比
 

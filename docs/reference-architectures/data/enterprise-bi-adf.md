@@ -5,18 +5,18 @@ description: 使用 Azure Data Factory 與 SQL 資料倉儲來自動化 Azure �
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: d87583802496f8be85e44c896ae7d6a26306cffc
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120334"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643987"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 
 此參考架構示範如何在[擷取、載入和轉換 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管線中執行累加式載入。 該架構會使用 Azure Data Factory 將 ELT 管線自動化。 管線會以累加方式，將最新的 OLTP 資料從內部部署 SQL Server 資料庫載入 SQL 資料倉儲中。 交易資料會轉換成表格式模型以供分析。
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
 
 此架構的參考實作可在 [GitHub][github] 上取得。
 
@@ -201,7 +201,16 @@ SET [Integration].[Sale_Staging].[WWI Customer ID] =  CustomerHolder.[WWI Custom
 - 一個 Azure Analysis Services 執行個體。
 - Azure Data Factory 和 ELT 作業的 Data Factory 管線。
 
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [適用於銷售和行銷的資料倉儲和分析](/azure/architecture/example-scenario/data/data-warehouse)
+- [使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
+
+<!-- links -->
+
 [adf]: /azure/data-factory
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
+[github]: https://github.com/mspnp/azure-data-factory-sqldw-elt-pipeline
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

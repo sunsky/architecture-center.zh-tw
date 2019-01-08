@@ -5,12 +5,12 @@ description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 656bf6f1bd342856fd8a2d2aa0b62a9dd4d4f87f
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120079"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644218"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Azure 中具 SQL 資料倉儲的 Enterprise BI
 
@@ -113,7 +113,7 @@ AzCopy 會透過公用網際網路將資料移至儲存體。 若其速度不夠
 
 PolyBase 會在倉儲中自動使用平行處理。 載入效能會在您增加 DWU 時隨之調整。 若要達到最佳效能，請使用單一載入作業。 將輸入資料分成多個區塊，並執行多項並行載入，並不會帶來效能上的優勢。
 
-PolyBase 可讀取 Gzip 壓縮檔案。 不過，每個壓縮檔案只會使用一個讀取器，因為解壓縮檔案是單一執行緒作業。 因此，請避免載入單一大型壓縮檔案。 此時，請將資料分成多個壓縮檔案，以運用平行處理。 
+PolyBase 可讀取 Gzip 壓縮檔案。 不過，每個壓縮檔案只會使用一個讀取器，因為解壓縮檔案是單一執行緒作業。 因此，請避免載入單一大型壓縮檔案。 此時，請將資料分成多個壓縮檔案，以運用平行處理。
 
 請留意以下限制：
 
@@ -183,10 +183,10 @@ Azure Analysis Services 依設計可用來處理 BI 儀表板的查詢需求，�
 
 ### <a name="authorization"></a>Authorization
 
-Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線至 Analysis Services 伺服器的使用者。 您可以建立角色，然後將 Azure AD 使用者或群組指派給這些角色，以限制特定使用者所能檢視的資料。 對於每個角色，您可以︰ 
+Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線至 Analysis Services 伺服器的使用者。 您可以建立角色，然後將 Azure AD 使用者或群組指派給這些角色，以限制特定使用者所能檢視的資料。 對於每個角色，您可以︰
 
-- 保護資料表或個別資料行。 
-- 根據篩選運算式保護個別資料列。 
+- 保護資料表或個別資料行。
+- 根據篩選運算式保護個別資料列。
 
 如需詳細資訊，請參閱[管理資料庫角色和使用者](/azure/analysis-services/analysis-services-database-users)。
 
@@ -202,6 +202,13 @@ Azure Analysis Services 會使用 Azure Active Directory (Azure AD) 驗證連線
 ## <a name="next-steps"></a>後續步驟
 
 - 使用 Azure Data Factory 將 ELT 管線自動化。 請參閱[具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI][adf-ra]。
+
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [適用於銷售和行銷的資料倉儲和分析](/azure/architecture/example-scenario/data/data-warehouse)
+- [使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
 
 <!-- links -->
 

@@ -5,12 +5,12 @@ description: 將您的內部部署 Active Directory 網域擴充至 Azure
 author: telmosampaio
 ms.date: 05/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: 69ce95fcf74579f6446cf99dad9ed53ced31fde7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 166cd994f65fd812e38e50da1d74b9a99870ed5d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120402"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644133"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -103,7 +103,21 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 ### <a name="prerequisites"></a>必要條件
 
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+1. 複製、派生或下載適用於 [GitHub 存放庫](https://github.com/mspnp/identity-reference-architectures)的 zip 檔案。
+
+2. 安裝 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
+
+3. 安裝 [Azure 建置組塊](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks) npm 封裝。
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+4. 從命令提示字元、Bash 提示字元或 PowerShell 提示字元中登入 Azure 帳戶，如下所示：
+
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>部署模擬的內部部署資料中心
 

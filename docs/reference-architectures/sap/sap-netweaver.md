@@ -5,12 +5,12 @@ description: 在 Linux 環境中具有高可用性的 Azure 上執行 SAP S/4HAN
 author: lbrader
 ms.date: 08/03/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: ace5348ccb32299b2f4167b3d384ba72972ca9ad
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120181"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643999"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -179,5 +179,14 @@ SAP 有它自己的「使用者管理引擎 (UME)」，可控制角色型存取�
 - [Azure 社群支援](https://azure.microsoft.com/support/community/)
 - [SAP 社群](https://www.sap.com/community.html)
 - [Stack Overflow](https://stackoverflow.com/tags/sap/)
+
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載](/azure/architecture/example-scenario/apps/sap-production)
+- [Azure 上 SAP 工作負載的開發/測試環境](/azure/architecture/example-scenario/apps/sap-dev-test)
+
+<!-- links -->
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

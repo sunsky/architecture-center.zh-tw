@@ -1,14 +1,15 @@
 ---
-title: Azure 上高度可調整且安全的 WordPress 網站
+title: 高擴充性且安全的 WordPress 網站
+titleSuffix: Azure Example Scenarios
 description: 針對媒體事件建置高度可調整且安全的 WordPress 網站。
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610595"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644033"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高擴充性且安全的 WordPress 網站
 
@@ -18,10 +19,10 @@ ms.locfileid: "51610595"
 
 其他相關的使用案例包括：
 
-* 導致流量激增的媒體事件。
-* 使用 WordPress 作為其內容管理系統的部落格。
-* 使用 WordPress 的商務或電子商務網站。
-* 使用其他內容管理系統建置的網站。
+- 導致流量激增的媒體事件。
+- 使用 WordPress 作為其內容管理系統的部落格。
+- 使用 WordPress 的商務或電子商務網站。
+- 使用其他內容管理系統建置的網站。
 
 ## <a name="architecture"></a>架構
 
@@ -47,19 +48,19 @@ ms.locfileid: "51610595"
 
 ### <a name="components"></a>元件
 
-* [Azure 內容傳遞網路 (CDN)](/azure/cdn/cdn-overview) 是可有效率地將 Web 內容傳遞給使用者的分散式伺服器網路。 CDN 會將快取的內容儲存在使用者附近存在點 (POP) 位置的邊緣伺服器上，以將延遲降至最低。
-* [虛擬網路](/azure/virtual-network/virtual-networks-overview)可讓 VM 等資源安全地互相通訊，以及與網際網路和內部部署網路通訊。 虛擬網路會提供隔離與分割、篩選與路由流量，並允許位置之間的連線。 這兩個網路是透過 VNet 對等互連進行連線。
-* [網路安全性群組 (NSG)](/azure/virtual-network/security-overview) 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。 此案例中的虛擬網路會受到網路安全性群組規則保護，這些規則會限制應用程式元件之間的流量。
-* [負載平衡器](/azure/load-balancer/load-balancer-overview)會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例會使用負載平衡器，將流量從內容傳遞網路散發到前端網頁伺服器。
-* [虛擬機器擴展集][docs-vmss]可讓您建立和管理一組負載平衡的相同 VM。 VM 執行個體的數目可以自動增加或減少，以因應需求或已定義的排程。 此案例中使用兩個不同的虛擬機器擴展集 - 一個適用於提供內容的前端網頁伺服器，另一個則適用於用來撰寫新內容的前端網頁伺服器。
-* [Azure 檔案服務](/azure/storage/files/storage-files-introduction)會在雲端提供完全受控的檔案共用，以裝載此案例中的所有 WordPress 內容，讓所有 VM 都能存取資料。
-* [Azure Key Vault](/azure/key-vault/key-vault-overview) 用來儲存密碼、憑證和金鑰，並嚴密控制其存取權。
-* [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) 是多租用戶雲端式目錄和身分識別管理服務。 在此案例中，Azure AD 會為網站與 VPN 通道提供驗證服務。
+- [Azure 內容傳遞網路 (CDN)](/azure/cdn/cdn-overview) 是可有效率地將 Web 內容傳遞給使用者的分散式伺服器網路。 CDN 會將快取的內容儲存在使用者附近存在點 (POP) 位置的邊緣伺服器上，以將延遲降至最低。
+- [虛擬網路](/azure/virtual-network/virtual-networks-overview)可讓 VM 等資源安全地互相通訊，以及與網際網路和內部部署網路通訊。 虛擬網路會提供隔離與分割、篩選與路由流量，並允許位置之間的連線。 這兩個網路是透過 VNet 對等互連進行連線。
+- [網路安全性群組 (NSG)](/azure/virtual-network/security-overview) 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。 此案例中的虛擬網路會受到網路安全性群組規則保護，這些規則會限制應用程式元件之間的流量。
+- [負載平衡器](/azure/load-balancer/load-balancer-overview)會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例會使用負載平衡器，將流量從內容傳遞網路散發到前端網頁伺服器。
+- [虛擬機器擴展集][docs-vmss]可讓您建立和管理一組負載平衡的相同 VM。 VM 執行個體的數目可以自動增加或減少，以因應需求或已定義的排程。 此案例中使用兩個不同的虛擬機器擴展集 - 一個適用於提供內容的前端網頁伺服器，另一個則適用於用來撰寫新內容的前端網頁伺服器。
+- [Azure 檔案服務](/azure/storage/files/storage-files-introduction)會在雲端提供完全受控的檔案共用，以裝載此案例中的所有 WordPress 內容，讓所有 VM 都能存取資料。
+- [Azure Key Vault](/azure/key-vault/key-vault-overview) 用來儲存密碼、憑證和金鑰，並嚴密控制其存取權。
+- [Azure Active Directory (Azure AD)](/azure/active-directory/fundamentals/active-directory-whatis) 是多租用戶雲端式目錄和身分識別管理服務。 在此案例中，Azure AD 會為網站與 VPN 通道提供驗證服務。
 
 ### <a name="alternatives"></a>替代項目
 
-* [適用於 Linux 的 SQL Server](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) 可取代 MariaDB 資料存放區。
-* 如果您偏好完全受控的解決方案，[適用於 MySQL 的 Azure 資料庫](/azure/mysql/overview)即可取代 MariaDB 資料存放區。
+- [適用於 Linux 的 SQL Server](/azure/virtual-machines/linux/sql/sql-server-linux-virtual-machines-overview) 可取代 MariaDB 資料存放區。
+- 如果您偏好完全受控的解決方案，[適用於 MySQL 的 Azure 資料庫](/azure/mysql/overview)即可取代 MariaDB 資料存放區。
 
 ## <a name="considerations"></a>考量
 
@@ -95,9 +96,9 @@ ms.locfileid: "51610595"
 
 我們根據上面所提供的架構圖，提供了預先設定的[成本設定檔][pricing]。 若要針對您的使用情況設定定價計算機，請考量下列幾個主要事項：
 
-* 您預期有多少流量 (以 GB/月表示)？ 流量會對您的成本造成最大影響，因為它會影響必須在虛擬機器擴展集中呈現資料的 VM 數目。 此外，它會直接與透過 CDN 呈現的資料量相互關聯。
-* 您即將在您的網站上撰寫多少新資料？ 寫入至您網站的新資料會與跨區域鏡像處理多少資料相互關聯。
-* 您有多少動態內容？ 多少靜態內容？ 動態和靜態內容間的差異會影響必須從資料庫層擷取多少資料，以及要在 CDN 中快取多少資料。
+- 您預期有多少流量 (以 GB/月表示)？ 流量會對您的成本造成最大影響，因為它會影響必須在虛擬機器擴展集中呈現資料的 VM 數目。 此外，它會直接與透過 CDN 呈現的資料量相互關聯。
+- 您即將在您的網站上撰寫多少新資料？ 寫入至您網站的新資料會與跨區域鏡像處理多少資料相互關聯。
+- 您有多少動態內容？ 多少靜態內容？ 動態和靜態內容間的差異會影響必須從資料庫層擷取多少資料，以及要在 CDN 中快取多少資料。
 
 <!-- links -->
 [architecture]: ./media/architecture-secure-scalable-wordpress.png

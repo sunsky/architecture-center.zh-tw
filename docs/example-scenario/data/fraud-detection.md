@@ -1,14 +1,15 @@
 ---
-title: Azure 上的即時詐騙偵測
+title: 即時詐欺偵測
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610602"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643400"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Azure 上的即時詐騙偵測
 
@@ -24,9 +25,9 @@ ms.locfileid: "51610602"
 
 其他相關的使用案例包括：
 
-* 偵測電子通訊案例中的詐騙行動電話通話。
-* 識別銀行機構的詐騙信用卡交易。
-* 識別零售或電子商務案例中的詐騙購買。
+- 偵測電子通訊案例中的詐騙行動電話通話。
+- 識別銀行機構的詐騙信用卡交易。
+- 識別零售或電子商務案例中的詐騙購買。
 
 ## <a name="architecture"></a>架構
 
@@ -34,28 +35,28 @@ ms.locfileid: "51610602"
 
 此案例涵蓋了即時分析管線的後端元件。 整個案例的資料流程如下所示：
 
-1. 行動電話通話中繼資料從來源系統傳送到 Azure 事件中樞執行個體。 
+1. 行動電話通話中繼資料從來源系統傳送到 Azure 事件中樞執行個體。
 2. 串流分析作業隨即啟動，它會透過事件中樞來源接收資料。
 3. 串流分析作業會執行預先定義的查詢以轉換輸入串流，並且根據詐騙交易演算法來分析它。 此查詢會使用輪轉視窗將串流分割成不同的時態性單位。
 4. 串流分析作業會寫入轉換後的串流，該串流代表對於 Azure Blob 儲存體中輸出接收的已偵測詐騙通話。
 
 ### <a name="components"></a>元件
 
-* [Azure 事件中樞][docs-event-hubs]是即時串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 在此案例中，事件中樞會接收要分析是否有詐騙活動的所有通話中繼資料。
-* [Azure 串流分析][docs-stream-analytics]是事件處理引擎，可以分析來自裝置和其他資料來源的大量資料流。 它也支援從資料流擷取資訊，以識別模式和關聯性。 這些模式可以觸發其他下游動作。 在此案例中，串流分析會轉換來自事件中樞的輸入串流，以識別詐騙通話。
-* 在此案例中使用 [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)，以儲存串流分析作業的結果。
+- [Azure 事件中樞][docs-event-hubs]是即時串流平台和事件擷取服務，每秒可接收和處理數百萬個事件。 事件中樞可以處理及儲存分散式軟體和裝置所產生的事件、資料或遙測。 在此案例中，事件中樞會接收要分析是否有詐騙活動的所有通話中繼資料。
+- [Azure 串流分析][docs-stream-analytics]是事件處理引擎，可以分析來自裝置和其他資料來源的大量資料流。 它也支援從資料流擷取資訊，以識別模式和關聯性。 這些模式可以觸發其他下游動作。 在此案例中，串流分析會轉換來自事件中樞的輸入串流，以識別詐騙通話。
+- 在此案例中使用 [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)，以儲存串流分析作業的結果。
 
 ## <a name="considerations"></a>考量
 
 ### <a name="alternatives"></a>替代項目
 
-許多技術選項都適用於即時訊息擷取、資料儲存、串流處理、分析資料儲存，以及分析和報告。 如需這些選項、其功能及重要選取準則的概觀，請參閱《Azure 資料架構指南》中的[巨量資料架構：即時處理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)。
+許多技術選項都適用於即時訊息擷取、資料儲存、串流處理、分析資料儲存，以及分析和報告。 如需這些選項、其功能及重要選取準則的概觀，請參閱[巨量資料架構：：即時處理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)，出處：《Azure 資料架構指南》。
 
 此外，Azure 中各種機器學習服務可以產生適用於詐騙偵測的更複雜演算法。 如需這些選項的概觀，請參閱《[Azure 資料架構指南](../../data-guide/index.md)》中的[適用於機器學習的技術選項](/azure/architecture/data-guide/technology-choices/data-science-and-machine-learning)。
 
 ### <a name="availability"></a>可用性
 
-「Azure 監視器」提供統一的使用者介面，可供您監視各個不同的 Azure 服務。 如需詳細資訊，請參閱[在 Microsoft Azure 中監視](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中樞和串流分析都與 Azure 監視器整合在一起。 
+「Azure 監視器」提供統一的使用者介面，可供您監視各個不同的 Azure 服務。 如需詳細資訊，請參閱[在 Microsoft Azure 中監視](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中樞和串流分析都與 Azure 監視器整合在一起。
 
 如需其他可用性考量，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
 
@@ -85,9 +86,9 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 
 我們根據您預期取得的流量，提供了三個範例成本設定檔：
 
-* [小型][small-pricing]：每月透過 1 個標準串流單位處理 100 萬個事件。
-* [中型][medium-pricing]：每月透過 5 個標準串流單位處理 1 億個事件。
-* [大型][large-pricing]：每月透過 20 個標準串流單位處理 9 億 9900 萬個事件。
+- [小型][small-pricing]：每月透過 1 個標準串流單位處理 100 萬個事件。
+- [中型][medium-pricing]：每月透過 5 個標準串流單位處理 1 億個事件。
+- [大型][large-pricing]：每月透過 20 個標準串流單位處理 9 億 9900 萬個事件。
 
 ## <a name="related-resources"></a>相關資源
 
@@ -110,4 +111,3 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
-

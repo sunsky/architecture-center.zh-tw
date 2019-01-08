@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429684"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450865"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令與查詢責任隔離 (CQRS) 模式
 
@@ -39,8 +39,6 @@ ms.locfileid: "47429684"
 - 當記錄鎖定在共同作業網域中的資料存放區時，有資料爭用的風險，在該網域中多個執行者會在相同資料集上以平行方式運作。 或者更新衝突，這是由使用開放式鎖定時的並行更新所造成。 這些風險會隨著系統的複雜度和輸送量增加而提升。 此外，由於資料存放區和資料存取層上的負載，以及擷取資訊所需之查詢的複雜度，傳統方法對於效能會有負面影響。
 
 - 因為每個實體受限於讀取和寫入作業，這些作業可能會在錯誤內容中公開資料，所以讓管理安全性和權限更加複雜。
-
-> 若要更深入了解 CRUD 方法的限制，請參閱 [CRUD，只有當您可以負擔時](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/)。
 
 ## <a name="solution"></a>解決方法
 

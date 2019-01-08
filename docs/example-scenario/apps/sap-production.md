@@ -1,15 +1,16 @@
 ---
-title: 在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
+title: 使用 Oracle Database 來執行 SAP 生產環境工作負載
+titleSuffix: Azure Example Scenarios
 description: 在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。
 author: DharmeshBhagat
 ms.date: 9/12/2018
 ms.custom: fasttrack
-ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 2f398e98e383053f40fa8debcf5636c609339baf
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004959"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643725"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 
@@ -23,9 +24,9 @@ SAP 系統用來執行任務關鍵性商務應用程式。 任何中斷情況都
 
 其他相關的使用案例包括：
 
-* 在 SAP 上執行的任務關鍵性工作負載。
-* 非關鍵性 SAP 工作負載。
-* 適用於 SAP 的測試環境，可模擬高可用性的環境。
+- 在 SAP 上執行的任務關鍵性工作負載。
+- 非關鍵性 SAP 工作負載。
+- 適用於 SAP 的測試環境，可模擬高可用性的環境。
 
 ## <a name="architecture"></a>架構
 
@@ -41,11 +42,11 @@ SAP 系統用來執行任務關鍵性商務應用程式。 任何中斷情況都
 
 ### <a name="components"></a>元件
 
-* 此案例中的[虛擬網路](/azure/virtual-network/virtual-networks-overview)用於在 Azure 中建立虛擬中樞輪輻拓撲。
-* [虛擬機器](/azure/virtual-machines/windows/overview)會為每一層的解決方案提供計算資源。 每個虛擬機器叢集都會設定為[可用性設定組](/azure/virtual-machines/windows/regions-and-availability#availability-sets)。
-* [ExpressRoute](/azure/expressroute/expressroute-introduction) 可透過連線提供者所建立的私人連線，將內部部署網路延伸至 Microsoft 雲端。
-* [網路安全性群組 (NSG)](/azure/virtual-network/security-overview) 可將網路存取權限制為虛擬網路中的資源。 NSG 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕網路流量。 
-* [資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)可作為 Azure 資源的邏輯容器。
+- 此案例中的[虛擬網路](/azure/virtual-network/virtual-networks-overview)用於在 Azure 中建立虛擬中樞輪輻拓撲。
+- [虛擬機器](/azure/virtual-machines/windows/overview)會為每一層的解決方案提供計算資源。 每個虛擬機器叢集都會設定為[可用性設定組](/azure/virtual-machines/windows/regions-and-availability#availability-sets)。
+- [ExpressRoute](/azure/expressroute/expressroute-introduction) 可透過連線提供者所建立的私人連線，將內部部署網路延伸至 Microsoft 雲端。
+- [網路安全性群組 (NSG)](/azure/virtual-network/security-overview) 可將網路存取權限制為虛擬網路中的資源。 NSG 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕網路流量。
+- [資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)可作為 Azure 資源的邏輯容器。
 
 ### <a name="alternatives"></a>替代項目
 
@@ -53,10 +54,11 @@ SAP 針對 Azure 環境中不同的作業系統、資料庫管理系統和 VM �
 
 ## <a name="considerations"></a>考量
 
-已針對在 Azure 中建置高可用性 SAP 環境定義建議做法。 如需詳細資訊，請參閱 [SAP NetWeaver 的 Azure 虛擬機器的高可用性架構和案例](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios)。
-如需詳細資訊，請參閱 [Azure VM 上 SAP 應用程式的高可用性](/azure/virtual-machines/workloads/sap/high-availability-guide)。
-* Oracle 資料庫也有適用於 Azure 的建議做法。 如需詳細資訊，請參閱[在 Azure 中設計和實作 Oracle 資料庫](/azure/virtual-machines/workloads/oracle/oracle-design)。 
-* Oracle Data Guard 用來消除任務關鍵性 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
+已針對在 Azure 中建置高可用性 SAP 環境定義建議做法。 如需詳細資訊，請參閱 [SAP NetWeaver 的 Azure 虛擬機器的高可用性架構和案例](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios)。 也請參閱 [Azure VM 上 SAP 應用程式的高可用性](/azure/virtual-machines/workloads/sap/high-availability-guide)。
+
+Oracle 資料庫也有適用於 Azure 的建議做法。 如需詳細資訊，請參閱[在 Azure 中設計和實作 Oracle 資料庫](/azure/virtual-machines/workloads/oracle/oracle-design)。
+
+Oracle Data Guard 用來消除任務關鍵性 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
 
 Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 資料庫。 如需詳細資訊，請參閱[在 Azure 上針對 SAP 工作負載部署 Oracle DBMS](/azure/virtual-machines/workloads/sap/dbms_guide_oracle)。
 
@@ -76,22 +78,26 @@ Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 
 > [!NOTE]
 > 此定價是一份指南，只會指出 VM 和儲存體成本。 它會排除網路、備份儲存體和資料輸入/輸出費用。
 
-* [小型](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c)：小型系統由 VM 類型 DS13_v2 的資料庫伺服器所構成，具有 8 個 vCPU、56 GB RAM 和 112 GB 暫存儲存體，另外還有五個 512 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 一部 VM 類型 DS13_v2 的 SAP 應用程式伺服器，具有 8 個 vCPU、56 GB RAM 和 400 GB 暫存儲存體，另外還有一個 128 GB 的進階儲存體磁碟。
+- [小型](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c)：小型系統由 VM 類型 DS13_v2 的資料庫伺服器所構成，具有 8 個 vCPU、56 GB RAM 和 112 GB 暫存儲存體，另外還有五個 512 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 一部 VM 類型 DS13_v2 的 SAP 應用程式伺服器，具有 8 個 vCPU、56 GB RAM 和 400 GB 暫存儲存體，另外還有一個 128 GB 的進階儲存體磁碟。
 
-* [中型](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a)：中型系統由 VM 類型 DS14_v2 的資料庫伺服器所構成，具有 16 個 vCPU、112 GB RAM 和 800 GB 暫存儲存體，另外還有七個 512 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 四部 VM 類型 DS13_v2 的 SAP 應用程式伺服器，具有 8 個 vCPU、56 GB RAM 和 400 GB 暫存儲存體，另外還有一個 128 GB 的進階儲存體磁碟。
+- [中型](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a)：中型系統由 VM 類型 DS14_v2 的資料庫伺服器所構成，具有 16 個 vCPU、112 GB RAM 和 800 GB 暫存儲存體，另外還有七個 512 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 四部 VM 類型 DS13_v2 的 SAP 應用程式伺服器，具有 8 個 vCPU、56 GB RAM 和 400 GB 暫存儲存體，另外還有一個 128 GB 的進階儲存體磁碟。
 
-* [大型](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42)：大型系統由 VM 類型 E32s_v3 的資料庫伺服器所構成，具有 32 個 vCPU、256 GB RAM 和 800 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 六部 VM 類型 DS14_v2 的 SAP 應用程式伺服器，具有 16 個 vCPU、112 GB RAM 和 224 GB 暫存儲存體，另外還有六個 128 GB 的進階儲存體磁碟。
+- [大型](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42)：大型系統由 VM 類型 E32s_v3 的資料庫伺服器所構成，具有 32 個 vCPU、256 GB RAM 和 800 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 六部 VM 類型 DS14_v2 的 SAP 應用程式伺服器，具有 16 個 vCPU、112 GB RAM 和 224 GB 暫存儲存體，另外還有六個 128 GB 的進階儲存體磁碟。
 
-* [超大型](https://azure.com/e/58c636922cf94faf9650f583ff35e97b)：超大型系統由 M64s VM 類型的資料庫伺服器所構成，具有 64 個 vCPU、1024 GB RAM 和 2000 GB 暫存儲存體，另外還有七個 1024 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 十部 VM 類型 DS14_v2 的 SAP 應用程式伺服器，具有 16 個 vCPU、112 GB RAM 和 224 GB 暫存儲存體，另外還有十個 128 GB 的進階儲存體磁碟。
+- [超大型](https://azure.com/e/58c636922cf94faf9650f583ff35e97b)：超大型系統由 M64s VM 類型的資料庫伺服器所構成，具有 64 個 vCPU、1024 GB RAM 和 2000 GB 暫存儲存體，另外還有七個 1024 GB 的進階儲存體磁碟。 使用 DS11_v2 VM 類型的 SAP Central Instance 伺服器具有 2 個 vCPU、14 GB RAM 和 28 GB 暫存儲存體。 十部 VM 類型 DS14_v2 的 SAP 應用程式伺服器，具有 16 個 vCPU、112 GB RAM 和 224 GB 暫存儲存體，另外還有十個 128 GB 的進階儲存體磁碟。
 
 ## <a name="deployment"></a>部署
 
 使用下列連結來部署此案例的基礎結構。
 
+<!-- markdownlint-disable MD033 -->
+
 <a
 href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-3tier-distributed-ora%2Fazuredeploy.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
+
+<!-- markdownlint-enable MD033 -->
 
 > [!NOTE]
 > 在此部署期間不會安裝 SAP 和 Oracle。 您必須分別部署這些元件。
@@ -99,9 +105,10 @@ href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.
 ## <a name="related-resources"></a>相關資源
 
 如需在 Azure 中執行 SAP 生產工作負載的其他資訊，請檢閱下列參考架構：
-* [適用於 AnyDB 的 SAP NetWeaver](/azure/architecture/reference-architectures/sap/sap-netweaver) 
-* [SAP S/4HANA](/azure/architecture/reference-architectures/sap/sap-s4hana)
-* [SAP HANA 大型執行個體](/azure/architecture/reference-architectures/sap/hana-large-instances)
+
+- [適用於 AnyDB 的 SAP NetWeaver](/azure/architecture/reference-architectures/sap/sap-netweaver)
+- [SAP S/4HANA](/azure/architecture/reference-architectures/sap/sap-s4hana)
+- [SAP HANA 大型執行個體](/azure/architecture/reference-architectures/sap/hana-large-instances)
 
 <!-- links -->
 [architecture]: media/architecture-sap-production.png

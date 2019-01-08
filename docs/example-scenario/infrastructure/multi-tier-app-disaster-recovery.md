@@ -1,15 +1,16 @@
 ---
-title: 在 Azure 上為高可用性和災害復原而建置的多層式 Web 應用程式
+title: 針對 HA/DR 所建置的多層式 Web 應用程式
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure 虛擬機器、可用性集合、可用性區域、Azure Site Recovery 和 Azure 流量管理員，在 Azure 上建立為高可用性和災害復原而建置的多層式 Web 應用程式
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004606"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644034"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>在 Azure 上為高可用性和災害復原而建置的多層式 Web 應用程式
 
@@ -25,9 +26,9 @@ ms.locfileid: "53004606"
 
 其他相關的使用案例包括：
 
-* 部署高復原能力的應用程式，例如 SAP 和 SharePoint
-* 設計企業營運應用程式的商務持續性和災害復原計劃
-* 設定災害復原和執行合規性的相關演練
+- 部署高復原能力的應用程式，例如 SAP 和 SharePoint
+- 設計企業營運應用程式的商務持續性和災害復原計劃
+- 設定災害復原和執行合規性的相關演練
 
 ## <a name="architecture"></a>架構
 
@@ -49,17 +50,17 @@ ms.locfileid: "53004606"
 
 ### <a name="components"></a>元件
 
-* [可用性設定組][docs-availability-sets]可確保您在 Azure 上部署的 VM 會分散到叢集中多個各自獨立的硬體節點。 當 Azure 內發生硬體或軟體故障時，您的 VM 將只有一部分會受到影響，且您整體的解決方案仍可供使用且正常運作。
-* [可用性區域][docs-availability-zones]可讓您的應用程式和資料不因資料中心失敗而受影響。 可用性區域是 Azure 區域內個別的實體位置。 每個區域皆由一或多個配備獨立電力、冷卻系統及網路的資料中心所組成。 
-* [Azure Site Recovery (ASR)][docs-azure-site-recovery] 可讓您將 VM 複寫到另一個 Azure 區域，以符合商務持續性和災害復原的需求。 您可以進行定期的災害復原演練，以確實符合合規需求。 會以指定的設定將 VM 複寫到選取的區域，以便您可以在來源區域的中斷事件中復原應用程式。
-* [Azure 流量管理員][docs-traffic-manager]是 DNS 型流量負載平衡器，可跨全球的 Azure 區域將流量最適當地分散至服務，同時提供高可用性和回應性。
-* [Azure Load Balancer][docs-load-balancer] 會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例會使用公用負載平衡器，將傳入的用戶端流量散發至 Web 層。 此案例會使用內部負載平衡器，從商務層將流量散發到後端 SQL Server 叢集。
+- [可用性設定組][docs-availability-sets]可確保您在 Azure 上部署的 VM 會分散到叢集中多個各自獨立的硬體節點。 當 Azure 內發生硬體或軟體故障時，您的 VM 將只有一部分會受到影響，且您整體的解決方案仍可供使用且正常運作。
+- [可用性區域][docs-availability-zones]可讓您的應用程式和資料不因資料中心失敗而受影響。 可用性區域是 Azure 區域內個別的實體位置。 每個區域皆由一或多個配備獨立電力、冷卻系統及網路的資料中心所組成。
+- [Azure Site Recovery (ASR)][docs-azure-site-recovery] 可讓您將 VM 複寫到另一個 Azure 區域，以符合商務持續性和災害復原的需求。 您可以進行定期的災害復原演練，以確實符合合規需求。 會以指定的設定將 VM 複寫到選取的區域，以便您可以在來源區域的中斷事件中復原應用程式。
+- [Azure 流量管理員][docs-traffic-manager]是 DNS 型流量負載平衡器，可跨全球的 Azure 區域將流量最適當地分散至服務，同時提供高可用性和回應性。
+- [Azure Load Balancer][docs-load-balancer] 會根據規則和健康情況探查來散發輸入流量。 對於所有 TCP 和 UDP 應用程式，負載平衡器可提供低延遲和高輸送量，且最多可相應增加為數百萬個流程。 此案例會使用公用負載平衡器，將傳入的用戶端流量散發至 Web 層。 此案例會使用內部負載平衡器，從商務層將流量散發到後端 SQL Server 叢集。
 
 ### <a name="alternatives"></a>替代項目
 
-* 您可以將 Windows 取代為其他作業系統，因為基礎結構中沒有任何項目依存於作業系統。
-* [適用於 Linux 的 SQL Server][docs-sql-server-linux] 可取代後端資料存放區。
-* 資料庫可以取代為任何可用的標準資料庫應用程式。
+- 您可以將 Windows 取代為其他作業系統，因為基礎結構中沒有任何項目依存於作業系統。
+- [適用於 Linux 的 SQL Server][docs-sql-server-linux] 可取代後端資料存放區。
+- 資料庫可以取代為任何可用的標準資料庫應用程式。
 
 ## <a name="other-considerations"></a>其他考量
 

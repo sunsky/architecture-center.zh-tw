@@ -1,14 +1,15 @@
 ---
-title: Azure 上的保險理賠映像分類
+title: 保險理賠映像分類
+titleSuffix: Azure Example Scenarios
 description: 將影像處理建置到您的 Azure 應用程式。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610527"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643440"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保險理賠映像分類
 
@@ -22,8 +23,8 @@ ms.locfileid: "51610527"
 
 其他相關的使用案例包括：
 
-* 分類潮流網站上的映像。
-* 分類來自遊戲螢幕擷取畫面的遙測資料。
+- 分類潮流網站上的映像。
+- 分類來自遊戲螢幕擷取畫面的遙測資料。
 
 ## <a name="architecture"></a>架構
 
@@ -39,16 +40,16 @@ ms.locfileid: "51610527"
 
 ### <a name="components"></a>元件
 
-* [電腦視覺 API](/azure/cognitive-services/computer-vision/home) 是認知服務套件的一部分，用來擷取每個影像的資訊。
-* [Azure Functions](/azure/azure-functions/functions-overview) 提供 Web 應用程式的後端 API，以及已上傳影像的事件處理。
-* [事件方格](/azure/event-grid/overview)會在新影像上傳至 Blob 儲存體時觸發事件。 然後使用 Azure functions 處理映像。
-* [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)會儲存上傳至 Web 應用程式的所有影像檔案，以及 Web 應用程式取用的任何靜態檔案。
-* [Cosmos DB](/azure/cosmos-db/introduction) 會儲存每個已上傳影像的中繼資料，包括從電腦視覺 API 處理的結果。
+- [電腦視覺 API](/azure/cognitive-services/computer-vision/home) 是認知服務套件的一部分，用來擷取每個影像的資訊。
+- [Azure Functions](/azure/azure-functions/functions-overview) 提供 Web 應用程式的後端 API，以及已上傳影像的事件處理。
+- [事件方格](/azure/event-grid/overview)會在新影像上傳至 Blob 儲存體時觸發事件。 然後使用 Azure functions 處理映像。
+- [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)會儲存上傳至 Web 應用程式的所有影像檔案，以及 Web 應用程式取用的任何靜態檔案。
+- [Cosmos DB](/azure/cosmos-db/introduction) 會儲存每個已上傳影像的中繼資料，包括從電腦視覺 API 處理的結果。
 
 ## <a name="alternatives"></a>替代項目
 
-* [自訂視覺服務](/azure/cognitive-services/custom-vision-service/home)。 電腦視覺 API 會傳回一組[分類法型分類][cv-categories]。 如果您需要處理並非由電腦視覺 API 所傳回的資訊，請考慮自訂視覺服務，它可讓您建置自訂映像分類器。
-* [Azure 搜尋服務](/azure/search/search-what-is-azure-search)。 如果您的使用案例牽涉到查詢中繼資料以尋找符合特定準則的映像，請考慮使用 Azure 搜尋服務。 [認知搜尋](/azure/search/cognitive-search-concept-intro) (目前處於預覽狀態) 與此工作流程緊密整合。
+- [自訂視覺服務](/azure/cognitive-services/custom-vision-service/home)。 電腦視覺 API 會傳回一組[分類法型分類][cv-categories]。 如果您需要處理並非由電腦視覺 API 所傳回的資訊，請考慮自訂視覺服務，它可讓您建置自訂映像分類器。
+- [Azure 搜尋服務](/azure/search/search-what-is-azure-search)。 如果您的使用案例牽涉到查詢中繼資料以尋找符合特定準則的映像，請考慮使用 Azure 搜尋服務。 [認知搜尋](/azure/search/cognitive-search-concept-intro) (目前處於預覽狀態) 與此工作流程緊密整合。
 
 ## <a name="considerations"></a>考量
 
@@ -80,9 +81,9 @@ NoSQL 資料庫會經常交換可用性、延展性及分割區的一致性 (CAP
 
 我們根據流量 (假設所有映像的大小是 100 kb)，提供了三個範例成本設定檔：
 
-* [小型][small-pricing]：這個定價範例適用於每月處理 &lt; 5000 個映像。
-* [中型][medium-pricing]：這個定價範例適用於每月處理 500,000 個映像。
-* [大型][large-pricing]：這個定價範例適用於每月處理 5,000 萬個映像。
+- [小型][small-pricing]：這個定價範例適用於每月處理 &lt; 5000 個映像。
+- [中型][medium-pricing]：這個定價範例適用於每月處理 500,000 個映像。
+- [大型][large-pricing]：這個定價範例適用於每月處理 5,000 萬個映像。
 
 ## <a name="related-resources"></a>相關資源
 

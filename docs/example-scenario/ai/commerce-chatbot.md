@@ -1,14 +1,15 @@
 ---
-title: Azure 上適用於預約旅館的交談聊天機器人
+title: 適用於預約旅館的交談聊天機器人
+titleSuffix: Azure Example Scenarios
 description: 使用 Azure Bot 服務建置適用於商務應用程式的對話聊天機器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 31a7384b11262ac967ab5f8a6c5e7f17e9a00b6f
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610765"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643844"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 
@@ -22,9 +23,9 @@ ms.locfileid: "51610765"
 
 其他相關的使用案例包括：
 
-* 檢視餐廳外帶菜單及訂購餐點
-* 檢查旅館空房狀況及預約房間
-* 搜尋可用的相片及訂購沖印
+- 檢視餐廳外帶菜單及訂購餐點
+- 檢查旅館空房狀況及預約房間
+- 搜尋可用的相片及訂購沖印
 
 ## <a name="architecture"></a>架構
 
@@ -41,18 +42,18 @@ ms.locfileid: "51610765"
 
 ### <a name="components"></a>元件
 
-* [Azure Active Directory][aad-docs] 是 Microsoft 的多租用戶雲端式目錄和身分識別管理服務。 Azure AD 支援 B2C 連接器，可讓您使用外部識別碼 (例如 Google、Facebook 或 Microsoft 帳戶) 來識別個人。
-* [App Service][appservice-docs] 可讓您以選定的程式設計語言來建置並裝載 Web 應用程式，無需管理基礎結構。
-* [Bot 服務][botservice-docs] 提供工具，可以建置、測試、部署及管理智慧型聊天機器人。
-* [認知服務][cognitive-docs]可讓您使用智慧型演算法，透過自然的溝通方式，來查看、聆聽、述說、了解及詮釋您的使用者需求。
-* [SQL Database][sqldatabase-docs] 是完全受控的關聯式雲端資料庫服務，它提供 SQL Server 引擎相容性。
-* [Application Insights][appinsights-docs] 是可擴充應用程式效能管理 (APM) 服務，讓您監視應用程式 (例如聊天機器人) 的效能。
+- [Azure Active Directory][aad-docs] 是 Microsoft 的多租用戶雲端式目錄和身分識別管理服務。 Azure AD 支援 B2C 連接器，可讓您使用外部識別碼 (例如 Google、Facebook 或 Microsoft 帳戶) 來識別個人。
+- [App Service][appservice-docs] 可讓您以選定的程式設計語言來建置並裝載 Web 應用程式，無需管理基礎結構。
+- [Bot 服務][botservice-docs] 提供工具，可以建置、測試、部署及管理智慧型聊天機器人。
+- [認知服務][cognitive-docs]可讓您使用智慧型演算法，透過自然的溝通方式，來查看、聆聽、述說、了解及詮釋您的使用者需求。
+- [SQL Database][sqldatabase-docs] 是完全受控的關聯式雲端資料庫服務，它提供 SQL Server 引擎相容性。
+- [Application Insights][appinsights-docs] 是可擴充應用程式效能管理 (APM) 服務，讓您監視應用程式 (例如聊天機器人) 的效能。
 
 ### <a name="alternatives"></a>替代項目
 
-* [Microsoft Speech API][speech-api] 可以用來變更客戶與聊天機器人的接觸方式。
-* [QnA Maker][qna-maker] 可以作為快速新增知識，從半結構化內容 (例如常見問題集) 新增至您的聊天機器人。
-* [翻譯工具文字][translator]是一種服務，可讓您輕易地將多語言支援新增至您的聊天機器人。
+- [Microsoft Speech API][speech-api] 可以用來變更客戶與聊天機器人的接觸方式。
+- [QnA Maker][qna-maker] 可以作為快速新增知識，從半結構化內容 (例如常見問題集) 新增至您的聊天機器人。
+- [翻譯工具文字][translator]是一種服務，可讓您輕易地將多語言支援新增至您的聊天機器人。
 
 ## <a name="considerations"></a>考量
 
@@ -88,23 +89,29 @@ ms.locfileid: "51610765"
 
 此案例可分為三個元件，讓您可以探索最著重的部分：
 
-* [基礎結構元件](#deploy-infrastructure-components)。 使用 Azure Resource Manger 範本來部署 App Service、Web 應用程式、Application Insights、儲存體帳戶及 SQL Server 和資料庫的核心基礎結構元件。
-* [Web 應用程式聊天機器人](#deploy-web-app-chatbot)。 使用 Azure CLI 來部署具有 Bot 服務和 Language Understanding and Intelligent Services (LUIS) 應用程式的聊天機器人。
-* [範例 C# 聊天機器人應用程式](#deploy-chatbot-c-application-code)。 使用 Visual Studio 來檢閱範例旅館預訂 C# 應用程式程式碼，並且部署到 Azure 中的聊天機器人。
+- [基礎結構元件](#deploy-infrastructure-components)。 使用 Azure Resource Manger 範本來部署 App Service、Web 應用程式、Application Insights、儲存體帳戶及 SQL Server 和資料庫的核心基礎結構元件。
+- [Web 應用程式聊天機器人](#deploy-web-app-chatbot)。 使用 Azure CLI 來部署具有 Bot 服務和 Language Understanding and Intelligent Services (LUIS) 應用程式的聊天機器人。
+- [範例 C# 聊天機器人應用程式](#deploy-chatbot-c-application-code)。 使用 Visual Studio 來檢閱範例旅館預訂 C# 應用程式程式碼，並且部署到 Azure 中的聊天機器人。
 
-**必要條件。** 您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+### <a name="prerequisites"></a>必要條件
 
-### <a name="deploy-infrastructure-components"></a>部署基礎結構元件
+您必須具有現有的 Azure 帳戶。 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
+
+### <a name="walk-through"></a>逐步解說
 
 若要使用 Resource Manager 範本部署基礎結構元件，請執行下列步驟。
 
+<!-- markdownlint-disable MD033 -->
+
 1. 按一下 [部署至 Azure] 按鈕：<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. 等待 Azure 入口網站中的範本部署開啟，然後完成下列步驟：
-   * 選擇 [新建] 資源群組，然後在文字方塊中提供名稱，例如 myCommerceChatBotInfrastructure。
-   * 從 [位置] 下拉式方塊選取區域。
-   * 為 SQL Server 系統管理員帳戶提供使用者名稱和安全的密碼。
-   * 檢閱條款及條件，然後按一下 [我同意上方所述的條款及條件]。
-   * 選取 [購買] 按鈕。
+   - 選擇 [新建] 資源群組，然後在文字方塊中提供名稱，例如 myCommerceChatBotInfrastructure。
+   - 從 [位置] 下拉式方塊選取區域。
+   - 為 SQL Server 系統管理員帳戶提供使用者名稱和安全的密碼。
+   - 檢閱條款及條件，然後按一下 [我同意上方所述的條款及條件]。
+   - 選取 [購買] 按鈕。
+
+<!-- markdownlint-enable MD033 -->
 
 需要幾分鐘的時間才能完成部署。
 
@@ -131,9 +138,9 @@ az bot create \
 
 ### <a name="deploy-chatbot-c-application-code"></a>部署聊天機器人 C# 應用程式程式碼
 
-範例 C# 應用程式可以在 GitHub 上取得： 
+範例 C# 應用程式可以在 GitHub 上取得：
 
-* [商務聊天機器人 C# 範例](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
+- [商務聊天機器人 C# 範例](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
 範例應用程式包含 Azure Active Directory 驗證元件，並且與認知服務的 Language Understanding and Intelligent Services (LUIS) 元件整合。 應用程式需要 Visual Studio 以便建置及部署案例。 關於設定 AAD B2C 和 LUIS 應用程式的額外資訊，可以在 GitHub 存放庫文件中找到。
 
@@ -143,16 +150,16 @@ az bot create \
 
 我們根據您期望聊天機器人處理的訊息數，提供了 3 個範例成本設定檔：
 
-* [小型][small-pricing]：這個定價範例適用於每月處理低於 10,000 個映像。
-* [中型][medium-pricing]：這個定價範例適用於每月處理低於 500,000 個映像。
-* [大型][large-pricing]：這個定價範例適用於每月處理低於 1,000 萬個映像。
+- [小型][small-pricing]：這個定價範例適用於每月處理低於 10,000 個映像。
+- [中型][medium-pricing]：這個定價範例適用於每月處理低於 500,000 個映像。
+- [大型][large-pricing]：這個定價範例適用於每月處理低於 1,000 萬個映像。
 
 ## <a name="related-resources"></a>相關資源
 
 如需 Azure Bot 服務的一套引導式教學課程，請參閱文件的[教學課程區段][botservice-docs]。
 
-
 <!-- links -->
+
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview
 [aad-docs]: /azure/active-directory/
 [appinsights-docs]: /azure/application-insights/app-insights-overview

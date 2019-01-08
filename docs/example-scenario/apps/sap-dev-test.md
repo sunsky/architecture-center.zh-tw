@@ -1,15 +1,16 @@
 ---
-title: Azure 上 SAP 工作負載的開發/測試環境
+title: SAP 工作負載的開發/測試環境
+titleSuffix: Azure Example Scenarios
 description: 為 SAP 工作負載建置開發/測試環境。
 author: AndrewDibbins
 ms.date: 7/11/18
 ms.custom: fasttrack
-ms.openlocfilehash: 84665bfeb6ada568c631e1db72b97269d79f2e60
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004671"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643963"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上 SAP 工作負載的開發/測試環境
 
@@ -17,16 +18,16 @@ ms.locfileid: "53004671"
 
 如需生產環境使用案例，請檢閱以下提供的 SAP 參考架構：
 
-* [適用於 AnyDB 的 SAP NetWeaver][sap-netweaver]
-* [SAP S/4HANA][sap-hana]
-* [Azure 上的 SAP 大型執行個體][sap-large]
+- [適用於 AnyDB 的 SAP NetWeaver][sap-netweaver]
+- [SAP S/4HANA][sap-hana]
+- [Azure 上的 SAP 大型執行個體][sap-large]
 
 ## <a name="relevant-use-cases"></a>相關使用案例
 
 其他相關的使用案例包括：
 
-* 非關鍵性的 SAP 非產能工作負載 (沙箱、開發、測試、品質保證)
-* 非關鍵性的 SAP 商務工作負載
+- 非關鍵性的 SAP 非產能工作負載 (沙箱、開發、測試、品質保證)
+- 非關鍵性的 SAP 商務工作負載
 
 ## <a name="architecture"></a>架構
 
@@ -41,11 +42,11 @@ ms.locfileid: "53004671"
 
 ### <a name="components"></a>元件
 
-* [虛擬網路](/azure/virtual-network/virtual-networks-overview)是 Azure 內的網路通訊基礎。
-* [虛擬機器](/azure/virtual-machines/windows/overview) Azure 虛擬機器使用 Windows 或 Linux Server 提供隨選、高度可調整、安全且虛擬化的基礎結構。
-* [ExpressRoute](/azure/expressroute/expressroute-introduction) 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。
-* [網路安全性群組](/azure/virtual-network/security-overview)可讓您將網路流量限制為虛擬網路中的資源。 網路安全性群組包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。 
-* [資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)可作為 Azure 資源的邏輯容器。
+- [虛擬網路](/azure/virtual-network/virtual-networks-overview)是 Azure 內的網路通訊基礎。
+- [虛擬機器](/azure/virtual-machines/windows/overview) Azure 虛擬機器使用 Windows 或 Linux Server 提供隨選、高度可調整、安全且虛擬化的基礎結構。
+- [ExpressRoute](/azure/expressroute/expressroute-introduction) 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。
+- [網路安全性群組](/azure/virtual-network/security-overview)可讓您將網路流量限制為虛擬網路中的資源。 網路安全性群組包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕輸入或輸出網路流量。
+- [資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)可作為 Azure 資源的邏輯容器。
 
 ## <a name="considerations"></a>考量
 
@@ -81,18 +82,22 @@ ms.locfileid: "53004671"
 > [!NOTE]
 > 此定價是一份指南，只會指出 VM 和儲存體成本。 它會排除網路、備份儲存體和資料輸入/輸出費用。
 
-* [小型](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系統包含具有 8 個 vCPU 的 VM 類型 D8s_v3，32 GB RAM 和 200 GB 暫存儲存體，另外還有兩個 512 GB 和一個 128 GB 的進階儲存體磁碟。
-* [中型](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系統包含具有 16 個 vCPU 的 VM 類型 D16s_v3，64 GB RAM 和 400 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。
-* [大型](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系統包含具有 32 個 vCPU 的 VM 類型 E32s_v3，256 GB RAM 和 512 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。
-* [超大型](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：超大型系統包含具有 64 個 vCPU 的 VM 類型 M64s，1024 GB RAM 和 2000 GB 暫存儲存體，另外還有四個 512 GB 和一個 128 GB 的進階儲存體磁碟。
+- [小型](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1)：小型系統包含具有 8 個 vCPU 的 VM 類型 D8s_v3，32 GB RAM 和 200 GB 暫存儲存體，另外還有兩個 512 GB 和一個 128 GB 的進階儲存體磁碟。
+- [中型](https://azure.com/e/465bd07047d148baab032b2f461550cd)：中型系統包含具有 16 個 vCPU 的 VM 類型 D16s_v3，64 GB RAM 和 400 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。
+- [大型](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)：大型系統包含具有 32 個 vCPU 的 VM 類型 E32s_v3，256 GB RAM 和 512 GB 暫存儲存體，另外還有三個 512 GB 和一個 128 GB 的進階儲存體磁碟。
+- [超大型](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)：超大型系統包含具有 64 個 vCPU 的 VM 類型 M64s，1024 GB RAM 和 2000 GB 暫存儲存體，另外還有四個 512 GB 和一個 128 GB 的進階儲存體磁碟。
 
 ## <a name="deployment"></a>部署
 
 按一下這裡可部署此案例的基礎結構。
 
+<!-- markdownlint-disable MD033 -->
+
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-2tier%2Fazuredeploy.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
+
+<!-- markdownlint-enable MD033 -->
 
 > [!NOTE]
 > 在此部署期間不會安裝 SAP 和 Oracle。 您必須分別部署這些元件。

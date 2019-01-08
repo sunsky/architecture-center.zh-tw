@@ -5,12 +5,12 @@ description: 在多個區域中的 Azure 虛擬機器上部署應用程式，以
 author: MikeWasson
 ms.date: 07/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 5036d8c74dbf92d9547ab866b15b1576df48e3eb
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 84da8aaef7e552beff1f06befbaa2e50a3ac3d8b
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119994"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643694"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>在多個 Azure 區域中執行多層式架構 (N-Tier) 應用程式以獲得高可用性
 
@@ -50,13 +50,13 @@ ms.locfileid: "53119994"
 - 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
 - 主動/主動。 兩個區域均為主動，而且要求會在它們之間負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。
 
-此參考架構著重於搭配熱待命的主動/被動，使用流量管理員進行容錯移轉。 請注意，您可以部署少量的 VM 來進行熱待命，然後視需要相應放大。
+此參考架構著重於搭配熱待命的主動/被動 (使用流量管理員進行容錯移轉)。 請注意，您可以部署少量的 VM 來進行熱待命，然後視需要相應放大。
 
 ### <a name="regional-pairing"></a>區域配對
 
 每個 Azure 區域都會與相同地理位置內的另一個區域配對。 通常會從相同區域配對選擇區域 (例如，美國東部 2 和美國中部)。 這樣做的優點包括：
 
-- 如果發生大範圍中斷，至少優先復原每個配對中的一個區域。
+- 如果發生廣泛的中斷，至少會優先復原每個配對中的一個區域。
 - 已計劃的 Azure 系統更新會循序在配對區域中推出，以將可能的停機時間降到最低。
 - 配對會位於相同的地理位置，以符合資料落地需求。
 
@@ -69,7 +69,7 @@ ms.locfileid: "53119994"
 - **路由**。 流量管理員支援數個[路由演算法][tm-routing]。 針對本文所述的案例，請使用「優先順序」路由 (先前稱為「容錯移轉」路由)。 使用此設定，流量管理員會將所有要求傳送到主要區域，除非主要地區變成無法連線。 那時，就會自動容錯移轉到次要區域。 請參閱[設定容錯移轉路由方法][tm-configure-failover]。
 - **健康情況探查**。 流量管理員會使用 HTTP (或 HTTPS) [探查][tm-monitoring]來監視每個區域的可用性。 探查會針對指定的 URL 路徑檢查 HTTP 200 回應。 最佳作法是，建立端點來報告應用程式的整體健康情況，並使用此端點進行健康情況探查。 否則，探查可能會在應用程式的關鍵組件真的失敗時報告端點狀況良好。 如需詳細資訊，請參閱[健康情況端點監視模式][health-endpoint-monitoring-pattern]。
 
-當流量管理員容錯移轉時，用戶端會有一段時間無法連線到應用程式。 持續時間受到下列因素影響：
+當流量管理員容錯移轉時，用戶端會有一段時間無法連線到應用程式。 持續時間會受到下列因素影響：
 
 - 健康情況探查必須偵測到主要區域已變成無法連線。
 - DNS 伺服器必須針對 IP 位址更新快取的 DNS 記錄，這取決於 DNS 存留時間 (TTL)。 預設的 TTL 是 300 秒 (5 分鐘)，但是當您建立流量管理員設定檔時，您可以設定此值。
@@ -129,7 +129,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 
 使用複雜的多層式架構應用程式，您可能不需要在次要區域中複寫整個應用程式， 而是可能只需複寫支援商務持續性所需的關鍵子系統。
 
-流量管理員也可能是這套系統中的失敗點。 如果流量管理員服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員 SLA][tm-sla]，並判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的 CNAME 記錄，以指向其他流量管理服務 (此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式)。
+流量管理員可能是此系統中的失敗點。 如果流量管理員服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員 SLA][tm-sla]，並判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的 CNAME 記錄，以指向其他流量管理服務 (此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式)。
 
 對於 SQL Server 叢集，有兩個要考慮的容錯移轉案例：
 
@@ -159,6 +159,13 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 - 關閉網域控制站上的 DNS 服務。
 
 測量復原時間，並確認它們符合您的業務需求。 此外，也需測試失敗模式組合。
+
+## <a name="related-resources"></a>相關資源
+
+您可以檢閱下列 [Azure 範例案例](/azure/architecture/example-scenario)，其中示範使用相同技術的一些特定解決方案：
+
+- [在 Azure 上為高可用性和災害復原而建置的多層式 Web 應用程式](/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery)
+- [使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式](/azure/architecture/example-scenario/infrastructure/regulated-multitier-app)
 
 <!-- links -->
 

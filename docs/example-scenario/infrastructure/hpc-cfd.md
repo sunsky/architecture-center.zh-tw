@@ -1,15 +1,16 @@
 ---
-title: 在 Azure 上執行計算流體力學 (CFD) 模擬
+title: 執行 CFD 模擬
+titleSuffix: Azure Example Scenarios
 description: 在 Azure 上執行計算流體力學 (CFD) 模擬。
 author: mikewarr
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: af43a60e952d75f84b4c7903a1567b0c76b9f4c4
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004664"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643929"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>在 Azure 上執行計算流體力學 (CFD) 模擬
 
@@ -23,11 +24,11 @@ Azure 提供您在 GPU 和 CPU 虛擬機器上執行 CFD 作業所需的硬體�
 
 其他 CFD 應用程式相關產業包括：
 
-* 航空
-* 汽車
-* 建築物 HVAV
-* 石油與天然氣
-* 生命科學
+- 航空
+- 汽車
+- 建築物 HVAV
+- 石油與天然氣
+- 生命科學
 
 ## <a name="architecture"></a>架構
 
@@ -46,12 +47,12 @@ Azure 提供您在 GPU 和 CPU 虛擬機器上執行 CFD 作業所需的硬體�
 
 ### <a name="components"></a>元件
 
-* [Azure CycleCloud][cyclecloud] 是一項工具，用於建立、管理、操作及最佳化 Azure 中的 HPC 和 Big Compute 叢集。
-* [Azure 上的 Avere vFXT][avere] 用來提供專為雲端建置的企業級叢集檔案系統。
-* [Azure 虛擬機器 (Vm)][vms] 用來建立一組靜態計算執行個體。
-* [虛擬機器擴展集][vmss] 提供一組能夠由 Azure CycleCloud 相應增加或減少的相同 VM。
-* [Azure 儲存體帳戶](/azure/storage/common/storage-introduction)是用於同步處理和資料保留。
-* [虛擬網路](/azure/virtual-network/virtual-networks-overview)可讓多種類型的 Azure 資源 (例如 Azure 虛擬機器 (VM)) 安全地彼此通訊，以及與網際網路和內部部署網路通訊。
+- [Azure CycleCloud][cyclecloud] 是一項工具，用於建立、管理、操作及最佳化 Azure 中的 HPC 和 Big Compute 叢集。
+- [Azure 上的 Avere vFXT][avere] 用來提供專為雲端建置的企業級叢集檔案系統。
+- [Azure 虛擬機器 (Vm)][vms] 用來建立一組靜態計算執行個體。
+- [虛擬機器擴展集][vmss] 提供一組能夠由 Azure CycleCloud 相應增加或減少的相同 VM。
+- [Azure 儲存體帳戶](/azure/storage/common/storage-introduction)是用於同步處理和資料保留。
+- [虛擬網路](/azure/virtual-network/virtual-networks-overview)可讓多種類型的 Azure 資源 (例如 Azure 虛擬機器 (VM)) 安全地彼此通訊，以及與網際網路和內部部署網路通訊。
 
 ### <a name="alternatives"></a>替代項目
 
@@ -65,15 +66,22 @@ Azure 提供您在 GPU 和 CPU 虛擬機器上執行 CFD 作業所需的硬體�
 
 如需設計安全解決方案的一般指引，請參閱 [Azure 安全性文件][security]。
 
-## <a name="deploy-this-scenario"></a>部署此案例
+## <a name="deploy-the-scenario"></a>部署案例
 
-在 Azure 中部署之前，需具備一些必要條件。 在部署 Resource Manager 範本之前，請遵循下列步驟：
+### <a name="prerequisites"></a>必要條件
+
+在部署 Resource Manager 範本之前，請遵循下列步驟：
+
 1. 建立[服務主體][cycle-svcprin]，以便擷取 appId、displayName、名稱、密碼及租用戶。
 2. 產生 [SSH 金鑰組][ cycle-ssh]，以便安全地登入 CycleCloud 伺服器。
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="https://azuredeploy.net/deploybutton.png"/>
-</a>
+    <!-- markdownlint-disable MD033 -->
+
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FCycleCloudCommunity%2Fcyclecloud_arm%2Fmaster%2Fazuredeploy.json" target="_blank">
+        <img src="https://azuredeploy.net/deploybutton.png"/>
+    </a>
+
+    <!-- markdownlint-enable MD033 -->
 
 3. [登入 Azure CycleCloud 伺服器][cycle-login]以設定和建立新叢集。
 4. [建立叢集][cycle-create]。
@@ -90,12 +98,12 @@ Avere 快取是一個選擇性解決方案，可以大幅提高應用程式作�
 
 這個案例示範如何在 Azure 中執行 CFD 應用程式，因此機器需要僅適用於特定 VM 大小的 RDMA 功能。 以下是一個月每天持續配置八小時且資料輸出為 1 TB 的擴展集可能產生的成本範例。 其中也包含 Azure CycleCloud 伺服器和 Avere vFXT for Azure 安裝的定價：
 
-* 區域：北歐
-* Azure CycleCloud 伺服器：1 x 標準 D3 (4 個 CPU、14 GB 記憶體、標準 HDD 32 GB)
-* Azure CycleCloud 主要伺服器：1 x 標準 D12 v (4 個 CPU、28 GB 記憶體、標準 HDD 32 GB)
-* Azure CycleCloud 節點陣列：10 x 標準 H16r (16 個 CPU、112 GB 記憶體)
-* Azure 叢集上的 Avere vFXT：3 x D16s v3 (200 GB OS、進階 SSD 1-TB 資料磁碟)
-* 資料輸出：1 TB
+- 區域：北歐
+- Azure CycleCloud 伺服器：1 x 標準 D3 (4 個 CPU、14 GB 記憶體、標準 HDD 32 GB)
+- Azure CycleCloud 主要伺服器：1 x 標準 D12 v (4 個 CPU、28 GB 記憶體、標準 HDD 32 GB)
+- Azure CycleCloud 節點陣列：10 x 標準 H16r (16 個 CPU、112 GB 記憶體)
+- Azure 叢集上的 Avere vFXT：3 x D16s v3 (200 GB OS、進階 SSD 1-TB 資料磁碟)
+- 資料輸出：1 TB
 
 針對以上所列的硬體，檢閱此[價格評估][pricing]。
 
@@ -105,8 +113,8 @@ Avere 快取是一個選擇性解決方案，可以大幅提高應用程式作�
 
 ## <a name="related-resources"></a>相關資源
 
-* [支援 RDMA 的機器執行個體][rdma]
-* [自訂 RDMA 執行個體 VM][rdma-custom]
+- [支援 RDMA 的機器執行個體][rdma]
+- [自訂 RDMA 執行個體 VM][rdma-custom]
 
 <!-- links -->
 [architecture]: ./media/architecture-hpc-cfd.png
