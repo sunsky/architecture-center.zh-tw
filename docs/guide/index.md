@@ -2,12 +2,12 @@
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: a1cac753d384c0fee0af204cddaeea1e63213b9f
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: ce1642f237cfae579cc987777c61c8d6eabff571
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325854"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113870"
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
@@ -15,9 +15,11 @@ ms.locfileid: "43325854"
 
 ## <a name="introduction"></a>簡介
 
-雲端正在改變應用程式的設計方式。 不同於龐大且單一的體系，應用程式會分解成較小型的非集中式服務。 這些服務會透過 API 或使用非同步傳訊進行通訊。 應用程式可水平調整，以依據需求要求新增執行個體。 
+雲端正在改變應用程式的設計方式。 不同於龐大且單一的體系，應用程式會分解成較小型的非集中式服務。 這些服務會透過 API 或使用非同步傳訊進行通訊。 應用程式可水平調整，以依據需求要求新增執行個體。
 
-這些趨勢將帶來新的挑戰。 應用程式狀態是分散的。 作業會平行且非同步地完成。 發生失敗時，整體系統必須具有復原功能。 部署必須自動化且要可預測。 監視和遙測是取得系統深入解析的關鍵。 Azure 應用程式架構指南旨在協助您瀏覽這些變更。 
+這些趨勢將帶來新的挑戰。 應用程式狀態是分散的。 作業會平行且非同步地完成。 發生失敗時，整體系統必須具有復原功能。 部署必須自動化且要可預測。 監視和遙測是取得系統深入解析的關鍵。 Azure 應用程式架構指南旨在協助您瀏覽這些變更。
+
+<!-- markdownlint-disable MD033 -->
 
 <table>
 <thead>
@@ -47,6 +49,8 @@ Polyglot 持續性 (混合儲存體技術)<br/>
 </tbody>
 </table>
 
+<!-- markdownlint-enable MD033 -->
+
 本指南適用於應用程式架構設計人員、開發人員和營運團隊。 這不是個別 Azure 服務的使用說明指南。 閱讀本指南之後，您將了解在 Azure 雲端平台上進行建置時，該套用何種架構模式和最佳作法。 您也可以下載[本指南的電子書版本][ebook]。
 
 ## <a name="how-this-guide-is-structured"></a>指南結構
@@ -63,7 +67,7 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 
 ### <a name="technology-choices"></a>技術選擇
 
-應該盡早決定兩種技術的選擇，因為它們會影響整個架構。 這兩個選擇就是計算服務和資料存放區。 *計算*指的是運算資源的裝載模型，您的應用程式會在運算資源上執行。 *資料存放區*包含資料庫，但也包含其他儲存體，這些儲存體會用於訊息佇列、快取、記錄，以及其他應用程式可能會保存到儲存體的項目。 
+應該盡早決定兩種技術的選擇，因為它們會影響整個架構。 這兩個選擇就是計算服務和資料存放區。 *計算*指的是運算資源的裝載模型，您的應用程式會在運算資源上執行。 *資料存放區*包含資料庫，但也包含其他儲存體，這些儲存體會用於訊息佇列、快取、記錄，以及其他應用程式可能會保存到儲存體的項目。
 
 深入了解：
 
@@ -78,12 +82,10 @@ Azure 應用程式架構指南會整理成一系列的步驟，從架構與設�
 
 - [設計原則](./design-principles/index.md)
 
-
 ### <a name="quality-pillars"></a>品質要素
 
-成功的雲端應用程式會將焦點放在軟體品質的五大要素：延展性、可用性、復原功能、管理和安全性。 使用我們的設計檢閱清單，以根據這些品質要素來檢閱您的架構。
+成功的雲端應用程式將著重於軟體品質的五大支柱：延展性、可用性、復原、管理和安全性。 使用我們的設計檢閱清單，以根據這些品質要素來檢閱您的架構。
 
 - [品質要素](./pillars.md)
-
 
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
