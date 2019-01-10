@@ -7,12 +7,12 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1d8a9e860ab1a66104dc4133eb5f22ffb4706b84
-ms.sourcegitcommit: 5a3fa0bf35376bbe4a6dd668f2d7d44f9cf9c806
+ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53411679"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011170"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虛擬資料中心：網路觀點
 
@@ -51,15 +51,6 @@ VDC 實作可協助企業在下列情況下，將工作負載和應用程式放�
 -   實作工作負載的共用或集中式安全性和存取需求。
 -   適當地針對大型企業混合使用 Azure DevOps 和集中式 IT。
 
-集中式拓樸、中樞和輪輻以及 Azure 功能的混合使用，是 VDC 充分展現其優勢的關鍵： 
-
-- [Azure 虛擬網路][VNet]。 
-- [網路安全性群組 (NSG)][NSG]。
-- [虛擬網路對等互連][VNetPeering]。 
-- [使用者定義的路由 (UDR)][UDR]。
-- 具有[使用角色型存取控制 (RBAC)][RBAC] 的 Azure 識別服務。 
-- (選擇性) [Azure 防火牆][AzFW]、[Azure DNS][DNS]、[Azure Front Door][AFD] 和 [Azure 虛擬 WAN][vWAN]。
-
 集中式中樞和輪輻網路拓樸，以及 Azure 服務和功能的混合使用，是 VDC 充分展現其優勢的關鍵：
 
 * [Azure 虛擬網路][VNet]、
@@ -79,9 +70,6 @@ VDC 實作可協助企業在下列情況下，將工作負載和應用程式放�
 ## <a name="considerations-for-implementing-a-virtual-datacenter"></a>實作虛擬資料中心的考量
 
 設計 VDC 實作時，有數個關鍵問題需要考量：
-
-### <a name="identity-and-directory-services"></a>識別服務和目錄服務
-身分識別服務和目錄服務是內部部署和雲端中所有資料中心的一個關鍵層面。 身分識別是與 VDC 內服務存取和授權的所有層面有關。 為了確保只有授權使用者和程序可存取您的 Azure 帳戶和資源，Azure 會使用數種類型的認證進行驗證。 其中包括用以存取 Azure 帳戶的密碼、密碼編譯金鑰、數位簽章和憑證。 
 
 ### <a name="identity-and-directory-service"></a>身分識別和目錄服務
 
@@ -340,7 +328,7 @@ Operations Management Suite 內部的[網路效能監控][NPM]解決方案可端
 
 **巨量資料/分析**：資料需要相應增加至大量時，資料庫可能無法適當地相應增加。 Hadoop 技術可讓系統對大量節點平行執行分散式查詢。 客戶可以選擇在 IaaS VM 或 PaaS ([HDInsight][HDI]) 中執行資料工作負載。 HDInsight 支援部署到位置型 VNet、可以部署到 VDC 支點中的叢集。
 
-**事件和傳訊**：[Azure 事件中樞][EventHubs]是大規模的遙測擷取服務，能夠收集、轉換及儲存數百萬個事件。 這個分散式串流平台提供低延遲和可設定的保留期，讓您能夠將大量遙測資料輸入 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
+**事件和傳訊**：Azure 事件中樞[EventHubs]是大規模的遙測擷取服務，能夠收集、轉換及儲存數百萬個事件。 這個分散式串流平台提供低延遲和可設定的保留期，讓您能夠將大量遙測資料輸入 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
 
 您可以透過 [Azure 服務匯流排][ServiceBus]在應用程式與服務之間實作高度可靠的雲端傳訊服務。 此方法可提供用戶端與伺服器之間的非同步代理傳訊、結構化的先進先出 (FIFO) 傳訊，以及發佈和訂閱功能。
 
