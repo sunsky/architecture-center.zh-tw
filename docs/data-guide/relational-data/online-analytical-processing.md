@@ -3,24 +3,24 @@ title: 線上分析處理 (OLAP)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 2f938796a741b8a26694742f1098e29728e6818d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902593"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113564"
 ---
 # <a name="online-analytical-processing-olap"></a>線上分析處理 (OLAP)
 
 線上分析處理 (OLAP) 是一種可組織大型企業資料庫和支援複雜分析的技術。 它可用來執行複雜的分析查詢，且不會對交易系統造成負面影響。
 
-企業用來儲存其所有交易和記錄的資料庫，稱為[線上交易處理 (OLTP)](online-transaction-processing.md) 資料庫。 這些資料庫通常具有逐一輸入的記錄。 它們常包含大量對組織有價值的資訊。 不過，用於 OLTP 的資料庫並不是針對分析而設計的。 因此，要從這些資料庫擷取答案，必須耗費許多時間與精力。 OLAP 系統的目的是要協助您以高效能的方式從資料中擷取這項商業智慧資訊。 這是因為，OLAP 資料庫針對大量讀取、低量寫入工作負載而進行了最佳化。
+企業用來儲存其所有交易和記錄的資料庫，稱為[線上交易處理 (OLTP)](./online-transaction-processing.md) 資料庫。 這些資料庫通常具有逐一輸入的記錄。 它們常包含大量對組織有價值的資訊。 不過，用於 OLTP 的資料庫並不是針對分析而設計的。 因此，要從這些資料庫擷取答案，必須耗費許多時間與精力。 OLAP 系統的目的是要協助您以高效能的方式從資料中擷取這項商業智慧資訊。 這是因為，OLAP 資料庫針對大量讀取、低量寫入工作負載而進行了最佳化。
 
-![Azure 中的 OLAP](../images/olap-data-pipeline.png) 
+![Azure 中的 OLAP](../images/olap-data-pipeline.png)
 
 ## <a name="semantic-modeling"></a>語意模型
 
-語意資料模型是一種會說明它所包含的資料元素代表何意的概念模型。 組織通常會有自己的詞彙，有時也會有同義字，甚或相同的詞彙會有不同的意義。 例如，庫存資料庫可能會以資產識別碼和序號追蹤某項設備，但銷售資料庫卻可能將序號視為資產識別碼。 若未以模型說明關聯性，即無法輕易釐清這些值的關聯。 
+語意資料模型是一種會說明它所包含的資料元素代表何意的概念模型。 組織通常會有自己的詞彙，有時也會有同義字，甚或相同的詞彙會有不同的意義。 例如，庫存資料庫可能會以資產識別碼和序號追蹤某項設備，但銷售資料庫卻可能將序號視為資產識別碼。 若未以模型說明關聯性，即無法輕易釐清這些值的關聯。
 
 語意模型提供了資料庫結構描述的抽象層，讓使用者無須了解基礎資料結構。 這可讓使用者更容易查詢資料，而無須對基礎結構描述執行彙總與聯結。 此外，資料行通常也會重新命名為使用者易記的名稱，而使得資料的內容和意義更容易理解。
 
@@ -29,7 +29,7 @@ ms.locfileid: "52902593"
 - 會設定彙總行為，讓報告工具能夠正確顯示這些行為。
 - 會定義商務邏輯和計算方式。
 - 會包含時間導向的計算。
-- 資料常整合自多個來源。 
+- 資料常整合自多個來源。
 
 傳統上，資料倉儲之所以加上語意層，都是基於這些原因。
 
@@ -37,10 +37,11 @@ ms.locfileid: "52902593"
 
 語意模型主要分成兩種類型：
 
-* **表格式**。 使用關聯式模型建構 (模型、資料表、資料行)。 在內部，中繼資料會繼承自 OLAP 模型建構 (Cube、維度、量值)。 程式碼和指令碼會使用 OLAP 中繼資料。
-* **多維度**。 使用傳統 OLAP 模型建構 (Cube、維度、量值)。
+- **表格式**。 使用關聯式模型建構 (模型、資料表、資料行)。 在內部，中繼資料會繼承自 OLAP 模型建構 (Cube、維度、量值)。 程式碼和指令碼會使用 OLAP 中繼資料。
+- **多維度**。 使用傳統 OLAP 模型建構 (Cube、維度、量值)。
 
 相關 Azure 服務：
+
 - [Azure Analysis Services](https://azure.microsoft.com/services/analysis-services/)
 
 ## <a name="example-use-case"></a>使用案例範例
@@ -72,9 +73,9 @@ ms.locfileid: "52902593"
 
 在下列情況下請考慮使用 OLAP：
 
-- 您需要快速執行複雜的分析與特定查詢，且不會對 OLTP 系統造成負面影響。 
+- 您需要快速執行複雜的分析與特定查詢，且不會對 OLTP 系統造成負面影響。
 - 您想要為商業使用者提供簡單的方式，從您的資料產生報表
-- 您想要提供多種彙總方式，讓使用者能夠取得快速且一致的結果。 
+- 您想要提供多種彙總方式，讓使用者能夠取得快速且一致的結果。
 
 為大量資料套用彙總計算時，OLAP 特別具有效益。 OLAP 系統針對大量讀取案例進行了最佳化，例如分析和商業智慧。 OLAP 可讓使用者將多維度資料切分成能夠二維檢視的配量 (例如樞紐分析表)，或是依特定值篩選資料。 此程序有時也稱為「切割與細分」資料，無論資料是否跨數個資料來源進行分割，都可以執行。 這有助於使用者找出趨勢和模式以及瀏覽資料，而無須得知傳統資料分析的詳細資料。
 
@@ -109,11 +110,11 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 
 - 您是否需要使用 Azure Active Directory (Azure AD) 的安全驗證？
 
-- 您是否要進行即時分析？ 如果是，請將您的選擇範圍縮小至支援即時分析的選項。 
+- 您是否要進行即時分析？ 如果是，請將您的選擇範圍縮小至支援即時分析的選項。
 
     此內容中的「即時分析」適用於會同時執行操作和分析工作負載的單一資料來源 (例如企業資源規劃 (ERP) 應用程式)。 如果您需要整合多個來源的資料，或是需要使用預先彙總的資料 (如 Cube) 來獲得極致的分析效能，您可能還是需要個別的資料倉儲。
 
-- 您是否需要使用預先彙總的資料，例如，為了提供語意模型從而讓商務使用者更容易進行分析？ 如果是，請選擇支援多維度 Cube 或表格式語意模型的選項。 
+- 您是否需要使用預先彙總的資料，例如，為了提供語意模型從而讓商務使用者更容易進行分析？ 如果是，請選擇支援多維度 Cube 或表格式語意模型的選項。
 
     提供彙總可協助使用者以一致的方式計算資料彙總。 預先彙總的資料在處理跨多個資料列的數個資料行時，也可以提供大幅提升的效能。 資料可在多維度 Cube 或表格式語意模型中預先彙總。
 
@@ -125,6 +126,8 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 
 ### <a name="general-capabilities"></a>一般功能
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure Analysis Services | SQL Server Analysis Services | 包含資料行存放區索引的 SQL Server | 包含資料行存放區索引的 Azure SQL Database |
 | --- | --- | --- | --- | --- |
 | 屬於受控服務 | yes | 否 | 否 | 是 |
@@ -134,6 +137,8 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 | 支援即時分析 | 否 | 否 | yes | 是 |
 | 需要從來源複製資料的程序 | 是 | 是 | 否 | 否 |
 | Azure AD 整合 | 是 | 否 | 否 <sup>2</sup> | 是 |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] SQL Server 和 Azure SQL Database 雖無法作為查詢來源並整合多個外部資料來源，但您仍可使用 [SSIS](/sql/integration-services/sql-server-integration-services) 或 [Azure Data Factory](/azure/data-factory/) 建置管線來為您執行此工作。 裝載於 Azure 虛擬機器的 SQL Server 有其他選項，例如連結的伺服器和 [PolyBase](/sql/relational-databases/polybase/polybase-guide)。 如需詳細資訊，請參閱[管線協調流程、控制流程和資料移動](../technology-choices/pipeline-orchestration-data-movement.md)。
 
@@ -146,4 +151,3 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 | 高可用性的備援區域伺服器 |           是           |              否              |                 yes                 |                     是                     |
 |             支援查詢相應放大             |           是           |              否              |                 是                 |                     否                      |
 |          動態延展性 (相應增加)          |           yes           |              否              |                 是                 |                     否                      |
-

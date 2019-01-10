@@ -5,12 +5,12 @@ description: 部署具高可用性的網路虛擬設備。
 author: telmosampaio
 ms.date: 12/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: 646721f80d19f493b7674884f8108762d743201b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120747"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011084"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>部署高可用性的網路虛擬設備
 
@@ -30,13 +30,17 @@ NVA 可以部署到許多不同架構的 DMZ 中。 例如，下圖說明針對�
 
 下列架構描述高可用性 NVA 所需的資源和設定：
 
-| 解決方案 | 優點 | 考量 |
+<!-- markdownlint-disable MD033 -->
+
+| 方案 | 優點 | 考量 |
 | --- | --- | --- |
 | [具第 7 層 NVA 的輸入][ingress-with-layer-7] |所有 NVA 節點都是作用中狀態 |需要可以終止連線並使用 SNAT 的 NVA<br/> 需要另外一組 NVA 以供來自網際網路與 Azure 流量使用 <br/> 僅能用於源自於 Azure 外部的流量 |
 | [第 7 層 NVA 的輸出][egress-with-layer-7] |所有 NVA 節點都是作用中狀態 | 需要可以終止連線並實作來源網路位址轉譯 (SNAT) 的 NVA
 | [具第 7 層 NVA 的輸入-輸出][ingress-egress-with-layer-7] |所有節點都是作用中狀態<br/>能夠處理來自 Azure 中的流量 |需要可以終止連線並使用 SNAT 的 NVA<br/>需要另外一組 NVA 以供來自網際網路與 Azure 流量使用 |
 | [PIP-UDR 切換][pip-udr-switch] |針對所有流量使用一組 NVA<br/>可以處理所有流量 (連接埠規則沒有限制) |主動-被動<br/>需要容錯移轉程序 |
 | [沒有 SNAT 的 PIP-UDR](#pip-udr-nvas-without-snat) | 針對所有流量使用一組 NVA<br/>可以處理所有流量 (連接埠規則沒有限制)<br/>不需要對傳入要求設定 SNAT |主動-被動<br/>需要容錯移轉程序<br/>在虛擬網路外部執行探查和容錯移轉邏輯 |
+
+<!-- markdown-enable MD033 -->
 
 ## <a name="ingress-with-layer-7-nvas"></a>具第 7 層 NVA 的輸入
 

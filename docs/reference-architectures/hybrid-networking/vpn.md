@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: 實作安全的站對站網路架構，並且在透過 VPN 連線的 Azure 虛擬網路與內部部署網路中使用。
 author: RohitSharma-pnp
 ms.date: 10/22/2018
-ms.openlocfilehash: 92a5a12675ca12075bec3c7f59f73a19287fe5d7
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 63e919041e4a8c7c9f90a49de05effc48cb743d8
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644201"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110905"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 閘道將內部部署網路連線至 Azure
 
@@ -192,9 +192,9 @@ ms.locfileid: "53644201"
 [changing-SKUs]: https://azure.microsoft.com/blog/azure-virtual-network-gateway-improvements/
 [gateway-diagnostic-logs]: https://blogs.technet.microsoft.com/keithmayer/2016/10/12/step-by-step-capturing-azure-resource-manager-arm-vnet-gateway-diagnostic-logs/
 [rras-logging]: https://www.petri.com/enable-diagnostic-logging-in-windows-server-2012-r2-routing-and-remote-access
-[forced-tunneling]: https://azure.microsoft.com/documentation/articles/vpn-gateway-about-forced-tunneling/
+[forced-tunneling]: /azure/vpn-gateway/vpn-gateway-about-forced-tunneling
 [vpn-appliances]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [vpn-appliance-ipsec]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices#ipsec-parameters
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[azure-cli]: /cli/azure/install-azure-cli
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing

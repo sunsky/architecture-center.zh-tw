@@ -4,12 +4,12 @@ titleSuffix: Azure Example Scenarios
 description: 使用 Azure Cosmos DB 建置高度可調整訂單處理管線。
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe4e9d64e96d0be66534198bc60e2a73dad43e84
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 285db7979f8a20ae75b534dcea5174b7151047ca
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644184"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160820"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Azure 上可調整的訂單處理
 
@@ -49,7 +49,7 @@ ms.locfileid: "53644184"
 
 許多技術選項都適用於即時訊息擷取、資料儲存、串流處理、分析資料儲存，以及分析和報告。 如需這些選項、其功能及重要選取準則的概觀，請參閱[巨量資料架構：即時處理](/azure/architecture/data-guide/technology-choices/real-time-ingestion)，出處：[Azure 資料架構指南](/azure/architecture/data-guide)。
 
-微服務已成為熱門的架構樣式，用於建置可復原、高延展性、可獨立部署，以及能夠快速發展的雲端應用程式。 微服務需要不同的方法來設計和建置應用程式。 例如 Docker、Kubernetes、Azure Service Fabric 及 Nomad 的工具可以進行微服務型架構的開發。 如需建置及執行微服務型架構的指引，請參閱 Azure Architecture Center 中的 [在 Azure 上設計微服務](/azure/architecture/microservices)。
+微服務已成為熱門的架構樣式，用於建置可復原、高延展性、可獨立部署，以及能夠快速發展的雲端應用程式。 微服務需要不同的方法來設計和建置應用程式。 例如 Docker、Kubernetes、Azure Service Fabric 及 Nomad 的工具可以進行微服務型架構的開發。 如需建置及執行微服務型架構的指引，請參閱 Azure Architecture Center 中的[在 Azure 上設計微服務](/azure/architecture/microservices)。
 
 ### <a name="availability"></a>可用性
 

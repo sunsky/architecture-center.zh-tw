@@ -1,19 +1,17 @@
 ---
-title: 選出領導者
+title: 選出領導者模式
+titleSuffix: Cloud Design Patterns
 description: 選取一個執行個體作為領導者，負責管理其他執行個體，協調分散式應用程式中共同作業工作執行個體集合執行的動作。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- resiliency
-ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429191"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010134"
 ---
 # <a name="leader-election-pattern"></a>選出領導者模式
 
@@ -41,6 +39,7 @@ ms.locfileid: "47429191"
 系統必須提供用來選取領導者的健全機制。 這個方法必須處理如網路中斷或處理序失敗等事件。 在許多解決方案中，從屬工作執行個體會透過某種類型的活動訊號方法或透過輪詢來監視領導者。 如果指定的領導者意外終止，或網路失敗造成從屬工作執行個體無法使用領導者，它們就必須選出新的領導者。
 
 在分散式環境中的一組工作之間選擇領導者的數種策略包括：
+
 - 選取其執行個體排名或處理序識別碼最低的工作執行個體。
 - 競爭以取得共用、分散式 Mutex。 最先取得 Mutex 的工作執行個體就是領導者。 然而，系統必須確保如果領導者終止或和系統的其餘部分中斷連線，就會釋出 Mutex，以讓另一個工作執行個體成為領導者。
 - 實作其中一種常見的領導者選擇演算法，例如[強勢演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) \(英文\) 或 [通道演算法](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html) \(英文\)。 這些演算法假設選擇中的每個候選項目都有唯一的識別碼，並能與其他候選項目可靠地進行通訊。
@@ -48,6 +47,7 @@ ms.locfileid: "47429191"
 ## <a name="issues-and-considerations"></a>問題和考量
 
 當您決定如何實作此模式時，請考慮下列幾點：
+
 - 選擇領導者的程序應該要能從暫時性和持續失敗復原。
 - 務必要能偵測到領導者失敗或變得無法使用 (例如，由於通訊失敗) 的情況。 多快能偵測到則取決於系統。 在沒有領導者的情況下，有些系統可能還可以運作一小段時間，暫時性錯誤可能會在這段期間內修正。 在其他情況下，可能必須立即偵測到領導者失敗並觸發新的選擇程序。
 - 在實作水平自動調整規模的系統中，如果系統調低和關閉一些計算資源，可能會終止領導者。
@@ -59,9 +59,10 @@ ms.locfileid: "47429191"
 
 當雲端裝載解決方案等分散式應用程式中的工作需要謹慎協調，而且沒有自然領導者時，可以使用此模式。
 
->  請避免讓領導者成為系統中的瓶頸。 領導者的目的在協調從屬工作的工作，本身不一定要參與此工作&mdash;雖然未獲選為領導者時應要能這麼做。
+> 請避免讓領導者成為系統中的瓶頸。 領導者的目的在協調從屬工作的工作，本身不一定要參與此工作&mdash;雖然未獲選為領導者時應要能這麼做。
 
 此模式可能不適合用於下列時機︰
+
 - 沒有總是可作為領導者的自然領導者或專用的處理序。 例如，可實作協調工作執行個體的單一處理序。 如果此處理序失敗或變得狀況不良，系統就會將它關閉並重新啟動。
 - 工作之間的協調可以使用更精簡的方法來達成。 例如，如果多個工作執行個體只需要協調對共用資源的存取，使用開放式或封閉式鎖定來控制存取是比較好的解決方案。
 - 協力廠商解決方案更適合。 例如，Microsoft Azure HDInsight 服務 (以 Apache Hadoop 為基礎) 使用 Apache Zookeeper 提供的服務來協調對應，並減少收集和建立資料摘要的工作。
@@ -70,8 +71,8 @@ ms.locfileid: "47429191"
 
 LeaderElection 方案中的 DistributedMutex 專案 (示範此模式的範例可於 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) 取得) 示範如何使用 Azure 儲存體 Blob 上的租用，提供用於實作共用、分散式 Mutex 的機制。 此 Mutex 可以用來在 Azure 雲端服務中的一組角色執行個體之間選擇領導者。 最先取得租用的角色執行個體會獲選為領導者，而且在其釋出租用或無法更新租用之前，都會是領導者。 其他角色執行個體可以繼續監視 Blob 租用，以防該領導者無法再使用。
 
->  Blob 租用是對 Blob 的獨佔寫入鎖定。 不論何時，單一 Blob 都是唯一租用的主體。 角色執行個體可向指定的 Blob 要求租用，並在沒有其他角色執行個體握有同一個 Blob 的租用時獲得租用。 否則該要求將會擲回例外狀況。
-> 
+> Blob 租用是對 Blob 的獨佔寫入鎖定。 不論何時，單一 Blob 都是唯一租用的主體。 角色執行個體可向指定的 Blob 要求租用，並在沒有其他角色執行個體握有同一個 Blob 的租用時獲得租用。 否則該要求將會擲回例外狀況。
+>
 > 為了避免發生錯誤的角色執行個體無限期握有租用，須指定租用的存留期。 到期時，租用就會變成可用。 不過，當角色執行個體握有租用，它可以要求更新租用，延長獲得租用的時間。 如果角色執行個體想要一直握有租用，可以不斷重複此程序。
 > 如需如何租用 Blob 的詳細資訊，請參閱[租用 Blob (REST API)](https://msdn.microsoft.com/library/azure/ee691972.aspx) \(英文\)。
 
@@ -167,7 +168,6 @@ public class BlobDistributedMutex
 
 ![圖 1 說明 BlobDistributedMutex 類別的函式](./_images/leader-election-diagram.png)
 
-
 下列程式碼範例示範如何使用背景工作角色中的 `BlobDistributedMutex` 類別。 此程式碼會向開發儲存體中租用容器內名為 `MyLeaderCoordinatorTask` 的 Blob 取得租用，並指出如果該角色執行個體獲選為領導者，則應執行 `MyLeaderCoordinatorTask` 方法中定義的程式碼。
 
 ```csharp
@@ -186,6 +186,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ```
 
 請注意下列有關範例解決方案的重點：
+
 - Blob 是潛在的單一失敗點。 如果 Blob 服務變得無法使用或無法存取，領導者將無法更新租用，而且其他角色執行個體都將無法取得租用。 在此情況下，任何角色執行個體都無法作為領導者。 不過，Blob 服務的設計很有彈性，因此 Blob 服務幾乎不可能出現完全失敗的情況。
 - 如果領導者執行的工作停止，領導者可能會不停更新租用，避免任何其他角色執行個體取得租用並接任領導者角色來協調工作。 在真實世界中，應頻繁檢查領導者的健康情況。
 - 選擇程序並不具決定性。 您不得假設哪個角色執行個體會取得 Blob 租用並成為領導者。
@@ -194,6 +195,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 實作此模式時，下列指導方針可能也相關：
+
 - 此模式有可下載的[範例應用程式](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)。
 - [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx)。 工作主機的執行個體可以隨著應用程式的負載來啟動和停止。 自動調整規模有助於維護尖峰處理時間的輸送量和效能。
 - [計算分割指導方針](https://msdn.microsoft.com/library/dn589773.aspx) \(英文\)。 本指導方針說明如何以有助於將執行成本降至最低，同時維持服務延展性、效能、可用性及安全性的方式，將工作配置到雲端服務中的主機。

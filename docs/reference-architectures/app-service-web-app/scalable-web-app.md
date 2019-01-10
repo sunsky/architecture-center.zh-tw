@@ -5,12 +5,12 @@ description: 改善 Microsoft Azure 中所執行 Web 應用程式的延展性。
 author: MikeWasson
 ms.date: 10/25/2018
 ms.custom: seodec18
-ms.openlocfilehash: ab38864e7135777f205b39d0a86897559fc061b9
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.openlocfilehash: aa4579b45c5ecf090a896e252f2d2e460f282c0e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179292"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110964"
 ---
 # <a name="improve-scalability-in-an-azure-web-application"></a>改善 Azure Web 應用程式的延展性
 
@@ -81,7 +81,7 @@ ms.locfileid: "53179292"
 | 具有彈性結構描述且需要基本查詢的非關聯式資料 |產品目錄 |文件資料庫，例如 Azure Cosmos DB、MongoDB 或 Apache CouchDB |
 | 需要更豐富查詢支援、嚴格結構描述，及/或強式一致性的關聯式資料 |產品庫存 |連接字串 |
 
- 請參閱[選擇正確的資料存放區][datastore]。
+請參閱[選擇正確的資料存放區][datastore]。
 
 ## <a name="scalability-considerations"></a>延展性考量
 
@@ -132,7 +132,7 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [azure-cdn]: https://azure.microsoft.com/services/cdn/
 [azure-dns]: /azure/dns/dns-overview
 [azure-redis]: https://azure.microsoft.com/services/cache/
-[azure-search]: https://azure.microsoft.com/documentation/services/search/
+[azure-search]: /azure/search
 [azure-search-scaling]: /azure/search/search-capacity-planning
 [basic-web-app]: basic-web-app.md
 [basic-web-app-scalability]: basic-web-app.md#scalability-considerations
@@ -149,7 +149,7 @@ App Service 已內建 CORS 支援，不需要再撰寫任何應用程式程式�
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups
-[sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[sql-db]: /azure/sql-database/
 [sql-elastic]: /azure/sql-database/sql-database-elastic-scale-introduction
 [sql-encryption]: https://msdn.microsoft.com/library/dn948096.aspx
 [tm]: https://azure.microsoft.com/services/traffic-manager/

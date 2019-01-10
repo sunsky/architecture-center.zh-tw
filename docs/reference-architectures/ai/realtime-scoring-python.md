@@ -2,15 +2,15 @@
 title: Python 模型的即時評分
 titleSuffix: Azure Reference Architectures
 description: 此參考架構會示範如何在 Azure 上將 Python 模型部署為 Web 服務，以進行即時預測。
-author: njray
+author: msalvaris
 ms.date: 11/09/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: e2312d1d1d2444f9915f4e6aa067c1487e096d3e
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: b40072b43630adf13e8ead0b6aa6bec59ca1bfac
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120351"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110887"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上的 Python Scikit-Learn 和深度學習模型的即時評分
 
@@ -116,7 +116,7 @@ AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使�
 
 **容器登錄**。 此解決方案會使用公用登錄來儲存 Docker 映像。 應用程式相依的程式碼以及模型都包含在此映像中。 企業應用程式應使用私人登錄，有助於防止惡意程式碼執行，並協助將資訊保存在容器內而不會遭到入侵。
 
-**DDoS 保護**。 考慮啟用 [DDoS 保護標準][ddos]。 雖然基本 DDoS 保護會隨著 Azure 平台而啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。
+**DDoS 保護**. 考慮啟用 [DDoS 保護標準][ddos]。 雖然基本 DDoS 保護會隨著 Azure 平台而啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。
 
 **記錄**。 在儲存記錄資料前請使用最佳做法，例如清除使用者密碼以及其他可能用來認可安全性詐騙的資訊。
 

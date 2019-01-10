@@ -5,12 +5,12 @@ description: 在 Azure 中實作中樞輪輻網路拓撲與共用服務。
 author: telmosampaio
 ms.date: 10/09/2018
 ms.custom: seodec18
-ms.openlocfilehash: 37ae02d8ef02f64329d5e5215e5a32df9f0f9491
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 2ed76e467fd3f65664afa35b6247c83c3f6ce078
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120453"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112221"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲與共用服務
 
@@ -26,7 +26,7 @@ ms.locfileid: "53120453"
 - **克服訂用帳戶限制**：將不同訂用帳戶中的 VNet 對等互連到中心中樞。
 - **關注點分離**：中央 IT (SecOps、InfraOps) 和工作負載 (DevOps)。
 
-此架構的典型使用案例包括：
+此架構的一般使用案例包括：
 
 - 在不同環境 (例如開發、測試和生產環境) 下部署，且需要共用服務 (例如 DNS、IDS、NTP 或 AD DS) 的工作負載。 系統會將共用服務置於中樞 VNet，同時將每個環境部署至輪輻以維持隔離。
 - 不需要彼此連線，但需要存取共用服務的工作負載。
@@ -265,4 +265,3 @@ Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

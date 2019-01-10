@@ -5,12 +5,12 @@ description: 使用 Azure 從儲存在內部部署的關聯式資料取得商業
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 2f15b8d4376638e6e8e522e5150a3b3c247cba8f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644218"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010285"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Azure 中具 SQL 資料倉儲的 Enterprise BI
 
@@ -72,7 +72,7 @@ ms.locfileid: "53644218"
 
 [bcp](/sql/tools/bcp-utility) (大量複製程式) 公用程式是從 SQL 資料表建立一般文字檔的快速途徑。 在此步驟中，您會選取您要匯出的資料行，但不會轉換資料。 任何資料轉換均應在 SQL 資料倉儲中執行。
 
-**建議**
+**建議：**
 
 可能的話，請將資料擷取排程於離峰時間，以盡可能避免生產環境中的資源爭用。
 
@@ -84,7 +84,7 @@ ms.locfileid: "53644218"
 
 [AzCopy](/azure/storage/common/storage-use-azcopy) 公用程式可讓您以高效能將資料複製到 Azure Blob 儲存體中。
 
-**建議**
+**建議：**
 
 儲存體帳戶請建立在來源資料所在位置的鄰近區域中。 請將儲存體帳戶和 SQL 資料倉儲執行個體部署在相同區域中。 
 
@@ -105,7 +105,7 @@ AzCopy 會透過公用網際網路將資料移至儲存體。 若其速度不夠
 1. 為資料建立一組外部資料表。 外部資料表是一項資料表定義，會指向儲存在倉儲外部的資料 &mdash; 在此案例中，是指 Blob 儲存體中的一般檔案。 此步驟不會將任何資料移至倉儲中。
 2. 建立暫存資料表，並將資料載入暫存資料表中。 此步驟會將資料複製到倉儲中。
 
-**建議**
+**建議：**
 
 當您的資料龐大 (超過 1 TB)，且您的分析工作負載透過平行處理來執行又會比較好的話，請考慮使用 SQL 資料倉儲。 SQL 資料倉儲不適用於 OLTP 工作負載或較小的資料集 (< 250 GB)。 對於小於 250 GB 的資料集，請考慮使用 Azure SQL Database 或 SQL Server。 如需詳細資訊，請參閱[資料倉儲](../../data-guide/relational-data/data-warehousing.md)。
 
@@ -155,7 +155,7 @@ Power BI 支援兩個連線至 Azure Analysis Services 的選項：
 
 建議您使用即時連線，因為它不需要將資料複製到 Power BI 模型中。 此外，使用 DirectQuery 可確保結果絕對會與最新的來源資料一致。 如需詳細資訊，請參閱[使用 Power BI 進行連線](/azure/analysis-services/analysis-services-connect-pbi)。
 
-**建議**
+**建議：**
 
 請避免直接對資料倉儲執行 BI 儀表板查詢。 BI 儀表板需要非常短的回應時間，直接對倉儲執行的查詢可能達不到此需求。 此外，重新整理儀表板將會計入並行查詢數目，而可能會影響效能。
 

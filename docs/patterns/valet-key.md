@@ -1,19 +1,17 @@
 ---
-title: Valet 金鑰
+title: Valet 金鑰模式
+titleSuffix: Cloud Design Patterns
 description: 使用可提供用戶端對特定資源或服務受限制的直接存取的權杖或金鑰。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- security
-ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 09173717d499d524d4d5dad2c1202c1bf361b1e5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450882"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009860"
 ---
 # <a name="valet-key-pattern"></a>Valet 金鑰模式
 
@@ -105,7 +103,7 @@ Azure 支援 Azure 儲存體上的共用存取簽章，以對 blob、資料表�
 
 Azure 共用存取簽章也支援伺服器預存存取原則，可與特定資源 (例如資料表或 blob) 相關聯。 相較於應用程式產生的共用存取簽章權杖，這項功能提供額外的控制和彈性，應該盡可能使用。 伺服器預存原則中定義的設定可以變更，而且會反映在權杖中而不需要發出新的權杖，但是如果沒有發出新的權杖就無法變更權杖中定義的設定。 這個方法也可以在權杖過期之前撤銷有效的共用存取簽章權杖。
 
-> 如需詳細資訊，請參閱 MSDN 上的[簡介資料表 SAS (共用存取簽章)、佇列 SAS 以及 Blob SAS 的更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)和[使用共用存取簽章](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)。
+> 如需詳細資訊，請參閱 MSDN 上的[簡介資料表 SAS (共用存取簽章)、佇列 SAS 以及 Blob SAS 的更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)和[使用共用存取簽章](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)。
 
 下列程式碼示範如何建立有效期為五分鐘的共用存取簽章權杖。 `GetSharedAccessReferenceForUpload` 方法會傳回共用存取簽章權杖，可用來將檔案上傳至 Azure Blob 儲存體。
 
@@ -162,9 +160,10 @@ public class ValuesController : ApiController
 ## <a name="next-steps"></a>後續步驟
 
 實作此模式時，下列模式和指導方針可能也相關：
+
 - [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key) 上有提供示範此模式的範例。
-- [閘道管理員模式](gatekeeper.md)。 此模式可以與 Valet 金鑰模式搭配使用，以保護應用程式和服務，方法是使用專用的主機執行個體，其會作為用戶端和應用程式或服務之間的代理程式。 閘道管理員會驗證和處理要求，並在用戶端與應用程式之間傳遞要求和資料。 可以提供一層額外的安全性，並且減少系統的受攻擊面。
-- [靜態內容裝載模式](static-content-hosting.md)。 描述如何將靜態資源部署至雲端型儲存體服務，該服務可以將這些資源直接傳遞至用戶端，以減少昂貴計算執行個體的需求。 當資源不是作為公用使用時，Valet 金鑰模式可用來保護其安全。
+- [閘道管理員模式](./gatekeeper.md)。 此模式可以與 Valet 金鑰模式搭配使用，以保護應用程式和服務，方法是使用專用的主機執行個體，其會作為用戶端和應用程式或服務之間的代理程式。 閘道管理員會驗證和處理要求，並在用戶端與應用程式之間傳遞要求和資料。 可以提供一層額外的安全性，並且減少系統的受攻擊面。
+- [靜態內容裝載模式](./static-content-hosting.md)。 描述如何將靜態資源部署至雲端型儲存體服務，該服務可以將這些資源直接傳遞至用戶端，以減少昂貴計算執行個體的需求。 當資源不是作為公用使用時，Valet 金鑰模式可用來保護其安全。
 - [簡介資料表 SAS (共用存取簽章)、佇列 SAS 以及 Blob SAS 的更新](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/)
-- [使用共用存取簽章](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [使用服務匯流排的共用存取簽章驗證](https://azure.microsoft.com/documentation/articles/service-bus-shared-access-signature-authentication/)
+- [使用共用存取簽章](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)
+- [使用服務匯流排的共用存取簽章驗證](/azure/service-bus-messaging/service-bus-sas)

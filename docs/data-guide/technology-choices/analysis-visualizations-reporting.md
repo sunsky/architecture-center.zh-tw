@@ -3,18 +3,22 @@ title: 選擇資料分析和報告技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: a5e793c9caf50daca4ef7e40c49e54f25f04e856
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 5b4947f53edf595c206ef4f55572dadc1a9daa09
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902411"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111405"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中選擇資料分析技術
 
-大部分巨量資料解決方案的目標，是要透過分析和報告提供資料的深入見解。 這可能包括預先設定的報表和視覺效果，或互動式資料探索。 
+大部分巨量資料解決方案的目標，是要透過分析和報告提供資料的深入見解。 這可能包括預先設定的報表和視覺效果，或互動式資料探索。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-a-data-analytics-technology"></a>選擇資料分析技術時有哪些選項？
+
+<!-- markdownlint-disable MD026 -->
 
 有幾個選項可根據您的需求在 Azure 中分析、視覺化及報告：
 
@@ -29,7 +33,7 @@ ms.locfileid: "52902411"
 
 組織可使用 Power BI 產生報表，並將其發行到組織。 每個人都可以建立個人化儀表板，包含控管和[內建的安全性](/power-bi/service-admin-power-bi-security)。 Power BI 使用 [Azure Active Directory](/azure/active-directory/) (Azure AD) 來驗證登入 Power BI 服務的使用者，並在每次使用者嘗試存取需要驗證的資源時使用 Power BI 登入認證。
 
-### <a name="jupyter-notebooks"></a>Jupyter Notebook 
+### <a name="jupyter-notebooks"></a>Jupyter Notebook
 
 [Jupyter Notebook](https://jupyter.readthedocs.io/en/latest/index.html) 提供瀏覽器型的殼層，可讓資料科學家建立「notebook」檔案，其中包含 Python、Scala 或 R 程式碼和 Markdown 文字，透過共用和記錄程式碼並產生單一文件的方式，有效率地進行協同作業。
 
@@ -49,15 +53,15 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 
 主要優點：
 
-* 免費服務 &mdash; 不需要 Azure 訂用帳戶。
-* 不需要在本機安裝 Jupyter 和支援的 R 或 Python 發行版本 &mdash; 直接使用瀏覽器即可。
-* 管理您自己的線上程式庫，並從任何裝置存取它們。
-* 與共同作業者共用您的筆記本。
+- 免費服務 &mdash; 不需要 Azure 訂用帳戶。
+- 不需要在本機安裝 Jupyter 和支援的 R 或 Python 發行版本 &mdash; 直接使用瀏覽器即可。
+- 管理您自己的線上程式庫，並從任何裝置存取它們。
+- 與共同作業者共用您的筆記本。
 
 考量：
 
-* 您在離線時將無法存取您的筆記本。
-* 免費筆記本服務的有限處理功能可能不足以訓練大型或複雜的模型。
+- 您在離線時將無法存取您的筆記本。
+- 免費筆記本服務的有限處理功能可能不足以訓練大型或複雜的模型。
 
 ## <a name="key-selection-criteria"></a>關鍵選取準則
 
@@ -73,9 +77,11 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 
 ## <a name="capability-matrix"></a>相容性矩陣
 
-下表摘要列出各項功能的主要差異。 
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
+
+<!-- markdownlint-disable MD033 -->
 
 | | Power BI | Jupyter Notebook | Zeppelin Notebook | Microsoft Azure Notebook |
 | --- | --- | --- | --- | --- |
@@ -90,6 +96,8 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 | 價格 | 免費用於 Power BI Desktop (撰寫)，請參閱[定價](https://powerbi.microsoft.com/pricing/)以取得裝載選項 | 免費 | 免費 | 免費 |
 | 多使用者共同作業 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是 (透過共用或使用多使用者伺服器，如 [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | 是 | 是 (透過共用) |
 
+<!-- markdownlint-enable MD033 -->
+
 [1] 作為受控 HDInsight 叢集的一部分使用時。
 
 [2] 與 Power BI Desktop 搭配使用。
@@ -97,4 +105,3 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 [2] 您可以搜尋 [Maven 存放庫](https://search.maven.org/)以取得社群貢獻的套件。
 
 [3] 可使用 pip 或 conda 來安裝 Python 套件。 可以從 CRAN 或 GitHub 安裝 R 套件。 可使用 [Paket 相依性管理員](https://fsprojects.github.io/Paket/)，透過 nuget.org 以 F# 安裝套件。
-

@@ -1,19 +1,17 @@
 ---
-title: 外部設定存放區
+title: 外部設定存放區模式
+titleSuffix: Cloud Design Patterns
 description: 將設定資訊從應用程式部署套件移至集中位置。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- management-monitoring
-ms.openlocfilehash: 733ca979903d1526d3a1a6b281a8903893e19fda
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 7e37e5bc052a9d8e8747a3a4ac3d79a311185ea4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542276"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011305"
 ---
 # <a name="external-configuration-store-pattern"></a>外部設定存放區模式
 
@@ -31,7 +29,7 @@ ms.locfileid: "24542276"
 
 此外，應用程式和元件的更新可能需要變更設定結構描述。 許多設定系統不支援不同版本的設定資訊。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 將設定資訊儲存在外部儲存體，並提供可迅速、有效地讀取和更新組態設定的介面。 外部存放區的類型取決於應用程式的裝載和執行階段環境。 在雲端主控的案例中，它通常是以雲端為基礎的儲存體服務，但也可能是主控資料庫或其他系統。
 
@@ -40,7 +38,6 @@ ms.locfileid: "24542276"
 > 許多內建設定系統會在應用程式啟動時讀取資料，並將資料快取於記憶體中，以提供快速存取並將對應用程式效能的影響降到最低。 根據使用的備份存放區類型和此存放區的延遲而定，在外部設定存放區中實作快取機制可能會有幫助。 如需詳細資訊，請參閱「 [快取指引](https://msdn.microsoft.com/library/dn589802.aspx)」。 此圖概要說明具有選擇性本機快取的外部設定存放區模式。
 
 ![具有選擇性本機快取的外部設定存放區模式概觀](./_images/external-configuration-store-overview.png)
-
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
@@ -101,7 +98,7 @@ public interface ISettingsStore
 
 請注意，所有設定也會快取到 `ExternalConfigurationManager` 類別內的 `Dictionary` 物件，以提供快速存取。 用來擷取組態設定的 `GetSetting` 方法會從快取讀取資料。 如果在快取中找不到設定，它會改從 `BlobSettingsStore` 物件中擷取。
 
-`GetSettings` 方法會叫用 `CheckForConfigurationChanges` 方法來偵測 Blob 儲存體中的設定資訊是否已變更。 它的作法是檢查版本號碼，並將它與 `ExternalConfigurationManager` 物件所持有的目前版本號碼進行比較。 如果發生一或多個變更，就會引發 `Changed` 事件，並重新整理快取到 `Dictionary` 物件的組態設定。 這是[另行快取模式](cache-aside.md)的應用程式。
+`GetSettings` 方法會叫用 `CheckForConfigurationChanges` 方法來偵測 Blob 儲存體中的設定資訊是否已變更。 它的作法是檢查版本號碼，並將它與 `ExternalConfigurationManager` 物件所持有的目前版本號碼進行比較。 如果發生一或多個變更，就會引發 `Changed` 事件，並重新整理快取到 `Dictionary` 物件的組態設定。 這是[另行快取模式](./cache-aside.md)的應用程式。
 
 下列程式碼範例示範如何實作 `Changed` 事件、`GetSettings` 方法和 `CheckForConfigurationChanges` 方法：
 
@@ -130,7 +127,7 @@ public class ExternalConfigurationManager : IDisposable
   public string GetAppSetting(string key)
   {
     ...
-    // Try to get the value from the settings cache. 
+    // Try to get the value from the settings cache.
     // If there's a cache miss, get the setting from the settings store and refresh the settings cache.
 
     string value;
@@ -348,4 +345,4 @@ public override bool OnStart()
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
-- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/external-configuration-store) \(英文\) 上有提供示範此模式的範例。
+- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/external-configuration-store) 上有提供示範此模式的範例。

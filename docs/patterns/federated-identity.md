@@ -1,18 +1,17 @@
 ---
-title: 同盟身分識別
+title: 同盟身分識別模式
+titleSuffix: Cloud Design Patterns
 description: 將驗證委派給外部身分識別提供者。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: a1edbdd080309383201d33e73602e2f18928c080
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: b268000a81edbb2f224a9244d5949def75854f04
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542628"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110352"
 ---
 # <a name="federated-identity-pattern"></a>同盟身分識別模式
 
@@ -32,7 +31,7 @@ ms.locfileid: "24542628"
 
 使用者通常偏好針對所有這些應用程式使用相同的認證。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
 實作可以使用同盟身分識別的驗證機制。 將使用者驗證與應用程式程式碼分開，然後將驗證委派給信任的身分識別提供者。 這可以簡化開發流程並可讓使用者使用更廣泛的身分識別提供者 (IdP) 來進行驗證，同時又可將系統管理額外負荷降到最低。 它也可讓您明確地將驗證與授權分離。
 
@@ -41,7 +40,6 @@ ms.locfileid: "24542628"
 下圖說明當用戶端應用程式需要存取要求驗證之服務時的「同盟身分識別」模式。 驗證會由與 STS 合作的 IdP 執行。 IdP 會簽發提供受驗證使用者相關資訊的安全性權杖。 這項資訊 (稱為宣告) 包含使用者的身分識別，也可能包含其他資訊，例如角色成員資格和更細微的存取權限。
 
 ![同盟驗證概觀](./_images/federated-identity-overview.png)
-
 
 此模型通常稱為宣告型存取控制。 應用程式和服務會根據權杖所包含的宣告，授與對功能的存取權。 要求驗證的服務必須信任 IdP。 用戶端應用程式會聯繫執行驗證的 IdP。 如果驗證成功，IdP 就會傳回包含宣告的權杖，這些宣告可讓 STS (請注意，IdP 和 STS 可以是同一個服務) 識別使用者。 STS 可以根據預先定義的規則來轉換和擴大權杖中的宣告，然後再將權杖傳回給用戶端。 用戶端應用程式可以接著將此權杖傳遞給服務作為其身分識別的證明。
 
@@ -85,7 +83,6 @@ ms.locfileid: "24542628"
 
 ![大型企業訂閱者的使用者如何存取應用程式](./_images/federated-identity-multitenat.png)
 
-
 下圖說明租用戶如何向自己的身分識別提供者 (在此案例中為 ADFS) 進行驗證 (步驟 1)。 成功驗證租用戶之後，ADFS 會簽發權杖。 用戶端瀏覽器會將此權杖轉送給 SaaS 應用程式的同盟提供者，此提供者會信任租用戶的 ADFS 所簽發的權杖，以取回一個對 SaaS 同盟提供者有效的權杖 (步驟 2)。 必要時，SaaS 同盟提供者會先將權杖中的宣告轉換成應用程式能夠辨識的宣告 (步驟 3)，然後才將新權杖傳回給用戶端瀏覽器。 應用程式會信任 SaaS 同盟提供者所簽發的權杖，然後使用權杖中的宣告來套用授權規則 (步驟 4)。
 
 租用戶不須記住個別的認證即可存取應用程式，而租用戶公司的系統管理員則可以在自己的 ADFS 中設定可存取應用程式的使用者清單。
@@ -95,5 +92,5 @@ ms.locfileid: "24542628"
 - [Microsoft Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 - [Active Directory Domain Services](https://msdn.microsoft.com/library/bb897402.aspx)
 - [Active Directory 同盟服務](https://msdn.microsoft.com/library/bb897402.aspx) \(英文\)
-- [Microsoft Azure 中多租用戶應用程式的身分識別管理](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity/)
-- [Azure 中的多租用戶應用程式](https://azure.microsoft.com/documentation/articles/dotnet-develop-multitenant-applications/)
+- [Microsoft Azure 中多租用戶應用程式的身分識別管理](/azure/architecture/multitenant-identity)
+- [Azure 中的多租用戶應用程式](/azure/dotnet-develop-multitenant-applications)

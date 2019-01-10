@@ -1,16 +1,17 @@
 ---
 title: 訊息模式
+titleSuffix: Cloud Design Patterns
 description: 雲端應用程式的分散式本質需要可連接元件和服務的傳訊基礎結構，最理想的情況是使用鬆散耦合的方式來達到延展性最大化。 已廣泛使用的非同步傳訊提供許多優點，但也帶來傳訊的順序安排、有害訊息的管理和冪等性 (idempotency) 等挑戰。
 keywords: 設計模式
 author: dragon119
 ms.date: 12/07/2018
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 754e9a7dcad20dc1c4471af00f3f142f18022d62
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.custom: seodec18
+ms.openlocfilehash: 4619d30c152f050f3f95aee3f9983b8fe85911ed
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233875"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011322"
 ---
 # <a name="messaging-patterns"></a>訊息模式
 

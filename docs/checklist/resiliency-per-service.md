@@ -5,12 +5,12 @@ description: 檢查清單，提供各種 Azure 服務的復原指南。
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: e1fb780cf9f54a5078cc5d3c6b597b351f93e05e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307175"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112663"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
@@ -124,7 +124,7 @@ ms.locfileid: "53307175"
 
 **複寫資料庫。** 使用 SQL Server Always On 可用性群組來複寫資料庫。 如果有一個 SQL Server 執行個體失敗，可提供高可用性。 如需詳細資訊，請參閱[執行適用於多層式架構的 Windows VM](../reference-architectures/virtual-machines-windows/n-tier.md)
 
-**備份資料庫**。 如果您已經使用 [Azure 備份](https://azure.microsoft.com/documentation/services/backup/)來備份您的 VM，請考慮使用 [Azure 備份來備份採用 DPM 的 SQL Server 工作負載](/azure/backup/backup-azure-backup-sql/)。 使用此方法，組織有一個備份管理員角色以及 VM 和 SQL Server 的整合復原程序。 否則，使用 [SQL Server 受控備份至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。
+**備份資料庫**。 如果您已經使用 [Azure 備份](/azure/backup/)來備份您的 VM，請考慮使用 [Azure 備份來備份採用 DPM 的 SQL Server 工作負載](/azure/backup/backup-azure-backup-sql/)。 使用此方法，組織有一個備份管理員角色以及 VM 和 SQL Server 的整合復原程序。 否則，使用 [SQL Server 受控備份至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。
 
 ## <a name="traffic-manager"></a>流量管理員
 

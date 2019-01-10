@@ -1,20 +1,17 @@
 ---
-title: 健康情況端點監視
+title: 健康情況端點監視模式
+titleSuffix: Cloud Design Patterns
 description: 實作應用程式中的功能檢查，而外部工具可透過公開的端點定期存取此應用程式。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- management-monitoring
-- resiliency
-ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428970"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114244"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>健康情況端點監視模式
 
@@ -42,6 +39,7 @@ ms.locfileid: "47428970"
 ![模式概觀](./_images/health-endpoint-monitoring-pattern.png)
 
 應用程式中健康情況監視程式碼可能會執行的其他檢查包括：
+
 - 檢查雲端儲存體或資料庫的可用性和回應時間。
 - 檢查其他資源或服務位於應用程式，或位於其他位置但是由應用程式使用。
 
@@ -67,7 +65,7 @@ ms.locfileid: "47428970"
 
 如何驗證回應。 例如，只要單一 200 (良好) 狀態碼就足以確認應用程式正常運作嗎？ 提供最基本應用程式可用性的量值，也是此模式最小實作的同時，提供應用程式中作業、趨勢和可能即將發生問題的少數資訊。
 
-   >  請確定只有當找到目標資源並且處理時，應用程式才會正確傳回 200 (良好)。 在某些情況下，例如當使用主版頁面裝載目標網頁時，伺服器會傳回 200 (良好) 狀態碼，而不是 404 (找不到) 狀態碼，即使找不到目標內容頁。
+   > 請確定只有當找到目標資源並且處理時，應用程式才會正確傳回 200 (良好)。 在某些情況下，例如當使用主版頁面裝載目標網頁時，伺服器會傳回 200 (良好) 狀態碼，而不是 404 (找不到) 狀態碼，即使找不到目標內容頁。
 
 針對應用程式公開的端點數目。 其中一個方法是為應用程式使用的核心服務公開至少一個端點，而為優先順序較低的服務公開另一個端點，對每個監視結果指派不同層級重要性。 另請考慮公開多個端點，例如為每個核心服務公開一個端點，以取得額外監視細微性。 例如，健康情況驗證檢查可能會檢查應用程式使用之資料庫、儲存體，以及外部地理編碼服務，各個需要不同層級的執行時間和回應時間。 如果地理編碼服務或某些其他背景工作在幾分鐘內無法使用，應用程式可能依然狀況良好。
 
@@ -98,6 +96,7 @@ ms.locfileid: "47428970"
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
 
 這種模式在下列情況中非常有用：
+
 - 監視網站和 Web 應用程式來驗證可用性。
 - 監視網站和 Web 應用程式來檢查是否正常運作。
 - 監視中介層或共用服務以偵測可能會中斷其他應用程式的失敗，並加以隔離。
@@ -134,6 +133,7 @@ public ActionResult CoreServices()
   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
 }
 ```
+
 `ObscurePath` 方法顯示如何從應用程式組態讀取路徑，並且使用它作為測試端點。 以 C# 表示的這個範例，也會顯示如何接受識別碼作為參數，並且使用它來檢查有效的要求。
 
 ```csharp
@@ -178,6 +178,7 @@ public ActionResult TestResponseFromConfig()
   return new HttpStatusCodeResult(returnStatusCode);
 }
 ```
+
 ## <a name="monitoring-endpoints-in-azure-hosted-applications"></a>監視 Azure 裝載應用程式中的端點
 
 監視 Azure 應用程式中端點的一些選項如下：
@@ -192,7 +193,7 @@ public ActionResult TestResponseFromConfig()
 
 您可以監視的條件取決於您為應用程式選擇的裝載機制 (例如網站、雲端服務、虛擬機器或行動服務)，但是這些項目都包括建立警示規則的能力，使用您在服務設定中指定的 Web 端點。 此端點應該會以即時方式回應，讓警示系統可以偵測應用程式是否運作正常。
 
->  深入了解[建立警示通知][portal-alerts]。
+> 深入了解[建立警示通知][portal-alerts]。
 
 如果您將應用程式裝載在 Azure 雲端服務 Web 和背景工作角色或虛擬機器，您可以利用 Azure 其中一項稱為「流量管理員」的內建服務。 「流量管理員」是路由和負載平衡服務，可以根據規則和設定的範圍，將要求散發到雲端服務裝載應用程式的特定執行個體。
 
@@ -200,13 +201,14 @@ public ActionResult TestResponseFromConfig()
 
 不過，「流量管理員」在接收監視 URL 的回應時只會等候 10 秒。 因此，您應該確定您的健康情況驗證程式碼在這段時間內執行，允許從「流量管理員」到您的應用程式再返回之來回行程的網路延遲。
 
->  深入了解使用[流量管理員監視應用程式](https://azure.microsoft.com/documentation/services/traffic-manager/)。 流量管理員也會在[多個資料中心部署指導方針](https://msdn.microsoft.com/library/dn589779.aspx)中討論。
+> 深入了解使用[流量管理員監視應用程式](/azure/traffic-manager/)。 流量管理員也會在[多個資料中心部署指導方針](https://msdn.microsoft.com/library/dn589779.aspx)中討論。
 
 ## <a name="related-guidance"></a>相關的指引
 
 下列指導方針在實作此模式時很有用：
+
 - [檢測和遙測指引](https://msdn.microsoft.com/library/dn589775.aspx)。 檢查服務和元件的健康情況通常是藉由探查來完成，但是讓資訊就地監視應用程式效能及偵測執行階段發生的事件也很有用。 此資料可以傳輸回到監視工具，作為健康情況監視的額外資訊。 檢測和遙測指引會探索蒐集應用程式中檢測所收集的遠端診斷資訊。
 - [接收警示通知][portal-alerts]。
 - 此模式包含可下載的[範例應用程式](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring)。
 
-[portal-alerts]: https://azure.microsoft.com/documentation/articles/insights-receive-alert-notifications/
+[portal-alerts]: /azure/azure-monitor/platform/alerts-metric

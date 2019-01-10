@@ -3,18 +3,22 @@ title: 選擇自然語言處理技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b1cb019164285d16b6e9d34eae220801785adab9
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 699e01bc9905d02fc8ec1113039087189f6e8caf
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902301"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114108"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>在 Azure 中選擇自然語言處理技術
 
 自由格式文字處理會對包含文字段落的文件執行，通常是為了支援搜尋，但是也用來執行其他自然語言處理 (NLP) 工作，例如情感分析、主題偵測、語言偵測、關鍵片語擷取和文件分類。 本文主要說明可用來支援 NLP 工作的技術選項。
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-an-nlp-service"></a>選擇 NLP 服務時有哪些選項？
+
+<!-- markdownlint-enable MD026 -->
 
 在 Azure 中，下列服務皆提供自然語言處理 (NLP) 功能：
 
@@ -36,7 +40,7 @@ ms.locfileid: "52902301"
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。  
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
 
@@ -50,7 +54,7 @@ ms.locfileid: "52902301"
 ### <a name="low-level-natural-language-processing-capabilities"></a>低階自然語言處理功能
 
 | | Azure HDInsight | Microsoft 認知服務 |  
-| --- | --- | --- | 
+| --- | --- | --- |
 | 權杖化工具 | 是 (Spark NLP) | 是 (語言分析 API) |
 | 詞幹分析器 | 是 (Spark NLP) | 否 |
 | 詞形分析器 | 是 (Spark NLP) | 否 |
@@ -63,8 +67,8 @@ ms.locfileid: "52902301"
 ### <a name="high-level-natural-language-processing-capabilities"></a>高階自然語言處理功能
 
 | | Azure HDInsight | Microsoft 認知服務 |
-| --- | --- | --- | 
-| 實體/意圖識別與擷取 | 否 | 是 (Language Understanding Intelligent Service (LUIS) API) |    
+| --- | --- | --- |
+| 實體/意圖識別與擷取 | 否 | 是 (Language Understanding Intelligent Service (LUIS) API) |
 | 主題偵測 | 是 (Spark NLP) | 是 (文字分析 API) |
 | 拼字檢查 | 是 (Spark NLP) | 是 (Bing 拼字檢查 API) |
 | 情感分析 | 是 (Spark NLP) | 是 (文字分析 API) |

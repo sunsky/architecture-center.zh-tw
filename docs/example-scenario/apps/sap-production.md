@@ -3,14 +3,14 @@ title: 使用 Oracle Database 來執行 SAP 生產環境工作負載
 titleSuffix: Azure Example Scenarios
 description: 在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。
 author: DharmeshBhagat
-ms.date: 9/12/2018
+ms.date: 09/12/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 2f398e98e383053f40fa8debcf5636c609339baf
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 02a6eb43d3e11604857b8bd1f461c22a48f655c7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643725"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110920"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 
@@ -43,9 +43,13 @@ SAP 系統用來執行任務關鍵性商務應用程式。 任何中斷情況都
 ### <a name="components"></a>元件
 
 - 此案例中的[虛擬網路](/azure/virtual-network/virtual-networks-overview)用於在 Azure 中建立虛擬中樞輪輻拓撲。
+
 - [虛擬機器](/azure/virtual-machines/windows/overview)會為每一層的解決方案提供計算資源。 每個虛擬機器叢集都會設定為[可用性設定組](/azure/virtual-machines/windows/regions-and-availability#availability-sets)。
+
 - [ExpressRoute](/azure/expressroute/expressroute-introduction) 可透過連線提供者所建立的私人連線，將內部部署網路延伸至 Microsoft 雲端。
+
 - [網路安全性群組 (NSG)](/azure/virtual-network/security-overview) 可將網路存取權限制為虛擬網路中的資源。 NSG 包含一些安全性規則，可根據來源或目的地 IP 位址、連接埠和通訊協定允許或拒絕網路流量。
+
 - [資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)可作為 Azure 資源的邏輯容器。
 
 ### <a name="alternatives"></a>替代項目
@@ -54,13 +58,13 @@ SAP 針對 Azure 環境中不同的作業系統、資料庫管理系統和 VM �
 
 ## <a name="considerations"></a>考量
 
-已針對在 Azure 中建置高可用性 SAP 環境定義建議做法。 如需詳細資訊，請參閱 [SAP NetWeaver 的 Azure 虛擬機器的高可用性架構和案例](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios)。 也請參閱 [Azure VM 上 SAP 應用程式的高可用性](/azure/virtual-machines/workloads/sap/high-availability-guide)。
+- 已針對在 Azure 中建置高可用性 SAP 環境定義建議做法。 如需詳細資訊，請參閱 [SAP NetWeaver 的 Azure 虛擬機器的高可用性架構和案例](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios)。 也請參閱 [Azure VM 上 SAP 應用程式的高可用性](/azure/virtual-machines/workloads/sap/high-availability-guide)。
 
-Oracle 資料庫也有適用於 Azure 的建議做法。 如需詳細資訊，請參閱[在 Azure 中設計和實作 Oracle 資料庫](/azure/virtual-machines/workloads/oracle/oracle-design)。
+- Oracle 資料庫也有適用於 Azure 的建議做法。 如需詳細資訊，請參閱[在 Azure 中設計和實作 Oracle 資料庫](/azure/virtual-machines/workloads/oracle/oracle-design)。
 
-Oracle Data Guard 用來消除任務關鍵性 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
+- Oracle Data Guard 用來消除任務關鍵性 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
 
-Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 資料庫。 如需詳細資訊，請參閱[在 Azure 上針對 SAP 工作負載部署 Oracle DBMS](/azure/virtual-machines/workloads/sap/dbms_guide_oracle)。
+- Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 資料庫。 如需詳細資訊，請參閱[在 Azure 上針對 SAP 工作負載部署 Oracle DBMS](/azure/virtual-machines/workloads/sap/dbms_guide_oracle)。
 
 ## <a name="pricing"></a>價格
 

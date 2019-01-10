@@ -6,18 +6,19 @@ ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b5951153fff109b648e7e4f74daac0f414240fe4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902256"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113139"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>使用用戶端判斷提示從 Azure AD 取得存取權杖
 
 [![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 ## <a name="background"></a>背景
+
 在 OpenID Connect 中使用授權碼流程或混合式流程時，用戶端會交換授權碼以取得存取權杖。 在此步驟中，用戶端必須向伺服器驗證自身。
 
 ![用戶端密碼](./images/client-secret.png)
@@ -26,7 +27,7 @@ ms.locfileid: "52902256"
 
 以下是從用戶端向 IDP 提出的要求範例，要求存取權杖。 請注意 `client_secret` 參數。
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -45,7 +46,7 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
 
 以下是使用用戶端判斷提示的權杖要求：
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -61,8 +62,6 @@ resource=https://tailspin.onmicrosoft.com/surveys.webapi
 
 > [!NOTE]
 > X.509 憑證並非唯一的用戶端判斷提示格式；我們在此將焦點放在其上，是因為它受 Azure AD 支援。
-> 
-> 
 
 在執行時，Web 應用程式會從憑證存放區讀取憑證。 憑證必須與 Web 應用程式安裝在相同的電腦上。
 
@@ -100,7 +99,8 @@ public class CertificateCredentialService : ICredentialService
 
 [**下一主題**][key vault]
 
-<!-- Links -->
+<!-- links -->
+
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
 [用戶端判斷提示]: https://tools.ietf.org/html/rfc7521

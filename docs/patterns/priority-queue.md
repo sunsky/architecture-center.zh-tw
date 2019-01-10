@@ -1,19 +1,17 @@
 ---
-title: 優先順序佇列
+title: 優先順序佇列模式
+titleSuffix: Cloud Design Patterns
 description: 針對傳送給服務的要求排列優先順序，讓高優先順序要求的接收和處理順序在低優先順序要求之前。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- performance-scalability
-ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: ddd9cc9ec85c6ed23fabaaa58424736ba1aa9421
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428494"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011118"
 ---
 # <a name="priority-queue-pattern"></a>優先順序佇列模式
 
@@ -31,12 +29,11 @@ ms.locfileid: "47428494"
 
 ![圖 1 - 使用支援訊息優先順序的佇列機制](./_images/priority-queue-pattern.png)
 
-> 大多數訊息佇列實作都支援多個取用者 (依循[競爭取用者模式](https://msdn.microsoft.com/library/dn568101.aspx) \(英文\))，並且可以依需求增加或減少取用者處理序數目。
+> 大多數訊息佇列實作都支援多個取用者 (依循[競爭取用者模式](./competing-consumers.md) \(英文\))，並且可以依需求增加或減少取用者處理序數目。
 
 在不支援優先順序型佇列的系統中，替代的解決方案是針對每個優先順序維護一個個別的佇列。 應用程式需負責將訊息張貼至適當的佇列。 每個佇列可以有一個個別的取用者集區。 高優先順序佇列的取用者集區，可以比低優先順序佇列的執行於更快速的硬體上，且可以有較大的集區。 下一張圖說明針對每個優先順序使用個別的訊息佇列。
 
 ![圖 2 - 針對每個優先順序使用個別的訊息佇列](./_images/priority-queue-separate.png)
-
 
 此策略的一種變換方式是使用單一取用者集區，並讓這些取用者先檢查高優先順序佇列上的訊息，然後才開始從較低優先順序的佇列擷取訊息。 使用單一取用者處理序集區 (不論是搭配支援具有不同優先順序之訊息的單一佇列，還是搭配各處理單一優先順序之訊息的多個佇列) 的解決方案與使用多個佇列且每個佇列具有個別集區的解決方案之間，有一些語意差異。
 
@@ -88,7 +85,6 @@ Azure 解決方案可以用實作佇列的相同方式，實作可供應用程�
 
 ![圖 3 - 使用 Azure 服務匯流排主題和訂用帳戶來實作優先順序佇列](./_images/priority-queue-service-bus.png)
 
-
 在上圖中，應用程式建立數個訊息，並在每個訊息中指派一個名為 `Priority` 且值為 `High` 或 `Low` 的自訂屬性。 應用程式會將這些訊息張貼至主題。 此主題有兩個關聯的訂用帳戶，這兩個訂用帳戶都會檢查 `Priority` 屬性來篩選訊息。 其中一個訂用帳戶會接受 `Priority` 屬性設定為 `High` 的訊息，另一個訂用帳戶則會接受 `Priority` 屬性設定為 `Low` 的訊息。 取用者集區會從每個訂用帳戶讀取訊息。 高優先順序訂用帳戶具有較大的集區，而這些取用者相較於低優先順序集區中的取用者，可能執行於更強大的電腦且有更多可用資源。
 
 請注意，在此範例中，關於指定高低優先順序訊息方面並無任何特別之處。 它們只是標籤，在每個訊息中是以屬性的形式指定的，並且用來將訊息導向到特定的訂用帳戶。 如果需要其他屬性，相當容易即可建立進一步的訂用帳戶和取用者處理序集區來處理這些優先順序。
@@ -121,6 +117,7 @@ public class PriorityWorkerRole : RoleEntryPoint
   }
 }
 ```
+
 `PriorityQueue.High` 和 `PriorityQueue.Low` 背景工作角色都會覆寫 `ProcessMessage` 方法的預設功能。 下方程式碼顯示 `PriorityQueue.High` 背景工作角色的 `ProcessMessage` 方法。
 
 ```csharp
@@ -170,11 +167,10 @@ this.queueManager.SendBatchAsync(highMessages).Wait();
 
 - [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx) \(英文\)。 處理要求的取用者服務可能需要傳送回覆給張貼要求的應用程式執行個體。 提供有關您可用來實作要求/回應傳訊之策略的資訊。
 
-- [競爭取用者模式](competing-consumers.md)。 若要增加佇列的輸送量，您可以讓多個取用者接聽相同的佇列，然後平行處理工作。 這些取用者將會競用訊息，但每個訊息應只能由一個取用者處理。 提供有關實作此方法之優點和權衡取捨的詳細資訊。
+- [競爭取用者模式](./competing-consumers.md)。 若要增加佇列的輸送量，您可以讓多個取用者接聽相同的佇列，然後平行處理工作。 這些取用者將會競用訊息，但每個訊息應只能由一個取用者處理。 提供有關實作此方法之優點和權衡取捨的詳細資訊。
 
-- [節流模式](throttling.md)。 您可以使用佇列來實作節流。 優先順序傳訊可用來確保為來自重要應用程式的要求或由高價值客戶執行的應用程式，賦予比來自較不重要應用程式的要求更高的優先順序。
+- [節流模式](./throttling.md)。 您可以使用佇列來實作節流。 優先順序傳訊可用來確保為來自重要應用程式的要求或由高價值客戶執行的應用程式，賦予比來自較不重要應用程式的要求更高的優先順序。
 
 - [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 您可以根據佇列的長度，調整處理佇列之取用者處理序集區的大小。 此策略有助於改善效能，特別是針對處理高優先順序訊息的集區。
 
 - Abhishek Lal 部落格上的[搭配服務匯流排的企業整合模式](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) \(英文\)。
-

@@ -1,23 +1,23 @@
 ---
 title: 效能和延展性模式
+titleSuffix: Cloud Design Patterns
 description: 效能是指系統在指定時間間隔內執行任何動作的回應能力，而延展性則是系統在不影響效能情況下處理負載增量的能力，或是系統處理可用資源快速增加的能力。 雲端應用程式通常會遇到變動的工作負載和活動尖峰。 要預測這些問題 (尤其是在多租用戶案例中) 幾乎不可能。 相反地，應用程式應該能夠在限制範圍內相應放大以符合尖峰需求，並在需求降低時相應縮小。 延展性不只要考量運算執行個體，還要考量其他元素，例如資料儲存體和傳訊基礎結構等。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: e60c7c5779e73925d7eed51b41eb37e5c2ad49ff
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 986e17f943e2238d70a5c9e0fd4c84e37c5f06a6
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848524"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011030"
 ---
 # <a name="performance-and-scalability-patterns"></a>效能和延展性模式
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 效能是指系統在指定時間間隔內執行任何動作的回應能力，而延展性則是系統在不影響效能情況下處理負載增量的能力，或是系統處理可用資源快速增加的能力。 雲端應用程式通常會遇到變動的工作負載和活動尖峰。 要預測這些問題 (尤其是在多租用戶案例中) 幾乎不可能。 相反地，應用程式應該能夠在限制範圍內相應放大以符合尖峰需求，並在需求降低時相應縮小。 延展性不只要考量運算執行個體，還要考量其他元素，例如資料儲存體和傳訊基礎結構等。
-
 
 |                           模式                            |                                                                        總結                                                                         |
 |--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,4 +31,3 @@ ms.locfileid: "30848524"
 |                  [分區化](../sharding.md)                  |                                           將資料存放區分割為一組水平分割或分區。                                           |
 |    [靜態內容裝載](../static-content-hosting.md)    |                          將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。                          |
 |                [節流](../throttling.md)                |                控制應用程式執行個體、個別租用戶或整個服務所使用的資源耗用量。                 |
-

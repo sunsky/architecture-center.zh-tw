@@ -1,19 +1,17 @@
 ---
-title: 管道與篩選器
+title: 管道與篩選器模式
+titleSuffix: Cloud Design Patterns
 description: 將執行複雜處理程序的工作，細分成一系列可重複使用的個別元素。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- messaging
-ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429565"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011679"
 ---
 # <a name="pipes-and-filters-pattern"></a>管道與篩選器模式
 
@@ -39,7 +37,6 @@ ms.locfileid: "47429565"
 
 ![圖 2 - 使用管道和篩選器實作的解決方案](./_images/pipes-and-filters-solution.png)
 
-
 處理單一要求所需的時間取決於管道中最慢篩選器的速度。 一或多個篩選器可能是瓶頸，特別是當特定資料來源的串流中出現大量要求時。 管道結構的主要優點是，它會提供機會來平行執行緩慢篩選器的執行個體，讓系統分散負載並改善輸送量。
 
 構成管道的篩選器可以在不同的機器上執行，讓它們能夠獨立調整並且利用許多雲端環境都會提供的彈性。 計算密集型篩選器可以在高效能硬體上執行，而要求較少的其他篩選器可以裝載在成本較低的商用硬體上。 篩選器甚至不需要位於相同資料中心或地理位置，讓管線中的每個元素可以在接近其查詢資源的環境中執行。  下一張圖表顯示套用至來源 1 資料之管線的範例。
@@ -50,11 +47,12 @@ ms.locfileid: "47429565"
 
 另一個優點是此模型可以提供的復原。 如果篩選器失敗，或者它執行所在的機器再也無法使用，管線可以重新排程執行篩選器的工作，並且將此工作導向至元件的另一個執行個體。 單一篩選器失敗不一定會導致整個管線失敗。
 
-搭配[補償交易模式](compensating-transaction.md)使用管道和篩選器模式，是實作分散式交易的另一個方法。 分散式交易可以細分成個別、可補償工作，每個工作都可以藉由使用會實作補償交易模式的篩選器來實作。 管線中的篩選器可以實作為個別裝載工作，與它們維護的資料緊密執行。
+搭配[補償交易模式](./compensating-transaction.md)使用管道和篩選器模式，是實作分散式交易的另一個方法。 分散式交易可以細分成個別、可補償工作，每個工作都可以藉由使用會實作補償交易模式的篩選器來實作。 管線中的篩選器可以實作為個別裝載工作，與它們維護的資料緊密執行。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
 當您在決定如何實作此模式時，應考慮下列幾點：
+
 - **複雜度**。 此模式提供的增強彈性也會帶來複雜性，特別是當管線中的篩選器分散到不同伺服器時。
 
 - **可靠性**。 使用基礎結構，確保管線中篩選器之間流動的資料不會遺失。
@@ -70,11 +68,12 @@ ms.locfileid: "47429565"
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
 
 使用此模式的時機包括：
+
 - 應用程式所需的處理可以輕易地細分為一組獨立的步驟。
 
 - 應用程式所執行的處理步驟有不同的延展性需求。
 
-    >  可以在相同處理中將應該調整的篩選器群組在一起。 如需詳細資訊，請參閱[計算資源彙總模式](compute-resource-consolidation.md)。
+    >  可以在相同處理中將應該調整的篩選器群組在一起。 如需詳細資訊，請參閱[計算資源彙總模式](./compute-resource-consolidation.md)。
 
 - 需要彈性才能重新排序應用程式執行的處理步驟，或者新增和移除步驟的功能。
 
@@ -83,6 +82,7 @@ ms.locfileid: "47429565"
 - 可靠的解決方案是在處理資料的同時，將步驟中失敗的影響降至最低。
 
 此模式可能不適合下列時機︰
+
 - 應用程式執行的處理步驟不是獨立的，或者必須在相同交易中一起執行。
 
 - 步驟所需之內容或狀態資訊的數量，會讓這個方法的效率不佳。 可能可以改為將狀態資訊保存到資料庫，但是如果資料庫上的額外負載會造成過多的爭用，則不要使用這個策略。
@@ -93,10 +93,9 @@ ms.locfileid: "47429565"
 
 ![圖 4 - 使用訊息佇列來實作管線](./_images/pipes-and-filters-message-queues.png)
 
-
 如果您在 Azure 上建置解決方案，您可以使用服務匯流排佇列以提供可靠且可調整的佇列機制。 `ServiceBusPipeFilter` 類別在下方以 C# 表示，示範如何實作篩選器，從佇列接收輸入訊息、處理這些訊息，然後將結果張貼至另一個佇列。
 
->  `ServiceBusPipeFilter` 類別是在可從 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 取得的 PipesAndFilters.Shared 專案中定義。
+> `ServiceBusPipeFilter` 類別是在可從 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 取得的 PipesAndFilters.Shared 專案中定義。
 
 ```csharp
 public class ServiceBusPipeFilter
@@ -278,8 +277,9 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 實作此模式時，下列模式和指導方針可能也相關：
+
 - [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters) 上有提供示範此模式的範例。
-- [競爭取用者模式](competing-consumers.md)。 管線可以包含一或多個篩選器的多個執行個體。 這個方法對於執行緩慢篩選器的平行執行個體很有用，讓系統分散負載及改善輸送量。 篩選器的每個執行個體會與其他執行個體爭用輸入，篩選器的兩個執行個體應該不能處理相同的資料。 提供這個方法的說明。
-- [計算資源彙總模式](compute-resource-consolidation.md)。 可以在相同處理中將應該調整的篩選器群組在一起。 提供有關此策略之優點和權衡取捨的詳細資訊。
-- [補償交易模式](compensating-transaction.md)。 篩選器可以實作為可反轉的作業，或者具有補償作業的作業，在失敗時將狀態還原為先前版本。 說明如何實作這個作業以維護或達到最終一致性。
+- [競爭取用者模式](./competing-consumers.md)。 管線可以包含一或多個篩選器的多個執行個體。 這個方法對於執行緩慢篩選器的平行執行個體很有用，讓系統分散負載及改善輸送量。 篩選器的每個執行個體會與其他執行個體爭用輸入，篩選器的兩個執行個體應該不能處理相同的資料。 提供這個方法的說明。
+- [計算資源彙總模式](./compute-resource-consolidation.md)。 可以在相同處理中將應該調整的篩選器群組在一起。 提供有關此策略之優點和權衡取捨的詳細資訊。
+- [補償交易模式](./compensating-transaction.md)。 篩選器可以實作為可反轉的作業，或者具有補償作業的作業，在失敗時將狀態還原為先前版本。 說明如何實作這個作業以維護或達到最終一致性。
 - Jonathan Oliver 部落格上的[等冪模式](https://blog.jonathanoliver.com/idempotency-patterns/)。

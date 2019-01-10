@@ -1,21 +1,21 @@
 ---
 title: 管理與監視模式
+titleSuffix: Cloud Design Patterns
 description: 雲端應用程式會在遠端資料中心內執行，其中您沒有基礎結構或作業系統 (部份情況下) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: faab137d59ce952e169839a71abdbbb3103ea772
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: fc75a3a56323b61651b9e840068a3117b31cf203
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846785"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009350"
 ---
 # <a name="management-and-monitoring-patterns"></a>管理與監視模式
 
 雲端應用程式會在遠端資料中心內執行，其中您沒有基礎結構或作業系統 (部份情況下) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
-
 
 |                              模式                               |                                                              總結                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -28,4 +28,3 @@ ms.locfileid: "30846785"
 |   [健康情況端點監視](../health-endpoint-monitoring.md)   |   實作應用程式中的功能檢查，而外部工具可透過公開的端點定期存取此應用程式。    |
 |                      [側車](../sidecar.md)                      |         將應用程式的元件部署到個別的處理序或容器，以提供隔離和封裝。          |
 |                    [Strangler](../strangler.md)                    | 透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。 |
-

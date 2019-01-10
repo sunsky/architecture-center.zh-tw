@@ -1,14 +1,16 @@
 ---
 title: 針對限制進行分割
-description: 使用分割作業來解決資料庫、網路和計算限制
+titleSuffix: Azure Application Architecture Guide
+description: 使用分割作業來解決資料庫、網路和計算限制。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 2f6bf797c2c7e5af7c487635c19eaf77eee77dec
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: f6c0daa1b1ea469413156fdf3cd6969f98528fb3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326291"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110487"
 ---
 # <a name="partition-around-limits"></a>針對限制進行分割
 
@@ -22,7 +24,7 @@ ms.locfileid: "43326291"
 
 - 分割佇列或訊息匯流排，以避開要求數目或並行連線數目的限制。
 
-- 分割 App Service Web 應用程式，以避開每個 App Service 方案的執行個體數目限制。 
+- 分割 App Service Web 應用程式，以避開每個 App Service 方案的執行個體數目限制。
 
 資料庫可以進行「水平」、「垂直」或「功能性」分割。
 
@@ -40,14 +42,12 @@ ms.locfileid: "43326291"
 
 **設計資料分割索引鍵以避免作用點**。 如果您分割資料庫，但某個分區仍保有大多數的要求，您還是沒有解決問題。 理論上，負載會平均分散給所有資料分割。 例如，依客戶識別碼產生雜湊，而不是依客戶名稱的第一個字母來產生，因為某些字母的出現頻率較高。 在分割訊息佇列時也適用相同原則。 您所選擇的資料分割索引鍵，必須能將訊息平均分散給整組佇列。 如需詳細資訊，請參閱[分區化][sharding]。
 
-**針對 Azure 訂用帳戶和服務限制來進行分割**。 個別的元件和服務有其限制，但訂用帳戶和資源群組也有限制。 對於非常大型的應用程式，您可能需要針對這些限制來進行分割。  
+**針對 Azure 訂用帳戶和服務限制來進行分割**。 個別的元件和服務有其限制，但訂用帳戶和資源群組也有限制。 對於非常大型的應用程式，您可能需要針對這些限制來進行分割。
 
-**在不同層級進行分割**。 請設想部署在 VM 上的資料庫伺服器。 該 VM 的 VHD 受到 Azure 儲存體所支援。 儲存體帳戶隸屬於 Azure 訂用帳戶。 請注意到此階層中的每個步驟都有限制。 資料庫伺服器可能有連線集區限制。 VM 有 CPU 和網路限制。 儲存體有 IOPS 限制。 訂用帳戶有 VM 核心數目限制。 一般而言，階層中較低的位置比較容易分割。 只有大型應用程式才必須在訂用帳戶層級進行分割。 
+**在不同層級進行分割**。 請設想部署在 VM 上的資料庫伺服器。 該 VM 的 VHD 受到 Azure 儲存體所支援。 儲存體帳戶隸屬於 Azure 訂用帳戶。 請注意到此階層中的每個步驟都有限制。 資料庫伺服器可能有連線集區限制。 VM 有 CPU 和網路限制。 儲存體有 IOPS 限制。 訂用帳戶有 VM 核心數目限制。 一般而言，階層中較低的位置比較容易分割。 只有大型應用程式才必須在訂用帳戶層級進行分割。
 
 <!-- links -->
 
 [azure-limits]: /azure/azure-subscription-service-limits
 [data-partitioning-guidance]: ../../best-practices/data-partitioning.md
 [sharding]: ../../patterns/sharding.md
-
- 

@@ -1,21 +1,21 @@
 ---
 title: 設計與實作模式
+titleSuffix: Cloud Design Patterns
 description: 良好的設計會包含一些要素，例如元件設計和部署中的一致性及連貫性、用於簡化管理及開發的可維護性，以及可讓元件和子系統在其他應用程式和其他案例中使用的重複使用性。 設計和實作階段所做的決策，會對雲端上裝載的應用程式和服務在品質和擁有權總成本上產生重大影響。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 861445ceeca62e5b1e62fd4cb33924c35e10c0b0
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 38b20fad513109051d40c1b9556f75fa86e03dd7
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847793"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009792"
 ---
 # <a name="design-and-implementation-patterns"></a>設計與實作模式
 
 良好的設計會包含一些要素，例如元件設計和部署中的一致性及連貫性、用於簡化管理及開發的可維護性，以及可讓元件和子系統在其他應用程式和其他案例中使用的重複使用性。 設計和實作階段所做的決策，會對雲端上裝載的應用程式和服務在品質和擁有權總成本上產生重大影響。
-
 
 |                                模式                                 |                                                                                                      總結                                                                                                       |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,4 +33,3 @@ ms.locfileid: "30847793"
 |                        [Sidecar](../sidecar.md)                        |                                                  將應用程式的元件部署到個別的處理序或容器，以提供隔離和封裝。                                                  |
 |         [靜態內容裝載](../static-content-hosting.md)         |                                                        將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。                                                        |
 |                      [Strangler](../strangler.md)                      |                                         透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。                                          |
-

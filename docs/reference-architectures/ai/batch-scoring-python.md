@@ -2,14 +2,14 @@
 title: Azure 上的 Python 模型批次評分
 description: 使用 Azure Batch AI 建置可根據排程同時對模型進行批次評分的可調整解決方案。
 author: njray
-ms.date: 12/13/18
+ms.date: 12/13/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: 93fc0c81663931c0a8b0f54b41934287056e6953
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.openlocfilehash: 4c43a3dadab11cb8dcf163cf63618795299283ad
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450816"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111035"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Azure 上的 Python 模型批次評分
 
@@ -43,7 +43,7 @@ ms.locfileid: "53450816"
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>在 VM 與核心上平行處理
 
-若要以批次模式執行許多模型的評分程序，這些作業必須在各 VM 上平行進行。 這可能會有兩種方法： 
+若要以批次模式執行許多模型的評分程序，這些作業必須在各 VM 上平行進行。 這可能會有兩種方法：
 
 * 使用低成本 VM 建立更大的叢集。
 

@@ -1,18 +1,17 @@
 ---
-title: 競爭取用者
+title: 競爭取用者模式
+titleSuffix: Cloud Design Patterns
 description: 讓多個並行取用者處理在相同傳訊通道上接收的訊息。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428364"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112102"
 ---
 # <a name="competing-consumers-pattern"></a>競爭取用者模式
 
@@ -34,7 +33,7 @@ ms.locfileid: "47428364"
 
 此解決方案有下列優點：
 
-- 它提供負載調節系統，可應付應用程式執行個體傳送要求量的大量變化。 佇列會做為應用程式執行個體與取用者服務執行個體之間的緩衝區。 這可協助將對應用程式和服務執行個體可用性和回應性的影響降到最低，如[佇列型負載調節模式](queue-based-load-leveling.md)所述。 處理需要長時間處理的訊息，並不妨礙取用者服務的其他執行個體同時處理其他訊息。
+- 它提供負載調節系統，可應付應用程式執行個體傳送要求量的大量變化。 佇列會做為應用程式執行個體與取用者服務執行個體之間的緩衝區。 這可協助將對應用程式和服務執行個體可用性和回應性的影響降到最低，如[佇列型負載調節模式](./queue-based-load-leveling.md)所述。 處理需要長時間處理的訊息，並不妨礙取用者服務的其他執行個體同時處理其他訊息。
 
 - 它可提升可靠性。 如果產生者與取用者直接通訊而不是使用此模式，但不監視取用者，則訊息很可能遺失或因為取用者失敗而無法處理。 在此模式中，訊息不是傳送至特定服務執行個體。 失敗的服務執行個體將不會封鎖產生者，任何工作中的服務執行個體都可以處理訊息。
 
@@ -85,8 +84,9 @@ ms.locfileid: "47428364"
 
 Azure 提供儲存體佇列和服務匯流排佇列，可作為實作此模式的機制。 應用程式邏輯可以張貼訊息至佇列，而實作為一或多個角色中工作的取用者可以從這個佇列擷取訊息並進行處理。 為提供復原功能，服務匯流排佇列可讓取用者從佇列擷取訊息時使用 `PeekLock` 模式。 此模式不會實際移除訊息，只會針對其他取用者來隱藏訊息。 原始取用者完成處理訊息時，就可以刪除訊息。 如果取用者失敗，查看鎖定將會逾時，訊息將會再次顯示，以允許其他取用者擷取訊息。
 
-> 如需使用 Azure 服務匯流排佇列的詳細資訊，請參閱[服務匯流排佇列、主題和訂用帳戶](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx)。
-如需使用 Azure 儲存體佇列的詳細資訊，請參閱[以 .NET 開始使用 Azure 佇列儲存體](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-queues/)。
+如需使用 Azure 服務匯流排佇列的詳細資訊，請參閱[服務匯流排佇列、主題和訂用帳戶](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx)。
+
+如需使用 Azure 儲存體佇列的詳細資訊，請參閱[以 .NET 開始使用 Azure 佇列儲存體](/azure/storage/queues/storage-dotnet-how-to-use-queues)。
 
 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) \(英文\) 提供 CompetingConsumers 解決方案中 `QueueManager` 類別的下列程式碼，其中顯示如何在 Web 或背景工作角色中使用 `Start` 事件處理常式中的 `QueueClient` 執行個體來建立佇列。
 
@@ -174,7 +174,7 @@ private void OptionsOnExceptionReceived(object sender,
 }
 ```
 
-請注意，您可以使用類似 Azure 中提供的自動調整功能，以隨著佇列長度變動來啟動和停止角色執行個體。 如需詳細資訊，請參閱[自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 此外，不需要維護角色執行個體與背景工作處理序之間的一對一對應，因為單一角色執行個體可以實作多個背景工作處理序。 如需詳細資訊，請參閱[計算資源彙總模式](compute-resource-consolidation.md)。
+請注意，您可以使用類似 Azure 中提供的自動調整功能，以隨著佇列長度變動來啟動和停止角色執行個體。 如需詳細資訊，請參閱[自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx) \(英文\)。 此外，不需要維護角色執行個體與背景工作處理序之間的一對一對應，因為單一角色執行個體可以實作多個背景工作處理序。 如需詳細資訊，請參閱[計算資源彙總模式](./compute-resource-consolidation.md)。
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
@@ -184,8 +184,8 @@ private void OptionsOnExceptionReceived(object sender,
 
 - [自動調整指導方針](https://msdn.microsoft.com/library/dn589774.aspx)。 由於佇列應用程式張貼訊息的長度不盡相同，因此可以啟動和停止取用者服務的執行個體。 自動調整有助於維護尖峰處理時間的輸送量。
 
-- [計算資源彙總模式](compute-resource-consolidation.md)。 將多個取用者服務的執行個體合併成單一處理序，可降低成本和管理額外負荷。 「計算資源彙總」模式描述採用此方法的優缺點。
+- [計算資源彙總模式](./compute-resource-consolidation.md)。 將多個取用者服務的執行個體合併成單一處理序，可降低成本和管理額外負荷。 「計算資源彙總」模式描述採用此方法的優缺點。
 
-- [佇列型負載調節模式](queue-based-load-leveling.md)。 導入訊息佇列可為系統加入復原功能，使服務執行個體可應付應用程式執行個體要求量的大量變化。 訊息佇列是作為調節負載的緩衝區。 「佇列型負載調節模式」對此案例有更詳細的描述。
+- [佇列型負載調節模式](./queue-based-load-leveling.md)。 導入訊息佇列可為系統加入復原功能，使服務執行個體可應付應用程式執行個體要求量的大量變化。 訊息佇列是作為調節負載的緩衝區。 「佇列型負載調節模式」對此案例有更詳細的描述。
 
 - 這個模式有相關連的[應用程式範例](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) \(英文\)。

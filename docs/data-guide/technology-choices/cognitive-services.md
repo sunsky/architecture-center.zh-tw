@@ -3,12 +3,12 @@ title: 選擇認知服務技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 13d510056e4b1ce6eeec603427658215691e48ab
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902541"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110981"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>選擇 Microsoft 認知服務技術
 
@@ -16,26 +16,33 @@ Microsoft 認知服務是雲端式 API，可用於人工智慧 (AI) 應用程式
 
 認知服務包括：
 
-* 文字分析
-* 電腦視覺
-* 視訊分析
-* 語音辨識和產生
-* 自然語言理解
-* 智慧型搜尋
+- 文字分析
+- 電腦視覺
+- 視訊分析
+- 語音辨識和產生
+- 自然語言理解
+- 智慧型搜尋
 
 主要優點：
 
-* 適用於最新 AI 服務的最少開發工作。
-* 透過 HTTP REST 介面輕鬆整合到應用程式。
-* 在 Azure Data Lake Analytics 中內建認知服務的取用支援。
+- 適用於最新 AI 服務的最少開發工作。
+- 透過 HTTP REST 介面輕鬆整合到應用程式。
+- 在 Azure Data Lake Analytics 中內建認知服務的取用支援。
 
 考量：
 
-* 只能透過 Web 取得。 通常需要網際網路連線。 自訂視覺服務是例外，您可以匯出其已定型的模型，以在裝置和 IoT Edge 上進行預測。
-* 雖然支援大量自訂，但可用的服務可能不適合所有的預測性分析需求。
+- 只能透過 Web 取得。 通常需要網際網路連線。 自訂視覺服務是例外，您可以匯出其已定型的模型，以在裝置和 IoT Edge 上進行預測。
+
+- 雖然支援大量自訂，但可用的服務可能不適合所有的預測性分析需求。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-amongst-the-cognitive-services"></a>您在選擇認知服務時有哪些選項可用？
+
+<!-- markdownlint-disable MD026 -->
+
 Azure 中有數十個可用的認知服務。 這些服務的目前清單可以在依其支援之功能區域所分類的目錄中找到：
+
 - [視覺](https://azure.microsoft.com/services/cognitive-services/directory/vision/)
 - [語音](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [知識](https://azure.microsoft.com/services/cognitive-services/directory/know/)
@@ -46,13 +53,13 @@ Azure 中有數十個可用的認知服務。 這些服務的目前清單可以�
 
 若要縮小選項範圍，請從回答下列問題來開始：
 
-- 您正在處理何種資料類型？ 請根據您正在處理的輸入資料類型來縮小選項。 例如，如果輸入文字，則從輸入類型為文字的服務中選取。 
+- 您正在處理何種資料類型？ 請根據您正在處理的輸入資料類型來縮小選項。 例如，如果輸入文字，則從輸入類型為文字的服務中選取。
 
-- 您是否有用來將模型定型的資料？ 如果是，請考慮自訂服務，這些服務可讓您以提供的資料將其基礎模型定型，以改進精確度和效能。 
+- 您是否有用來將模型定型的資料？ 如果是，請考慮自訂服務，這些服務可讓您以提供的資料將其基礎模型定型，以改進精確度和效能。
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。 
+下表摘要列出各項功能的主要差異。
 
 ### <a name="uses-prebuilt-models"></a>使用預先建置的模型
 
@@ -89,7 +96,6 @@ Azure 中有數十個可用的認知服務。 這些服務的目前清單可以�
 | | 輸入類型 | 主要優點 |
 | --- | --- | --- |
 | 自訂辨識服務 | 影像 (或影片的畫面格) | 自訂您自己的電腦視覺模型。 |
-| 自訂語音服務 | 語音 | 克服像是語音模式、背景雜音以及詞彙等語音辨識的阻礙。 | 
+| 自訂語音服務 | 語音 | 克服像是語音模式、背景雜音以及詞彙等語音辨識的阻礙。 |
 | 自訂決策服務 | Web 內容 (例如，RSS 摘要) | 使用機器學習來自動選取首頁的適當內容 |
 | Bing 自訂搜尋 API | 文字 (Web 搜尋查詢) | 商業級搜尋工具。 |
-

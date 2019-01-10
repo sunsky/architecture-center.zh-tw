@@ -3,24 +3,29 @@ title: 選擇搜尋資料存放區
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b5943cd1410777b974a8cefcd77c7c2f1f2bfe67
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 331777ff289b2158a1804541a01e8f61be38cdf7
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902315"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113394"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 
-本文將比較 Azure 中的搜尋資料存放區所適用的技術選項。 搜尋資料存放區可用來建立及儲存可對自由格式文字執行搜尋的特殊索引。 已編製索引的文字可存放於個別的資料存放區中，例如 Blob 儲存體。 應用程式對搜尋資料存放區提交查詢時，其結果會是相符文件的清單。 如需關於此案例的詳細資訊，請參閱[處理自由格式文字以供搜尋之用](../scenarios/search.md)。 
+本文將比較 Azure 中的搜尋資料存放區所適用的技術選項。 搜尋資料存放區可用來建立及儲存可對自由格式文字執行搜尋的特殊索引。 已編製索引的文字可存放於個別的資料存放區中，例如 Blob 儲存體。 應用程式對搜尋資料存放區提交查詢時，其結果會是相符文件的清單。 如需關於此案例的詳細資訊，請參閱[處理自由格式文字以供搜尋之用](../scenarios/search.md)。
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-a-search-data-store"></a>選擇搜尋資料存放區時有哪些選項？
+
+<!-- markdownlint-enable MD026 -->
+
 在 Azure 中，下列所有資料存放區皆提供搜尋索引，而符合對自由格式文字資料進行搜尋的核心需求：
+
 - [Azure 搜尋服務](/azure/search/search-what-is-azure-search)
 - [Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps/elastic.elasticsearch?tab=Overview)
 - [使用 Solr 的 HDInsight](/azure/hdinsight/hdinsight-hadoop-solr-install-linux)
 - [使用全文檢索搜尋的 Azure SQL Database](/sql/relational-databases/search/full-text-search)
-
 
 ## <a name="key-selection-criteria"></a>關鍵選取準則
 
@@ -44,37 +49,37 @@ ms.locfileid: "52902315"
 
 ### <a name="general-capabilities"></a>一般功能
 
-| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
-| --- | --- | --- | --- | --- | 
+| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
+| --- | --- | --- | --- | --- |
 | 屬於受控服務 | yes | 否 | yes | 是 |  
 | REST API | 是 | 是 | 是 | 否 |
-| 可程式性 | .NET | Java | Java | T-SQL | 
+| 可程式性 | .NET | Java | Java | T-SQL |
 | 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | 是 | 否 | 是 | 否 |
 
 ### <a name="manageability-capabilities"></a>可管理性功能
 
-| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
+| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
 | --- | --- | --- | --- | --- |
 | 可更新的結構描述 | 否 | yes | 是 | 是 |
 | 支援相應放大  | 是 | 是 | 是 | 否 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
 
-| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
-| --- | --- | --- | --- | --- | 
+| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
+| --- | --- | --- | --- | --- |
 | 支援全文檢索搜尋以外的分析 | 否 | yes | 是 | 是 |
 | 記錄分析堆疊的一部分 | 否 | 是 (ELK) |  否 | 否 |
-| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | 是 | 是 | 
+| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | 是 | 是 |
 
 ### <a name="security-capabilities"></a>安全性功能
 
-| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database | 
-| --- | --- | --- | --- | --- | 
-| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | 是 | 是 | 
+| | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
+| --- | --- | --- | --- | --- |
+| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | 是 | 是 |
 | 透明資料加密 | 否 | 否 | 否 | 是 |  
-| 限制對特定 IP 位址的存取 | 否 | yes | 是 | 是 |   
+| 限制對特定 IP 位址的存取 | 否 | yes | 是 | 是 |
 | 限定為僅允許虛擬網路存取 | 否 | yes | 是 | 是 |  
-| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | 是 | 
+| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | 是 |
 
 ## <a name="see-also"></a>另請參閱
 

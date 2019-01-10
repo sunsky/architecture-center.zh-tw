@@ -1,23 +1,23 @@
 ---
 title: 資料管理模式
+titleSuffix: Cloud Design Patterns
 description: 資料管理是雲端應用程式的關鍵元素，並且會影響多數的品質屬性。 因為效能、延展性或可用性之類的原因，資料通常裝載在不同位置以及在多個伺服器上，而這可能出現一些挑戰。 例如，必須維持資料的一致性，並且通常需要同步處理跨不同位置的資料。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: b80c2a127af07e1e362e9078e2a476d33a26ef7c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: ff6d5703af64ddd8b012b588ddfe810da0b6630c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847085"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009180"
 ---
 # <a name="data-management-patterns"></a>資料管理模式
 
 [!INCLUDE [header](../../_includes/header.md)]
 
 資料管理是雲端應用程式的關鍵元素，並且會影響多數的品質屬性。 因為效能、延展性或可用性之類的原因，資料通常裝載在不同位置以及在多個伺服器上，而這可能出現一些挑戰。 例如，必須維持資料的一致性，並且通常需要同步處理跨不同位置的資料。
-
 
 |                        模式                         |                                                                  總結                                                                  |
 |--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -29,4 +29,3 @@ ms.locfileid: "30847085"
 |               [分區化](../sharding.md)               |                                    將資料存放區分割為一組水平分割或分區。                                     |
 | [靜態內容裝載](../static-content-hosting.md) |                   將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。                    |
 |              [Valet 金鑰](../valet-key.md)              |                 使用可提供用戶端對特定資源或服務受限制的直接存取的權杖或金鑰。                 |
-

@@ -1,18 +1,17 @@
 ---
-title: 計算資源彙總
-description: 將多個工作或作業合併為單一計算單位
+title: 計算資源彙總模式
+titleSuffix: Cloud Design Patterns
+description: 將多個工作或作業合併為單一計算單位。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428834"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111473"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>計算資源彙總模式
 
@@ -27,7 +26,6 @@ ms.locfileid: "47428834"
 例如，此圖顯示雲端主控解決方案的簡化結構，是使用一個以上的計算單位進行實作。 每個計算的單位都會在它自己的虛擬環境中執行。 每個函式皆已實作為個別的工作 (標示為工作 A 到工作 E)，在它自己的計算單位中執行。
 
 ![使用一組專用的計算單位在雲端環境中執行工作](./_images/compute-resource-consolidation-diagram.png)
-
 
 每個計算單位都會耗用收費的資源，即使在閒置或輕量使用時也一樣。 因此，這不一定是最具成本效益的解決方案。
 
@@ -67,7 +65,7 @@ ms.locfileid: "47428834"
 **爭用**。 避免造成工作之間的爭用，競爭相同計算單位中的資源。 在理想情況下，共用相同計算單位的工作應該會表現不同的資源使用率特性。 例如，兩個需要大量計算的工作可能不應該位於相同的單位計算中，且兩個工作都不應該耗用大量的記憶體。 不過，將需要大量計算的工作與需要大量記憶體的工作混用，是可行的組合。
 
 > [!NOTE]
->  請考慮僅將已在生產環境中一段時間之系統的計算資源合併，讓操作員和開發人員可以監視系統，並建立_熱度圖_來識別每項工作如何利用不同的資源。 此圖可用來判斷哪些工作適合用於共用計算資源。
+> 請考慮僅將已在生產環境中一段時間之系統的計算資源合併，讓操作員和開發人員可以監視系統，並建立_熱度圖_來識別每項工作如何利用不同的資源。 此圖可用來判斷哪些工作適合用於共用計算資源。
 
 **複雜度**。 將多個工作結合成單一計算單位會使單位中的程式碼複雜度增加，可能會更加難以測試、偵錯及維護。
 
@@ -85,7 +83,7 @@ ms.locfileid: "47428834"
 
 在 Azure 上建置雲端服務時，可以將多個工作執行的處理合併成單一角色。 一般而言，這是背景工作角色，可執行背景或非同步處理工作。
 
-> 在某些情況下，可能會包含 web 角色中的背景或非同步處理工作。 雖然這項技術可能會影響 web 角色所提供的公眾對應介面之延展性和回應性，但它有助於降低成本並簡化部署。 
+> 在某些情況下，可能會包含 web 角色中的背景或非同步處理工作。 雖然這項技術可能會影響 web 角色所提供的公眾對應介面之延展性和回應性，但它有助於降低成本並簡化部署。
 
 角色負責啟動和停止工作。 當 Azure 網狀架構控制器載入角色時，會引發角色的 `Start` 事件。 您可以覆寫 `WebRole` 或 `WorkerRole` 類別的 `OnStart` 方法來處理此事件，或許還可以初始化這個方法中之工作所仰賴的資料和其他資源。
 
@@ -104,7 +102,6 @@ ms.locfileid: "47428834"
 工作會由 `Run` 方法啟動，等候工作完成。 這些工作會實作雲端服務的商務邏輯，並且可回應透過 Azure 負載平衡器向角色公佈的訊息。 此圖會顯示 Azure 雲端服務的角色中，工作和資源的生命週期。
 
 ![Azure 雲端服務的角色中，工作和資源的生命週期](./_images/compute-resource-consolidation-lifecycle.png)
-
 
 _ComputeResourceConsolidation.Worker_ 專案中的 _WorkerRole.cs_ 檔案會顯示範例，說明如何在 Azure 雲端服務中實作此模式。
 
