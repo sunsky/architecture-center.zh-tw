@@ -401,6 +401,8 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: 將 AD FS 擴充至 Azure
       href: reference-architectures/identity/adfs.md
+  - name: 物聯網
+    href: reference-architectures/iot/index.md
   - name: 網路 DMZ
     items:
     - name: Azure 和內部部署之間的 DMZ
@@ -583,9 +585,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: fd164df3f7b0416d4bbef85ce920e7f28c1002f4
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: eba799444e767ab6d0a3196f714edd8bc2df09e1
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396465"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160837"
