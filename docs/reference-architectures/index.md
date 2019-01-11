@@ -4,18 +4,18 @@ description: Azure 上一般工作負載的參考架構、藍圖和精準實作�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 173698aee0a67578beaa806a59e1c7b0265cdd61
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 4e0f3b32abc8d2e0da9b139b0e6aae1d48152a37
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011798"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160769"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
 我們參考架構是依情節排列，將相關架構群組在一起。 每個架構都包含建議的做法，以及延展性、可用性、管理性和安全性的考量。 大部分還包含可部署的解決方案。
 
-跳至：s[AI](#ai-and-machine-learning) | [巨量資料](#big-data-solutions) | [無伺服器](#serverless-applications) | [虛擬網路](#virtual-networks) | [VM 工作負載](#vm-workloads) | [SAP](#sap) | [Web 應用程式](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+跳至：[AI](#ai-and-machine-learning) | [巨量資料](#big-data-solutions) | [IoT](#internet-of-things) | [無伺服器](#serverless-applications) | [虛擬網路](#virtual-networks) | [VM 工作負載](#vm-workloads) | [SAP](#sap) | [Web 應用程式](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 <!-- markdownlint-disable MD033 -->
 
@@ -201,6 +201,31 @@ ms.locfileid: "54011798"
                     <div class="cardText">
                         <h3>串流處理搭配 Azure 串流分析</h3>
                         <p>將兩個資料流的記錄相互關聯以計算移動平均的端對端資料流處理管線。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="internet-of-things"></a>物聯網
+
+<ul class="panelContent cardsF">
+<!-- IoT reference architecture -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./iot/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./iot/_images/iot.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure IoT 參考架構</h3>
+                        <p>使用 PaaS (平台即服務) 元件在 Azure 上建議的 IoT 應用程式架構。</p>
                     </div>
                 </div>
             </div>
