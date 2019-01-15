@@ -1,14 +1,14 @@
 ---
 title: 執行問卷應用程式
-description: 如何在本機執行問卷應用程式範例
+description: 如何在本機執行問卷應用程式範例。
 author: MikeWasson
 ms.date: 07/21/2017
-ms.openlocfilehash: cc43f713886692167550336dbdcecdfbfc835bc3
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b73eeb04755b3dc8443b215bb034c82e3095681d
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902661"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160752"
 ---
 # <a name="run-the-surveys-application"></a>執行問卷應用程式
 
@@ -24,8 +24,9 @@ ms.locfileid: "52902661"
 6. 新增使用者的應用程式角色。
 
 ## <a name="prerequisites"></a>必要條件
--   [Visual Studio 2017][VS2017]
--   [Microsoft Azure](https://azure.microsoft.com) 帳戶
+
+- 已安裝包含 [ASP.NET 和 Web 開發工作負載](https://visualstudio.microsoft.com/vs/support/selecting-workloads-visual-studio-2017)的 [Visual Studio 2017][VS2017]
+- [Microsoft Azure](https://azure.microsoft.com) 帳戶
 
 ## <a name="create-the-tailspin-tenant"></a>建立 Tailspin 租用戶
 
@@ -37,19 +38,19 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 2. 按一下 [+ 建立資源] > [身分識別] > [Azure Active Directory]。
 
-3. 輸入 `Tailspin` 作為組織名稱，並輸入網域名稱。 網域名稱格式將為 `xxxx.onmicrosoft.com`，而且必須是全域唯一的。 
+3. 輸入 `Tailspin` 作為組織名稱，並輸入網域名稱。 網域名稱格式將為 `xxxx.onmicrosoft.com`，而且必須是全域唯一的。
 
-    ![](./images/running-the-app/new-tenant.png)
+    ![建立目錄對話方塊](./images/running-the-app/new-tenant.png)
 
 4. 按一下頁面底部的 [新增] 。 系統可能需要幾分鐘的時間來建立新目錄。
 
 若要完成完整的案例，您將需要第二個 Azure AD 目錄來代表註冊應用程式的客戶。 您可以使用預設的 Azure AD 目錄 (非 Tailspin)，或針對此用途建立新的目錄。 在範例中，我們使用 Contoso 作為虛構客戶。
 
-## <a name="register-the-surveys-web-api"></a>註冊問卷 Web API 
+## <a name="register-the-surveys-web-api"></a>註冊問卷 Web API
 
 1. 在 [Azure 入口網站][portal]中，於入口網站右上角選取您的帳戶，以切換至新的 Tailspin 目錄。
 
-2. 選擇左側導覽窗格中的 [Azure Active Directory]。 
+2. 選擇左側導覽窗格中的 [Azure Active Directory]。
 
 3. 按一下 [應用程式註冊] > [新增應用程式註冊]。
 
@@ -60,13 +61,13 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
    - **應用程式類型**：`Web app / API`
 
    - **登入 URL**：`https://localhost:44301/`
-   
-   ![](./images/running-the-app/register-web-api.png) 
+
+   ![註冊 Web API 的螢幕擷取畫面](./images/running-the-app/register-web-api.png)
 
 5. 按一下頁面底部的 [新增] 。
 
 6. 在 [應用程式註冊] 刀鋒視窗中，選取新的 **Surveys.WebAPI** 應用程式。
- 
+
 7. 然後按一下 [設定] > [屬性]。
 
 8. 在 [應用程式識別碼 URI] 編輯方塊中輸入 `https://<domain>/surveys.webapi`，其中 `<domain>` 是目錄的網域名稱。 例如：`https://tailspin.onmicrosoft.com/surveys.webapi`
@@ -77,29 +78,29 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 10. 按一下 [檔案] 。
 
-## <a name="register-the-surveys-web-app"></a>註冊問卷 Web 應用程式 
+## <a name="register-the-surveys-web-app"></a>註冊問卷 Web 應用程式
 
 1. 瀏覽回到 [應用程式註冊] 刀鋒視窗，然後按一下 [新增應用程式註冊]。
 
 2. 在 [建立] 刀鋒視窗中，輸入下列資訊：
 
-   - **名稱**：`Surveys`
-   - **應用程式類型**：`Web app / API`
-   - **登入 URL**：`https://localhost:44300/`
-   
-   請注意，登入 URL 的連接埠號碼不同於上一個步驟中的 `Surveys.WebAPI` 應用程式。
+    - **名稱**：`Surveys`
+    - **應用程式類型**：`Web app / API`
+    - **登入 URL**：`https://localhost:44300/`
+
+    請注意，登入 URL 的連接埠號碼不同於上一個步驟中的 `Surveys.WebAPI` 應用程式。
 
 3. 按一下頁面底部的 [新增] 。
- 
+
 4. 在 [應用程式註冊] 刀鋒視窗中，選取新的 [問卷] 應用程式。
- 
+
 5. 複製應用程式識別碼。 稍後您將會需要此資訊。
 
-    ![](./images/running-the-app/application-id.png)
+    ![複製應用程式識別碼的螢幕擷取畫面](./images/running-the-app/application-id.png)
 
 6. 按一下 [內容] 。
 
-7. 在 [應用程式識別碼 URI] 編輯方塊中輸入 `https://<domain>/surveys`，其中 `<domain>` 是目錄的網域名稱。 
+7. 在 [應用程式識別碼 URI] 編輯方塊中輸入 `https://<domain>/surveys`，其中 `<domain>` 是目錄的網域名稱。
 
     ![設定](./images/running-the-app/settings.png)
 
@@ -108,7 +109,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 9. 按一下 [檔案] 。
 
 10. 在 [設定] 刀鋒視窗中，按一下 [回覆 URL]。
- 
+
 11. 加入下列回覆 URL：`https://localhost:44300/signin-oidc`。
 
 12. 按一下 [檔案] 。
@@ -117,14 +118,14 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 14. 輸入描述，例如 `client secret`。
 
-15. 在 [選取持續時間] 下拉式清單中，選取 [1 年]。 
+15. 在 [選取持續時間] 下拉式清單中，選取 [1 年]。
 
 16. 按一下 [檔案] 。 當您儲存時，便會產生金鑰。
 
 17. 離開此刀鋒視窗之前，請複製金鑰的值。
 
-    > [!NOTE] 
-    > 當您離開刀鋒視窗後，就不會再看到金鑰。 
+    > [!NOTE]
+    > 當您離開刀鋒視窗後，就不會再看到金鑰。
 
 18. 在 [API 存取權] 底下，按一下 [必要權限]。
 
@@ -142,15 +143,14 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 23. 按一下 [選取] > [完成]。
 
-
 ## <a name="update-the-application-manifests"></a>更新應用程式資訊清單
 
 1. 瀏覽回到 `Surveys.WebAPI` 應用程式的 [設定] 刀鋒視窗。
 
 2. 按一下 [資訊清單] > [編輯]。
 
-    ![](./images/running-the-app/manifest.png)
- 
+    ![編輯應用程式資訊清單的螢幕擷取畫面](./images/running-the-app/manifest.png)
+
 3. 將下列 JSON 新增至 `appRoles` 元素。 為 `id` 屬性產生新的 GUID。
 
    ```json
@@ -188,9 +188,9 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 問卷應用程式使用 Redis 來快取 OAuth 2 存取權杖。 若要建立快取：
 
-1.  移至 [Azure 入口網站](https://portal.azure.com)，按一下 [+ 建立資源] > [資料庫] > [Redis 快取]。
+1. 移至 [Azure 入口網站](https://portal.azure.com)，按一下 [+ 建立資源] > [資料庫] > [Redis 快取]。
 
-2.  填妥必要的資訊，包括 DNS 名稱、資源群組、位置與定價層。 您可以建立新的資源群組或使用現有的資源群組。
+2. 填妥必要的資訊，包括 DNS 名稱、資源群組、位置與定價層。 您可以建立新的資源群組或使用現有的資源群組。
 
 3. 按一下頁面底部的 [新增] 。
 
@@ -202,12 +202,12 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 ## <a name="set-application-secrets"></a>設定應用程式祕密
 
-1.  在 Visual Studio 中開啟 Tailspin.Surveys 方案。
+1. 在 Visual Studio 中開啟 Tailspin.Surveys 方案。
 
-2.  在 [方案總管] 中，以右鍵按一下 Tailspin.Surveys.Web 專案，然後選取 [管理使用者密碼] 。
+2. 在 [方案總管] 中，以右鍵按一下 Tailspin.Surveys.Web 專案，然後選取 [管理使用者密碼] 。
 
-3.  在 secrets.json 檔案中，貼上下列項目：
-    
+3. 在 secrets.json 檔案中，貼上下列項目：
+
     ```json
     {
       "AzureAd": {
@@ -221,7 +221,7 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
       }
     }
     ```
-   
+
     如下所示，取代角括弧中顯示的項目：
 
     - `AzureAd:ClientId`：問卷應用程式的應用程式識別碼。
@@ -229,9 +229,9 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
     - `AzureAd:WebApiResourceId`：當您在 Azure AD 建立 Surveys.WebAPI 應用程式時所指定的應用程式識別碼 URI。 其格式應該為 `https://<directory>.onmicrosoft.com/surveys.webapi`
     - `Redis:Configuration`：從 Redis 快取的 DNS 名稱和主要存取金鑰建置這個字串。 例如，"tailspin.redis.cache.windows.net,password=2h5tBxxx,ssl=true"。
 
-4.  儲存更新後的 secrets.json 檔案。
+4. 儲存更新後的 secrets.json 檔案。
 
-5.  針對 Tailspin.Surveys.WebAPI 專案重複這些步驟，但將下列項目貼入 secrets.json。 和先前一樣，取代角括弧中的項目。
+5. 針對 Tailspin.Surveys.WebAPI 專案重複這些步驟，但將下列項目貼入 secrets.json。 和先前一樣，取代角括弧中的項目。
 
     ```json
     {
@@ -248,25 +248,25 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 在此步驟中，您將使用 Entity Framework 7 以 LocalDB 來建立本機 SQL 資料庫。
 
-1.  開啟命令視窗
+1. 開啟命令視窗
 
-2.  瀏覽至 Tailspin.Surveys.Data 專案。
+2. 瀏覽至 Tailspin.Surveys.Data 專案。
 
-3.  執行以下命令：
+3. 執行以下命令：
 
-    ```
+    ```bat
     dotnet ef database update --startup-project ..\Tailspin.Surveys.Web
     ```
-    
+
 ## <a name="run-the-application"></a>執行應用程式
 
 若要執行應用程式，請啟動 Tailspin.Surveys.Web 和 Tailspin.Surveys.WebAPI 專案。
 
 您可以如下所示，設定在按 F5 時讓 Visual Studio 自動執行這兩個專案：
 
-1.  在方案總管中，以滑鼠右鍵按一下方案，然後按一下 [設定啟始專案]。
-2.  選取 [多個啟始專案]。
-3.  為 Tailspin.Surveys.Web 和 Tailspin.Surveys.WebAPI 專案設定 [動作] = [啟動]。
+1. 在方案總管中，以滑鼠右鍵按一下方案，然後按一下 [設定啟始專案]。
+2. 選取 [多個啟始專案]。
+3. 為 Tailspin.Surveys.Web 和 Tailspin.Surveys.WebAPI 專案設定 [動作] = [啟動]。
 
 ## <a name="sign-up-a-new-tenant"></a>註冊新的租用戶
 
@@ -288,39 +288,38 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
 當租用戶註冊時，租用戶的 AD 系統管理員必須指派應用程式角色給使用者。
 
+1. 在 [Azure 入口網站][portal]中，切換至您用來註冊問卷應用程式的 Azure AD 目錄。
 
-1. 在 [Azure 入口網站][portal]中，切換至您用來註冊問卷應用程式的 Azure AD 目錄。 
-
-2. 選擇左側導覽窗格中的 [Azure Active Directory]。 
+2. 選擇左側導覽窗格中的 [Azure Active Directory]。
 
 3. 按一下 [企業應用程式] > [所有應用程式]。 入口網站將會列出 `Survey` 和 `Survey.WebAPI`。 如果沒有，請確定您已經完成註冊程序。
 
-4.  在問卷應用程式上按一下。
+4. 在問卷應用程式上按一下。
 
-5.  按一下 [使用者和群組]。
+5. 按一下 [使用者和群組]。
 
-4.  按一下 [新增使用者] 。
+6. 按一下 [新增使用者] 。
 
-5.  如果您有 Azure AD Premium，請按一下 [使用者和群組]。 否則，請按一下 [使用者]。 (將角色指派給群組需要 Azure AD Premium)。
+7. 如果您有 Azure AD Premium，請按一下 [使用者和群組]。 否則，請按一下 [使用者]。 (將角色指派給群組需要 Azure AD Premium)。
 
-6. 選取一或多個使用者，然後按一下 [選取]。
+8. 選取一或多個使用者，然後按一下 [選取]。
 
     ![選取使用者或群組](./images/running-the-app/select-user-or-group.png)
 
-6.  選取角色，然後按一下 [選取]。
+9. 選取角色，然後按一下 [選取]。
 
     ![選取使用者或群組](./images/running-the-app/select-role.png)
 
-7.  按一下 [指派]。
+10. 按一下 [指派]。
 
 重複相同步驟，以指派 Survey.WebAPI 應用程式的角色。
 
-> 重要：使用者在問卷和 Survey.WebAPI 中應永遠具有相同的角色。 否則，使用者將有不一致的權限，這可能導致 Web API 的 403 (禁止) 錯誤。
+> [!IMPORTANT]
+> 使用者在問卷和 Survey.WebAPI 中應永遠具有相同的角色。 否則，使用者將有不一致的權限，這可能導致 Web API 的 403 (禁止) 錯誤。
 
 現在返回應用程式並再次登入。 按一下 [我的問卷]。 如果使用者被指派了 SurveyAdmin 或 SurveyCreator 角色，您就會看到 [建立問卷] 按鈕，指出使用者有權限可建立新的問卷。
 
 ![我的問卷](./images/running-the-app/screenshot3.png)
-
 
 <!-- links -->
 

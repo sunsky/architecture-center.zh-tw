@@ -3,30 +3,30 @@ title: 自然語言處理
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 32f2a5e3a0baddc765fb36ccc42fe2626faa5eba
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 373afbabec78dd1ec30b6d07bca9d5da62b5d6e3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901434"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110470"
 ---
 # <a name="natural-language-processing"></a>自然語言處理
 
 自然語言處理 (NLP) 可用於多種工作，例如情感分析、主題偵測、語言偵測、關鍵片語擷取和文件分類。
 
-![](./images/nlp-pipeline.png)
+![自然語言處理管線圖](./images/nlp-pipeline.png)
 
-## <a name="when-to-use-this-solution"></a>使用此解決方案的時機
+## <a name="when-to-use-this-solution"></a>此解決方案的使用時機
 
-NLP 可用來進行文件分類，例如，將文件標示為機密或垃圾郵件。 NLP 的輸出可用於後續的查詢處理或搜尋。 NLP 的另一項用途，是藉由識別文件中的實體來彙總文字。 這些實體也可用來為文件標記關鍵字，而讓您能夠根據內容進行搜尋和擷取。 實體可合併為主題，並以摘要說明每個文件中的重要主題。 偵測到的主題都可用來分類文件以供導覽，或根據選定的主題列舉相關文件。 NLP 的另一項用途是為文字進行情感評分，以評估文件的調性是正面還是負面的。 這些方法都用到許多來自於自然語言處理的技術，例如： 
+NLP 可用來進行文件分類，例如，將文件標示為機密或垃圾郵件。 NLP 的輸出可用於後續的查詢處理或搜尋。 NLP 的另一項用途，是藉由識別文件中的實體來彙總文字。 這些實體也可用來為文件標記關鍵字，而讓您能夠根據內容進行搜尋和擷取。 實體可合併為主題，並以摘要說明每個文件中的重要主題。 偵測到的主題都可用來分類文件以供導覽，或根據選定的主題列舉相關文件。 NLP 的另一項用途是為文字進行情感評分，以評估文件的調性是正面還是負面的。 這些方法都用到許多來自於自然語言處理的技術，例如：
 
 - **權杖化工具**。 將文字分割成單字或片語。
-- **詞幹分析和詞形歸併還原**。 將單字正規化，使不同的形態會對應至具有相同意義的常態單字。 例如，"running" 和 "ran" 會對應至 "run"。 
+- **詞幹分析和詞形歸併還原**。 將單字正規化，使不同的形態會對應至具有相同意義的常態單字。 例如，"running" 和 "ran" 會對應至 "run"。
 - **實體擷取**。 識別文字中的主題。
 - **詞性偵測**。 將文字識別為動詞、名詞、分詞、動詞片語等等。
 - **文句界限偵測**。 偵測文字段落內的完整句子。
 
-使用 NLP 從自由格式文字中擷取資訊和深入資訊時，通常會先從物件儲存體 (例如 Azure 儲存體或 Azure Data Lake Store) 中儲存的原始文件開始著手。 
+使用 NLP 從自由格式文字中擷取資訊和深入資訊時，通常會先從物件儲存體 (例如 Azure 儲存體或 Azure Data Lake Store) 中儲存的原始文件開始著手。
 
 ## <a name="challenges"></a>挑戰
 

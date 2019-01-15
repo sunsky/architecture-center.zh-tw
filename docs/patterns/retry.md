@@ -1,18 +1,17 @@
 ---
-title: Retry
+title: 重試模式
+titleSuffix: Cloud Design Patterns
 description: 讓應用程式可以在嘗試連線到服務或網路資源時，藉由明確地重試先前失敗的作業，處理預期的暫時性失敗。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: 44a9c7e188bcf76a5f6904879c2121d50397da6c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478250"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011506"
 ---
 # <a name="retry-pattern"></a>重試模式
 
@@ -36,7 +35,7 @@ ms.locfileid: "29478250"
 
 - **重試**。 如果特定錯誤回報為不尋常或罕見，可能是不尋常的情況由造成，例如在傳輸時損毀的網路封包。 在此情況下，應用程式可以立即再次重試失敗的要求，因此相同的失敗不太可能再發生，要求可能會成功。
 
-- **延遲之後重試。** 如果錯誤是因為幾個常見的連線問題之一或忙碌而失敗，網路或服務可能需要一小段時間，等待連線問題更正或工作的待辦項目清除。 應用程式應適當等待一段時間後再重試要求。
+- **延遲之後重試**。 如果錯誤是因為幾個常見的連線問題之一或忙碌而失敗，網路或服務可能需要一小段時間，等待連線問題更正或工作的待辦項目清除。 應用程式應適當等待一段時間後再重試要求。
 
 遇到常見的暫時性失敗，應慎選重試之間的間隔時間 (延遲)，儘可能平均分配來自多個應用程式執行個體的要求。 這可以減少忙碌服務繼續多載的機會。 如果許多的應用程式執行個體持續重試要求使服務不勝任負荷，就會需要更長時間才能復原服務。
 
@@ -60,7 +59,7 @@ ms.locfileid: "29478250"
 
 積極的重試原則在嘗試之間間隔的延遲時間較短，再加上大量重試，對已接近或達到產能的忙碌執行服務更是雪上加霜。 如果持續嘗試執行失敗的作業，此重試原則也可能會影響應用程式的回應能力。
 
-如果在大量重試之後要求仍失敗，最好避免應用程式再向相同資源提出要求，只要立即回報失敗。 當期限到期時，應用程式可以暫時允許一或多個要求，看看是否成功。 如需此策略的詳細資料，請參閱[斷路器模式](circuit-breaker.md)。
+如果在大量重試之後要求仍失敗，最好避免應用程式再向相同資源提出要求，只要立即回報失敗。 當期限到期時，應用程式可以暫時允許一或多個要求，看看是否成功。 如需此策略的詳細資料，請參閱[斷路器模式](./circuit-breaker.md)。
 
 考慮作業是否為等冪。 如果是，重試原本就安全。 否則，重試可能會導致作業執行一次以上，並產品非預期的副作用。 例如，服務可能會接收要求、處理要求成功，但無法傳送回應。 此時，重試邏輯可能會假設服務沒有收到第一個要求，並重新傳送要求。
 
@@ -74,7 +73,7 @@ ms.locfileid: "29478250"
 
 請務必記錄所有導致重試的連線失敗，以利找出基礎應用程式、服務或資源的問題。
 
-調查服務或資源最有可能發生的錯誤，探索其是否會長時間持續或可以終結。 如有會，最好是將錯誤當作例外狀況處理。 應用程式可以報告或記錄例外狀況，然後叫用替代服務 (如果有的話) 或提供效能降低的功能，並繼續操作。 如需有關如何偵測及處理持續性錯誤的詳細資訊，請參閱[斷路器模式](circuit-breaker.md)。
+調查服務或資源最有可能發生的錯誤，探索其是否會長時間持續或可以終結。 如有會，最好是將錯誤當作例外狀況處理。 應用程式可以報告或記錄例外狀況，然後叫用替代服務 (如果有的話) 或提供效能降低的功能，並繼續操作。 如需有關如何偵測及處理持續性錯誤的詳細資訊，請參閱[斷路器模式](./circuit-breaker.md)。
 
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
 
@@ -120,7 +119,7 @@ public async Task OperationWithBasicRetryAsync()
       // long to wait, based on the retry strategy.
       if (currentRetry > this.retryCount || !IsTransient(ex))
       {
-        // If this isn't a transient error or we shouldn't retry, 
+        // If this isn't a transient error or we shouldn't retry,
         // rethrow the exception.
         throw;
       }
@@ -173,6 +172,6 @@ private bool IsTransient(Exception ex)
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
-- [斷路器模式](circuit-breaker.md)。 重試模式在處理暫時性錯誤上相當實用。 如果失敗會長時間持續，則可能較適合實作「斷路器」模式。 重試模式也能與斷路器搭配使用，提供處理錯誤的全方位方法。
+- [斷路器模式](./circuit-breaker.md)。 重試模式在處理暫時性錯誤上相當實用。 如果失敗會長時間持續，則可能較適合實作「斷路器」模式。 重試模式也能與斷路器搭配使用，提供處理錯誤的全方位方法。
 - [特定服務的重試指引](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
-- [連線恢復功能](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)
+- [連線復原功能](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

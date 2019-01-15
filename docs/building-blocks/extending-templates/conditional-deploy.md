@@ -1,14 +1,14 @@
 ---
 title: 在 Azure Resource Manager 範本中依條件部署資源
-description: 說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源
+description: 說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: 2c74e17a5f38f9225b696640a23b55b1285276bb
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 0e02fbbd130bd6be2fc10173c8466b028d5d61da
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251833"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113462"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中依條件部署資源
 
@@ -22,7 +22,7 @@ ms.locfileid: "50251833"
 
 讓我們看看範本的每個區段。
 
-`parameters` 元素會定義一個名為 `virtualNetworkPeerings` 的參數： 
+`parameters` 元素會定義一個名為 `virtualNetworkPeerings` 的參數：
 
 ```json
 {
@@ -35,6 +35,7 @@ ms.locfileid: "50251833"
     }
   },
 ```
+
 `virtualNetworkPeerings` 參數是 `array`，具有下列結構描述：
 
 ```json
@@ -95,9 +96,10 @@ ms.locfileid: "50251833"
     }
 ]
 ```
+
 在範本的這個部分做了幾件事情。 首先，實際被部署的資源是 `Microsoft.Resources/deployments` 類型的內嵌範本，它有自己的範本可實際部署 `Microsoft.Network/virtualNetworks/virtualNetworkPeerings`。
 
-內嵌範本的 `name` 是將 `copyIndex()`的目前反覆運算與前置詞 `vnp-` 串連，得到的唯一名稱。 
+內嵌範本的 `name` 是將 `copyIndex()`的目前反覆運算與前置詞 `vnp-` 串連，得到的唯一名稱。
 
 `condition` 元素指定當 `greater()` 函式評估為 `true` 時，應該處理的資源。 在這裡，我們測試 `virtualNetworkPeerings` 參數陣列是否 `greater()` 零。 如果是，則評估為 `true`，滿足 `condition`。 否則，便為 `false`。
 
@@ -116,7 +118,7 @@ ms.locfileid: "50251833"
   },
 ```
 
-`workaround` 變數有兩個屬性，一個名為 `true`、一個名為 `false`。 `true` 屬性評估為 `virtualNetworkPeerings` 參數陣列的值。 `false` 屬性評估為空物件，包括 Resource Manager 預期會看到的具名屬性 &mdash; 請注意，`false` 其實是一個陣列，和 `virtualNetworkPeerings` 參數一樣，能滿足驗證。 
+`workaround` 變數有兩個屬性，一個名為 `true`、一個名為 `false`。 `true` 屬性評估為 `virtualNetworkPeerings` 參數陣列的值。 `false` 屬性評估為空物件，包括 Resource Manager 預期會看到的具名屬性 &mdash; 請注意，`false` 其實是一個陣列，和 `virtualNetworkPeerings` 參數一樣，能滿足驗證。
 
 `peerings` 變數會再使用 `workaround` 變數一次，測試 `virtualNetworkPeerings`參數陣列的長度是否大於零。 如果是，`string` 評估為 `true`，且 `workaround` 變數評估為 `virtualNetworkPeerings` 參數陣列。 否則，評估為 `false`，且 `workaround` 變數評估為空物件，是陣列的第一個元素。
 
@@ -137,7 +139,7 @@ az group deployment create -g <resource-group-name> \
 * 使用物件做為範本參數，而不是使用純量值。 請參閱[在 Azure Resource Manager 範本中使用物件作為參數](./objects-as-parameters.md)
 
 <!-- links -->
-[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-group-authoring-templates#resources
+[azure-resource-manager-condition]: /azure/azure-resource-manager/resource-manager-templates-resources#condition
 [azure-resource-manager-variable]: /azure/azure-resource-manager/resource-group-authoring-templates#variables
 [vnet-peering-resource-schema]: /azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 [cli]: /cli/azure/?view=azure-cli-latest

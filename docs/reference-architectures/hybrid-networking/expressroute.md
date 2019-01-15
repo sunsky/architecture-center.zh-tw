@@ -5,12 +5,12 @@ description: 在透過 Azure ExpressRoute 連線的 Azure 虛擬網路與內部�
 author: telmosampaio
 ms.date: 10/22/2017
 ms.custom: seodec18
-ms.openlocfilehash: 8e9de168fe2969159f62ce84a19f4b21fd1cb538
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 1308f85f2f6d05b86e22f2558d89f164d076d182
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120385"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112782"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>使用 ExpressRoute 將內部部署網路連線至 Azure
 
@@ -207,8 +207,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 - 將 VNet 連線至不同服務提供者提供的多個 ExpressRoute 線路。 此策略會提供額外的高可用性和災害復原功能。
 
-- 設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑。 如需此選像的詳細資訊，請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][highly-available-network-architecture]。
- 此選項僅適用於私人對等互連。 針對 Azure 和 Office 365 服務，網際網路是唯一的容錯移轉路徑。
+- 設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑。 如需此選像的詳細資訊，請參閱[使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure][highly-available-network-architecture]。 此選項僅適用於私人對等互連。 針對 Azure 和 Office 365 服務，網際網路是唯一的容錯移轉路徑。
 
 ## <a name="manageability-considerations"></a>管理性考量
 
@@ -224,7 +223,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 ![[2]][2]
 
-基於稽核或合規性考量，您可能需要禁止從 VNet 中執行的元件直接存取網際網路，以及實作[強制通道][forced-tuneling]。 在此情況下，網際網路流量應透過內部部署中執行的 Proxy 重新導回，如此就可經過稽核。 Proxy 可以設定為封鎖未經授權的流量送出，並篩選潛在的惡意輸入流量。
+基於稽核或合規性考量，您可能需要禁止從 VNet 中執行的元件直接存取網際網路，以及實作[強制通道][forced-tunneling]。 在此情況下，網際網路流量應透過內部部署中執行的 Proxy 重新導回，如此就可經過稽核。 Proxy 可以設定為封鎖未經授權的流量送出，並篩選潛在的惡意輸入流量。
 
 ![[3]][3]
 
@@ -270,7 +269,7 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 
 <!-- links -->
 
-[forced-tuneling]: ../dmz/secure-vnet-hybrid.md
+[forced-tunneling]: ../dmz/secure-vnet-hybrid.md
 [highly-available-network-architecture]: ./expressroute-vpn-failover.md
 
 [expressroute-technical-overview]: /azure/expressroute/expressroute-introduction
@@ -286,8 +285,8 @@ ExpressRoute 不支援透過路由器備援通訊協定來實作高可用性，�
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
-[azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[azure-powershell-download]: /powershell/azure/overview
+[azure-cli]: /cli/azure/install-azure-cli
 
 [0]: ./images/expressroute.png "使用 Azure ExpressRoute 的混合式網路架構"
 [1]: ../_images/guidance-hybrid-network-expressroute/figure2.png "搭配 ExpressRoute 主要和次要線路使用備援路由器"

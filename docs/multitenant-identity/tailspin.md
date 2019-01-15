@@ -1,17 +1,14 @@
 ---
 title: 有關 Tailspin Surveys 應用程式
-description: Tailspin Surveys 應用程式概觀
+description: Tailspin Surveys 應用程式的概觀。
 author: MikeWasson
 ms.date: 07/21/2017
-pnp.series.title: Manage Identity in Multitenant Applications
-pnp.series.prev: index
-pnp.series.next: authenticate
-ms.openlocfilehash: a1c357bd1b5306d1255c66aaea96d86be55e7b77
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 95e170c584b8ec5694be69e595b7791c1bcdfdc0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902063"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111456"
 ---
 # <a name="the-tailspin-scenario"></a>Tailspin 情節
 
@@ -25,10 +22,9 @@ Tailspin 是虛構的公司，他們正在開發名為 Surveys 的 SaaS 應用�
 
 > [!NOTE]
 > 若要開始使用應用程式，請參閱[執行 Surveys 應用程式]。
-> 
-> 
 
 ## <a name="users-can-create-edit-and-view-surveys"></a>使用者可以建立、編輯和檢視問卷
+
 驗證的使用者可以檢視他或她所建立或具有參與者權限的所有調查，以及建立新的調查。 請注意，該使用者是使用他的組織身分識別 `bob@contoso.com`登入。
 
 ![Surveys 應用程式](./images/surveys-screenshot.png)
@@ -42,7 +38,8 @@ Tailspin 是虛構的公司，他們正在開發名為 Surveys 的 SaaS 應用�
 ![租用戶問卷](./images/tenant-surveys.png)
 
 ## <a name="survey-owners-can-invite-contributors"></a>調查擁有者可以邀請參與者
-當使用者建立問卷時，他或她可以邀請其他人參與該問卷。 參與者可以編輯問卷，但不能刪除或發佈問卷。  
+
+當使用者建立問卷時，他或她可以邀請其他人參與該問卷。 參與者可以編輯問卷，但不能刪除或發佈問卷。
 
 ![加入參與者](./images/add-contributor.png)
 
@@ -55,6 +52,7 @@ Tailspin 是虛構的公司，他們正在開發名為 Surveys 的 SaaS 應用�
 請留意，Alice 是用自己的租用戶登入，而不是以 Contoso 租用戶之來賓的身分登入。 Alice 只針對該調查擁有參與者權限 &mdash; 她無法檢視來自 Contoso 租用戶的其他問卷。
 
 ## <a name="architecture"></a>架構
+
 Surveys 應用程式由 Web 前端和 Web API 後端組成。 兩者都使用 [ASP.NET Core] 實作。
 
 該 Web 應用程式使用 Azure Active Directory (Azure AD) 來驗證使用者。 該 Web 應用程式也會呼叫 Azure AD 來取得 Web API 的 OAuth 2 存取權杖。 取存取權杖快取在 Azure Redis Cache 中。 快取可讓多個執行個體共用相同的權杖快取 (例如，在伺服器陣列中)。
@@ -63,7 +61,7 @@ Surveys 應用程式由 Web 前端和 Web API 後端組成。 兩者都使用 [A
 
 [**下一主題**][authentication]
 
-<!-- Links -->
+<!-- links -->
 
 [authentication]: authenticate.md
 

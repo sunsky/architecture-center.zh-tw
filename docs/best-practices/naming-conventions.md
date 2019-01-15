@@ -5,12 +5,12 @@ description: 為虛擬機器、儲存體帳戶、網路、虛擬網路、子網�
 author: telmosampaio
 ms.date: 10/19/2018
 ms.custom: seodec18
-ms.openlocfilehash: 4f934102acea24e8e1070ed6a25d63927f0bd252
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: f0349b5db7eb15037bd92567eaf917b5d044daa0
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307073"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058194"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 資源的命名慣例
 
@@ -62,7 +62,7 @@ ms.locfileid: "53307073"
 | --- | --- | --- |
 | 環境 |dev, prod, QA |識別資源的環境 |
 | 位置 |uw (美國西部)、ue (美國東部) |識別資源所要部署到的區域 |
-| 執行個體 |01、02 |適用於有多個具名執行個體 (Web 伺服器等) 的資源。 |
+| 執行個體 |1, 2, ... |適用於有多個具名執行個體 (例如 VM 或 NIC) 的資源。 |
 | 產品或服務 |service |識別資源可支援的產品、應用程式或服務 |
 | 角色 |sql、Web、傳訊 |識別相關聯資源的角色 |
 
@@ -105,7 +105,7 @@ ms.locfileid: "53307073"
 |檔案名稱 | 儲存體帳戶 |3-63 |小寫 | 英數字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
 |Data Lake Store | 全域 |3-24 |小寫 | 英數字元 |`<name>dls` |`telemetrydls` |
 
-### <a name="networking"></a>網路
+### <a name="networking"></a>網路功能
 
 | 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -154,7 +154,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 | 操作員或直接負責人 (DRI) |managedBy |`joe@contoso.com` |別名或電子郵件地址 |
 | 專案名稱 |projectName |`myproject` |專案或產品線的名稱 |
 | 專案版本 |projectVersion |`3.4` |專案或產品線的版本 |
-| 環境 |Environment |`<Production, Staging, QA >` |環境識別碼 |
+| 環境 |environment |`<Production, Staging, QA >` |環境識別碼 |
 | 層 |層 |`Front End, Back End, Data` |層或角色/內容識別 |
 | 資料設定檔 |dataProfile |`Public, Confidential, Restricted, Internal` |資源中所儲存資料的敏感性 |
 
@@ -175,7 +175,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 
 您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 blob 資料。 Blob 服務的預設端點是 `https://<name>.blob.core.windows.net`。
 
-但如果您將自訂網域 (如 www.contoso.com) 對應至儲存體帳戶的 Blob 端點，也能使用該網域來存取儲存體帳戶中的 Blob 資料。 例如，使用自訂網域名稱，可以用 `https://www.contoso.com/mycontainer/myblob` 存取 `https://mystorage.blob.core.windows.net/mycontainer/myblob`。
+但如果您將自訂網域 (如 `www.contoso.com`) 對應至儲存體帳戶的 Blob 端點，也能使用該網域來存取儲存體帳戶中的 Blob 資料。 例如，使用自訂網域名稱，可以用 `https://www.contoso.com/mycontainer/myblob` 存取 `https://mystorage.blob.core.windows.net/mycontainer/myblob`。
 
 如需有關設定此功能的詳細資訊，請參閱 [針對 blob 儲存體端點設定自訂網域名稱](/azure/storage/storage-custom-domain-name/)。
 

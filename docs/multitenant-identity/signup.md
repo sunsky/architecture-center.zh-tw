@@ -1,17 +1,17 @@
 ---
 title: 多租用戶應用程式中的租用戶註冊和上線
-description: 如何在多組織用戶共享應用程式中上架租用戶
+description: 如何在多組織用戶共享應用程式中上架租用戶。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: 541a4dd9abb2168eef4a60a0ec99e1e7c06049b5
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: d112cb65e3cd8bae7b273a974bf8e5d2b04aff8a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902471"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112714"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>租用戶註冊和上線
 
@@ -25,6 +25,7 @@ ms.locfileid: "52902471"
 * 執行您的應用程式所需的任何一次性個別租用戶設定。
 
 ## <a name="admin-consent-and-azure-ad-permissions"></a>系統管理員同意與 Azure AD 權限
+
 為了向 Azure AD 驗證，應用程式需要存取使用者的目錄。 應用程式至少需有讀取使用者設定檔的權限。 使用者第一次登入時，Azure AD 會顯示列出所要求之權限的同意頁面。 按一下 [接受] ，使用者就會授與權限給應用程式。
 
 依照預設，會以個別使用者為基礎來授與同意。 每個登入的使用者都會看到同意頁面。 但是，Azure AD 也支援「系統管理員同意」，可允許 AD 系統管理員代表整個組織來同意。
@@ -39,9 +40,10 @@ ms.locfileid: "52902471"
 
 ![同意錯誤](./images/consent-error.png)
 
-如果應用程式之後需要其他權限，客戶將需要再次註冊並同意已更新的權限。  
+如果應用程式之後需要其他權限，客戶將需要再次註冊並同意已更新的權限。
 
 ## <a name="implementing-tenant-sign-up"></a>實作租用戶註冊
+
 對於 [Tailspin Surveys][Tailspin] 應用程式，我們定義了註冊程序的幾項需求：
 
 * 租用戶必須先註冊，使用者才能登入。
@@ -58,7 +60,7 @@ ms.locfileid: "52902471"
 
 這些按鈕會在 `AccountController` 類別中叫用動作。
 
-`SignIn` 動作會傳回 **ChallegeResult**，這會使 OpenID Connect 中介軟體重新導向到驗證端點。 這是 ASP.NET Core 中觸發驗證的預設方式。  
+`SignIn` 動作會傳回 **ChallegeResult**，這會使 OpenID Connect 中介軟體重新導向到驗證端點。 這是 ASP.NET Core 中觸發驗證的預設方式。
 
 ```csharp
 [AllowAnonymous]
@@ -92,7 +94,7 @@ public IActionResult SignUp()
 
 和 `SignIn` 一樣，`SignUp` 動作也會傳回 `ChallengeResult`。 但是這次，我們在中 `AuthenticationProperties` in the `ChallengeResult`：
 
-* signup: 這是一個布林值旗標，指示使用者已經開始註冊程序。
+* 註冊：這是一個布林值旗標，指示使用者已經開始註冊程序。
 
 `AuthenticationProperties` 中的狀態資訊會新增至 OpenID Connect [state] 參數，該參數會在驗證流程中來回傳遞。
 
@@ -101,11 +103,16 @@ public IActionResult SignUp()
 在使用者於 Azure AD 驗證並被重新導向回應用程式之後，驗證票證就會包含狀態。 我們會使用此事實來確保 "signup" 值可在整個驗證流程中保留。
 
 ## <a name="adding-the-admin-consent-prompt"></a>新增系統管理員同意提示
+
 在 Azure AD 中，是透過將 "prompt" 參數新增至驗證要求中的查詢字串來觸發系統管理員同意流程：
+
+<!-- markdownlint-disable MD040 -->
 
 ```
 /authorize?prompt=admin_consent&...
 ```
+
+<!-- markdownlint-enable MD040 -->
 
 Surveys 應用程式會在 `RedirectToAuthenticationEndpoint` 事件期間新增提示。 在中介軟體重新導向至驗證端點之前會呼叫此事件。
 
@@ -122,7 +129,7 @@ public override Task RedirectToAuthenticationEndpoint(RedirectContext context)
 }
 ```
 
-設定` ProtocolMessage.Prompt` 可告知中介軟體將 "prompt" 參數新增至驗證要求。
+設定 `ProtocolMessage.Prompt` 可告知中介軟體將 "prompt" 參數新增至驗證要求。
 
 請注意，只有在註冊期間才需要提示。 一般登入不應該包括提示。 為區分它們，我們會檢查驗證狀態中的 `signup` 值。 以下的擴充方法會檢查這個條件：
 
@@ -143,7 +150,8 @@ internal static bool IsSigningUp(this BaseControlContext context)
     bool isSigningUp;
     if (!bool.TryParse(signupValue, out isSigningUp))
     {
-        // The value for signup is not a valid boolean, throw                
+        // The value for signup is not a valid boolean, throw
+
         throw new InvalidOperationException($"'{signupValue}' is an invalid boolean value");
     }
 
@@ -152,6 +160,7 @@ internal static bool IsSigningUp(this BaseControlContext context)
 ```
 
 ## <a name="registering-a-tenant"></a>註冊租用戶
+
 Surveys 應用程式會將每個租用戶與使用者的一些相關資訊儲存在應用程式資料庫中。
 
 ![租用戶資料表](./images/tenant-table.png)
@@ -255,7 +264,8 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 
 [**下一主題**][app roles]
 
-<!-- Links -->
+<!-- links -->
+
 [app roles]: app-roles.md
 [Tailspin]: tailspin.md
 

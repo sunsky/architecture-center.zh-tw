@@ -3,27 +3,31 @@ title: 選擇資料儲存技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: c97249228ca45a7a17822b6dd55acad6360c6f6b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 9fe28249b51083bb588808770aba9ac7d48d560e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902641"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113156"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
 本主題將比較巨量資料解決方案的資料存放區選項 &mdash; 具體來說，就是比較大量資料擷取和批次處理的資料儲存體，與[分析資料存放區](./analytical-data-stores.md)或[即時串流擷取](./real-time-ingestion.md)的儲存體。
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-data-storage-in-azure"></a>選擇 Azure 中的資料儲存體時有哪些選項？
 
-根據您的需求，您可以透過數個選項將資料擷取到 Azure 中：
+<!-- markdownlint-enable MD026 -->
 
-**檔案儲存體**
+根據您的需求，您可以透過數個選項將資料擷取到 Azure 中。
+
+**檔案儲存體：**
 
 - [Azure 儲存體 Blob](/azure/storage/blobs/storage-blobs-introduction)
 - [Azure Data Lake Store](/azure/data-lake-store/)
 
-**NoSQL 資料庫**
+**NoSQL 資料庫：**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
 - [HDInsight 上的 HBase](https://hbase.apache.org/)
@@ -34,7 +38,7 @@ Azure 儲存體是一項受控儲存體服務，具有高可用性、安全、�
 
 您可以使用多項 Azure 儲存體服務來儲存資料。 要儲存來自多個資料來源的 Blob，最具彈性的選項是 [Blob 儲存體](/azure/storage/blobs/storage-blobs-introduction)。 Blob 基本上是檔案。 它們可以儲存圖片、文件、HTML 檔案、虛擬硬碟 (VHD)、巨量資料 (例如記錄、資料庫備份) &mdash; 幾乎無所不包。 Blob 會儲存在容器 (類似於資料夾) 中。 容器可對一組 Blob 進行分組。 儲存體帳戶可以包含無限數量的容器，而一個容器則可儲存無限數量的 Blob。
 
-Azure 儲存體是巨量資料與分析解決方案的理想選擇，因為它具有高彈性、高可用性和低成本等優點。 它針對不同的使用案例提供了經常性存取、非經常性存取和封存等儲存層。 如需詳細資訊，請參閱 [Azure Blob 儲存體︰經常性存取、非經常性存取和封存儲存層](/azure/storage/blobs/storage-blob-storage-tiers)。
+Azure 儲存體是巨量資料與分析解決方案的理想選擇，因為它具有高彈性、高可用性和低成本等優點。 它針對不同的使用案例提供了經常性存取、非經常性存取和封存等儲存層。 如需詳細資訊，請參閱 [Azure Blob 儲存體：經常性存取、非經常性存取和封存儲存層](/azure/storage/blobs/storage-blob-storage-tiers)。
 
 您可以從 Hadoop (可透過 HDInsight 使用) 存取 Azure Blob 儲存體。 HDInsight 可以使用 Azure 儲存體中的 Blob 容器做為叢集的預設檔案系統。 透過 WASB 驅動程式所提供的 Hadoop 分散式檔案系統 (HDFS) 介面，HDInsight 中的完整元件集可直接處理儲存為 Blob 的結構化或非結構化資料。 Azure Blob 儲存體也可透過 Azure SQL 資料倉儲的 PolyBase 功能來存取。
 
@@ -59,7 +63,7 @@ Data Lake Store 可與 Azure Data Lake Analytics 搭配使用，它是專為預�
 
 [Azure Cosmos DB](/azure/cosmos-db/) 是 Microsoft 全球發行的多模型資料庫。 Cosmos DB 保證世界各地第 99 個百分位數的個位數毫秒延遲時間，提供多個定義完善的一致性模型以微調效能，並保證透過多路連接功能提供高可用性。
 
-Azure Cosmos DB 是無從驗證結構描述。 它會自動編製所有資料的索引，您不需要處理結構描述和索引管理。 它也是多模型、原生支援文件、索引鍵值、圖表和資料行系列資料模型。 
+Azure Cosmos DB 是無從驗證結構描述。 它會自動編製所有資料的索引，您不需要處理結構描述和索引管理。 它也是多模型、原生支援文件、索引鍵值、圖表和資料行系列資料模型。
 
 Azure Cosmos DB 功能：
 
@@ -89,7 +93,7 @@ Azure Cosmos DB 功能：
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘錄主要的功能差異。
+下表摘要列出各項功能的主要差異。
 
 ### <a name="file-storage-capabilities"></a>檔案儲存體功能
 
@@ -119,4 +123,3 @@ Azure Cosmos DB 功能：
 | 原生 Azure Functions 整合 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
 |   自動全球發行    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 否 [HBase 叢集複寫可使用最終一致性跨區域設定](/azure/hdinsight/hbase/apache-hbase-replication) |
 |           定價模式            | 隨需以秒計費、可彈性擴充的要求單位 (RU)，可彈性擴充的儲存體 |                              以分鐘計價的 HDInsight 叢集 (節點的水平調整)，儲存體                               |
-

@@ -1,14 +1,14 @@
 ---
 title: 更新 Azure Resource Manager 範本中的資源
-description: 說明如何擴充 Azure Resource Manager 範本的功能，以更新資源
+description: 說明如何擴充 Azure Resource Manager 範本的功能，以更新資源。
 author: petertay
 ms.date: 10/31/2018
-ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 927826283163b2ae45575035168d6238de98dc00
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251816"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113411"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>更新 Azure Resource Manager 範本中的資源
 
@@ -20,7 +20,7 @@ ms.locfileid: "50251816"
 
 ## <a name="example-template"></a>範本範例
 
-讓我們看看示範這項操作的範例範本。 我們的範本會部署名為 `firstVNet` 的虛擬網路，此網路具有一個名為 `firstSubnet` 的子網路。 接著，它會部署名為 `nic1` 的虛擬網路介面 (NIC)，並讓它與我們的子網路相關聯。 然後，名為 `updateVNet` 的部署資源會納入巢狀範本，此範本會更新 `firstVNet` 資源，新增名為 `secondSubnet` 的第二個子網路 。 
+讓我們看看示範這項操作的範例範本。 我們的範本會部署名為 `firstVNet` 的虛擬網路，此網路具有一個名為 `firstSubnet` 的子網路。 接著，它會部署名為 `nic1` 的虛擬網路介面 (NIC)，並讓它與我們的子網路相關聯。 然後，名為 `updateVNet` 的部署資源會納入巢狀範本，此範本會更新 `firstVNet` 資源，新增名為 `secondSubnet` 的第二個子網路 。
 
 ```json
 {
@@ -37,7 +37,7 @@ ms.locfileid: "50251816"
           "addressSpace":{"addressPrefixes": [
               "10.0.0.0/22"
           ]},
-          "subnets":[              
+          "subnets":[
               {
                   "name":"firstSubnet",
                   "properties":{
@@ -130,11 +130,11 @@ az group deployment create -g <resource-group-name> \
     --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
 ```
 
-當部署完成之後，開啟您在入口網站中指定的資源群組。 您會看到名為 `firstVNet` 的虛擬網路和名為 `nic1` 的 NIC。 按一下 `firstVNet`，然後再按一下 `subnets`。 您會看到原先建立的 `firstSubnet`，並看到 `updateVNet` 資源中新增的 `secondSubnet`。 
+當部署完成之後，開啟您在入口網站中指定的資源群組。 您會看到名為 `firstVNet` 的虛擬網路和名為 `nic1` 的 NIC。 按一下 `firstVNet`，然後再按一下 `subnets`。 您會看到原先建立的 `firstSubnet`，並看到 `updateVNet` 資源中新增的 `secondSubnet`。
 
 ![原始子網路和更新後的子網路](../_images/firstVNet-subnets.png)
 
-然後，返回資源群組，並依序按一下 `nic1` 和 `IP configurations`。 在 `IP configurations` 區段中，`subnet` 會設為 `firstSubnet (10.0.0.0/24)`。 
+然後，返回資源群組，並依序按一下 `nic1` 和 `IP configurations`。 在 `IP configurations` 區段中，`subnet` 會設為 `firstSubnet (10.0.0.0/24)`。
 
 ![nic1 IP 組態設定](../_images/nic1-ipconfigurations.png)
 

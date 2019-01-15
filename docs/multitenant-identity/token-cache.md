@@ -1,17 +1,17 @@
 ---
 title: 在多租用戶應用程式中快取存取權杖
-description: 快取用於叫用後端 Web API 的存取權杖
+description: 快取用於叫用後端 Web API 的存取權杖。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0cf4b3c3b9187759522b4530c94268ce8d7baa86
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901706"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110947"
 ---
 # <a name="cache-access-tokens"></a>快取存取權杖
 
@@ -41,14 +41,14 @@ ADAL 提供預設的權杖快取實作。 不過，此權杖快取是適用於�
 備份存放區是由使用者進行分割。 針對每個 HTTP 要求，會從備份存放區讀取該使用者的權杖，然後載入至 `TokenCache` 字典。 若將 Redis 作為備份存放區，在伺服器陣列中的每個伺服器執行個體會讀取/寫入相同的快取，而此方法適用於許多使用者。
 
 ## <a name="encrypting-cached-tokens"></a>加密快取的權杖
+
 權杖是敏感性資料，因為它們會授與使用者資源的存取權限。 (此外，不同於使用者的密碼，您無法只儲存權杖的雜湊。)因此，務必保護權杖不遭洩漏。 Redis 備份的快取是以密碼保護，但如果有人取得密碼，他們就可以取得所有快取的存取權杖。 基於該理由， `DistributedTokenCache` 會加密其寫入至備份存放區的所有項目。 加密是使用 ASP.NET Core [資料保護][data-protection] API 完成。
 
 > [!NOTE]
 > 如果您部署至 Azure 網站，加密金鑰會備份至網路儲存體，並在所有機器上同步處理 (請參閱[金鑰管理和存留期][key-management])。 根據預設，金鑰於 Azure 網站中執行時不會加密，不過您可以[使用 X.509 憑證啟用加密][x509-cert-encryption]。
-> 
-> 
 
 ## <a name="distributedtokencache-implementation"></a>DistributedTokenCache 實作
+
 `DistributedTokenCache` 類別衍生自 ADAL [TokenCache][tokencache-class] 類別。
 
 在建構函式中， `DistributedTokenCache` 會為目前的使用者建立索引鍵，並從備份存放區中載入快取：

@@ -3,12 +3,12 @@ title: 擷取、轉換和載入 (ETL)
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 6f56da72bd7a93ecd40b0be2a19e93d9062038fb
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b23e1ab35f278bd8e1b203cd0026ee356be022dc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901536"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113428"
 ---
 # <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
 
@@ -16,7 +16,7 @@ ms.locfileid: "52901536"
 
 過去幾年已開發出多種有助於克服這些難題的工具、服務和程序。 無論使用何種程序，都需要協調工作，並在資料管線中執行某種程度的資料轉換。 下列幾節將特別說明用來執行這些工作的常見方法。
 
-## <a name="extract-transform-and-load-etl"></a>擷取、轉換和載入 (ETL)
+## <a name="extract-transform-and-load-etl-process"></a>擷取、轉換和載入 (ETL) 流程
 
 擷取、轉換和載入 (ETL) 是一種資料管線，用以收集不同來源的資料、根據商務規則轉換資料，然後將其載入至目的地資料存放區。 ETL 的轉換工作會以特殊引擎執行，且通常牽涉到使用暫存資料表在資料轉換時暫時保存資料，而最終載入至其目的地。
 
@@ -27,9 +27,11 @@ ms.locfileid: "52901536"
 這三個 ETL 階段通常會以平行方式執行，以節省時間。 例如，在擷取資料時，轉換程序即會處理使用已接收的資料，並且準備進行載入，而載入程序也無須等到整個擷取程序完成後才開始處理已備妥的資料。
 
 相關 Azure 服務：
+
 - [Azure Data Factory v2](https://azure.microsoft.com/services/data-factory/)
 
 其他工具：
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="extract-load-and-transform-elt"></a>擷取、載入和轉換 (ELT)
@@ -40,11 +42,11 @@ ms.locfileid: "52901536"
 
 ELT 通常會用於巨量資料領域中。 例如，一開始您可能會將所有來源資料擷取到可擴充儲存體中的一般檔案，例如 Hadoop 分散式檔案系統 (HDFS) 或 Azure Data Lake Store。 接著，您可以使用 Spark、Hive 或 PolyBase 等技術來查詢來源資料。 使用 ELT 的重點在於，用來執行轉換的資料存放區與最終使用資料的是同一個資料存放區。 此資料存放區會直接讀取可擴充儲存體，而不是將資料載入到本身專屬的儲存體。 這種方法可略過存在於 ETL 中的資料複製步驟，此作業在處理大型資料集時可能十分耗時。
 
-在實務上，目標資料存放區會是使用 Hadoop 叢集 (使用 Hive 或 Spark) 或 SQL 資料倉儲的[資料倉儲](./data-warehousing.md)。 一般而言，結構描述在查詢時期會覆疊在一般檔案資料上，並儲存為資料表，讓資料能夠像資料存放區中的任何其他資料表一樣受到查詢。 這些資料表稱為外部資料表，因為資料並不在資料存放區本身所管理的儲存體中，而是在某個外部可擴充儲存體上。 
+在實務上，目標資料存放區會是使用 Hadoop 叢集 (使用 Hive 或 Spark) 或 SQL 資料倉儲的[資料倉儲](./data-warehousing.md)。 一般而言，結構描述在查詢時期會覆疊在一般檔案資料上，並儲存為資料表，讓資料能夠像資料存放區中的任何其他資料表一樣受到查詢。 這些資料表稱為外部資料表，因為資料並不在資料存放區本身所管理的儲存體中，而是在某個外部可擴充儲存體上。
 
 資料存放區只會管理資料的結構描述，並在讀取時套用結構描述。 例如，使用 Hive 的 Hadoop 叢集會描述資料來源可作為 HDFS 中一組檔案之路徑的 Hive 資料表。 在 SQL 資料倉儲中，PolyBase 可達到相同的結果 &mdash; 針對在資料庫本身以外儲存的資料，建立一個資料表。 在來源資料載入後，可以使用資料存放區的功能來處理外部資料表中的資料。 在巨量資料案例中，這意味著資料存放區必須具有大量平行處理 (MPP) 的能力，而將資料分成較小的區塊，並將區塊的處理以平行方式分散到多部電腦。
 
-ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支援的查詢類型更有效率的最終格式。 例如，此時可能會分割資料。 此外，ELT 可能會使用 Parquet 之類的最佳化儲存格式，以單欄方式儲存資料列導向的資料，並提供最佳化索引。 
+ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支援的查詢類型更有效率的最終格式。 例如，此時可能會分割資料。 此外，ELT 可能會使用 Parquet 之類的最佳化儲存格式，以單欄方式儲存資料列導向的資料，並提供最佳化索引。
 
 相關 Azure 服務：
 
@@ -68,9 +70,11 @@ ELT 管線的最後階段，通常是將來源資料轉換為能夠使需要支�
 在上圖中，控制流程內有數項工作，其中之一是資料流程工作。 其中一項工作內嵌於容器中。 容器可以用來提供工作的結構，進而提供工作單位。 舉例來說，集合中的重複元素即是如此，例如資料夾中的檔案或資料庫陳述式。
 
 相關 Azure 服務：
+
 - [Azure Data Factory v2](https://azure.microsoft.com/services/data-factory/)
 
 其他工具：
+
 - [SQL Server Integration Services (SSIS)](/sql/integration-services/sql-server-integration-services)
 
 ## <a name="technology-choices"></a>技術選擇

@@ -1,14 +1,14 @@
 ---
 title: 在 Azure Resource Manager 範本中實作屬性轉換器與收集器
-description: 說明如何在 Azure Resource Manager 範本中實作屬性轉換器與收集器
+description: 說明如何在 Azure Resource Manager 範本中實作屬性轉換器與收集器。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: 1a6a01ee513609132d8522a79ccb81b7938651b5
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251782"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113802"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中實作屬性轉換器與收集器
 
@@ -24,12 +24,14 @@ ms.locfileid: "50251782"
 ![屬性收集器和轉換器架構](../_images/collector-transformer.png)
 
 我們的**呼叫範本**有兩個資源：
-* 範本超連結，可呼叫的我們的**收集器範本**。
-* 要部署的 NSG 資源。
+
+- 範本超連結，可呼叫的我們的**收集器範本**。
+- 要部署的 NSG 資源。
 
 我們的**收集器範本**有兩個資源：
-* **錨點**資源。
-* 範本超連結，可在複製迴圈中呼叫轉換範本。
+
+- **錨點**資源。
+- 範本超連結，可在複製迴圈中呼叫轉換範本。
 
 我們的**轉換範本**有一個資源：包含單一變數的空白範本，會將我們的 `source` JSON 結構描述轉換為我們的**主要範本**中 NSG 資源所預期的 JSON 結構描述。
 
@@ -41,7 +43,7 @@ ms.locfileid: "50251782"
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters": {
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -80,9 +82,10 @@ ms.locfileid: "50251782"
 
 ## <a name="transform-template"></a>轉換範本
 
-我們的**轉換範本**包含從**收集器範本**傳來的兩個參數： 
-* `source` 是物件，會接收屬性陣列的其中一個屬性值物件。 我們的範例會傳遞 `"securityRules"` 陣列中的每個物件，一次傳遞一個。
-* `state` 是陣列，會接收所有先前轉換後的結果串連。 這是轉換後 JSON 的集合。
+我們的**轉換範本**包含從**收集器範本**傳來的兩個參數：
+
+- `source` 是物件，會接收屬性陣列的其中一個屬性值物件。 我們的範例會傳遞 `"securityRules"` 陣列中的每個物件，一次傳遞一個。
+- `state` 是陣列，會接收所有先前轉換後的結果串連。 這是轉換後 JSON 的集合。
 
 我們的參數看起來像這樣：
 
@@ -115,7 +118,7 @@ ms.locfileid: "50251782"
             "destinationAddressPrefix": "[parameters('source').destinationAddressPrefix]",
             "access": "[parameters('source').access]",
             "priority": "[parameters('source').priority]",
-            "direction": "[parameters('source').direction]"            
+            "direction": "[parameters('source').direction]"
         }
       }
     ]
@@ -139,9 +142,10 @@ ms.locfileid: "50251782"
 ## <a name="collector-template"></a>收集器範本
 
 我們的**收集器範本**包含三個參數：
-* `source` 是完整的參數物件陣列， 由**呼叫範本**傳入。 它的名稱和**轉換範本**中的 `source`參數相同，但您可能已經注意到一個主要的差異：這是完整的陣列，但是我們一次只傳遞這個陣列的一個元素給**轉換範本**。
-* `transformTemplateUri` 是**轉換範本**的 URI。 我們在此將它定義為範本，以利重複使用範本。
-* `state` 一開始是空陣列，由我們傳遞給**轉換範本**。 在複製迴圈完成時，它會儲存轉換後之參數物件的集合。
+
+- `source` 是完整的參數物件陣列， 由**呼叫範本**傳入。 它的名稱和**轉換範本**中的 `source`參數相同，但您可能已經注意到一個主要的差異：這是完整的陣列，但是我們一次只傳遞這個陣列的一個元素給**轉換範本**。
+- `transformTemplateUri` 是**轉換範本**的 URI。 我們在此將它定義為範本，以利重複使用範本。
+- `state` 一開始是空陣列，由我們傳遞給**轉換範本**。 在複製迴圈完成時，它會儲存轉換後之參數物件的集合。
 
 我們的參數看起來像這樣：
 
@@ -153,7 +157,7 @@ ms.locfileid: "50251782"
       "type": "array",
       "defaultValue": [ ]
     }
-``` 
+```
 
 接下來，我們要定義名為 `count` 的變數。 其值是 `source` 參數物件陣列的長度：
 
@@ -166,8 +170,9 @@ ms.locfileid: "50251782"
 您大概猜到了，我們用它來作為複製迴圈中的反覆項目數。
 
 現在，來看看我們的資源。 我們定義兩個資源︰
-* `loop-0` 是複製迴圈的從零開始編號的資源。
-* `loop-` 會與 `copyIndex(1)` 函式的結果串連，產生以反覆項目編號的唯一資源名稱，從 `1` 開始。
+
+- `loop-0` 是複製迴圈的從零開始編號的資源。
+- `loop-` 會與 `copyIndex(1)` 函式的結果串連，產生以反覆項目編號的唯一資源名稱，從 `1` 開始。
 
 我們的資源看起來會像這樣：
 
@@ -231,6 +236,7 @@ ms.locfileid: "50251782"
     }
   }
 ```
+
 將**轉換範本**最後一個反覆運算的 `output` 傳回至**呼叫範本**看似矛盾，因為看來我們要將它儲存在 `source` 參數。 不過，請記住，**轉換範本**最後一個反覆運算才有完整的轉換後屬性物件陣列，而這就是我們要傳回的東西。
 
 最後，讓我們看看如何從**呼叫範本**呼叫**收集器範本**。
@@ -277,8 +283,9 @@ ms.locfileid: "50251782"
 ```
 
 我們傳遞兩個參數給**收集器範本**：
-* `source` 是屬性物件陣列。 在我們的範例中是 `networkSecurityGroupsSettings` 參數。
-* `transformTemplateUri` 是我們剛才用**收集器範本** URI 定義的變數。
+
+- `source` 是屬性物件陣列。 在我們的範例中是 `networkSecurityGroupsSettings` 參數。
+- `transformTemplateUri` 是我們剛才用**收集器範本** URI 定義的變數。
 
 最後，`Microsoft.Network/networkSecurityGroups` 資源將 `collector` 連結範本資源的 `output` 直接指派給其 `securityRules` 屬性：
 

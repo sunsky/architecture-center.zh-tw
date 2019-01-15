@@ -1,18 +1,17 @@
 ---
-title: 補償交易
+title: 補償交易模式
+titleSuffix: Cloud Design Patterns
 description: 復原由一系列步驟執行的工作，這些步驟共同定義最終一致的作業。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- resiliency
-ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: b81151a6db08c2c14c7f26af3b4b79bfd22a18bb
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428137"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011611"
 ---
 # <a name="compensating-transaction-pattern"></a>補償交易模式
 
@@ -86,7 +85,7 @@ ms.locfileid: "47428137"
 
 ![產生補償交易以將長時間執行以預訂旅遊行程的交易復原](./_images/compensating-transaction-diagram.png)
 
-
+> [!NOTE]
 > 視您如何為每個步驟設計補償邏輯而定，可能可以平行執行補償交易中的步驟。
 
 在許多商務解決方案中，單一步驟失敗時，不一定需要使用補償交易來復原系統。 例如，&mdash;在旅遊網站案例中的 F1、F2 及 F3 航班訂位之後&mdash;如果客戶無法在 H1 旅館訂房，最好能為客戶提供同一城市但不同旅館的房間，而不是取消航班訂位。 客戶仍可以決定取消 (此時，補償交易會執行並復原對 F1、F2 及 F3 航班的訂位)，但此決策應由客戶決定，而不是系統。
@@ -97,6 +96,6 @@ ms.locfileid: "47428137"
 
 - [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 補償交易模式通常用來復原實作最終一致性模型的作業。 此入門提供最終一致性優缺點的相關資訊。
 
-- [Scheduler-Agent-Supervisor 模式](scheduler-agent-supervisor.md)。 描述如何實作使用分散式服務與資源執行商務作業且具復原功能的系統。 有時候，可能有必要使用補償交易來復原由作業所執行的工作。
+- [Scheduler-Agent-Supervisor 模式](./scheduler-agent-supervisor.md)。 描述如何實作使用分散式服務與資源執行商務作業且具復原功能的系統。 有時候，可能有必要使用補償交易來復原由作業所執行的工作。
 
 - [重試模式](./retry.md)。 執行補償交易可能所費不貲，而遵循重試模式實作重試失敗作業的有效原則，可以將此一必要降至最低。

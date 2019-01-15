@@ -1,25 +1,19 @@
 ---
-title: 佇列型負載調節
+title: 佇列型負載調節模式
+titleSuffix: Cloud Design Patterns
 description: 使用佇列來作為工作與其所叫用服務之間的緩衝區，以使間歇性的繁重負載順暢。
 keywords: 設計模式
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- availability
-- performance-scalability
-- resiliency
-ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.date: 01/02/2019
+ms.custom: seodec18
+ms.openlocfilehash: bb519fa52fcb6472733b6e52d7332d470eda8349
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359314"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011543"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>佇列型負載調節模式
-
-[!INCLUDE [header](../_includes/header.md)]
 
 使用佇列來作為工作與其所叫用服務之間的緩衝區，以緩和導致服務失敗或工作逾時之間歇性的繁重負載。這可協助將需求尖峰對工作及服務之可用性和回應性的影響降到最低。
 
@@ -63,20 +57,26 @@ ms.locfileid: "26359314"
 
 ## <a name="example"></a>範例
 
-Microsoft Azure Web 角色會使用個別的儲存體服務來儲存資料。 如果有大量 Web 角色執行個體同時執行，儲存體服務回應要求的速度可能會不夠快，而無法防止這些要求發生逾時或失敗。 下圖說明來自 Web 角色執行個體的大量並行要求導致超出服務負荷。
+Web 應用程式會將資料寫入外部資料存放區。 如果 Web 應用程式有大量的執行個體同時執行，資料存放區回應要求的速度可能會不夠快，而導致要求逾時、遭到節流或失敗。 下圖顯示來自應用程式執行個體的大量並行要求導致資料存放區超過負荷。
 
-![圖 2 - 來自 Web 角色執行個體的大量並行要求導致超出服務負荷](./_images/queue-based-load-leveling-overwhelmed.png)
+![圖 2 - 來自 Web 應用程式執行個體的大量並行要求導致服務超過負荷](./_images/queue-based-load-leveling-overwhelmed.png)
+
+若要解決此問題，您可以使用佇列來調節應用程式執行個體與資料存放區之間的負載。 Azure Functions 應用程式會從佇列讀取訊息，並針對資料存放區執行讀取/寫入要求。 函式應用程式中的應用程式邏輯可以控制將要求傳遞給資料存放區的速率，以防止存放區超過負荷。 (否則，函式應用程式只會在後端重新引入相同的問題)。
+
+![圖 3 - 使用佇列和函式應用程式來調節負載](./_images/queue-based-load-leveling-function.png)
 
 
-若要解決此問題，您可以使用佇列來調節 Web 角色執行個體與儲存體服務之間的負載。 不過，儲存體服務的設計是會接受同步要求，無法輕易修改來讀取訊息和管理輸送量。 您可以導入背景工作角色來作為 Proxy 服務，以從佇列接收要求再將要求轉送給儲存體服務。 背景工作角色中的應用程式邏輯可以控制將要求傳遞給儲存體服務的速率，以防止超出儲存體服務負荷。 下圖說明如何使用佇列和背景工作角色來調節 Web 角色執行個體與服務之間的負載。
-
-![圖 3 - 使用佇列和背景工作角色來調節 Web 角色執行個體與服務之間的負載](./_images/queue-based-load-leveling-worker-role.png)
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
 實作此模式時，下列模式和指導方針可能也相關：
 
 - [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)。 訊息佇列原本就是非同步的。 如果將工作從與服務直接通訊改成使用訊息佇列，可能就必須重新設計工作中的應用程式邏輯。 同樣地，可能必須重構服務以從訊息佇列接受要求。 或者，也可以實作 Proxy 服務，如範例中所述。
-- [競爭取用者模式](competing-consumers.md)。 您可以執行多個服務執行個體，每個執行個體都作為來自負載調節佇列的訊息取用者。 您可以使用此方法來調整接收訊息並將訊息傳遞給服務的速率。
-- [節流模式](throttling.md)。 有一個搭配服務實作節流的簡單方式，就是使用佇列型負載調節，然後透過訊息佇列將所有要求路由傳送至服務。 服務可以用確保服務所需資源不會耗盡且可減少可能發生之爭用情況的速率來處理要求。
-- [佇列服務概念](https://msdn.microsoft.com/library/azure/dd179353.aspx) \(英文\)。 有關 Azure 應用程式中選擇傳訊和佇列機制的資訊。
+
+- [競爭取用者模式](./competing-consumers.md)。 您可以執行多個服務執行個體，每個執行個體都作為來自負載調節佇列的訊息取用者。 您可以使用此方法來調整接收訊息並將訊息傳遞給服務的速率。
+
+- [節流模式](./throttling.md)。 有一個搭配服務實作節流的簡單方式，就是使用佇列型負載調節，然後透過訊息佇列將所有要求路由傳送至服務。 服務可以用確保服務所需資源不會耗盡且可減少可能發生之爭用情況的速率來處理要求。
+
+- [選擇 Azure 傳訊服務](/azure/event-grid/compare-messaging-services)。 有關 Azure 應用程式中選擇傳訊和佇列機制的資訊。
+
+- [改善 Azure Web 應用程式的延展性](../reference-architectures/app-service-web-app/scalable-web-app.md)。 此參考架構中包含佇列型負載調節功能。

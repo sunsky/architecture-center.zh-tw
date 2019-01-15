@@ -1,16 +1,16 @@
 ---
 title: 使用 Azure Functions 進行無伺服器事件處理
 titleSuffix: Azure Reference Architectures
-description: 參考架構，該架構顯示無伺服器事件擷取和處理
+description: 使用 Azure Functions 的無伺服器事件擷取和處理參考架構。
 author: MikeWasson
 ms.date: 10/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 23edc69e52981cfd15717b491875b34ed025958a
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119892"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111388"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>使用 Azure Functions 進行無伺服器事件處理
 
@@ -31,7 +31,7 @@ ms.locfileid: "53119892"
 
 **Cosmos DB**。 [Cosmos DB][cosmosdb] 是多模型資料庫服務。 針對此案例，事件處理函式會使用 Cosmos DB [SQL API][cosmosdb-sql] 來儲存 JSON 記錄。
 
-**佇列儲存體**。 [佇列儲存體][queue]是用於無效信件訊息。 如果在處理事件時發生錯誤，函式會儲存無效信件佇列中的事件資料供稍後處理。 如需詳細資訊，請參閱[恢復功能考量](#resiliency-considerations)。
+**佇列儲存體**。 [佇列儲存體][queue]是用於無效信件訊息。 如果在處理事件時發生錯誤，函式會儲存無效信件佇列中的事件資料供稍後處理。 如需詳細資訊，請參閱[復原功能考量](#resiliency-considerations)。
 
 **Azure 監視器**。 [監視器][monitor]會收集解決方案中部署的 Azure 服務相關效能計量。 透過儀表板中的資料視覺化，您可以看到解決方案的健康情況。
 
@@ -58,7 +58,7 @@ Cosmos DB 的輸送量容量會以[要求單位][ru] (RU) 來測量。 若要將
 
 在此參考架構的案例中，函式會針對傳送資料的各個裝置，確實儲存一個文件。 函式會使用 upsert 作業，持續以最新的裝置狀態來更新文件。 裝置識別碼對於此案例是很好的分割區索引鍵，因為寫入會平均分配到索引鍵，而且每個分割區的大小會嚴格限定，因為每個索引鍵值有單一文件。 如需有關分割區索引鍵的詳細資訊，請參閱[在 Azure Cosmos DB 中進行資料分割和調整][cosmosdb-scale]。
 
-## <a name="resiliency-considerations"></a>恢復功能考量
+## <a name="resiliency-considerations"></a>復原功能考量
 
 搭配 Functions 使用事件中樞觸發程序時，攔截您處理迴圈內的例外狀況。 如果發生無法處理的例外狀況，Functions 執行階段不會重試訊息。 如果無法處理訊息，請將訊息放入無效信件佇列。 使用頻外程序來檢查訊息並判斷矯正措施。
 

@@ -3,12 +3,12 @@ title: 選擇資料傳輸技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: d5fbdc3a49ab16be2626b772ffd1af782963a2f0
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902660"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113037"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>在 Azure 來回傳輸資料
 
@@ -20,24 +20,25 @@ ms.locfileid: "52902660"
 
 - 您的網路速度很慢或不可靠。
 - 取得額外網路頻寬的成本很高。
-- 安全性或組織原則不允許在處理敏感性資料時建立輸出連線。 
+- 安全性或組織原則不允許在處理敏感性資料時建立輸出連線。
 
 如果您主要的考量是資料傳輸時間長短，建議您執行測試以確認網路傳輸速度實際上是否比實體傳輸慢。
 
 有兩大選項可將資料實體傳輸至 Azure：
+
 - **Azure 匯入/匯出**。 [Azure 匯入/匯出服務](/azure/storage/common/storage-import-export-service)可讓您藉由將內部的 SATA HDD 或 SDD 寄送到 Azure 資料中心，安全地將大量資料傳輸至 Azure Blob 儲存體或 Azure 檔案服務。 您也可以使用這項服務，將資料從 Azure 儲存體傳輸至硬碟，然後將硬碟寄送到您手上以在內部部署環境中載入。
 
-- **Azure 資料箱**。 [Azure 資料箱](https://azure.microsoft.com/services/storage/databox/)是 Microsoft 所提供的設備，其作用非常類似 Azure 匯入/匯出服務。 Microsoft 會將專屬且安全的防篡改傳輸設備寄送給您，並為您處理端到端物流程序，而您可以透過入口網站來追蹤此過程。 Azure 資料箱服務的其中一個優點是容易使用。 您不需要購買數個硬碟、讓硬碟做好準備，然後將檔案傳輸到每一個硬碟。 有許多領先業界的 Azure 合作夥伴支援 Azure 資料箱，因此您可以輕鬆且順暢地透過他們的產品離線傳輸至雲端。 
+- **Azure 資料箱**。 [Azure 資料箱](https://azure.microsoft.com/services/storage/databox/)是 Microsoft 所提供的設備，其作用非常類似 Azure 匯入/匯出服務。 Microsoft 會將專屬且安全的防篡改傳輸設備寄送給您，並為您處理端到端物流程序，而您可以透過入口網站來追蹤此過程。 Azure 資料箱服務的其中一個優點是容易使用。 您不需要購買數個硬碟、讓硬碟做好準備，然後將檔案傳輸到每一個硬碟。 有許多領先業界的 Azure 合作夥伴支援 Azure 資料箱，因此您可以輕鬆且順暢地透過他們的產品離線傳輸至雲端。
 
 ## <a name="command-line-tools-and-apis"></a>命令列工具和 API
 
 當您想要已編寫指令碼和完成程式設計的資料傳輸時，請考慮這些選項。
 
-- **Azure CLI**。 [Azure CLI](/azure/hdinsight/hdinsight-upload-data#commandline) 是可讓您管理 Azure 服務，並將資料上傳至 Azure 儲存體的跨平台工具。 
+- **Azure CLI**。 [Azure CLI](/azure/hdinsight/hdinsight-upload-data#commandline) 是可讓您管理 Azure 服務，並將資料上傳至 Azure 儲存體的跨平台工具。
 
-- **AzCopy**。 透過 [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 或 [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 命令列使用 AzCopy，即可以最佳的效能輕鬆地將檔案複製到 Azure Blob、檔案和資料表儲存體，以及從中複製。 AzCopy 支援並行和平行處理原則，並且能夠繼續中斷的複製作業。 其速度也比其他大部分的選項快。 若要以程式設計方式存取，[Microsoft Azure 儲存體資料移動程式庫](/azure/storage/common/storage-use-data-movement-library)是支援 AzCopy 的核心架構。 它是以 .NET Core 文件庫的形式來提供。 
+- **AzCopy**。 透過 [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 或 [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) 命令列使用 AzCopy，即可以最佳的效能輕鬆地將檔案複製到 Azure Blob、檔案和資料表儲存體，以及從中複製。 AzCopy 支援並行和平行處理原則，並且能夠繼續中斷的複製作業。 其速度也比其他大部分的選項快。 若要以程式設計方式存取，[Microsoft Azure 儲存體資料移動程式庫](/azure/storage/common/storage-use-data-movement-library)是支援 AzCopy 的核心架構。 它是以 .NET Core 文件庫的形式來提供。
 
-- **PowerShell**。 [`Start-AzureStorageBlobCopy` PowerShell Cmdlet](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) 是 Windows 系統管理員用於 PowerShell 的選項。  
+- **PowerShell**。 [`Start-AzureStorageBlobCopy` PowerShell Cmdlet](/powershell/module/azure.storage/start-azurestorageblobcopy?view=azurermps-5.0.0) 是 Windows 系統管理員用於 PowerShell 的選項。
 
 - **AdlCopy**。 [AdlCopy](/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob) 可讓您將資料從 Azure 儲存體 Blob 複製到 Data Lake Store 中。 它也可用來在兩個 Azure Data Lake Store 帳戶之間複製資料。 不過，它不能用來將資料從 Data Lake Store 複製到儲存體 Blob。
 
@@ -61,7 +62,7 @@ ms.locfileid: "52902660"
 
 **Azure Data Factory**。 [Azure Data Factory](/azure/data-factory/) 是受控服務，最適合在眾多 Azure 服務和 (或) 內部部署環境之間定期傳輸檔案。 您可以使用 Azure Data Factory 建立並排程資料驅動的工作流程 (稱為管線)，以從不同的資料存放區擷取資料。 使用計算服務 (例如，Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics 和 Azure Machine Learning) 可以處理或轉換資料。 建立資料驅動的工作流程，以便[協調](../technology-choices/pipeline-orchestration-data-movement.md)及自動進行資料移動和資料轉換。
 
-## <a name="key-selection-criteria"></a>重要選取準則
+## <a name="key-selection-criteria"></a>關鍵選取準則
 
 在資料傳輸案例中，請回答下列問題來選擇適合您需求的系統：
 
@@ -79,7 +80,11 @@ ms.locfileid: "52902660"
 
 下表摘要列出各項功能的主要差異。
 
+<!-- markdownlint-disable MD024 -->
+
 ### <a name="physical-transfer"></a>實體傳輸
+
+<!-- markdownlint-enable MD033 -->
 
 | | Azure 匯入/匯出服務 | Azure 資料箱 |
 | --- | --- | --- |
@@ -90,7 +95,7 @@ ms.locfileid: "52902660"
 
 ### <a name="command-line-tools"></a>命令列工具。
 
-**Hadoop/HDInsight**
+**Hadoop/HDInsight：**
 
 | | Distcp | Sqoop | Hadoop CLI |
 | --- | --- | --- | --- |
@@ -102,19 +107,22 @@ ms.locfileid: "52902660"
 | 複製到 Data Lake Store | 是 | 是 | 是 |
 | 從 Data Lake Store 複製 | 是 | 是 | 否 |
 
-**其他**
+**其他：**
+
+<!-- markdownlint-disable MD033 -->
 
 | | Azure CLI | AzCopy | PowerShell | AdlCopy | PolyBase |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 相容平台 | Linux、OS X、Windows | Linux、Windows | Windows | Linux、OS X、Windows | SQL Server、Azure SQL 資料倉儲 | 
+| 相容平台 | Linux、OS X、Windows | Linux、Windows | Windows | Linux、OS X、Windows | SQL Server、Azure SQL 資料倉儲 |
 | 已針對巨量資料最佳化 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>2</sup> |
-| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | 是 | 
-| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | 是 | 
-| 複製到 Blob 儲存體 | 是 | 是 | 是 | 否 | 是 | 
+| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | 是 |
+| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | 是 |
+| 複製到 Blob 儲存體 | 是 | 是 | 是 | 否 | 是 |
 | 從 Blob 儲存體複製 | 是 | 是 | 是 | 是 | 是 |
-| 複製到 Data Lake Store | 否 | 否 | yes | 是 |  是 | 
-| 從 Data Lake Store 複製 | 否 | 否 | yes | 是 | 是 | 
+| 複製到 Data Lake Store | 否 | 否 | yes | 是 |  是 |
+| 從 Data Lake Store 複製 | 否 | 否 | yes | 是 | 是 |
 
+<!-- markdownlint-enable MD033 -->
 
 [1] AdlCopy 已針對使用 Data Lake Analytics 帳戶來傳輸巨量資料的作業予以最佳化。
 
@@ -124,7 +132,7 @@ ms.locfileid: "52902660"
 
 | | Azure 儲存體總管 | Azure 入口網站 * | Azure Data Factory |
 | --- | --- | --- | --- |
-| 已針對巨量資料最佳化 | 否 | 否 | 是 | 
+| 已針對巨量資料最佳化 | 否 | 否 | 是 |
 | 複製到關聯式資料庫 | 否 | 否 | 是 |
 | 複製到關聯式資料庫 | 否 | 否 | 是 |
 | 複製到 Blob 儲存體 | 是 | 否 | 是 |
@@ -138,4 +146,3 @@ ms.locfileid: "52902660"
 | 定價模式 | 免費 | 免費 | 依使用量付費 |
 
 \* Azure 入口網站在此案例中代表會針對 Blob 儲存體和 Data Lake Store 使用 Web 型瀏覽工具。
-

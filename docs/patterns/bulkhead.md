@@ -1,20 +1,23 @@
 ---
 title: 隔艙模式
-description: 將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行
+titleSuffix: Cloud Design Patterns
+description: 將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運作。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 9917870e1dcbed87aaa41e051f1622ad4950456a
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.custom: seodec18
+ms.openlocfilehash: 0a2ae4789d3c1653405a59ef8cb4f6171a8abc81
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012700"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112187"
 ---
 # <a name="bulkhead-pattern"></a>隔艙模式
 
-將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行。
+將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運作。
 
-這種模式被命名為「隔艙」，因為它類似於船體的剖面分區。 如果船體受損，只有受損部分充滿水，這樣可以防止船舶沉沒。 
+這種模式被命名為「隔艙」，因為它類似於船體的剖面分區。 如果船體受損，只有受損部分充滿水，這樣可以防止船舶沉沒。
 
 ## <a name="context-and-problem"></a>內容和問題
 
@@ -34,16 +37,16 @@ ms.locfileid: "31012700"
 
 - 將取用者和服務與連鎖性失效隔離。 影響取用者或服務的問題可以在其自身的隔艙內隔離，避免整個方案失敗。
 - 允許您在服務失敗時保留某些功能。 其他服務和應用程式的功能將繼續運作。
-- 可讓您部署為取用應用程式提供不同服務品質的服務。 高優先順序的取用者集區可以設定為使用高優先順序服務。 
+- 可讓您部署為取用應用程式提供不同服務品質的服務。 高優先順序的取用者集區可以設定為使用高優先順序服務。
 
 下圖顯示圍繞呼叫個別服務之連線集區建構的隔艙。 如果服務 A 失敗或造成其他問題，則連線集區將被隔離，因此只有使用指派給服務 A 之執行緒集區的工作負載會受到影響。 使用服務 B 和 C 的工作負載不會受到影響，且可以繼續工作，不會中斷。
 
-![](./_images/bulkhead-1.png) 
+![隔艙模式的第一個圖表](./_images/bulkhead-1.png)
 
 下圖顯示呼叫單一服務的多個用戶端。 每個用戶端都被指派個別的服務執行個體。 用戶端 1 提出了太多的要求，而壓倒其執行個體。 由於每個服務執行個體相互隔離，其他用戶端可以繼續進行呼叫。
 
-![](./_images/bulkhead-2.png)
-     
+![隔艙模式的第一個圖表](./_images/bulkhead-2.png)
+
 ## <a name="issues-and-considerations"></a>問題和考量
 
 - 定義圍繞應用程式之商務和技術需求的分割區。
@@ -63,7 +66,7 @@ ms.locfileid: "31012700"
 - 隔離重要取用者與標準取用者。
 - 保護應用程序免受連鎖性失效。
 
-此模式可能不適合下列時機︰
+此模式可能不適用於下列時機︰
 
 - 專案中不接受資源低效率使用。
 - 增加的複雜性是沒有必要的
@@ -92,11 +95,10 @@ spec:
 
 ## <a name="related-guidance"></a>相關的指引
 
-- [斷路器模式](./circuit-breaker.md)
 - [為 Azure 設計有彈性的應用程式](../resiliency/index.md)
+- [斷路器模式](./circuit-breaker.md)
 - [重試模式](./retry.md)
 - [節流模式](./throttling.md)
-
 
 <!-- links -->
 

@@ -5,12 +5,12 @@ description: 在 Azure 中多個區域內執行高可用性 Web 應用程式的�
 author: MikeWasson
 ms.date: 10/25/2018
 ms.custom: seodec18
-ms.openlocfilehash: 61ee7220dbc37140ff1598de78f89aaef8a3e922
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 04ba786ea16aa3245a8f0b7fcafeacc60ac447c2
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119841"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113326"
 ---
 # <a name="run-a-web-application-in-multiple-azure-regions-for-high-availability"></a>在多個 Azure 區域中執行 Web 應用程式以獲得高可用性
 
@@ -37,17 +37,17 @@ ms.locfileid: "53119841"
 - 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
 - 主動/主動。 兩個區域均為主動，而且要求會在它們之間負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。
 
-此參考架構著重於搭配熱待命的主動/被動，使用流量管理員進行容錯移轉。
+此參考架構著重於搭配熱待命的主動/被動 (使用流量管理員進行容錯移轉)。
 
 ## <a name="recommendations"></a>建議
 
-您的需求可能和此處所述的架構不同。 以本節的建議作為起點。
+您的需求可能和此處所述的架構不同。 請使用本節的建議作為起點。
 
 ### <a name="regional-pairing"></a>區域配對
 
 每個 Azure 區域都會與相同地理位置內的另一個區域配對。 通常會從相同區域配對選擇區域 (例如，美國東部 2 和美國中部)。 這樣做的優點包括：
 
-- 如果發生大範圍中斷，至少優先復原每個配對中的一個區域。
+- 如果有大範圍中斷，至少優先復原每個配對中的一個區域。
 - 已計劃的 Azure 系統更新會循序在配對區域中展開，將可能的停機時間降到最低。
 - 在大部分情況下，區域配對會位於相同的地理位置，以符合資料落地需求。
 
@@ -65,7 +65,7 @@ ms.locfileid: "53119841"
 
 最佳做法是，建立健康情況探查端點來報告應用程式的整體健康情況，並使用此端點進行健康情況探查。 端點應該檢查關鍵性的相依性，例如 App Service 應用程式、儲存體佇列、SQL Database。 否則，探查可能會在應用程式的關鍵組件真的失敗時報告端點狀況良好。
 
-另一方面，請勿使用健康情況探查來檢查較低優先順序的服務。 例如，如果電子郵件服務已關閉，應用程式可以切換至第二個提供者或只是稍後再傳送電子郵件。 其優先順序不足以高到要將應用程式容錯移轉。 如需詳細資訊，請參閱[健康情況端點監視模式][health-endpoint-monitoring-pattern]。
+另一方面，請勿使用健康情況探查來檢查較低優先順序的服務。 例如，如果電子郵件服務已關閉，應用程式可以切換至第二個提供者或只是稍後再傳送電子郵件。 其優先順序不足以高到要將應用程式容錯移轉。 如需詳細資訊，請參閱[健康情況端點監控模式][health-endpoint-monitoring-pattern]。
 
 ### <a name="sql-database"></a>SQL Database
 
@@ -94,7 +94,7 @@ Cosmos DB 支援跨多個主要區域 (多個寫入區域) 的異地複寫。 �
 
 如需詳細資料，請參閱[關於流量管理員監視][tm-monitoring]。
 
-流量管理員也可能是這套系統中的失敗點。 如果此服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員服務等級協定 (SLA)][tm-sla]，判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的正式名稱 (CNAME) 記錄，以指向其他流量管理服務。 此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式。
+流量管理員可能是此系統中的失敗點。 如果此服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員服務等級協定 (SLA)][tm-sla]，判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的正式名稱 (CNAME) 記錄，以指向其他流量管理服務。 此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式。
 
 ## <a name="availability-considerations---sql-database"></a>可用性考量 - SQL Database
 
@@ -147,7 +147,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 
 <!-- links -->
 
-[azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-sql-db]: /azure/sql-database/
 [azure-dns]: /azure/dns/dns-overview
 [cosmosdb-geo]: /azure/cosmos-db/distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md

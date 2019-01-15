@@ -3,16 +3,16 @@ title: 選擇批次處理技術
 description: ''
 author: zoinerTejada
 ms.date: 11/03/2018
-ms.openlocfilehash: 51de9ab5a0d8e3f91ddcc4dceb4a748f49fa925b
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 0c6392fb0a921e95f2704696fb2447ac5ec6f4c0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902284"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111320"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中選擇批次處理技術
 
-巨量資料解決方案通常使用長時間執行的批次作業來篩選、彙總和準備資料以供分析。 這些作業通常包括從可擴充儲存體 (例如 HDFS、Azure Data Lake Store 與 Azure 儲存體) 讀取原始檔並加以處理，以及將輸出寫入到可擴充儲存體中的新檔案。 
+巨量資料解決方案通常使用長時間執行的批次作業來篩選、彙總和準備資料以供分析。 這些作業通常包括從可擴充儲存體 (例如 HDFS、Azure Data Lake Store 與 Azure 儲存體) 讀取原始檔並加以處理，以及將輸出寫入到可擴充儲存體中的新檔案。
 
 這類批次處理引擎的關鍵需求是相應放大計算，以便處理大量資料的能力。 但不像即時處理，批次處理應該會有以分鐘到小時測量的延遲 (擷取資料與計算結果之間的時間)。
 
@@ -24,10 +24,10 @@ ms.locfileid: "52902284"
 
 ### <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
 
-[Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-overview) 是隨選分析作業服務。 針對分散處理儲存在 Azure Data Lake Store 中非常大量的資料集而最佳化。 
+[Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-overview) 是隨選分析作業服務。 針對分散處理儲存在 Azure Data Lake Store 中非常大量的資料集而最佳化。
 
 - 語言：[U-SQL](/azure/data-lake-analytics/data-lake-analytics-u-sql-get-started) (包括 Python、R 及 C# 擴充功能)。
--  與 Azure Data Lake Store、Azure 儲存體 Blob、Azure SQL Database 及 SQL 資料倉儲整合。
+- 與 Azure Data Lake Store、Azure 儲存體 Blob、Azure SQL Database 及 SQL 資料倉儲整合。
 - 定價模型是針對各個作業。
 
 ### <a name="hdinsight"></a>HDInsight
@@ -38,21 +38,21 @@ HDInsight 是受控 Hadoop 服務。 使用它以在 Azure 中部署及管理 Ha
 - 使用 Active Directory、Apache Ranger 型存取控制進行Kerberos 驗證
 - 給予您 Hadoop 叢集的完整控制權
 
-### <a name="azure-databricks"></a>Azure Databricks 
+### <a name="azure-databricks"></a>Azure Databricks
 
-[Azure Databricks](/azure/azure-databricks/) 是 Apache Spark 型分析平台。 您可以將它視為「Spark 即服務」。 它是在 Azure 平台上使用 Spark 的最簡單方式。  
+[Azure Databricks](/azure/azure-databricks/) 是 Apache Spark 型分析平台。 您可以將它視為「Spark 即服務」。 它是在 Azure 平台上使用 Spark 的最簡單方式。
 
 - 語言：R、Python、Java、Scala、Spark SQL
 - 加快叢集開始時間、自動終止、自動調整。
 - 為您管理 Spark 叢集。
 - 內建與 Azure Blob 儲存體、Azure Data Lake Storage (ADLS)、Azure SQL 資料倉儲 (SQL DW) 及其他服務的整合。 請參閱[資料來源](https://docs.azuredatabricks.net/spark/latest/data-sources/index.html) (英文)。
 - 使用 Azure Active Directory 進行使用者驗證。
-- 適用於共同作業和資料探索的網頁型 [Notebook](https://docs.azuredatabricks.net/user-guide/notebooks/index.html) (英文)。 
+- 適用於共同作業和資料探索的網頁型 [Notebook](https://docs.azuredatabricks.net/user-guide/notebooks/index.html) (英文)。
 - 支援[已啟用 GPU 功能的叢集](https://docs.azuredatabricks.net/user-guide/clusters/gpu.html) (英文)
 
-### <a name="azure-distributed-data-engineering-toolkit"></a>Azure 分散式資料工程工具組 
+### <a name="azure-distributed-data-engineering-toolkit"></a>Azure 分散式資料工程工具組
 
-[分散式資料工程工具組](https://github.com/azure/aztk) (英文) (AZTK) 是一種工具，用來在 Azure 中的 Docker 叢集上佈建隨選 Spark。 
+[分散式資料工程工具組](https://github.com/azure/aztk) (英文) (AZTK) 是一種工具，用來在 Azure 中的 Docker 叢集上佈建隨選 Spark。
 
 AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Python SDK 介面的用戶端工具。 此選項可讓您在部署 Spark 叢集時具有基礎結構的大部分控制權。
 
@@ -61,11 +61,11 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 - 混合模式叢集是同時使用低優先順序和專用 VM。
 - 內建對於 Azure Blob 儲存體和 Azure Data Lake 連線的支援。
 
-## <a name="key-selection-criteria"></a>重要選取準則
+## <a name="key-selection-criteria"></a>關鍵選取準則
 
-若要縮小選項範圍，請開始回答這些問題：
+為了縮小選擇範圍，請先回答下列問題：
 
-- 您要受控服務，而不是自行管理自己的伺服器？
+- 比起自行管理伺服器，您更想使用受控服務嗎？
 
 - 否要以宣告或命令的方式撰寫批處理邏輯？
 
@@ -73,17 +73,19 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 - 是否需要同時進行查詢關聯式資料存放區以及批次處理，例如查閱參考資料？ 如果是，請考慮啟用外部關聯式存放區查詢的選項。
 
-## <a name="capability-matrix"></a>相容性矩陣
+## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。 
+下表摘要列出各項功能的主要差異。
 
 ### <a name="general-capabilities"></a>一般功能
 
+<!-- markdownlint-disable MD033 -->
+
 | | Azure Data Lake Analytics | Azure SQL 資料倉儲 | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 | 
+| 為受控服務 | 是 | yes | 是 <sup>1</sup> | 是 |
 | 關聯式資料存放區 | yes | 是 | 否 | 否 |
-| 定價模式 | 以每個批次作業為單位 | 依叢集小時 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
+| 定價模式 | 以每個批次作業為單位 | 依叢集時數 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
 
 [1] 使用手動設定和調整。
 
@@ -102,6 +104,8 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 | 資料列層級安全性 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
 | 支援防火牆 | yes | 是 | 是 | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |
 | 動態資料遮罩 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
+
+<!-- markdownlint-enable MD033 -->
 
 [1] 使用[已加入網域的 HDInsight 叢集](/azure/hdinsight/domain-joined/apache-domain-joined-introduction)時所需。
 

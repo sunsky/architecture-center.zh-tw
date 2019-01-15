@@ -1,18 +1,20 @@
 ---
 title: 軟體品質的要素
+titleSuffix: Azure Application Architecture Guide
 description: 說明軟體品質的五大要素，也就是延展性、可用性、復原功能、管理和安全性。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: dce87aba849c61750416f277bcc5558c400c1f25
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326151"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113938"
 ---
-# <a name="pillars-of-software-quality"></a>軟體品質的要素 
+# <a name="pillars-of-software-quality"></a>軟體品質的要素
 
-成功的雲端應用程式會將焦點放在軟體品質的五大要素：延展性、可用性、復原功能、管理和安全性。
+成功的雲端應用程式將著重於軟體品質的這五大支柱：延展性、可用性、復原、管理和安全性。
 
 | 要素 | 說明 |
 |--------|-------------|
@@ -24,17 +26,17 @@ ms.locfileid: "43326151"
 
 ## <a name="scalability"></a>延展性
 
-延展性是系統處理負載增加的能力。 應用程式有兩種主要的調整方式。 垂直調整 (「相應增加」) 代表增加資源的容量，例如使用較大的 VM 大小。 水平調整 (「相應放大」) 則會為資源 (例如 VM 或資料庫複本) 新增執行個體。 
+延展性是系統處理負載增加的能力。 應用程式有兩種主要的調整方式。 垂直調整 (「相應增加」) 代表增加資源的容量，例如使用較大的 VM 大小。 水平調整 (「相應放大」) 則會為資源 (例如 VM 或資料庫複本) 新增執行個體。
 
 水平調整的優勢明顯大過垂直調整：
 
 - 真正的雲端規模。 可以將應用程式設計成在數百乃至數千個節點上執行，達到單一節點所不可能提供的規模。
 - 水平調整具有彈性。 您可以在負載增加時新增更多執行個體，也可以在負載較少時予以移除。
-- 相應放大程序可自動觸發，不論是根據排程或因應負載的變化。 
-- 相應放大的成本可能低於相應增加。 執行數個小型 VM 的成本會少於執行單一大型 VM。 
+- 相應放大程序可自動觸發，不論是根據排程或因應負載的變化。
+- 相應放大的成本可能低於相應增加。 執行數個小型 VM 的成本會少於執行單一大型 VM。
 - 藉由增加備援執行個體，水平調整也可以提升復原功能。 如果有某執行個體停止運作，應用程式還是會繼續執行。
 
-垂直調整的優點是不必變更應用程式就可進行。 但是到達一定規模後就會出現限制，而無法再進行相應增加。 屆時，如果要再擴大規模，就必須進行水平調整。 
+垂直調整的優點是不必變更應用程式就可進行。 但是到達一定規模後就會出現限制，而無法再進行相應增加。 屆時，如果要再擴大規模，就必須進行水平調整。
 
 水平調整必須設計到系統裡。 例如，您可以將 VM 放在負載平衡器後方，以進行相應放大。 但是，集區中的每個 VM 都必須能夠處理任何用戶端要求，因此，應用程式必須是無狀態模式或是將狀態儲存在外部 (例如，儲存在分散式快取)。 受控 PaaS 服務通常都會內建水平調整和自動調整。 能夠輕鬆調整這些服務是使用 PaaS 服務的主要優勢。
 
@@ -51,9 +53,9 @@ ms.locfileid: "43326151"
 
 ## <a name="availability"></a>可用性
 
-可用性是系統正常運作並執行作業的時間比例。 通常以運作時間百分比加以測量。 應用程式錯誤、基礎結構問題和系統負載全都有可能會降低可用性。 
+可用性是系統正常運作並執行作業的時間比例。 通常以運作時間百分比加以測量。 應用程式錯誤、基礎結構問題和系統負載全都有可能會降低可用性。
 
-雲端應用程式應該會有服務等級目標 (SLO)，以清楚定義預期的可用性以及可用性的測量方式。 在定義可用性時，應關注關鍵路徑。 Web 前端或許可以服務用戶端要求，但如果每一筆交易都因為它無法連線到資料庫而失敗，使用者就無法使用應用程式。 
+雲端應用程式應該會有服務等級目標 (SLO)，以清楚定義預期的可用性以及可用性的測量方式。 在定義可用性時，應關注關鍵路徑。 Web 前端或許可以服務用戶端要求，但如果每一筆交易都因為它無法連線到資料庫而失敗，使用者就無法使用應用程式。
 
 可用性通常是以「幾個 9」來描述，例如，「四個 9」表示 99.99% 的運作時間。 下表顯示各種可用性等級的潛在累計停機時間。
 
@@ -69,7 +71,7 @@ ms.locfileid: "43326151"
 
 在 Azure 中，服務等級協定 (SLA) 描述 Microsoft 對執行時間與連線能力的承諾。 如果特定服務的 SLA 是 99.95%，表示您應該預期 99.95% 的時間皆可提供服務。
 
-應用程式經常依賴多個服務。 一般情況下，服務發生停機的機率是各自獨立的。 例如，假設您的應用程式依賴兩個服務，這兩個服務各有 99.9% 的 SLA。 這兩個服務的複合 SLA 是 99.9% &times; 99.9% &asymp; 99.8%，也就是略低於每個服務本身的 SLA。 
+應用程式經常依賴多個服務。 一般情況下，服務發生停機的機率是各自獨立的。 例如，假設您的應用程式依賴兩個服務，這兩個服務各有 99.9% 的 SLA。 這兩個服務的複合 SLA 是 99.9% &times; 99.9% &asymp; 99.8%，也就是略低於每個服務本身的 SLA。
 
 請使用[可用性檢查清單][availability-checklist]，從可用性的角度檢視您的設計。
 
@@ -80,18 +82,18 @@ ms.locfileid: "43326151"
 
 ## <a name="resiliency"></a>復原功能
 
-災害復原是指系統從失敗中復原並繼續運作的能力。 災害復原的目標是使應用程式在發生失敗後，能夠恢復到完全正常運作的狀態。 恢復能力與可用性緊密相關。
+復原功能是指系統從失敗中復原並繼續運作的能力。 復原功能的目標是使應用程式在發生失敗後，能夠恢復到完全正常運作的狀態。 復原功能與可用性緊密相關。
 
 傳統上在開發應用程式時，會將焦點放在減少平均失敗時間 (MTBF)。 心力會花在嘗試避免系統發生失敗。 在雲端運算中，則需要不同的思維，原因如下：
 
 - 分散式系統很複雜，某處發生失敗很可能會讓整個系統發生連鎖反應。
-- 為了維持低成本，雲端環境會使用標準規格之硬體，因此一定會偶有硬體發生故障情形。 
-- 應用程式經常依賴外部服務，但這些外部服務可能會暫時無法使用，或是針對大量使用者進行限流處理。 
+- 為了維持低成本，雲端環境會使用標準規格之硬體，因此一定會偶有硬體發生故障情形。
+- 應用程式經常依賴外部服務，但這些外部服務可能會暫時無法使用，或是針對大量使用者進行限流處理。
 - 現今的使用者都期望應用程式應全天候都隨時可用，永遠不會離線。
 
-綜合上述之因素，雲端應用程式必須設計成預期會偶爾發生失敗並可以從中復原。 Azure 平台已內建許多復原功能。 例如， 
+綜合上述之因素，雲端應用程式必須設計成預期會偶爾發生失敗並可以從中復原。 Azure 平台已內建許多復原功能。 例如︰
 
-- Azure 儲存體、SQL Database 和 Cosmos DB 全都提供內建的資料複寫功能，不論是單一區域內和跨區域皆有提供。
+- Azure 儲存體、SQL Database 和 Cosmos DB 全都提供內建的資料複寫功能，不論是單一區域內或是跨區域皆有提供。
 - Azure 受控磁碟會自動放在不同的儲存體縮放單位，以限制硬體故障的影響程度。
 - 可用性設定組中的 VM 會分散到數個容錯網域。 容錯網域是一組 VM，這些 VM 會共用電力來源和網路交換器。 將 VM 分散到不同的容錯網域可以減少當實體硬體故障、網路中斷或電源中斷所產生的影響。
 
@@ -107,7 +109,7 @@ ms.locfileid: "43326151"
 - [復原功能的設計模式][resiliency-patterns]
 - 最佳做法：[暫時性錯誤的處理][transient-fault-handling]、[特定服務的重試指引][retry-service-specific]
 
-## <a name="management-and-devops"></a>管理和 DevOps
+## <a name="management-and-devops"></a>管理性和 DevOps
 
 此要素涵蓋讓應用程式在生產環境中執行的作業流程。
 
@@ -133,7 +135,7 @@ ms.locfileid: "43326151"
 
 您必須思考應用程式從設計和實作到部署與作業之整個生命週期的安全性。 Azure 平台可防範各種不同威脅，例如網路入侵和 DDoS 攻擊。 但您仍需要在應用程式和 DevOps 程序中建置安全性。
 
-以下是部分需要考慮的安全性領域。 
+以下是部分需要考慮的安全性領域。
 
 ### <a name="identity-management"></a>身分識別管理
 
@@ -141,29 +143,28 @@ ms.locfileid: "43326151"
 
 如果您想要整合內部部署 Active Directory 環境與 Azure 網路，可行的方法有好幾個，端視您的需求而定。 如需詳細資訊，請參閱[身分識別管理][identity-ref-arch]參考架構。
 
-### <a name="protecting-your-infrastructure"></a>保護您的基礎結構 
+### <a name="protecting-your-infrastructure"></a>保護您的基礎結構
 
-請控制您所部署之 Azure 資源的存取權。 每個 Azure 訂用帳戶都會與 Azure AD 租用戶有[信任關係][ad-subscriptions]。 請使用[角色型存取控制][ rbac] (RBAC) 來為您組織內的使用者授與正確的 Azure 資源權限。 若要授與存取權，請將 RBAC 角色指派給某個範圍內的使用者或群組。 此範圍可以是訂用帳戶、資源群組或是單一資源。 對基礎結構的所有變更進行[稽核][resource-manager-auditing]。 
+請控制您所部署之 Azure 資源的存取權。 每個 Azure 訂用帳戶都會與 Azure AD 租用戶有[信任關係][ad-subscriptions]。
+請使用[角色型存取控制][ rbac] (RBAC) 來為您組織內的使用者授與正確的 Azure 資源權限。 若要授與存取權，請將 RBAC 角色指派給某個範圍內的使用者或群組。 此範圍可以是訂用帳戶、資源群組或是單一資源。 對基礎結構的所有變更進行[稽核][resource-manager-auditing]。
 
 ### <a name="application-security"></a>應用程式安全性
 
-一般情況下，開發應用程式時的安全性最佳做法仍適用於雲端。 這些做法包括在所有地方使用 SSL、防範 CSRF 和 XSS 攻擊、防止 SQL 插入式攻擊等等。 
+一般情況下，開發應用程式時的安全性最佳做法仍適用於雲端。 這些做法包括在所有地方使用 SSL、防範 CSRF 和 XSS 攻擊、防止 SQL 插入式攻擊等等。
 
 雲端應用程式通常會使用具有存取金鑰的受控服務。 請永遠不要將這些存取金鑰簽入到原始檔控制。 您可以考慮將應用程式密碼儲存在 Azure Key Vault。
 
 ### <a name="data-sovereignty-and-encryption"></a>資料主權和加密
 
-在使用 Azure 的高可用性功能時，請確保您的資料會留在正確的地緣政治區域內。 Azure 的異地備援儲存體會在相同的地緣政治區域中使用[配對區域][paired-region]的概念。 
+在使用 Azure 的高可用性功能時，請確保您的資料會留在正確的地緣政治區域內。 Azure 的異地備援儲存體會在相同的地緣政治區域中使用[配對區域][paired-region]的概念。
 
 請使用 Key Vault 來保護密碼編譯金鑰和密碼。 藉由使用 Key Vault，您便可以使用硬體安全性模組 (HSM) 所保護的金鑰來加密金鑰和密碼。 許多 Azure 儲存體和 DB 服務都支援待用資料加密，包括 [Azure 儲存體][storage-encryption]、[Azure SQL Database][sql-db-encryption]、[Azure SQL 資料倉儲][data-warehouse-encryption]和 [Cosmos DB][cosmosdb-encryption]。
 
 ### <a name="security-resources"></a>安全性資源
 
-- [Azure 資訊安全中心][security-center]可針對您所有的 Azure 訂用帳戶提供整合式安全性監視和原則管理。 
+- [Azure 資訊安全中心][security-center]可針對您所有的 Azure 訂用帳戶提供整合式安全性監視和原則管理。
 - [Azure 安全性文件][security-documentation]
 - [Microsoft 信任中心][trust-center]
-
-
 
 <!-- links -->
 
@@ -183,14 +184,12 @@ ms.locfileid: "43326151"
 [sql-db-encryption]: /azure/sql-database/sql-database-always-encrypted-azure-key-vault
 [storage-encryption]: /azure/storage/storage-service-encryption
 [trust-center]: https://azure.microsoft.com/support/trust-center/
- 
 
 <!-- patterns -->
 [availability-patterns]: ../patterns/category/availability.md
 [management-patterns]: ../patterns/category/management-monitoring.md
 [resiliency-patterns]: ../patterns/category/resiliency.md
 [scalability-patterns]: ../patterns/category/performance-scalability.md
-
 
 <!-- practices -->
 [autoscale]: ../best-practices/auto-scaling.md
@@ -201,7 +200,6 @@ ms.locfileid: "43326151"
 [monitoring]: ../best-practices/monitoring.md
 [retry-service-specific]: ../best-practices/retry-service-specific.md
 [transient-fault-handling]: ../best-practices/transient-faults.md
-
 
 <!-- checklist -->
 [availability-checklist]: ../checklist/availability.md

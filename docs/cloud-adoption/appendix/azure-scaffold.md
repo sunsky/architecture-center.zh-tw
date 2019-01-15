@@ -4,12 +4,12 @@ description: 說明企業可用來確保安全且可管理環境的 Scaffold。
 author: rdendtler
 ms.author: rodend
 ms.date: 9/22/2018
-ms.openlocfilehash: a1962a3d5be79715de4781d955b6be1db5923bea
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 66af73f5bfc7f7145c20446af05f33a9d69e6c28
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429280"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011730"
 ---
 # <a name="azure-enterprise-scaffold-prescriptive-subscription-governance"></a>Azure 企業 Scaffold：規定的訂用帳戶治理
 
@@ -124,7 +124,6 @@ Scaffold 的第一要件是一致的命名標準。 設計良好的命名標準�
 ## <a name="azure-policy-and-initiatives"></a>Azure 原則與計劃
 
 Scaffold 的第二要件牽涉到使用 [Azure 原則與計畫](/azure/azure-policy/azure-policy-introduction)，這會藉由對訂用帳戶中的資源和服務強制建立規則 (包含效果)，以管理風險。 Azure 計畫是用來達成單一目標的原則集合。 接著，Azure 原則與計劃會指派給資源範圍，以開始強制執行特定原則。
-<計畫/原則/指派的影像>
 
 與先前所述的管理群組搭配使用時，Azure 原則與計劃的功能會更強大。 管理群組讓計劃或原則可指派到一整組訂用帳戶。
 
@@ -231,7 +230,7 @@ AzSK 是一組豐富的工具、指令碼和資訊集合，也是完整 Azure �
 
 ### <a name="core-monitoring"></a>核心監視
 
-* **Azure 監視器**是：Azure 監視器是核心平台服務，提供監視 Azure 資源的單一來源。 Azure 監視器的 Azure 入口網站介面會為 Azure 中所有監視功能提供中央起點，包括 Application Insights、Log Analytics、網路監視、管理解決方案和服務對應的深層監視功能。 您可以使用 Azure 監視器對整個雲端資產上的 Azure 資源計量和記錄，執行視覺化、查詢、路由、封存作業及採取行動。 除了入口網站，您也可以透過監視器 PowerShell Cmdlet、跨平台 CLI 或 Azure 監視器 REST API 來擷取資料。
+* **Azure 監視器**：Azure 監視器是核心平台服務，提供監視 Azure 資源的單一來源。 Azure 監視器的 Azure 入口網站介面會為 Azure 中所有監視功能提供中央起點，包括 Application Insights、Log Analytics、網路監視、管理解決方案和服務對應的深層監視功能。 您可以使用 Azure 監視器對整個雲端資產上的 Azure 資源計量和記錄，執行視覺化、查詢、路由、封存作業及採取行動。 除了入口網站，您也可以透過監視器 PowerShell Cmdlet、跨平台 CLI 或 Azure 監視器 REST API 來擷取資料。
 
 * **Azure Advisor**：Azure Advisor 會持續監視您訂用帳戶和環境上的遙測資料，並提供如何最佳化 Azure 資源的最佳做法建議，以協助您節省成本及改善應用程式中資源的效能、安全性和可用性。
 

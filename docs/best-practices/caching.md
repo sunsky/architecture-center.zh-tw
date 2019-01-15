@@ -5,12 +5,12 @@ description: 用來改善效能和延展性的快取指引。
 author: dragon119
 ms.date: 05/24/2017
 ms.custom: seodec18
-ms.openlocfilehash: b7f720b9e08b0316f9967a19e1b93069aa04e55f
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: da676ba3037f5c232ea97b9cb41488c7c2202476
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307464"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113105"
 ---
 # <a name="caching"></a>快取
 
@@ -476,9 +476,9 @@ var customer1 = cache.Wait(task1);
 var customer2 = cache.Wait(task2);
 ```
 
-如需編寫能使用 Azure Redis 快取的用戶端應用程式的詳細資訊，請參閱 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/)。 在[StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md) 中也有更多詳細資訊。
+如需編寫能使用 Azure Redis 快取的用戶端應用程式的詳細資訊，請參閱 [Azure Cache for Redis 文件](/azure/azure-cache-for-redis/)。 在[StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md) 中也有更多詳細資訊。
 
-同一個網站上的 [Pipelines and multiplexers (管線和多工器)](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) 頁面提供更多關於非同步作業以及使用 Redis 與 StackExchange 程式庫透過管線進行傳送的資訊。 
+同一個網站上的 [Pipelines and multiplexers (管線和多工器)](https://stackexchange.github.io/StackExchange.Redis/PipelinesMultiplexers) 頁面提供更多關於非同步作業以及使用 Redis 與 StackExchange 程式庫透過管線進行傳送的資訊。
 
 ## <a name="using-redis-caching"></a>使用 Redis 快取
 
@@ -898,7 +898,7 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 
 ## <a name="more-information"></a>詳細資訊
 
-- [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/) 
+- [Azure Redis 快取文件](/azure/azure-cache-for-redis/)
 - [Azure Redis 快取常見問題集](/azure/redis-cache/cache-faq)
 - [工作式非同步模式](/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)
 - [Redis 文件](https://redis.io/documentation)

@@ -1,20 +1,17 @@
 ---
-title: CQRS
+title: 命令與查詢責任隔離 (CQRS) 模式
+titleSuffix: Cloud Design Patterns
 description: 如果作業讀取的資料來自使用個別介面更新資料的作業，則隔離該作業。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 320f6cd51a44b3a6732d8395f0a5e1db8f9f5774
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450865"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010370"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>命令與查詢責任隔離 (CQRS) 模式
 
@@ -56,7 +53,7 @@ ms.locfileid: "53450865"
 
 分隔讀取和寫入存放區也可以讓每個存放區適當地調整以符合負載。 例如，讀取存放區通常會遇到比寫入存放區更高的負載。
 
-當查詢/讀取模型包含反正規化資料 (請參閱[具體化檢視模式](materialized-view.md))，當讀取應用程式中每個檢視的資料時，或查詢系統中的資料時，效能會最大化。
+當查詢/讀取模型包含反正規化資料 (請參閱[具體化檢視模式](./materialized-view.md))，當讀取應用程式中每個檢視的資料時，或查詢系統中的資料時，效能會最大化。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
@@ -96,7 +93,7 @@ ms.locfileid: "53450865"
 
 ## <a name="event-sourcing-and-cqrs"></a>事件來源和 CQRS
 
-CQRS 模式通常與事件來源模式搭配使用。 以 CQRS 為基礎的系統會使用個別讀取和寫入資料模型，每個模型都針對相關工作量身打造，實體上通常位於不同存放區中。 當搭配[事件來源](event-sourcing.md)模式使用時，事件的存放區是寫入模型，而且是資訊的官方來源。 以 CQRS 為基礎的系統之讀取模型提供資料的具體化檢視，通常是高度反正規化檢視。 這些檢視針對應用程式的介面和顯示需求而量身打造，可協助最大化顯示和查詢效能。
+CQRS 模式通常與事件來源模式搭配使用。 以 CQRS 為基礎的系統會使用個別讀取和寫入資料模型，每個模型都針對相關工作量身打造，實體上通常位於不同存放區中。 當搭配[事件來源](./event-sourcing.md)模式使用時，事件的存放區是寫入模型，而且是資訊的官方來源。 以 CQRS 為基礎的系統之讀取模型提供資料的具體化檢視，通常是高度反正規化檢視。 這些檢視針對應用程式的介面和顯示需求而量身打造，可協助最大化顯示和查詢效能。
 
 使用事件的串流作為寫入存放區，而不是時間點上的實際資料，避免單一彙總上的更新衝突，以及最大化效能和延展性。 事件可用來以非同步方式產生資料的具體化檢視，該檢視是用來填入讀取存放區。
 
@@ -242,9 +239,9 @@ public interface IProductsDomain
 
 - [資料分割指引](https://msdn.microsoft.com/library/dn589795.aspx)。 描述 CQRS 模式中使用的讀取和寫入資料存放區如何分割成資料分割，以便個別管理及存取，來改善延展性、減少爭用以及最佳化效能。
 
-- [事件來源模式](event-sourcing.md)。 更詳細地描述事件來源如何與 CQRS 模式搭配使用，在改善效能、延展性及回應能力的同時，簡化複雜網域中的工作。 以及如何在維護完整稽核記錄和歷程記錄 (可以啟用補償動作) 的同時，提供交易資料的一致性。
+- [事件來源模式](./event-sourcing.md)。 更詳細地描述事件來源如何與 CQRS 模式搭配使用，在改善效能、延展性及回應能力的同時，簡化複雜網域中的工作。 以及如何在維護完整稽核記錄和歷程記錄 (可以啟用補償動作) 的同時，提供交易資料的一致性。
 
-- [具體化檢視模式](materialized-view.md)。 CQRS 實作的讀取模型可以包含寫入模型資料的具體化檢視，或者讀取模型可以用來產生具體化檢視。
+- [具體化檢視模式](./materialized-view.md)。 CQRS 實作的讀取模型可以包含寫入模型資料的具體化檢視，或者讀取模型可以用來產生具體化檢視。
 
 - 模式與做法指南 [CQRS 旅程](https://aka.ms/cqrs)。 其中，[簡介命令查詢責任隔離模式](https://msdn.microsoft.com/library/jj591573.aspx)會探索模式及其適用時機，而[結語：學到的課程](https://msdn.microsoft.com/library/jj591568.aspx)可協助您了解使用此模式時出現的一些問題。
 

@@ -5,12 +5,12 @@ description: 在 Azure 中實作中樞輪輻網路拓撲。
 author: telmosampaio
 ms.date: 10/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: fe56630b621f02fe71b864642b75688ba1965862
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: c7cf2923856b3c659876afcc89bb312e492c6409
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329427"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112442"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -26,7 +26,7 @@ ms.locfileid: "53329427"
 - **克服訂用帳戶限制**：將不同訂用帳戶中的 VNet 對等互連到中心中樞。
 - **關注點分離**：中央 IT (SecOps、InfraOps) 和工作負載 (DevOps)。
 
-此架構的一般使用案例包括：
+此架構的典型使用案例包括：
 
 - 在不同環境 (例如開發、測試和生產環境) 下部署，且需要共用服務 (例如 DNS、IDS、NTP 或 AD DS) 的工作負載。 系統會將共用服務置於中樞 VNet，同時將每個環境部署至輪輻以維持隔離。
 - 不需要彼此連線，但需要存取共用服務的工作負載。
@@ -176,11 +176,9 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 
 5. 等待部署完成。 此部署會建立虛擬網路、虛擬機器、VPN 閘道，以及閘道的連線。  建立 VPN 閘道約需要 40 分鐘的時間。
 
-### <a name="test-connectivity-with-the-hub"></a>測試中樞的連線
+### <a name="test-connectivity-to-the-hub-vnet-mdash-windows-deployment"></a>測試對於中樞 VNet 的連線能力 &mdash; Windows 部署
 
-測試從模擬的內部部署環境到中樞 VNet 的連線。
-
-**Windows 部署**
+若要測試從模擬的內部部署環境到使用 Windows VM 之中樞 VNet 的連線，請遵循下列步驟：
 
 1. 使用 Azure 入口網站尋找 `onprem-jb-rg` 資源群組中名為 `jb-vm1` 的 VM。
 
@@ -206,11 +204,13 @@ TcpTestSucceeded : True
 > [!NOTE]
 > 根據預設，Windows Server VM 在 Azure 中不允許 ICMP 回應。 如果您想要使用 `ping` 來測試連線，您需要在 Windows 進階防火牆中為每個 VM 啟用 ICMP 流量。
 
-**Linux 部署**
+### <a name="test-connectivity-to-the-hub-vnet-mdash-linux-deployment"></a>測試對於中樞 VNet 的連線能力 &mdash; Linux 部署
+
+若要測試從模擬的內部部署環境到使用 Linux VM 之中樞 VNet 的連線，請遵循下列步驟：
 
 1. 使用 Azure 入口網站尋找 `onprem-jb-rg` 資源群組中名為 `jb-vm1` 的 VM。
 
-2. 按一下 `Connect`，並複製入口網站中顯示的 `ssh` 命令。 
+2. 按一下 `Connect`，並複製入口網站中顯示的 `ssh` 命令。
 
 3. 在 Linux 提示字元中執行 `ssh`，以連線至模擬的內部部署環境。 請使用您在 `onprem.json` 參數檔案中指定的密碼。
 
@@ -253,11 +253,9 @@ TcpTestSucceeded : True
    azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
    ```
 
-### <a name="test-connectivity"></a>測試連線能力
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-windows-deployment"></a>測試對於輪輻 VNet 的連線能力 &mdash; Windows 部署
 
-測試從模擬的內部部署環境到輪輻 VNet 的連線。
-
-**Windows 部署**
+若要測試從模擬的內部部署環境到使用 Windows VM 之輪輻 VNet 的連線，請執行下列步驟：
 
 1. 使用 Azure 入口網站尋找 `onprem-jb-rg` 資源群組中名為 `jb-vm1` 的 VM。
 
@@ -270,7 +268,7 @@ TcpTestSucceeded : True
    Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
    ```
 
-**Linux 部署**
+### <a name="test-connectivity-to-the-spoke-vnets-mdash-linux-deployment"></a>測試對於輪輻 VNet 的連線能力 &mdash; Linux 部署
 
 若要測試從模擬的內部部署環境到使用 Linux VM 之輪輻 VNet 的連線，請執行下列步驟：
 
@@ -329,4 +327,3 @@ TcpTestSucceeded : True
 [1]: ./images/hub-spoke-gateway-routing.svg "Azure 中具有可轉移路由的中樞輪輻拓撲"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Azure 中具有使用 NVA 之可轉移路由的中樞輪輻拓撲"
 [3]: ./images/hub-spokehub-spoke.svg "Azure 中的中樞輪輻中樞輪輻拓撲"
-[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

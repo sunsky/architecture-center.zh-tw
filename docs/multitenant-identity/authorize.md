@@ -1,17 +1,17 @@
 ---
 title: 多組織用戶共享應用程式中的授權
-description: 如何在多組織用戶共享應用程式中執行授權
+description: 如何在多組織用戶共享應用程式中執行授權。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 8ff2317eb85197ed93e048b6a2d836405436cc17
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 6e406a7e80b77dea161db194a82ccae043bdc777
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307158"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110334"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>角色和資源型授權
 
@@ -25,6 +25,7 @@ ms.locfileid: "53307158"
 一般的應用程式會採用兩種的混合。 例如，若要刪除資源，使用者必須是資源擁有者「或」  系統管理員。
 
 ## <a name="role-based-authorization"></a>以角色為基礎的授權
+
 [Tailspin Surveys][Tailspin] 應用程式會定義下列角色：
 
 * 系統管理員。 可在所有屬於該租用戶的問卷上執行所有 CRUD 作業。
@@ -38,6 +39,7 @@ ms.locfileid: "53307158"
 不論您如何管理角色，您的授權程式碼看起來都會很相似。 ASP.NET Core 有一個稱為[授權原則][policies]的抽象概念。 使用此功能，您會使用程式碼定義授權原則，並將那些原則套用至控制器動作。 該原則已從控制器分離出來。
 
 ### <a name="create-policies"></a>建立原則
+
 若要定義原則，請先建立實作 `IAuthorizationRequirement`的類別。 從 `AuthorizationHandler`衍生是最簡單的方式。 在 `Handle` 方法中，檢查相關的宣告。
 
 以下是來自 Tailspin Surveys 應用程式的範例：
@@ -47,7 +49,7 @@ public class SurveyCreatorRequirement : AuthorizationHandler<SurveyCreatorRequir
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SurveyCreatorRequirement requirement)
     {
-        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) || 
+        if (context.User.HasClaim(ClaimTypes.Role, Roles.SurveyAdmin) ||
             context.User.HasClaim(ClaimTypes.Role, Roles.SurveyCreator))
         {
             context.Succeed(requirement);
@@ -68,7 +70,7 @@ services.AddAuthorization(options =>
         policy =>
         {
             policy.AddRequirements(new SurveyCreatorRequirement());
-            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+            policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
             // By adding the CookieAuthenticationDefaults.AuthenticationScheme, if an authenticated
             // user is not in the appropriate role, they will be redirected to a "forbidden" page.
             policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -87,6 +89,7 @@ services.AddAuthorization(options =>
 此程式碼也會設定驗證配置，它會告訴 ASP.NET 如果授權失敗時應執行哪一個驗證中介軟體。 在此情況下，我們指定 Cookie 驗證中介軟體，因為 cookie 驗證中介軟體可將使用者重新導向至「禁止」頁面。 [禁止] 頁面的位置會是在 Cookie 中介軟體的 `AccessDeniedPath` 選項中設定，請參閱[設定驗證中介軟體]。
 
 ### <a name="authorize-controller-actions"></a>授權控制器動作
+
 最後，若要在 MVC 控制器中授權動作，請在 `Authorize` 屬性中設定原則：
 
 ```csharp
@@ -112,6 +115,7 @@ ASP.NET Core 中仍支援這樣設定，但相較於授權原則它有一些缺�
 * 原則可支援簡單的角色成員資格無法表示的更複雜授權決策 (例如，年齡 >= 21)。
 
 ## <a name="resource-based-authorization"></a>以資源為基礎的授權。
+
 *以資源為基礎的授權。* 。 在 Tailspin Surveys 應用程式中，每個問卷都有一個擁有者，以及零至多個參與者。
 
 * 擁有者可以讀取、更新、刪除、發佈及取消發佈問卷。
@@ -247,7 +251,8 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 
 [**下一主題**][web-api]
 
-<!-- Links -->
+<!-- links -->
+
 [Tailspin]: tailspin.md
 
 [應用程式角色]: app-roles.md

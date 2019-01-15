@@ -1,14 +1,17 @@
 ---
 title: 閘道路由模式
+titleSuffix: Cloud Design Patterns
 description: 使用單一端點將要求路由至多個服務。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.custom: seodec18
+ms.openlocfilehash: 4db98038f582e0315a743a55d46013d2eda187e3
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252595"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010472"
 ---
 # <a name="gateway-routing-pattern"></a>閘道路由模式
 
@@ -26,8 +29,8 @@ ms.locfileid: "35252595"
 
 閘道也可讓您從用戶端擷取後端服務，使得在閘道後的後端服務中啟用變更的同時，保持用戶端呼叫簡易。 您可以將用戶端呼叫路由至需要處理預期的用戶端行為的任何服務，讓您新增、分割和重新組織閘道後的服務，而不需要變更用戶端。
 
-![](./_images/gateway-routing.png)
- 
+![閘道路由模式圖](./_images/gateway-routing.png)
+
 透過讓您管理將更新發佈給使用者的方式，此模式也有助於部署。 部署您的服務的新版本時，可以將它與現有版本平行部署。 路由可讓您控制將呈現給用戶端哪個版本的服務，讓您彈性地使用各種版本策略，無論是更新的累加、平行或完全首度推出。 在新服務部署後探索到的任何問題可以藉由在閘道上進行設定變更來快速還原，而不會影響用戶端。
 
 ## <a name="issues-and-considerations"></a>問題和考量
@@ -45,13 +48,13 @@ ms.locfileid: "35252595"
 - 您想要使用單一端點來簡化用戶端應用程式。
 - 您需要將要求從外部可定址端點路由至內部虛擬端點，例如對叢集虛擬 IP 位址公開 VM 上的連接埠。
 
-當您有只使用一或兩個服務的簡單應用程式時，此模式可能不適合。
+當您有只使用一或兩個服務的簡單應用程式時，此模式可能不適用。
 
 ## <a name="example"></a>範例
 
 使用 Nginx 做為路由器，以下是伺服器的簡單設定檔範例，該伺服器會將位於不同虛擬目錄上應用程式的要求路由到後端不同電腦。
 
-```
+```console
 server {
     listen 80;
     server_name domain.com;
@@ -75,6 +78,3 @@ server {
 - [針對前端的後端模式](./backends-for-frontends.md)
 - [閘道彙總模式](./gateway-aggregation.md)
 - [閘道卸載模式](./gateway-offloading.md)
-
-
-

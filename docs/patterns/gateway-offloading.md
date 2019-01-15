@@ -1,14 +1,17 @@
 ---
 title: 閘道卸載模式
+titleSuffix: Cloud Design Patterns
 description: 將共用或特殊服務功能卸載至閘道 Proxy。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 6b3e4541aae77349ca91c18c788ddb508912361d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 50af3d8593279986ed6efee55667187424c18e56
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540004"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010202"
 ---
 # <a name="gateway-offloading-pattern"></a>閘道卸載模式
 
@@ -22,14 +25,14 @@ ms.locfileid: "24540004"
 
 其他常見的服務，例如驗證、授權、記錄、監視或[節流](./throttling.md)，在大量部署間可能難以實作和管理。 較好的方式是合併這種類型的功能，以減少額外負荷及錯誤的機會。
 
-## <a name="solution"></a>方案
+## <a name="solution"></a>解決方法
 
-將某些功能卸載至 API 閘道，特別是跨領域考量，例如憑證管理、驗證、SSL 終止、監視、通訊協定轉譯，或是節流。 
+將某些功能卸載至 API 閘道，特別是跨領域考量，例如憑證管理、驗證、SSL 終止、監視、通訊協定轉譯，或是節流。
 
 下圖顯示會終止輸入 SSL 連線的 API 閘道。 它會代表來自 API 閘道任何 HTTP 伺服器上游的原始要求者要求資料。
 
- ![](./_images/gateway-offload.png)
- 
+ ![閘道卸載模式圖](./_images/gateway-offload.png)
+
 此模式的好處包括：
 
 - 讓您不再需要散發及維護支援資源，例如 Web 伺服器憑證和安全網站的設定，簡化服務的開發。 較簡單的設定會導致更易於管理和延展性，並可使服務升級更簡單。
@@ -40,10 +43,10 @@ ms.locfileid: "24540004"
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
-- 確定 API 閘道高度可用且能夠從失敗復原。 執行 API 閘道的多個執行個體，以避免單一失敗點。 
+- 確定 API 閘道高度可用且能夠從失敗復原。 執行 API 閘道的多個執行個體，以避免單一失敗點。
 - 請確定閘道已針對應用程式和端點的容量和調整需求設計。 確定閘道不會成為應用程式的瓶頸，而且可以完全擴充。
 - 只卸載整個應用程式使用的功能，例如安全性或資料傳輸。
-- 永遠不應將商務邏輯卸載到 API 閘道。 
+- 永遠不應將商務邏輯卸載到 API 閘道。
 - 如果您需要追蹤交易，請考慮針對記錄目的產生相互關聯識別碼。
 
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
@@ -54,13 +57,13 @@ ms.locfileid: "24540004"
 - 可能有不同資源需求 (例如：記憶體資源、儲存容量或網路連線) 的應用程式部署之間共通的功能。
 - 您想要將網路安全性、節流設定或其他網路界限考量之類問題的責任轉移給更特殊的小組。
 
-如果跨服務引入了結合，則此模式可能不適合。
+如果跨服務引入了結合，則此模式可能不適用。
 
 ## <a name="example"></a>範例
 
 使用 Nginx 做為 SSL 卸載應用裝置，下列設定會終止連入的 SSL 連線，並將連線散發至三個上游 HTTP 伺服器的其中一個。
 
-```
+```console
 upstream iis {
         server  10.3.0.10    max_fails=3    fail_timeout=15s;
         server  10.3.0.20    max_fails=3    fail_timeout=15s;
@@ -86,7 +89,6 @@ proxy_set_header X-Real-IP $remote_addr;
 
 ## <a name="related-guidance"></a>相關的指引
 
-- [前端模式的範例](./backends-for-frontends.md)
+- [針對前端的後端模式](./backends-for-frontends.md)
 - [閘道彙總模式](./gateway-aggregation.md)
 - [閘道路由模式](./gateway-routing.md)
-

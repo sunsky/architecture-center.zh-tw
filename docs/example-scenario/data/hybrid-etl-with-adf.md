@@ -1,16 +1,16 @@
 ---
 title: 使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL
 titleSuffix: Azure Example Scenarios
-description: 使用現有內部部署 SQL Server Integration Services (SSIS) 部署和 Azure Data Factory 的混合式 ETL
+description: 使用現有內部部署 SQL Server Integration Services (SSIS) 部署和 Azure Data Factory 的混合式 ETL。
 author: alhieng
-ms.date: 9/20/2018
+ms.date: 09/20/2018
 ms.custom: tsp-team
-ms.openlocfilehash: 387b0aa1927a8d316aad76100f577da13833eae6
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: a2ca3817ed172e6d2332a92f68970ea2a5ad8f6c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643501"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110385"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL
 

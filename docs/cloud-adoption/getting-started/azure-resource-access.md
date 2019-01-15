@@ -1,20 +1,20 @@
 ---
-title: 企業雲端採用：在 Azure 中管理資源存取
-description: Azure 中資源存取權管理建構的說明：Azure 資源管理員、訂用帳戶、資源群組和資源
+title: 企業雲端採用：Azure 中的資源存取管理
+description: 說明 Azure 中的資源存取管理建構：Azure 資源管理員、訂用帳戶、資源群組和資源
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 8cb28d0dd5dbdfcef846786083d5197f435bf3ea
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428698"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160786"
 ---
-# <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企業雲端採用：在 Azure 中管理資源存取
+# <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企業雲端採用：Azure 中的資源存取管理
 
 在[資源治理是什麼？](what-is-governance.md)中，您已了解治理指的是進行中的程序，用以管理、監視及稽核 Azure 資源的使用符合組織目標和需求。 在您繼續了解如何設計治理模型之前，務必了解 Azure 中的資源存取權管理控制項。 這些資源存取權管理控制項的組態會形成治理模型的基礎。
 
-讓我們從仔細看看如何在 Azure 中部署資源開始。 
+一開始請先仔細看看資源在 Azure 中的部署方式。 
 
 ## <a name="what-is-an-azure-resource"></a>什麼是 Azure 資源？
 

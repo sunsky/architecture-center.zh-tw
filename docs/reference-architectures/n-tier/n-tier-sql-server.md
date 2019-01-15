@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 上實作多層式架構，以取得可用性、安全性、延展性及管理功能。
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: 38983dec83718f53fc1ffd79c1347582200f5db0
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: e7dbd8dd2b8e5aff8f18ff9b87fce0b76a850bce
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120115"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011373"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Azure 上具有 SQL Server 的 Windows 多層式架構 (N-tier) 應用程式
 

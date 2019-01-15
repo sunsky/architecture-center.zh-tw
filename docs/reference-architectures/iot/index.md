@@ -4,12 +4,12 @@ description: 使用 PaaS (平台即服務) 元件在 Azure 上建議的 IoT 應�
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: bde507527262a722219edba534275fb7ab499069
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: c0aa1771abc99b1f17f1e553c9626e50a386f34c
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54166014"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307683"
 ---
 # <a name="azure-iot-reference-architecture"></a>Azure IoT 參考架構
 
@@ -35,7 +35,7 @@ IoT 應用程式可以描述為**事項** (裝置)，傳送產生**深入解析*
 
 **IoT 裝置**。 裝置可以安全地向雲端註冊，而且可以連線至雲端，以傳送和接收資料。 某些裝置可能是**邊緣裝置**，其在裝置本身或現場閘道中執行一些資料處理。 我們建議使用 [Azure IoT Edge](/azure/iot-edge/) 進行邊緣處理。
 
-**雲端閘道**。 雲端閘道為裝置提供了一個雲端中樞，以便安全地連線到雲端並傳送資料。 它也會提供裝置管理和功能，包括裝置的命令與控制項。 對於雲端閘道，我們建議使用 [IoT 中樞](/azure/iot-hub/)。 IoT 中樞是一種託管雲端服務，會從裝置擷取事件，作為中斷裝置與後端服務之間的訊息。 IoT 中樞提供安全的連線能力、事件擷取、雙向通訊，以及裝置管理。
+**雲端閘道**。 雲端閘道為裝置提供了一個雲端中樞，以便安全地連線到雲端並傳送資料。 它也會提供裝置管理和功能，包括裝置的命令與控制項。 對於雲端閘道，我們建議使用 [IoT 中樞](/azure/iot-hub/)。 IoT 中樞是一種託管雲端服務，會從裝置擷取事件，作為裝置與後端服務之間的訊息代理人。 IoT 中樞提供安全的連線能力、事件擷取、雙向通訊，以及裝置管理。
 
 **裝置佈建IoT**。 對於註冊和連接大量裝置，我們建議使用 [IoT 中樞裝置佈建服務](/azure/iot-dps/) (DPS)。 DPS 可讓您大規模地將裝置指派和註冊至特定 Azure IoT 中樞端點。
 

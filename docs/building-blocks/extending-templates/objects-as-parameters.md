@@ -1,14 +1,14 @@
 ---
 title: 在 Azure Resource Manager 範本中使用物件作為參數
-description: 說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數
+description: 說明如何擴充 Azure Resource Manager 範本的功能，以使用物件作為參數。
 author: petertay
 ms.date: 10/30/2018
-ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.openlocfilehash: f0826d8ed1ce446d295ebdacc66d8b0bef0b0dec
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251884"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111201"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中使用物件作為參數
 
@@ -24,10 +24,11 @@ ms.locfileid: "50251884"
     "VNetSettings":{"type":"object"}
 },
 ```
+
 接下來，讓我們提供 `VNetSettings` 物件的值：
 
 > [!NOTE]
-> 若要了解如何在部署期間提供參數值，請參閱[了解 Azure Resource Manager 範本的結構和語法][azure-resource-manager-authoring-templates]的**參數**一節。 
+> 若要了解如何在部署期間提供參數值，請參閱[了解 Azure Resource Manager 範本的結構和語法][azure-resource-manager-authoring-templates]的**參數**一節。
 
 ```json
 "parameters":{
@@ -91,9 +92,10 @@ ms.locfileid: "50251884"
     }
   ]
 ```
-`VNetSettings` 物件的值會使用 `parameters()` 函式搭配 `[]` 陣列索引子和點運算子，套用至我們的虛擬網路資源所需的屬性。 如果您只想要以靜態方式將參數物件的值套用至資源，則此方法可行。 不過，如果您想要在部署期間動態指派屬性值的陣列，則可以使用[複製迴圈][azure-resource-manager-create-multiple-instances]。 若要使用複製迴圈，您可以提供資源屬性值的 JSON 陣列，複製迴圈即會動態將值套用至資源的屬性。 
 
-如果您使用動態方法，需注意一個問題。 為了示範此問題，讓我們看一下屬性值的一般陣列。 在此範例中，我們屬性的值會儲存在變數中。 請注意我們這裡有兩個陣列&mdash;一個名為 `firstProperty`，另一個名為 `secondProperty`。 
+`VNetSettings` 物件的值會使用 `parameters()` 函式搭配 `[]` 陣列索引子和點運算子，套用至我們的虛擬網路資源所需的屬性。 如果您只想要以靜態方式將參數物件的值套用至資源，則此方法可行。 不過，如果您想要在部署期間動態指派屬性值的陣列，則可以使用[複製迴圈][azure-resource-manager-create-multiple-instances]。 若要使用複製迴圈，您可以提供資源屬性值的 JSON 陣列，複製迴圈即會動態將值套用至資源的屬性。
+
+如果您使用動態方法，需注意一個問題。 為了示範此問題，讓我們看一下屬性值的一般陣列。 在此範例中，我們屬性的值會儲存在變數中。 請注意我們這裡有兩個陣列&mdash;一個名為 `firstProperty`，另一個名為 `secondProperty`。
 
 ```json
 "variables": {
@@ -166,9 +168,9 @@ ms.locfileid: "50251884"
 
 ## <a name="using-a-property-object-in-a-copy-loop"></a>在複製迴圈中使用屬性物件
 
-此方法在與[serial copy loop][azure-resource-manager-create-multiple]結合使用時會變得更加實用，特別是在部署子資源時。 
+此方法在與[serial copy loop][azure-resource-manager-create-multiple]結合使用時會變得更加實用，特別是在部署子資源時。
 
-為了示範這點，讓我們看看使用兩個安全性規則部署[網路安全性群組 (NSG)][nsg] 的範本。 
+為了示範這點，讓我們看看使用兩個安全性規則部署[網路安全性群組 (NSG)][nsg] 的範本。
 
 首先，讓我們看看我們的參數。 查看範本時，我們會看到已定義一個名為 `networkSecurityGroupsSettings` 的參數，其包含名為 `securityRules` 的陣列。 此陣列包含指定安全性規則一些設定的兩個 JSON 物件。
 
@@ -176,7 +178,7 @@ ms.locfileid: "50251884"
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters":{ 
+    "parameters":{
       "networkSecurityGroupsSettings": {
       "value": {
           "securityRules": [
@@ -249,7 +251,7 @@ ms.locfileid: "50251884"
                 "resources": [],
                 "outputs": {}
             }
-        }       
+        }
     },
     {
         "apiVersion": "2015-01-01",
@@ -292,12 +294,12 @@ ms.locfileid: "50251884"
           }
         }
     }
-  ],          
+  ],
   "outputs": {}
 }
 ```
 
-讓我們來看看我們如何在 `securityRules` 子資源中指定我們的屬性值。 我們的所有屬性是使用 `parameter()` 函式參考，然後我們會使用點運算子來參考我們的 `securityRules` 陣列，依反覆項目的目前值編製索引。 最後，我們會使用另一個點運算子來參考物件的名稱。 
+讓我們來看看我們如何在 `securityRules` 子資源中指定我們的屬性值。 我們的所有屬性是使用 `parameter()` 函式參考，然後我們會使用點運算子來參考我們的 `securityRules` 陣列，依反覆項目的目前值編製索引。 最後，我們會使用另一個點運算子來參考物件的名稱。
 
 ## <a name="try-the-template"></a>試用範本
 
@@ -316,8 +318,8 @@ az group deployment create -g <resource-group-name> \
 
 - 了解如何建立範本，逐一查看物件陣列，並將其轉換為 JSON 結構描述。 請參閱[在 Azure Resource Manager 範本中實作屬性轉換器與收集器](./collector.md)
 
-
 <!-- links -->
+
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
 [azure-resource-manager-create-template]: /azure/azure-resource-manager/resource-manager-create-first-template
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple

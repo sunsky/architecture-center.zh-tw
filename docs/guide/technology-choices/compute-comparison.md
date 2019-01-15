@@ -1,20 +1,24 @@
 ---
 title: 選擇 Azure 計算服務的準則
-description: 比較數個軸間的 Azure 計算服務
+titleSuffix: Azure Application Architecture Guide
+description: 比較數個軸間的 Azure 計算服務。
 author: MikeWasson
 ms.date: 08/08/2018
-ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seojan19
+ms.openlocfilehash: 4874e68d6ac1b9bac2bc1e4d2ac3c8c2f1a428d6
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916360"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112238"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>選擇 Azure 計算服務的準則
 
 *計算*一詞是指您的應用程式執行所在運算資源的裝載模型。 下表比較數個軸間的 Azure 計算服務。 為您的應用程式選取計算選項時，請參考這些表格。
 
 ## <a name="hosting-model"></a>裝載模型
+
+<!-- markdownlint-disable MD033 -->
 
 | 準則 | 虛擬機器 | App Service 方案 | Service Fabric | Azure Functions | Azure Kubernetes Service | Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
@@ -47,8 +51,7 @@ ms.locfileid: "50916360"
 注意
 
 1. <span id="note1b">選項包括 IIS Express for ASP.NET 或 node.js (iisnode)；PHP Web 伺服器；Azure Toolkit for IntelliJ、Azure Toolkit for Eclipse。App Service 也支援已部署 Web 應用程式的遠端偵錯。</span>
-2. <span id="note2b">請參閱 [Resource Manager 提供者、區域、API 版本及結構描述][resource-manager-supported-services]。</span> 
-
+2. <span id="note2b">請參閱 [Resource Manager 提供者、區域、API 版本及結構描述][resource-manager-supported-services]。</span>
 
 ## <a name="scalability"></a>延展性
 
@@ -67,7 +70,7 @@ ms.locfileid: "50916360"
 | 準則 | 虛擬機器 | App Service 方案 | Service Fabric | Azure Functions | Azure Kubernetes Service | Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SLA | [虛擬機器的 SLA][sla-vm] | [App Service 的 SLA][sla-app-service] | [Service Fabric 的 SLA][sla-sf] | [Functions 的 SLA][sla-functions] | [AKS 的 SLA][sla-acs] | [容器執行個體的 SLA](https://azure.microsoft.com/support/legal/sla/container-instances/) | [Azure Batch 的 SLA][sla-batch] |
-| 多區域容錯移轉 | 流量管理員 | 流量管理員 | 流量管理員、多區域叢集 | 不支援  | 流量管理員 | 不支援 | 不支援 |
+| 多區域容錯移轉 | 流量管理員 | 流量管理員 | 流量管理員、多區域叢集 | 不支援 | 流量管理員 | 不支援 | 不支援 |
 
 ## <a name="other"></a>其他
 
@@ -76,6 +79,8 @@ ms.locfileid: "50916360"
 | SSL | 已在 VM 中設定 | 支援 | 支援  | 支援 | [輸入控制器](/azure/aks/ingress) | 使用[側車](../../patterns/sidecar.md)容器 | 支援 |
 | 成本 | [Windows][cost-windows-vm]、[Linux][cost-linux-vm] | [App Service 價格][cost-app-service] | [Service Fabric 價格][cost-service-fabric] | [Azure Functions 價格][cost-functions] | [AKS 定價][cost-acs] | [容器執行個體價格](https://azure.microsoft.com/pricing/details/container-instances/) | [Azure Batch 價格][cost-batch]
 | 合適的架構樣式 | [多層式架構 (N-Tier)][n-tier]、[Big compute][big-compute] (HPC) | [Web 佇列背景工作角色][w-q-w], [多層式架構 (N-Tier)][n-tier] | [微服務][microservices][事件驅動架構 (EDA)][event-driven] | [微服務][microservices][事件驅動架構 (EDA)][event-driven] | [微服務][microservices][事件驅動架構 (EDA)][event-driven] | [微服務][microservices]、工作自動化、批次作業  | [Big compute][big-compute] (HPC) |
+
+<!-- markdownlint-enable MD033 -->
 
 [cost-linux-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 [cost-windows-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/

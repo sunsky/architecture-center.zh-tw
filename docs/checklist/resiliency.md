@@ -5,12 +5,12 @@ description: 提供設計期間復原考量指引的檢查清單。
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: 1a3c7b899be1c61cc53eb9caee30f5153edeb5ae
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307447"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113598"
 ---
 # <a name="resiliency-checklist"></a>復原檢查清單
 
@@ -80,7 +80,7 @@ ms.locfileid: "53307447"
 **請考慮使用異地備援的儲存體帳戶類型。** 儲存於 Azure 儲存體帳戶的資料一律會在本機複寫。 不過，佈建儲存體帳戶時，有多個複寫策略可供選擇。 選取 [Azure 讀取權限異地備援儲存體 (RA-GRS)](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage)來保護您的應用程式資料，以免遭遇整個區域無法使用的罕見情況。
 
 > [!NOTE]
-> 若為 VM，請勿依賴 RA-GRS 複寫來還原 VM 磁碟 (VHD 檔案)。 請改用 [Azure 備份][azure-backup]。
+> 若為 VM，請勿依賴 RA-GRS 複寫來還原 VM 磁碟 (VHD 檔案)。 請改用 [Azure 備份](/azure/backup)。
 
 ## <a name="security"></a>安全性
 
@@ -169,7 +169,6 @@ ms.locfileid: "53307447"
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
 [asynchronous-c-sharp]: /dotnet/articles/csharp/async
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
-[azure-backup]: https://azure.microsoft.com/documentation/services/backup/
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [cloud-service-autoscale]: /azure/cloud-services/cloud-services-how-to-scale/
 [fma]: ../resiliency/failure-mode-analysis.md

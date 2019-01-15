@@ -1,23 +1,24 @@
 ---
 title: 在多租用戶應用程式中使用宣告式身分識別
-description: 如何使用宣告進行簽發者驗證及授權
+description: 如何使用宣告進行簽發者驗證及授權。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 3ed6c7c9a48f3617f82112e76878c770099fde3e
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: ffaa6085dd9ca9ddec203e6661575e984b2e25e0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902403"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113581"
 ---
 # <a name="work-with-claims-based-identities"></a>使用宣告式身分識別
 
 [![GitHub](../_images/github.png) 程式碼範例][sample application]
 
 ## <a name="claims-in-azure-ad"></a>在 Azure AD 中的宣告
+
 當使用者登入時，Azure AD 會傳送識別碼權杖，其中包含一組使用者的相關宣告。 宣告就是以索引鍵/值組表示的資訊片段。 例如：`email`=`bob@contoso.com`。  宣告具有簽發者 &mdash; 在此情況下為 Azure AD &mdash; 它是驗證使用者並建立宣告的實體。 因為您信任簽發者，您會信任此宣告。 (相反地，如果您不信任簽發者，請不要信任該宣告！)
 
 概括而言：
@@ -51,15 +52,15 @@ ms.locfileid: "52902403"
 * upn > `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
 
 ## <a name="claims-transformations"></a>宣告轉換
+
 在驗證流程期間，您可能想要修改您從 IDP 取得的宣告。 在 ASP.NET Core 中，您可以從 OpenID Connect 的中介軟體的 **AuthenticationValidated** 事件內執行宣告轉換。 (請參閱[驗證事件]。)
 
 您在 **AuthenticationValidated** 之中新增的任何宣告，會儲存在工作階段驗證 Cookie 中。 它們不會推送回 Azure AD。
 
 以下是一些宣告轉換的範例：
 
-* **宣告標準化**，或讓宣告在使用者之間一致。 如果您正從多個 IDP 取得宣告，這特別有關，其中可能會針對類似的資訊使用不同的宣告類型。
-  例如，Azure AD 會傳送「upn」宣告，其中包含使用者的電子郵件。 其他 IDP 可能會傳送「email」宣告。 下列程式碼會將「upn」宣告轉換為「email」宣告：
-  
+* **宣告標準化**，或讓宣告在使用者之間一致。 如果您正從多個 IDP 取得宣告，這特別有關，其中可能會針對類似的資訊使用不同的宣告類型。 例如，Azure AD 會傳送「upn」宣告，其中包含使用者的電子郵件。 其他 IDP 可能會傳送「email」宣告。 下列程式碼會將「upn」宣告轉換為「email」宣告：
+
   ```csharp
   var email = principal.FindFirst(ClaimTypes.Upn)?.Value;
   if (!string.IsNullOrWhiteSpace(email))
@@ -67,12 +68,14 @@ ms.locfileid: "52902403"
       identity.AddClaim(new Claim(ClaimTypes.Email, email));
   }
   ```
+
 * 針對不存在的宣告新增**預設宣告值** &mdash; 例如，將使用者指派到預設角色。 在某些情況下，這可以簡化授權邏輯。
-* 使用關於使用者的應用程式特定資訊，新增 **自訂宣告類型** 。 例如，您可能會在資料庫中儲存關於使用者的某些資訊。 您可以搭配這項資訊，將自訂宣告新增至驗證票證。 宣告會儲存在 Cookie 中，所以您只需在每個登入工作階段，從資料庫中取得一次。 另一方面，您也會想要避免建立過大的 Cookie，所以您必須考量 Cookie 大小與資料庫查閱之間的取捨。   
+* 使用關於使用者的應用程式特定資訊，新增 **自訂宣告類型** 。 例如，您可能會在資料庫中儲存關於使用者的某些資訊。 您可以搭配這項資訊，將自訂宣告新增至驗證票證。 宣告會儲存在 Cookie 中，所以您只需在每個登入工作階段，從資料庫中取得一次。 另一方面，您也會想要避免建立過大的 Cookie，所以您必須考量 Cookie 大小與資料庫查閱之間的取捨。
 
 驗證流程完成之後，宣告即可在 `HttpContext.User`中提供。 此時，您應該將它們視為唯讀的集合 &mdash; 例如，使用它們來做出授權決策。
 
 ## <a name="issuer-validation"></a>簽發者驗證
+
 在 OpenID Connect 中，簽發者宣告 ("iss") 會識別發行識別碼權杖的 IDP。 OIDC 驗證流程的其中一部份，是驗證簽發者宣告是否符合實際的簽發者。 OIDC 中介軟體會為您處理這部分。
 
 在 Azure AD 中，每個 AD 租用戶的簽發者值是唯一的 (`https://sts.windows.net/<tenantID>`)。 因此，應用程式應該執行額外的檢查，確保簽發者代表的租用戶允許登入應用程式。
@@ -87,25 +90,28 @@ ms.locfileid: "52902403"
 如需更詳細的討論，請參閱[多租用戶應用程式中的租用戶註冊和登入][signup]。
 
 ## <a name="using-claims-for-authorization"></a>使用宣告進行授權
+
 利用宣告，使用者的身分識別不再是整合型實體。 例如，使用者可能有電子郵件地址、電話號碼、生日、性別等等。可能使用者的 IDP 會儲存所有這類資訊。 但當您驗證使用者時，您通常會取得這些資訊的子集做為宣告。 在此模型中，使用者的身分識別只是宣告的組合。 當您進行有關使用者的授權決策時，您會尋找特定的宣告集。 換句話說，問題「使用者 X 可以執行動作 Y 嗎」最後會變成「使用者 X 是否有宣告 Z」。
 
 以下是一些檢查宣告的基本模式。
 
 * 若要檢查使用者是否有含有特定值的特定宣告：
-  
+
    ```csharp
    if (User.HasClaim(ClaimTypes.Role, "Admin")) { ... }
    ```
+
    此程式碼會檢查使用者是否有含有「Admin」的角色宣告。 它會正確地處理使用者沒有角色宣告，或有多個角色宣告的情況。
   
    **ClaimTypes** 類別定義常用宣告類型的常數。 不過，您可以使用任何字串值做為宣告類型。
 * 當您預期最多只有一個值時，若要取得宣告類型的單一值：
-  
+
   ```csharp
   string email = User.FindFirst(ClaimTypes.Email)?.Value;
   ```
+
 * 取得宣告類型的所有值：
-  
+
   ```csharp
   IEnumerable<Claim> groups = User.FindAll("groups");
   ```
@@ -114,8 +120,7 @@ ms.locfileid: "52902403"
 
 [**下一主題**][signup]
 
-
-<!-- Links -->
+<!-- links -->
 
 [範圍參數]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [支援的權杖和宣告類型]: /azure/active-directory/active-directory-token-and-claims/

@@ -1,24 +1,19 @@
 ---
-title: 靜態內容裝載
+title: 靜態內容裝載模式
+titleSuffix: Cloud Design Patterns
 description: 將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。
 keywords: 設計模式
 author: dragon119
-ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- design-implementation
-- performance-scalability
-ms.openlocfilehash: 450d0c4c08098c1ba48e4c0dac3d058a46e3709b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 01/04/2019
+ms.custom: seodec18
+ms.openlocfilehash: cf4f65e935a01e4d84b3cc82b5779edb729bd80e
+ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428205"
+ms.lasthandoff: 01/05/2019
+ms.locfileid: "54058177"
 ---
 # <a name="static-content-hosting-pattern"></a>靜態內容裝載模式
-
-[!INCLUDE [header](../_includes/header.md)]
 
 將靜態內容部署到可以直接將其交付給用戶端的雲端儲存體服務。 這可以降低對潛在昂貴之計算執行個體的需求。
 
@@ -26,11 +21,11 @@ ms.locfileid: "47428205"
 
 Web 應用程式通常包含靜態內容的某些元素。 這個靜態內容可能包括 HTML 頁面及其他資源，例如用戶端可用的影像和文件，無論是作為 HTML 網頁的一部分 (如內嵌影像、樣式表和用戶端 JavaScript 檔案)，或是作為個別的下載項目 (例如 PDF 文件)。
 
-雖然 Web 伺服器已調整成透過有效率的動態網頁程式碼執行和輸出快取來最佳化要求，但仍然需要處理下載靜態內容的要求。 這會取用通常可以更加適當使用的處理週期。
+雖然已針對動態轉譯和輸出快取而對 Web 伺服器進行最佳化，但 Web 伺服器仍然需要處理下載靜態內容的要求。 這會取用通常可以更加適當使用的處理週期。
 
 ## <a name="solution"></a>解決方法
 
-在大部分的雲端裝載環境中，透過在儲存體服務中尋找應用程式的部分資源和靜態網頁，可以將計算執行個體的需求降到最低 (例如，使用較小的執行個體或較少的執行個體)。 雲端裝載儲存體的成本通常遠低於計算執行個體的成本。
+在大部分的雲端裝載環境中，您可以將一些應用程式的資源和靜態網頁放在儲存體服務中。 儲存體服務可處理這些資源的要求，從而讓負責處理其他 Web 要求的計算資源減少負載。 雲端裝載儲存體的成本通常遠低於計算執行個體的成本。
 
 在儲存體服務中裝載應用程式的某些部分時，主要考量因素與應用程式部署以及保護不打算提供給匿名使用者使用的資源有關。
 
@@ -44,11 +39,13 @@ Web 應用程式通常包含靜態內容的某些元素。 這個靜態內容可
 
 - 儲存體帳戶依預設通常會進行異地複寫，針對可能會影響資料中心的事件提供復原功能。 這表示 IP 位址可能會變更，但 URL 將會維持不變。
 
-- 當某些內容位於儲存體帳戶中，而其他內容位於裝載的計算執行個體中時，部署應用程式並對其進行更新將變得更具挑戰性。 您可能必須執行個別的部署，並對應用程式和內容進行版本化，以便更輕鬆地管理&mdash;特別是當靜態內容包含指令碼檔案或 UI 元件時。 但是，如果只需要更新靜態資源，則只需將其上傳至儲存體帳戶，而不需要重新部署應用程式套件。
+- 當某些內容位於儲存體帳戶中，而其他內容位於裝載的計算執行個體中時，部署和更新應用程式會變得更麻煩。 您可能必須執行個別的部署，並對應用程式和內容進行版本化，以便更輕鬆地管理&mdash;特別是當靜態內容包含指令碼檔案或 UI 元件時。 但是，如果只需要更新靜態資源，則只需將其上傳至儲存體帳戶，而不需要重新部署應用程式套件。
 
 - 儲存體服務可能不支援使用自訂網域名稱。 在此情況下，就必須在連結中指定資源的完整 URL，因為它們將位於與含有連結之動態產生內容不同的網域中。
 
-- 儲存體容器必須設定公用讀取權限，但一定要確保它們未設定公用寫入權限，以避免使用者上傳內容。 請考慮使用有限權限金鑰或權杖來控制對不應該匿名存取存取存取存取存取存取存取存取存取存取存取存取存取存取存取存取存取之資源的存取&mdash;如需詳細資訊，請參閱[有限權限金鑰模式](valet-key.md)。
+- 儲存體容器必須設定公用讀取權限，但一定要確保它們未設定公用寫入權限，以避免使用者上傳內容。
+
+- 請考慮使用限時金鑰或權杖，來針對不應匿名使用的資源控制其存取權。 如需詳細資訊，請參閱[限時金鑰模式](./valet-key.md)。
 
 ## <a name="when-to-use-this-pattern"></a>使用此模式的時機
 
@@ -72,30 +69,15 @@ Web 應用程式通常包含靜態內容的某些元素。 這個靜態內容可
 
 ## <a name="example"></a>範例
 
-Azure Blob 儲存體中的靜態內容可以直接透過網頁瀏覽器存取。 Azure 在儲存體上提供一個可公開給用戶端的 HTTP 型介面。 例如，Azure Blob 儲存體容器中的內容會使用下列格式的 URL 來公開：
+Azure 儲存體支援直接從儲存體容器提供靜態內容。 檔案會透過匿名存取要求來提供。 根據預設，檔案的 URL 中會有 `core.windows.net` 子網域，例如 `https://contoso.z4.web.core.windows.net/image.png`。 您可以設定自訂網域名稱，並使用 Azure CDN 來透過 HTTPS 存取檔案。 如需詳細資訊，請參閱 [Azure 儲存體中的靜態網站裝載](/azure/storage/blobs/storage-blob-static-website)。
 
-`https://[ storage-account-name ].blob.core.windows.net/[ container-name ]/[ file-name ]`
+![直接從儲存體服務傳遞應用程式的靜態部分](./_images/static-content-hosting-pattern.png)
 
+靜態網站裝載可讓您透過匿名方式來存取檔案。 如果您需要控制哪些人可以存取檔案，您可以將檔案儲存在 Azure Blob 儲存體中，然後產生[共用存取簽章](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)來限制存取。
 
-上傳內容時，必須建立一或多個 Blob 容器來保存檔案和文件。 請注意，新的容器的預設權限為「私人」，您必須將其變更為「公開」以允許用戶端存取內容。 如果有必要避免匿名存取內容，則可以實作[有限權限金鑰模式](valet-key.md)，要求使用者必須出示有效權杖才能下載資源。
+傳遞至用戶端的頁面中的連結，必須指定資源的完整 URL。 如果使用限時金鑰 (例如共用存取簽章) 保護資源，此簽章必須包含在 URL 中。
 
-> [Blob 服務概念](https://msdn.microsoft.com/library/azure/dd179376.aspx)包含 Blob 儲存體的相關資訊，以及您可以存取並使用它的方式。
-
-每一頁中的連結都會指定資源的 URL，而用戶端會直接從儲存體服務存取它。 此圖說明直接從儲存體服務傳遞應用程式的靜態部分。
-
-![圖 1 - 直接從儲存體服務傳遞應用程式的靜態部分](./_images/static-content-hosting-pattern.png)
-
-
-傳遞至用戶端的頁面中的連結，必須指定 Blob 容器及資源的完整 URL。 例如，包含公用容器中之影像連結的頁面，可能包含以下的 HTML。
-
-```html
-<img src="https://mystorageaccount.blob.core.windows.net/myresources/image1.png"
-     alt="My image" />
-```
-
-> 如果使用有限權限金鑰 (例如 Azure 共用存取簽章) 保護資源，此簽章必須包含在連結中的 URL。
-
-從 [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 可以找到一個名為 StaticContentHosting 的解決方案，該解決方案示範如何針對靜態資源使用外部儲存體。 StaticContentHosting.Cloud 專案包含指定儲存體帳戶的設定檔，以及包含靜態內容的容器。
+在 [GitHub][sample-app] 上可以找到一個應用程式範例，該應用程式範例示範如何針對靜態資源使用外部儲存體。 此範例使用設定檔來指定儲存體帳戶，以及包含靜態內容的容器。
 
 ```xml
 <Setting name="StaticContent.StorageConnectionString"
@@ -167,6 +149,8 @@ Views\Home 資料夾中的 Index.cshtml 檔案包含使用 `StaticContentUrl` �
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 
-- [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting) 上有提供示範此模式的範例。
-- [有限權限金鑰模式](valet-key.md)。 如果目標資源不應該提供給匿名使用者使用，則必須在保存靜態內容的存放區上實作安全性。 描述如何使用權杖或金鑰為用戶端提供特定資源或服務 (例如雲端裝載儲存體服務) 的受限制直接存取。
-- [Blob 服務概念](https://msdn.microsoft.com/library/azure/dd179376.aspx) \(英文\)
+- [靜態內容裝載範例][sample-app]。 示範此模式的應用程式範例。
+- [有限權限金鑰模式](./valet-key.md)。 如果目標資源不應提供給匿名使用者使用，請使用此模式來限制直接存取。
+- [Azure 上的無伺服器 Web 應用程式](../reference-architectures/serverless/web-app.md)。 這是參考架構，會搭配使用靜態網站裝載和 Azure Functions 來實作無伺服器的 Web 應用程式。
+
+[sample-app]: https://github.com/mspnp/cloud-design-patterns/tree/master/static-content-hosting

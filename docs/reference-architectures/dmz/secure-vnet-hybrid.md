@@ -5,16 +5,12 @@ description: 在 Azure 中實作安全的混合式網路架構。
 author: telmosampaio
 ms.date: 10/22/2018
 ms.custom: seodec18
-pnp.series.title: Network DMZ
-pnp.series.prev: ./index
-pnp.series.next: secure-vnet-dmz
-cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: c57f741aa0e68783f457f94ea6fd84e1d552f059
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 9a74401d3496807ce2dfc113476e001d19e657e5
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120419"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112289"
 ---
 # <a name="implement-a-dmz-between-azure-and-your-on-premises-datacenter"></a>實作 Azure 與內部部署資料中心之間的 DMZ
 
@@ -222,7 +218,7 @@ NVA 前方的負載平衡器也可以當做安全性裝置，如果流量不在�
 
 ## <a name="next-steps"></a>後續步驟
 
-- 了解如何[在 Azure 與網際網路之間實作 DMZ](secure-vnet-dmz.md)。
+- 了解如何[在 Azure 與網際網路之間實作 DMZ](./secure-vnet-dmz.md)。
 - 了解如何實作[高可用性的混合式網路架構][ra-vpn-failover]。
 - 如需有關使用 Azure 管理網路安全性的詳細資訊，請參閱 [Microsoft 雲端服務和網路安全性][cloud-services-network-security]。
 - 如需在 Azure 中保護資源的詳細資訊，請參閱[開始使用 Microsoft Azure 安全性][getting-started-with-azure-security]。
@@ -235,7 +231,7 @@ NVA 前方的負載平衡器也可以當做安全性裝置，如果流量不在�
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
 [azure-forced-tunneling]: https://azure.microsoft.com/en-gb/documentation/articles/vpn-gateway-forced-tunneling-rm/
 [azure-marketplace-nva]: https://azuremarketplace.microsoft.com/marketplace/apps/category/networking
-[cloud-services-network-security]: https://azure.microsoft.com/documentation/articles/best-practices-network-security/
+[cloud-services-network-security]: /azure/best-practices-network-security
 [getting-started-with-azure-security]: /azure/security/azure-security-getting-started
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/dmz/secure-vnet-hybrid
 [guidance-expressroute]: ../hybrid-networking/expressroute.md

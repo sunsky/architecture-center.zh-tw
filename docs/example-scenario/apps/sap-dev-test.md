@@ -3,14 +3,14 @@ title: SAP 工作負載的開發/測試環境
 titleSuffix: Azure Example Scenarios
 description: 為 SAP 工作負載建置開發/測試環境。
 author: AndrewDibbins
-ms.date: 7/11/18
+ms.date: 07/11/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 3f6c828e8757a3f82ad6972a8f21cd2fed629162
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 9f9e8ec971373e4309703800c200ba2c62fe9a66
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643963"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111014"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上 SAP 工作負載的開發/測試環境
 
@@ -31,12 +31,12 @@ ms.locfileid: "53643963"
 
 ## <a name="architecture"></a>架構
 
-![SAP 工作負載的開發/測試環境架構圖](media/architecture-sap-dev-test.png)
+![SAP 工作負載的開發/測試環境架構圖](./media/architecture-sap-dev-test.png)
 
 此案例示範如何在單一虛擬機器上佈建單一 SAP 系統資料庫和 SAP 應用程式伺服器。 整個案例的資料流程如下所示：
 
 1. 客戶可使用 SAP 使用者介面或其他用戶端工具 (Excel、網頁瀏覽器或其他 Web 應用程式) 來存取 Azure 型 SAP 系統。
-2. 透過使用已建立的 ExpressRoute 來提供連線能力。 Azure 中的 ExpressRoute 連線會在 ExpressRoute 閘道終止。 網路流量會透過 ExpressRoute 閘道路由至閘道子網路，以及從閘道子網路路由至應用程式層輪輻子網路 (請參閱[中樞輪輻][hub-spoke]模式)，然後透過網路安全性群組路由至 SAP 應用程式虛擬機器。
+2. 透過使用已建立的 ExpressRoute 來提供連線能力。 Azure 中的 ExpressRoute 連線會在 ExpressRoute 閘道終止。 網路流量會透過 ExpressRoute 閘道路由至閘道子網路，以及從閘道子網路路由至應用程式層輪輻子網路 (請參閱[中樞輪輻網路拓撲][hub-spoke])，然後透過網路安全性群組路由至 SAP 應用程式虛擬機器。
 3. 身分識別管理伺服器會提供驗證服務。
 4. 「跳躍箱」會提供本機管理功能。
 
@@ -52,7 +52,7 @@ ms.locfileid: "53643963"
 
 ### <a name="availability"></a>可用性
 
- Microsoft 會提供單一 VM 執行個體的服務等級協定 (SLA)。 如需關於適用於虛擬機器的 Microsoft Azure 服務等級協定相關資訊，請參閱[虛擬機器 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines)
+Microsoft 會提供單一 VM 執行個體的服務等級協定 (SLA)。 如需關於適用於虛擬機器的 Microsoft Azure 服務等級協定相關資訊，請參閱[虛擬機器 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines)
 
 ### <a name="scalability"></a>延展性
 
@@ -62,7 +62,7 @@ ms.locfileid: "53643963"
 
 如需設計安全解決方案的一般指引，請參閱 [Azure 安全性文件][security]。
 
-### <a name="resiliency"></a>災害復原
+### <a name="resiliency"></a>復原功能
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
