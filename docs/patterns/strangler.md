@@ -1,56 +1,53 @@
 ---
 title: 扼制模式
+titleSuffix: Cloud Design Patterns
 description: 透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。
+keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 0bf0b76a69f947419da83edd894a04dbea02371b
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.custom: seodec18
+ms.openlocfilehash: 7d7c58c97537537ae9f2f96b7ecf1b437fc258b4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001876"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010203"
 ---
-# <a name="strangler-pattern"></a><span data-ttu-id="806f2-103">扼制模式</span><span class="sxs-lookup"><span data-stu-id="806f2-103">Strangler pattern</span></span>
+# <a name="strangler-pattern"></a><span data-ttu-id="29aa4-104">扼制模式</span><span class="sxs-lookup"><span data-stu-id="29aa4-104">Strangler pattern</span></span>
 
-<span data-ttu-id="806f2-104">透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。</span><span class="sxs-lookup"><span data-stu-id="806f2-104">Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="806f2-105">隨著舊有系統的功能被取代，新系統最終會取代舊系統所有的功能，扼制舊系統或功能，讓您將它解除任務。</span><span class="sxs-lookup"><span data-stu-id="806f2-105">As features from the legacy system are replaced, the new system eventually replaces all of the old system's features, strangling the old system and allowing you to decommission it.</span></span> 
+<span data-ttu-id="29aa4-105">透過將功能的特定片段逐漸取代成新的應用程式和服務，來逐步移轉舊有系統。</span><span class="sxs-lookup"><span data-stu-id="29aa4-105">Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="29aa4-106">隨著舊有系統的功能被取代，新系統最終會取代舊系統所有的功能，扼制舊系統或功能，讓您將它解除任務。</span><span class="sxs-lookup"><span data-stu-id="29aa4-106">As features from the legacy system are replaced, the new system eventually replaces all of the old system's features, strangling the old system and allowing you to decommission it.</span></span>
 
-## <a name="context-and-problem"></a><span data-ttu-id="806f2-106">內容和問題</span><span class="sxs-lookup"><span data-stu-id="806f2-106">Context and problem</span></span>
+## <a name="context-and-problem"></a><span data-ttu-id="29aa4-107">內容和問題</span><span class="sxs-lookup"><span data-stu-id="29aa4-107">Context and problem</span></span>
 
-<span data-ttu-id="806f2-107">隨著系統老化，開發工具、裝載技術、甚至是建置它們的系統架構，都可能變得越來越過時。</span><span class="sxs-lookup"><span data-stu-id="806f2-107">As systems age, the development tools, hosting technology, and even system architectures they were built on can become increasingly obsolete.</span></span> <span data-ttu-id="806f2-108">因為新的特色與功能加入，這些應用程式的複雜性會大幅增加，使其更難以維護或加入新功能。</span><span class="sxs-lookup"><span data-stu-id="806f2-108">As new features and functionality are added, the complexity of these applications can increase dramatically, making them harder to maintain or add new features to.</span></span>
+<span data-ttu-id="29aa4-108">隨著系統老化，開發工具、裝載技術、甚至是建置它們的系統架構，都可能變得越來越過時。</span><span class="sxs-lookup"><span data-stu-id="29aa4-108">As systems age, the development tools, hosting technology, and even system architectures they were built on can become increasingly obsolete.</span></span> <span data-ttu-id="29aa4-109">因為新的特色與功能加入，這些應用程式的複雜性會大幅增加，使其更難以維護或加入新功能。</span><span class="sxs-lookup"><span data-stu-id="29aa4-109">As new features and functionality are added, the complexity of these applications can increase dramatically, making them harder to maintain or add new features to.</span></span>
 
-<span data-ttu-id="806f2-109">完全取代複雜的系統可能會是個大工程。</span><span class="sxs-lookup"><span data-stu-id="806f2-109">Completely replacing a complex system can be a huge undertaking.</span></span> <span data-ttu-id="806f2-110">通常，您將需要漸進式移轉到新的系統，同時保留舊系統來處理尚未移轉的功能。</span><span class="sxs-lookup"><span data-stu-id="806f2-110">Often, you will need a gradual migration to a new system, while keeping the old system to handle features that haven't been migrated yet.</span></span> <span data-ttu-id="806f2-111">但是，執行兩個不同版本的應用程式，表示用戶端必須知道特定功能在哪裡。</span><span class="sxs-lookup"><span data-stu-id="806f2-111">However, running two separate versions of an application means that clients have to know where particular features are located.</span></span> <span data-ttu-id="806f2-112">每次移轉功能或服務時，需要讓用戶端知道新的位置。</span><span class="sxs-lookup"><span data-stu-id="806f2-112">Every time a feature or service is migrated, clients need to be updated to point to the new location.</span></span>
+<span data-ttu-id="29aa4-110">完全取代複雜的系統可能會是個大工程。</span><span class="sxs-lookup"><span data-stu-id="29aa4-110">Completely replacing a complex system can be a huge undertaking.</span></span> <span data-ttu-id="29aa4-111">通常，您將需要漸進式移轉到新的系統，同時保留舊系統來處理尚未移轉的功能。</span><span class="sxs-lookup"><span data-stu-id="29aa4-111">Often, you will need a gradual migration to a new system, while keeping the old system to handle features that haven't been migrated yet.</span></span> <span data-ttu-id="29aa4-112">但是，執行兩個不同版本的應用程式，表示用戶端必須知道特定功能在哪裡。</span><span class="sxs-lookup"><span data-stu-id="29aa4-112">However, running two separate versions of an application means that clients have to know where particular features are located.</span></span> <span data-ttu-id="29aa4-113">每次移轉功能或服務時，需要讓用戶端知道新的位置。</span><span class="sxs-lookup"><span data-stu-id="29aa4-113">Every time a feature or service is migrated, clients need to be updated to point to the new location.</span></span>
 
-## <a name="solution"></a><span data-ttu-id="806f2-113">解決方法</span><span class="sxs-lookup"><span data-stu-id="806f2-113">Solution</span></span>
+## <a name="solution"></a><span data-ttu-id="29aa4-114">解決方法</span><span class="sxs-lookup"><span data-stu-id="29aa4-114">Solution</span></span>
 
-<span data-ttu-id="806f2-114">將功能的特定片段逐漸取代成新的應用程式和服務。</span><span class="sxs-lookup"><span data-stu-id="806f2-114">Incrementally replace specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="806f2-115">建立表面以攔截前往後端舊版系統的要求。</span><span class="sxs-lookup"><span data-stu-id="806f2-115">Create a façade that intercepts requests going to the backend legacy system.</span></span> <span data-ttu-id="806f2-116">表面會將這些要求路由傳送至舊版應用程式或新的服務。</span><span class="sxs-lookup"><span data-stu-id="806f2-116">The façade routes these requests either to the legacy application or the new services.</span></span> <span data-ttu-id="806f2-117">現有功能可以逐漸移轉至新系統，取用者可以繼續使用相同的介面，不會察覺任何移轉的發生。</span><span class="sxs-lookup"><span data-stu-id="806f2-117">Existing features can be migrated to the new system gradually, and consumers can continue using the same interface, unaware that any migration has taken place.</span></span>
+<span data-ttu-id="29aa4-115">將功能的特定片段逐漸取代成新的應用程式和服務。</span><span class="sxs-lookup"><span data-stu-id="29aa4-115">Incrementally replace specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="29aa4-116">建立外觀以攔截前往後端舊版系統的要求。</span><span class="sxs-lookup"><span data-stu-id="29aa4-116">Create a façade that intercepts requests going to the backend legacy system.</span></span> <span data-ttu-id="29aa4-117">外觀會將這些要求路由傳送至舊版應用程式或新的服務。</span><span class="sxs-lookup"><span data-stu-id="29aa4-117">The façade routes these requests either to the legacy application or the new services.</span></span> <span data-ttu-id="29aa4-118">現有功能可以逐漸移轉至新系統，取用者可以繼續使用相同的介面，不會察覺任何移轉的發生。</span><span class="sxs-lookup"><span data-stu-id="29aa4-118">Existing features can be migrated to the new system gradually, and consumers can continue using the same interface, unaware that any migration has taken place.</span></span>
 
-![](./_images/strangler.png)  
+![扼制模式圖](./_images/strangler.png)
 
-<span data-ttu-id="806f2-118">此模式有助於將移轉的風險降至最低，並將開發分散在一段時間內。</span><span class="sxs-lookup"><span data-stu-id="806f2-118">This pattern helps to minimize risk from the migration, and spread the development effort over time.</span></span> <span data-ttu-id="806f2-119">使用表面安全地將使用者路由傳送至正確的應用程式，您可以任何您喜歡的步調將功能新增至新的系統，同時確保舊版應用程式持續運作。</span><span class="sxs-lookup"><span data-stu-id="806f2-119">With the façade safely routing users to the correct application, you can add functionality to the new system at whatever pace you like, while ensuring the legacy application continues to function.</span></span> <span data-ttu-id="806f2-120">經過一段時間，當功能都移轉到新的系統，舊系統終將被「扼制」，且不再需要它。</span><span class="sxs-lookup"><span data-stu-id="806f2-120">Over time, as features are migrated to the new system, the legacy system is eventually "strangled" and is no longer necessary.</span></span> <span data-ttu-id="806f2-121">完成此程序之後，可以安全地淘汰舊系統。</span><span class="sxs-lookup"><span data-stu-id="806f2-121">Once this process is complete, the legacy system can safely be retired.</span></span>
+<span data-ttu-id="29aa4-120">此模式有助於將移轉的風險降至最低，並將開發分散在一段時間內。</span><span class="sxs-lookup"><span data-stu-id="29aa4-120">This pattern helps to minimize risk from the migration, and spread the development effort over time.</span></span> <span data-ttu-id="29aa4-121">使用外觀安全地將使用者路由傳送至正確的應用程式，您可以任何您喜歡的步調將功能新增至新的系統，同時確保舊版應用程式持續運作。</span><span class="sxs-lookup"><span data-stu-id="29aa4-121">With the façade safely routing users to the correct application, you can add functionality to the new system at whatever pace you like, while ensuring the legacy application continues to function.</span></span> <span data-ttu-id="29aa4-122">經過一段時間，當功能都移轉到新的系統，舊系統終將被「扼制」，且不再需要它。</span><span class="sxs-lookup"><span data-stu-id="29aa4-122">Over time, as features are migrated to the new system, the legacy system is eventually "strangled" and is no longer necessary.</span></span> <span data-ttu-id="29aa4-123">完成此程序之後，可以安全地淘汰舊系統。</span><span class="sxs-lookup"><span data-stu-id="29aa4-123">Once this process is complete, the legacy system can safely be retired.</span></span>
 
-## <a name="issues-and-considerations"></a><span data-ttu-id="806f2-122">問題和考量</span><span class="sxs-lookup"><span data-stu-id="806f2-122">Issues and considerations</span></span>
+## <a name="issues-and-considerations"></a><span data-ttu-id="29aa4-124">問題和考量</span><span class="sxs-lookup"><span data-stu-id="29aa4-124">Issues and considerations</span></span>
 
-- <span data-ttu-id="806f2-123">請考慮如何處理新舊系統可能同時使用的服務和資料存放區。</span><span class="sxs-lookup"><span data-stu-id="806f2-123">Consider how to handle services and data stores that are potentially used by both new and legacy systems.</span></span> <span data-ttu-id="806f2-124">確定兩者可以同時存取這些資源。</span><span class="sxs-lookup"><span data-stu-id="806f2-124">Make sure both can access these resources side-by-side.</span></span>
-- <span data-ttu-id="806f2-125">建構新應用程式和服務的方式，使它們在未來的扼制移轉中可以輕鬆地被攔截和取代。</span><span class="sxs-lookup"><span data-stu-id="806f2-125">Structure new applications and services in a way that they can easily be intercepted and replaced in future strangler migrations.</span></span>
-- <span data-ttu-id="806f2-126">在未來移轉完成時，扼制表面將會消失或發展成舊版用戶端的配接器。</span><span class="sxs-lookup"><span data-stu-id="806f2-126">At some point, when the migration is complete, the strangler façade will either go away or evolve into an adaptor for legacy clients.</span></span>
-- <span data-ttu-id="806f2-127">請確定表面可配合移轉。</span><span class="sxs-lookup"><span data-stu-id="806f2-127">Make sure the façade keeps up with the migration.</span></span>
-- <span data-ttu-id="806f2-128">請確定外觀就不會成為單點失敗或效能瓶頸。</span><span class="sxs-lookup"><span data-stu-id="806f2-128">Make sure the façade doesn't become a single point of failure or a performance bottleneck.</span></span>
+- <span data-ttu-id="29aa4-125">請考慮如何處理新舊系統可能同時使用的服務和資料存放區。</span><span class="sxs-lookup"><span data-stu-id="29aa4-125">Consider how to handle services and data stores that are potentially used by both new and legacy systems.</span></span> <span data-ttu-id="29aa4-126">確定兩者可以同時存取這些資源。</span><span class="sxs-lookup"><span data-stu-id="29aa4-126">Make sure both can access these resources side-by-side.</span></span>
+- <span data-ttu-id="29aa4-127">建構新應用程式和服務的方式，使它們在未來的扼制移轉中可以輕鬆地被攔截和取代。</span><span class="sxs-lookup"><span data-stu-id="29aa4-127">Structure new applications and services in a way that they can easily be intercepted and replaced in future strangler migrations.</span></span>
+- <span data-ttu-id="29aa4-128">在未來移轉完成時，扼制外觀將會消失或發展成舊版用戶端的配接器。</span><span class="sxs-lookup"><span data-stu-id="29aa4-128">At some point, when the migration is complete, the strangler façade will either go away or evolve into an adaptor for legacy clients.</span></span>
+- <span data-ttu-id="29aa4-129">請確定外觀可配合移轉。</span><span class="sxs-lookup"><span data-stu-id="29aa4-129">Make sure the façade keeps up with the migration.</span></span>
+- <span data-ttu-id="29aa4-130">請確定外觀就不會成為單點失敗或效能瓶頸。</span><span class="sxs-lookup"><span data-stu-id="29aa4-130">Make sure the façade doesn't become a single point of failure or a performance bottleneck.</span></span>
 
-## <a name="when-to-use-this-pattern"></a><span data-ttu-id="806f2-129">使用此模式的時機</span><span class="sxs-lookup"><span data-stu-id="806f2-129">When to use this pattern</span></span>
+## <a name="when-to-use-this-pattern"></a><span data-ttu-id="29aa4-131">使用此模式的時機</span><span class="sxs-lookup"><span data-stu-id="29aa4-131">When to use this pattern</span></span>
 
-<span data-ttu-id="806f2-130">逐漸將後端應用程式移轉至新架構時，請使用此模式。</span><span class="sxs-lookup"><span data-stu-id="806f2-130">Use this pattern when gradually migrating a back-end application to a new architecture.</span></span>
+<span data-ttu-id="29aa4-132">逐漸將後端應用程式移轉至新架構時，請使用此模式。</span><span class="sxs-lookup"><span data-stu-id="29aa4-132">Use this pattern when gradually migrating a back-end application to a new architecture.</span></span>
 
-<span data-ttu-id="806f2-131">此模式可能不適合下列時機：</span><span class="sxs-lookup"><span data-stu-id="806f2-131">This pattern may not be suitable:</span></span>
+<span data-ttu-id="29aa4-133">此模式可能不適用於下列時機：</span><span class="sxs-lookup"><span data-stu-id="29aa4-133">This pattern may not be suitable:</span></span>
 
-- <span data-ttu-id="806f2-132">當無法攔截送到後端系統的要求。</span><span class="sxs-lookup"><span data-stu-id="806f2-132">When requests to the back-end system cannot be intercepted.</span></span>
-- <span data-ttu-id="806f2-133">整批取代的複雜度較低的小型系統。</span><span class="sxs-lookup"><span data-stu-id="806f2-133">For smaller systems where the complexity of wholesale replacement is low.</span></span>
+- <span data-ttu-id="29aa4-134">當無法攔截送到後端系統的要求。</span><span class="sxs-lookup"><span data-stu-id="29aa4-134">When requests to the back-end system cannot be intercepted.</span></span>
+- <span data-ttu-id="29aa4-135">整批取代的複雜度較低的小型系統。</span><span class="sxs-lookup"><span data-stu-id="29aa4-135">For smaller systems where the complexity of wholesale replacement is low.</span></span>
 
-## <a name="related-guidance"></a><span data-ttu-id="806f2-134">相關的指引</span><span class="sxs-lookup"><span data-stu-id="806f2-134">Related guidance</span></span>
+## <a name="related-guidance"></a><span data-ttu-id="29aa4-136">相關的指引</span><span class="sxs-lookup"><span data-stu-id="29aa4-136">Related guidance</span></span>
 
-- <span data-ttu-id="806f2-135">[StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html) 上 Martin Fowler 的部落格文章</span><span class="sxs-lookup"><span data-stu-id="806f2-135">Martin Fowler's blog post on [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html)</span></span>
-- [<span data-ttu-id="806f2-136">防損毀層模式</span><span class="sxs-lookup"><span data-stu-id="806f2-136">Anti-Corruption Layer pattern</span></span>](./anti-corruption-layer.md)
-- [<span data-ttu-id="806f2-137">閘道路由模式</span><span class="sxs-lookup"><span data-stu-id="806f2-137">Gateway Routing pattern</span></span>](./gateway-routing.md)
-
-
- 
-
+- <span data-ttu-id="29aa4-137">[StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html) 上 Martin Fowler 的部落格文章</span><span class="sxs-lookup"><span data-stu-id="29aa4-137">Martin Fowler's blog post on [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html)</span></span>

@@ -1,31 +1,31 @@
 ---
 title: 保護多租用戶應用程式中的後端 Web API
-description: 如何保護後端 Web API
+description: 如何保護後端 Web API。
 author: MikeWasson
 ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: e738eb94b5978efa4e7a4bebcc72daa7968ac904
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 517bdbb6e1a1063db9337b63905e2ff5f4bdd4d4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901587"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114023"
 ---
-# <a name="secure-a-backend-web-api"></a><span data-ttu-id="eb60d-103">保護後端 Web API</span><span class="sxs-lookup"><span data-stu-id="eb60d-103">Secure a backend web API</span></span>
+# <a name="secure-a-backend-web-api"></a><span data-ttu-id="dd2ad-103">保護後端 Web API</span><span class="sxs-lookup"><span data-stu-id="dd2ad-103">Secure a backend web API</span></span>
 
-<span data-ttu-id="eb60d-104">[![GitHub](../_images/github.png) 程式碼範例][sample application]</span><span class="sxs-lookup"><span data-stu-id="eb60d-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
+<span data-ttu-id="dd2ad-104">[![GitHub](../_images/github.png) 程式碼範例][sample application]</span><span class="sxs-lookup"><span data-stu-id="dd2ad-104">[![GitHub](../_images/github.png) Sample code][sample application]</span></span>
 
-<span data-ttu-id="eb60d-105">[Tailspin 問卷] 應用程式使用後端 Web API 來管理問卷的 CRUD 作業。</span><span class="sxs-lookup"><span data-stu-id="eb60d-105">The [Tailspin Surveys] application uses a backend web API to manage CRUD operations on surveys.</span></span> <span data-ttu-id="eb60d-106">例如，當使用者按一下 [我的問卷調查] 時，Web 應用程式會傳送 HTTP 要求到 Web API：</span><span class="sxs-lookup"><span data-stu-id="eb60d-106">For example, when a user clicks "My Surveys", the web application sends an HTTP request to the web API:</span></span>
+<span data-ttu-id="dd2ad-105">[Tailspin 問卷] 應用程式使用後端 Web API 來管理問卷的 CRUD 作業。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-105">The [Tailspin Surveys] application uses a backend web API to manage CRUD operations on surveys.</span></span> <span data-ttu-id="dd2ad-106">例如，當使用者按一下 [我的問卷調查] 時，Web 應用程式會傳送 HTTP 要求到 Web API：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-106">For example, when a user clicks "My Surveys", the web application sends an HTTP request to the web API:</span></span>
 
-```
+```http
 GET /users/{userId}/surveys
 ```
 
-<span data-ttu-id="eb60d-107">Web API 會傳回 JSON 物件：</span><span class="sxs-lookup"><span data-stu-id="eb60d-107">The web API returns a JSON object:</span></span>
+<span data-ttu-id="dd2ad-107">Web API 會傳回 JSON 物件：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-107">The web API returns a JSON object:</span></span>
 
-```
+```http
 {
   "Published":[],
   "Own":[
@@ -36,62 +36,62 @@ GET /users/{userId}/surveys
 }
 ```
 
-<span data-ttu-id="eb60d-108">Web API 不允許匿名要求，因此 Web 應用程式必須使用 OAuth 2 持有人權杖來驗證自己。</span><span class="sxs-lookup"><span data-stu-id="eb60d-108">The web API does not allow anonymous requests, so the web app must authenticate itself using OAuth 2 bearer tokens.</span></span>
+<span data-ttu-id="dd2ad-108">Web API 不允許匿名要求，因此 Web 應用程式必須使用 OAuth 2 持有人權杖來驗證自己。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-108">The web API does not allow anonymous requests, so the web app must authenticate itself using OAuth 2 bearer tokens.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="eb60d-109">這是伺服器對伺服器案例。</span><span class="sxs-lookup"><span data-stu-id="eb60d-109">This is a server-to-server scenario.</span></span> <span data-ttu-id="eb60d-110">應用程式不會從瀏覽器用戶端對 API 進行任何 AJAX 呼叫。</span><span class="sxs-lookup"><span data-stu-id="eb60d-110">The application does not make any AJAX calls to the API from the browser client.</span></span>
-> 
-> 
+> <span data-ttu-id="dd2ad-109">這是伺服器對伺服器案例。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-109">This is a server-to-server scenario.</span></span> <span data-ttu-id="dd2ad-110">應用程式不會從瀏覽器用戶端對 API 進行任何 AJAX 呼叫。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-110">The application does not make any AJAX calls to the API from the browser client.</span></span>
 
-<span data-ttu-id="eb60d-111">您可以採取兩種主要方式：</span><span class="sxs-lookup"><span data-stu-id="eb60d-111">There are two main approaches you can take:</span></span>
+<span data-ttu-id="dd2ad-111">您可以採取兩種主要方式：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-111">There are two main approaches you can take:</span></span>
 
-* <span data-ttu-id="eb60d-112">委派的使用者識別。</span><span class="sxs-lookup"><span data-stu-id="eb60d-112">Delegated user identity.</span></span> <span data-ttu-id="eb60d-113">Web 應用程式會驗證使用者的身分識別。</span><span class="sxs-lookup"><span data-stu-id="eb60d-113">The web application authenticates with the user's identity.</span></span>
-* <span data-ttu-id="eb60d-114">應用程式識別碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-114">Application identity.</span></span> <span data-ttu-id="eb60d-115">Web 應用程式會使用 OAuth2 用戶端認證流程驗證其用戶端識別碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-115">The web application authenticates with its client ID, using OAuth2 client credential flow.</span></span>
+* <span data-ttu-id="dd2ad-112">委派的使用者識別。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-112">Delegated user identity.</span></span> <span data-ttu-id="dd2ad-113">Web 應用程式會驗證使用者的身分識別。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-113">The web application authenticates with the user's identity.</span></span>
+* <span data-ttu-id="dd2ad-114">應用程式識別碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-114">Application identity.</span></span> <span data-ttu-id="dd2ad-115">Web 應用程式會使用 OAuth2 用戶端認證流程驗證其用戶端識別碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-115">The web application authenticates with its client ID, using OAuth2 client credential flow.</span></span>
 
-<span data-ttu-id="eb60d-116">Tailspin 應用程式實作委派的使用者識別。</span><span class="sxs-lookup"><span data-stu-id="eb60d-116">The Tailspin application implements delegated user identity.</span></span> <span data-ttu-id="eb60d-117">以下是兩者的主要差異：</span><span class="sxs-lookup"><span data-stu-id="eb60d-117">Here are the main differences:</span></span>
+<span data-ttu-id="dd2ad-116">Tailspin 應用程式實作委派的使用者識別。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-116">The Tailspin application implements delegated user identity.</span></span> <span data-ttu-id="dd2ad-117">以下是兩者的主要差異：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-117">Here are the main differences:</span></span>
 
-<span data-ttu-id="eb60d-118">**委派的使用者識別**</span><span class="sxs-lookup"><span data-stu-id="eb60d-118">**Delegated user identity**</span></span>
+<span data-ttu-id="dd2ad-118">**委派的使用者識別：**</span><span class="sxs-lookup"><span data-stu-id="dd2ad-118">**Delegated user identity:**</span></span>
 
-* <span data-ttu-id="eb60d-119">傳送給 Web API 的持有人權杖包含了使用者識別。</span><span class="sxs-lookup"><span data-stu-id="eb60d-119">The bearer token sent to the web API contains the user identity.</span></span>
-* <span data-ttu-id="eb60d-120">Web API 會根據使用者識別進行授權決策。</span><span class="sxs-lookup"><span data-stu-id="eb60d-120">The web API makes authorization decisions based on the user identity.</span></span>
-* <span data-ttu-id="eb60d-121">如果未授權使用者執行動作，Web 應用程式需要處理 Web API 的 403 (禁止) 錯誤。</span><span class="sxs-lookup"><span data-stu-id="eb60d-121">The web application needs to handle 403 (Forbidden) errors from the web API, if the user is not authorized to perform an action.</span></span>
-* <span data-ttu-id="eb60d-122">一般而言，Web 應用程式仍會做出某些影響 UI的授權決策，例如顯示或隱藏 UI 項目。</span><span class="sxs-lookup"><span data-stu-id="eb60d-122">Typically, the web application still makes some authorization decisions that affect UI, such as showing or hiding UI elements).</span></span>
-* <span data-ttu-id="eb60d-123">Web API 可能可以由不受信任的用戶端所使用，例如 JavaScript 應用程式或原生用戶端應用程式。</span><span class="sxs-lookup"><span data-stu-id="eb60d-123">The web API can potentially be used by untrusted clients, such as a JavaScript application or a native client application.</span></span>
+* <span data-ttu-id="dd2ad-119">傳送給 Web API 的持有人權杖包含了使用者識別。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-119">The bearer token sent to the web API contains the user identity.</span></span>
+* <span data-ttu-id="dd2ad-120">Web API 會根據使用者識別進行授權決策。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-120">The web API makes authorization decisions based on the user identity.</span></span>
+* <span data-ttu-id="dd2ad-121">如果未授權使用者執行動作，Web 應用程式需要處理 Web API 的 403 (禁止) 錯誤。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-121">The web application needs to handle 403 (Forbidden) errors from the web API, if the user is not authorized to perform an action.</span></span>
+* <span data-ttu-id="dd2ad-122">一般而言，Web 應用程式仍會做出某些影響 UI的授權決策，例如顯示或隱藏 UI 項目。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-122">Typically, the web application still makes some authorization decisions that affect UI, such as showing or hiding UI elements).</span></span>
+* <span data-ttu-id="dd2ad-123">Web API 可能可以由不受信任的用戶端所使用，例如 JavaScript 應用程式或原生用戶端應用程式。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-123">The web API can potentially be used by untrusted clients, such as a JavaScript application or a native client application.</span></span>
 
-<span data-ttu-id="eb60d-124">**應用程式識別碼**</span><span class="sxs-lookup"><span data-stu-id="eb60d-124">**Application identity**</span></span>
+<span data-ttu-id="dd2ad-124">**應用程式識別碼：**</span><span class="sxs-lookup"><span data-stu-id="dd2ad-124">**Application identity:**</span></span>
 
-* <span data-ttu-id="eb60d-125">Web API 不會取得使用者的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="eb60d-125">The web API does not get information about the user.</span></span>
-* <span data-ttu-id="eb60d-126">Web API 不能執行任何根據使用者識別的授權。</span><span class="sxs-lookup"><span data-stu-id="eb60d-126">The web API cannot perform any authorization based on the user identity.</span></span> <span data-ttu-id="eb60d-127">所有的授權決策都是由 Web 應用程式所進行。</span><span class="sxs-lookup"><span data-stu-id="eb60d-127">All authorization decisions are made by the web application.</span></span>  
-* <span data-ttu-id="eb60d-128">Web API 不能由未受信任的用戶端 (JavaScript 或原生用戶端應用程式) 使用。</span><span class="sxs-lookup"><span data-stu-id="eb60d-128">The web API cannot be used by an untrusted client (JavaScript or native client application).</span></span>
-* <span data-ttu-id="eb60d-129">實作這種方法可能較為容易，因為 Web API 中沒有授權邏輯。</span><span class="sxs-lookup"><span data-stu-id="eb60d-129">This approach may be somewhat simpler to implement, because there is no authorization logic in the Web API.</span></span>
+* <span data-ttu-id="dd2ad-125">Web API 不會取得使用者的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-125">The web API does not get information about the user.</span></span>
+* <span data-ttu-id="dd2ad-126">Web API 不能執行任何根據使用者識別的授權。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-126">The web API cannot perform any authorization based on the user identity.</span></span> <span data-ttu-id="dd2ad-127">所有的授權決策都是由 Web 應用程式所進行。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-127">All authorization decisions are made by the web application.</span></span>  
+* <span data-ttu-id="dd2ad-128">Web API 不能由未受信任的用戶端 (JavaScript 或原生用戶端應用程式) 使用。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-128">The web API cannot be used by an untrusted client (JavaScript or native client application).</span></span>
+* <span data-ttu-id="dd2ad-129">實作這種方法可能較為容易，因為 Web API 中沒有授權邏輯。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-129">This approach may be somewhat simpler to implement, because there is no authorization logic in the Web API.</span></span>
 
-<span data-ttu-id="eb60d-130">這兩種方法中，Web 應用程式必須取得存取權杖，也就是呼叫 Web API 所需的認證。</span><span class="sxs-lookup"><span data-stu-id="eb60d-130">In either approach, the web application must get an access token, which is the credential needed to call the web API.</span></span>
+<span data-ttu-id="dd2ad-130">這兩種方法中，Web 應用程式必須取得存取權杖，也就是呼叫 Web API 所需的認證。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-130">In either approach, the web application must get an access token, which is the credential needed to call the web API.</span></span>
 
-* <span data-ttu-id="eb60d-131">如果是委派的使用者識別，權杖必須來自可代表使用者發行權杖的 IDP。</span><span class="sxs-lookup"><span data-stu-id="eb60d-131">For delegated user identity, the token has to come from the IDP, which can issue a token on behalf of the user.</span></span>
-* <span data-ttu-id="eb60d-132">如果是用戶端認證，應用程式可能會從 IDP 取得權杖，或主控自己的權杖伺服器。</span><span class="sxs-lookup"><span data-stu-id="eb60d-132">For client credentials, an application might get the token from the IDP or host its own token server.</span></span> <span data-ttu-id="eb60d-133">(但請勿重頭開始撰寫權杖伺服器，請使用經完整測試的架構，例如 [IdentityServer4]。)如果您使用 Azure AD 進行驗證，強烈建議從 Azure AD 取得存取權杖，即使是使用用戶端認證流程也一樣。</span><span class="sxs-lookup"><span data-stu-id="eb60d-133">(But don't write a token server from scratch; use a well-tested framework like [IdentityServer4].) If you authenticate with Azure AD, it's strongly recommended to get the access token from Azure AD, even with client credential flow.</span></span>
+* <span data-ttu-id="dd2ad-131">如果是委派的使用者識別，權杖必須來自可代表使用者發行權杖的 IDP。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-131">For delegated user identity, the token has to come from the IDP, which can issue a token on behalf of the user.</span></span>
+* <span data-ttu-id="dd2ad-132">如果是用戶端認證，應用程式可能會從 IDP 取得權杖，或主控自己的權杖伺服器。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-132">For client credentials, an application might get the token from the IDP or host its own token server.</span></span> <span data-ttu-id="dd2ad-133">(但請勿重頭開始撰寫權杖伺服器，請使用經完整測試的架構，例如 [IdentityServer4]。)如果您使用 Azure AD 進行驗證，強烈建議從 Azure AD 取得存取權杖，即使是使用用戶端認證流程也一樣。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-133">(But don't write a token server from scratch; use a well-tested framework like [IdentityServer4].) If you authenticate with Azure AD, it's strongly recommended to get the access token from Azure AD, even with client credential flow.</span></span>
 
-<span data-ttu-id="eb60d-134">本文的其餘部分假設應用程式透過 Azure AD 進行驗證。</span><span class="sxs-lookup"><span data-stu-id="eb60d-134">The rest of this article assumes the application is authenticating with Azure AD.</span></span>
+<span data-ttu-id="dd2ad-134">本文的其餘部分假設應用程式透過 Azure AD 進行驗證。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-134">The rest of this article assumes the application is authenticating with Azure AD.</span></span>
 
 ![取得存取權杖](./images/access-token.png)
 
-## <a name="register-the-web-api-in-azure-ad"></a><span data-ttu-id="eb60d-136">在 Azure AD 中註冊 Web API</span><span class="sxs-lookup"><span data-stu-id="eb60d-136">Register the web API in Azure AD</span></span>
-<span data-ttu-id="eb60d-137">為了讓 Azure AD 發行 Web API 的持有人權杖，您需要設定 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="eb60d-137">In order for Azure AD to issue a bearer token for the web API, you need to configure some things in Azure AD.</span></span>
+## <a name="register-the-web-api-in-azure-ad"></a><span data-ttu-id="dd2ad-136">在 Azure AD 中註冊 Web API</span><span class="sxs-lookup"><span data-stu-id="dd2ad-136">Register the web API in Azure AD</span></span>
 
-1. <span data-ttu-id="eb60d-138">在 Azure AD 中註冊 Web API。</span><span class="sxs-lookup"><span data-stu-id="eb60d-138">Register the web API in Azure AD.</span></span>
+<span data-ttu-id="dd2ad-137">為了讓 Azure AD 發行 Web API 的持有人權杖，您需要設定 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-137">In order for Azure AD to issue a bearer token for the web API, you need to configure some things in Azure AD.</span></span>
 
-2. <span data-ttu-id="eb60d-139">新增 Web 應用程式的用戶端識別碼至 `knownClientApplications` 屬性中的 Web API 應用程式資訊清單。</span><span class="sxs-lookup"><span data-stu-id="eb60d-139">Add the client ID of the web app to the web API application manifest, in the `knownClientApplications` property.</span></span> <span data-ttu-id="eb60d-140">請參閱 [更新應用程式資訊清單]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-140">See [Update the application manifests].</span></span>
+1. <span data-ttu-id="dd2ad-138">在 Azure AD 中註冊 Web API。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-138">Register the web API in Azure AD.</span></span>
 
-3. <span data-ttu-id="eb60d-141">提供 Web 應用程式權限來呼叫 Web API。</span><span class="sxs-lookup"><span data-stu-id="eb60d-141">Give the web application permission to call the web API.</span></span> <span data-ttu-id="eb60d-142">在 Azure 管理入口網站中，您可以設定兩種類型的權限：適用於應用程式識別 (用戶端認證流程) 的「應用程式權限」或適用於委派之使用者識別的「委派權限」。</span><span class="sxs-lookup"><span data-stu-id="eb60d-142">In the Azure Management Portal, you can set two types of permissions: "Application Permissions" for application identity (client credential flow), or "Delegated Permissions" for delegated user identity.</span></span>
-   
+2. <span data-ttu-id="dd2ad-139">新增 Web 應用程式的用戶端識別碼至 `knownClientApplications` 屬性中的 Web API 應用程式資訊清單。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-139">Add the client ID of the web app to the web API application manifest, in the `knownClientApplications` property.</span></span> <span data-ttu-id="dd2ad-140">請參閱 [更新應用程式資訊清單]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-140">See [Update the application manifests].</span></span>
+
+3. <span data-ttu-id="dd2ad-141">提供 Web 應用程式權限來呼叫 Web API。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-141">Give the web application permission to call the web API.</span></span> <span data-ttu-id="dd2ad-142">在 Azure 管理入口網站中，您可以設定兩種類型的權限：適用於應用程式識別 (用戶端認證流程) 的「應用程式權限」或適用於委派之使用者識別的「委派權限」。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-142">In the Azure Management Portal, you can set two types of permissions: "Application Permissions" for application identity (client credential flow), or "Delegated Permissions" for delegated user identity.</span></span>
+
    ![委派的權限](./images/delegated-permissions.png)
 
-## <a name="getting-an-access-token"></a><span data-ttu-id="eb60d-144">取得存取權杖</span><span class="sxs-lookup"><span data-stu-id="eb60d-144">Getting an access token</span></span>
-<span data-ttu-id="eb60d-145">呼叫 Web API 之前，Web 應用程式會從 Azure AD 取得存取權杖。</span><span class="sxs-lookup"><span data-stu-id="eb60d-145">Before calling the web API, the web application gets an access token from Azure AD.</span></span> <span data-ttu-id="eb60d-146">在 .NET 應用程式中，使用[適用於 .NET 的 Azure AD 驗證程式庫 (ADAL)][ADAL]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-146">In a .NET application, use the [Azure AD Authentication Library (ADAL) for .NET][ADAL].</span></span>
+## <a name="getting-an-access-token"></a><span data-ttu-id="dd2ad-144">取得存取權杖</span><span class="sxs-lookup"><span data-stu-id="dd2ad-144">Getting an access token</span></span>
 
-<span data-ttu-id="eb60d-147">在 OAuth 2 授權程式碼流程中，應用程式會交換存取權杖的授權碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-147">In the OAuth 2 authorization code flow, the application exchanges an authorization code for an access token.</span></span> <span data-ttu-id="eb60d-148">下列程式碼會使用 ADAL 來取得存取權杖。</span><span class="sxs-lookup"><span data-stu-id="eb60d-148">The following code uses ADAL to get the access token.</span></span> <span data-ttu-id="eb60d-149">`AuthorizationCodeReceived` 事件期間會呼叫這個程式碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-149">This code is called during the `AuthorizationCodeReceived` event.</span></span>
+<span data-ttu-id="dd2ad-145">呼叫 Web API 之前，Web 應用程式會從 Azure AD 取得存取權杖。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-145">Before calling the web API, the web application gets an access token from Azure AD.</span></span> <span data-ttu-id="dd2ad-146">在 .NET 應用程式中，使用[適用於 .NET 的 Azure AD 驗證程式庫 (ADAL)][ADAL]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-146">In a .NET application, use the [Azure AD Authentication Library (ADAL) for .NET][ADAL].</span></span>
+
+<span data-ttu-id="dd2ad-147">在 OAuth 2 授權程式碼流程中，應用程式會交換存取權杖的授權碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-147">In the OAuth 2 authorization code flow, the application exchanges an authorization code for an access token.</span></span> <span data-ttu-id="dd2ad-148">下列程式碼會使用 ADAL 來取得存取權杖。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-148">The following code uses ADAL to get the access token.</span></span> <span data-ttu-id="dd2ad-149">`AuthorizationCodeReceived` 事件期間會呼叫這個程式碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-149">This code is called during the `AuthorizationCodeReceived` event.</span></span>
 
 ```csharp
-// The OpenID Connect middleware sends this event when it gets the authorization code.   
+// The OpenID Connect middleware sends this event when it gets the authorization code.
 public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
 {
     string authorizationCode = context.ProtocolMessage.Code;
@@ -107,33 +107,34 @@ public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedCo
 }
 ```
 
-<span data-ttu-id="eb60d-150">以下是各種所需的參數：</span><span class="sxs-lookup"><span data-stu-id="eb60d-150">Here are the various parameters that are needed:</span></span>
+<span data-ttu-id="dd2ad-150">以下是各種所需的參數：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-150">Here are the various parameters that are needed:</span></span>
 
-* <span data-ttu-id="eb60d-151">`authority`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-151">`authority`.</span></span> <span data-ttu-id="eb60d-152">衍生自已登入使用者的租用戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-152">Derived from the tenant ID of the signed in user.</span></span> <span data-ttu-id="eb60d-153">(非 SaaS 提供者的租用戶識別碼)</span><span class="sxs-lookup"><span data-stu-id="eb60d-153">(Not the tenant ID of the SaaS provider)</span></span>  
-* <span data-ttu-id="eb60d-154">`authorizationCode`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-154">`authorizationCode`.</span></span> <span data-ttu-id="eb60d-155">您從 IDP 取得的驗證程式碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-155">the auth code that you got back from the IDP.</span></span>
-* <span data-ttu-id="eb60d-156">`clientId`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-156">`clientId`.</span></span> <span data-ttu-id="eb60d-157">Web 應用程式的用戶端識別碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-157">The web application's client ID.</span></span>
-* <span data-ttu-id="eb60d-158">`clientSecret`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-158">`clientSecret`.</span></span> <span data-ttu-id="eb60d-159">Web 應用程式的用戶端密碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-159">The web application's client secret.</span></span>
-* <span data-ttu-id="eb60d-160">`redirectUri`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-160">`redirectUri`.</span></span> <span data-ttu-id="eb60d-161">您針對 OpenID Connect 設定的重新導向 URI。</span><span class="sxs-lookup"><span data-stu-id="eb60d-161">The redirect URI that you set for OpenID connect.</span></span> <span data-ttu-id="eb60d-162">這是 IDP 使用權杖進行回呼的位置。</span><span class="sxs-lookup"><span data-stu-id="eb60d-162">This is where the IDP calls back with the token.</span></span>
-* <span data-ttu-id="eb60d-163">`resourceID`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-163">`resourceID`.</span></span> <span data-ttu-id="eb60d-164">Web API 的應用程式識別碼 URI，當您在 Azure AD 中註冊 Web API 時所建立</span><span class="sxs-lookup"><span data-stu-id="eb60d-164">The App ID URI of the web API, which you created when you registered the web API in Azure AD</span></span>
-* <span data-ttu-id="eb60d-165">`tokenCache`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-165">`tokenCache`.</span></span> <span data-ttu-id="eb60d-166">快取存取權杖的物件。</span><span class="sxs-lookup"><span data-stu-id="eb60d-166">An object that caches the access tokens.</span></span> <span data-ttu-id="eb60d-167">請參閱 [權杖快取]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-167">See [Token caching].</span></span>
+* <span data-ttu-id="dd2ad-151">`authority`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-151">`authority`.</span></span> <span data-ttu-id="dd2ad-152">衍生自已登入使用者的租用戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-152">Derived from the tenant ID of the signed in user.</span></span> <span data-ttu-id="dd2ad-153">(非 SaaS 提供者的租用戶識別碼)</span><span class="sxs-lookup"><span data-stu-id="dd2ad-153">(Not the tenant ID of the SaaS provider)</span></span>  
+* <span data-ttu-id="dd2ad-154">`authorizationCode`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-154">`authorizationCode`.</span></span> <span data-ttu-id="dd2ad-155">您從 IDP 取得的驗證程式碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-155">the auth code that you got back from the IDP.</span></span>
+* <span data-ttu-id="dd2ad-156">`clientId`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-156">`clientId`.</span></span> <span data-ttu-id="dd2ad-157">Web 應用程式的用戶端識別碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-157">The web application's client ID.</span></span>
+* <span data-ttu-id="dd2ad-158">`clientSecret`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-158">`clientSecret`.</span></span> <span data-ttu-id="dd2ad-159">Web 應用程式的用戶端密碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-159">The web application's client secret.</span></span>
+* <span data-ttu-id="dd2ad-160">`redirectUri`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-160">`redirectUri`.</span></span> <span data-ttu-id="dd2ad-161">您針對 OpenID Connect 設定的重新導向 URI。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-161">The redirect URI that you set for OpenID connect.</span></span> <span data-ttu-id="dd2ad-162">這是 IDP 使用權杖進行回呼的位置。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-162">This is where the IDP calls back with the token.</span></span>
+* <span data-ttu-id="dd2ad-163">`resourceID`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-163">`resourceID`.</span></span> <span data-ttu-id="dd2ad-164">Web API 的應用程式識別碼 URI，當您在 Azure AD 中註冊 Web API 時所建立</span><span class="sxs-lookup"><span data-stu-id="dd2ad-164">The App ID URI of the web API, which you created when you registered the web API in Azure AD</span></span>
+* <span data-ttu-id="dd2ad-165">`tokenCache`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-165">`tokenCache`.</span></span> <span data-ttu-id="dd2ad-166">快取存取權杖的物件。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-166">An object that caches the access tokens.</span></span> <span data-ttu-id="dd2ad-167">請參閱 [權杖快取]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-167">See [Token caching].</span></span>
 
-<span data-ttu-id="eb60d-168">如果 `AcquireTokenByAuthorizationCodeAsync` 成功，ADAL 會快取權杖。</span><span class="sxs-lookup"><span data-stu-id="eb60d-168">If `AcquireTokenByAuthorizationCodeAsync` succeeds, ADAL caches the token.</span></span> <span data-ttu-id="eb60d-169">稍後，您可以藉由呼叫 AcquireTokenSilentAsync 從快取取得權杖：</span><span class="sxs-lookup"><span data-stu-id="eb60d-169">Later, you can get the token from the cache by calling AcquireTokenSilentAsync:</span></span>
+<span data-ttu-id="dd2ad-168">如果 `AcquireTokenByAuthorizationCodeAsync` 成功，ADAL 會快取權杖。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-168">If `AcquireTokenByAuthorizationCodeAsync` succeeds, ADAL caches the token.</span></span> <span data-ttu-id="dd2ad-169">稍後，您可以藉由呼叫 AcquireTokenSilentAsync 從快取取得權杖：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-169">Later, you can get the token from the cache by calling AcquireTokenSilentAsync:</span></span>
 
 ```csharp
 AuthenticationContext authContext = new AuthenticationContext(authority, tokenCache);
 var result = await authContext.AcquireTokenSilentAsync(resourceID, credential, new UserIdentifier(userId, UserIdentifierType.UniqueId));
 ```
 
-<span data-ttu-id="eb60d-170">其中的 `userId` 是使用者的物件識別碼，可在 `http://schemas.microsoft.com/identity/claims/objectidentifier` 宣告中找到。</span><span class="sxs-lookup"><span data-stu-id="eb60d-170">where `userId` is the user's object ID, which is found in the `http://schemas.microsoft.com/identity/claims/objectidentifier` claim.</span></span>
+<span data-ttu-id="dd2ad-170">其中的 `userId` 是使用者的物件識別碼，可在 `http://schemas.microsoft.com/identity/claims/objectidentifier` 宣告中找到。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-170">where `userId` is the user's object ID, which is found in the `http://schemas.microsoft.com/identity/claims/objectidentifier` claim.</span></span>
 
-## <a name="using-the-access-token-to-call-the-web-api"></a><span data-ttu-id="eb60d-171">使用存取權杖呼叫 Web API</span><span class="sxs-lookup"><span data-stu-id="eb60d-171">Using the access token to call the web API</span></span>
-<span data-ttu-id="eb60d-172">一旦您擁有權杖，請在 HTTP 要求的授權標頭中將它傳送至 Web API。</span><span class="sxs-lookup"><span data-stu-id="eb60d-172">Once you have the token, send it in the Authorization header of the HTTP requests to the web API.</span></span>
+## <a name="using-the-access-token-to-call-the-web-api"></a><span data-ttu-id="dd2ad-171">使用存取權杖呼叫 Web API</span><span class="sxs-lookup"><span data-stu-id="dd2ad-171">Using the access token to call the web API</span></span>
 
-```
+<span data-ttu-id="dd2ad-172">一旦您擁有權杖，請在 HTTP 要求的授權標頭中將它傳送至 Web API。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-172">Once you have the token, send it in the Authorization header of the HTTP requests to the web API.</span></span>
+
+```http
 Authorization: Bearer xxxxxxxxxx
 ```
 
-<span data-ttu-id="eb60d-173">下列的 Surveys 應用程式的擴充方法，會使用 **HttpClient** 類別在 HTTP 要求上設定授權標頭。</span><span class="sxs-lookup"><span data-stu-id="eb60d-173">The following extension method from the Surveys application sets the Authorization header on an HTTP request, using the **HttpClient** class.</span></span>
+<span data-ttu-id="dd2ad-173">下列的 Surveys 應用程式的擴充方法，會使用 **HttpClient** 類別在 HTTP 要求上設定授權標頭。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-173">The following extension method from the Surveys application sets the Authorization header on an HTTP request, using the **HttpClient** class.</span></span>
 
 ```csharp
 public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(this HttpClient httpClient, HttpMethod method, string path, object requestBody, string accessToken, CancellationToken ct)
@@ -154,10 +155,11 @@ public static async Task<HttpResponseMessage> SendRequestWithBearerTokenAsync(th
 }
 ```
 
-## <a name="authenticating-in-the-web-api"></a><span data-ttu-id="eb60d-174">在 Web API 中進行驗證</span><span class="sxs-lookup"><span data-stu-id="eb60d-174">Authenticating in the web API</span></span>
-<span data-ttu-id="eb60d-175">Web API 必須驗證持有人權杖。</span><span class="sxs-lookup"><span data-stu-id="eb60d-175">The web API has to authenticate the bearer token.</span></span> <span data-ttu-id="eb60d-176">在 ASP.NET Core 中，您可以使用 [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] 套件。</span><span class="sxs-lookup"><span data-stu-id="eb60d-176">In ASP.NET Core, you can use the [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] package.</span></span> <span data-ttu-id="eb60d-177">此封裝提供中介軟體，讓應用程式能接收 OpenID Connect 持有人權杖。</span><span class="sxs-lookup"><span data-stu-id="eb60d-177">This package provides middleware that enables the application to receive OpenID Connect bearer tokens.</span></span>
+## <a name="authenticating-in-the-web-api"></a><span data-ttu-id="dd2ad-174">在 Web API 中進行驗證</span><span class="sxs-lookup"><span data-stu-id="dd2ad-174">Authenticating in the web API</span></span>
 
-<span data-ttu-id="eb60d-178">在您的 Web API `Startup` 類別中註冊中介軟體</span><span class="sxs-lookup"><span data-stu-id="eb60d-178">Register the middleware in your web API `Startup` class.</span></span>
+<span data-ttu-id="dd2ad-175">Web API 必須驗證持有人權杖。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-175">The web API has to authenticate the bearer token.</span></span> <span data-ttu-id="dd2ad-176">在 ASP.NET Core 中，您可以使用 [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] 套件。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-176">In ASP.NET Core, you can use the [Microsoft.AspNet.Authentication.JwtBearer][JwtBearer] package.</span></span> <span data-ttu-id="dd2ad-177">此封裝提供中介軟體，讓應用程式能接收 OpenID Connect 持有人權杖。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-177">This package provides middleware that enables the application to receive OpenID Connect bearer tokens.</span></span>
+
+<span data-ttu-id="dd2ad-178">在您的 Web API `Startup` 類別中註冊中介軟體</span><span class="sxs-lookup"><span data-stu-id="dd2ad-178">Register the middleware in your web API `Startup` class.</span></span>
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, ILoggerFactory loggerFactory)
@@ -172,20 +174,21 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, Applicat
         },
         Events= new SurveysJwtBearerEvents(loggerFactory.CreateLogger<SurveysJwtBearerEvents>())
     });
-    
+
     // ...
 }
 ```
 
-* <span data-ttu-id="eb60d-179">**對象**。</span><span class="sxs-lookup"><span data-stu-id="eb60d-179">**Audience**.</span></span> <span data-ttu-id="eb60d-180">針對 Web API 將此選項設定為當您在 Azure AD 中註冊 Web API 時建立的應用程式識別碼 URL。</span><span class="sxs-lookup"><span data-stu-id="eb60d-180">Set this to the App ID URL for the web API, which you created when you registered the web API with Azure AD.</span></span>
-* <span data-ttu-id="eb60d-181">**授權單位**。</span><span class="sxs-lookup"><span data-stu-id="eb60d-181">**Authority**.</span></span> <span data-ttu-id="eb60d-182">對於多租用戶應用程式，將此選項設定為 `https://login.microsoftonline.com/common/`。</span><span class="sxs-lookup"><span data-stu-id="eb60d-182">For a multitenant application, set this to `https://login.microsoftonline.com/common/`.</span></span>
-* <span data-ttu-id="eb60d-183">**TokenValidationParameters**。</span><span class="sxs-lookup"><span data-stu-id="eb60d-183">**TokenValidationParameters**.</span></span> <span data-ttu-id="eb60d-184">對於多租用戶應用程式，請將 **ValidateIssuer** 設為 false。</span><span class="sxs-lookup"><span data-stu-id="eb60d-184">For a multitenant application, set **ValidateIssuer** to false.</span></span> <span data-ttu-id="eb60d-185">這表示應用程式會驗證簽發者。</span><span class="sxs-lookup"><span data-stu-id="eb60d-185">That means the application will validate the issuer.</span></span>
-* <span data-ttu-id="eb60d-186">**Events** 是衍生自 **JwtBearerEvents** 的類別。</span><span class="sxs-lookup"><span data-stu-id="eb60d-186">**Events** is a class that derives from **JwtBearerEvents**.</span></span>
+* <span data-ttu-id="dd2ad-179">**對象**。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-179">**Audience**.</span></span> <span data-ttu-id="dd2ad-180">針對 Web API 將此選項設定為當您在 Azure AD 中註冊 Web API 時建立的應用程式識別碼 URL。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-180">Set this to the App ID URL for the web API, which you created when you registered the web API with Azure AD.</span></span>
+* <span data-ttu-id="dd2ad-181">**授權單位**。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-181">**Authority**.</span></span> <span data-ttu-id="dd2ad-182">對於多租用戶應用程式，將此選項設定為 `https://login.microsoftonline.com/common/`。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-182">For a multitenant application, set this to `https://login.microsoftonline.com/common/`.</span></span>
+* <span data-ttu-id="dd2ad-183">**TokenValidationParameters**。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-183">**TokenValidationParameters**.</span></span> <span data-ttu-id="dd2ad-184">對於多租用戶應用程式，請將 **ValidateIssuer** 設為 false。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-184">For a multitenant application, set **ValidateIssuer** to false.</span></span> <span data-ttu-id="dd2ad-185">這表示應用程式會驗證簽發者。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-185">That means the application will validate the issuer.</span></span>
+* <span data-ttu-id="dd2ad-186">**Events** 是衍生自 **JwtBearerEvents** 的類別。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-186">**Events** is a class that derives from **JwtBearerEvents**.</span></span>
 
-### <a name="issuer-validation"></a><span data-ttu-id="eb60d-187">簽發者驗證</span><span class="sxs-lookup"><span data-stu-id="eb60d-187">Issuer validation</span></span>
-<span data-ttu-id="eb60d-188">驗證 **JwtBearerEvents.TokenValidated** 事件中的權杖簽發者。</span><span class="sxs-lookup"><span data-stu-id="eb60d-188">Validate the token issuer in the **JwtBearerEvents.TokenValidated** event.</span></span> <span data-ttu-id="eb60d-189">簽發者會在 "iss" 宣告中傳送。</span><span class="sxs-lookup"><span data-stu-id="eb60d-189">The issuer is sent in the "iss" claim.</span></span>
+### <a name="issuer-validation"></a><span data-ttu-id="dd2ad-187">簽發者驗證</span><span class="sxs-lookup"><span data-stu-id="dd2ad-187">Issuer validation</span></span>
 
-<span data-ttu-id="eb60d-190">在 Surveys 應用程式中，Web API 不會處理 [租用戶註冊]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-190">In the Surveys application, the web API doesn't handle [tenant sign-up].</span></span> <span data-ttu-id="eb60d-191">因此，它只會檢查簽發者是否已經在應用程式資料庫中。</span><span class="sxs-lookup"><span data-stu-id="eb60d-191">Therefore, it just checks if the issuer is already in the application database.</span></span> <span data-ttu-id="eb60d-192">如果沒有，則會擲回例外狀況，這會導致驗證失敗。</span><span class="sxs-lookup"><span data-stu-id="eb60d-192">If not, it throws an exception, which causes authentication to fail.</span></span>
+<span data-ttu-id="dd2ad-188">驗證 **JwtBearerEvents.TokenValidated** 事件中的權杖簽發者。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-188">Validate the token issuer in the **JwtBearerEvents.TokenValidated** event.</span></span> <span data-ttu-id="dd2ad-189">簽發者會在 "iss" 宣告中傳送。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-189">The issuer is sent in the "iss" claim.</span></span>
+
+<span data-ttu-id="dd2ad-190">在 Surveys 應用程式中，Web API 不會處理 [租用戶註冊]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-190">In the Surveys application, the web API doesn't handle [tenant sign-up].</span></span> <span data-ttu-id="dd2ad-191">因此，它只會檢查簽發者是否已經在應用程式資料庫中。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-191">Therefore, it just checks if the issuer is already in the application database.</span></span> <span data-ttu-id="dd2ad-192">如果沒有，則會擲回例外狀況，這會導致驗證失敗。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-192">If not, it throws an exception, which causes authentication to fail.</span></span>
 
 ```csharp
 public override async Task TokenValidated(TokenValidatedContext context)
@@ -218,26 +221,27 @@ public override async Task TokenValidated(TokenValidatedContext context)
 }
 ```
 
-<span data-ttu-id="eb60d-193">如本範例所示，您也可以使用 **TokenValidated** 事件來修改宣告。</span><span class="sxs-lookup"><span data-stu-id="eb60d-193">As this example shows, you can also use the **TokenValidated** event to modify the claims.</span></span> <span data-ttu-id="eb60d-194">請記住，宣告直接來自 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="eb60d-194">Remember that the claims come directly from Azure AD.</span></span> <span data-ttu-id="eb60d-195">如果 Web 應用程式修改它所取得的宣告，這些變更將不會顯示在 Web API 接收的持有人權杖中。</span><span class="sxs-lookup"><span data-stu-id="eb60d-195">If the web application modifies the claims that it gets, those changes won't show up in the bearer token that the web API receives.</span></span> <span data-ttu-id="eb60d-196">如需詳細資訊，請參閱[宣告轉換][claims-transformation]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-196">For more information, see [Claims transformations][claims-transformation].</span></span>
+<span data-ttu-id="dd2ad-193">如本範例所示，您也可以使用 **TokenValidated** 事件來修改宣告。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-193">As this example shows, you can also use the **TokenValidated** event to modify the claims.</span></span> <span data-ttu-id="dd2ad-194">請記住，宣告直接來自 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-194">Remember that the claims come directly from Azure AD.</span></span> <span data-ttu-id="dd2ad-195">如果 Web 應用程式修改它所取得的宣告，這些變更將不會顯示在 Web API 接收的持有人權杖中。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-195">If the web application modifies the claims that it gets, those changes won't show up in the bearer token that the web API receives.</span></span> <span data-ttu-id="dd2ad-196">如需詳細資訊，請參閱[宣告轉換][claims-transformation]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-196">For more information, see [Claims transformations][claims-transformation].</span></span>
 
-## <a name="authorization"></a><span data-ttu-id="eb60d-197">Authorization</span><span class="sxs-lookup"><span data-stu-id="eb60d-197">Authorization</span></span>
-<span data-ttu-id="eb60d-198">如需授權的一般討論，請參閱[角色和資源型授權][Authorization]。</span><span class="sxs-lookup"><span data-stu-id="eb60d-198">For a general discussion of authorization, see [Role-based and resource-based authorization][Authorization].</span></span> 
+## <a name="authorization"></a><span data-ttu-id="dd2ad-197">Authorization</span><span class="sxs-lookup"><span data-stu-id="dd2ad-197">Authorization</span></span>
 
-<span data-ttu-id="eb60d-199">JwtBearer 中介軟體會處理授權回應。</span><span class="sxs-lookup"><span data-stu-id="eb60d-199">The JwtBearer middleware handles the authorization responses.</span></span> <span data-ttu-id="eb60d-200">例如，若要將控制器動作限制在已驗證的使用者，請使用 **[Authorize]** 屬性，並指定 **JwtBearerDefaults.AuthenticationScheme** 作為驗證配置：</span><span class="sxs-lookup"><span data-stu-id="eb60d-200">For example, to restrict a controller action to authenticated users, use the **[Authorize]** atrribute and specify **JwtBearerDefaults.AuthenticationScheme** as the authentication scheme:</span></span>
+<span data-ttu-id="dd2ad-198">如需授權的一般討論，請參閱[角色和資源型授權][Authorization]。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-198">For a general discussion of authorization, see [Role-based and resource-based authorization][Authorization].</span></span>
+
+<span data-ttu-id="dd2ad-199">JwtBearer 中介軟體會處理授權回應。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-199">The JwtBearer middleware handles the authorization responses.</span></span> <span data-ttu-id="dd2ad-200">例如，若要將控制器動作限制在已驗證的使用者，請使用 **[Authorize]** 屬性，並指定 **JwtBearerDefaults.AuthenticationScheme** 作為驗證配置：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-200">For example, to restrict a controller action to authenticated users, use the **[Authorize]** atrribute and specify **JwtBearerDefaults.AuthenticationScheme** as the authentication scheme:</span></span>
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 ```
 
-<span data-ttu-id="eb60d-201">如果使用者未經過驗證，這樣就會傳回 401 狀態碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-201">This returns a 401 status code if the user is not authenticated.</span></span>
+<span data-ttu-id="dd2ad-201">如果使用者未經過驗證，這樣就會傳回 401 狀態碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-201">This returns a 401 status code if the user is not authenticated.</span></span>
 
-<span data-ttu-id="eb60d-202">若要依授權原則來限制控制器動作，請在 **[Authorize]** 屬性中指定原則名稱：</span><span class="sxs-lookup"><span data-stu-id="eb60d-202">To restrict a controller action by authorizaton policy, specify the policy name in the **[Authorize]** attribute:</span></span>
+<span data-ttu-id="dd2ad-202">若要依授權原則來限制控制器動作，請在 **[Authorize]** 屬性中指定原則名稱：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-202">To restrict a controller action by authorizaton policy, specify the policy name in the **[Authorize]** attribute:</span></span>
 
 ```csharp
 [Authorize(Policy = PolicyNames.RequireSurveyCreator)]
 ```
 
-<span data-ttu-id="eb60d-203">如果使用者未經過驗證，這樣就會傳回 401 狀態碼，如果使用者已經過驗證但未授權則會傳回 403 狀態碼。</span><span class="sxs-lookup"><span data-stu-id="eb60d-203">This returns a 401 status code if the user is not authenticated, and 403 if the user is authenticated but not authorized.</span></span> <span data-ttu-id="eb60d-204">啟動時註冊原則：</span><span class="sxs-lookup"><span data-stu-id="eb60d-204">Register the policy on startup:</span></span>
+<span data-ttu-id="dd2ad-203">如果使用者未經過驗證，這樣就會傳回 401 狀態碼，如果使用者已經過驗證但未授權則會傳回 403 狀態碼。</span><span class="sxs-lookup"><span data-stu-id="dd2ad-203">This returns a 401 status code if the user is not authenticated, and 403 if the user is authenticated but not authorized.</span></span> <span data-ttu-id="dd2ad-204">啟動時註冊原則：</span><span class="sxs-lookup"><span data-stu-id="dd2ad-204">Register the policy on startup:</span></span>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -248,23 +252,23 @@ public void ConfigureServices(IServiceCollection services)
             policy =>
             {
                 policy.AddRequirements(new SurveyCreatorRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
         options.AddPolicy(PolicyNames.RequireSurveyAdmin,
             policy =>
             {
                 policy.AddRequirements(new SurveyAdminRequirement());
-                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement 
+                policy.RequireAuthenticatedUser(); // Adds DenyAnonymousAuthorizationRequirement
                 policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
             });
     });
-    
+
     // ...
 }
 ```
 
-<span data-ttu-id="eb60d-205">[**下一主題**][token cache]</span><span class="sxs-lookup"><span data-stu-id="eb60d-205">[**Next**][token cache]</span></span>
+<span data-ttu-id="dd2ad-205">[**下一主題**][token cache]</span><span class="sxs-lookup"><span data-stu-id="dd2ad-205">[**Next**][token cache]</span></span>
 
 <!-- links -->
 [ADAL]: https://msdn.microsoft.com/library/azure/jj573266.aspx

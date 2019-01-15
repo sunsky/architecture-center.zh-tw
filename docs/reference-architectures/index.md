@@ -4,12 +4,12 @@ description: Azure 上一般工作負載的參考架構、藍圖和精準實作�
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 4e0f3b32abc8d2e0da9b139b0e6aae1d48152a37
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: e62d2cb8230885fc508076f6a4984c3dc4538119
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160769"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307700"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
@@ -23,6 +23,46 @@ ms.locfileid: "54160769"
 
 <!-- markdownlint-disable MD033 -->
 <ul  class="panelContent cardsF">
+<!-- Distributed training of deep learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/batch-ai.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>深入學習模型的分散式訓練</h3>
+                        <p>在整個已啟用 GPU 的 VM 叢集中執行深入學習模型的分散式訓練。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring for deep learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/batch-ai.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>深入學習模型的批次評分</h3>
+                        <p>自動執行將類神經樣式套用至影片的批次工作。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Batch scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -43,26 +83,6 @@ ms.locfileid: "54160769"
         </div>
     </a>
 </li>
-<!-- Batch scoring for deep learning models -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/batch-ai.svg" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>深入學習模型的 Batch 評分</h3>
-                        <p>自動執行將類神經樣式套用至影片的批次工作。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
 <!-- Real-time scoring of Python models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -75,7 +95,7 @@ ms.locfileid: "54160769"
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Python 模型的即時評分</h3>
+                        <h3>Python 和深度學習模型的即時評分</h3>
                         <p>使用一般 Python 模型或深度學習模型，將 Python 模型部署為 Web 服務以進行即時預測。</p>
                     </div>
                 </div>
