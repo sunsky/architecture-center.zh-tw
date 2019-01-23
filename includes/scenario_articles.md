@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: dfc4af0a5be29b32d90cc4a05715fd3e2f71427b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488659"
+---
 
 ## <a name="ai-scenarios"></a>AI 案例
 
@@ -13,7 +21,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上適用於預約旅館的交談聊天機器人</h3>
+                        <h3>適用於預約旅館的交談聊天機器人</h3>
                         <p>使用 Azure Bot 服務建置適用於商務應用程式的對話聊天機器人。</p>
                     </div>
                 </div>
@@ -32,8 +40,27 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的保險理賠映像分類</h3>
+                        <h3>保險理賠映像分類</h3>
                         <p>將影像處理建置到您的 Azure 應用程式。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/movie-recommendations.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/architecture-movie-recommender.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure 上的電影推薦</h3>
+                        <p>透過機器學習和 Azure 資料科學虛擬機器 (DSVM) 使用機器學習來自動推薦電影、產品和其他建議，以在 Azure 上訓練模型。</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +84,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>將舊版 Web 應用程式移轉至 Azure 上的 API 型架構</h3>
+                        <h3>將 Web 應用程式遷移至以 API 為基礎的架構</h3>
                         <p>使用 Azure API 管理讓舊版 Web 應用程式變成現代化。</p>
                     </div>
                 </div>
@@ -76,7 +103,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上銀行間的分散式信任</h3>
+                        <h3>銀行間的分散式信任</h3>
                         <p>建立適用於通訊和資訊共用的受信任環境，不需要重新排序至集中式資料庫。</p>
                     </div>
                 </div>
@@ -133,7 +160,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的電子商務前端</h3>
+                        <h3>電子商務前端</h3>
                         <p>在 Azure 上裝載電子商務網站。</p>
                     </div>
                 </div>
@@ -171,7 +198,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的電腦輔助工程服務</h3>
+                        <h3>電腦輔助工程服務</h3>
                         <p>為 Azure 上的電腦輔助工程 (CAE) 提供軟體即服務 (SaaS) 平台。</p>
                     </div>
                 </div>
@@ -190,7 +217,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上 SAP 工作負載的開發/測試環境</h3>
+                        <h3>SAP 工作負載的開發/測試環境</h3>
                         <p>為 SAP 工作負載建置開發/測試環境。</p>
                     </div>
                 </div>
@@ -209,7 +236,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載</h3>
+                        <h3>使用 Oracle Database 來執行 SAP 生產環境工作負載</h3>
                         <p>在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。</p>
                     </div>
                 </div>
@@ -272,7 +299,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上可調整的訂單處理</h3>
+                        <h3>可調整的訂單處理</h3>
                         <p>使用 Azure Cosmos DB 建置高度可調整訂單處理管線。</p>
                     </div>
                 </div>
@@ -291,7 +318,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的即時詐騙偵測</h3>
+                        <h3>即時詐欺偵測</h3>
                         <p>使用 Azure 事件中樞和串流分析，即時偵測詐騙活動。</p>
                     </div>
                 </div>
@@ -311,7 +338,7 @@
                     </div>
                     <div class="cardText">
                         <h3>使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL</h3>
-                        <p>使用現有內部部署 SQL Server Integration Services (SSIS) 部署和 Azure Data Factory 的混合式 ETL</p>
+                        <p>使用現有內部部署 SQL Server Integration Services (SSIS) 部署和 Azure Data Factory 的混合式 ETL。</p>
                     </div>
                 </div>
             </div>
@@ -354,7 +381,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上執行計算流體力學 (CFD) 模擬</h3>
+                        <h3>執行 CFD 模擬</h3>
                         <p>在 Azure 上執行計算流體力學 (CFD) 模擬。</p>
                     </div>
                 </div>
@@ -392,8 +419,8 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure 上為高可用性和災害復原而建置的多層式 Web 應用程式</h3>
-                        <p>使用 Azure 虛擬機器、可用性集合、可用性區域、Azure Site Recovery 和 Azure 流量管理員，在 Azure 上建立為高可用性和災害復原而建置的多層式 Web 應用程式</p>
+                        <h3>針對 HA/DR 所建置的多層式 Web 應用程式</h3>
+                        <p>使用 Azure 虛擬機器、可用性集合、可用性區域、Azure Site Recovery 和 Azure 流量管理員，在 Azure 上建立為高可用性和災害復原而建置的多層式 Web 應用程式。</p>
                     </div>
                 </div>
             </div>
@@ -411,7 +438,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式</h3>
+                        <h3>使用 Windows VM 建置安全的 Web 應用程式</h3>
                         <p>透過 Azure 上使用擴展集、應用程式閘道和負載平衡器的 Windows Server，建置安全、多層式 Web 應用程式。</p>
                     </div>
                 </div>
@@ -430,7 +457,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Service Fabric 來分解整合型應用程式</h3>
+                        <h3>使用 Service Fabric 來分解應用程式</h3>
                         <p>將大型整合型應用程式分解成微服務。</p>
                     </div>
                 </div>
@@ -449,7 +476,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上的 3D 影片轉譯</h3>
+                        <h3>3D 影片轉譯</h3>
                         <p>使用 Azure Batch 服務在 Azure 中執行原生 HPC 工作負載。</p>
                     </div>
                 </div>
@@ -468,7 +495,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 上高度可調整且安全的 WordPress 網站</h3>
+                        <h3>高擴充性且安全的 WordPress 網站</h3>
                         <p>針對媒體事件建置高度可調整且安全的 WordPress 網站。</p>
                     </div>
                 </div>

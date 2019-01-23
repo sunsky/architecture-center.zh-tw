@@ -4,14 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中部署高可用性 SharePoint Server 2016 伺服器陣列的建議架構。
 author: njray
 ms.date: 07/26/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120096"
 ---
+
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性 SharePoint Server 2016 伺服器陣列
 
 此參考架構會示範經過驗證的作法，也就是使用 MinRole 拓樸和 SQL Server Always On 可用性群組，在 Azure 上部署高可用性 SharePoint Server 2016 伺服器陣列。 SharePoint 伺服器陣列會部署在受保護且沒有網際網路對應端點或空間的虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。
@@ -123,7 +121,7 @@ ms.locfileid: "53120096"
 
 此參考架構會部署可用來當作 [SharePoint 混合式環境][sharepoint-hybrid] &mdash; 的 SharePoint Server 2016 伺服器陣列，也就是將 SharePoint Server 2016 延伸為 Office 365 SharePoint Online。 如果您有 Office Online Server，請參閱 [Azure 中的 Office Web Apps 和 Office Online Server 支援][office-web-apps]。
 
-此部署中的預設服務應用程式是專為支援混合式工作負載所設計。 所有 SharePoint Server 2016 和 Office 365 混合式工作負載，皆可在不變更 SharePoint 基礎結構的狀況下部署到此伺服器陣列，但有一個例外：雲端混合式搜尋服務應用程式不可部署到裝載現有搜尋拓撲的伺服器。 因此，必須將一個或多個以搜尋角色為基礎的虛擬機器新增至伺服器陣列，以支援此混合式案例。
+此部署中的預設服務應用程式是專為支援混合式工作負載所設計。 所有的 SharePoint Server 2016 和 Office 365 混合工作負載都可以部署到此伺服器陣列，而無須變更 SharePoint 基礎結構，但有一個例外：不可在裝載現有搜尋拓撲的伺服器上部署雲端混合式搜尋服務應用程式。 因此，必須將一個或多個以搜尋角色為基礎的虛擬機器新增至伺服器陣列，以支援此混合式案例。
 
 ### <a name="sql-server-always-on-availability-groups"></a>SQL Server Always On 可用性群組
 
