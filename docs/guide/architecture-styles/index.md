@@ -3,13 +3,16 @@ title: 架構樣式
 titleSuffix: Azure Application Architecture Guide
 description: 雲端應用程式的一般架構樣式。
 layout: LandingPage
+ms.topic: landing-page
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.date: 08/30/2018
-ms.openlocfilehash: 0949f49cda9532b5ac3f2f6315b085c80675b2b5
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 6895ffc9c73dac29c27e7d8df68550c94f68b10a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111864"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480652"
 ---
 # <a name="architecture-styles"></a>架構樣式
 

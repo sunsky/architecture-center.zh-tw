@@ -3,12 +3,16 @@ title: 在 Azure 上使用 Kubernetes 設計、建置及操作微服務
 description: 在 Azure 上設計、建置及操作微服務。
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: a91b335738dc4958c79a4ab43a512b4cef5b3783
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: ffd42679d0e04c2283cd78b8b03d7b5c695578be
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113360"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481944"
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>在 Azure 上設計、建置及操作微服務
 

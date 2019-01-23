@@ -3,13 +3,16 @@ title: 整合內部部署 Active Directory 與 Azure
 titleSuffix: Azure Reference Architectures
 description: 比較用於整合內部部署 Active Directory 與 Azure 的參考架構。
 ms.date: 07/02/2018
-ms.custom: seodec18
-ms.openlocfilehash: 99a64f0a5fbe5624aa8ad05bd3565ab2aef618b3
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, identity
+ms.openlocfilehash: 706cb63a65ce521e72ebc41a997dc900afacaab9
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011781"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483899"
 ---
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>選擇解決方案以整合內部部署 Active Directory 與 Azure
 

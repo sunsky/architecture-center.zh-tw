@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: Azure 應用程式的設計原則。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 0ea6d6dd8a030591ce00a42aad5c693ea7809f6a
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 8aab710ef6ffde493b80810750d2c0bc299ffaa6
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110453"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485548"
 ---
 # <a name="ten-design-principles-for-azure-applications"></a>Azure 應用程式的 10 個設計原則
 

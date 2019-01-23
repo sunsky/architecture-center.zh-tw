@@ -3,12 +3,15 @@ title: 擴充 Azure Resource Manager 範本功能
 description: 說明如何擴充 Azure Resource Manager 範本功能的秘訣與技巧。
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 725013df3d0551060a9f504da7a97cdc370f956a
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111371"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486432"
 ---
 # <a name="extend-azure-resource-manager-template-functionality"></a>擴充 Azure Resource Manager 範本功能
 
