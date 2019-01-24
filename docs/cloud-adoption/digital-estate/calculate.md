@@ -4,12 +4,15 @@ titleSuffix: Enterprise Cloud Adoption
 description: 根據數位資產調整成本模型以預測雲端成本
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: 88dd3ffd3f8ff51cd2a1ecb1517bf0a7a22d63e1
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 7423b159df7ff4c9d88fe00d7979f9f15e648847
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179618"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485632"
 ---
 # <a name="enterprise-cloud-adoption-align-cost-models-with-the-digital-estate-to-forecast-cloud-costs"></a>企業雲端採用：根據數位資產調整成本模型以預測雲端成本
 

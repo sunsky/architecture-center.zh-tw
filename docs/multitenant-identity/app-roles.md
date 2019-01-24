@@ -3,15 +3,18 @@ title: 應用程式角色
 description: 如何使用應用程式角色執行授權。
 author: MikeWasson
 ms.date: 07/21/2017
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: 04749bff820132e40f3cbb5195bf65648ab39ab3
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 097b150f3706614b0814bb83d0af01f9b502c5ea
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112527"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483474"
 ---
 # <a name="application-roles"></a>應用程式角色
 

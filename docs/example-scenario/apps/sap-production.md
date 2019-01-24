@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 在 Azure 中使用 Oracle Database 來執行 SAP 生產環境部署。
 author: DharmeshBhagat
 ms.date: 09/12/2018
-ms.custom: fasttrack
-ms.openlocfilehash: 02a6eb43d3e11604857b8bd1f461c22a48f655c7
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, SAP, Windows, Linux
+ms.openlocfilehash: 0f96f173d5db682ccc719869aaa22225345cb3f0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110920"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487469"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 

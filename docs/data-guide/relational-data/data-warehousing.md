@@ -3,12 +3,15 @@ title: 資料倉儲和資料超市
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 9a3ca2daf8a94d0df50d269a7ee30902858ba970
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 6679ff620ca9e64036c02fce38608de38c57df93
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113479"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482165"
 ---
 # <a name="data-warehousing-and-data-marts"></a>資料倉儲和資料超市
 
@@ -22,7 +25,7 @@ ms.locfileid: "54113479"
 
 管理大規模的資料是複雜的工作，而以單一資料倉儲呈現整個企業的所有資料，也愈來愈少見了。 反之，組織會建立較小而更為聚焦的資料倉儲 (稱為*資料超市*)，以公開分析所需的資料。 協調程序會將作業資料存放區中維護的資料填入資料超市。 作業資料存放區會作為來源交易系統與資料超市之間的媒介。 作業資料存放區所管理的資料來源是交易系統中的資料經清理後的版本，且通常是資料倉儲或資料超市所維護之歷史資料的子集。
 
-## <a name="when-to-use-this-solution"></a>此解決方案的使用時機
+## <a name="when-to-use-this-solution"></a>使用此解決方案的時機
 
 當您需要將作業系統中的大量資料轉換為容易了解、最新且正確的格式時，請選擇資料倉儲。 資料倉儲不需要依循您在作業/OLTP 資料庫中可能使用的相同簡易資料結構。 您可以使用對商業使用者和分析師具有意義的資料行名稱、重新建構結構描述以簡化資料關聯性，並將多個資料表合併為一個。 這些步驟有助於引導需要建立隨選報表或需要在 BI 系統中建立報表及分析資料的使用者，在沒有資料庫管理員 (DBA) 或資料開發人員的協助下完成操作。
 
@@ -89,7 +92,7 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 ## <a name="key-selection-criteria"></a>關鍵選取準則
 
-為了縮小選擇範圍，請先回答下列問題：
+若要縮小選項範圍，請開始回答這些問題：
 
 - 比起自行管理伺服器，您更想使用受控服務嗎？
 
@@ -119,7 +122,7 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。
+下表是主要功能差異的摘要。
 
 ### <a name="general-capabilities"></a>一般功能
 

@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: 使用 Azure Bot 服務建置適用於商務應用程式的對話聊天機器人。
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 31a7384b11262ac967ab5f8a6c5e7f17e9a00b6f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: a8540f61a8c5ec500147dc04dc94f3ea6742e6f3
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643844"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486993"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 

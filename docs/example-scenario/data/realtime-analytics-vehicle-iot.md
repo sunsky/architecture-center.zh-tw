@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 使用 IoT 擷取和處理即時車輛資料。
 author: msdpalam
 ms.date: 09/12/2018
-ms.custom: fasttrack
-ms.openlocfilehash: edb0dc495db8742ae07826de5158db48f919e81f
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, IoT
+ms.openlocfilehash: 73f01d683b17facde59f9c917f00043773ec474b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644065"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486891"
 ---
 # <a name="ingestion-and-processing-of-real-time-automotive-iot-data"></a>擷取和處理即時汽車 IoT 資料
 

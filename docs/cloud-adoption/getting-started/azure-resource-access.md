@@ -3,12 +3,15 @@ title: 企業雲端採用：Azure 中的資源存取管理
 description: 說明 Azure 中的資源存取管理建構：Azure 資源管理員、訂用帳戶、資源群組和資源
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 8cb28d0dd5dbdfcef846786083d5197f435bf3ea
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 9f1d28cfeb062f44b2c58cd52c58f163d6de5b9d
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160786"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483066"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>企業雲端採用：Azure 中的資源存取管理
 

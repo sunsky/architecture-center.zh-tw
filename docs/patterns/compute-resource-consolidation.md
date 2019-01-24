@@ -5,13 +5,16 @@ description: 將多個工作或作業合併為單一計算單位。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 4cd9b7f02ba3b2a9766a2493353da6b6488ba8a2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111473"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485328"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>計算資源彙總模式
 

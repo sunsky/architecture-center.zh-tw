@@ -4,12 +4,15 @@ titleSuffix: Enterprise Cloud Adoption
 description: 如何建立雲端轉換的財務模型
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: 9a4d6b7c30d3dc0509a1b26fa8d247ae39ab87ca
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: d1a5cd0cefef4786a0f55592cad58451c3cae9c4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179623"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482174"
 ---
 # <a name="enterprise-cloud-adoption-how-to-create-a-financial-model-for-cloud-transformation"></a>企業雲端採用：如何建立雲端轉換的財務模型
 

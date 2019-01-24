@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 說明軟體品質的五大要素，也就是延展性、可用性、復原功能、管理和安全性。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 2f013063afea89e3e322aa6f36484f6df50210be
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113938"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486228"
 ---
 # <a name="pillars-of-software-quality"></a>軟體品質的要素
 
@@ -80,9 +83,9 @@ ms.locfileid: "54113938"
 - [可用性的設計模式][availability-patterns]
 - 最佳做法：[自動調整][autoscale]、[背景作業][background-jobs]
 
-## <a name="resiliency"></a>復原功能
+## <a name="resiliency"></a>災害復原
 
-復原功能是指系統從失敗中復原並繼續運作的能力。 復原功能的目標是使應用程式在發生失敗後，能夠恢復到完全正常運作的狀態。 復原功能與可用性緊密相關。
+災害復原是指系統從失敗中復原並繼續運作的能力。 災害復原的目標是使應用程式在發生失敗後，能夠恢復到完全正常運作的狀態。 恢復能力與可用性緊密相關。
 
 傳統上在開發應用程式時，會將焦點放在減少平均失敗時間 (MTBF)。 心力會花在嘗試避免系統發生失敗。 在雲端運算中，則需要不同的思維，原因如下：
 
@@ -91,7 +94,7 @@ ms.locfileid: "54113938"
 - 應用程式經常依賴外部服務，但這些外部服務可能會暫時無法使用，或是針對大量使用者進行限流處理。
 - 現今的使用者都期望應用程式應全天候都隨時可用，永遠不會離線。
 
-綜合上述之因素，雲端應用程式必須設計成預期會偶爾發生失敗並可以從中復原。 Azure 平台已內建許多復原功能。 例如︰
+綜合上述之因素，雲端應用程式必須設計成預期會偶爾發生失敗並可以從中復原。 Azure 平台已內建許多災害復原功能。 例如︰
 
 - Azure 儲存體、SQL Database 和 Cosmos DB 全都提供內建的資料複寫功能，不論是單一區域內或是跨區域皆有提供。
 - Azure 受控磁碟會自動放在不同的儲存體縮放單位，以限制硬體故障的影響程度。
@@ -106,7 +109,7 @@ ms.locfileid: "54113938"
 ### <a name="resiliency-guidance"></a>復原指導
 
 - [為 Azure 設計有彈性的應用程式][resiliency]
-- [復原功能的設計模式][resiliency-patterns]
+- [災害復原的設計模式][resiliency-patterns]
 - 最佳做法：[暫時性錯誤的處理][transient-fault-handling]、[特定服務的重試指引][retry-service-specific]
 
 ## <a name="management-and-devops"></a>管理性和 DevOps

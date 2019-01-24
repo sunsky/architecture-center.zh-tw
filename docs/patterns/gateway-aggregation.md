@@ -5,13 +5,16 @@ description: 您可以使用閘道來將多個個別的要求彙總成單一要�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 8d929b1b3937d8f9ef50c1b08e8aea0b5c1f92c1
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: c28e93efeae7dffe2f17288f3310f299ec545e1a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009452"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481605"
 ---
 # <a name="gateway-aggregation-pattern"></a>閘道彙總模式
 
@@ -57,7 +60,7 @@ ms.locfileid: "54009452"
 - 用戶端必須與多個後端服務通訊以執行作業。
 - 用戶端可能使用具有明顯延遲的網路，例如行動電話通訊網路。
 
-此模式可能不適用於下列時機︰
+此模式可能不適合下列時機︰
 
 - 您想要減少多個作業中用戶端與單一服務之間的呼叫數。 在該案例中，可能比較適合將批次作業加入服務。
 - 用戶端或應用程式位於後端服務附近，且延遲不是重要因素。

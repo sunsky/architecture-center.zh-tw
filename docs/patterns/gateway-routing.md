@@ -5,13 +5,16 @@ description: 使用單一端點將要求路由至多個服務。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4db98038f582e0315a743a55d46013d2eda187e3
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: e5c93c98a562e790d547d08fdf312c973cfceed8
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54010472"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487217"
 ---
 # <a name="gateway-routing-pattern"></a>閘道路由模式
 
@@ -48,7 +51,7 @@ ms.locfileid: "54010472"
 - 您想要使用單一端點來簡化用戶端應用程式。
 - 您需要將要求從外部可定址端點路由至內部虛擬端點，例如對叢集虛擬 IP 位址公開 VM 上的連接埠。
 
-當您有只使用一或兩個服務的簡單應用程式時，此模式可能不適用。
+當您有只使用一或兩個服務的簡單應用程式時，此模式可能不適合。
 
 ## <a name="example"></a>範例
 

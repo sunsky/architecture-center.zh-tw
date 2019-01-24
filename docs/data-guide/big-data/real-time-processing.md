@@ -3,12 +3,15 @@ title: 即時處理
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 75b52ae9bf7419b451084bb1a1eaf0984258433c
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: fa181700a250b3f957e038f8b5965ad02efd8979
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113904"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486466"
 ---
 # <a name="real-time-processing"></a>即時處理
 
@@ -72,7 +75,7 @@ ms.locfileid: "54113904"
 
 - **Azure Analysis Services**、**Power BI** 和 **Microsoft Excel**。 經過處理且儲存在分析資料存放區中的即時資料，可用來建立歷程記錄報告和分析 (如同批次處理資料的使用方式)。 此外，Power BI 可從延遲夠低的分析資料來源，或在某些情況下，直接從串流處理輸出中，發行即時 (或接近即時) 報表和視覺效果。
 
-如需詳細資訊，請參閱[分析和報告](../technology-choices/analysis-visualizations-reporting.md)。
+如需詳細資訊，請參閱 [分析和報告](../technology-choices/analysis-visualizations-reporting.md)。
 
 在單純的即時解決方案中，大部分處理協調流程是由訊息擷取和串流處理元件所管理。 不過，在結合批次處理和即時處理的 lambda 架構中，您可能需要使用協調流程架構 (例如 Azure Data Factory 或 Apache Oozie 和 Sqoop) 來管理所擷取之即時資料的批次工作流程。
 

@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 上執行 Linux 虛擬機器的最佳作法。
 author: telmosampaio
 ms.date: 12/13/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2989cd812c7a3ac6c9e7b8fbf23639b2a95d0b41
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: ec71e35bec0fa9fad604456130f8596fcf127ebb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396431"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485650"
 ---
 # <a name="run-a-linux-virtual-machine-on-azure"></a>在 Azure 中執行 Linux 虛擬機器
 
@@ -101,7 +104,7 @@ VM 是使用暫存磁碟來建立。 此磁碟會儲存在主機電腦的實體�
 
 使用 [Azure 資訊安全中心][security-center]來集中檢視 Azure 資源的安全性狀態。 資訊安全中心會監視潛在的安全性問題，並提供全面性的部署安全性健康狀態。 資訊安全中心是依每個 Azure 訂用帳戶設定。 啟用安全性資料收集，如[將 Azure 訂用帳戶上架到資訊安全中心的標準層][security-center-get-started]中所述。 啟用資料收集時，資訊安全性中心就會自動掃描任何該訂用帳戶建立的 VM。
 
-**修補程式管理**。 若已啟用，資訊安全性中心會檢查是否遺漏了任何安全性或重要更新。 使用 VM 上的 [群組原則設定][group-policy] 來啟用自動系統更新。
+**修補程式管理**。 若已啟用，資訊安全性中心會檢查是否遺漏了任何安全性或重要更新。 使用 VM 上的[群組原則設定][group-policy]來啟用自動系統更新。
 
 **反惡意程式碼**。 如果啟用，資訊安全性中心會檢查是已安裝反惡意程式碼軟體。 您也可以使用資訊安全中心來從 Azure 入口網站內安裝反惡意程式碼軟體。
 
@@ -130,6 +133,7 @@ VM 是使用暫存磁碟來建立。 此磁碟會儲存在主機電腦的實體�
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
+[group-policy]: /windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
 [managed-disks]: /azure/storage/storage-managed-disks-overview

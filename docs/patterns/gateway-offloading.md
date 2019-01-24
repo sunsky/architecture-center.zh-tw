@@ -5,13 +5,16 @@ description: 將共用或特殊服務功能卸載至閘道 Proxy。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 50af3d8593279986ed6efee55667187424c18e56
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 28dbd1798060d1bdd01b1e6bee03337a2239a9ef
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54010202"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487656"
 ---
 # <a name="gateway-offloading-pattern"></a>閘道卸載模式
 
@@ -57,7 +60,7 @@ ms.locfileid: "54010202"
 - 可能有不同資源需求 (例如：記憶體資源、儲存容量或網路連線) 的應用程式部署之間共通的功能。
 - 您想要將網路安全性、節流設定或其他網路界限考量之類問題的責任轉移給更特殊的小組。
 
-如果跨服務引入了結合，則此模式可能不適用。
+如果跨服務引入了結合，則此模式可能不適合。
 
 ## <a name="example"></a>範例
 

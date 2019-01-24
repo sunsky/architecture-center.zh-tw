@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中多個區域內執行高可用性 Web 應用程式的建議架構。
 author: MikeWasson
 ms.date: 10/25/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 04ba786ea16aa3245a8f0b7fcafeacc60ac447c2
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 676d968b13625048a9d83d365a1efe05c6093148
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113326"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484324"
 ---
 # <a name="run-a-web-application-in-multiple-azure-regions-for-high-availability"></a>在多個 Azure 區域中執行 Web 應用程式以獲得高可用性
 
@@ -37,7 +40,7 @@ ms.locfileid: "54113326"
 - 搭配冷待命的主動/被動。 流量會傳送到其中一個區域，而另一個區域會以冷待命模式等候。 冷待命表示在需要容錯移轉之前，不會在次要區域中配置 VM。 此方式的執行成本較小，但在失敗發生時通常需要較久的時間才能上線。
 - 主動/主動。 兩個區域均為主動，而且要求會在它們之間負載平衡。 如果其中一個區域變成無法使用，就會將它從輪替中剔除。
 
-此參考架構著重於搭配熱待命的主動/被動 (使用流量管理員進行容錯移轉)。
+此參考架構著重於搭配熱待命的主動/被動，使用流量管理員進行容錯移轉。
 
 ## <a name="recommendations"></a>建議
 
@@ -94,7 +97,7 @@ Cosmos DB 支援跨多個主要區域 (多個寫入區域) 的異地複寫。 �
 
 如需詳細資料，請參閱[關於流量管理員監視][tm-monitoring]。
 
-流量管理員可能是此系統中的失敗點。 如果此服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員服務等級協定 (SLA)][tm-sla]，判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的正式名稱 (CNAME) 記錄，以指向其他流量管理服務。 此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式。
+流量管理員也可能是這套系統中的失敗點。 如果此服務失敗，用戶端就無法在當機期間存取您的應用程式。 檢閱[流量管理員服務等級協定 (SLA)][tm-sla]，判斷單獨使用流量管理員是否符合您獲得高可用性的業務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的正式名稱 (CNAME) 記錄，以指向其他流量管理服務。 此步驟必須手動執行，而且在傳播 DNS 變更之前，將無法使用您的應用程式。
 
 ## <a name="availability-considerations---sql-database"></a>可用性考量 - SQL Database
 

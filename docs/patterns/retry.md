@@ -5,13 +5,16 @@ description: 讓應用程式可以在嘗試連線到服務或網路資源時，�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 44a9c7e188bcf76a5f6904879c2121d50397da6c
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 28e840d31a0df063edce82ef52f11064da3b17fb
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011506"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483372"
 ---
 # <a name="retry-pattern"></a>重試模式
 
@@ -174,4 +177,4 @@ private bool IsTransient(Exception ex)
 
 - [斷路器模式](./circuit-breaker.md)。 重試模式在處理暫時性錯誤上相當實用。 如果失敗會長時間持續，則可能較適合實作「斷路器」模式。 重試模式也能與斷路器搭配使用，提供處理錯誤的全方位方法。
 - [特定服務的重試指引](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific)
-- [連線復原功能](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)
+- [連線恢復功能](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency)

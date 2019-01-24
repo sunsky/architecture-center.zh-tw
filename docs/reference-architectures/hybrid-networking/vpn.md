@@ -4,12 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 實作安全的站對站網路架構，並且在透過 VPN 連線的 Azure 虛擬網路與內部部署網路中使用。
 author: RohitSharma-pnp
 ms.date: 10/22/2018
-ms.openlocfilehash: 63e919041e4a8c7c9f90a49de05effc48cb743d8
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: networking
+ms.openlocfilehash: 515cd3f5d23957e0e153c9d25198b3cb98b92a5d
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110905"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487962"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>使用 VPN 閘道將內部部署網路連線至 Azure
 

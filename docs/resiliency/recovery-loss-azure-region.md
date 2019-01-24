@@ -3,12 +3,16 @@ title: 從 Azure 區域遺失中復原
 description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原。
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: bd0d8a7e544188a79cbba4b58a9e31358e4ccf0d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: resiliency
+ms.openlocfilehash: 7f207bbc0bb0128126f9b828dc100d43553cb100
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111966"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487967"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 
@@ -117,7 +121,7 @@ Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項
 
 ### <a name="service-bus"></a>服務匯流排
 
-Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳做法](/azure/service-bus-messaging/service-bus-outages-disasters/)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](recovery-local-failures.md#other-azure-platform-services)。
+Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](/azure/service-bus-messaging/service-bus-outages-disasters/)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](recovery-local-failures.md#other-azure-platform-services)。
 
 ### <a name="app-service"></a>App Service 方案
 

@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: 針對媒體事件建置高度可調整且安全的 WordPress 網站。
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: c0dad12e1da1f17b75d0661195123da4a8267152
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 22297c5f908bd52a064048fcfebb07ebab1f4d23
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644033"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488540"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高擴充性且安全的 WordPress 網站
 

@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 使用 Azure Data Factory 與 SQL 資料倉儲來自動化 Azure 中的擷取、載入和轉換 (ELT) 工作流程。
 author: MikeWasson
 ms.date: 11/06/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 579ef0361ec44d0eb82b9076490eed5a6d88df35
-ms.sourcegitcommit: cd3de23543f739a95a1daf38886561f67add9d64
+ms.openlocfilehash: 020c401e9db85b76fd48c6df9be9c80d2ba5c7e4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54183587"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481468"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 

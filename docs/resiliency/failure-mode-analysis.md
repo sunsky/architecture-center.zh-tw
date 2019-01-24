@@ -3,13 +3,16 @@ title: 失敗模式分析
 description: 針對以 Azure 為基礎的雲端解決方案執行失敗模式分析的指導方針。
 author: MikeWasson
 ms.date: 05/07/2018
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: e74a98ed1d57c3bd0b3b518ff4fae743dd12f02b
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 6d0f58161c5b9d5922c21f24b1b1a50bab836bb1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113207"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484273"
 ---
 # <a name="failure-mode-analysis"></a>失敗模式分析
 
@@ -313,8 +316,8 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 
 1. 服務匯流排用戶端會在發生暫時性錯誤後自動重試。 根據預設，它會使用指數輪詢。 在達到重試次數上限或最大逾時期限後，用戶端會擲回例外狀況。 如需詳細資訊，請參閱[服務匯流排重試指引][sb-retry]。
 2. 如果超過佇列配額，用戶端就會擲回 [QuotaExceededException][QuotaExceededException]。 例外狀況訊息會提供更多詳細資料。 重試前請先清空佇列中的某些訊息，並考慮使用斷路器模式，以免在超出配額時不斷重試。 此外，請確定 [BrokeredMessage.TimeToLive] 屬性未設得太高。
-3. 區域的復原功能可使用[分割的佇列或主題][sb-partition]來加以改善。 非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 分割的佇列或主題會分割到多個訊息存放區。
-4. 若要提升復原功能，請在不同區域建立兩個服務匯流排命名空間，並複寫訊息。 使用作用中複寫或被動複寫。
+3. 區域的復原能力可使用[分割的佇列或主題][sb-partition]來加以改善。 非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 分割的佇列或主題會分割到多個訊息存放區。
+4. 若要提升復原能力，請在不同區域建立兩個服務匯流排命名空間，並複寫訊息。 使用作用中複寫或被動複寫。
 
     - 作用中複寫：用戶端會將每個訊息傳送給這兩個佇列。 收件者會接聽這兩個佇列。 使用唯一識別碼標記訊息，讓用戶端可以捨棄重複的訊息。
     - 被動複寫：用戶端會將訊息傳送給一個佇列。 如果發生錯誤，用戶端會退為傳送給另一個佇列。 收件者會接聽這兩個佇列。 這種方式可減少所傳送的重複訊息數目。 不過，接收者仍必須處理重複的訊息。

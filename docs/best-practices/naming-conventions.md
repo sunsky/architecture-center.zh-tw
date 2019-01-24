@@ -4,13 +4,16 @@ titleSuffix: Best practices for cloud applications
 description: 為虛擬機器、儲存體帳戶、網路、虛擬網路、子網路和其他 Azure 實體命名的建議。
 author: telmosampaio
 ms.date: 10/19/2018
+ms.topic: best-practice
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f0349b5db7eb15037bd92567eaf917b5d044daa0
-ms.sourcegitcommit: 036cd03c39f941567e0de4bae87f4e2aa8c84cf8
+ms.openlocfilehash: a5fbe72e81a169fd4b29e07e037bb7f8928e0c45
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/05/2019
-ms.locfileid: "54058194"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482372"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 資源的命名慣例
 
@@ -154,7 +157,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 | 操作員或直接負責人 (DRI) |managedBy |`joe@contoso.com` |別名或電子郵件地址 |
 | 專案名稱 |projectName |`myproject` |專案或產品線的名稱 |
 | 專案版本 |projectVersion |`3.4` |專案或產品線的版本 |
-| 環境 |environment |`<Production, Staging, QA >` |環境識別碼 |
+| 環境 |Environment |`<Production, Staging, QA >` |環境識別碼 |
 | 層 |層 |`Front End, Back End, Data` |層或角色/內容識別 |
 | 資料設定檔 |dataProfile |`Public, Confidential, Restricted, Internal` |資源中所儲存資料的敏感性 |
 

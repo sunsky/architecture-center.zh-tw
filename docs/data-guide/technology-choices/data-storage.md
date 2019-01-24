@@ -3,12 +3,15 @@ title: 選擇資料儲存技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 9fe28249b51083bb588808770aba9ac7d48d560e
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 0aac064f30c384520a27d2e42b21c9243d5914b2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113156"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483457"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
@@ -93,7 +96,7 @@ Azure Cosmos DB 功能：
 
 ## <a name="capability-matrix"></a>功能對照表
 
-下表摘要列出各項功能的主要差異。
+下表摘錄主要的功能差異。
 
 ### <a name="file-storage-capabilities"></a>檔案儲存體功能
 

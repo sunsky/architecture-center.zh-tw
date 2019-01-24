@@ -4,12 +4,15 @@ description: 提供如何在常見案例中實作 Azure 訂用帳戶治理的範
 author: rdendtler
 ms.date: 01/03/2017
 ms.author: rodend
-ms.openlocfilehash: 51be0e1cdbcb3258102c9e4a4790764cada98d1e
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: cbf3aae20639d26a73aac07e1b66374af09fbb38
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243660"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486195"
 ---
 # <a name="examples-of-implementing-azure-enterprise-scaffold"></a>實作 Azure 企業 Scaffold 的範例
 本文提供企業如何實作 [Azure 企業 Scaffold](azure-scaffold.md) 建議的範例。 它會使用名為 Contoso 的虛構公司來說明常見案例的最佳作法。
@@ -34,7 +37,7 @@ Contoso 正在建置原始程式碼管理系統 (BitBucket)，以供世界各地
 ### <a name="naming-standards--resource-groups"></a>命名標準與資源群組
 Dave 會建立一個訂用帳戶，以支援所有業務單位常見的開發人員工具。 Dave 需要針對訂用帳戶和資源群組建立有意義的名稱 (適用於應用程式和網路)。 他會建立下列訂用帳戶和資源群組︰
 
-| Item | 名稱 | 說明 |
+| Item | Name | 說明 |
 | --- | --- | --- |
 | 訂用帳戶 |Contoso ETS DeveloperTools Production |支援一般開發人員工具 |
 | 資源群組 |bitbucket-prod-rg |包含應用程式 Web 伺服器和資料庫伺服器 |
@@ -85,7 +88,7 @@ Contoso ETS 資訊安全性和風險管理小組會審查 Dave 提議將應用�
 
 他會建立下列資源︰
 
-| 資源類型 | 名稱 | 說明 |
+| 資源類型 | Name | 說明 |
 | --- | --- | --- |
 | 虛擬網路 |內部 vnet |搭配 BitBucket 應用程式使用，而且透過 ExpressRoute 連接到 Contoso 的公司網路。  子網路 (`bitbucket`) 會提供特定 IP 位址空間給應用程式 |
 | 虛擬網路 |外部 vnet |適用於未來需要公開端點的應用程式 |
@@ -114,7 +117,7 @@ Contoso IT 服務管理部門需要快速識別及處理威脅。 他們也想�
 ### <a name="azure-subscriptions"></a>Azure 訂用帳戶
 Dave 登入 Azure 企業入口網站並看到供應鏈部門已經存在。  不過，因為此專案是供應鏈小組在 Azure 中的第一個開發專案，所以 Dave 認為 Alice 的開發小組需要有新帳戶。  他替 Alice 的小組建立「研發」帳戶並將存取權指派給她。 Alice 透過 Azure 入口網站登入並建立兩個訂用帳戶︰一個用來保存開發伺服器，一個用來保存生產伺服器。  建立下列訂用帳戶時，她會依循先前建立的命名標準︰
 
-| 訂用帳戶用途 | 名稱 |
+| 訂用帳戶用途 | Name |
 | --- | --- |
 | 開發 |Contoso SupplyChain ResearchDevelopment LoyaltyCard Development |
 | Production |Contoso SupplyChain Operations LoyaltyCard Production |
@@ -155,13 +158,13 @@ Contoso ETS 資訊安全性和風險管理小組會審查 Dave 提議將應用�
 
 針對**開發訂用帳戶**，他們可建立︰
 
-| 資源類型 | 名稱 | 說明 |
+| 資源類型 | Name | 說明 |
 | --- | --- | --- |
 | 虛擬網路 |內部 vnet |為 Contoso 忠誠卡開發環境提供服務，而且透過 ExpressRoute 連接到 Contoso 的公司網路 |
 
 對於**生產訂用帳戶**，他們可建立︰
 
-| 資源類型 | 名稱 | 說明 |
+| 資源類型 | Name | 說明 |
 | --- | --- | --- |
 | 虛擬網路 |外部 vnet |裝載忠誠卡應用程式，但不會直接連接到 Contoso 的 ExpressRoute。 程式碼會透過其原始程式碼系統直接推送至 PaaS 服務 |
 | 網路安全性群組 |loyaltycard-nsg |只允許 TCP 443 的輸入通訊，以確保此工作負載的受攻擊面最小化。  Contoso 也正在調查如何使用 Web 應用程式防火牆提供額外的保護 |

@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 說明 Azure 上巨量資料架構的優點、挑戰和最佳做法。
 author: MikeWasson
 ms.date: 08/30/2018
-ms.custom: seojan19
-ms.openlocfilehash: 507cd4dcf74ed7e106a99b93dd029dfdffd6e4bc
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seojan19, IoT
+ms.openlocfilehash: 07fb955fdc5475020097554070753689d1515462
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112493"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488013"
 ---
 # <a name="big-data-architecture-style"></a>巨量資料架構樣式
 
@@ -77,7 +80,7 @@ Azure 會納入許多可用於巨量資料架構的服務。 這些服務大致�
 - **技術成熟度**。 巨量資料中所使用的諸多技術會不斷進化。 雖然核心的 Hadoop 技術 (例如 Hive 和 Pig) 已穩定下來，但 Spark 之類的新興技術會在它的每個新版本中引進大量變更和增強功能。 相較於其他 Azure 服務，Azure Data Lake Analytics 和 Azure Data Factory 等受控服務發展時間相對較短，因此很可能會隨著時間而不斷進化。
 - **安全性**。 巨量資料解決方案通常依賴將所有靜態資料儲存在集中的資料湖中。 要保護這項資料的存取權並不容易，尤其是在必須由多個應用程式和平台擷取並取用這項資料時。
 
-## <a name="best-practices"></a>最佳做法
+## <a name="best-practices"></a>最佳作法
 
 - **利用平行處理原則**。 大多數的巨量資料處理技術會將工作負載分散到多個處理單元。 靜態資料檔案必須以可分割的格式建立並儲存，才能予以分散。 HDFS 之類的分散式檔案系統可以將讀取和寫入的效能最佳化，並由多個叢集節點以平行方式進行實際的處理，以便減少整體作業時間。
 

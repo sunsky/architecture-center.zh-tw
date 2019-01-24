@@ -3,12 +3,15 @@ title: 選擇批次處理技術
 description: ''
 author: zoinerTejada
 ms.date: 11/03/2018
-ms.openlocfilehash: 0c6392fb0a921e95f2704696fb2447ac5ec6f4c0
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111320"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486449"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中選擇批次處理技術
 
@@ -61,11 +64,11 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 - 混合模式叢集是同時使用低優先順序和專用 VM。
 - 內建對於 Azure Blob 儲存體和 Azure Data Lake 連線的支援。
 
-## <a name="key-selection-criteria"></a>關鍵選取準則
+## <a name="key-selection-criteria"></a>重要選取準則
 
-為了縮小選擇範圍，請先回答下列問題：
+若要縮小選項範圍，請開始回答這些問題：
 
-- 比起自行管理伺服器，您更想使用受控服務嗎？
+- 您要受控服務，而不是自行管理自己的伺服器？
 
 - 否要以宣告或命令的方式撰寫批處理邏輯？
 
@@ -73,7 +76,7 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 - 是否需要同時進行查詢關聯式資料存放區以及批次處理，例如查閱參考資料？ 如果是，請考慮啟用外部關聯式存放區查詢的選項。
 
-## <a name="capability-matrix"></a>功能對照表
+## <a name="capability-matrix"></a>相容性矩陣
 
 下表摘要列出各項功能的主要差異。
 
@@ -83,9 +86,9 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 | | Azure Data Lake Analytics | Azure SQL 資料倉儲 | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| 為受控服務 | 是 | yes | 是 <sup>1</sup> | 是 |
+| 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 |
 | 關聯式資料存放區 | yes | 是 | 否 | 否 |
-| 定價模式 | 以每個批次作業為單位 | 依叢集時數 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
+| 定價模式 | 以每個批次作業為單位 | 依叢集小時 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
 
 [1] 使用手動設定和調整。
 

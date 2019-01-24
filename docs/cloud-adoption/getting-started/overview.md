@@ -1,16 +1,19 @@
 ---
-title: 企業雲端採用：快速入門
+title: 企業雲端採用：開始使用
 description: 描述在採用 Azure 雲端技術中企業數位轉型第一個階段的概觀
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 027757c76008da092e0d7ab65b072259a04b3cad
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389279"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488081"
 ---
-# <a name="enterprise-cloud-adoption-getting-started"></a>企業雲端採用：快速入門 
+# <a name="enterprise-cloud-adoption-getting-started"></a>企業雲端採用：開始使用 
 
 **數位轉型**為雲端運算表示從運作內部部署跳脫到雲端中運作。 這項轉變包含進行商務往來的新方法 - 例如，從軟體和資料中心硬體的資本支出數位轉型到雲端資源使用量的運作支出。 
 

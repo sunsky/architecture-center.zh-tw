@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 在 Azure 上裝載電子商務網站。
 author: masonch
 ms.date: 07/13/2018
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
 ms.custom: fasttrack
-ms.openlocfilehash: f07c21b8eb9d812b9831abe8f2e4f6d131893df2
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: 6ba4d98055258ca10b1ac06df217196a8a0151f5
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160803"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483916"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
 
@@ -94,7 +97,7 @@ Web 層和函式的其他選項包括：
 - 請考量遵循[安全開發生命週期][secure-development]程序，以協助開發人員在降低開發成本的同時，又能建置更安全的軟體並且解決安全性合規性需求。
 - 檢閱 [Azure PCI DSS 合規性][pci-dss-blueprint]的藍圖架構。
 
-### <a name="resiliency"></a>復原功能
+### <a name="resiliency"></a>災害復原
 
 - 請考量利用[斷路器模式][circuit-breaker]，以在應用程式某部分無法使用時，提供柔性錯誤處理。
 - 檢閱[獲得復原的典型設計模式][design-patterns-resiliency]，並考量在適當時實作。

@@ -3,12 +3,15 @@ title: 保護資料解決方案
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 47e3be2afd14d980b98ac9659f7f1e5a4df3403f
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: 7ce405f2b5a594b4a7d165a0ae247e6d59a40b24
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110870"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484664"
 ---
 # <a name="securing-data-solutions"></a>保護資料解決方案
 
@@ -44,7 +47,7 @@ ms.locfileid: "54110870"
 - 使用資源管理員來控制資源的建立位置。
 - 主動監視可疑的活動
 
-如需詳細資訊，請參閱 [Azure 身分識別管理和存取控制安全性最佳做法](/azure/security/azure-security-identity-management-best-practices)。
+如需詳細資訊，請參閱 [Azure 身分識別管理和存取控制安全性最佳作法](/azure/security/azure-security-identity-management-best-practices)。
 
 ## <a name="auditing"></a>稽核
 

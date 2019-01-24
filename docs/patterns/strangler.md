@@ -5,13 +5,16 @@ description: 透過將功能的特定片段逐漸取代成新的應用程式和�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 7d7c58c97537537ae9f2f96b7ecf1b437fc258b4
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: f139d368c98256c0190753930983a47df81a5134
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54010203"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54480543"
 ---
 # <a name="strangler-pattern"></a>扼制模式
 
@@ -43,7 +46,7 @@ ms.locfileid: "54010203"
 
 逐漸將後端應用程式移轉至新架構時，請使用此模式。
 
-此模式可能不適用於下列時機：
+此模式可能不適合下列時機：
 
 - 當無法攔截送到後端系統的要求。
 - 整批取代的複雜度較低的小型系統。

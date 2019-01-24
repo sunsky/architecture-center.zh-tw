@@ -3,12 +3,15 @@ title: 選擇資料傳輸技術
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 1cb763ade2aa263d07a59cc6bfc29d59bec7af19
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113037"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484528"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>在 Azure 來回傳輸資料
 
@@ -62,7 +65,7 @@ ms.locfileid: "54113037"
 
 **Azure Data Factory**。 [Azure Data Factory](/azure/data-factory/) 是受控服務，最適合在眾多 Azure 服務和 (或) 內部部署環境之間定期傳輸檔案。 您可以使用 Azure Data Factory 建立並排程資料驅動的工作流程 (稱為管線)，以從不同的資料存放區擷取資料。 使用計算服務 (例如，Azure HDInsight Hadoop、Spark、Azure Data Lake Analytics 和 Azure Machine Learning) 可以處理或轉換資料。 建立資料驅動的工作流程，以便[協調](../technology-choices/pipeline-orchestration-data-movement.md)及自動進行資料移動和資料轉換。
 
-## <a name="key-selection-criteria"></a>關鍵選取準則
+## <a name="key-selection-criteria"></a>重要選取準則
 
 在資料傳輸案例中，請回答下列問題來選擇適合您需求的系統：
 
@@ -134,7 +137,7 @@ ms.locfileid: "54113037"
 | --- | --- | --- | --- |
 | 已針對巨量資料最佳化 | 否 | 否 | 是 |
 | 複製到關聯式資料庫 | 否 | 否 | 是 |
-| 複製到關聯式資料庫 | 否 | 否 | 是 |
+| 從關聯式資料庫複製 | 否 | 否 | 是 |
 | 複製到 Blob 儲存體 | 是 | 否 | 是 |
 | 從 Blob 儲存體複製 | 是 | 否 | 是 |
 | 複製到 Data Lake Store | 否 | 否 | 是 |

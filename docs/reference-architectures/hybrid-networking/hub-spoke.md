@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中實作中樞輪輻網路拓撲。
 author: telmosampaio
 ms.date: 10/08/2018
-ms.custom: seodec18
-ms.openlocfilehash: c7cf2923856b3c659876afcc89bb312e492c6409
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 4235e5d1bb3b202cff9f7c703f079651982aac59
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112442"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481264"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -26,7 +29,7 @@ ms.locfileid: "54112442"
 - **克服訂用帳戶限制**：將不同訂用帳戶中的 VNet 對等互連到中心中樞。
 - **關注點分離**：中央 IT (SecOps、InfraOps) 和工作負載 (DevOps)。
 
-此架構的典型使用案例包括：
+此架構的一般使用案例包括：
 
 - 在不同環境 (例如開發、測試和生產環境) 下部署，且需要共用服務 (例如 DNS、IDS、NTP 或 AD DS) 的工作負載。 系統會將共用服務置於中樞 VNet，同時將每個環境部署至輪輻以維持隔離。
 - 不需要彼此連線，但需要存取共用服務的工作負載。

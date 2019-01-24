@@ -3,12 +3,16 @@ title: 技術指導：從 Azure 的本機失敗中復原
 description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原 (著重於 Azure 內的本機失敗) 的相關文章。
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: c5e26eefb8d5a8d424534081ddd5d1ea0454c17e
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: resiliency
+ms.openlocfilehash: a567b138580999c7b7a6ae8dedb244f4e37970e7
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112850"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486041"
 ---
 [!INCLUDE [header](../_includes/header.md)]
 
@@ -160,7 +164,7 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 
 ### <a name="service-bus"></a>服務匯流排
 
-為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。 這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。 應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。 如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳做法](/azure/service-bus-messaging/service-bus-performance-improvements/)和[服務匯流排 (災害復原)](recovery-loss-azure-region.md#other-azure-platform-services)。
+為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。 這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。 應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。 如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](/azure/service-bus-messaging/service-bus-performance-improvements/)和[服務匯流排 (災害復原)](recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ### <a name="hdinsight"></a>HDInsight
 

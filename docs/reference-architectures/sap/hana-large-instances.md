@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 大型執行個體上高可用性環境中執行 SAP HANA 的經過證實做法。
 author: lbrader
 ms.date: 05/16/2018
-ms.custom: seodec18
-ms.openlocfilehash: 47953037827923ea0e4f492dfc29ce815072a20e
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, SAP
+ms.openlocfilehash: 711e233de534597f9cd06ccaa95481a51acc4468
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011356"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485330"
 ---
 # <a name="run-sap-hana-on-azure-large-instances"></a>在 Azure 大型執行個體上執行 SAP HANA
 
@@ -73,7 +76,7 @@ Microsoft 會協助建立大型執行個體安裝，但是您要負責驗證作�
 
 若要在主要網站中支援高可用性，請使用不同的儲存體配置。 例如，在多主機相應放大中，會共用儲存體。 另一個高可用性選項是以應用程式為基礎的複寫 (例如 HSR)。 不過，針對 DR 會使用以快照集為基礎的儲存體複寫。
 
-### <a name="networking"></a>網路功能
+### <a name="networking"></a>網路
 
 此架構會同時使用虛擬和實體網路。 虛擬網路是 Azure IaaS 的一部分，而且會透過 [ExpressRoute][expressroute] 線路連線至離散 HANA 大型執行個體實體網路。 跨部署閘道會將您在 Azure 虛擬網路中的工作負載連線到內部部署網站。
 

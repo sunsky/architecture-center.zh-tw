@@ -1,3 +1,18 @@
+---
+title: Data Lake
+description: ''
+author: zoinerTejada
+ms.date: 02/12/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d433867886ce0afc219fcc9f35eb7f8b3ce6bee1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484698"
+---
 # <a name="data-lakes"></a>Data Lake
 
 Data Lake 是以資料的原生原始格式保留大量資料的儲存體儲存機制。 Data Lake Store 會針對資料 TB 和 PB 調整進行最佳化。 資料通常來自多個異質性來源，且可能是結構化、半結構化或非結構化。 Data Lake 的概念是將所有資料儲存在其原始、未轉換的狀態。 這種方式不同於傳統的[資料倉儲](../relational-data/data-warehousing.md)，後者會在內嵌時轉換以及處理資料。

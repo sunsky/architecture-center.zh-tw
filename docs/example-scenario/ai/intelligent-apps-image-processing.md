@@ -4,12 +4,15 @@ titleSuffix: Azure Example Scenarios
 description: 將影像處理建置到您的 Azure 應用程式。
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.openlocfilehash: 2630a2a353b2fb5fd6e77e49c7f2027b00503ea6
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643440"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484874"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Azure 上的保險理賠映像分類
 

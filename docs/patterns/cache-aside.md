@@ -5,13 +5,16 @@ description: 依需要從資料存放區將資料載入快取中。
 keywords: 設計模式
 author: dragon119
 ms.date: 11/01/2018
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 96dee3ca766414a3a17ea161f13c9fcd15001b4d
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: bb2aa5a7ae6d7a33eac33dce4588380ec82a0df7
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114159"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488166"
 ---
 # <a name="cache-aside-pattern"></a>另行快取模式
 

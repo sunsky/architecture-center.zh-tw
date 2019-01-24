@@ -3,12 +3,16 @@ title: Azure 應用程式的災害復原
 description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
 author: adamglick
 ms.date: 09/12/2018
-ms.openlocfilehash: 5101230a628cb70501cb3e6122b616c8c55cf6b2
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: resiliency
+ms.openlocfilehash: bb9045e5656f86fe6b164b5ba831c1069cef6183
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113173"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486824"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Azure 應用程式的災害復原
 

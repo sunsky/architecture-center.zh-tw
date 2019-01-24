@@ -5,13 +5,16 @@ description: 讓多個並行取用者處理在相同傳訊通道上接收的訊�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: ea3f48971a78f59ad6575b055278aab449fa26a1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112102"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485225"
 ---
 # <a name="competing-consumers-pattern"></a>競爭取用者模式
 

@@ -5,13 +5,16 @@ description: 雲端應用程式的分散式本質需要可連接元件和服務�
 keywords: 設計模式
 author: dragon119
 ms.date: 12/07/2018
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4619d30c152f050f3f95aee3f9983b8fe85911ed
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 2f8a34afc5e6c427bf5635b7a3be316719211112
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011322"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485157"
 ---
 # <a name="messaging-patterns"></a>訊息模式
 

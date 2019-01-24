@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 說明 Azure 上 Web-佇列-背景工作角色架構的優點、挑戰和最佳做法。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 0b478344c4b64808d30156bd563917d9d8d7ec30
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113275"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488115"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Web-佇列-背景工作角色架構樣式
 
@@ -53,14 +56,14 @@ Web 和背景工作角色都是無狀態。 工作階段狀態可以儲存在分
 - 若設計不慎，前端與背景工作角色可能會成為難以維護及更新的大型整合元件。
 - 如果前端和背景工作共用資料結構描述或程式碼模組，則可能會隱藏的相依性。
 
-## <a name="best-practices"></a>最佳做法
+## <a name="best-practices"></a>最佳作法
 
-- 向用戶端公開設計良好的 API。 請參閱 [API 設計最佳做法][api-design]。
-- 使用自動調整來因應負載的改變。 請參閱[自動調整最佳做法][autoscaling]。
-- 快取半靜態資料。 請參閱[快取最佳做法][caching]。
-- 使用 CDN 來裝載靜態內容。 請參閱 [CDN 最佳做法][cdn]。
+- 向用戶端公開設計良好的 API。 請參閱 [API 設計最佳作法][api-design]。
+- 使用自動調整來因應負載的改變。 請參閱[自動調整最佳作法][autoscaling]。
+- 快取半靜態資料。 請參閱[快取最佳作法][caching]。
+- 使用 CDN 來裝載靜態內容。 請參閱 [CDN 最佳作法][cdn]。
 - 適當的時候使用 polyglot persistence。 請參閱[使用作業的最佳資料存放區][polyglot]。
-- 分割資料以改善延展性、減少爭用，以及最佳化效能。 請參閱[資料分割的最佳做法][data-partition]。
+- 分割資料以改善延展性、減少爭用，以及最佳化效能。 請參閱[資料分割的最佳作法][data-partition]。
 
 ## <a name="web-queue-worker-on-azure-app-service"></a>Azure App Service 上的 Web-佇列-背景工作角色
 

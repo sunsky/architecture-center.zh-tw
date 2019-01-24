@@ -1,21 +1,24 @@
 ---
 title: 隔艙模式
 titleSuffix: Cloud Design Patterns
-description: 將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運作。
+description: 將應用程式的元素隔離到集區中，以便其中一個元素失敗時，其他元素可以繼續運作。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 0a2ae4789d3c1653405a59ef8cb4f6171a8abc81
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 1ad646f5c8f4b329b0d0e9a29c83e86848b13ab0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112187"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488336"
 ---
 # <a name="bulkhead-pattern"></a>隔艙模式
 
-將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運作。
+將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行。
 
 這種模式被命名為「隔艙」，因為它類似於船體的剖面分區。 如果船體受損，只有受損部分充滿水，這樣可以防止船舶沉沒。
 
@@ -66,7 +69,7 @@ ms.locfileid: "54112187"
 - 隔離重要取用者與標準取用者。
 - 保護應用程序免受連鎖性失效。
 
-此模式可能不適用於下列時機︰
+此模式可能不適合下列時機︰
 
 - 專案中不接受資源低效率使用。
 - 增加的複雜性是沒有必要的

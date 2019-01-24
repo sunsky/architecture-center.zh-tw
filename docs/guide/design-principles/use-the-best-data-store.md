@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 挑選最適合您資料的儲存體技術，以及了解使用方式。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: ab7cbe7005a00bcc2bfd7bad97f3eaf125f53e12
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: 2f83e7a184e8fa94f49da4e8fd5252396ecfd632
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113292"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54484596"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>使用作業的最佳資料存放區
 

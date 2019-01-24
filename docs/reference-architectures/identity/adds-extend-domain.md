@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 將您的內部部署 Active Directory 網域擴充至 Azure。
 author: telmosampaio
 ms.date: 05/02/2018
-ms.custom: seodec18
-ms.openlocfilehash: 78297e1e9c1cb097356f99933190647a50a6e651
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, identity
+ms.openlocfilehash: 4e22469af58a08f42abedf34235be5e20f1dceae
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111949"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482352"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
 
@@ -169,8 +172,8 @@ AD DS 伺服器負責提供驗證服務，容易引來攻擊。 為保護其安�
 
 ## <a name="next-steps"></a>後續步驟
 
-- 了解[在 Azure 中建立 AD DS 資源樹系][adds-resource-forest]的最佳做法。
-- 了解[在 Azure 中建立 Active Directory Federation Services (AD FS) 基礎結構][adfs]的最佳做法。
+- 了解[在 Azure 中建立 AD DS 資源樹系][adds-resource-forest]的最佳作法。
+- 了解[在 Azure 中建立 Active Directory Federation Services (AD FS) 基礎結構][adfs]的最佳作法。
 
 <!-- links -->
 

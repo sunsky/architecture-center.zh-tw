@@ -4,13 +4,16 @@ titleSuffix: Azure Reference Architectures
 description: 使用 Azure Databricks 在 Azure 中建立端對端串流處理管線。
 author: petertaylor9999
 ms.date: 11/30/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: f7364334f889388ad432efadd46362a9fa82fe8b
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 748b191aeee931d580dd27b1ad54c4f4bd63e369
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644116"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54483695"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>使用 Azure Databricks 建立串流處理管線
 
@@ -18,7 +21,7 @@ ms.locfileid: "53644116"
 
 ![使用 Azure Databricks 的串流處理參考架構](./images/stream-processing-databricks.png)
 
-**案例**：計程車公司會收集有關每趟計程車車程的資料。 在此案例中，我們假設有兩個不同的裝置會傳送資料。 計程車的其中一個計量會傳送關於每趟車程的資訊，如車程時間、距離和上下車地點等。 另一個裝置會接收客戶付款，並傳送費用相關資料。 為了找出乘客數趨勢，計程車公司想要對每個鄰近地區即時計算出平均每英里的小費。
+**案例**：計程車公司會收集有關每趟計程車車程的資料。 在此案例中，我們假設有兩個不同的裝置會傳送資料。 計程車的其中一個計量會傳送關於每趟車程的資訊，如車程時間、距離和上下車地點等。 另一個裝置會接收客戶付款，並傳送費用相關資料。 為了找出乘客數趨勢，計程車公司要即時算出每個鄰近地區、每英里的平均小費。
 
 ## <a name="architecture"></a>架構
 

@@ -5,13 +5,16 @@ description: 將應用程式的元件部署到個別的處理序或容器，以�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 8d3cdd5297b99bc369de6192bca50bd9f02dca47
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 447400c543c27d8655ca2d8b1dbadd8d0fdb4ba1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009998"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54486774"
 ---
 # <a name="sidecar-pattern"></a>側車模式
 
@@ -64,7 +67,7 @@ ms.locfileid: "54009998"
 - 您需要會與主要應用程式共用整個生命週期的服務，但服務可獨立更新。
 - 您需要對特定資源或元件有更細微的資源限制控制。 例如，您可能要限制特定元件所使用的記憶體數量。 您可以將元件部署為側車，並以獨立於主要應用程式的方式管理記憶體使用量。
 
-此模式可能不適用於下列時機︰
+此模式可能不適合下列時機︰
 
 - 處理序間通訊需要最佳化時。 父系應用程式與側車服務之間的通訊包含一些額外負荷，尤其是呼叫中的延遲。 這可能不是對話式介面可接受的。
 - 對小型應用程式而言，並不值得為了隔離的優點而付出為每個執行個體部署側車服務的資源成本。

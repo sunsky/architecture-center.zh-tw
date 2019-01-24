@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 說明 Azure 上微服務架構的優點、挑戰和最佳做法。
 author: MikeWasson
 ms.date: 11/13/2018
-ms.custom: seojan19
-ms.openlocfilehash: fb9f97b41306a2f1aa6cfc6c1639c152a7e556b6
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seojan19, microservices
+ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111218"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485123"
 ---
 # <a name="microservices-architecture-style"></a>微服務架構樣式
 
@@ -92,7 +95,7 @@ ms.locfileid: "54111218"
 
 - **技能集**。 微服務是高度分散的系統。 請謹慎評估小組是否有技能和經驗能夠成功。
 
-## <a name="best-practices"></a>最佳做法
+## <a name="best-practices"></a>最佳作法
 
 - 根據商業領域建立服務的模型。
 
@@ -110,7 +113,7 @@ ms.locfileid: "54111218"
 
 - 服務應該具有鬆散結合和高度功能一致性的特性。 可能會一起變更的功能應該一起封裝和部署。 如果這些功能分居不同服務，它們最後會緊密結合，因為對某項服務進行變更就會需要更新其他服務。 兩個服務之間對話過度可能是緊密結合和低一致性的徵兆。
 
-- 隔離失敗。 請使用復原策略來避免某個服務的失敗產生連鎖反應。 請參閱[復原模式][resiliency-patterns]和[設計復原應用程式][resiliency-overview]。
+- 隔離失敗。 請使用復原策略來避免某個服務的失敗產生連鎖反應。 請參閱[恢復模式][resiliency-patterns]和[設計復原應用程式][resiliency-overview]。
 
 ## <a name="next-steps"></a>後續步驟
 

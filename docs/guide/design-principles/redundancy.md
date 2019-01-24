@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 將備援建置到您的應用程式中，以避免發生單一失敗點。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 784413f637e4f857a2ba3775f3d4de66c91fbd95
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: c8722250b5b5357c9ffcf65eced95b4f2b487c72
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111834"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481351"
 ---
 # <a name="make-all-things-redundant"></a>讓各個項目都有備援
 
@@ -40,7 +43,7 @@ ms.locfileid: "54111834"
 
 **使用自動容錯移轉但手動容錯回復**。 對自動容錯移轉 (而不要對自動容錯回復) 使用流量管理員。 自動容錯回復帶有的風險是，您可能會在區域完全狀況良好之前切換到主要區域。 相反地，請確認所有的應用程式子系統狀況良好，然後再手動進行容錯回復。 此外，根據資料庫，在容錯移轉之前，您可能需要檢查資料的一致性。
 
-**包含流量管理員的備援**。 流量管理員是可能的失敗點。 檢閱流量管理員 SLA，並判斷單獨使用流量管理員是否符合您獲得高可用性的商務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，請變更您在 DNS 中的 CNAME 記錄，以指向其他流量管理服務。
+**包含流量管理員的備援**。 流量管理員是可能的失敗點。 檢閱流量管理員 SLA，並判斷單獨使用流量管理員是否符合您獲得高可用性的商務需求。 如果沒有，請考慮新增另一個流量管理解決方案作為容錯回復。 如果 Azure 流量管理員服務失敗，在 DNS 中變更您的 CNAME 記錄，以指向其他流量管理服務。
 
 <!-- links -->
 

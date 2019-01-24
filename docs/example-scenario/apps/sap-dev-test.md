@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 為 SAP 工作負載建置開發/測試環境。
 author: AndrewDibbins
 ms.date: 07/11/2018
-ms.custom: fasttrack
-ms.openlocfilehash: 9f9e8ec971373e4309703800c200ba2c62fe9a66
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, SAP
+ms.openlocfilehash: c06e81f72e264b545aef4bca2c795bb662a16a13
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111014"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488200"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Azure 上 SAP 工作負載的開發/測試環境
 
@@ -62,7 +65,7 @@ Microsoft 會提供單一 VM 執行個體的服務等級協定 (SLA)。 如需�
 
 如需設計安全解決方案的一般指引，請參閱 [Azure 安全性文件][security]。
 
-### <a name="resiliency"></a>復原功能
+### <a name="resiliency"></a>災害復原
 
 如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
 
