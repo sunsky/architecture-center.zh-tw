@@ -3,12 +3,15 @@ title: 企業雲端採用：簡單工作負載的治理設計
 description: 設定 Azure 治理控制，讓使用者部署簡單工作負載的指導方針
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 13c7c4b41df14151d28b9c685f01019af3ec63f2
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: f87584b4182e5eca143f6429220c822b4be2ed70
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389242"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481723"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-a-simple-workload"></a>企業雲端採用：簡單工作負載的治理設計
 

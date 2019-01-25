@@ -4,17 +4,20 @@ titleSuffix: Azure Reference Architectures
 description: 搭配 Microsoft Azure 中的 Apache Cassandra 執行適用於多層式架構 (N-tier) 的 Linux 虛擬機器。
 author: MikeWasson
 ms.date: 11/12/2018
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: bbd1029fe17b5d88d54246127c5d8983a573b012
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 6c9a2b4fe513c959e537f705beb1c024b54c7b50
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120154"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485443"
 ---
 # <a name="linux-n-tier-application-in-azure-with-apache-cassandra"></a>Azure 中具有 Apache Cassandra 的 Linux 多層式架構 (N-tier) 應用程式
 
-此參考架構展示如何在 Linux 上使用 Apache Cassandra 作為資料層，來部署針對多層式架構 (N-Tier) 應用程式設定的虛擬機器 (VM) 和虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。
+此參考架構展示如何在 Linux 上使用 Apache Cassandra 作為資料層，來部署針對[多層式架構 (N-Tier)](../../guide/architecture-styles/n-tier.md) 應用程式設定的虛擬機器 (VM) 和虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。
 
 ![使用 Microsoft Azure 的多層式架構](./images/n-tier-cassandra.png)
 
@@ -139,7 +142,7 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
 
 **加密**。 將機密的待用資料加密，並使用 [Azure Key Vault][azure-key-vault] 來管理資料庫加密金鑰。 Key Vault 可以在硬體安全模組 (HSM) 中儲存加密金鑰。 也建議將應用程式密碼 (例如資料庫連接字串) 儲存在金鑰保存庫中。
 
-**DDoS 保護**。 Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
+**DDoS 保護**. Azure 平台預設會提供基本的 DDoS 保護。 此基本保護的目標是保護整個 Azure 基礎結構。 雖然基本 DDoS 保護會自動啟用，我們仍建議您使用 [DDoS 保護標準][ddos]。 標準保護使用彈性調整，可根據您的應用程式網路流量模式來偵測威脅。 這可讓它針對 DDoS 攻擊套用風險降低措施，這些攻擊可能因整個基礎結構的 DDoS 原則而未被察覺。 標準保護也會提供警示、遙測以及透過 Azure 監視器的分析。 如需詳細資訊，請參閱 [Azure DDoS 保護：最佳做法與參考架構][ddos-best-practices]。
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
@@ -164,6 +167,10 @@ Jumpbox 有最低效能需求，因此選取小的 VM 大小。 針對 Jumpbox �
    ```
 
 如需使用 Azure 組建區塊部署此範例參考架構的詳細資訊，請瀏覽 [GitHub 存放庫][git]。
+
+## <a name="next-steps"></a>後續步驟
+
+- [Microsoft Learn 模組：導覽多層式架構樣式](/learn/modules/n-tier-architecture/)
 
 <!-- links -->
 

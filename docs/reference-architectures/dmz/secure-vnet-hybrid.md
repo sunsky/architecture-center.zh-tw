@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: 在 Azure 中實作安全的混合式網路架構。
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 9a74401d3496807ce2dfc113476e001d19e657e5
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 82327cca08e614bfe5226c9ca1a414388878a7c2
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54112289"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482505"
 ---
 # <a name="implement-a-dmz-between-azure-and-your-on-premises-datacenter"></a>實作 Azure 與內部部署資料中心之間的 DMZ
 
 此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure。 此架構會在內部部署網路與 Azure 虛擬網路 (VNet) 之間實作 DMZ (也稱為「周邊網路」)。 DMZ 包含實作安全性功能 (例如防火牆和封包檢查) 的網路虛擬裝置 (NVA)。 VNet 的所有傳出流量會強制通過內部部署網路後再傳送至網際網路，以便進行稽核。 [**部署這個解決方案**](#deploy-the-solution)。
+
+> [!NOTE]
+> 此案例也可以使用 [Azure 防火牆](/azure/firewall/) (以雲端為基礎的網路安全性服務) 來完成。
 
 ![安全混合式網路架構](./images/dmz-private.png)
 

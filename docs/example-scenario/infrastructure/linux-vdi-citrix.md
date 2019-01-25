@@ -4,13 +4,16 @@ titleSuffix: Azure Example Scenarios
 description: 在 Azure 上使用 Citrix 建置適用於 Linux 桌面的 VDI 環境。
 author: miguelangelopereira
 ms.date: 09/12/2018
-ms.custom: fasttrack
-ms.openlocfilehash: af1cf01cb8b118e829c3870b636018aa5181b180
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.topic: example-scenario
+ms.service: architecture-center
+ms.subservice: example-scenario
+ms.custom: fasttrack, Linux
+ms.openlocfilehash: a6fe0b7e53c83c7b932c39f910257a1e7d24834f
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643912"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481226"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>使用 Citrix 的 Linux 虛擬桌面
 
@@ -90,7 +93,7 @@ ms.locfileid: "53643912"
 - 此範例專為所有角色 (授權伺服器除外) 的高可用性而設計。 如果授權伺服器離線，此環境在 30 天的寬限期內會持續運作，因此該伺服器上不需要任何額外的備援。
 - 所有提供類似角色的伺服器都應該部署在[可用性設定組](/azure/virtual-machines/windows/manage-availability#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy)中。
 - 此範例案例不包含災害復原功能。 [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) 可能是這項設計的良好附加元件。
-- 請考慮將此案例中的 VM 執行個體部署在各個[可用性區域](/azure/availability-zones/az-overview)上。 每個可用性區域由一或多個資料中心組成，配備了電力、冷卻系統及網路系統。 每個已啟用的區域最少有三個可用性區域。 這個跨區域 VM 執行個體的分佈能為應用程式層提供高可用性。 如需詳細資訊，請參閱 [什麼是 Azure 中的可用性區域？][azureaz-docs]。 您也可以[在 Azure 可用性區域中部署 VPN 和 ExpressRoute 閘道](/azure/vpn-gateway/about-zone-redundant-vnet-gateways)。
+- 請考慮將此案例中的 VM 執行個體部署在各個[可用性區域](/azure/availability-zones/az-overview)上。 每個可用性區域由一或多個資料中心組成，配備了電力、冷卻系統及網路系統。 每個已啟用的區域最少有三個可用性區域。 這個跨區域 VM 執行個體的分佈能為應用程式層提供高可用性。 如需詳細資訊，請參閱[什麼是 Azure 中的可用性區域？](/azure/availability-zones/az-overview)。 您也可以[在 Azure 可用性區域中部署 VPN 和 ExpressRoute 閘道](/azure/vpn-gateway/about-zone-redundant-vnet-gateways)。
 - 在生產部署中，應該實作[備份](/azure/backup/backup-introduction-to-azure-backup)、[監視](/azure/monitoring-and-diagnostics/monitoring-overview)和[更新管理](/azure/automation/automation-update-management)等管理解決方案。
 - 此範例應適用於大約 250 個並行 (每部 VDA 伺服器大約 50-60 個) 使用者 (混合使用方式)。 不過，這主要取決於所使用的應用程式類型。 針對生產用途，應該執行嚴格的負載測試。
 

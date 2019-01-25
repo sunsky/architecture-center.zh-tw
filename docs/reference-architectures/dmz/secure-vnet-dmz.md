@@ -4,17 +4,23 @@ titleSuffix: Azure Reference Architectures
 description: 如何在 Azure 中使用網際網路存取實作安全的混合式網路架構。
 author: telmosampaio
 ms.date: 10/22/2018
-ms.custom: seodec18
-ms.openlocfilehash: 10c8a23ab09da0555de6a51bc082deceb8c462ff
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.topic: reference-architecture
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: seodec18, networking
+ms.openlocfilehash: 80125626d0c79888445bc7828577846bcce9fc67
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011526"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488217"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>實作 Azure 和網際網路之間的 DMZ
 
 此參考架構顯示的安全混合式網路，可將內部部署網路擴充至 Azure 並接受網際網路流量。 [**部署這個解決方案**](#deploy-the-solution)。
+
+> [!NOTE]
+> 此案例也可以使用 [Azure 防火牆](/azure/firewall/) (以雲端為基礎的網路安全性服務) 來完成。
 
 ![安全混合式網路架構](./images/dmz-public.png)
 

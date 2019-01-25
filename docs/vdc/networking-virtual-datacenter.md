@@ -4,15 +4,18 @@ description: 了解如何在 Azure 中建置虛擬資料中心
 author: tracsman
 manager: rossort
 tags: azure-resource-manager
-ms.service: virtual-network
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 1f61996d231f3bf0cc2c550f4d3e119116bb7bc0
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011170"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488642"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虛擬資料中心：網路觀點
 
@@ -103,7 +106,7 @@ VDC 實作需要與外部網路的連線，才能將服務提供給客戶、合�
 
 對於大量 VPN 連線，[**Azure 虛擬 WAN**][vWAN] 可作為網路服務，透過 Azure 提供最佳且自動化的分支對分支連線。 虛擬 WAN 可讓您連線，並設定與 Azure 通訊的分支裝置。 連線和設定也可手動完成，或透過虛擬 WAN 合作夥伴使用慣用的提供者裝置來執行。 使用慣用的提供者裝置不僅方便使用，還可簡化連線和管理組態。 Azure WAN 的內建儀表板提供即時的疑難排解深入解析，可協助您節省時間，並可讓您輕鬆地檢視大規模的站對站連線。
 
-[**ExpressRoute**][ExR] 是一種 Azure 連線服務，可讓您在 VDC 實作和任何內部部署網路之間建立私人連線。 ExpressRoute 連線不會經過公用網際網路，而且會提供更高的安全性、可靠性、速度 (最高 10 Gbps)，以及一致的延遲。 ExpressRoute 可輔助 VDC 的實作，因為 ExpressRoute 客戶可獲益於私人連線的相關合規性規則。 利用 ExpressRoute Direct (\[ExRD]\)，具有較大頻寬需求的客戶可以 100Gbps 的傳輸速率直接連線到 Microsoft 路由器。
+[**ExpressRoute**][ExR] 是一種 Azure 連線服務，可讓您在 VDC 實作和任何內部部署網路之間建立私人連線。 ExpressRoute 連線不會經過公用網際網路，而且會提供更高的安全性、可靠性、速度 (最高 10 Gbps)，以及一致的延遲。 ExpressRoute 可輔助 VDC 的實作，因為 ExpressRoute 客戶可獲益於私人連線的相關合規性規則。 利用 [ExpressRoute Direct][ExRD]，具有較大頻寬需求的客戶可以 100Gbps 的傳輸速率直接連線到 Microsoft 路由器。
 
 部署 ExpressRoute 連線通常包含加入 ExpressRoute 服務提供者。 針對需要快速啟動的客戶，一開始通常會使用站對站 VPN 建立 VDC 實作與內部部署資源之間的連線，然後在您與服務提供者的實體互相連線完成時遷移至 ExpressRoute 連線。
 
@@ -292,7 +295,7 @@ Azure 中有兩種主要類型的記錄：
 
 所有記錄都可以儲存在 Azure 儲存體帳戶中，以進行稽核、靜態分析或備份。 當您將記錄儲存在 Azure 儲存體帳戶時，客戶可以使用不同類型的架構來擷取、準備、分析並以視覺化方式檢視這項資料，以報告雲端資源的狀態和健康情況。 
 
-大型企業應已取得用來監視內部部署系統的標準架構。 他們可以延伸該架構，以整合雲端部署所產生的記錄。 組織可以使用 [Azure Log Analytics][https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-queries]，將所有記錄保存在雲端中。 Log Analytics 會實作為雲端型服務。 因此，您只需對基礎結構服務進行最基本的投資，就可快速加以啟動並執行。 Log Analytics 也可以整合 System Center 元件 (例如 System Center Operations Manager)，以將現有管理投資延伸到雲端。 
+大型企業應已取得用來監視內部部署系統的標準架構。 他們可以延伸該架構，以整合雲端部署所產生的記錄。 組織可以使用 [Azure Log Analytics](/azure/log-analytics/log-analytics-queries)，將所有記錄保存在雲端中。 Log Analytics 會實作為雲端型服務。 因此，您只需對基礎結構服務進行最基本的投資，就可快速加以啟動並執行。 Log Analytics 也可以整合 System Center 元件 (例如 System Center Operations Manager)，以將現有管理投資延伸到雲端。 
 
 Log Analytics 是一項 Azure 服務，可協助收集、相互關聯、搜尋和處理作業系統、應用程式及基礎結構雲端元件所產生的記錄和效能資料。 它可將使用整合式搜尋和自訂儀表板的即時操作深入資訊提供給客戶，以分析 VDC 實作中所有工作負載的所有記錄。
 
@@ -328,7 +331,7 @@ Operations Management Suite 內部的[網路效能監控][NPM]解決方案可端
 
 **巨量資料/分析**：資料需要相應增加至大量時，資料庫可能無法適當地相應增加。 Hadoop 技術可讓系統對大量節點平行執行分散式查詢。 客戶可以選擇在 IaaS VM 或 PaaS ([HDInsight][HDI]) 中執行資料工作負載。 HDInsight 支援部署到位置型 VNet、可以部署到 VDC 支點中的叢集。
 
-**事件和傳訊**：Azure 事件中樞[EventHubs]是大規模的遙測擷取服務，能夠收集、轉換及儲存數百萬個事件。 這個分散式串流平台提供低延遲和可設定的保留期，讓您能夠將大量遙測資料輸入 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
+**事件和傳訊**：[Azure 事件中樞][EventHubs]是大規模的遙測擷取服務，能夠收集、轉換及儲存數百萬個事件。 這個分散式串流平台提供低延遲和可設定的保留期，讓您能夠將大量遙測資料輸入 Azure，並從多個應用程式讀取該資料。 使用事件中樞，單一串流就可以同時支援即時和批次型管線。
 
 您可以透過 [Azure 服務匯流排][ServiceBus]在應用程式與服務之間實作高度可靠的雲端傳訊服務。 此方法可提供用戶端與伺服器之間的非同步代理傳訊、結構化的先進先出 (FIFO) 傳訊，以及發佈和訂閱功能。
 
@@ -421,7 +424,7 @@ Azure 資料中心位在全球的許多區域。 選取多個 Azure 資料中心
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
 [ExR]: /azure/expressroute/expressroute-introduction
-[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[ExRD]: /azure/expressroute/expressroute-erdirect-about
 [vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
 [AzFW]: /azure/firewall/overview
@@ -431,7 +434,7 @@ Azure 資料中心位在全球的許多區域。 選取多個 Azure 資料中心
 [ALB]: /azure/load-balancer/load-balancer-overview
 [DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
-[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
+[AFD]: /azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/

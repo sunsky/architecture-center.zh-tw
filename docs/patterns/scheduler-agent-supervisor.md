@@ -5,13 +5,16 @@ description: 在一組分散式服務和其他遠端資源中協調一組動作�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 7e1f45b1f2f206e1739d69bab6d4b2641f58a0f9
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: bf432444587216d7f635b0a5f26fed9223e85c44
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011713"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54482046"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>排程器代理程式監督員模式
 
@@ -141,7 +144,7 @@ ms.locfileid: "54011713"
 - [補償交易模式](./compensating-transaction.md)。 如果排程器正在執行的工作流程無法順利完成，可能必須復原先前執行的任何工作。 補償交易模式會說明遵循最終一致性模型的作業如何達成這項工作。 這些作業的類型通常是由執行複雜商務程序和工作流程的排程器進行實作。
 - [非同步傳訊入門](https://msdn.microsoft.com/library/dn589781.aspx)。 排程器代理程式監督員模式中的元件通常會以互相減少的方式執行，並以非同步方式進行通訊。 描述一些可用來實作以訊息佇列作為基礎的非同步通訊方法。
 - [選出領導者模式](./leader-election.md)。 可能必須協調監督員多個執行個體的動作，防止它們嘗試復原相同的失敗程序。 選出領導者模式描述如何執行這項操作。
-- Clemens Vasters 部落格上的[雲端架構：排程器代理程式監督員模式](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/)
+- [雲端架構：排程器代理程式監督員模式](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/)
 - [程序管理員模式](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
 - [參考 6：Sagas 的冒險故事](https://msdn.microsoft.com/library/jj591569.aspx)。 顯示 CQRS 模式如何使用程序管理員 (CQRS Journey 指南的一部分) 的範例。
 - [Microsoft Azure 排程器](https://azure.microsoft.com/services/scheduler/)

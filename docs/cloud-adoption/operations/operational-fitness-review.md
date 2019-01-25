@@ -3,12 +3,15 @@ title: 企業雲端採用：操作基本概念
 description: 操作基本概念的指導方針
 author: petertaylor9999
 ms.date: 09/20/2018
-ms.openlocfilehash: d5f4c6529e92be387465a6ab9dca55267c584c11
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 26867e3ecce738f18c5a03ff41754281229851f4
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46534084"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481120"
 ---
 # <a name="establishing-an-operational-fitness-review"></a>建立操作適用性檢閱
 
@@ -105,7 +108,7 @@ ms.locfileid: "46534084"
 ## <a name="recommended-resources"></a>建議的資源
 
 - [軟體品質的要素](../../guide/pillars.md)。
-Azure 應用程式架構指南的這一節說明軟體品質的五大要素：延展性、可用性、災害復原、管理性和安全性。
+Azure 應用程式架構指南的這一節說明軟體品質的五大要素：延展性、可用性、復原、管理和安全性。
 - [Azure 應用程式的 10 個設計原則](../../guide/design-principles/index.md)。
 Azure 應用程式架構指南的這一節討論一組可讓您的應用程式更穩定、更具復原能力且更容易管理的設計原則。
 - [為 Azure 設計具復原能力的應用程式](../../resiliency/index.md)。

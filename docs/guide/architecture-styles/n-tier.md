@@ -4,13 +4,16 @@ titleSuffix: Azure Application Architecture Guide
 description: 說明 Azure 上多層式架構的優點、挑戰和最佳做法。
 author: MikeWasson
 ms.date: 08/30/2018
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 4e8aae0032d20df05e1b16a47fda4afa720ed0d9
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: d7b94d56831a6b9172a9091f0e4f7fa63a8881f1
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54110300"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54481485"
 ---
 # <a name="n-tier-architecture-style"></a>多層式架構樣式
 
@@ -24,7 +27,7 @@ ms.locfileid: "54110300"
 
 傳統的三層式應用程式有展示層、中介層和資料庫層。 中介層是選擇性的。 更複雜的應用程式可以有三層以上。 上圖顯示具有兩個中間層的應用程式，封裝不同區域的功能。
 
-多層式架構應用程式可以有**關閉層架構**或**開放層架構**：
+多層式架構 (N-tier) 應用程式可以有**關閉層架構**或**開放層架構**：
 
 - 在關閉層架構中，層只能呼叫緊接著的下一層。
 - 在開放層架構中，層也可以呼叫其下方的任何層。
@@ -33,7 +36,7 @@ ms.locfileid: "54110300"
 
 ## <a name="when-to-use-this-architecture"></a>使用此架構的時機
 
-多層式架構通常實作為基礎結構即服務 (IaaS) 應用程式，每個層均執行在一組個別的 VM 上。 不過，多層式架構應用程式不需要是純 IaaS。 通常，對架構的某些部分 (特別是快取、傳訊和資料存放區) 使用受控服務會有幫助。
+多層式架構通常實作為基礎結構即服務 (IaaS) 應用程式，每個層均執行在一組個別的 VM 上。 不過，多層式架構 (N-tier) 應用程式不需要是純 IaaS。 通常，對架構的某些部分 (特別是快取、傳訊和資料存放區) 使用受控服務會有幫助。
 
 考慮下列項目的多層式架構：
 
@@ -57,7 +60,7 @@ ms.locfileid: "54110300"
 - 管理 IaaS 應用程式的工作比只使用受控服務的應用程式更多。
 - 在大型系統中可能難以管理網路安全性。
 
-## <a name="best-practices"></a>最佳做法
+## <a name="best-practices"></a>最佳作法
 
 - 您可以使用自動調整來處理負載中的變更。 請參閱[自動調整最佳做法][autoscaling]。
 - 使用非同步傳訊來分離各層。
@@ -81,10 +84,11 @@ Web 和商務層為無狀態。 任何 VM 可以處理該層的任何要求。 �
 
 網路安全性群組 (NSG) 會限制存取每一層。 例如，資料庫層只會允許來自商務層的存取。
 
-如需詳細資料和可部署的 Resource Manager 範本，請參閱下列參考架構：
+如需有關在 Azure 上執行多層式架構 (N-tier) 應用程式的詳細資訊：
 
-- [執行適用於多層式應用程式的 Windows VM][n-tier-windows]
-- [執行適用於多層式應用程式的 Linux VM][n-tier-linux]
+- [執行適用於多層式架構 (N-tier) 應用程式的 Windows VM][n-tier-windows]
+- [Azure 上具有 SQL Server 的 Windows 多層式架構 (N-tier) 應用程式][n-tier-linux]
+- [Microsoft Learn 模組：導覽多層式架構樣式](/learn/modules/n-tier-architecture/)
 
 ### <a name="additional-considerations"></a>其他考量
 

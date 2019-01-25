@@ -5,13 +5,16 @@ description: 建立由特定前端應用程式或介面取用的個別後端服�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1fc597ded3e87ca7b4a200a13af9dce5ba2dbec5
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 7a58da4c249250eaa789c39222e965e1cdf84002
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009741"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54487877"
 ---
 # <a name="backends-for-frontends-pattern"></a>前端模式的後端
 
@@ -37,7 +40,7 @@ ms.locfileid: "54009741"
 
 因為每個後端相對於一個特定介面，可以為該介面最佳化。 如此一來，它會較小、較簡單且可能快於嘗試滿足所有介面需求的一般後端。 每個介面小組有控制自己後端的自主權，並且不依賴於集中式後端開發小組。 這讓介面小組對於後端的語言選擇、發佈日程、工作負載的優先順序以及功能整合有彈性。
 
-如需詳細資訊，請參閱[模式：Backend for Frontend (BFF)](https://samnewman.io/patterns/architectural/bff/)。
+如需詳細資訊，請參閱[模式︰前端的後端](https://samnewman.io/patterns/architectural/bff/)。
 
 ## <a name="issues-and-considerations"></a>問題和考量
 
@@ -57,7 +60,7 @@ ms.locfileid: "54009741"
 - 自訂作業會對一般用途的後端進行，以容納多個介面。
 - 替代語言更適合用於不同的使用者介面的後端。
 
-此模式可能不適用於下列時機：
+此模式可能不適合下列時機：
 
 - 當介面對後端進行相同或類似的要求時。
 - 只有一個介面用來與後端互動時。

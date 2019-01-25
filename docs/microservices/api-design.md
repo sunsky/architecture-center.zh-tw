@@ -3,12 +3,16 @@ title: API 設計
 description: 設計微服務的 API
 author: MikeWasson
 ms.date: 10/23/2018
-ms.openlocfilehash: 80e8e081384a7806880878ae95fbdbc2bb6cc440
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: reference-architecture
+ms.custom: microservices
+ms.openlocfilehash: 01f774773b2d2a653e52c9ee961f12c5b9fc833a
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54111033"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485973"
 ---
 # <a name="designing-microservices-api-design"></a>設計微服務：API 設計
 
@@ -65,7 +69,7 @@ ms.locfileid: "54111033"
 
 - 不同類型的用戶端 (例如行動裝置應用程式和桌面網頁瀏覽器) 可能需要不同的承載大小或互動模式。 請考慮使用 [Backend for Frontend (BFF) 模式](../patterns/backends-for-frontends.md)來為每個用戶端建立個別的後端，以公開該用戶端的最佳介面。
 
-- 對於有副作用的作業，請考慮讓其具有冪等性並當作 PUT 方法加以實作。 這麼做就能夠安全重試，並可改善復原功能。 [擷取與工作流程](./ingestion-workflow.md#idempotent-vs-non-idempotent-operations)和[服務間通訊](./interservice-communication.md)章節會更詳細討論這個問題。
+- 對於有副作用的作業，請考慮讓其具有冪等性並當作 PUT 方法加以實作。 這麼做就能夠安全重試，並可改善恢復功能。 [擷取與工作流程](./ingestion-workflow.md#idempotent-vs-non-idempotent-operations)和[服務間通訊](./interservice-communication.md)章節會更詳細討論這個問題。
 
 - HTTP 方法可以有非同步語意，其中方法會立即傳回回應，但服務不會同步完成此作業。 在此情況下，方法應傳回 [HTTP 202](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) 回應碼，表示已接受要求進行處理，但處理尚未完成。
 
@@ -95,7 +99,7 @@ export class Location {
 
 另一個範例是存放庫模式，可確保應用程式的其他部分不會直接讀取或寫入資料存放區：
 
-!無人機遞送圖[](./images/repository.png)
+![無人機遞送圖](./images/repository.png)
 
 不過，在微服務架構中，服務不會共用相同的程式碼基底，也不會共用資料存放區。 相反地，服務會透過 API 通訊。 舉例來說，排程器服務向無人機服務要求無人機的相關資訊。 無人機服務有自己的無人機內部模型 (透過程式碼表示)。 但排程器不會看到該模型。 相反地，排程器會取回無人機實體的「表示法」&mdash;，或許是 HTTP 回應中的 JSON 物件。
 

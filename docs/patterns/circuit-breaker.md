@@ -5,21 +5,24 @@ description: 在連線到遠端服務或資源時，處理可能需要不同時�
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
+ms.topic: design-pattern
+ms.service: architecture-center
+ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56c90fcb23fd68b0d1b545db90adeab3272705c2
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 7cc84b3c14ea277aa82643f3141f0693ec702a49
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54009758"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54485599"
 ---
 # <a name="circuit-breaker-pattern"></a>斷路器模式
 
-在連線到遠端服務或資源時，處理可能需要不同時間來復原的錯誤。 這可以改善應用程式的穩定性和復原功能。
+在連線到遠端服務或資源時，處理可能需要不同時間來復原的錯誤。 這可以改善應用程式的穩定性和恢復功能。
 
 ## <a name="context-and-problem"></a>內容和問題
 
-在分散式環境中，對遠端資源和服務進行的呼叫可能會因為暫時性錯誤而失敗，例如低速網路連線、逾時、資源過度認可或資源暫時無法使用。 這些錯誤通常會在短時間內自行修正，而強大的雲端應用程式應會使用 [重試模式][retry-pattern] 等策略來準備處理這些錯誤。
+在分散式環境中，對遠端資源和服務進行的呼叫可能會因為暫時性錯誤而失敗，例如低速網路連線、逾時、資源過度認可或資源暫時無法使用。 這些錯誤通常會在短時間內自行修正，而強大的雲端應用程式應會使用[重試模式](./retry.md)來準備處理這些錯誤。
 
 不過，也可能發生因為非預期事件導致的錯誤，這可能需要更長的時間來進行修正。 這些錯誤的嚴重性範圍包含失去部分連線到整個服務無法運作。 在這些情況下，持續重試不太可能成功的作業是無意義的，相反地，應用程式應快速接受作業失敗，並且據以處理此失敗事件。
 

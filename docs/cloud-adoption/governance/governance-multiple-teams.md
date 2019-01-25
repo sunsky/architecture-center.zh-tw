@@ -3,12 +3,15 @@ title: 企業雲端採用：在 Azure 中多個小組的治理設計
 description: 針對多個小組、多個工作負載及多個環境設定 Azure 治理控制的指南
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: ac2a63ad6ced1039290dc0bf5132b0d87a2c79cf
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.topic: guide
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: de2bfeee7d098984a35f56f9e794e6a37933a3bd
+ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389412"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "54488421"
 ---
 # <a name="enterprise-cloud-adoption-governance-design-for-multiple-teams"></a>企業雲端採用：多個小組的治理設計
 
