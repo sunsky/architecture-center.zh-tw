@@ -6,12 +6,12 @@ ms.topic: reference-architecture
 ms.date: 08/30/2018
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 190f0383422ea9c151132e68b9dd0ee5f5377e72
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b30744565ff3107a0bffa3b481d6f142be9dc0fb
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484445"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908608"
 ---
 # <a name="azure-reference-architectures"></a>Azure 參考架構
 
@@ -139,6 +139,26 @@ ms.locfileid: "54484445"
                     <div class="cardText">
                         <h3>即時建議 API</h3>
                         <p>使用 Azure Databricks 定型建議模型，並使用 Azure Machine Learning 將其部署為 API。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Distributed training of deep learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/conversational-bot.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/bot-services.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>企業級交談式聊天機器人</h3>
+                        <p>如何使用 Azure Bot Framework 建置企業級交談式聊天機器人。</p>
                     </div>
                 </div>
             </div>
