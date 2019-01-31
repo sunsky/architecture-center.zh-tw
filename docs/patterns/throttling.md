@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f9f33421f3e1030e2477379970082f5c45690390
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 0bbe8177abe708cf41c1b5a8d117c05fd280c948
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486842"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908591"
 ---
 # <a name="throttling-pattern"></a>節流模式
 
@@ -38,7 +38,7 @@ ms.locfileid: "54486842"
 
 - 將所選的非必要服務的功能停用或降級，使必要的服務有足夠的資源可以順利執行。 例如，若應用程式正在串流處理視訊輸出，它可以切換成較低的解析度。
 
-- 使用負載調節來緩解活動量 ([佇列型負載調節模式](./queue-based-load-leveling.md)中涵蓋此方法的詳細資訊)。 在多租用戶環境中，此方法會降低每個租用戶的效能。 如果系統必須支援使用不同 SLA 的混合租用戶，高重要性租用戶的工作可能會立即執行。 其他租用戶的要求可能先擱置，等到待辦項目不緊迫時再處理。 [優先順序佇列模式][] 可用來協助實作此方法。
+- 使用負載調節來緩解活動量 ([佇列型負載調節模式](./queue-based-load-leveling.md)中涵蓋此方法的詳細資訊)。 在多租用戶環境中，此方法會降低每個租用戶的效能。 如果系統必須支援使用不同 SLA 的混合租用戶，高重要性租用戶的工作可能會立即執行。 其他租用戶的要求可能先擱置，等到待辦項目不緊迫時再處理。 [優先順序佇列模式](./priority-queue.md)可用來協助實作此方法。
 
 - 延遲代表低優先順序應用程式或租用戶所執行的作業。 可以暫停或限制這些作業，並產生例外狀況來通知租用戶系統正在忙碌，會稍後再嘗試該作業。
 
