@@ -7,8 +7,13 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: example-scenario
+ms.openlocfilehash: fc9b23866f1e52dcbc428026091605a42ead20a6
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55482887"
 ---
-
 # <a name="azure-example-scenarios"></a>Azure 範例案例
 
 範例案例示範如何使用 Azure 解決特定商務或技術挑戰。 每個案例都是根據實際的客戶範例，並提供快速、方便閱讀的指引，以加速您自己的實作。
@@ -24,9 +29,9 @@ ms.subservice: example-scenario
                 <div class="card">
                     <div class="cardText">
                         <h3>新案例</h3>
-                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery" data-linktype="absolute-path">建立高可用性和災害復原的多層式 Web 應用程式</a> (英文)
-                        <a class="barLink" href="/azure/architecture/example-scenario/data/hybrid-etl-with-adf" data-linktype="absolute-path">使用現有內部部署 SSIS 和 Azure Data Factory 的混合式 ETL</a> (英文)
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/decentralized-trust" data-linktype="absolute-path">Azure 上銀行間的分散式信任</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/image-modeling" data-linktype="absolute-path">加速數位映像式模型</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/ai/movie-recommendations" data-linktype="absolute-path">Azure 上的電影推薦</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/multi-tier-app-disaster-recovery" data-linktype="absolute-path">對 HA & DR 所建置的多層式 Web 應用程式</a>
                     </div>
                 </div>
             </div>
@@ -38,9 +43,9 @@ ms.subservice: example-scenario
                 <div class="card">
                     <div class="cardText">
                         <h3>熱門案例</h3>
-                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">受規範產業的安全 Windows Web 應用程式</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/apps/devops-dotnet-webapp" data-linktype="absolute-path">利用 Azure DevOps 的 CI/CD 管線</a>
-                        <a class="barLink" href="/azure/architecture/example-scenario/data/fraud-detection" data-linktype="absolute-path">Azure 上的即時詐騙偵測</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/regulated-multitier-app" data-linktype="absolute-path">使用 Windows VM 建置安全的 Web 應用程式</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/data/data-warehouse" data-linktype="absolute-path">適用於銷售和行銷的資料倉儲和分析</a>
+                        <a class="barLink" href="/azure/architecture/example-scenario/infrastructure/wordpress" data-linktype="absolute-path">高擴充性且安全的 WordPress 網站</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +56,7 @@ ms.subservice: example-scenario
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbRy0ZnoKOXdVBqaBz653YPElUNjlNMEpPMDNSSU1aWEIxMFNFNlY2T0E3NC4u" data-linktype="external">
+                        <a href="https://azure-architecture.uservoice.com/forums/918625-architecture-guidance" data-linktype="external">
                             <div class="cardSize cardsF">
                                 <div class="cardPadding">
                                     <div class="card">
