@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: dfc4af0a5be29b32d90cc4a05715fd3e2f71427b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488659"
----
 
 ## <a name="ai-scenarios"></a>AI 案例
 
@@ -383,6 +375,25 @@ ms.locfileid: "54488659"
                     <div class="cardText">
                         <h3>執行 CFD 模擬</h3>
                         <p>在 Azure 上執行計算流體力學 (CFD) 模擬。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./infrastructure/image-modeling.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./infrastructure/media/architecture-image-modeling.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>在 Azure 上加速數位映像式模型化</h3>
+                        <p>使用 Avere 和 Agisoft PhotoScan 在 Azure 上加速數位映像式模型化</p>
                     </div>
                 </div>
             </div>
