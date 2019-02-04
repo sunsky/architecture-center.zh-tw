@@ -7,12 +7,12 @@ ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 53beb2ee0f99c107ed390a4309273ad20e405b69
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
+ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484290"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "54908574"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>企業雲端採用：合理化的 5R 策略
 
@@ -95,7 +95,7 @@ ms.locfileid: "54484290"
 
 ## <a name="rebuild"></a>重建
 
-在某些情況下，可能會因為推動應用程式所需克服的差異過大大，而無法進一步投資。 尤其是在用來符合商務需求的應用程式目前不受支援，或是與目前執行商務程序的方式不一致時，更是如此。 在此情況下，將會依據雲端原生方法建立新的程式碼基底。
+在某些情況下，可能會因為推動應用程式所需克服的差異過大大，而無法進一步投資。 尤其是在用來符合商務需求的應用程式目前不受支援，或是與目前執行商務程序的方式不一致時，更是如此。 在此情況下，將會依據[雲端原生](https://azure.microsoft.com/overview/cloudnative/)方法建立新的程式碼基底。
 
 常見的動因可能包括：
 

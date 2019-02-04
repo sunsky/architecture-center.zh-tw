@@ -3,21 +3,21 @@ title: Python 模型的即時評分
 titleSuffix: Azure Reference Architectures
 description: 此參考架構會示範如何在 Azure 上將 Python 模型部署為 Web 服務，以進行即時預測。
 author: msalvaris
-ms.date: 11/09/2018
+ms.date: 01/28/2019
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 135e86b447684efd9f54340eda4b6bf6e4c35bbb
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: ba2d9a295e5a231f0ffca9e3cf2d53ace4deddfe
+ms.sourcegitcommit: 1ee873aaf40010eb2a38314ac56974bc9e227736
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487673"
+ms.lasthandoff: 01/28/2019
+ms.locfileid: "55141038"
 ---
 # <a name="real-time-scoring-of-python-scikit-learn-and-deep-learning-models-on-azure"></a>Azure 上的 Python Scikit-Learn 和深度學習模型的即時評分
 
-此參考架構會示範如何將 Python 模型部署為 Web 服務，以進行即時預測。 涵蓋兩個案例：部署一般的 Python 模型，以及部署深度學習模型的特定需求。 兩個案例皆使用顯示的架構。
+此參考架構會示範如何將 Python 模型部署為 Web 服務，以使用 Azure Machine Learning 服務進行即時預測。 涵蓋兩個案例：部署一般的 Python 模型，以及部署深度學習模型的特定需求。 兩個案例皆使用顯示的架構。
 
 此架構的兩個參考實作可在 GitHub 上取得，一個用於[一般 Python 模型][github-python]，另一個用於[深度學習模型][github-dl]。
 
@@ -33,13 +33,13 @@ ms.locfileid: "54487673"
 
 此架構的應用程式流程如下所示：
 
-1. 用戶端會傳送 HTTP POST 要求與編碼的問題資料。
-
-2. Flask 應用程式會擷取要求中的問題。
-
-3. 問題會傳送至 scikit-learn 管線模型，以進行特徵化和評分。
-
-4. 比對符合的常見問題及其評分會輸送到 JSON 物件，並傳回給用戶端。
+1. 已定型的模型會註冊到機器學習模型登錄。
+2. 機器學習服務會建立一個 Docker 映像，其中包含模型和評分指令碼。
+3. 機器學習會在 Azure Kubernetes Service (AKS) 上將評分映像部署為 Web 服務。
+4. 用戶端會傳送 HTTP POST 要求與編碼的問題資料。
+5. 機器學習建立的 Web 服務會擷取要求中的問題。
+6. 問題會傳送至 Scikit-learn 管線模型，以進行特徵化和評分。 
+7. 比對符合的常見問題及其評分會傳回給用戶端。
 
 以下是取用結果的範例應用程式螢幕擷取畫面：
 
@@ -53,25 +53,24 @@ ms.locfileid: "54487673"
 
 深度學習模型的應用程式流程如下所示：
 
-1. 用戶端會傳送 HTTP POST 要求與編碼的影像資料。
-
-2. Flask 應用程式會擷取要求中的影像。
-
-3. 影像已前置處理並傳送至模型進行評分。
-
-4. 評分結果會輸送到 JSON 物件，並傳回給用戶端。
+1. 深度學習模型會註冊到機器學習模型登錄。
+2. 機器學習服務會建立一個 Docker 映像，其中包含模型和評分指令碼。
+3. 機器學習會在 Azure Kubernetes Service (AKS) 上將評分映像部署為 Web 服務。
+4. 用戶端會傳送 HTTP POST 要求與編碼的影像資料。
+5. 機器學習建立的 Web 服務會前置處理映像資料，並將它傳送至模型進行評分。 
+6. 預測的類別及其分數會傳回給用戶端。
 
 ## <a name="architecture"></a>架構
 
 此架構由下列元件組成。
 
+**[Azure Machine Learning][aml]** 服務是用來定型、部署、自動化及管理機器學習模型的雲端服務，而這一切都在雲端所提供的廣泛規模下進行。 它用於此架構，以管理模型的部署，以及 Web 服務的驗證、路由及負載平衡。
+
 **[虛擬機器][vm]** (VM)。 虛擬機器會顯示為可傳送 HTTP 要求的裝置 (&mdash;本機或雲端&mdash;) 範例。
 
 **[Azure Kubernetes Service][aks]** (AKS) 用於在 Kubernetes 叢集上部署應用程式。 AKS 可簡化 Kubernetes 的部署與作業。 可以針對一般 Python 模型使用僅限 CPU 的虛擬機器，或針對深度學習模型使用已啟用 GPU 的虛擬機器來設定叢集。
 
-**[負載平衡器][lb]**。 由 AKS 佈建的負載平衡器是用於向外部公開服務。 負載平衡器的流量會導向至後端 Pod。
-
-**[Docker 中樞][docker]** 用來儲存部署在 Kubernetes 叢集上的 Docker 映像。 此架構已選擇使用 Docker 中樞，因為它容易使用，而且是 Docker 使用者的預設映像存放庫。 [Azure Container Registry][acr] 也可用於此架構。
+**[Azure Container Registry] [ acr]**  可讓映像的儲存體適用於所有類型的 Docker 容器部署，包括 DC/OS、Docker Swarm 和 Kubernetes。 評分映像會部署為 Azure Kubernetes Service 上的容器，並且用來執行評分指令碼。 這裡所使用的映像是機器學習從定型的模型和評分指令碼建立的，然後會推送至 Azure Container Registry。
 
 ## <a name="performance-considerations"></a>效能考量
 
@@ -83,7 +82,7 @@ ms.locfileid: "54487673"
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-對於一般 Python 模型，其使用僅限 CPU 的虛擬機器佈建 AKS 叢集，在[相應放大 Pod 數目][manually-scale-pods]時需多加注意。 目標是要充分利用叢集。 縮放取決於針對 Pod 定義的 CPU 要求和限制。 Kubernetes 也支援 Pod 的[自動調整][autoscale-pods]，可根據 CPU 使用率或其他選取的計量來調整部署中的 Pod 數目。 [叢集自動調整程式][autoscaler] (預覽) 可根據擱置中的 Pod 來縮放代理程式節點。
+對於一般 Python 模型，其使用僅限 CPU 的虛擬機器佈建 AKS 叢集，在[相應放大 Pod 數目][manually-scale-pods]時需多加注意。 目標是要充分利用叢集。 縮放取決於針對 Pod 定義的 CPU 要求和限制。 透過 Kubernetes 的機器學習也會根據 CPU 使用率或其他計量支援 [Pod 自動調整][ autoscale-pods]。 [叢集自動調整程式][autoscaler] (預覽) 可根據擱置中的 Pod 來縮放代理程式節點。
 
 對於深度學習案例，其使用已啟用 GPU 的虛擬機器，Pod 上的資源限制為一個 GPU 需指派給一個 Pod。 根據使用的虛擬機器類型，您必須[調整叢集的節點][scale-cluster]以滿足服務需求。 您可以使用 Azure CLI 和 kubectl 來輕鬆完成。
 
@@ -117,7 +116,7 @@ AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使�
 
 **驗證**。 此解決方案並不會限制端點的存取。 若要在企業設定中部署架構，需透過 API 金鑰保護端點，並將某種形式的使用者驗證新增至用戶端應用程式。
 
-**容器登錄**。 此解決方案會使用公用登錄來儲存 Docker 映像。 應用程式相依的程式碼以及模型都包含在此映像中。 企業應用程式應使用私人登錄，有助於防止惡意程式碼執行，並協助將資訊保存在容器內而不會遭到入侵。
+**容器登錄**。 此解決方案會使用 Azure Container Registry 來儲存 Docker 映像。 應用程式相依的程式碼以及模型都包含在此映像中。 企業應用程式應使用私人登錄，有助於防止惡意程式碼執行，並協助將資訊保存在容器內而不會遭到入侵。
 
 **DDoS 保護**. 考慮啟用 [DDoS 保護標準][ddos]。 雖然基本 DDoS 保護會隨著 Azure 平台而啟用，但 Azure DDoS 保護標準提供了專門針對 Azure 虛擬網路資源進行調整的安全防護功能。
 
@@ -140,15 +139,14 @@ AKS 會自動將所有 stdout/stderr 記錄到叢集中的 Pod 記錄檔。 使�
 [autoscale-pods]: /azure/aks/tutorial-kubernetes-scale#autoscale-pods
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [ddos]: /azure/virtual-network/ddos-protection-overview
-[docker]: https://hub.docker.com/
 [get-started]: /azure/security-center/security-center-get-started
-[github-python]: https://github.com/Azure/MLAKSDeployment
-[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial
+[github-python]: https://github.com/Microsoft/MLAKSDeployAML
+[github-dl]: https://github.com/Microsoft/AKSDeploymentTutorial_AML
 [gpus-vs-cpus]: https://azure.microsoft.com/en-us/blog/gpus-vs-cpus-for-deployment-of-deep-learning-models/
 [https-ingress]: /azure/aks/ingress-tls
 [ingress-controller]: https://kubernetes.io/docs/concepts/services-networking/ingress/
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[lb]: /azure/load-balancer/load-balancer-overview
+[aml]: /azure/machine-learning/service/overview-what-is-azure-ml
 [manually-scale-pods]: /azure/aks/tutorial-kubernetes-scale#manually-scale-pods
 [monitor-containers]: /azure/monitoring/monitoring-container-insights-overview
 [權限]: /azure/aks/concepts-identity
