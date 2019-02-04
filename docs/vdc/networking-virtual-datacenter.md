@@ -10,12 +10,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: a997a0f03da63bc1432f61f3299e7c6794278e5e
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 484f41f64b676b08ae8adb4ba082f9bff75a6a54
+ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908543"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55483108"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Azure 虛擬資料中心：網路觀點
 
@@ -391,7 +391,9 @@ Azure 資料中心位在全球的許多區域。 選取多個 Azure 資料中心
 
  - 探索 [VNet 對等][VNetPeering]，其為 VDC 中樞和支點設計的支持技術
  - 實作 [Azure AD][AAD]，以開始使用 [RBAC][RBAC] 探索
- - 開發訂用帳戶和資源管理模型與 RBAC 模型，以符合組織的結構、需求和原則。 正在規劃最重要的活動。 請盡快規劃重組、合併、新的產品線等。m <!--Image References-->
+ - 開發訂用帳戶和資源管理模型與 RBAC 模型，以符合組織的結構、需求和原則。 正在規劃最重要的活動。 請盡快規劃重組、合併、新的產品線等。
+
+<!--Image References-->
 [0]: ./images/networking-redundant-equipment.png "元件重疊範例" 
 [1]: ./images/networking-vdc-high-level.png "高階中樞和支點 VDC 範例"
 [2]: ./images/networking-hub-spokes-cluster.png "中樞和支點叢集"
