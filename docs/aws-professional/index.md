@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 56e308b40e24d2febefe995dffc7a14069a5c078
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482233"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897587"
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -215,7 +215,7 @@ Azure 會提供數個計算服務，在 AWS 中沒有直接的對等項目：
 
 - [Azure Batch](/azure/batch/batch-technical-overview) 可讓您在虛擬機器的擴充集合之間管理大量的計算工作。
 
-- [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) 開發及主控可擴充的[微服務](/azure/service-fabric/service-fabric-overview-microservices)解決方案平台。
+- [Service Fabric](/azure/service-fabric/service-fabric-overview) 開發及主控可擴充的[微服務](/azure/service-fabric/service-fabric-overview-microservices)解決方案平台。
 
 #### <a name="see-also"></a>另請參閱
 
