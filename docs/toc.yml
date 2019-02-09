@@ -537,7 +537,7 @@ items:
     href: checklist/resiliency-per-service.md
   - name: 延展性檢查清單
     href: checklist/scalability.md
-- name: 企業雲端採用
+- name: 雲端採用架構
   items:
   - name: 簡介
     href: cloud-adoption/overview.md
@@ -549,14 +549,16 @@ items:
       href: cloud-adoption/getting-started/what-is-azure.md
     - name: 什麼是雲端資源治理？
       href: cloud-adoption/getting-started/what-is-governance.md
-    - name: Azure 的資源存取管理
+    - name: Azure 中的資源存取管理
       href: cloud-adoption/getting-started/azure-resource-access.md
   - name: 商業論證
     items:
     - name: 建置雲端移轉業務案例
       href: cloud-adoption/business-strategy/cloud-migration-business-case.md
-    - name: 了解財務模型
+    - name: 建立雲端轉換的財務模型
       href: cloud-adoption/business-strategy/financial-models.md
+    - name: 財會結果範例
+      href: cloud-adoption/business-strategy/business-outcomes/fiscal-outcomes.md
   - name: 數位資產
     items:
     - name: 合理化的 5R 策略
@@ -569,27 +571,211 @@ items:
       href: cloud-adoption/digital-estate/inventory.md
     - name: 合理化數位資產
       href: cloud-adoption/digital-estate/rationalize.md
-    - name: 預測雲端成本
+    - name: 將成本模型對應至預測成本
       href: cloud-adoption/digital-estate/calculate.md
   - name: 控管
     items:
     - name: 概觀
       href: cloud-adoption/governance/overview.md
-    - name: 單一小組的控管設計
-      href: cloud-adoption/governance/governance-single-team.md
-    - name: 多個小組的控管設計
-      href: cloud-adoption/governance/governance-multiple-teams.md
+    - name: 可操作的控管作業過程
+      items:
+      - name: 作業過程概觀
+        href: cloud-adoption/governance/journeys/overview.md
+      - name: 小型至中型企業作業過程
+        items:
+        - name: 最佳做法
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/overview.md
+        - name: 記述
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/narrative.md
+        - name: 初始公司原則
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/initial-corporate-policy.md
+        - name: 最佳做法說明
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/best-practice-explained.md
+        - name: 安全性基準演進
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/security-baseline-evolution.md
+        - name: 資源一致性演進
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/resource-consistency-evolution.md
+        - name: 成本管理演進
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/cost-management-evolution.md
+        - name: 多重雲端演進
+          href: cloud-adoption/governance/journeys/small-to-medium-enterprise/multi-cloud-evolution.md
+      - name: 大型企業作業過程
+        items:
+        - name: 最佳做法
+          href: cloud-adoption/governance/journeys/large-enterprise/overview.md
+        - name: 記述
+          href: cloud-adoption/governance/journeys/large-enterprise/narrative.md
+        - name: 初始公司原則
+          href: cloud-adoption/governance/journeys/large-enterprise/initial-corporate-policy.md
+        - name: 最佳做法說明
+          href: cloud-adoption/governance/journeys/large-enterprise/best-practice-explained.md
+        - name: 身分識別基準演進
+          href: cloud-adoption/governance/journeys/large-enterprise/identity-baseline-evolution.md
+        - name: 安全性基準演進
+          href: cloud-adoption/governance/journeys/large-enterprise/security-baseline-evolution.md
+        - name: 資源一致性演進
+          href: cloud-adoption/governance/journeys/large-enterprise/resource-consistency-evolution.md
+        - name: 成本管理演進
+          href: cloud-adoption/governance/journeys/large-enterprise/cost-management-evolution.md
+        - name: 多重雲端演進
+          href: cloud-adoption/governance/journeys/large-enterprise/multi-cloud-evolution.md
+        - name: 多層控管
+          href: cloud-adoption/governance/journeys/large-enterprise/multiple-layers-of-governance.md
+    - name: 控管理論
+      items:
+      - name: 實作雲端治理策略
+        href: cloud-adoption/governance/corporate-policy.md
+      - name: 雲端治理的五個專業領域
+        href: cloud-adoption/governance/governance-disciplines.md
+      - name: 不斷演變的公司原則與合規性
+        items:
+        - name: 公司 IT 原則如何成為雲端就緒？
+          href: cloud-adoption/governance/policy-compliance/overview.md
+        - name: 了解商務風險
+          href: cloud-adoption/governance/policy-compliance/understanding-business-risk.md
+        - name: 評估風險承受度
+          href: cloud-adoption/governance/policy-compliance/risk-tolerance.md
+        - name: 定義公司原則聲明
+          href: cloud-adoption/governance/policy-compliance/define-policy.md
+        - name: 對應架構設計指南
+          href: cloud-adoption/governance/policy-compliance/align-governance-journeys.md
+        - name: 開發原則遵循程序
+          href: cloud-adoption/governance/policy-compliance/processes.md
+        - name: 什麼是法規合規性？
+          href: cloud-adoption/governance/policy-compliance/what-is-regulatory-compliance.md
+        - name: 什麼是雲端原則檢閱？
+          href: cloud-adoption/governance/policy-compliance/what-is-a-cloud-policy-review.md
+        - name: CISO 如何為雲端做準備？
+          href: cloud-adoption/governance/policy-compliance/how-can-a-ciso-prepare-for-the-cloud.md
+        - name: 什麼是資料分類？
+          href: cloud-adoption/governance/policy-compliance/what-is-data-classification.md
+      - name: 實作雲端治理的五個專業領域
+        items:
+        - name: 成本管理
+          items:
+          - name: 成本管理專業領域概觀
+            href: cloud-adoption/governance/cost-management/overview.md
+          - name: 下載範本
+            href: cloud-adoption/governance/cost-management/template.md
+          - name: 了解商務風險
+            href: cloud-adoption/governance/cost-management/business-risks.md
+          - name: 風險風險承受度計量和指標
+            href: cloud-adoption/governance/cost-management/metrics-tolerance.md
+          - name: 原則聲明範例
+            href: cloud-adoption/governance/cost-management/policy-statements.md
+          - name: 原則合規性流程
+            href: cloud-adoption/governance/cost-management/compliance-processes.md
+          - name: 專業領域改進
+            href: cloud-adoption/governance/cost-management/discipline-improvement.md
+          - name: Azure 特定的工具鏈
+            href: cloud-adoption/governance/cost-management/toolchain.md
+        - name: 安全性基準
+          items:
+          - name: 安全性基準專業領域概觀
+            href: cloud-adoption/governance/security-baseline/overview.md
+          - name: 下載範本
+            href: cloud-adoption/governance/security-baseline/template.md
+          - name: 了解商務風險
+            href: cloud-adoption/governance/security-baseline/business-risks.md
+          - name: 風險風險承受度計量和指標
+            href: cloud-adoption/governance/security-baseline/metrics-tolerance.md
+          - name: 原則聲明範例
+            href: cloud-adoption/governance/security-baseline/policy-statements.md
+          - name: 原則合規性流程
+            href: cloud-adoption/governance/security-baseline/compliance-processes.md
+          - name: 專業領域改進
+            href: cloud-adoption/governance/security-baseline/discipline-improvement.md
+          - name: 雲端原生安全性基準
+            href: cloud-adoption/governance/security-baseline/cloud-native-policy.md
+          - name: 額外的 Azure 安全性指引
+            href: cloud-adoption/governance/security-baseline/azure-security-guidance.md
+          - name: Azure 特定的工具鏈
+            href: cloud-adoption/governance/security-baseline/toolchain.md
+        - name: 身分識別基準
+          items:
+          - name: 身分識別基準專業領域概觀
+            href: cloud-adoption/governance/identity-baseline/overview.md
+          - name: 下載範本
+            href: cloud-adoption/governance/identity-baseline/template.md
+          - name: 了解商務風險
+            href: cloud-adoption/governance/identity-baseline/business-risks.md
+          - name: 風險風險承受度計量和指標
+            href: cloud-adoption/governance/identity-baseline/metrics-tolerance.md
+          - name: 原則聲明範例
+            href: cloud-adoption/governance/identity-baseline/policy-statements.md
+          - name: 原則合規性流程
+            href: cloud-adoption/governance/identity-baseline/compliance-processes.md
+          - name: 專業領域改進
+            href: cloud-adoption/governance/identity-baseline/discipline-improvement.md
+          - name: Azure 特定的工具鏈
+            href: cloud-adoption/governance/identity-baseline/toolchain.md
+        - name: 資源一致性
+          items:
+          - name: 資源一致性專業領域的概觀
+            href: cloud-adoption/governance/resource-consistency/overview.md
+          - name: 下載範本
+            href: cloud-adoption/governance/resource-consistency/template.md
+          - name: 了解商務風險
+            href: cloud-adoption/governance/resource-consistency/business-risks.md
+          - name: 風險風險承受度計量和指標
+            href: cloud-adoption/governance/resource-consistency/metrics-tolerance.md
+          - name: 原則聲明範例
+            href: cloud-adoption/governance/resource-consistency/policy-statements.md
+          - name: 原則合規性流程
+            href: cloud-adoption/governance/resource-consistency/compliance-processes.md
+          - name: 專業領域改進
+            href: cloud-adoption/governance/resource-consistency/discipline-improvement.md
+          - name: 資源存取管理
+            href: cloud-adoption/governance/resource-consistency/azure-resource-access.md
+          - name: 簡單工作負載的治理設計
+            href: cloud-adoption/governance/resource-consistency/governance-simple-workload.md
+          - name: 多個小組的控管設計
+            href: cloud-adoption/governance/resource-consistency/governance-multiple-teams.md
+          - name: Azure 特定的工具鏈
+            href: cloud-adoption/governance/resource-consistency/toolchain.md
+        - name: 部署加速
+          items:
+          - name: 部署加速專業領域概觀
+            href: cloud-adoption/governance/deployment-acceleration/overview.md
+          - name: 下載範本
+            href: cloud-adoption/governance/deployment-acceleration/template.md
+          - name: 了解商務風險
+            href: cloud-adoption/governance/deployment-acceleration/business-risks.md
+          - name: 風險風險承受度計量和指標
+            href: cloud-adoption/governance/deployment-acceleration/metrics-tolerance.md
+          - name: 原則聲明範例
+            href: cloud-adoption/governance/deployment-acceleration/policy-statements.md
+          - name: 原則合規性流程
+            href: cloud-adoption/governance/deployment-acceleration/compliance-processes.md
+          - name: 專業領域改進
+            href: cloud-adoption/governance/deployment-acceleration/discipline-improvement.md
+          - name: Azure 特定的工具鏈
+            href: cloud-adoption/governance/deployment-acceleration/toolchain.md
   - name: 基礎結構
     items:
-    - name: 部署基本工作負載
-      href: cloud-adoption/infrastructure/basic-workload.md
+    - name: 虛擬機器
+      items:
+      - name: 部署基本工作負載
+        href: cloud-adoption/infrastructure/virtual-machines/basic-workload.md
+    - name: 大型主機移轉
+      items:
+      - name: 概觀
+        href: cloud-adoption/infrastructure/mainframe-migration/overview.md
+      - name: 迷思與事實
+        href: cloud-adoption/infrastructure/mainframe-migration/myths-and-facts.md
+      - name: 移轉策略
+        href: cloud-adoption/infrastructure/mainframe-migration/migration-strategies.md
+      - name: 應用程式策略
+        href: cloud-adoption/infrastructure/mainframe-migration/application-strategies.md
+    - name: 建立混合式雲端一致性
+      href: cloud-adoption/infrastructure/misc/hybrid-consistency.md
   - name: 作業
     items:
     - name: 概觀
       href: cloud-adoption/operations/overview.md
     - name: 建立操作適用性檢閱
       href: cloud-adoption/operations/operational-fitness-review.md
-  - name: 附錄
+  - name: 參考
     items:
     - name: 虛擬資料中心 (VDC)
       href: vdc/index.md
@@ -597,9 +783,41 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: 實作 Azure 企業 Scaffold
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 82543ba5afed9d4bb32f0779b332d1425d089cfe
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+    - name: 決策指南
+      items:
+      - name: 概觀
+        href: cloud-adoption/decision-guides/overview.md
+      - name: 訂用帳戶
+        href: cloud-adoption/decision-guides/subscriptions/overview.md
+      - name: 身分識別
+        href: cloud-adoption/decision-guides/identity/overview.md
+      - name: 強制執行原則
+        href: cloud-adoption/decision-guides/policy-enforcement/overview.md
+      - name: 資源一致性
+        href: cloud-adoption/decision-guides/resource-consistency/overview.md
+      - name: 資源標記
+        href: cloud-adoption/decision-guides/resource-tagging/overview.md
+      - name: 加密
+        href: cloud-adoption/decision-guides/encryption/overview.md
+      - name: 軟體定義網路
+        items:
+        - name: 概觀
+          href: cloud-adoption/decision-guides/software-defined-network/overview.md
+        - name: 僅限 PaaS
+          href: cloud-adoption/decision-guides/software-defined-network/paas-only.md
+        - name: 雲端原生
+          href: cloud-adoption/decision-guides/software-defined-network/cloud-native.md
+        - name: 雲端 DMZ
+          href: cloud-adoption/decision-guides/software-defined-network/cloud-dmz.md
+        - name: 混合式
+          href: cloud-adoption/decision-guides/software-defined-network/hybrid.md
+        - name: 中樞與輪輻模型
+          href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
+      - name: 記錄和報告
+        href: cloud-adoption/decision-guides/log-and-report/overview.md
+ms.openlocfilehash: 608761d954c2a26968a970c99f506ee03b40867d
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483040"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898454"
