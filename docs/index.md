@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: f690d95c78becbf16f02f913983533513d2f7c01
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
+ms.openlocfilehash: 3c48ba77b7f97c6047f5d1441a22f2bd79ee0a3e
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483074"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898284"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -58,8 +58,8 @@ ms.locfileid: "55483074"
                     <div class="card">
                         <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>企業雲端採用</h3>
-                            <p>本指南概述了建立整個組織雲端採用策略的流程。 它著重於組織整備程度、管理以及基礎結構。</p>
+                            <h3>適用於 Azure 的 Microsoft 雲端採用架構</h3>
+                            <p>建立整個組織雲端採用策略的程序，焦點著重於原則、控管以及基礎結構。</p>
                         </div>
                     </div>
                 </div>

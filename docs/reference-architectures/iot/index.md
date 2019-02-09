@@ -4,12 +4,12 @@ description: 使用 PaaS (平台即服務) 元件在 Azure 上建議的 IoT 應�
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: c0aa1771abc99b1f17f1e553c9626e50a386f34c
-ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
+ms.openlocfilehash: 5a4b104044f3e64ffdce98e3952201d397d41f33
+ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54307683"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55887347"
 ---
 # <a name="azure-iot-reference-architecture"></a>Azure IoT 參考架構
 
@@ -145,3 +145,5 @@ IoT 中樞根據裝置識別碼自動分割裝置訊息。 特定裝置的所有
 - 如需建議的架構和實作選擇的詳細討論，請參閱 [Microsoft Azure IoT 參考架構](http://aka.ms/iotrefarchitecture) (PDF)。
 
 - 如需各種 Azure IoT 服務的詳細文件，請參閱 [Azure IoT 基礎](/azure/iot-fundamentals/)。
+
+- 範例 IoT 實作可以在 [GitHub](https://github.com/mspnp/iot-guidance) 上取得。
