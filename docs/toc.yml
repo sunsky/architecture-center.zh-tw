@@ -357,6 +357,8 @@ items:
       href: reference-architectures/ai/batch-scoring-deep-learning.md
     - name: Python 模型的批次評分
       href: reference-architectures/ai/batch-scoring-python.md
+    - name: Azure Databricks 上的 Spark 模型批次評分
+      href: reference-architectures/ai/batch-scoring-databricks.md
     - name: Python 和深度學習模型的即時評分
       href: reference-architectures/ai/realtime-scoring-python.md
     - name: R 機器學習模型的即時評分
@@ -493,7 +495,7 @@ items:
       href: multitenant-identity/index.md
     - name: Tailspin 情節
       href: multitenant-identity/tailspin.md
-    - name: 驗證
+    - name: Authentication
       href: multitenant-identity/authenticate.md
     - name: 宣告式身分識別
       href: multitenant-identity/claims.md
@@ -815,9 +817,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 記錄和報告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 608761d954c2a26968a970c99f506ee03b40867d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2ba7e4b0b9eb049c0492557a0543778d2fbb2518
+ms.sourcegitcommit: a68f248402c598f9d25bc1dc62f27a6a934ff001
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898454"
+ms.locfileid: "55903243"
