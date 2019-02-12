@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: cfbe877a4e3a4a1d5aa87c4a77ad2c5f23a6d664
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
+ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484477"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55782093"
 ---
 # <a name="data-partitioning-strategies"></a>資料分割策略
 
@@ -115,7 +115,7 @@ Microsoft 已發佈 Azure 儲存體帳戶的[延展性目標]。 如果您的系
 
   - 跨實體的子集共用資料分割區索引鍵，能夠將相同分割區中的相關實體分組。 涉及可使用實體群組交易執行之相關實體的作業，以及擷取一組相關實體的查詢，可藉由存取單一伺服器來滿足。
 
-如需詳細資料，請參閱 [Azure Storage Table Design Guide]。
+如需詳細資料，請參閱 [Azure 儲存體資料表設計指南]。
 
 ## <a name="partitioning-azure-blob-storage"></a>分割 Azure blob 儲存體
 
@@ -242,9 +242,9 @@ Azure Redis 快取在雲端中提供以 Redis 索引鍵-值資料存放區為基
 此模型會使用 Redis 叢集實作，而且會在 Redis 網站上的 [Redis 叢集教學課程] 頁面上提供更詳細的描述。 Redis 叢集對用戶端應用程式而言是透明的。 其他的 Redis 伺服器可以加入至叢集 (資料可重新分割)，而不需重新設定用戶端。
 
 > [!IMPORTANT]
-> Azure Redis Cache 目前不支援 Redis 叢集。 如果您想要利用 Azure 實作這個方法，則必須將 Redis 安裝在一組 Azure 虛擬機器上並手動設定它們，以實作您自己的 Redis 伺服器。 [在 Azure 中的 CentOS Linux VM 上執行 Redis] 頁面會逐步解說範例，並顯示如何建置和設定作為 Azure VM 執行的 Redis 節點。
+> Azure Redis Cache 目前僅在[進階](/azure/azure-cache-for-redis/cache-how-to-premium-clustering)層支援 Redis 群集。
 
-Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)] 頁面會提供更多關於使用 Redis 實作資料分割的資訊。 本節的其餘部分假設您正在實作用戶端或 proxy 輔助資料分割。
+Redis 網站上的 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)] 頁面會提供更多關於使用 Redis 實作資料分割的資訊。 本節的其餘部分假設您正在實作用戶端或 proxy 輔助資料分割。
 
 決定如何利用 Azure Redis 快取來分割資料時，請考慮下列幾點：
 
@@ -256,7 +256,7 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
   - 集合 (排序和未排序)
   - 雜湊 (可將相關的欄位群組在一起，例如在一個物件中代表欄位的項目)
 
-- 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data Types] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 8 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
+- 彙總類型可讓您將許多相關的值與同一個索引鍵建立關聯。 Redis 索引鍵可識別清單、集合或雜湊，而非它所包含的資料項目。 這些類型全都可供 Azure Redis 快取使用，並描述於 Redis 網站上的 [Data types (資料類型)] 頁面。 例如，在追蹤客戶所下訂單的部分電子商務系統中，每一位客戶的詳細資料都可儲存於 Redis 雜湊中，使用客戶識別碼做為索引鍵。 每個雜湊都可以保留客戶的訂單識別碼集合。 個別的 Redis 集合可以保留訂單、重新建構為雜湊，並使用訂單識別碼做為索引鍵。 圖 8 顯示此結構。 請注意，Redis 不會實作任何形式的參考完整性，所以開發人員必須負責維護客戶和訂單之間的關聯性。
 
 ![Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構](./images/data-partitioning/RedisCustomersandOrders.png)
 
@@ -281,7 +281,7 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 
 ## <a name="partitioning-azure-service-fabric"></a>資料分割 Azure Service Fabric
 
-Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程式的執行階段。 Service Fabric 支援 .Net 來賓可執行檔、具狀態和無狀態的服務、容器。 具狀態服務提供[可靠集合][service-fabric-reliable-collections]，可持續將資料儲存在 Service Fabric 叢集內的索引鍵/值集合中。 如需可靠集合中的分割區索引鍵的策略詳細資訊，請參閱 [Azure Service Fabric 中可靠集合的指導方針與建議]。
+Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程式的執行階段。 Service Fabric 支援 .Net 來賓可執行檔、具狀態和無狀態的服務、容器。 具狀態服務提供[可靠集合][service-fabric-reliable-collections]，可持續將資料儲存在 Service Fabric 叢集內的索引鍵/值集合中。 如需可靠集合中的分割區索引鍵的策略詳細資訊，請參閱 [Azure Service Fabric 中可靠集合的指導方針和建議]。
 
 ### <a name="more-information"></a>詳細資訊
 
@@ -306,25 +306,25 @@ Azure Service Fabric 是微服務平台，在雲端中提供分散式應用程�
 [Azure Content Delivery Network]: /azure/cdn/cdn-overview
 [Azure Redis 快取]: https://azure.microsoft.com/services/cache/
 [Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
-[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
+[Azure 儲存體資料表設計指南]: /azure/storage/storage-table-design-guide
 [Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Data consistency primer]: https://aka.ms/Data-Consistency-Primer
 [Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
-[Data Types]: https://redis.io/topics/data-types
+[Data types (資料類型)]: https://redis.io/topics/data-types
 [cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [Elastic Database features overview]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
-[Azure Service Fabric 中可靠集合的指導方針與建議]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
+[Azure Service Fabric 中可靠集合的指導方針和建議]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
 [Multi-shard querying]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Azure Service Fabric 概觀]: /azure/service-fabric/service-fabric-overview
 [分割 Service Fabric 可靠服務]: /azure/service-fabric/service-fabric-concepts-partitioning
-[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料) (資料分割：如何在多個 Redis 執行個體上分割資料)]: https://redis.io/topics/partitioning
+[Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)]: https://redis.io/topics/partitioning
 [執行實體群組交易]: /rest/api/storageservices/Performing-Entity-Group-Transactions
 [Redis 叢集教學課程]: https://redis.io/topics/cluster-tutorial
-[在 Azure 中的 CentOS Linux VM 上執行 Redis]: https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/
+[Running Redis on a CentOS Linux VM in Azure]: https://blogs.msdn.microsoft.com/tconte/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure/
 [Scaling using the Elastic Database split-merge tool]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
 [Using Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
 [服務匯流排配額]: /azure/service-bus-messaging/service-bus-quotas
