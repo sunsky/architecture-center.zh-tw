@@ -7,18 +7,20 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: f622041824d65978346bf39abb3de30732bad193
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: 0f5de0eca6fbd35cca1a0e8443f363df09ffc6aa
+ms.sourcegitcommit: 287344b6c220bdbd8076aed7a281eb02253e15be
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908626"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55712145"
 ---
 # <a name="enterprise-grade-conversational-bot"></a>企業級交談式聊天機器人
 
 此參考架構說明如何使用 [Azure Bot Framework][bot-framework] 組建企業級交談式聊天機器人。 每個聊天機器人都不同，但有一些常見的模式、工作流程和技術需要注意。 特別是針對提供企業工作負載的聊天機器人，除了核心功能之外，還有許多設計考量。 本文章涵蓋最重要的設計層面，並介紹組建耐用、安全且主動學習之聊天機器人所需的工具。
 
 [![架構圖][0]][0]
+
+此架構中使用的最佳做法範例是完全開放的原始碼，並在 [GitHub][git-repo-base] 提供。 
 
 ## <a name="architecture"></a>架構
 
@@ -139,23 +141,20 @@ ms.locfileid: "54908626"
 
 ## <a name="quality-assurance-and-enhancement"></a>品質保證和增強功能
 
-**記錄**。 記錄使用者與機器人的交談，包括基礎效能計量和任何錯誤。 這些記錄在偵錯問題、了解使用者互動，以及改善系統方面非常有用。 不同的資料存放區可能適用於不同類型的記錄。 例如，考慮 Application Insights 用於 Web 記錄、Cosmos DB 用於交談，以及 Azure 儲存體用於大型承載。 請參閱[直接寫入儲存體][transcript-storage]。
+**記錄**。 記錄使用者與機器人的交談，包括基礎效能計量和任何錯誤。 這些記錄在偵錯問題、了解使用者互動，以及改善系統方面非常有用。 不同的資料存放區可能適用於不同類型的記錄。 例如，考慮 Application Insights 用於 Web 記錄、Cosmos DB 用於交談，以及 Azure 儲存體用於大型承載。 請參閱[直接寫入 Azure 儲存體][transcript-storage]。
 
 **意見反應**。 也請務必了解滿意的使用者如何與其聊天機器人互動。 如果您有一筆使用者意見反應的記錄，則可以使用此資料，致力於改善某些互動，並重新定型 AI 模型以提高效能。 使用意見反應來重新定型您系統中的模型，例如 LUIS。
 
 **測試**。 測試聊天機器人包括單元測試、整合測試、迴歸測試和功能測試。 進行測試時，建議您記錄來自外部服務 (例如 Azure 搜尋服務或 QnA Maker) 的實際 HTTP 回應，讓它們可在單元測試期間播放，而無需對外部服務進行實際的網路呼叫。
 
-若要在這些區域中進行開發，請查看 [Botbuilder Utils for JavaScript](https://github.com/Microsoft/botbuilder-utils-js) (英文)。 此存放庫包含使用 [Microsoft Bot Framework v4] [ bot-framework] 組建並執行 Node.js 之聊天機器人的範例公用程式碼。 包括下列套件：
-
-- [Http Test Recorder](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder) (英文)。 記錄來自外部服務的 HTTP 流量。 它預先建置 LUIS、Azure 搜尋服務和 QnAMaker 的支援，但提供擴充功能以支援任何服務。
-
-- [Cosmos DB Transcript Store](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb) (英文)。 展示如何在 Cosmos DB 儲存和查詢聊天機器人文字記錄。
-
-- [Application Insights Transcript Store](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights) (英文)。 展示如何在 Application Insights 儲存和查詢聊天機器人文字記錄。
-
-- [Feedback Collection Middleware](https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback) (英文)。 可以用來組建意見反應要求機制的範例中介軟體。
-
-> [!NOTE]
+>[!NOTE]
+> 若要在這些區域中進行開發，請查看 [Botbuilder Utils for JavaScript][git-repo-base]。 此存放庫包含使用 [Microsoft Bot Framework v4] [ bot-framework] 組建並執行 Node.js 之聊天機器人的範例公用程式碼。 包括下列套件：
+>
+> - [Cosmos DB 記錄存放區][cosmosdb-logger]。 顯示如何在 Cosmos DB 儲存和查詢聊天機器人記錄。
+> - [Application Insights 記錄存放區][appinsights-logger]。 顯示如何在 Application Insights 儲存和查詢聊天機器人記錄。
+> - [Feedback Collection Middleware][feedback-util]。 為聊天機器人提供使用者意見反應要求機制的範例中介軟體。
+> - [Http Test Recorder][testing util]。 記錄來自聊天機器人外部服務的 HTTP 流量。 它預先建置 LUIS、Azure 搜尋服務和 QnAMaker 的支援，但提供擴充功能以支援任何服務。 這可協助您自動測試聊天機器人。
+>
 > 這些套件是以公用程式範例程式碼形式提供，且未隨附任何支援或更新保證。
 
 ## <a name="availability-considerations"></a>可用性考量
@@ -200,6 +199,12 @@ ms.locfileid: "54908626"
 [devops]: https://azure.microsoft.com/solutions/devops/
 [functions]: /azure/azure-functions/
 [functions-triggers]: /azure/azure-functions/functions-triggers-bindings
+[git-repo-appinsights-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights
+[git-repo-base]: https://github.com/Microsoft/botbuilder-utils-js
+[git-repo-cosmosdb-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb
+[git-repo-feedback-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback
+[git-repo-testing-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
+[testing-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
 [key-vault]: /azure/key-vault/
 [lda]: https://wikipedia.org/wiki/Latent_Dirichlet_allocation/
 [logic-apps]: /azure/logic-apps/logic-apps-overview
@@ -214,3 +219,9 @@ ms.locfileid: "54908626"
 [vscode]: https://azure.microsoft.com/products/visual-studio-code/
 [webapp]: /azure/app-service/overview
 [webchat]: /azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0/
+
+[cosmosdb-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-cosmosdb
+[appinsights-logger]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-transcript-app-insights
+[feedback-util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-feedback
+[testing util]: https://github.com/Microsoft/botbuilder-utils-js/tree/master/packages/botbuilder-http-test-recorder
+
