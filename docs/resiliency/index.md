@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 1cca2bd39339ba671ee8a298f2ded73d3e252c32
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 7fd0e1bd42266b5e5718be4519352d99b58c0584
+ms.sourcegitcommit: 644c2692a80e89648a80ea249fd17a3b17dc0818
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897774"
+ms.lasthandoff: 02/11/2019
+ms.locfileid: "55987150"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>為 Azure 設計復原應用程式
 
@@ -103,7 +103,7 @@ RTO 和 RPO 是系統中的非功能性需求，並且應該依照商務需求�
 > [!NOTE]
 > 如果不符合 SLA，Azure SLA 也包括取得服務退費的佈建，以及每個服務的明確定義「可用性」。 SLA 的這個部分會作為強制執行原則。
 
-您應該在解決方案中針對每個工作負載定義自己的目標 SLA。 SLA 可讓您評估架構是否符合商務需求。 例如，如果工作負載需要 99.99% 的執行時間，但需根據具有 99.9 % SLA 的服務而定，該服務就不能是系統中的單點失敗。 萬一服務失敗時，一個補救是指一個後援的路徑，或採取其他措施從該服務的失敗中復原。
+您應該在解決方案中針對每個工作負載定義自己的目標 SLA。 SLA 可讓您評估架構是否符合商務需求。 執行相依性對應練習以識別內部和外部相依性，例如 Active Directory 或第三方服務，例如付款提供者或電子郵件訊息服務。 特別是，要注意可能是單一失敗點或是在事件期間造成瓶頸的任何外部相依性。 例如，如果工作負載需要 99.99% 的執行時間，但需根據具有 99.9 % SLA 的服務而定，該服務就不能是系統中的單一失敗點。 萬一服務失敗時，一個補救是指一個後援的路徑，或採取其他措施從該服務的失敗中復原。
 
 下表顯示各種 SLA 層級的潛在累計停機時間。
 
@@ -182,7 +182,7 @@ N 代表應用程式 (部署在一個區域中) 的複合 SLA，R 代表其中�
 | --- | --- |
 | 服務停用 |HTTP 5xx |
 | 節流 |HTTP 429 (太多要求) |
-| 驗證 |HTTP 401 (未經授權) |
+| Authentication |HTTP 401 (未經授權) |
 | 回應變慢 |要求逾時 |
 
 ### <a name="redundancy-and-designing-for-failure"></a>針對失敗的備援措施和設計
@@ -208,6 +208,8 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 **配對的區域**。 若要協助應用程式防範區域性中斷，您可以將應用程式部署至多個區域，並使用 Azure 流量管理員將網際網路流量分散到不同區域。 每個 Azure 區域都會與另一個區域配對。 這些區域集合在一起就構成了[區域性配對](/azure/best-practices-availability-paired-regions)。 區域性配對會位於相同的地理位置內 (巴西南部除外)，以符合資料常駐地之稅務和執法管轄區的要求。
 
 在設計多區域應用程式時，請將跨區域之網路延遲會大於單一區域的情形納入考量。 例如，如果您要複寫資料庫來啟用容錯移轉，請在某區域中使用同步資料複寫，但在跨區域時使用非同步資料複寫。
+
+選取配對區域時，請確保這兩個區域都具有所需的 Azure 服務。 如需依區域提供的服務清單，請參閱[依區域提供的產品](https://azure.microsoft.com/global-infrastructure/services/)。 為災害復原選取正確的部署拓撲也很重要，特別是當您的 RPO/RTO 很短的情況下。 若要確保容錯移轉區域有足夠的容量來支援您的工作負載，請選取主動/被動 (完整複本) 拓撲或主動/主動拓撲。 請記住，這些部署拓撲可能會增加複雜度和成本，因為次要區域中的資源是預先佈建的，且可能處於閒置狀態。 如需詳細資訊，請參閱[災害復原的部署拓撲][deployment-topologies]
 
 | &nbsp; | 可用性設定組 | 可用性區域 | Azure Site Recovery/配對的區域 |
 |--------|------------------|-------------------|---------------|
@@ -258,7 +260,7 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 **隔離重要的資源**。 一個子系統中的失敗有時候可能會重疊，導致應用程式其他部分失敗。 如果失敗造成某些資源 (例如執行緒或通訊端) 無法即時釋出，而導致資源耗盡，就會發生這個情況。
 
-若要避免這個問題，您可以將系統分割為隔離群組，讓一個分割區中的失敗不會使整個系統當機。 這項技術通常稱為艙模式。
+若要避免這個問題，您可以將系統分割為隔離群組，讓一個分割區中的失敗不會使整個系統當機。 這項技術通常稱為[隔艙模式][bulkhead-pattern]。
 
 範例：
 
@@ -303,9 +305,9 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 重點是手動部署容易出錯。 因此，建議具有自動化的等冪程序，您可以視需要執行，並在失敗時重新執行。
 
-- 您可以使用 Azure Resource Manager 範本自動佈建 Azure 資源。
-- 使用 [Azure 自動化期望狀態設定][dsc] (DSC) 來設定 VM。
-- 使用應用程式程式碼的自動部署程序。
+* 若要自動佈建 Azure 資源，您可以使用 [Terraform][terraform]、[Ansible][ansible]、[Chef][chef]、[Puppet][puppet]、[PowerShell][powershell]、[CLI][cli] 或 [Azure Resource Manager 範本][template-deployment]
+* 使用 [Azure 自動化期望狀態設定][dsc] (DSC) 來設定 VM。 針對 Linux VM，您可以使用[Cloud-init][cloud-init]。
+* 您可以使用 [Azure DevOps Services][azure-devops-services] 或 [Jenkins][jenkins] 自動化應用程式部署。
 
 與復原部署相關的兩個概念是「基礎結構即程式碼」和「不可變的基礎結構」。
 
@@ -314,25 +316,24 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 另一個問題是如何推出應用程式更新。 建議使用諸如藍綠部署或 Canary 版本等技術，可透過高度控制的方式，將錯誤部署可能造成的影響降至最低。
 
-- [藍綠部署][blue-green]是將更新部署到獨立於即時應用程式之生產環境中的一種技術。 驗證部署之後，將流量路由切換為更新的版本。 例如，Azure App Service Web Apps 可利用預備位置來加以啟用。
+- [藍綠部署][blue-green]是將更新部署到獨立於即時應用程式之生產環境中的一種技術。 驗證部署之後，將流量路由切換為更新的版本。 例如，Azure App Service Web Apps 可利用[預備位置][staging-slots]來加以啟用。
 - [Canary 版本][canary-release]類似於藍綠部署。 您不需切換更新版本的所有流量，而是將更新發行至一小部分的使用者，方法是將部分的流量路由到新的部署。 如果有問題，請退出並還原成舊的部署。 否則，將更多流量路由至新的版本，直到它取得 100% 的流量。
 
-不論您採取的方法為何，萬一新的版本無法正常運作，請確定您可以復原至最後一個已知的良好部署。 此外，如果發生錯誤，應用程式記錄必須指出是哪一個版本造成錯誤。
+不論您採取的方法為何，萬一新的版本無法正常運作，請確定您可以復原至最後一個已知的良好部署。 並且也採用一種策略來回復資料庫變更和對相依服務的任何變更。 如果發生錯誤，應用程式記錄必須指出是哪一個版本造成錯誤。
 
 ## <a name="monitor-to-detect-failures"></a>監視以偵測失敗
+監視對於復原至關重要。 如果發生失敗，您必須知道該失敗，且需要深入了解失敗的原因。 
 
-監視和診斷對於復原非常重要。 如果發生失敗，您必須知道該失敗，且需要深入了解失敗的原因。
+監視大規模分散式系統會是重大挑戰。 試想在數十個 VM 上執行的應用程式 &mdash; 以一次一個的方式登入每個 VM，然後查看記錄檔並嘗試針對問題進行疑難排解，這並不實際。 此外，VM 執行個體的數量可能不是靜態的，VM 會隨著應用程式相應縮小和相應放大而新增及移除，執行個體偶爾可能會失敗，且需要重新佈健。 此外，典型的雲端應用程式可能會使用多個資料存放區 (Azure 儲存體、SQL Database、Cosmos DB、Redis 快取)，且單一使用者動作可能會跨越多個子系統。 
 
-監視大規模分散式系統會是重大挑戰。 試想在數十個 VM 上執行的應用程式 &mdash; 以一次一個的方式登入每個 VM，然後查看記錄檔並嘗試針對問題進行疑難排解，這並不實際。 此外，VM 執行個體的數目可能不是靜態的。 VM 會隨著應用程式相應縮小和相應放大而新增及移除，執行個體偶爾可能會失敗，且需要重新佈健。 此外，典型的雲端應用程式可能會使用多個資料存放區 (Azure 儲存體、SQL Database、Cosmos DB、Redis 快取)，且單一使用者動作可能會跨越多個子系統。
-
-您可以將監視和診斷程序視為具有數個不同階段的管線：
+您可以將監視程序視為具有數個不同階段的管線：
 
 ![複合 SLA](./images/monitoring.png)
 
-- **檢測**。 監視和診斷的未經處理資料會來自各種不同的來源，包括應用程式記錄、web 伺服器記錄、OS 效能計數器、資料庫記錄，以及 Azure 平台內建的診斷。 大部分的 Azure 服務都具有診斷功能，可讓您判斷問題的原因。
-- **收集和儲存**。 未經處理的檢測資料可以保留在各種不同的位置以及使用各種格式 (例如，應用程式追蹤記錄、IIS 記錄、效能計數器)。 這些不同的來源會收集、彙總，並放入可靠的儲存體。
-- **分析及診斷**。 資料在彙總之後，可以加以分析來針對問題進行疑難排解，並提供應用程式健康情況的整體檢視。
-- **視覺效果和警示**。 在這個階段，遙測資料所呈現的方式，能讓操作員快速注意到問題和趨勢。 範例包括儀表板或電子郵件警示。  
+* **檢測**。 用於監視的未經處理資料來自各種來源，包括[應用程式記錄檔](/azure/application-insights/app-insights-overview?toc=/azure/azure-monitor/toc.json)、[作業系統效能度量](/azure/azure-monitor/platform/agents-overview)、[Azure 資源](/azure/monitoring-and-diagnostics/monitoring-supported-metrics?toc=/azure/azure-monitor/toc.json)、[Azure 訂用帳戶](/azure/service-health/service-health-overview)和 [Azure 租用戶](/azure/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)。 大部分的 Azure 服務會公開[計量](/azure/azure-monitor/platform/data-collection)，您可以設定這些計量來分析和判斷問題的原因。
+* **收集和儲存**。 未經處理的檢測資料可以保留在各種不同的位置以及使用各種格式 (例如，應用程式追蹤記錄、IIS 記錄、效能計數器)。 這些不同的來源會加以收集、彙總，並放入可靠的資料存放區，例如 Application Insights、Azure 監視器計量、服務健康狀態、儲存體帳戶和 Log Analytics。
+* **分析及診斷**。 將資料彙總到這些不同的資料存放區之後，可以加以分析來針對問題進行疑難排解，並提供應用程式健康情況的整體檢視。 一般而言，您可以使用 [Kusto 查詢](/azure/log-analytics/log-analytics-queries)在 Application Insights 和 Log Analytics 中搜尋資料。 Azure Advisor 提供的建議著重[復原](/azure/advisor/advisor-high-availability-recommendations)和[最佳化](/azure/advisor/advisor-performance-recommendations)。 
+* **視覺效果和警示**。 在這個階段，遙測資料所呈現的方式，能讓操作員快速注意到問題和趨勢。 範例包括儀表板或電子郵件警示。 使用 [Azure 儀表板](/azure/azure-portal/azure-portal-dashboards)，您可以建置一個半透明效果單一窗格的監視圖形，其來自 Application Insights、Log Analytics、Azure 監視器計量和服務健康狀態。 使用 [Azure 監視器警示](/azure/monitoring-and-diagnostics/monitoring-overview-alerts?toc=/azure/azure-monitor/toc.json)，您可以建立警示服務健康狀態和資源健康狀態。
 
 監視與失敗偵測不相同。 例如，您的應用程式可能會偵測到暫時性錯誤然後重試，導致無停機時間。 但是，它應該也記錄重試作業，好讓您可以監視錯誤率，以取得整體的應用程式健康情況。
 
@@ -347,19 +348,17 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 如需監視和診斷的詳細資訊，請參閱[監視和診斷指引][monitoring-guidance]。
 
 ## <a name="respond-to-failures"></a>回應失敗
-
 前幾節著重於自動化復原策略，對於高可用性是很重要的。 不過，有時需要手動介入。
 
-- **警示**。 監視您的應用程式，注意可能需要主動介入的跡象。 例如，如果您看見 SQL Database 或 Cosmos DB 一致地節流您的應用程式，可能就需要增加您的資料庫容量或最佳化查詢。 在此範例中，即使應用程式可能會以透明的方式節流錯誤，您的遙測仍應發出警示，讓您可以追蹤。  
-- **手動容錯移轉**。 某些系統無法自動容錯移轉，而需要手動容錯移轉。 針對以 [Azure Site Recovery][site-recovery] 設定的 Azure 虛擬機器，您可以[執行容錯移轉][site-recovery-failover]並在幾分鐘內復原位於其他區域中的虛擬機器。
-- **作業整備測試**。 如果您的應用程式容錯移轉到次要地區，就應該在容錯回復到主要區域之前，執行作業整備測試。 測試應該確認主要區域健康情況，且就緒可再次接收流量。
-- **資料一致性檢查**。 如果失敗發生在資料存放區中，當存放區再次可用時，可能會有資料不一致的情況，特別是在已複寫資料時。
-- **從備份還原**。 例如，如果 SQL Database 遇到區域性中斷，您可以從最新的備份異地還原資料庫。
+* **警示**。 監視您的應用程式，注意可能需要主動介入的跡象。 例如，如果您看見 SQL Database 或 Cosmos DB 一致地節流您的應用程式，可能就需要增加您的資料庫容量或最佳化查詢。 在此範例中，即使應用程式可能會以透明的方式節流錯誤，您的遙測仍應發出警示，讓您可以追蹤。 建議您根據服務限制和配額閾值，來設定 Azure 資源計量和診斷記錄的警示。 我們建議設定計量的警示，因其與診斷記錄相比有較低的延遲性。 此外，Azure 可以透過[資源健康狀態](https://docs.microsoft.com/en-us/azure/service-health/resource-health-checks-resource-types)來提供一些立即可用的健康狀態，這有助於診斷 Azure 服務的節流。    
+* **容錯移轉**。 為應用程式設定災害復原策略。 適合的策略取決於您的 SLA。 在某些情況下，實作主動-被動就足夠了。 如需詳細資訊，請參閱[災害復原的部署拓撲](./disaster-recovery-azure-applications.md#deployment-topologies-for-disaster-recovery)。 大部分的 Azure 服務允許手動或自動容錯移轉。 例如，IaaS 應用程式中，對 Web 和邏輯層使用 [Azure Site Recovery](/azure/site-recovery/azure-to-azure-architecture)，對資料庫層使用 [SQL AlwaysOn 可用性群組](/azure/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-availability-group-dr)。 [流量管理員](https://docs.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview)提供跨區域自動容錯移轉。
+* **作業整備測試**。 同時對次要區域的容錯移轉和對主要區域的容錯回復執行作業整備測試。 許多 Azure 服務支援手動容錯移轉或測試災害復原演練的容錯移轉。 或者，您可以藉由關閉或移除服務來模擬中斷。
+* **資料一致性檢查**。 如果失敗發生在資料存放區中，當存放區再次可用時，可能會有資料不一致的情況，特別是在已複寫資料時。 對於提供跨區域複寫的 Azure 服務，請查看 RTO 和 RPO 以了解失敗導致的預期資料遺失。 檢閱 Azure 服務的 SLA，以了解跨區域容錯移轉是否可以手動起始或由 Microsoft 起始。 對於某些服務，Microsoft 會決定何時執行容錯移轉。 Microsoft 可能會優先考慮復原主要區域中的資料，如果主要區域中的資料視為無法復原，則僅容錯移轉到次要區域。 例如，[異地備援儲存體](/azure/storage/common/storage-redundancy-grs)和 [Key Vault](/azure/key-vault/key-vault-disaster-recovery-guidance) 均遵循此模型。
+* **從備份還原**。 在某些情況下，只有在相同區域內才能從備份還原。 [Azure VM 備份](/azure/backup/backup-azure-vms-first-look-arm) 就是屬於這種情況。 其他 Azure 服務提供異地複寫備份，例如[Redis 快取異地複寫](/azure/redis-cache/cache-how-to-geo-replication)。 備份的目的是為了防止意外刪除或損毀資料，以及將應用程式還原到稍早的功能版本。 因此，雖然備份可以在某些情況下做為災害復原解決方案，但反之並非總是如此：災害復原無法防止您意外刪除或損毀資料。  
 
-記錄並測試災害復原計畫。 評估應用程式失敗的商務影響。 盡可能自動化程序並記錄任何手動步驟，例如手動容錯移轉或從備份還原資料。 定期測試您的災害復原程序來驗證和改善計劃。
+記錄並測試災害復原計畫。 評估應用程式失敗的商務影響。 盡可能自動化程序並記錄任何手動步驟，例如手動容錯移轉或從備份還原資料。 定期測試您的災害復原程序來驗證和改善計劃。 為應用程式所使用的 Azure 服務設定警示。
 
 ## <a name="summary"></a>總結
-
 本文以整體的觀點討論復原，強調一些雲端的唯一挑戰。 這些包括雲端運算的散發本質、使用商用硬體，以及暫時性網路錯誤的存在。
 
 以下是本文強調的幾個重點：
@@ -374,12 +373,12 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [canary-release]: https://martinfowler.com/bliki/CanaryRelease.html
-[circuit-breaker-pattern]: https://msdn.microsoft.com/library/dn589784.aspx
-[compensating-transaction-pattern]: https://msdn.microsoft.com/library/dn589804.aspx
+[circuit-breaker-pattern]: ../patterns/circuit-breaker.md
+[compensating-transaction-pattern]: ../patterns/compensating-transaction.md
 [containers]: https://en.wikipedia.org/wiki/Operating-system-level_virtualization
 [dsc]: /azure/automation/automation-dsc-overview
 [contingency-planning-guide]: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf
-[fma]: failure-mode-analysis.md
+[fma]: ./failure-mode-analysis.md
 [hystrix]: https://medium.com/netflix-techblog/introducing-hystrix-for-resilience-engineering-13531c1ab362
 [jmeter]: https://jmeter.apache.org/
 [load-leveling-pattern]: ../patterns/queue-based-load-leveling.md
@@ -394,6 +393,19 @@ Azure 有許多功能可讓應用程式具有每個失敗層級的備援能力�
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
-[site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/
-[site-recovery-test-failover]:/azure/site-recovery/azure-to-azure-tutorial-dr-drill/
-[site-recovery-failover]:/azure/site-recovery/azure-to-azure-tutorial-failover-failback/
+[site-recovery]: /azure/site-recovery/azure-to-azure-quickstart/
+[site-recovery-test-failover]: /azure/site-recovery/azure-to-azure-tutorial-dr-drill/
+[site-recovery-failover]: /azure/site-recovery/azure-to-azure-tutorial-failover-failback/
+[deployment-topologies]: ./disaster-recovery-azure-applications.md#deployment-topologies-for-disaster-recovery
+[bulkhead-pattern]: ../patterns/bulkhead.md
+[terraform]: /azure/virtual-machines/windows/infrastructure-automation#terraform
+[ansible]: /azure/virtual-machines/windows/infrastructure-automation#ansible
+[chef]: /azure/virtual-machines/windows/infrastructure-automation#chef
+[puppet]: /azure/virtual-machines/windows/infrastructure-automation#puppet
+[template-deployment]: /azure/azure-resource-manager/resource-group-overview#template-deployment
+[cloud-init]: /azure/virtual-machines/windows/infrastructure-automation#cloud-init
+[azure-devops-services]: /azure/virtual-machines/windows/infrastructure-automation#azure-devops-services
+[jenkins]: /azure/virtual-machines/windows/infrastructure-automation#jenkins
+[staging-slots]: /azure/app-service/deploy-staging-slots
+[powershell]: /powershell/azure/overview
+[cli]: /cli/azure
