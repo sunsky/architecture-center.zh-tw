@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: bb2aa5a7ae6d7a33eac33dce4588380ec82a0df7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: c4b423b2031699210d5917f12a4c14df0f4a694c
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488166"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898267"
 ---
 # <a name="cache-aside-pattern"></a>另行快取模式
 
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
-> 範例使用 Redis 快取來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto)
+> 範例使用 Redis 快取來存取存放區，並從快取中擷取資訊。 如需詳細資訊，請參閱 [使用 Microsoft Azure Redis 快取](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache)和[如何使用 Redis 快取建立 Web 應用程式](/azure/redis-cache/cache-web-app-howto)
 
 下面顯示的 `UpdateEntityAsync` 方法示範如何讓快取中的物件在值被應用程式變更時變成無效。 程式碼會更新原始資料存放區，然後從快取移除快取的項目。
 
@@ -150,6 +150,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 以下是實作此模式的相關資訊︰
 
-- [快取指引](https://docs.microsoft.com/azure/architecture/best-practices/caching)。 提供如何在雲端解決方案中快取資料，以及當您實作快取時應該考慮的問題的其他資訊。
+- [快取指引](/azure/architecture/best-practices/caching)。 提供如何在雲端解決方案中快取資料，以及當您實作快取時應該考慮的問題的其他資訊。
 
 - [資料一致性入門](https://msdn.microsoft.com/library/dn589800.aspx)。 雲端應用程式通常使用分散在資料存放區各處的資料。 在此環境中管理和維護資料的一致性，是系統一個相當關鍵的部分，尤其是可能發生並行存取和可用性的問題。 此入門說明有關分散式資料之間一致性的問題，並摘要說明應用程式如何實作最終一致性，以維持資料的可用性。

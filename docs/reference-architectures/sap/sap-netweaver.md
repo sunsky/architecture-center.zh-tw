@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, SAP, Windows
-ms.openlocfilehash: 1167a65786c3df946ebaed3e52e4ed4033f50fd5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: e866727a40551b60e74fc26878a15a5a48e69cf6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486398"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897621"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>在 Azure 虛擬機器上部署適用於 AnyDB 的 SAP NetWeaver (Windows)
 
@@ -91,7 +91,7 @@ Web Dispatcher 元件是用來作為 SAP 應用程式伺服器之間 SAP 流量�
 
 此架構會將虛擬網路位址空間細分為子網路。 此參考架構主要著重在應用程式層子網路。 每個子網路可以與定義子網路存取原則的 NSG 相關聯。 將應用程式伺服器放在不同的子網路上，您就可以藉由管理子網路安全性原則 (而非個別伺服器)，以便更輕鬆地保護它們。
 
-當 NSG 與子網路產生關聯時，它會套用至子網路內的所有伺服器。 如需使用 NSG 對子網路中伺服器進行更細微控制的詳細資訊，請參閱[使用網路安全性群組篩選網路流量](https://azure.microsoft.com/en-us/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure/)。
+當 NSG 與子網路產生關聯時，它會套用至子網路內的所有伺服器。 如需使用 NSG 對子網路中伺服器進行更細微控制的詳細資訊，請參閱[使用網路安全性群組篩選網路流量](https://azure.microsoft.com/blog/multiple-vm-nics-and-network-virtual-appliances-in-azure)。
 
 ### <a name="load-balancers"></a>負載平衡器
 

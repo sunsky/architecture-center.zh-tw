@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 384634acb8690c64f75eabbfebc5f1de414f6da2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 9fce082a0e762e25981929f6fa8685033017f3eb
+ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484613"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56224176"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-regions-for-high-availability"></a>在多個 Azure 區域中執行多層式架構 (N-Tier) 應用程式以獲得高可用性
 
@@ -119,7 +119,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
     ```
 
 - 建立 [Windows Server 容錯移轉叢集][wsfc] (WSFC) 叢集，其中包含這兩個區域中的 SQL Server 執行個體。
-- 建立 SQL Server Always On 可用性群組，其中包含主要和次要區域中的 SQL Server 執行個體。 如需相關步驟，請參閱[將 Always On 可用性群組擴充到遠端 Azure 資料中心 (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) \(英文\)。
+- 建立 SQL Server Always On 可用性群組，其中包含主要和次要區域中的 SQL Server 執行個體。 如需相關步驟，請參閱[將 Always On 可用性群組擴充到遠端 Azure 資料中心 (PowerShell)](https://techcommunity.microsoft.com/t5/DataCAT/Extending-AlwaysOn-Availability-Group-to-Remote-Azure-Datacenter/ba-p/305217) \(英文\)。
 
   - 將主要複本放置於主要區域。
   - 將一或多個次要複本放置於主要區域。 設定這些來使用具有自動容錯移轉的同步認可。
