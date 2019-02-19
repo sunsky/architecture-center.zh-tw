@@ -229,7 +229,7 @@ AKS 會整合這兩種 RBAC 機制。 建立 AKS 叢集時，您可以將其設�
 
     Pod 可使用 Pod 身分識別 (如上所述)，或使用 Azure AD 服務主體及用戶端密碼來驗證其本身。 建議使用 Pod 身分識別，因為該案例中不需要用戶端密碼。 
 
-- HashiCorp Vault。 Kubernetes 應用程式可使用 Azure AD 受控識別向 HashiCorp Vault 進行驗證。 請參閱 [HashiCorp Vault speaks Azure Active Directory (HashiCorp Vault 可使用 Azure Active Directory)\](https://open.microsoft.com/2018/04/10/scaling-tips-hashicorp-vault-azure-active-directory/)。 您可以將 Vault 本身部署到 Kubernetes，但建議您在應用程式叢集的個別專用叢集中執行該 Vault。 
+- HashiCorp Vault。 Kubernetes 應用程式可使用 Azure AD 受控識別向 HashiCorp Vault 進行驗證。 請參閱 [HashiCorp Vault 可使用 Azure Active Directory](https://open.microsoft.com/2018/04/10/scaling-tips-hashicorp-vault-azure-active-directory/)。 您可以將 Vault 本身部署到 Kubernetes，但建議您在應用程式叢集的個別專用叢集中執行該 Vault。 
 
 - Kubernetes 祕密。 另一個選項是直接使用 Kubernetes 祕密。 此選項最容易設定，但仍有一些挑戰。 祕密會儲存在 etcd，這是分散式的索引鍵-值存放區。 AKS [會對 etcd 進行待用加密](https://github.com/Azure/kubernetes-kms#azure-kubernetes-service-aks)。 Microsoft 負責管理加密金鑰。
 
