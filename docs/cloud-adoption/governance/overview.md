@@ -1,27 +1,45 @@
 ---
-title: 企業雲端採用：治理概觀
-description: Azure 企業雲端採用的治理內容概觀
-author: petertaylor9999
-ms.date: 09/10/2018
-ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: a30c834bb92bcdd47ea812d9e368fb0e93fe8623
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+title: CAF：雲端治理
+description: 雲端治理內容的簡介
+author: BrianBlanchard
+ms.date: 2/11/2019
+ms.openlocfilehash: 8a9701677eec913788ca72f86444a3600e170d07
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55781991"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897366"
 ---
-# <a name="enterprise-cloud-adoption-governance-overview"></a>企業雲端採用：管理概觀
+# <a name="cloud-governance-in-the-microsoft-caf-for-azure"></a>Microsoft CAF for Azure 中的雲端治理
 
-Azure 企業雲端採用這一節涵蓋「治理」的主題。 如果您不熟悉 Azure 中的治理主題，可以從[使用者入門](../getting-started/overview.md)一節中的[什麼是雲端資源治理？](../getting-started/what-is-governance.md)和 [Azure 中的資源存取管理](../getting-started/azure-resource-access.md)開始使用。
+雲端為支援商務的技術建立新的架構。 這些新的架構也促使採用、管理和治理這些技術的方式有所改變。 自動程序會執行一行程式碼來終結並重新建立整個資料中心時，我們必須重新思考傳統方法。 對於治理也同樣如此。
 
-如果您熟悉治理概念，這一節涵蓋[單一工作負載的治理設計](governance-single-team.md)和[多個小組和多個工作負載的治理設計](governance-multiple-teams.md)。 這兩個文件包含實作指南。
+針對使用現有原則治理內部部署 IT 環境的組織而言，雲端治理應該可以補強這些原則。 不過，在內部部署與雲端之間的公司原則整合層級會由於雲端治理成熟度和雲端中的數位資產而有所差異。 雲端資產隨時間不斷演化，雲端治理程序和原則也不斷改變。
+
+本節關於 CAF 的指引有兩個目的：
+
+* 提供客戶通常都會遇到且可採取動作的程序。 所有這些都涵蓋商務風險、降低風險的公司原則，以及實作技術解決方案的設計指引。 若有必要，設計指引可以專門針對 Azure。 這些程序中其他所有指引可以在任何雲端均適用的方法或多雲端方法中運用。
+* 透過開發公司原則、處理程序和工具的詳細指引，協助讀者建立滿足各種不同業務需求的個人化治理解決方案，包括治理多個公用雲端。
+
+此內容適用於雲端治理小組。 這也與開發雲端治理強大基礎的雲端架構設計師息息相關。
+
+## <a name="audience"></a>對象
+
+CAF 的內容會影響企業的業務、技術和文化。 CAF 的這個部分將與 IT 安全性、IT 治理、財務、業務主管、網路、身分識別和雲端採用小組進行密切互動。 對於這些角色有不同程度的相依性，將需要雲端架構師使用本指南才能達成。 對這些小組的接觸可能只需要進行一次；不過，在某些情況下，與其他這些角色的互動則需要不斷進行。
+
+雲端架構設計師可引導並促使這些對象共同合作。 此系列指南的內容旨在協助雲端架構設計師促進與正確對象進行正確的對話，藉以推動必要的決策。 由雲端推動的業務轉型必須由雲端架構設計師居中協助指導整個業務和 IT 的決策。
+
+**本節中的雲端架構設計師專業化：** CAF 的每個部分代表雲端架構設計師角色的不同專業化或樣貌。 CAF 的這個部分專為熱衷於減輕或消除技術風險的雲端架構設計師所設計。 許多雲端服務提供者將這些專家稱為雲端監管人，我們則偏向稱為雲端守護者，或統稱為雲端治理小組。 在每個可採取動作的客戶程序中，這些文章呈現雲端治理小組的組成和角色如何隨時間而改變。
+
+## <a name="using-this-guide"></a>使用本指南
+
+對於想要完全遵循本指南的讀者，此內容將有助於訂定與雲端實作並行的強大雲端治理策略。 本指南會引導讀者了解此類策略的理論和實作。
+
+如需快速了解 Azure 實作的理論和快速採用 Azure 實作，請先參閱[可採取動作的治理程序概觀](./journeys/overview.md)。 透過此指南，讀者可以從小規模開始，並在雲端採用過程中同時發展其治理需求。
 
 ## <a name="next-steps"></a>後續步驟
 
-一旦您已了解如何在 Azure 中設計和實作治理模型後，可以繼續進行以了解如何將[基礎結構](../infrastructure/basic-workload.md)部署至 Azure。
+檢閱可採取動作的治理程序。
 
 > [!div class="nextstepaction"]
-> [深入了解單一小組的資源存取](governance-single-team.md)
+> [可採取動作的治理程序](./journeys/overview.md)

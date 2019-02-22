@@ -1,20 +1,21 @@
 ---
-title: 合理化的 5R 策略
-titleSuffix: Enterprise Cloud Adoption
-description: 說明合理化數位資產時可用的選項
+title: CAF：合理化的 5R 策略
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 檢閱合理化數位資產的可用選項。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 06058967e6ffcd9e3554a46c67144f72fb19078f
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: ee196487e6f59b1e1b3c63bab9496cbbf805affd
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908574"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897468"
 ---
-# <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>企業雲端採用：合理化的 5R 策略
+# <a name="the-5-rs-of-rationalization"></a>合理化的 5R 策略
 
 雲端合理化是評估資產以判斷何種方法最適合用來移轉或現代化雲端中各個資產的程序。 確定關於合理化程序的詳細資訊，請參閱[什麼是數位資產？](overview.md)
 
@@ -135,7 +136,7 @@ ms.locfileid: "54908574"
 
 定性分析因素：
 
-* 目前的架構與 SaaS 解決方案的成本效益分析
+* 目前架構與 SaaS 解決方案的成本效益分析
 * 商務程序對應
 * 資料結構描述
 * 自訂或自動化程序

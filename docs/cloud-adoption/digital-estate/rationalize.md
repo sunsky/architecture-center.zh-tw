@@ -1,20 +1,21 @@
 ---
-title: 合理化數位資產
-titleSuffix: Enterprise Cloud Adoption
-description: 評估數位資產以判斷以何種方式最適合將其裝載於雲端的程序。
+title: CAF：合理化數位資產
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 評估數位資產以判斷將其裝載於雲端的最佳方法。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 2002b5273aed4aef2d283f23f83aa08d1d6f5c95
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 02189c9edcbfea0a55fe69a53bf610e85470a4d0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485718"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897196"
 ---
-# <a name="enterprise-cloud-adoption-rationalize-the-digital-estate"></a>企業雲端採用：合理化數位資產
+# <a name="rationalize-the-digital-estate"></a>合理化數位資產
 
 雲端合理化是評估資產以判斷何種方法最適合用來將其裝載於雲端的程序。 在確認[方法](approach.md)並彙總[清查](inventory.md)後，即可開始進行雲端合理化。 [合理化的 5R 策略](5-rs-of-rationalization.md)將討論最常用的合理化選項。
 
@@ -50,7 +51,7 @@ ms.locfileid: "54485718"
 
 在進行雲端轉換時，清查會直接與營運成本相互關聯。 必須要有精確的清查資料，才能完成妥善規劃。 但很可惜，目前的環境掃描選項為了掃描完整清查並加編目，可能會使決策延遲達週數或數個月。 幸而，我們可以透過一些技巧來加速資料收集。
 
-代理程式型掃描是最常被提到的延遲。 傳統合理化所需的完整資料，通常依存於可經由在每個資產上執行的代理程式來收集的資料。 這種對於代理程式的相依性常會拖慢進度，因為它可能需要來自於安全性、作業及管理功能的反饋。
+代理程式型掃描是最常被提到的延遲。 傳統合理化所需的完整資料，通常依存於可經由在每個資產上執行的代理程式來收集的資料。 這種對於代理程式的相依性常會拖慢進度，因為它可能需要來自於安全性、作業及管理功能的意見反應。
 
 在漸進式合理化程序中，可使用無代理程式解決方案來進行初始探索，以加速完成早期的決策。 根據環境中的複雜程度，仍有可能需要使用代理程式型解決方案，但已非商務變更的關鍵環節。
 
@@ -112,7 +113,7 @@ ms.locfileid: "54485718"
 
 ### <a name="qualitative-analysis"></a>定性分析
 
-「雲端採用」和「雲端策略」小組可互相合作，共同分析這個小型工作負載。 這會產生一個建立和測試定性分析準則的受控機會。 較小的母體會產生對受影響的使用者進行調查的機會，以在一週內完成詳細的定性分析。 若想了解共通的定性分析因素，請參閱[合理化的 5R 策略](5-rs-of-rationalization.md)中的特定合理化目標。
+雲端採用和雲端策略小組可共同作業以分析這個小型工作負載。 這會產生一個建立和測試定性分析準則的受控機會。 較小母體會產生對受影響使用者進行調查的機會，以在一週內完成詳細的定性分析。 若想了解共通的定性分析因素，請參閱[合理化的 5R 策略](5-rs-of-rationalization.md)中的特定合理化目標。
 
 ### <a name="migration"></a>移轉
 
@@ -122,7 +123,7 @@ ms.locfileid: "54485718"
 - 定義達成長期願景所需的核心服務 (和 Azure 標準)。
 - 深入了解營運在後續的轉型過程中可能需要怎樣的發展。
 - 了解任何既有的商業風險，以及企業對這些風險的承受能力。
-- 根據企業對風險的承受能力，建立控管的基準或最小可行性產品 (MVP)
+- 根據企業的風險承受度，建立治理基準或最小可行性產品 (MVP)。
 
 ## <a name="release-planning"></a>版本規劃
 
@@ -154,7 +155,7 @@ ms.locfileid: "54485718"
 
 ## <a name="next-steps"></a>後續步驟
 
-合理化工作的輸出將是要受到所選轉換影響的所有資產已排定優先順序的待辦項目。 此待辦項目現已可作為雲端服務成本計算模型的基礎。
+合理化工作的輸出是將受所選轉換影響之所有資產排定優先順序的待辦項目。 此待辦項目現已可作為雲端服務成本計算模型的基礎。
 
 > [!div class="nextstepaction"]
 > [根據數位資產調整成本模型](calculate.md)

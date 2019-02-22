@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, SAP, Windows, Linux
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-sap-production.png
-ms.openlocfilehash: 03714dbf08c23220fa95a3789adb40d7a5cfac92
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
+ms.openlocfilehash: a80d414f53cca474af587fce7c67d734eb223841
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908234"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897162"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>在 Azure 上使用 Oracle Database 來執行 SAP 生產環境工作負載
 
@@ -66,7 +66,7 @@ SAP 針對 Azure 環境中不同的作業系統、資料庫管理系統和 VM �
 
 - Oracle 資料庫也有適用於 Azure 的建議做法。 如需詳細資訊，請參閱[在 Azure 中設計和實作 Oracle 資料庫](/azure/virtual-machines/workloads/oracle/oracle-design)。
 
-- Oracle Data Guard 用來消除任務關鍵性 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
+- Oracle 資料保護用於消除關鍵任務 Oracle 資料庫的單一失敗點。 如需詳細資訊，請參閱[在 Azure 中的 Linux 虛擬機器上實作 Oracle Data Guard](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard)。
 
 - Microsoft Azure 提供的基礎結構服務可用於部署 SAP 產品與 Oracle 資料庫。 如需詳細資訊，請參閱[在 Azure 上針對 SAP 工作負載部署 Oracle DBMS](/azure/virtual-machines/workloads/sap/dbms_guide_oracle)。
 
