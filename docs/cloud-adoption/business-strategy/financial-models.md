@@ -1,20 +1,21 @@
 ---
-title: 建立雲端轉換的財務模型
-titleSuffix: Enterprise Cloud Adoption
-description: 如何建立雲端轉換的財務模型
+title: CAF：建立雲端轉換的財務模型
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 如何建立雲端轉換的財務模型。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: d1a5cd0cefef4786a0f55592cad58451c3cae9c4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482174"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898199"
 ---
-# <a name="enterprise-cloud-adoption-how-to-create-a-financial-model-for-cloud-transformation"></a>企業雲端採用：如何建立雲端轉換的財務模型
+# <a name="create-a-financial-model-for-cloud-transformation"></a>建立雲端轉換的財務模型
 
 要建立財務模型以準確呈現任何雲端轉換的完整商業價值，可能是很複雜的作業。 不同的組織會有不同的財務模型和商業論證。 本文將建立某些公式，並指出在建立財務模型時常會疏漏的若干要點。
 
@@ -97,3 +98,10 @@ ms.locfileid: "54482174"
 資本支出 (CapEx) 與營運費用略有不同。 此類別通常由更新週期或資料中心擴充所驅動。 以新的高效能叢集裝載巨量資料解決方案或資料倉儲時，若要將其統合納入 CapEx 類別中，即屬於資料中心擴充的範例。 更常見的是基本更新週期。 有些公司採用嚴謹的硬體更新週期，亦即資產會以固定週期汰用和換新 (通常為每 3、5 或 8 年一次)。 這些週期通常會與資產租用週期或預測的設備使用期限一致。 在達到更新週期時，IT 即會提取 CapEx 以購買新設備。
 
 在更新週期通過核准並編入預算後，雲端轉換將有助於消除該成本。 若已規劃更新週期但尚未核准，雲端轉換將可產生 CapEx 成本規避的效果。 這兩個案例都會計入成本差異中。
+
+## <a name="next-steps"></a>後續步驟
+
+請閱讀雲端轉換所造就的範例財會結果。
+
+> [!div class="nextstepaction"]
+> [財會結果範例](./business-outcomes/fiscal-outcomes.md)

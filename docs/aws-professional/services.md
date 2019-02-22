@@ -8,12 +8,12 @@ ms.date: 11/09/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: fb0749855ff524cf89968e5af47b17f1bbdd53cf
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 2937b50655dc13e8fe0cd79cf69edfa8e05d4018
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484341"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898080"
 ---
 # <a name="aws-to-azure-services-comparison"></a>AWS 與 Azure 服務相比
 
@@ -45,7 +45,7 @@ Microsoft Azure 與 AWS 在公用雲端平台各擅勝場，全都備有各種�
 |         &nbsp;         |             EC2 Container Registry             |                                                                                                                [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)                                                                                                                 |                                            可讓客戶儲存 Docker 格式的映像。 用來在 Azure 上建立所有類型的容器部署。                                             |
 | 微服務/容器協調器 | Elastic Container Service for Kubernetes (EKS) |                                                                                                              [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/services/kubernetes-service/)                                                                                                               |                  以 Kubernetes 部署協調的容器化應用程式。 透過自動升級和內建的作業主控台，來簡化監視和叢集管理。                  |
 |                 &nbsp;                  |                                                |                                                                                                                       [Service Fabric](https://azure.microsoft.com/services/service-fabric/)                                                                                                                        |              一種計算服務，可協調及管理複雜且彼此相關之程式碼元件的執行、存留期及復原。這些程式碼元件可能沒有狀態，也可能有狀態。              |
-| &nbsp; | &nbsp; | [Service Fabric Mesh](/azure/service-fabric-mesh/service-fabric-mesh-overview) | 一個受到完整管理的服務，讓開發人員能夠部署微服務應用程式，而不需管理虛擬機器、儲存體或網路功能。
+| &nbsp; | &nbsp; | [Service Fabric Mesh](/azure/service-fabric-mesh/service-fabric-mesh-overview) | 一個完整受控服務，讓開發人員能夠部署微服務應用程式，而不需管理虛擬機器、儲存體或網路功能。
 |                 &nbsp;                  |                                                |                                                                                                                             [Azure Container Service (ACS)](/azure/container-service/)                                                                                                                              |                                                             快速部署可進行生產的 Kubernetes、DC/OS 或 Docker Swarm 叢集                                                              |
 |               無伺服器                |                     Lambda                     |                                                                                  [Azure Functions](https://azure.microsoft.com/services/functions/) <br/><br/>[事件格線](https://azure.microsoft.com/services/event-grid/)                                                                                  |                                       整合系統並執行後端處理序，以回應事件或排程，而無須佈建或管理伺服器。                                        |
 |          後端處理序邏輯          |                     &nbsp;                     |                                                                                                                            [Web Job](/azure/app-service-web/websites-webjobs-resources)                                                                                                                            |                                                              提供在應用程式內容中執行背景處理序的簡單方式。                                                              |

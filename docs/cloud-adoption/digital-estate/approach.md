@@ -1,20 +1,21 @@
 ---
-title: 數位資產規劃方法
-titleSuffix: Enterprise Cloud Adoption
+title: CAF：數位資產規劃方法
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
 description: 說明數位資產規劃的某些方法
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 59c9e208254eaa0e8beb365718ef59d0694094f3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 8b6c680cf477ea188cbd263ecc04389d6daaed89
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482216"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898012"
 ---
-# <a name="enterprise-cloud-adoption-approaches-to-digital-estate-planning"></a>企業雲端採用：數位資產規劃方法
+# <a name="approaches-to-digital-estate-planning"></a>數位資產規劃方法
 
 數位資產規劃可能採取多種型態，端視所需的結果和現有的資產規模而定。 關於採行的方法，也有許多不同的選擇。 請務必在規劃階段初期設定關於採行方法的期望。 期望不明確常會導致其他清查收集作業發生相關延遲。 本文章將概述三種分析方法。
 
@@ -36,7 +37,7 @@ ms.locfileid: "54482216"
 
 ## <a name="incremental-approach"></a>漸進方法
 
-如同大部分的企業雲端採用架構，強烈建議您使用漸進方法。 在進行數位資產規劃時，這相當於多階段程序，說明如下：
+如同大部分的 CAF，強烈建議您使用漸進方法。 在進行數位資產規劃時，這相當於多階段程序，說明如下：
 
 - 初始成本分析：如需進行財務驗證，請先依照前述說明使用資產驅動方法計算整個數位資產的初始成本，而不進行合理化。 這會建立最糟情況的基準測試。
 

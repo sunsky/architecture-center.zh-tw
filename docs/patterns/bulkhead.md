@@ -9,16 +9,16 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1ad646f5c8f4b329b0d0e9a29c83e86848b13ab0
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 4ad221ae5e9bd51c6d304ba33b884f71c5081b16
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488336"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898250"
 ---
 # <a name="bulkhead-pattern"></a>隔艙模式
 
-將應用程式的元素隔離到集區中，以便在其中一個元素失敗時，其他元素可以繼續運行。
+將應用程式的元素隔離到集區中，以便其中一個元素失敗時，其他元素可以繼續運行。
 
 這種模式被命名為「隔艙」，因為它類似於船體的剖面分區。 如果船體受損，只有受損部分充滿水，這樣可以防止船舶沉沒。
 
