@@ -1,20 +1,22 @@
 ---
-title: 什麼是數位資產？
-titleSuffix: Enterprise Cloud Adoption
-description: 說明數位資產的概念
+title: CAF：什麼是數位資產？
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+description: 什麼是數位資產？
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: ce21a2d72fcb630f5f197dbd6b87b16ef8f41435
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d23bdbdd98226e8b9cdb9bbb5fefa5a918a498d8
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481536"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898420"
 ---
-# <a name="enterprise-cloud-adoption-what-is-a-digital-estate"></a>企業雲端採用：什麼是數位資產？
+<!-- markdownlint-disable MD026 -->
+
+# <a name="caf-what-is-a-digital-estate"></a>CAF：什麼是數位資產？
 
 每家現代化公司都有某種形式的數位資產。 數位資產十分類似於實體資產，是對眾多有形資產的抽象性參考。 在數位資產中，這些資產包括虛擬機器 (VM)、伺服器、應用程式、資料等等。 基本上，數位資產是指商業程序及營運所需的 IT 資產集合。
 
@@ -53,4 +55,4 @@ ms.locfileid: "54481536"
 開始進行數位資產規劃之前，您必須先決定所要使用的方法。
 
 > [!div class="nextstepaction"]
-> [決定分析方法](approach.md)
+> [數位資產規劃方法](approach.md)

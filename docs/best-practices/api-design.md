@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2c4a76ea3a9acdeb1141a1274f6926667c67c81b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: b15b97de2042a0e213192dd586ffdcc4c51b1f11
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484103"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897978"
 ---
 # <a name="api-design"></a>API 設計
 
@@ -446,7 +446,7 @@ Content-Type: application/json; charset=utf-8
 
 ### <a name="header-versioning"></a>標頭版本控制
 
-與其以查詢字串參數的形式附加版本號碼，您可以實作指出資源版本的自訂標頭。 這個方法需要用戶端應用程式將適當標頭加入任何要求中，不過如果省略版本標頭，處理用戶端要求的程式碼可以使用預設值 (第 1 版)。 下列範例使用名為 Custom-Header的自訂標頭。 此標頭的值指出 Web API 的版本。
+與其以查詢字串參數的形式附加版本號碼，您可以實作指出資源版本的自訂標頭。 這個方法需要用戶端應用程式將適當標頭加入任何要求中，不過如果省略版本標頭，處理用戶端要求的程式碼可以使用預設值 (第 1 版)。 下列範例使用名為 *Custom-Header* 的自訂標頭。 此標頭的值指出 Web API 的版本。
 
 第 1 版：
 

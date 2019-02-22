@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a87972a3901ed9499b5b25831131a79ff5db8f87
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
+ms.openlocfilehash: 4f973a6173e882d6ae839833bd3c5bf86f8d7fb6
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782093"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898131"
 ---
 # <a name="data-partitioning-strategies"></a>資料分割策略
 
@@ -229,7 +229,7 @@ Azure 搜尋服務會將可搜尋的內容儲存為資料庫中的 JSON 文件�
 
 ## <a name="partitioning-azure-redis-cache"></a>資料分割 Azure Redis 快取
 
-Azure Redis 快取在雲端中提供以 Redis 索引鍵-值資料存放區為基礎的共用快取服務。 正如其名，Azure Redis 快取的目的是做為快取解決方案。 只能用它來保留暫時性資料，而不是做為永久的資料存放區。 如果快取無法使用，使用 Azure Redis 快取的應用程式應該能夠繼續運作。 Azure Redis 快取支援主要/次要複寫以提供高可用性，但目前的快取大小上限為 53 GB。 如果您需要更多的空間，您必須建立其他快取。 如需詳細資訊，請參閱 [Azure Redis 快取]。
+Azure Redis 快取在雲端中提供以 Redis 索引鍵-值資料存放區為基礎的共用快取服務。 正如其名，Azure Redis 快取的目的是做為快取解決方案。 只能用它來保留暫時性資料，而不是做為永久的資料存放區。 如果快取無法使用，則使用 Azure Redis 快取的應用程式應該能夠繼續運作。 Azure Redis 快取支援主要/次要複寫以提供高可用性，但目前的快取大小上限為 53 GB。 如果您需要更多的空間，您必須建立其他快取。 如需詳細資訊，請參閱 [Azure Redis 快取]。
 
 分割 Redis 資料存放區包含跨 Redis 服務的執行個體劃分資料。 每個執行個體都會構成單一分割區。 Azure Redis Cache 會抽象化外觀背後的 Redis 服務，而不會直接公開它們。 實作資料分割的最簡單方式是建立多個 Azure Redis 快取執行個體，並將資料分佈於它們之間。
 

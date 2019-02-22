@@ -1,20 +1,21 @@
 ---
-title: 建置雲端移轉業務案例
-titleSuffix: Enterprise Cloud Adoption
-description: 建置雲端移轉的商業論證時所應考量的事項
+title: CAF：建置雲端移轉業務案例
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+description: 建置雲端移轉的商業論證時所應考量的事項。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.service: architecture-center
-ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 8c27ce211f500ee2eec4f7775a7f68f214dba433
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: 21c2b877a0f329711027f020fd0047479e8c7bfb
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488319"
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898301"
 ---
-# <a name="enterprise-cloud-adoption-building-a-cloud-migration-business-case"></a>企業雲端採用：建置雲端移轉業務案例
+# <a name="build-a-business-justification-for-cloud-migration"></a>建置雲端移轉的商業論證
 
 雲端移轉可因雲端轉換工作而產生早期投資投酬率 (ROI)。 不過，藉由有形的相關成本和報酬擬定明確的商業論證，可能是很複雜的程序。 本文將協助您考量要依據雲端移轉結果建立財務模型所需的資料。 首先，我們將解開關於雲端移轉的一些迷思，以避免組織陷入某些常見的錯誤。
 
@@ -26,7 +27,7 @@ ms.locfileid: "54488319"
 
 **迷思：以內部部署環境作為對照，有助於節省雲端環境的成本。** 在數位資產規劃期間，客戶在已佈建的環境中偵測到未使用的容量超過 50% 的案例，是確實存在的。 如果依照目前的佈建方式在雲端中進行佈建，將難以實現節省成本的目標。 請考慮減少部署的資產大小以符合使用模式，而非一昧依循佈建模式。
 
-**迷思：伺服器成本是企業選擇進行雲端移轉的誘因。** 有時候是如此。 對於某些公司而言，降低與伺服器有關的持續性資本支出，是很重要的。 不過，這取決於許多因素。 採用 5 到 8 年硬體更新週期的公司，不容易看到其雲端移轉很快就產生報酬。 公司若採用標準化或強制執行的更新週期，則可以快速達到損益平衡點。 無論是哪一種情況，其他費用可能才是選擇移轉的財務誘因。 以下幾個範例說明僅以伺服器或 VM 的角度考量成本時常會忽略的成本：
+**迷思：伺服器成本是企業選擇進行雲端移轉的誘因。** 有時候是如此。 對於某些公司而言，降低與伺服器有關的持續性資本支出，是很重要的。 不過，這取決於許多因素。 採用五到八年硬體更新週期的公司，不容易看到其雲端移轉很快就產生報酬。 公司若採用標準化或強制執行的更新週期，則可以快速達到損益平衡點。 無論是哪一種情況，其他費用可能才是選擇移轉的財務誘因。 以下幾個範例說明僅以伺服器或 VM 的角度考量成本時常會忽略的成本：
 
 - 虛擬化、伺服器和中介軟體的軟體成本涵蓋面可能很廣。 雲端提供者可消除其中某些成本。 舉例來說，[Azure Hybrid Benefit](https://azure.microsoft.com/pricing/hybrid-benefit/#services) 和 [Reservations](https://azure.microsoft.com/reservations/) 方案就是可降低虛擬化成本的兩個雲端提供者。
 - 因運作中斷而造成的商業損失可能很快就會超過硬體或軟體的成本。 如果目前的資料中心不穩定，請與企業合作，量化運作中斷在機會成本或實際企業成本方面造成的影響。
@@ -109,4 +110,4 @@ ROI = (投資所得 &minus; 初始投資)/初始投資
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [建立雲端轉換的財務模型](financial-models.md)
+> [建立雲端轉換的財務模型](./financial-models.md)
