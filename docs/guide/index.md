@@ -13,7 +13,7 @@ ms.locfileid: "54484375"
 ---
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
-本指南會告訴您在 Azure 上設定可擴充、可復原和高可用性應用程式的結構化方法。 者是以我們與客戶合作後了解到的實證做法作為基礎。
+指南會告訴您在 Azure 上設定可擴充、可復原和高可用性應用程式的結構化方法。這是以我們與客戶合作後了解到的實證做法作為基礎
 
 ## <a name="introduction"></a>簡介
 
