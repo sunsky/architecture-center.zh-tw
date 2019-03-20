@@ -7,13 +7,8 @@ ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.date: 08/30/2018
-ms.openlocfilehash: 6895ffc9c73dac29c27e7d8df68550c94f68b10a
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480652"
 ---
+
 # <a name="architecture-styles"></a>架構樣式
 
 *架構樣式*是一系列共用特定特性的架構。 例如，[多層式架構 (N-tier)][n-tier] 是一般架構樣式。 最近，[微服務架構][microservices]已開始受到青睞。 架構樣式不需要使用特定技術，但是有些技術非常適合特定架構。 例如，容器的本質很適合微服務。
@@ -37,7 +32,7 @@ ms.locfileid: "54480652"
 
 <!-- markdownlint-enable MD033 -->
 
-**[多層式架構 (N-Tier)][n-tier]** 是企業應用程式的傳統架構。相依性是透過將應用程式分「層」來進行管理，這些層會執行展示、商務邏輯和資料存取等邏輯函式。一個層只能呼叫位於該層下方的層。不過，此水平分層可能是負擔。您可能很難在沒有碰觸到應用程式其餘部分的情況下，將變更引入應用程式的一個部分。這讓經常性更新變成一個挑戰，進而對新增功能的速度造成限制。
+**[多層式架構 (N-Tier)][n-tier]** 是企業應用程式的傳統架構。 相依性是透過將應用程式分「層」來進行管理，這些層會執行展示、商務邏輯和資料存取等邏輯函式。 一個層只能呼叫位於該層下方的層。 不過，此水平分層可能是負擔。 您可能很難在沒有碰觸到應用程式其餘部分的情況下，將變更引入應用程式的一個部分。 這讓經常性更新變成一個挑戰，進而對新增功能的速度造成限制。
 
 多層式架構 (N-Tier) 相當適合用來移轉已使用分層架構的現有應用程式。 因此，多層式架構 (N-Tier) 最常出現在在基礎結構即服務 (IaaS) 方案，或混合使用 IaaS 和受控服務的應用程式中。
 
