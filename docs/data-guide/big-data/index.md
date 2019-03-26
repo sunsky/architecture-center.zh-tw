@@ -1,18 +1,13 @@
 ---
 title: 巨量資料架構
-description: ''
+description: null
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 269a4c2b8fd0c186e1b44b6c0cfdcbfa4d37b57c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486925"
 ---
+
 # <a name="big-data-architectures"></a>巨量資料架構
 
 巨量資料架構的設計，可處理對於傳統資料庫系統而言太大或太複雜之資料的擷取、處理和分析。 組織跨入巨量資料領域的門檻會隨使用者及其工具的能力而有所不同。 對於某些組織來說，這個門檻可能代表數百 GB 的資料，對於其他組織來說，則可能代表數百 TB 的資料。 隨著用來處理巨量資料集的工具不斷發展，巨量資料的意義也跟著進化。 這個字詞與可透過進階分析從資料集內擷取出的價值越來越有關係，而非僅與資料大小有關，不過，在這些案例中，其規模往往會相當龐大。

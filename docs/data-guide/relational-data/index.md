@@ -1,18 +1,13 @@
 ---
 title: 關聯式資料
-description: ''
+description: null
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484921"
 ---
+
 # <a name="traditional-relational-database-solutions"></a>傳統關聯式資料庫解決方案
 
 關聯式資料是使用關聯式模型建立模型的資料。 在此模型中，資料會顯示為 Tuple。 *Tuple* 是一組屬性/值配對。 例如，Tuple 可能是 (itemid = 5, orderid = 1, item = "Chair", amount = 200.00)。 全部共用相同屬性的一組 Tuple，稱為*關聯*。

@@ -6,13 +6,8 @@ ms.date: 06/09/2017
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 108d82066d9867682c246c4de802849e2e561cbc
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486432"
 ---
+
 # <a name="extend-azure-resource-manager-template-functionality"></a>擴充 Azure Resource Manager 範本功能
 
 在 2016 年，Microsoft 模式與練習小組建立了一組 Azure Resource Manager [範本建置組塊](https://github.com/mspnp/template-building-blocks/wiki)，其目標是簡化資源部署。 每個建置組塊包含一組預先建置的範本，這個範本會部署由個別參數檔案指定的資源集。

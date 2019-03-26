@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c1172531b332854a6d4940c072b61cb3f6bcd7ba
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488183"
 ---
+
 # <a name="extraneous-fetching-antipattern"></a>沒有直接關聯的擷取反模式
 
 擷取超過商務作業所需的資料，會導致不必要的 I/O 額外負荷並且降低回應能力。

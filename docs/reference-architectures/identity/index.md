@@ -6,14 +6,9 @@ ms.date: 07/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.custom: seodec18, identity
-ms.openlocfilehash: 706cb63a65ce521e72ebc41a997dc900afacaab9
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483899"
+ms.custom: 'seodec18, identity'
 ---
+
 # <a name="choose-a-solution-for-integrating-on-premises-active-directory-with-azure"></a>選擇解決方案以整合內部部署 Active Directory 與 Azure
 
 本文會比較整合內部部署 Active Directory (AD) 環境與 Azure 網路的選項。 對於每個選項都可以使用更詳細的參考架構。

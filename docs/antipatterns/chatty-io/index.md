@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480601"
 ---
+
 # <a name="chatty-io-antipattern"></a>多對話 I/O 反模式
 
 大量 I/O 要求的累積影響可能會在效能和回應能力上有明顯影響。

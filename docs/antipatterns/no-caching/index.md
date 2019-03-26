@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 5c3062c0a17de708ada83ba81dcb111e6b1f8440
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488047"
 ---
+
 # <a name="no-caching-antipattern"></a>沒有快取的反模式
 
 在處理許多並行要求的雲端應用程式中，重複擷取相同資料可能會降低效能和延展性。

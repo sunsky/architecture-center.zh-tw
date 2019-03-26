@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 7d3fe47407eff7168dfd227a1dd1bd5917c7d431
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487027"
 ---
+
 # <a name="busy-database-antipattern"></a>忙碌資料庫反模式
 
 對資料庫伺服器進行卸載處理，可能會導致它花費大部分時間執行程式碼，而不是回應儲存和擷取資料的要求。

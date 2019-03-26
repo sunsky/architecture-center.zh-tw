@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 212930368942728fc0be0c9b2af1a90293906b39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483049"
 ---
+
 # <a name="performance-antipatterns-for-cloud-applications"></a>雲端應用程式的效能反模式
 
 「效能反模式」是在應用程式處於壓力下可能會造成延展性問題的常見做法。

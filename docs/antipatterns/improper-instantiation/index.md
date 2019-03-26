@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: a2e42e35ae1b56b61c8f9f9ecb21ee104cd3222e
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898046"
 ---
+
 # <a name="improper-instantiation-antipattern"></a>不適當的具現化反模式
 
 有些物件只需建立一次並分享即可，持續為此類物件建立新的執行個體會傷害效能。

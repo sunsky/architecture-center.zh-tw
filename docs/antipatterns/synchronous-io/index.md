@@ -8,13 +8,8 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1b53806b2939a7c44a8b48c9146d5e86c84d9e2e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486160"
 ---
+
 # <a name="synchronous-io-antipattern"></a>同步 I/O 反模式
 
 在 I/O 完成時封鎖呼叫執行緒，會降低效能並且影響垂直延展性。

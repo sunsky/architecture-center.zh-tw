@@ -8,13 +8,8 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: networking
-ms.openlocfilehash: 6172866b08197b0ca1cd3aabb3c14c01b4f06f9c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486826"
 ---
+
 # <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>選擇將內部部署網路連線到 Azure 的解決方案
 
 本文會比較將內部部署網路連線到 Azure 虛擬網路 (VNet) 的選項。 對於每個選項都可以使用更詳細的參考架構。
