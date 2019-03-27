@@ -4,18 +4,13 @@ titleSuffix: Azure Architecture Center
 description: 設計模式用於在雲端中建置可靠、可擴充且安全的應用程式。
 keywords: Azure
 author: dragon119
-ms.date: 12/10/2018
+ms.date: 03/01/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 1f3a76a104f0157526db3cff338c2b8b08dd573c
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488251"
 ---
+
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
 這些設計模式有助於在雲端中建置可靠、可擴充且安全的應用程式。
@@ -95,10 +90,11 @@ ms.locfileid: "54488251"
 |                       [隔艙](./bulkhead.md)                       |                                                        將應用程式的元素隔離到集區中，以便其中一個元素失敗時，其他元素可以繼續運作。                                                        |
 |                    [另行快取](./cache-aside.md)                    |                                                                                   依需要從資料存放區將資料載入快取中                                                                                    |
 |                [斷路器](./circuit-breaker.md)                |                                                     在連線到遠端服務或資源時，處理可能需要不同時間來修復的錯誤。                                                     |
-|                           [CQRS](./cqrs.md)                           |                                                           如果作業讀取的資料來自使用個別介面更新資料的作業，則隔離該作業。                                                            |
+| [提領票證](./claim-check.md) | 將大型訊息分割成提領票證與承載，以免癱瘓訊息匯流排。 |
 |       [補償交易](./compensating-transaction.md)       |                                                         復原由一系列步驟執行的工作，這些步驟共同定義結果一致的作業。                                                         |
 |            [競爭取用者](./competing-consumers.md)            |                                                            讓多個並行取用者處理在相同傳訊通道上接收的訊息。                                                             |
 | [計算資源彙總](./compute-resource-consolidation.md) |                                                                        將多個工作或作業合併為單一計算單位                                                                        |
+|                           [CQRS](./cqrs.md)                           |                                                           隔離自使用個別介面來更新資料的作業中讀取資料的作業。                                                            |
 |                 [事件來源](./event-sourcing.md)                 |                                                      使用附加專用存放區記錄完整系列的事件，其描述對網域中的資料採取的動作。                                                      |
 |   [外部設定存放區](./external-configuration-store.md)   |                                                           將設定資訊從應用程式部署套件移至集中位置。                                                           |
 |             [同盟身分識別](./federated-identity.md)             |                                                                                將驗證委派給外部身分識別提供者。                                                                                |

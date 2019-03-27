@@ -6,13 +6,8 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f8875612ad6b1a71fdb6f7a768078ae599eb70b5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480535"
 ---
+
 # <a name="manage-identity-in-multitenant-applications"></a>管理多租用戶應用程式中的身分識別
 
 此系列文章會說明多租用戶使用 Azure AD 進行驗證和身分識別管理時的最佳做法。
@@ -74,7 +69,7 @@ Azure Active Directory (Azure AD) 有一些絕佳功能，能夠支援這些所�
 
 在多組織用戶共享應用程式中，您必須考量使用者是多組織用戶共享環境中的使用者。
 
-### <a name="authentication"></a>驗證
+### <a name="authentication"></a>Authentication
 
 - 使用者透過其組織認證登入應用程式。 它們不需要針對應用程式建立新的使用者設定檔。
 - 同一組織內的使用者隸屬於同一租用戶。
@@ -90,9 +85,7 @@ Azure Active Directory (Azure AD) 有一些絕佳功能，能夠支援這些所�
 在本指南中，我們將特別探討使用 Azure AD 來管理身分識別。
 
 - 我們假設客戶將他們的使用者設定檔儲存在 Azure AD (包括 Office365 和 Dynamics CRM 租用戶)
-- 使用內部部署 Active Directory (AD) 的客戶可以使用 [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) 來同步其內部部署 AD 與 Azure AD。
-
-如果擁有內部部署 AD 的客戶無法使用 Azure AD Connect (因為公司 IT 原則或其他原因)，SaaS 提供者可以透過 Active Directory Federation Services (AD FS) 與客戶的 AD 聯合。 此選項已在 [與客戶的 AD FS 聯合](adfs.md)中說明。
+- 使用內部部署 Active Directory 的客戶可以使用 [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity) 來同步其內部部署 Active Directory 與 Azure AD。 如果擁有內部部署 Active Directory 的客戶無法使用 Azure AD Connect (因為公司 IT 原則或其他原因)，SaaS 提供者可以透過 Active Directory Federation Services (AD FS) 與客戶的目錄聯合。 此選項已在 [與客戶的 AD FS 聯合](adfs.md)中說明。
 
 本指南不考量多組織用戶管理的其他層面，例如參與、個別租用戶設定等等。
 

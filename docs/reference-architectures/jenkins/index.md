@@ -8,13 +8,8 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 2717b3b11f0315b698d43d067b30472481ffa527
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483423"
 ---
+
 # <a name="run-a-jenkins-server-on-azure"></a>在 Azure 上執行 Jenkins 伺服器
 
 此參考架構會顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。 該架構也會使用 Azure 監視器來監視 Jenkins 伺服器的狀態。 [**部署這個解決方案**](#deploy-the-solution)。

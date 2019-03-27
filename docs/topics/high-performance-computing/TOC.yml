@@ -1,0 +1,139 @@
+items:
+- name: Azure 上的高效能運算 (HPC)
+  href: /azure/architecture/topics/high-performance-computing
+- name: HPC 在雲端上有何不同？
+  items:
+  - name: 大量計算架構樣式
+    href: /azure/architecture/guide/architecture-styles/big-compute?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 自動調整最佳做法
+    href: /azure/architecture/best-practices/auto-scaling?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 基礎結構
+  items:
+  - name: 範例 HPC 架構
+    items:
+    - name: Azure 上的電腦輔助工程服務
+      href: /azure/architecture/example-scenario/apps/hpc-saas?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure 上的計算流體力學 (CFD) 模擬
+      href: /azure/architecture/example-scenario/infrastructure/hpc-cfd?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure 上的 3D 影片轉譯
+      href: /azure/architecture/example-scenario/infrastructure/video-rendering?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 計算
+    items:
+    - name: CPU 型虛擬機器
+      items:
+      - name: Linux VM
+        href: /azure/virtual-machines/linux/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: Windows VM
+        href: /azure/virtual-machines/windows/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: 虛擬機器 vCPU 配額
+        href: /azure/virtual-machines/linux/quotas?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 已啟用 GPU 的虛擬機器
+      items:
+      - name: Linux VM
+        href: /azure/virtual-machines/linux/sizes-gpu?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: Windows VM
+        href: /azure/virtual-machines/windows/sizes-gpu?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 儲存體
+    items:
+    - name: 儲存體最佳化的虛擬機器
+      href: /azure/virtual-machines/windows/sizes-storage?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Blob、資料表和佇列儲存體
+      href: /azure/storage/storage-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: Azure SMB 檔案儲存體
+      href: /azure/storage/files/storage-files-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 網路功能
+    items:
+    - name: 支援 RDMA 的執行個體
+      href: /azure/virtual-machines/windows/sizes-hpc?context=/azure/architecture/topics/high-performance-computing/context/hpc-context#rdma-capable-instances
+    - name: 虛擬網路
+      href: /azure/virtual-network/virtual-networks-overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: ExpressRoute
+      href: /azure/expressroute/expressroute-introduction?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 管理性
+  items:
+  - name: 自己動手做
+    items:
+    - name: 虛擬機器擴展集
+      href: /azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 混合式和雲端負載平衡
+    items:
+    - name: 將內部部署網路連線到 Azure 的選項
+      href: /azure/architecture/reference-architectures/hybrid-networking/?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 VPN 閘道將內部部署網路連線至 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/vpn?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 ExpressRoute 將內部部署網路連線至 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/expressroute?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用 ExpressRoute 搭配 VPN 容錯移轉，將內部部署網路連線至 Azure
+      href: /azure/architecture/reference-architectures/hybrid-networking/expressroute-vpn-failover?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: Marketplace 解決方案
+    items:
+    - name: 適用於 Windows 和 Linux 的 Azure 資料科學 VM
+      href: /azure/machine-learning/data-science-virtual-machine/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: Azure Batch
+    items:
+    - name: Azure Batch
+      href: /azure/batch/batch-technical-overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 開始使用 Batch 進行開發
+      href: /azure/batch/quick-run-dotnet?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 使用低優先順序的 VM 搭配 Batch
+      href: /azure/batch/batch-low-pri-vms?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: Azure CycleCloud
+    items:
+    - name: Azure CycleCloud
+      href: /azure/cyclecloud/?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 工作負載管理員
+    items:
+    - name: 適用於 Windows 的 HPC 套件
+      href: /azure/virtual-machines/windows/hpcpack-cluster-options?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 適用於 Linux 的 HPC 套件
+      href: /azure/virtual-machines/linux/hpcpack-cluster-options?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+    - name: 容器
+      items:
+      - name: Azure Kubernetes Service (AKS)
+        href: /azure/aks/intro-kubernetes?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+      - name: Container Registry
+        href: /azure/container-registry/container-registry-intro?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 成本管理
+  items:
+  - name: 低優先順序的 VM
+    href: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-low-priority?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 安全性
+  items:
+  - name: Azure 安全性文件
+    href: /azure/security/azure-security?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 在 Azure 中實作中樞輪輻網路拓撲
+    href: /azure/architecture/reference-architectures/hybrid-networking/hub-spoke?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 在 Azure 中實作中樞輪輻網路拓撲與共用服務
+    href: /azure/architecture/reference-architectures/hybrid-networking/shared-services?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: HPC 應用程式
+  items:
+  - name: 工程應用程式
+    items:
+    - name: MATLAB Distributed Computing Server
+      href: /azure/virtual-machines/windows/matlab-mdcs-cluster?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: 圖形和轉譯器
+    items:
+    - name: Autodesk Maya、3ds Max 和 Arnold
+      href: /azure/batch/batch-rendering-service?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+  - name: AI 和深入學習
+    items:
+    - name: Microsoft 辨識工具組
+      href: /cognitive-toolkit/cntk-on-azure
+  - name: MPI 提供者
+    items:
+    - name: Microsoft MPI
+      href: /message-passing-interface/microsoft-mpi
+- name: 遠端視覺效果
+  items:
+  - name: 使用 Citrix 的 Linux 虛擬桌面
+    href: /azure/architecture/example-scenario/infrastructure/linux-vdi-citrix?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+- name: 效能評定
+  items:
+  - name: 計算評定
+    href: /azure/virtual-machines/windows/compute-benchmark-scores?context=/azure/architecture/topics/high-performance-computing/context/hpc-context
+ms.openlocfilehash: 6934509e2019f342134327621606a0957dd38bb1
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419983"
