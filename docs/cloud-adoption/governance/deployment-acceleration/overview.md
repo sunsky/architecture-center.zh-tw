@@ -4,17 +4,17 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-ms.date: 2/11/2019
+ms.date: 02/11/2019
 description: 說明與雲端治理相關的部署加速。
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: ba48bb32292f0bb27ed83550483ceecd725071ff
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 8a9cd359f631708d07ab601c4488b969dc8294a0
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901008"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246589"
 ---
 # <a name="caf-deployment-acceleration-discipline-overview"></a>CAF：部署加速專業領域概觀
 
@@ -158,7 +158,7 @@ ms.locfileid: "55901008"
 
 ## <a name="next-steps"></a>後續步驟
 
-開始評估特定環境中的[業務風險](./business-risks.md)。
+開始評估特定環境中的[商務風險](./business-risks.md)。
 
 > [!div class="nextstepaction"]
 > [了解業務風險](./business-risks.md)

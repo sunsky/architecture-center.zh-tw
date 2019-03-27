@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: ce29efab1502d59513528ab4b640173346aee516
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900891"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241979"
 ---
 # <a name="caf-resource-consistency-discipline-overview"></a>CAF：資源一致性專業領域的概觀
 
@@ -161,4 +161,4 @@ CAF 的這個部分概述如何在雲端治理策略中開展資源一致性專�
 開始評估特定環境中的[商務風險](./business-risks.md)。
 
 > [!div class="nextstepaction"]
-> [了解商務風險](./business-risks.md)
+> [了解業務風險](./business-risks.md)

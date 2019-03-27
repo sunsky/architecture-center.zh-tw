@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: a86b1a75da57cec9c9aaf88abb70049f70731561
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900924"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243699"
 ---
 # <a name="cost-management-discipline-overview"></a>成本管理專業領域概觀
 
@@ -156,9 +156,9 @@ ms.locfileid: "55900924"
 
 ## <a name="next-steps"></a>後續步驟
 
-開始評估特定環境中的業務風險。
+開始評估特定環境中的商務風險。
 
 > [!div class="nextstepaction"]
-> [了解業務風險](./business-risks.md)
+> [了解商務風險](./business-risks.md)
 
 <!-- markdownlint-enable MD033 -->
