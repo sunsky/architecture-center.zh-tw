@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 資源一致性範本
 author: BrianBlanchard
 ms.openlocfilehash: 91c9681aaf94b79823a3da9cb34b1e7f584f00fe
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900741"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242439"
 ---
 # <a name="caf-resource-consistency-template"></a>CAF：資源一致性範本
 
@@ -31,7 +31,7 @@ ms.locfileid: "55900741"
 
 ## <a name="next-steps"></a>後續步驟
 
-紮實的治理實務可從了解業務風險著手。 檢閱有關業務風險的文章，並開始記載與您目前雲端採用方案保持一致的業務風險。
+紮實的治理實務可從了解商務風險著手。 檢閱有關商務風險的文章，並開始記載與您目前雲端採用方案保持一致的業務風險。
 
 > [!div class="nextstepaction"]
 > [了解業務風險](./business-risks.md)

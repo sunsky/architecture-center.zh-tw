@@ -7,12 +7,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
 author: BrianBlanchard
-ms.openlocfilehash: 8d2cae87b8a3a11bfde87aafc04d4d2ef55cbbe9
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: cd00f2fa132f5f177ccc12f61be8b5342b71197d
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901059"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58247419"
 ---
 # <a name="deployment-acceleration-tools-in-azure"></a>Azure 中的部署加速工具
 
@@ -22,7 +22,7 @@ ms.locfileid: "55901059"
 
 以下為 Azure 工具的清單，可協助使支援此治理專業領域的原則和流程臻至成熟。
 
-|  |Azure 原則  |Azure 管理群組  |Azure Resource Manager 範本  |Azure 藍圖  | Azure Resource Graph | Azure 成本管理 |
+|  | Azure 原則 | Azure 管理群組 | Azure Resource Manager 範本 | Azure 藍圖 | Azure Resource Graph | Azure 成本管理 |
 |---------|---------|---------|---------|---------|---------|---------|
 |實作公司原則     |yes |否  |否  |否 | 否 |否 |
 |跨訂用帳戶套用原則     |必要 |yes  |否  |否 | 否 |否 |

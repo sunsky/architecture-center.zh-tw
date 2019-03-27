@@ -8,11 +8,11 @@ ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: data-analytics
 ms.openlocfilehash: 72b889e2fe0d862ab1ff280cea76c2880b0fadc4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481911"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245949"
 ---
 # <a name="choosing-a-data-analytics-technology-in-azure"></a>在 Azure 中選擇資料分析技術
 
@@ -89,16 +89,16 @@ Jupyter Notebook 提供優質的環境，讓您先分析、視覺化及處理您
 
 | | Power BI | Jupyter Notebook | Zeppelin Notebook | Microsoft Azure Notebook |
 | --- | --- | --- | --- | --- |
-| 連線到進階處理的巨量資料叢集 | 是 | 是 | 是 | 否 |
-| 受控服務 | 是 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
-| 連線到 100 個資料來源 | 是 | 否 | 否 | 否 |
+| 連線到進階處理的巨量資料叢集 | yes | 是 | 是 | 否 |
+| 受控服務 | yes | 是 <sup>1</sup> | 是 <sup>1</sup> | yes |
+| 連線到 100 個資料來源 | yes | 否 | 否 | 否 |
 | 離線功能 | 是 <sup>2</sup> | 否 | 否 | 否 |
-| 內嵌功能 | 是 | 否 | 否 | 否 |
-| 自動重新整理資料 | 是 | 否 | 否 | 否 |
+| 內嵌功能 | yes | 否 | 否 | 否 |
+| 自動重新整理資料 | yes | 否 | 否 | 否 |
 | 眾多開放原始碼套件的存取權 | 否 | 是 <sup>3</sup> | 是 <sup>3</sup> | 是 <sup>4</sup> |
 | 資料轉換/清理選項 | [Power Query](https://powerbi.microsoft.com/blog/getting-started-with-power-query-part-i/)、R | 40 種語言，包含 Python、R、Julia 和 Scala | 20 種以上的解譯器，包含 Python、JDBC 和 R | Python、F#、R |
 | 價格 | 免費用於 Power BI Desktop (撰寫)，請參閱[定價](https://powerbi.microsoft.com/pricing/)以取得裝載選項 | 免費 | 免費 | 免費 |
-| 多使用者共同作業 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是 (透過共用或使用多使用者伺服器，如 [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | 是 | 是 (透過共用) |
+| 多使用者共同作業 | [是](/power-bi/service-how-to-collaborate-distribute-dashboards-reports) | 是 (透過共用或使用多使用者伺服器，如 [JupyterHub](https://github.com/jupyterhub/jupyterhub)) | yes | 是 (透過共用) |
 
 <!-- markdownlint-enable MD033 -->
 

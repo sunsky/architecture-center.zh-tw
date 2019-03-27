@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 部署加速的計量、指標及風險承受度
 author: alexbuckgit
 ms.openlocfilehash: 87d6f9f67b98d5761aced560392c9d38fa682ee7
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900868"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241209"
 ---
 # <a name="deployment-acceleration-metrics-indicators-and-risk-tolerance"></a>部署加速的計量、指標及風險承受度
 

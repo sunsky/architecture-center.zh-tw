@@ -3,12 +3,12 @@ title: 大型主機移轉：大型主機應用程式移轉
 description: 將應用程式從大型主機環境移轉至 Azure，這是經過實證、高度可用且可調整的基礎結構，適用於目前在大型主機上執行的系統
 author: njray
 ms.date: 12/26/2018
-ms.openlocfilehash: dcae5077e26ab8ba9b08e0da71a5e69d0d9f62e3
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 2a22eb038da693671ce309c76afcfc41946034f3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900820"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246389"
 ---
 # <a name="mainframe-application-migration"></a>大型主機應用程式移轉
 
@@ -168,7 +168,7 @@ IBM 資料層包含數個您也必須移轉的重要元件。 例如，在移轉
 
 常見的案例是，將應用程式移至 Azure，但將應用程式所使用的資料保留在大型主機上。 您可以使用特定軟體讓 Azure 上的應用程式可從大型主機存取資料。 幸運的是，有許多解決方案都提供 Azure 與現有大型主機環境的整合功能、混合式案例的支援，以及長時間的漸進移轉。 Microsoft 合作夥伴、獨立軟體廠商和系統整合商皆可協助您展開此程序。
 
-其中一個選項是 [Microsoft Host Integration Server](https://docs.microsoft.com/host-integration-server/) (HIS)，此解決方案可提供必要的分散式關聯資料庫架構 (DRDA)，讓 Azure 中的應用程式能夠存取保留在大型主機上的 DB2 資料。 將大型主機整合至 Azure 的其他選項包括 IBM、Attunity、Codit、其他廠商所提供的解決方案，和開放原始碼選項。
+其中一個選項是 [Microsoft Host Integration Server](/host-integration-server) (HIS)，此解決方案可提供必要的分散式關聯資料庫架構 (DRDA)，讓 Azure 中的應用程式能夠存取保留在大型主機上的 DB2 資料。 將大型主機整合至 Azure 的其他選項包括 IBM、Attunity、Codit、其他廠商所提供的解決方案，和開放原始碼選項。
 
 ## <a name="partner-solutions"></a>合作夥伴解決方案
 
@@ -188,4 +188,4 @@ Azure 提供經過實證、高度可用且可調整的基礎結構，適用於�
 
 - [在 Azure 上部署 IBM DB2 pureScale](https://azure.microsoft.com/resources/deploy-ibm-db2-purescale-on-azure)
 
-- [Host Integration Server (HIS) 文件](https://docs.microsoft.com/host-integration-server/)
+- [Host Integration Server (HIS) 文件](/host-integration-server)

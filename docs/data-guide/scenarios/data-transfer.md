@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c58d06813e3a500c6bb1b6c7889e65f401be6c33
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54484528"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244889"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>在 Azure 來回傳輸資料
 
@@ -92,9 +92,9 @@ ms.locfileid: "54484528"
 | | Azure 匯入/匯出服務 | Azure 資料箱 |
 | --- | --- | --- |
 | 板型規格 | 內部 SATA HDD 或 SDD | 安全且防篡改的單一硬體設備 |
-| Microsoft 會管理運送物流 | 否 | 是 |
-| 與合作夥伴的產品整合 | 否 | 是 |
-| 自訂設備 | 否 | 是 |
+| Microsoft 會管理運送物流 | 否 | yes |
+| 與合作夥伴的產品整合 | 否 | yes |
+| 自訂設備 | 否 | yes |
 
 ### <a name="command-line-tools"></a>命令列工具。
 
@@ -102,13 +102,13 @@ ms.locfileid: "54484528"
 
 | | Distcp | Sqoop | Hadoop CLI |
 | --- | --- | --- | --- |
-| 已針對巨量資料最佳化 | 是 | 是 |  是 |
-| 複製到關聯式資料庫 |  否 | 是 | 否 |
-| 從關聯式資料庫複製 |  否 | 是 | 否 |
-| 複製到 Blob 儲存體 |  是 | 是 | 是 |
-| 從 Blob 儲存體複製 | 是 |  是 | 否 |
-| 複製到 Data Lake Store | 是 | 是 | 是 |
-| 從 Data Lake Store 複製 | 是 | 是 | 否 |
+| 已針對巨量資料最佳化 | yes | 是 |  yes |
+| 複製到關聯式資料庫 |  否 | yes | 否 |
+| 從關聯式資料庫複製 |  否 | yes | 否 |
+| 複製到 Blob 儲存體 |  yes | 是 | yes |
+| 從 Blob 儲存體複製 | yes |  是 | 否 |
+| 複製到 Data Lake Store | yes | 是 | yes |
+| 從 Data Lake Store 複製 | yes | 是 | 否 |
 
 **其他：**
 
@@ -118,12 +118,12 @@ ms.locfileid: "54484528"
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 相容平台 | Linux、OS X、Windows | Linux、Windows | Windows | Linux、OS X、Windows | SQL Server、Azure SQL 資料倉儲 |
 | 已針對巨量資料最佳化 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>2</sup> |
-| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | 是 |
-| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | 是 |
-| 複製到 Blob 儲存體 | 是 | 是 | 是 | 否 | 是 |
-| 從 Blob 儲存體複製 | 是 | 是 | 是 | 是 | 是 |
-| 複製到 Data Lake Store | 否 | 否 | yes | 是 |  是 |
-| 從 Data Lake Store 複製 | 否 | 否 | yes | 是 | 是 |
+| 複製到關聯式資料庫 | 否 | 否 | 否 | 否 | yes |
+| 從關聯式資料庫複製 | 否 | 否 | 否 | 否 | yes |
+| 複製到 Blob 儲存體 | yes | 是 | 是 | 否 | yes |
+| 從 Blob 儲存體複製 | yes | 是 | 是 | 是 | yes |
+| 複製到 Data Lake Store | 否 | 否 | yes | 是 |  yes |
+| 從 Data Lake Store 複製 | 否 | 否 | yes | 是 | yes |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -135,17 +135,17 @@ ms.locfileid: "54484528"
 
 | | Azure 儲存體總管 | Azure 入口網站 * | Azure Data Factory |
 | --- | --- | --- | --- |
-| 已針對巨量資料最佳化 | 否 | 否 | 是 |
-| 複製到關聯式資料庫 | 否 | 否 | 是 |
-| 從關聯式資料庫複製 | 否 | 否 | 是 |
-| 複製到 Blob 儲存體 | 是 | 否 | 是 |
-| 從 Blob 儲存體複製 | 是 | 否 | 是 |
-| 複製到 Data Lake Store | 否 | 否 | 是 |
-| 從 Data Lake Store 複製 | 否 | 否 | 是 |
-| 上傳到 Blob 儲存體 | 是 | 是 | 是 |
-| 上傳到 Data Lake Store | 是 | 是 | 是 |
-| 協調資料傳輸 | 否 | 否 | 是 |
-| 自訂資料轉換 | 否 | 否 | 是 |
+| 已針對巨量資料最佳化 | 否 | 否 | yes |
+| 複製到關聯式資料庫 | 否 | 否 | yes |
+| 從關聯式資料庫複製 | 否 | 否 | yes |
+| 複製到 Blob 儲存體 | yes | 否 | yes |
+| 從 Blob 儲存體複製 | yes | 否 | yes |
+| 複製到 Data Lake Store | 否 | 否 | yes |
+| 從 Data Lake Store 複製 | 否 | 否 | yes |
+| 上傳到 Blob 儲存體 | yes | 是 | yes |
+| 上傳到 Data Lake Store | yes | 是 | yes |
+| 協調資料傳輸 | 否 | 否 | yes |
+| 自訂資料轉換 | 否 | 否 | yes |
 | 定價模式 | 免費 | 免費 | 依使用量付費 |
 
 \* Azure 入口網站在此案例中代表會針對 Blob 儲存體和 Data Lake Store 使用 Web 型瀏覽工具。

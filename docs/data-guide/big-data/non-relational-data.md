@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: f1f8a9ddc0a728f6be4350edb361afd19901de20
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483580"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245959"
 ---
 # <a name="non-relational-data-and-nosql"></a>非關聯式資料和 NoSQL
 
@@ -158,8 +158,8 @@ NoSQL 一詞所指的資料存放區不會使用 SQL 進行查詢，而是會改
 | 存取模式 | 隨機存取 | 高/寬資料的彙總 | 隨機存取 | 隨機存取 |
 | 編製索引 | 主要和次要索引 | 主要和次要索引 | 僅主要索引 | 主要和次要索引 |
 | 資料圖形 | 文件 | 表格式，使用包含資料行的資料行系列 | 索引鍵和值 | 包含邊緣和頂點的圖表 |
-| 疏鬆 | 是 | 是 | 是 | 否 |
-| 寬 (眾多資料行/屬性) | 是 | 是 | 否 | 否 |  
+| 疏鬆 | yes | 是 | 是 | 否 |
+| 寬 (眾多資料行/屬性) | yes | 是 | 否 | 否 |  
 | 資料大小 | 小 (KB) 至中 (低 MB) | 中 (MB) 至大 (低 GB) | 小 (KB) | 小 (KB) |
 | 整體的最大級別 | 極大 (PB) | 極大 (PB) | 極大 (PB) | 大 (TB) |
 
@@ -174,6 +174,6 @@ NoSQL 一詞所指的資料存放區不會使用 SQL 進行查詢，而是會改
 | 編製索引 | 主要和次要索引 | 僅主要索引 | N/A |
 | 資料圖形 | 表格式 | Blob 和中繼資料 | 文件 |
 | 疏鬆 | 否 | N/A | 否 |
-| 寬 (眾多資料行/屬性) |  否 | yes | 是 |  
+| 寬 (眾多資料行/屬性) |  否 | yes | yes |  
 | 資料大小 | 小 (KB) | 大 (GB) 至極大 (TB) | 小 (KB) |
 | 整體的最大級別 | 大 (低 TB)  | 極大 (PB) | 大 (低 TB) |

@@ -10,11 +10,11 @@ author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
 ms.openlocfilehash: 14569b8db68434ee30fa7bff7fba2da5fa537049
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901103"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242029"
 ---
 # <a name="caf-identity-baseline-discipline-overview"></a>CAF：身分識別基準專業領域概觀
 
@@ -160,7 +160,7 @@ ms.locfileid: "55901103"
 
 ## <a name="next-steps"></a>後續步驟
 
-開始評估特定環境中的[業務風險](./business-risks.md)。
+開始評估特定環境中的[商務風險](./business-risks.md)。
 
 > [!div class="nextstepaction"]
 > [了解業務風險](./business-risks.md)

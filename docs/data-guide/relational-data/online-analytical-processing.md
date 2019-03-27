@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 70c18e1a5294b09bb156d2af06af7a32d33858da
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485463"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246179"
 ---
 # <a name="online-analytical-processing-olap"></a>線上分析處理 (OLAP)
 
@@ -133,13 +133,13 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 
 | | Azure Analysis Services | SQL Server Analysis Services | 包含資料行存放區索引的 SQL Server | 包含資料行存放區索引的 Azure SQL Database |
 | --- | --- | --- | --- | --- |
-| 屬於受控服務 | yes | 否 | 否 | 是 |
-| 支援多維度 Cube | 否 | 是 | 否 | 否 |
-| 支援表格式語意模型 | 是 | 是 | 否 | 否 |
-| 可輕鬆整合多個資料來源 | 是 | 是 | 否 <sup>1</sup> | 否 <sup>1</sup> |
-| 支援即時分析 | 否 | 否 | yes | 是 |
-| 需要從來源複製資料的程序 | 是 | 是 | 否 | 否 |
-| Azure AD 整合 | 是 | 否 | 否 <sup>2</sup> | 是 |
+| 屬於受控服務 | yes | 否 | 否 | yes |
+| 支援多維度 Cube | 否 | yes | 否 | 否 |
+| 支援表格式語意模型 | yes | 是 | 否 | 否 |
+| 可輕鬆整合多個資料來源 | yes | yes | 否 <sup>1</sup> | 否 <sup>1</sup> |
+| 支援即時分析 | 否 | 否 | yes | yes |
+| 需要從來源複製資料的程序 | yes | 是 | 否 | 否 |
+| Azure AD 整合 | yes | 否 | 否 <sup>2</sup> | yes |
 
 <!-- markdownlint-enable MD033 -->
 
@@ -151,6 +151,6 @@ SQL Server Analysis Services (SSAS) 可提供適用於商業智慧應用程式�
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | 包含資料行存放區索引的 SQL Server | 包含資料行存放區索引的 Azure SQL Database |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| 高可用性的備援區域伺服器 |           是           |              否              |                 yes                 |                     是                     |
-|             支援查詢相應放大             |           是           |              否              |                 是                 |                     否                      |
-|          動態延展性 (相應增加)          |           yes           |              否              |                 是                 |                     否                      |
+| 高可用性的備援區域伺服器 |           yes           |              否              |                 yes                 |                     yes                     |
+|             支援查詢相應放大             |           yes           |              否              |                 yes                 |                     否                      |
+|          動態延展性 (相應增加)          |           yes           |              否              |                 yes                 |                     否                      |

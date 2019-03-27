@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 95f634284fe821386704174894a85a4dbca815f7
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54485072"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248663"
 ---
 # <a name="run-a-basic-web-application-in-azure"></a>執行 Azure 中的基本 Web 應用程式
 
@@ -194,7 +194,7 @@ App Service 應用程式包含 `azurewebsites.net` 子網域的 SSL 端點 (不�
 
 作為最佳安全性做法，您的應用程式應該透過重新導向 HTTP 要求來強制執行 HTTPS。 您可以在您的應用程式中實作此項目，或如[針對 Azure App Service 中的應用程式啟用 HTTPS][ssl-redirect]中所述使用 URL 重寫規則。
 
-### <a name="authentication"></a>驗證
+### <a name="authentication"></a>Authentication
 
 我們建議您透過識別提供者 (IDP) 進行驗證，例如 Azure AD、Facebook、Google 或 Twitter。 使用 OAuth 2 或 OpenID Connect (OIDC) 作為驗證流程。 Azure AD 提供的功能可讓您管理使用者及群組、建立應用程式角色、整合您的內部部署身分識別，以及使用 Office 365 及商務用 Skype 等後端服務。
 

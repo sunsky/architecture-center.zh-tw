@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 身分識別基準動機和業務風險
 author: BrianBlanchard
 ms.openlocfilehash: ef831d1b3b01251b27f1f7b18e551c49996a2468
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900458"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246519"
 ---
 # <a name="identity-baseline-motivations-and-business-risks"></a>身分識別基準動機和業務風險
 
@@ -41,9 +41,9 @@ ms.locfileid: "55900458"
 
 ## <a name="next-steps"></a>後續步驟
 
-使用[雲端管理範本](./template.md)，記錄目前雲端採用方案可能會引入的業務風險。
+使用[雲端管理範本](./template.md)，記錄目前雲端採用方案可能會引入的商務風險。
 
-一旦建立對於實際業務風險的了解，下一步是記錄風險的業務承受度與用來監視承受度的指標和關鍵計量。
+一旦建立對於實際商務風險的了解，下一步是記錄風險的業務承受度與用來監視承受度的指標和關鍵計量。
 
 > [!div class="nextstepaction"]
 > [了解指標、計量及風險承受度](./metrics-tolerance.md)

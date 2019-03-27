@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 說明與雲端治理相關的安全性基準概念
 author: BrianBlanchard
 ms.openlocfilehash: 93622fee899824fffe604d7b3f588f5ed179b371
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900888"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241689"
 ---
 # <a name="security-baseline-template"></a>安全性基準範本
 
@@ -34,4 +34,4 @@ ms.locfileid: "55900888"
 紮實的治理實務可從了解商務風險著手。 檢閱有關商務風險的文章，並開始記載與您目前雲端採用方案保持一致的業務風險。
 
 > [!div class="nextstepaction"]
-> [了解商務風險](./business-risks.md)
+> [了解業務風險](./business-risks.md)

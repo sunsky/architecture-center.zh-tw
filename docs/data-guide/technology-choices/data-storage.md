@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 0aac064f30c384520a27d2e42b21c9243d5914b2
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54483457"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244039"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>在 Azure 中選擇巨量資料儲存技術
 
@@ -105,7 +105,7 @@ Azure Cosmos DB 功能：
 | 目的 | 適用於巨量資料分析工作負載的最佳化儲存機制 |適用於各種不同儲存體案例的一般用途物件存放區 |
 | 使用案例 | 批次、串流分析和機器學習資料，例如記錄檔、IoT 資料、點擊串流、大型資料集 | 任何類型的文字或二進位資料，例如應用程式後端、備份資料、串流和一般用途資料的媒體儲存體 |
 | Structure | 階層式檔案系統 | 具有扁平命名空間的物件存放區 |
-| 驗證 | 採用 [Azure Active Directory 身分識別](/azure/active-directory/active-directory-authentication-scenarios) | 採用共用密碼：[帳戶存取金鑰](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)、[共用存取簽章金鑰](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)和[角色型存取控制 (RBAC)](/azure/security/security-storage-overview) |
+| Authentication | 採用 [Azure Active Directory 身分識別](/azure/active-directory/active-directory-authentication-scenarios) | 採用共用密碼：[帳戶存取金鑰](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)、[共用存取簽章金鑰](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)和[角色型存取控制 (RBAC)](/azure/security/security-storage-overview) |
 | 驗證通訊協定 | OAuth 2.0。 呼叫必須包含由 Azure Active Directory 發行的有效 JWT (JSON Web 權杖) | 雜湊式訊息驗證碼 (HMAC)。 呼叫必須包含透過 HTTP 要求之一部分的 Base64 編碼 SHA-256 雜湊。 |
 | Authorization | POSIX 存取控制清單 (ACL)。 ACL 採用 Azure Active Directory 身分識別，可設為檔案或資料夾層級。 | 針對帳戶層級授權，使用[帳戶存取金鑰](/azure/storage/common/storage-create-storage-account#manage-your-storage-account)。 針對帳戶、容器或 Blob 授權，使用[共用存取簽章金鑰](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)。 |
 | 稽核 | 可用。  |可用 |
@@ -120,8 +120,8 @@ Azure Cosmos DB 功能：
 |                                    |                                           Azure Cosmos DB                                           |                                                             HDInsight 上的 HBase                                                             |
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       主要資料庫模型       |                      文件存放區、圖表、索引鍵-值存放區、寬資料行存放區                      |                                                             寬資料行存放區                                                              |
-|         次要索引          |                                                 是                                                 |                                                                     否                                                                     |
-|        SQL 語言支援        |                                                 是                                                 |                                     是 (使用 [Phoenix](https://phoenix.apache.org/) JDBC 驅動程式)                                      |
+|         次要索引          |                                                 yes                                                 |                                                                     否                                                                     |
+|        SQL 語言支援        |                                                 yes                                                 |                                     是 (使用 [Phoenix](https://phoenix.apache.org/) JDBC 驅動程式)                                      |
 |            一致性             |                   強式、限定過期、工作階段、一致前置詞、最終                   |                                                                   強式                                                                   |
 | 原生 Azure Functions 整合 |                        [是](/azure/cosmos-db/serverless-computing-database)                        |                                                                     否                                                                     |
 |   自動全球發行    |                          [是](/azure/cosmos-db/distribute-data-globally)                           | 否 [HBase 叢集複寫可使用最終一致性跨區域設定](/azure/hdinsight/hbase/apache-hbase-replication) |

@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 說明與雲端治理相關的成本管理
 author: BrianBlanchard
 ms.openlocfilehash: 76e6b1b32dd862322f6cafd9aa63c6c4f79f4f5d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901096"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241729"
 ---
 # <a name="cost-management-metrics-indicators-and-risk-tolerance"></a>成本管理的計量、指標及風險承受度
 

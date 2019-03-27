@@ -4,11 +4,11 @@ description: 了解移轉期間的業務風險
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.openlocfilehash: 458474f3c94c5df4f7ffef439095adf138f33d78
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901155"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246489"
 ---
 <!-- markdownlint-disable MD026 -->
 

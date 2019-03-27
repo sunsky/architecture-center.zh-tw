@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 14adb9de7f46c3196e893451859385d87212b375
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482375"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243859"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Azure 中具 SQL 資料倉儲的 Enterprise BI
 
@@ -49,7 +49,7 @@ ms.locfileid: "54482375"
 
 **Power BI**。 Power BI 是一套用來分析資料以產生商業見解的商務分析工具。 在此架構中，它會查詢儲存在 Analysis Services 中的語意模型。
 
-### <a name="authentication"></a>驗證
+### <a name="authentication"></a>Authentication
 
 **Azure Active Directory** (Azure AD) 會驗證透過 Power BI 連線至 Analysis Services 伺服器的使用者。
 

@@ -3,16 +3,15 @@ title: CAF：Azure 如何運作？
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.custom: governance
 description: Azure 內部運作方式的說明
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: 5ce9f0535584cbc45d757be5aa6f2fd64c7cc39f
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.date: 02/11/2019
+ms.openlocfilehash: 724d16a810865dd947a7ade34766818c8ea525a1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898063"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245269"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +19,11 @@ ms.locfileid: "55898063"
 
 Azure 是 Microsoft 的公用雲端平台。 Azure 提供多種不同的服務，包括平台即服務 (PaaS)、基礎結構即服務 (IaaS)、資料庫即服務 (DBaaS) 等等。 但 Azure 到底是什麼？它如何運作？
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo]
+
+<!-- markdownlint-enable MD034 -->
 
 Azure 就像其他雲端平台一樣，需仰賴名為**虛擬化**的技術。 大部分的電腦硬體都可用軟體來模擬，因為大部分的電腦硬體都只是一組永久或半永久編碼在矽晶片材料中的指令。 使用將軟體指令對應至硬體指令的模擬層，虛擬化的硬體即可用軟體執行，如同在實際的硬體中執行一般。
 

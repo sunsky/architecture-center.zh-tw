@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 安全性基準的計量、指標及風險承受度
 author: BrianBlanchard
 ms.openlocfilehash: 30deafca59b2e09c78432ad3b59d328fb27a1e2c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900995"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58241549"
 ---
 # <a name="security-baseline-metrics-indicators-and-risk-tolerance"></a>安全性基準的計量、指標及風險承受度
 

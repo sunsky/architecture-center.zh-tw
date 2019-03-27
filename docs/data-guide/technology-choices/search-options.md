@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: c0362ff3bc6c115399892d0f066650aaa96af2dd
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486551"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244049"
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>在 Azure 中選擇搜尋資料存放區
 
@@ -54,35 +54,35 @@ ms.locfileid: "54486551"
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
 | --- | --- | --- | --- | --- |
-| 屬於受控服務 | yes | 否 | yes | 是 |  
-| REST API | 是 | 是 | 是 | 否 |
+| 屬於受控服務 | yes | 否 | yes | yes |  
+| REST API | yes | 是 | 是 | 否 |
 | 可程式性 | .NET | Java | Java | T-SQL |
-| 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | 是 | 否 | 是 | 否 |
+| 常用檔案類型 (PDF、DOCX、TXT 等) 的文件索引子 | yes | 否 | yes | 否 |
 
 ### <a name="manageability-capabilities"></a>可管理性功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
 | --- | --- | --- | --- | --- |
-| 可更新的結構描述 | 否 | yes | 是 | 是 |
-| 支援相應放大  | 是 | 是 | 是 | 否 |
+| 可更新的結構描述 | 否 | yes | 是 | yes |
+| 支援相應放大  | yes | 是 | 是 | 否 |
 
 ### <a name="analytic-workload-capabilities"></a>分析工作負載功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
 | --- | --- | --- | --- | --- |
-| 支援全文檢索搜尋以外的分析 | 否 | yes | 是 | 是 |
+| 支援全文檢索搜尋以外的分析 | 否 | yes | 是 | yes |
 | 記錄分析堆疊的一部分 | 否 | 是 (ELK) |  否 | 否 |
-| 支援語意搜尋 | 是 (僅尋找類似文件) | 是 | 是 | 是 |
+| 支援語意搜尋 | 是 (僅尋找類似文件) | yes | 是 | yes |
 
 ### <a name="security-capabilities"></a>安全性功能
 
 | | Azure 搜尋服務 | Elasticsearch | 使用 Solr 的 HDInsight | SQL Database |
 | --- | --- | --- | --- | --- |
-| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | 是 | 是 |
-| 透明資料加密 | 否 | 否 | 否 | 是 |  
-| 限制對特定 IP 位址的存取 | 否 | yes | 是 | 是 |
-| 限定為僅允許虛擬網路存取 | 否 | yes | 是 | 是 |  
-| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | 是 |
+| 資料列層級安全性 | 部分 (需要應用程式查詢以依群組識別碼篩選) | 部分 (需要應用程式查詢以依群組識別碼篩選) | yes | yes |
+| 透明資料加密 | 否 | 否 | 否 | yes |  
+| 限制對特定 IP 位址的存取 | 否 | yes | 是 | yes |
+| 限定為僅允許虛擬網路存取 | 否 | yes | 是 | yes |  
+| Active Directory 驗證 (整合式驗證) | 否 | 否 | 否 | yes |
 
 ## <a name="see-also"></a>另請參閱
 

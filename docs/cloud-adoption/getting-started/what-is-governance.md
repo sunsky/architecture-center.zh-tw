@@ -1,14 +1,17 @@
 ---
 title: CAF：什麼是雲端資源治理？
+titleSuffix: Microsoft Cloud Adoption Framework for Azure
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.date: 02/11/2019
 description: 說明 Azure 上的雲端資源治理
 author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: ec8b0b04ac8a4782c215359cf907c3c092ae2f4d
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897944"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242119"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -20,7 +23,11 @@ ms.locfileid: "55897944"
 
 這個問題的解決方案是資源存取**治理**。 治理指的是管理、監視及稽核 Azure 資源的使用符合組織目標和需求的進行中程序。
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94]
+
+<!-- markdownlint-enable MD034 -->
 
 這些目標和需求對於每個組織都是獨特的，所以不可能有一體適用的治理方法。 相反地，Azure 會實作兩個主要的治理工具，**角色型存取控制 (RBAC)** 和**資源原則**，由每個組織設計其治理模型並使用。
 

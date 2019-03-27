@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 6679ff620ca9e64036c02fce38608de38c57df93
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482165"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58246359"
 ---
 # <a name="data-warehousing-and-data-marts"></a>資料倉儲和資料超市
 
@@ -156,9 +156,9 @@ Azure SQL 資料倉儲也適用於小型及中型資料集，其中的工作負�
 | | 連接字串 | SQL Server (VM) |  SQL 資料倉儲 | HDInsight 上的 Apache Hive | HDInsight 上的 Hive LLAP |
 | --- | --- | --- | --- | --- | --- | -- |
 | 高可用性的備援區域伺服器  | yes | 是 | 是 | 否 | 否 |
-| 支援查詢相應放大 (分散式查詢)  | 否 | 否 | yes | 是 | 是 |
-| 動態延展性 | 是 | 否 | 是 <sup>1</sup> | 否 | 否 |
-| 支援資料的記憶體內快取 | yes |  是 | 否 | yes | 是 |
+| 支援查詢相應放大 (分散式查詢)  | 否 | 否 | yes | 是 | yes |
+| 動態延展性 | yes | 否 | 是 <sup>1</sup> | 否 | 否 |
+| 支援資料的記憶體內快取 | yes |  是 | 否 | yes | yes |
 
 [1] SQL 資料倉儲可讓您調整資料倉儲單位 (DWU) 數目以相應增加或減少。 請參閱[管理 Azure SQL 資料倉儲中的計算能力](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview)。
 

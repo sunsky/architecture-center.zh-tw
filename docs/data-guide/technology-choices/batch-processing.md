@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 53f8b233b0e0c1ff83a72a04b2707caa528d6f6b
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486449"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58248513"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>在 Azure 中選擇批次處理技術
 
@@ -86,7 +86,7 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 | | Azure Data Lake Analytics | Azure SQL 資料倉儲 | HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- |
-| 屬於受控服務 | 是 | yes | 是 <sup>1</sup> | 是 |
+| 屬於受控服務 | yes | yes | 是 <sup>1</sup> | yes |
 | 關聯式資料存放區 | yes | 是 | 否 | 否 |
 | 定價模式 | 以每個批次作業為單位 | 依叢集小時 | 依叢集時數 | Databricks 單位 <sup>2</sup> + 叢集時數 |
 
@@ -98,14 +98,14 @@ AZTK 不是 Azure 服務。 而是建置在 Azure Batch 上，具有 CLI 和 Pyt
 
 | | Azure Data Lake Analytics | SQL 資料倉儲 | 具有 Spark 的 HDInsight | 具有 Hive 的 HDInsight | 具有 Hive LLAP 的 HDInsight | Azure Databricks |
 | --- | --- | --- | --- | --- | --- | --- |
-| 自動調整 | 否 | 否 | 否 | 否 | 否 | 是 |
+| 自動調整 | 否 | 否 | 否 | 否 | 否 | yes |
 | 向外延展細微性  | 每個作業 | 每個叢集 | 每個叢集 | 每個叢集 | 每個叢集 | 每個叢集 |
-| 資料的記憶體快取 | 否 | yes | 是 | 否 | yes | 是 |
-| 從外部關聯式存放區查詢 | 是 | 否 | 是 | 否 | 否 | 是 |
-| 驗證  | Azure AD | SQL / Azure AD | 否 | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
-| 稽核  | yes | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 是 |
+| 資料的記憶體快取 | 否 | yes | 是 | 否 | yes | yes |
+| 從外部關聯式存放區查詢 | yes | 否 | yes | 否 | 否 | yes |
+| Authentication  | Azure AD | SQL / Azure AD | 否 | Azure AD<sup>1</sup> | Azure AD<sup>1</sup> | Azure AD |
+| 稽核  | yes | 是 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | yes |
 | 資料列層級安全性 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
-| 支援防火牆 | yes | 是 | 是 | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |
+| 支援防火牆 | yes | 是 | yes | 是 <sup>2</sup> | 是 <sup>2</sup> | 否 |
 | 動態資料遮罩 | 否 | 否 | 否 | 是 <sup>1</sup> | 是 <sup>1</sup> | 否 |
 
 <!-- markdownlint-enable MD033 -->

@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 深入了解雲端治理策略一部分的部署加速專業領域。
 author: alexbuckgit
 ms.openlocfilehash: 854b1fd420de605a665922e9b207e6aecbfab2f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900455"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242139"
 ---
 # <a name="deployment-acceleration-motivations-and-business-risks"></a>部署加速動機和業務風險
 
@@ -38,7 +38,7 @@ ms.locfileid: "55900455"
 
 ## <a name="next-steps"></a>後續步驟
 
-使用[雲端管理範本](./template.md)，記錄目前雲端採用方案可能會引入的業務風險。
+使用[雲端管理範本](./template.md)，記錄目前雲端採用方案可能會引入的商務風險。
 
 一旦建立對於實際業務風險的了解，下一步是記錄風險的業務承受度與用來監視承受度的指標和關鍵計量。
 

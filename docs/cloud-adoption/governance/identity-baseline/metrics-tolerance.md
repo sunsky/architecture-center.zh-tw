@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 身分識別基準的計量、指標及風險承受度
 author: BrianBlanchard
 ms.openlocfilehash: 4722de66308f3d18885ca930925e68e0e756ec03
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901116"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58242089"
 ---
 # <a name="identity-baseline-metrics-indicators-and-risk-tolerance"></a>身分識別基準的計量、指標及風險承受度
 

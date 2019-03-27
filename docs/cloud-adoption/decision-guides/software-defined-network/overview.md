@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 討論在 Azure 移轉中作為核心服務的軟體定義網路
 author: rotycenh
 ms.openlocfilehash: d164ba488552715dc97719329ae9de3fcf5d83ed
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901043"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243339"
 ---
 # <a name="caf-software-defined-network-decision-guide"></a>CAF：軟體定義網路決策指南
 

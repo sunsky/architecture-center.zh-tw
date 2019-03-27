@@ -8,18 +8,22 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
-ms.openlocfilehash: 020c401e9db85b76fd48c6df9be9c80d2ba5c7e4
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.openlocfilehash: d52d2a323727760463c0b5694b9116e0ed469c93
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54481468"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58243849"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>具 SQL 資料倉儲和 Azure Data Factory 的自動化 Enterprise BI
 
 此參考架構示範如何在[擷取、載入和轉換 (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) 管線中執行累加式載入。 該架構會使用 Azure Data Factory 將 ELT 管線自動化。 管線會以累加方式，將最新的 OLTP 資料從內部部署 SQL Server 資料庫載入 SQL 資料倉儲中。 交易資料會轉換成表格式模型以供分析。
 
+<!-- markdownlint-disable MD034 -->
+
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+
+<!-- markdownlint-enable MD034 -->
 
 此架構的參考實作可在 [GitHub][github] 上取得。
 
@@ -56,7 +60,7 @@ ms.locfileid: "54481468"
 
 **Power BI**。 Power BI 是一套用來分析資料以產生商業見解的商務分析工具。 在此架構中，它會查詢儲存在 Analysis Services 中的語意模型。
 
-### <a name="authentication"></a>驗證
+### <a name="authentication"></a>Authentication
 
 **Azure Active Directory** (Azure AD) 會驗證透過 Power BI 連線至 Analysis Services 伺服器的使用者。
 

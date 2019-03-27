@@ -7,11 +7,11 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.openlocfilehash: 9f787a0de5db97f5c0a5651b510e49762fbc44b9
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482983"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58244879"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>在 Azure 中選擇即時訊息擷取技術
 
@@ -72,8 +72,8 @@ Kafka 的常見使用案例包括：
 
 | | IoT 中樞 | 事件中樞 | HDInsight 上的 Kafka |
 | --- | --- | --- | --- |
-| 雲端到裝置通訊 | 是 | 否 | 否 |
-| 裝置起始的檔案上傳 | 是 | 否 | 否 |
+| 雲端到裝置通訊 | yes | 否 | 否 |
+| 裝置起始的檔案上傳 | yes | 否 | 否 |
 | 裝置狀態資訊 | [裝置對應項](/azure/iot-hub/iot-hub-devguide-device-twins) | 否 | 否 |
 | 通訊協定支援 | MQTT、AMQP、HTTPS <sup>1</sup> | AMQP、HTTPS | [Kafka 通訊協定](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | 安全性 | 提供個別裝置身分識別，可撤銷的存取控制。 | 共用存取原則，透過發行者原則的有限撤銷。 | 使用 SASL 的驗證，插入式授權，與支援的外部驗證服務整合。 |

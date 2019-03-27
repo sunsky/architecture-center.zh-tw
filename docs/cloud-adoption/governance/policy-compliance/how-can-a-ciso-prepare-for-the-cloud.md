@@ -3,12 +3,12 @@ title: CAF：CISO 整備
 description: CISO 如何為雲端做準備
 author: BrianBlanchard
 ms.date: 10/03/2018
-ms.openlocfilehash: cedb86488304e2fc84897e1da373730768adce66
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.openlocfilehash: a4535163990797decdacdacdcb6a33f0118366e9
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901168"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58238347"
 ---
 # <a name="ciso-cloud-readiness-guide"></a>CISO 雲端整備指南
 
@@ -38,7 +38,7 @@ Azure 雲端採用架構 (CAF) 等 Microsoft 指引並無法判斷或引導由�
 * [必要的安全性訓練、背景檢查](https://downloads.cloudsecurityalliance.org/star/self-assessment/StandardResponsetoRequestforInformationWindowsAzureSecurityPrivacy.docx) \(英文\)
 * [滲透測試、入侵偵測、DDoS、稽核和記錄](https://www.microsoft.com/trustcenter/Security/AuditingAndLogging) \(英文\)
 * [尖端的資料中心](https://www.microsoft.com/cloud-platform/global-datacenters)、實體安全性、[安全網路](/azure/security/security-network-overview)
-* [雲端的 Microsoft Azure 安全性回應](http://aka.ms/SecurityResponsePaper) \(英文\)
+* [雲端的 Microsoft Azure 安全性回應](https://aka.ms/SecurityResponsePaper) \(英文\)
 
 隱私權與控制：
 
@@ -58,7 +58,7 @@ Azure 雲端採用架構 (CAF) 等 Microsoft 指引並無法判斷或引導由�
 透明度：
 
 * [Microsoft 如何保護 Azure 服務中的客戶資料 (英文)](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
-* [Microsoft 如何管理 Azure 服務中的資料位置](http://azuredatacentermap.azurewebsites.net/) \(英文\)
+* [Microsoft 如何管理 Azure 服務中的資料位置](https://azuredatacentermap.azurewebsites.net/) \(英文\)
 * [Microsoft 內部的哪些人員可根據哪些條款存取您的資料 (英文)](https://www.microsoft.com/trustcenter/Privacy/Who-can-access-your-data-and-on-what-terms)
 * [Microsoft 如何保護 Azure 服務中的客戶資料 (英文)](https://www.microsoft.com/trustcenter/Transparency/default.aspx)
 * [檢閱 Azure 服務的憑證、透明度中樞](https://www.microsoft.com/trustcenter/Compliance/default.aspx) \(英文\)

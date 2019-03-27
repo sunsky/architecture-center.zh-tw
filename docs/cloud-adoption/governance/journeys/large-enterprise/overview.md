@@ -8,11 +8,11 @@ ms.date: 02/11/2019
 description: 大型企業治理旅程圖
 author: BrianBlanchard
 ms.openlocfilehash: 689b600524c3be6c505ade8c5aaa447d772c6e35
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900762"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58245239"
 ---
 # <a name="caf-large-enterprise-governance-journey"></a>CAF：大型企業治理旅程圖
 
@@ -23,7 +23,7 @@ ms.locfileid: "55900762"
 此概觀會根據最佳做法來定義治理的最簡可行產品 (MVP) 以作為快速起點。 它還提供一些治理演進的連結，這些演進會隨著新業務或技術風險的出現，進一步新增最佳做法。
 
 > [!WARNING]
-> 這個 MVP 是基於一組假設的基準起點。 即便是這組基本的最佳做法，也會以獨特的業務風險和風險承受度所衍生的公司原則為基礎。 若要查看您是否適用這些假設，請閱讀本文後面[較長的敘述](./narrative.md)。
+> 這個 MVP 是基於一組假設的基準起點。 即便是這一系列最佳做法，也是以獨特的業務風險和風險承受度推動的公司原則。 若要查看您是否適用這些假設，請閱讀本文後面[較長的敘述](./narrative.md)。
 
 ### <a name="governance-best-practice"></a>治理最佳做法
 
@@ -67,7 +67,7 @@ ms.locfileid: "55900762"
 
 ## <a name="evolving-the-best-practice"></a>推演最佳做法
 
-經過一段時間之後，這個治理 MVP 將用於推演治理做法。 隨著採用率提高，業務風險也會增加。 CAF 治理模型中的各種專業領域將持續推演以降低這些風險。 本系列的後續文章將討論影響這家虛構公司的公司原則演進。 這些演進會跨三個專業領域進行：
+經過一段時間之後，這個治理 MVP 將用於推演治理做法。 隨著採用率提高，業務風險也會增加。 CAF 治理模型中的各種專業領域將持續推演以降低這些風險。 本系列的後續文章將討論影響虛構公司的公司原則演變。 這些演進會跨三個專業領域進行：
 
 - 身分識別基準 (移轉相依性在敘述中持續推演時)
 - 成本管理 (採用擴大規模時)
