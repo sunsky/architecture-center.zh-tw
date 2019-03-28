@@ -165,8 +165,8 @@ H16r、H16mr、A8 和 A9 VM 可以連線到高輸送量後端 RDMA 網路。 此
 
 1. 在 Azure 虛擬機器或[虛擬機器擴展集](/azure/virtual-machine-scale-sets/overview?context=/azure/architecture/topics/high-performance-computing/context/hpc-context)中設定自己的叢集環境。
 2. 使用 Azure Resource Manager 範本來部署前置[工作負載管理員](#workload-managers)基礎結構和[應用程式](#hpc-applications)。
-3. 選擇 [HPC 和 GPU VM 大小](#hpc-and-gpu-sizes)，包括 MPI 或 GPU 工作負載的特製化硬體和網路連線。
-4. 為 I/O 密集的工作負載新增[高效能儲存體](#hpc-storage)。
+3. 選擇 HPC 和 GPU [VM 大小](#compute)，包括 MPI 或 GPU 工作負載的特製化硬體和網路連線。
+4. 為 I/O 密集的工作負載新增[高效能儲存體](#storage)。
 
 ### <a name="hybrid-and-cloud-bursting"></a>混合式和雲端負載平衡
 
@@ -231,7 +231,7 @@ H16r、H16mr、A8 和 A9 VM 可以連線到高輸送量後端 RDMA 網路。 此
     </li>
 </ul>
 
-安全地建立網路連線後，您即可透過現有[工作負載管理員](#workload-manager)的負載平衡功能，開始隨選使用雲端計算資源。
+安全地建立網路連線後，您即可透過現有[工作負載管理員](#workload-managers)的負載平衡功能，開始隨選使用雲端計算資源。
 
 ### <a name="marketplace-solutions"></a>Marketplace 解決方案
 
