@@ -1,176 +1,194 @@
 ---
 title: 選擇機器學習技術
-description: ''
-author: zoinerTejada
-ms.date: 02/12/2018
+description: 比較建置、部署及管理機器學習模型的選項。 決定您要為解決方案選擇哪些 Microsoft 產品。
+author: MikeWasson
+ms.date: 03/06/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: a435286781281a43864561f98362675219bb1477
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 1020e938a04c6a82e6cc831e6620ec17c9a10cc7
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486568"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503225"
 ---
-# <a name="choosing-a-machine-learning-technology-in-azure"></a>在 Azure 中選擇機器學習技術
+# <a name="what-are-the-machine-learning-products-at-microsoft"></a>Microsoft 有哪些機器學習產品？
 
-資料科學和機器學習是一項通常由資料科學家執行的工作負載。 它需要專業工具，其中有許多是專為互動式資料探索與模型工作類型所設計，且資料科學家必須執行這些工作。
+機器學習是一項資料科學技術，可讓電腦使用現有資料來預測未來的行為、結果和趨勢。 使用機器學習，電腦不需要明確進行程式設計就能學習。
 
-機器學習解決方案是反覆組建的，而且擁有兩個不同的階段：
+機器學習解決方案反覆組建的並有不同的階段：
 
-- 資料準備與模型建立。
-- 部署和使用預測服務。
+- 準備資料
+- 實驗和定型模型
+- 將定型的模型部署
+- 管理部署模型
 
-## <a name="tools-and-services-for-data-preparation-and-modeling"></a>資料準備和模型建立的工具與服務
+Microsoft 提供各種不同的產品選項，以準備、 建置、 部署及管理您的機器學習模型。 請比較這些產品，然後選擇可讓您最有效率地開發機器學習解決方案的產品。
 
-資料科學家通常想要使用 Python 或 R 所撰寫的自訂程式碼來使用資料。資料科學家通常會以互動方式使用此程式碼來查詢及探索資料、產生視覺效果和統計資料，以協助判斷與其中的關聯性。 有許多資料科學家可以使用的 R 和 Python 互動式環境。 特別受歡迎的是提供瀏覽器型介面的 **Jupyter Notebook**，它可讓資料科學家建立包含 R 或 Python 程式碼和 Markdown 文字的「筆記本」檔案。 這是可進行共同作業的有效方式，透過共用和記錄程式碼來產生一份文件。
+## <a name="cloud-based-options"></a>雲端架構的選項
 
-其他常用的工具包括：
+下列選項適用於 Azure 雲端中的機器學習。
 
-- **Spyder**：隨著 Anaconda Python 發行版本提供的 Python 互動式開發環境 (IDE)。
-- **R Studio**：R 程式設計語言的 IDE。
-- **Visual Studio Code**：輕量型的跨平台編碼環境，其支援 Python，通常也用於機器學習服務和 AI 開發的架構。
+| 雲端&nbsp;選項 | 內容 | 產品用途 |
+|-|-|-|
+| [Azure Machine Learning 服務](#azure-machine-learning-service) | 機器學習服務的受管理的雲端服務  | 使用 Python 和 CLI 在 Azure 中訓練、部署及管理模型 |
+| [Azure Machine Learning Studio](#azure-machine-learning-studio) | 拖曳&ndash;和&ndash;拖放視覺化介面，適用於 machine learning | 使用預先設定的演算法來建置、實驗及部署模型 |
 
-除了這些工具外，資料科學家可運用 Azure 服務來簡化程式碼與模型管理。
+如果您想要使用預先建置的 AI 和機器學習服務模型[Azure 認知服務](#azure-cognitive-services)可讓您輕鬆地將智慧型功能新增至您的應用程式。
 
-### <a name="azure-notebooks"></a>Azure Notebooks
+## <a name="on-premises-options"></a>在內部部署選項
 
-Azure Notebook 是線上 Jupyter Notebook 服務，可讓資料科學家建立、執行和共用雲端型程式庫中的 Jupyter Notebook。
+下列選項適用於內部部署環境的機器學習。 內部部署伺服器也可以在雲端的虛擬機器中執行。
 
-主要優點：
+| 內部部署&nbsp;選項 | 內容 | 產品用途 |
+|-|-|-|
+| [SQL Server Machine Learning 服務](#sql-server-machine-learning-services) | 內嵌在 SQL 中的分析引擎 | 在 SQL Server 內建置及部署模型 |
+| [Microsoft Machine Learning Server](#microsoft-machine-learning-server) | 適用於預測分析的獨立企業伺服器 | 建置及部署預先處理的資料模型 |
 
-- 免費服務 &mdash; 不需要 Azure 訂用帳戶。
-- 不需要在本機安裝 Jupyter 和支援的 R 或 Python 發行版本 &mdash; 直接使用瀏覽器即可。
-- 管理您自己的線上程式庫，並從任何裝置存取它們。
-- 與共同作業者共用您的筆記本。
+## <a name="development-platforms-and-tools"></a>開發平台和工具
 
-考量：
+下列開發平台和工具可供機器學習服務。
 
-- 您在離線時將無法存取您的筆記本。
-- 免費筆記本服務的有限處理功能可能不足以訓練大型或複雜的模型。
+| 平台/工具 | 內容 | 產品用途 |
+|-|-|-|
+| [Azure 資料科學虛擬機器](#azure-data-science-virtual-machine) | 預先安裝了資料科學工具的虛擬機器 | 開發在預先設定的環境中的機器學習解決方案 |
+| [Azure Databricks](#azure-databricks) | 以 Spark 為基礎的分析平台 | 建置及部署模型和資料工作流程 |
+| [ML.NET](#mlnet) | 開放原始碼、 跨平台的機器學習服務 SDK | 開發.NET 應用程式的機器學習解決方案 |
+| [Windows ML](#windows-ml) | Windows 10 機器學習平台 | 在 Windows 10 裝置上評估已定型的模型 |
 
-### <a name="data-science-virtual-machine"></a>資料科學虛擬機器
+## <a name="azure-machine-learning-service"></a>Azure Machine Learning 服務
 
-資料科學虛擬機器是包含工具和架構的 Azure 虛擬機器映像，通常由資料科學家使用，包括 R、Python、Jupyter Notebook、Visual Studio Code，以及適用於機器學習模型的程式庫 (如 Microsoft Cognitive Toolkit)。 這些工具可能很複雜並耗用很多安裝時間，且包含許多通常會導致版本管理問題的相依性。 具有預先安裝的映像，可減少資料科學家花在疑難排解環境問題的時間，進而將焦點放在其需要執行的資料探索和模型工作。
+[Azure Machine Learning 服務](/azure/machine-learning/service/overview-what-is-azure-ml.md)是用來訓練、 部署及管理大規模的機器學習服務模型的完全受控的雲端服務。 此服務可完整支援開放原始碼技術，因此您可以使用數以萬計的開放原始碼 Python 套件，例如 TensorFlow、PyTorch 與 scikit-learn。 此外也有齊備的工具 (例如 [Azure Notebooks](https://notebooks.azure.com/)、[Jupyter Notebooks](http://jupyter.org) 或[適用於 Visual Studio Code 的 Azure Machine Learning](https://aka.ms/vscodetoolsforai) 擴充功能) 可供您輕鬆地瀏覽和轉換資料，然後訓練和部署模型。 Azure Machine Learning 服務包含自動產生模型的功能，並可讓您輕鬆、有效率且正確地進行調整。
 
-主要優點：
+使用 Azure Machine Learning 服務來訓練、 部署及管理雲端規模使用 Python 和 CLI 的機器學習服務模型。
 
-- 減少資料科學工具及架構的安裝、管理和疑難排解時間。
-- 包含所有常用的工具和架構的最新版本。
-- 虛擬機器選項包括可高度擴充的影像，具備適用於大量資料模型化的 GPU 功能。
+試用[免費或付費版本的 Azure Machine Learning 服務](http://aka.ms/AMLFree)。
 
-考量：
+|||
+|-|-|
+|**類型**                   |雲端式機器學習服務解決方案|
+|**支援的語言**    |Python|
+|**機器學習階段**|資料準備<br>模型訓練<br>部署<br>管理性|
+|**主要優點**           |指令碼的中央管理和執行歷程記錄，讓模型版本間的比較變得簡單。<br/><br/>輕鬆部署及管理雲端或邊緣裝置的模型。|
+|**考量**         |需要對模型管理模型有些熟悉。|
 
-- 離線時無法存取虛擬機器。
-- 執行虛擬機器會衍生 Azure 費用，因此您必須非常小心，讓它只在需要時執行。
+## <a name="azure-machine-learning-studio"></a>Azure Machine Learning Studio
 
-### <a name="azure-machine-learning"></a>Azure Machine Learning
+[Azure Machine Learning Studio](/azure/machine-learning/studio/) 提供互動式的視覺化工作區，可讓您使用預先建置的機器學習演算法輕鬆快速地建置、測試和部署模型。 Machine Learning Studio 會以 Web 服務方式發佈模型，讓自訂應用程式或 BI 工具 (例如 Excel) 都能夠很容易地使用。
+無需任何程式設計 - 您可以連接互動式畫布上的資料集和分析模組以建構機器學習服務模型，然後輕鬆按幾下滑鼠加以部署。
 
-Azure Machine Learning 是管理機器學習實驗和模型的雲端型服務。 它包含會追蹤資料準備和模型訓練指令碼的實驗服務，可保留所有執行記錄，以便在反覆項目中比較模型效能。 資料科學家可以在其選擇的工具 (例如，Jupyter Notebook 或 Visual Studio Code) 中建立指令碼，然後再部署到 Azure 中的各種[計算資源](/azure/machine-learning/service/how-to-set-up-training-targets)。
+如果您想要直接開發及部署模型而不使用程式碼，請使用 Machine Learning Studio。
 
-模型可以作為 Web 服務部署至 Docker 容器、Azure HDinsight 上的 Spark、Microsoft Machine Learning Server 或 SQL Server。 接著，Azure Machine Learning 模型管理服務可讓您追蹤和管理雲端中、邊緣裝置上，或整個企業的模型部署。
+請嘗試付費選項或免費選項中提供的 [Azure Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2&target=_blank)。
 
-主要優點：
+|||
+|-|-|
+|**類型**                   |雲端式的拖放的機器學習服務解決方案|
+|**支援的語言**    |Python、R|
+|**機器學習階段**|資料準備<br>模型訓練<br>部署<br>管理性|
+|**主要優點**           |互動式視覺介面可使用最少程式碼製作機器學習模型。<br/><br/>內建用於資料探索的 Jupyter Notebook。<br/><br/>直接將訓練模型部署為 Azure Web 服務。|
+|**考量**         |有限延展性。 訓練資料集的大小上限為 10 GB。<br/><br/>線上專用。 無離線開發環境。|
 
-- 指令碼的中央管理和執行歷程記錄，讓模型版本間的比較變得簡單。
-- 透過視覺化編輯器進行的互動式資料轉換。
-- 輕鬆部署及管理雲端或邊緣裝置的模型。
+## <a name="azure-cognitive-services"></a>Azure 認知服務
 
-考量：
+[Azure 認知服務](/azure/cognitive-services/welcome)是一組 API，可讓您建置使用自然通訊方法的應用程式。 只要幾行程式碼，這些 API 即讓您的應用程式查看、聽取、說出、了解並解譯使用者的需求。 輕鬆地將智慧型功能新增至您的應用程式，例如：
 
-- 需要對模型管理模型有些熟悉。
+- 情緒和人氣偵測
+- 願景與語音辨識
+- Language Understanding (LUIS)
+- 知識和搜尋
 
-### <a name="azure-batch-ai"></a>Azure Batch AI
+使用認知服務可開發跨裝置及平台的應用程式。 API 會持續改進，且易於設定。
 
-Azure Batch AI 可讓您平行執行您的機器學習實驗，並跨虛擬機器 (配備 GPU) 叢集執行大規模的模型訓練。 Batch AI 訓練可讓您相應放大叢集化 GPU 之間的深入學習作業，使用 Cognitive Toolkit、Caffe、Chainer 和 TensorFlow 等架構。
+|||
+|-|-|
+|**類型**                   |建置智慧型應用程式的 Api|
+|**支援的語言**    |根據服務的許多選項|
+|**機器學習階段**|部署|
+|**主要優點**           |將應用程式中使用預先定型的模型的機器學習服務功能。<br/><br/>各種自然溝通方法與視覺與語音模型。|
+|**考量**         |已預先定型模型，並不是可自訂。|
 
-您可以使用 Azure Machine Learning 模型管理來取得 Batch AI 訓練的模型，進而部署、管理和監視模型。
+## <a name="sql-server-machine-learning-services"></a>SQL Server Machine Learning 服務
 
-### <a name="azure-machine-learning-studio"></a>Azure Machine Learning Studio
+[SQL Server Microsoft Machine Learning 服務](https://docs.microsoft.com/sql/advanced-analytics/r/r-services)針對 SQL Server 資料庫中的關聯式資料新增了採用 R 和 Python 的統計分析、資料視覺效果和預測分析。 Microsoft R 和 Python 程式庫會包含進階模型化和機器學習服務演算法，可以執行且大規模地以平行方式，在 SQL Server。
 
-Azure Machine Learning Studio 是雲端式視覺開發環境，用來建立資料實驗、訓練機器學習模型，並在 Azure 中將它們發佈為 Web 服務。 其視覺化的拖放介面可讓資料科學家和進階使用者快速建立機器學習解決方案，同時支援自訂的 R 和 Python 邏輯和許多已建立的統計演算法和技術 (適用於機器學習模型化工作)，以及 Jupyter Notebook 的內建支援。
+如果您在 SQL Server 中的關聯式資料需要內建的 AI 和預測分析，請使用 SQL Server Machine Learning 服務。
 
-主要優點：
+|||
+|-|-|
+|**類型**                   |在內部部署關聯式資料的預測性分析|
+|**支援的語言**    |Python、R|
+|**機器學習階段**|資料準備<br>模型訓練<br>部署|
+|**主要優點**           |在資料庫函式中封裝預測邏輯，可讓函式輕鬆加入資料層邏輯中。|
+|**考量**         |採用 SQL Server 資料庫作為應用程式的資料層。|
 
-- 互動式視覺介面可使用最少程式碼製作機器學習模型。
-- 內建用於資料探索的 Jupyter Notebook。
-- 直接將訓練模型部署為 Azure Web 服務。
+## <a name="microsoft-machine-learning-server"></a>Microsoft Machine Learning Server
 
-考量：
+[Microsoft Machine Learning 伺服器](https://docs.microsoft.com/machine-learning-server/what-is-machine-learning-server)是企業伺服器，用來裝載及管理 R 及 Python 處理程序的並行和分散式工作負載。 Microsoft Machine Learning 伺服器可在 Linux、Windows、Hadoop 和 Apache Spark 上執行，也可在 [HDInsight](https://azure.microsoft.com/services/hdinsight/r-server/) 中使用。 它可為使用 [RevoScaleR](https://docs.microsoft.com/machine-learning-server/r-reference/revoscaler/revoscaler)、[revoscalepy](https://docs.microsoft.com/machine-learning-server/python-reference/revoscalepy/revoscalepy-package) 和 [MicrosoftML 套件](https://docs.microsoft.com/r-server/r/concept-what-is-the-microsoftml-package)建置的解決方案提供執行引擎，並藉由對高效能分析、統計分析、機器學習和大型資料集的支援，來擴充開放原始碼 R 和 Python。 此功能會透過隨著伺服器安裝的專屬套件而提供。 對於開發，您可以使用 IDE，例如 [Visual Studio R 工具](https://www.visualstudio.com/vs/rtvs/)和[適用於 Visual Studio 的 Python 工具](https://www.visualstudio.com/vs/python/)。
 
-- 有限延展性。 訓練資料集的大小上限為 10 GB。
-- 線上專用。 無離線開發環境。
+如果您需要建置及運算化在伺服器上使用 R 和 Python 建置的模型，或是在 Hadoop 或 Spark 叢集上大規模散發 R 和 Python 訓練，請使用 Microsoft Machine Learning 伺服器。
 
-## <a name="tools-and-services-for-deploying-machine-learning-models"></a>部署機器學習模型的工具和服務
+|||
+|-|-|
+|**類型**                   |預測性分析的內部部署企業伺服器|
+|**支援的語言**    |Python、R|
+|**機器學習階段**|模型訓練<br>部署|
+|**主要優點**           |高延展性。|
+|**考量**         |您需要在企業中部署和管理 Machine Learning Server。|
 
-資料科學家建立機器學習模型之後，您通常必須部署它，然後在應用程式或其他資料流程中使用它。 機器學習模型有許多潛在的部署目標。
+## <a name="azure-data-science-virtual-machine"></a>Azure 資料科學虛擬機器
 
-### <a name="spark-on-azure-hdinsight"></a>Azure HDInsight 上的 Spark
+[Azure 資料科學虛擬機器](https://docs.microsoft.com/azure/machine-learning/data-science-virtual-machine/overview)是 Microsoft Azure 雲端上的自訂虛擬機器環境，專為進行資料科學建置。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。
 
-Apache Spark 包括機器學習模型的 Spark MLlib、架構和程式庫。 Spark 的 Microsoft Machine Learning 程式庫 (MMLSpark) 也提供深入的學習演算法，可支援 Spark 中的預測模型。
+目前支援以資料科學虛擬機器作為 Azure Machine Learning 服務的目標。
+這適用於 Windows 和 Linux Ubuntu 的版本 (Linux CentOS 不支援 Azure Machine Learning 服務)。
+如需特定版本資訊及其內含項目的清單，請參閱 [Azure 資料科學虛擬機器簡介](/azure/machine-learning/data-science-virtual-machine/overview.md)。
 
-主要優點：
+當您需要在單一節點上執行或裝載您的作業時，請使用資料科學 VM。 或者，如果您需要從遠端相應增加在單一機器上的處理。
 
-- Spark 是分散式的平台，為大量機器學習程序提供高延展性。
-- 您可以將模型直接部署到 HDinsight 中的 Spark，並使用 Azure Machine Learning 模型管理服務來管理模型。
+|||
+|-|-|
+|**類型**                   |適用於資料科學的自訂的虛擬機器環境|
+|**主要優點**           |減少資料科學工具及架構的安裝、管理和疑難排解時間。<br/><br/>包含所有常用的工具和架構的最新版本。<br/><br/>虛擬機器選項包括可高度擴充的影像，具備適用於大量資料模型化的 GPU 功能。|
+|**考量**         |離線時無法存取虛擬機器。<br/><br/>執行虛擬機器會衍生 Azure 費用，因此您必須非常小心，讓它只在需要時執行。|
 
-考量：
+## <a name="azure-databricks"></a>Azure Databricks
 
-- Spark 在 HDinsght 叢集中執行的整個時間會產生費用。 如果只是偶爾使用機器學習服務，這可能會導致不必要的成本。
+[Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) 是一個針對 Microsoft Azure 雲端服務平台進行最佳化的 Apache Spark 分析平台。 Databricks 可與 Azure 整合，提供一鍵式設定、順暢的工作流程以及互動式的工作區，可讓資料科學家、資料工程師及企業分析師共同作業。
+您可以在 Web 型 Notebook 中使用 Python、R、Scala 和 SQL 程式碼，來查詢、視覺化和模型化資料。
 
-### <a name="azure-databricks"></a>Azure Databricks
+如果您想要在 Apache Spark 上共同建置機器學習解決方案，請使用 Databricks。
 
-[Azure Databricks](/azure/azure-databricks/) 是 Apache Spark 型分析平台。 您可以將它視為「Spark 即服務」。 它是在 Azure 平台上使用 Spark 的最簡單方式。 對於機器學習，您可以使用 [MLFlow](https://www.mlflow.org/)、[Databricks Runtime ML](https://docs.azuredatabricks.net/user-guide/clusters/mlruntime.html)、Apache Spark MLlib 和其他。 如需詳細資訊，請參閱 [Azure Databricks：Machine Learning](https://docs.azuredatabricks.net/spark/latest/mllib/index.html)。
+|||
+|-|-|
+|**類型**                   |以 Apache Spark 為基礎的分析平台|
+|**支援的語言**    |Python, R, Scala, SQL|
+|**機器學習階段**|資料查詢<br>模型訓練|
 
-### <a name="web-service-in-a-container"></a>容器中的 Web 服務
+## <a name="mlnet"></a>ML.NET
 
-您可以在 Docker 容器中將機器學習模型部署為 Python Web 服務。 您可以將模型部署到 Azure 或邊緣裝置，它可在本機搭配使用其操作的資料。
+[ML.NET](https://docs.microsoft.com/dotnet/machine-learning/) 是免費、開放原始碼且跨平台的機器學習架構，可讓您建立自訂的機器學習解決方案，並將其整合到您的 .NET 應用程式中。
 
-主要優點：
+如果您想要將機器學習解決方案整合到您的 .NET 應用程式中，請使用 ML.NET。
 
-- 容器是輕量型且通常符合成本效益的有效方法，可用來封裝及部署服務。
-- 部署到邊緣裝置的能力可讓您將預測邏輯移至更貼近資料。
+|||
+|-|-|
+|**類型**                   |開發自訂的機器學習應用程式的開放原始碼架構|
+|**支援的語言**    |.NET|
 
-考量：
+## <a name="windows-ml"></a>Windows ML
 
-- 這種部署模型是以 Docker 容器為基礎，因此您應該先熟悉這項技術再以此方式部署 Web 服務。
+[Windows ML](https://docs.microsoft.com/windows/uwp/machine-learning/)推斷引擎，可讓您使用定型的機器學習服務應用程式中的模型、 評估 Windows 10 裝置上，在本機定型的模型。
 
-### <a name="microsoft-machine-learning-server"></a>Microsoft Machine Learning Server
+如果您想要在 Windows 應用程式中使用定型的機器學習模型，請使用 Windows ML。
 
-機器學習伺服器 (先前稱為 Microsoft R Server) 是 R 和 Python 程式碼的可擴充平台，特別針對機器學習案例所設計。
+|||
+|-|-|
+|**類型**                   |在 Windows 裝置的定型模型的推斷引擎|
+|**支援的語言**    |C#/ C + +、 JavaScript|
 
-主要優點：
+## <a name="next-steps"></a>後續步驟
 
-- 高延展性。
-
-考量：
-
-- 您需要在企業中部署和管理 Machine Learning Server。
-
-### <a name="microsoft-sql-server"></a>連接字串
-
-Microsoft SQL Server 本質上就支援 R 和 Python，可讓您將這些語言內建的機器學習模型封裝為資料庫中的 Transact-SQL 函式。
-
-主要優點：
-
-- 在資料庫函式中封裝預測邏輯，可讓函式輕鬆加入資料層邏輯中。
-
-考量：
-
-- 採用 SQL Server 資料庫作為應用程式的資料層。
-
-### <a name="azure-machine-learning-web-service"></a>Azure Machine Learning Web 服務
-
-當您使用 Azure Machine Learning Studio 建立機器學習模型時，可將其部署為 Web 服務。 接著從能夠以 HTTP 通訊的任何用戶端應用程式中，透過 REST 介面使用此服務。
-
-主要優點：
-
-- 簡化開發和部署。
-- 使用基本監視計量的 Web 服務管理入口網站。
-- 從 Azure Data Lake Analytics、Azure Data Factory 及 Azure 串流分析呼叫 Azure Machine Learning Web 服務的內建支援。
-
-考量：
-
-- 僅適用於使用 Azure Machine Learning Studio 建置的模型。
-- 僅限 Web 型存取，訓練的模型無法在內部部署或離線時執行。
+- 若要了解 Microsoft 所提供的所有人工智慧 (AI) 開發產品，請參閱 [Microsoft AI 平台](https://www.microsoft.com/ai)
+- 如需有關於開發 AI 解決方案的教學，請參閱 [Microsoft AI School](https://aischool.microsoft.com/learning-paths)

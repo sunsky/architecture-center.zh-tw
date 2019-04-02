@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9f14b47a9659ad0b7451d106168f4d7b5a6ab0c7
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
-ms.translationtype: HT
+ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782076"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420017"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 資源的命名慣例
 
@@ -84,6 +84,7 @@ ms.locfileid: "55782076"
 |資源群組 |訂用帳戶 |1-90 |不區分大小寫 |英數字元、底線、括號、連字號、句號 (結尾除外) 及符合規則運算式的 Unicode 字元皆記錄在[這裡](/rest/api/resources/resourcegroups/createorupdate)。 |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |相關聯的實體 |512 (名稱)、256 (值) |不區分大小寫 |英數、特殊字元，但 `<`、`>`、`%`、`&`、`\`、`?`、`/` 除外。 請在[這裡](/azure/azure-resource-manager/resource-group-using-tags)參閱限制。 |`"key" : "value"` |`"department" : "Central IT"` |
+|Web 應用程式 |全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<app_name>-<source-slot-name>` |`contoso-staging` |
 
 ### <a name="compute"></a>計算
 
@@ -128,6 +129,12 @@ ms.locfileid: "55782076"
 | 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
 |Container Registry | 全域 |5-50 |不區分大小寫 | 英數字元 |`<service short name>registry` |`app1registry` |
+
+### <a name="service-bus"></a>服務匯流排
+
+| 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
+| --- | --- | --- | --- | --- | --- | --- |
+|服務匯流排 命名空間 | 全域 |6-50 |不區分大小寫 | 英數字元、 連字號、 開頭必須是 leter;請參閱[此處](/rest/api/servicebus/create-namespace)如需詳細資訊。 |`<service short name>-bus` |`app1-bus` |
 
 ## <a name="organize-resources-with-tags"></a>具有標籤的組織資源
 

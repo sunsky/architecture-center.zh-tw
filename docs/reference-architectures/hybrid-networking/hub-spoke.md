@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 4235e5d1bb3b202cff9f7c703f079651982aac59
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: dbd2a9a8fbb18586e7b255873a9a503117deabcd
+ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246109"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "58489176"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>在 Azure 中實作中樞輪輻網路拓撲
 
@@ -101,12 +101,6 @@ VNet 對等互連是兩個 VNet 之間不可轉移的關聯性。 如果您需�
 ![[2]][2]
 
 在此案例中，您必須將對等連線設定為**允許轉送的流量**。
-
-### <a name="overcoming-vnet-peering-limits"></a>克服 VNet 對等互連的限制
-
-請確定您有在 Azure 中考慮[每個 VNet 的 VNet 對等互連數目限制][vnet-peering-limit]。 如果您決定您需要的輪輻比允許的限制還多，請考慮建立中樞輪輻中樞輪輻拓撲，其中輪輻的第一層也可作為中樞。 下圖顯示這個方法。
-
-![[3]][3]
 
 此外，請考慮要在中樞共用哪些服務，以確保中樞可針對大量輪輻進行調整。 例如，如果您的中樞提供防火牆服務，請在新增多個輪輻時，考慮防火牆解決方案的頻寬限制。 您可以將其中部分共用服務移到中樞的第二層。
 

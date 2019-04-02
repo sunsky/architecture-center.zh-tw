@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 91a551025ae697d5828fc1e398b204d2901d17f6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c76b28fc53f36024867838e8ac36f256b242bf4a
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242019"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419949"
 ---
 # <a name="choose-the-right-data-store"></a>選擇正確的資料存放區
 
@@ -40,6 +40,8 @@ RDBMS 通常支援 schema-on-write 模型，其中資料結構會預先定義，
 - [Azure SQL Database][sql-db]
 - [適用於 MySQL 的 Azure 資料庫][mysql]
 - [適用於 PostgreSQL 的 Azure 資料庫][postgres]
+- [適用於 MariaDB 的 azure 資料庫][mariadb]
+
 
 ## <a name="keyvalue-stores"></a>索引鍵/值存放區
 
@@ -112,6 +114,7 @@ RDBMS 通常支援 schema-on-write 模型，其中資料結構會預先定義，
 
 - [SQL 資料倉儲][sql-dw]
 - [Azure Data Lake][data-lake]
+- [Azure 資料總管](https://azure.microsoft.com/services/data-explorer/)
 
 ## <a name="search-engine-databases"></a>搜尋引擎資料庫  
 
@@ -152,6 +155,7 @@ RDBMS 通常支援 schema-on-write 模型，其中資料結構會預先定義，
 [hbase]: /azure/hdinsight/hdinsight-hbase-overview
 [mysql]: https://azure.microsoft.com/services/mysql/
 [postgres]: https://azure.microsoft.com/services/postgresql/
+[mariadb]: https://azure.microsoft.com/services/mariadb/
 [redis-cache]: https://azure.microsoft.com/services/cache/
 [search]: https://azure.microsoft.com/services/search/
 [sql-db]: https://azure.microsoft.com/services/sql-database

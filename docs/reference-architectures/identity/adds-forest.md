@@ -11,12 +11,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: bf62544028741d500e9c4172d4ac0206c95cb919
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 5fe966f657782b41ec1926d0fd4bb83eb7a3c0fb
+ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241349"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58420034"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>在 Azure 中建立 Active Directory Domain Services (AD DS) 資源樹系
 
@@ -44,10 +44,7 @@ Active Directory Domain Services (AD DS) 會以階層式結構儲存身分識別
 
 ## <a name="recommendations"></a>建議
 
-如需在 Azure 中實作 Active Directory 的特定建議，請參閱下列文章：
-
-- [將 Active Directory Domain Services (AD DS) 擴充至 Azure][adds-extend-domain]。
-- [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針][ad-azure-guidelines]。
+如需有關在 Azure 中實作 Active Directory 的特定建議，請參閱[擴充 Active Directory 網域服務 (AD DS) 至 Azure][adds-extend-domain]。
 
 ### <a name="trust"></a>信任
 

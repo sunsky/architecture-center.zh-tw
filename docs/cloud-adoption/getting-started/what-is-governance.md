@@ -6,12 +6,12 @@ ms.subservice: enterprise-cloud-adoption
 ms.date: 02/11/2019
 description: 說明 Azure 上的雲端資源治理
 author: petertaylor9999
-ms.openlocfilehash: 5d022e83a1c97a5e5af8208ec00339575bb88be1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 602ac81f2b2201c77746df971d282582ceee23f7
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242119"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503191"
 ---
 <!-- markdownlint-disable MD026 -->
 
@@ -35,11 +35,11 @@ RBAC 會定義角色，而角色會定義獲指派角色的使用者功能。 �
 
 資源原則會定義資源建立的規則。 例如，資源原則可以將虛擬機器的 SKU 限制為特定預先核准大小。 或者，資源原則可以在要求建立資源時，強制新增成本中心的標記。
 
-在設定這些工具時，重要的考量是平衡治理與組織靈活度。 也就是，治理原則越嚴格，您的開發人員和 IT 工作者就會變得越不敏捷。 這是因為嚴格的治理原則可能需要更多手動步驟，例如需要開發人員填寫表單或傳送電子郵件給治理小組的某人，以手動建立資源。 治理小組具有有限的功能並且可能會積存，導致開發小組等候其資源建立而無效率，以及在等候不需要的資源刪除時持續累計成本。
+在設定這些工具時，重要的考量是平衡治理與組織靈活度。 也就是，治理原則越嚴格，您的開發人員和 IT 工作者就會變得越不敏捷。 這是因為嚴格控管的原則可能需要更多的手動步驟，例如需要開發人員在填寫表單，或將電子郵件傳送至管理小組的人員，以手動方式建立資源。 管理小組具有有限的功能，並可能會積存，導致無法開發小組等候其資源來建立和不必要的資源產生成本，同時等候刪除。
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您已了解雲端資源治理的概念，請深入了解如何在 Azure 中管理資源存取。
+既然您了解雲端資源管理的概念，深入了解如何在 Azure 中管理資源的存取。
 
 > [!div class="nextstepaction"]
 > [深入了解 Azure 中的資源存取](azure-resource-access.md)
