@@ -3,18 +3,20 @@ title: 使用儀表板，以視覺化方式檢視 Azure Databricks 計量
 description: 如何部署 Grafana 儀表板來監視在 Azure Databricks 中的效能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: dbc04b00a781dd20c3224b5a031a8d98ddadce94
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503382"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887823"
 ---
 # <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用儀表板，以視覺化方式檢視 Azure Databricks 計量
 
+本文說明如何設定 Grafana 儀表板來監視 Azure Databricks 作業的效能問題。
+
 [Azure Databricks](/azure/azure-databricks/)是一項快速、 功能強大且共同作業[Apache Spark](https://spark.apache.org/)– 基礎分析服務，可讓您更快速開發並部署巨量資料分析和人工智慧 (AI) 解決方案變得更加容易。 監視是作業系統在生產環境中的 Azure Databricks 工作負載的重要元件。 第一個步驟是收集計量進行分析的工作區。 在 Azure 中，是最佳的解決方案，以管理記錄檔資料[Azure 監視器](/azure/azure-monitor/)。 Azure Databricks 原本不支援將記錄資料傳送到 Azure 監視器，但[這項功能的程式庫](https://github.com/mspnp/spark-monitoring)位於[Github](https://github.com)。
 
-此程式庫可讓 Azure Databricks 服務計量，以及查詢事件計量資料流處理的 Apache Spark 結構的記錄。 一旦您成功地部署此程式庫至 Azure Databricks 叢集，您可以進一步將部署一組[Azure 監視器](/azure/azure-monitor/)或是[Grafana](https://granfana.com)儀表板，您可以部署您的生產環境的一部分環境。 這份文件包含的常見效能問題，以及如何找出使用這些儀表板的討論。
+此程式庫可讓 Azure Databricks 服務計量，以及查詢事件計量資料流處理的 Apache Spark 結構的記錄。 一旦您成功地部署此程式庫至 Azure Databricks 叢集，您可以進一步將部署一組[Grafana](https://granfana.com)儀表板，您可以部署到生產環境的一部分。
 
 ![儀表板的螢幕擷取畫面](./_images/dashboard-screenshot.png)
 
@@ -188,6 +190,11 @@ Grafana 是開放原始碼專案，您可以部署以視覺化方式檢視儲存
 ### <a name="shuffle-metrics"></a>隨機計量
 
 最終的視覺效果顯示資料隨機播放跨所有執行程式相關聯的結構化串流查詢的計量集合。 這些包括的隨機位元組讀取、 隨機寫入的位元組、 隨機記憶體和磁碟使用量在查詢中使用檔案系統的位置。
+
+## <a name="next-steps"></a>後續步驟
+
+> [!div class="nextstepaction"]
+> [疑難排解效能瓶頸](./performance-troubleshooting.md)
 
 <!-- links -->
 
