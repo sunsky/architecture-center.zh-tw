@@ -557,6 +557,16 @@ items:
       href: service-fabric/migrate-from-cloud-services.md
     - name: 重構 Service Fabric 應用程式
       href: service-fabric/refactor-migrated-app.md
+  - name: 監視 Azure Databricks
+    items:
+    - name: 概觀
+      href: databricks-monitoring/index.md
+    - name: 設定 Databricks 以傳送計量至 Azure 監視器
+      href: databricks-monitoring/configure-cluster.md
+    - name: 傳送 Databricks 應用程式記錄檔至 Azure 監視器
+      href: databricks-monitoring/application-logs.md
+    - name: 使用儀表板將 Databricks 計量視覺化
+      href: databricks-monitoring/dashboards.md
 - name: 設計檢閱架構
   items:
   - name: 針對復原而設計
@@ -851,9 +861,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 記錄和報告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 06737190911118bab802d8141d959b04f6589f0a
-ms.sourcegitcommit: ea97ac004c38c6b456794c1a8eef29f8d2b77d50
+ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
+ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "58489210"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58503242"
