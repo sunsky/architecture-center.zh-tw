@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: 81dc353735eaa6573c72d9e588c949fe96a329ef
-ms.sourcegitcommit: eee3a35dd5a5a2f0dc117fa1c30f16d6db213ba2
-ms.translationtype: HT
+ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55782008"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887738"
 ---
-# <a name="batch-scoring-of-python-models-on-azure"></a>Azure 上的 Python 模型批次評分
+# <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>在 Azure 上的 Python 機器學習服務的批次評分模型
 
 此參考架構會示範如何使用 Azure Machine Learning 服務組建可根據排程對許多模型進行批次評分的可調整解決方案。 此方案可作為範本，並可廣泛用於不同的問題。
 
@@ -49,9 +49,9 @@ ms.locfileid: "55782008"
 
 ## <a name="performance-considerations"></a>效能考量
 
-對於標準 Python 模型，普遍認為 CPU 足以處理工作負載。 此架構會使用 CPU。 但是，針對[深度學習工作負載][deep]，GPU 的效能通常遠勝於 CPU，但若只能使用 CPU，通常需要大量 CPU 才能擁有相當的效能。
+對於標準 Python 模型，普遍認為 CPU 足以處理工作負載。 此架構會使用 CPU。 不過，為了[深度學習工作負載][deep]，Gpu 通常勝過相當多的 Cpu &mdash; Cpu 相當叢集通常需要取得相當的效能。
 
-### <a name="parallelizing-across-vms-vs-cores"></a>在 VM 與核心上平行處理
+### <a name="parallelizing-across-vms-versus-cores"></a>與核心的平行處理跨 Vm
 
 若要以批次模式執行許多模型的評分程序，這些作業必須在各 VM 上平行進行。 這可能會有兩種方法：
 
@@ -87,7 +87,7 @@ ms.locfileid: "55782008"
 [amls]: /azure/machine-learning/service/overview-what-is-azure-ml
 [automatic-scaling]: /azure/batch/batch-automatic-scaling
 [azure-files]: /azure/storage/files/storage-files-introduction
-[cli]: https://docs.microsoft.com/en-us/cli/azure
+[cli]: /cli/azure
 [create-resources]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/01_create_resources.ipynb
 [deep]: /azure/architecture/reference-architectures/ai/batch-scoring-deep-learning
 [event-hubs]: /azure/event-hubs/event-hubs-geo-dr
@@ -95,10 +95,10 @@ ms.locfileid: "55782008"
 [github]: https://github.com/Microsoft/AMLBatchScoringPipeline
 [one-class-svm]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html
 [portal]: https://portal.azure.com
-[ml-workspace]: https://docs.microsoft.com/en-us/azure/machine-learning/studio/create-workspace
+[ml-workspace]: /azure/machine-learning/studio/create-workspace
 [python-script]: https://github.com/Azure/BatchAIAnomalyDetection/blob/master/batchai/predict.py
 [pyscript]: https://github.com/Microsoft/AMLBatchScoringPipeline/blob/master/scripts/predict.py
 [storage]: /azure/storage/blobs/storage-blobs-overview
 [stream-analytics]: /azure/stream-analytics/
-[sql-database]: https://docs.microsoft.com/en-us/azure/sql-database/
-[app-insights]: https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview
+[sql-database]: /azure/sql-database/
+[app-insights]: /azure/application-insights/app-insights-overview
