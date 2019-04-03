@@ -7,14 +7,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 1b6f10edf098ed8d9fa14c16de113fc765372835
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: cba8d272ddbdbf2c2da94f68b288e9fb79be7de2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58231406"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887806"
 ---
-# <a name="batch-scoring-of-spark-models-on-azure-databricks"></a>Azure Databricks 上的 Spark 模型批次評分
+# <a name="batch-scoring-of-spark-machine-learning-models-on-azure-databricks"></a>在 Azure Databricks 上的 Spark 機器學習服務的批次評分模型
 
 此參考架構說明如何建置可調整的解決方案，使用 Azure Databricks (以 Apache Spark 為基礎，並已針對 Azure 最佳化的分析平台) 對排程上的 Apache Spark 分類模型進行批次評分。 此方案可作為範本，並可廣泛用於其他不同情況。
 

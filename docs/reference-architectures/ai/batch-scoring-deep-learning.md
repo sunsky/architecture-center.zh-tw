@@ -8,14 +8,14 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 85d04f179b988fd5b00b361149f2170d13608e6d
-ms.sourcegitcommit: 700a4f6ce61b1ebe68e227fc57443e49282e35aa
-ms.translationtype: HT
+ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55887381"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887857"
 ---
-# <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Azure 上適用於深入學習模型的批次評分
+# <a name="batch-scoring-of-deep-learning-models-on-azure"></a>為 Azure 上的深度學習模型進行評分的批次
 
 此參考架構會示範如何使用 Azure Machine Learning 將類神經樣式傳輸套用到影片。 「樣式傳輸」是一種深入學習技術，可使用另一個影像的樣式來編撰現有影像。 此架構可以廣泛應用到任何搭配使用深入學習的批次評分案例。 [**部署這個解決方案**](#deploy-the-solution)。
 
@@ -23,9 +23,13 @@ ms.locfileid: "55887381"
 
 **案例**：媒體組織想要讓他們的影片樣式看起來像是特定畫作。 組織想要及時且自動地將此樣式套用至影片的所有畫面。 如需類神經樣式傳輸演算法的詳細背景，請參閱[使用卷積神經網路的影像樣式傳輸][image-style-transfer] (PDF)。
 
+<!-- markdownlint-disable MD033 -->
+
 | 樣式影像： | 輸入/內容影片： | 輸出影片： |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "輸入影片") 按一下以檢視影片 | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "輸出影片") 按一下以檢視影片 |
+
+<!-- markdownlint-enable MD033 -->
 
 此參考架構適用於當 Azure 儲存體中有新媒體出現時就會觸發的工作負載。
 
@@ -42,7 +46,7 @@ ms.locfileid: "55887381"
 
 ### <a name="compute"></a>計算
 
-**[Azure Machine Learning 服務][ amls]** 會使用 Azure Machine Learning 管線，來建立可重現且易於管理的計算順序。 它也會提供名為 [Azure Machine Learning Compute][aml-compute] 的受控計算目標 (管線計算可在其上執行)，用於對機器學習模型進行訓練、部署和評分。 
+**[Azure Machine Learning 服務][ amls]** 會使用 Azure Machine Learning 管線，來建立可重現且易於管理的計算順序。 它也會提供名為 [Azure Machine Learning Compute][aml-compute] 的受控計算目標 (管線計算可在其上執行)，用於對機器學習模型進行訓練、部署和評分。
 
 ### <a name="storage"></a>儲存體
 
@@ -64,21 +68,21 @@ ms.locfileid: "55887381"
 
 ## <a name="performance-considerations"></a>效能考量
 
-### <a name="gpu-vs-cpu"></a>GPU 與 CPU
+### <a name="gpu-versus-cpu"></a>CPU 與 GPU
 
 針對深入學習工作負載，GPU 的效能通常遠勝於 CPU，但若只能使用 CPU，通常需要大量 CPU 才能擁有相當的效能。 雖然您在此架構中可以選擇只使用 CPU，但 GPU 將能提供成本/效能更好的設定檔。 我們建議使用最新 [NCv3 系列]vm-sizes-gpu 的 GPU 最佳化 VM。
 
 並非所有區域都會將 GPU 預設為啟用。 請務必選取已啟用 GPU 的區域。 此外，針對 GPU 最佳化的 VM，訂用帳戶的預設核心配額為零。 您可以提出支援要求來提高這個配額。 請確定您訂用帳戶上的配額足以執行工作負載。
 
-### <a name="parallelizing-across-vms-vs-cores"></a>在 VM 與核心上平行處理
+### <a name="parallelizing-across-vms-versus-cores"></a>與核心的平行處理跨 Vm
 
 若以批次作業的形式來執行樣式傳輸程序，主要在 GPU 上執行的作業將必須在 VM 上平行進行處理。 這可能會有兩種方法：您可以建立較大的叢集，使用具有單一 GPU 的 VM，或建立較小的叢集，使用具有許多 GPU 的 VM。
 
 針對此工作負載，這兩個選項會有相當的效能。 使用較少 VM (每個 VM 有多個 GPU) 有助於減少資料移動。 不過，此功能流程上每項作業的資料量都不是非常大，因此您不會看到 Blob 儲存體有太多節流動作。
 
-### <a name="mpi-step"></a>MPI 步驟 
+### <a name="mpi-step"></a>MPI 步驟
 
-在 Azure Machine Learning 中建立管線時，其中一個用來執行平行計算的步驟為 MPI 步驟。 MPI 步驟會協助將資料平均分割在可用節點之間。 直到準備好所要求的節點後，MPI 步驟才會執行。 如果某個節點失敗或失去先機 (若它是低優先順序虛擬機器)，則 MPI 步驟將必須重新執行。 
+在 Azure Machine Learning 中建立管線時，其中一個用來執行平行計算的步驟為 MPI 步驟。 MPI 步驟會協助將資料平均分割在可用節點之間。 直到準備好所要求的節點後，MPI 步驟才會執行。 如果某個節點失敗或失去先機 (若它是低優先順序虛擬機器)，則 MPI 步驟將必須重新執行。
 
 ## <a name="security-considerations"></a>安全性考量
 
@@ -94,7 +98,7 @@ ms.locfileid: "55887381"
 
 ### <a name="securing-your-computation-in-a-virtual-network"></a>保護虛擬網路中的計算
 
-部署 Machine Learning 叢集時，您可以將叢集設定為在[虛擬網路][virtual-network]的子網路內佈建。 這可讓叢集中的計算節點與其他虛擬機器安全地通訊。 
+部署 Machine Learning 叢集時，您可以將叢集設定為在[虛擬網路][virtual-network]的子網路內佈建。 這可讓叢集中的計算節點與其他虛擬機器安全地通訊。
 
 ### <a name="protecting-against-malicious-activity"></a>防範惡意活動
 
@@ -136,7 +140,6 @@ Machine Learning Compute 也支援低優先順序虛擬機器。 這可讓您在
 
 > [!NOTE]
 > 您也可以使用 Azure Kubernetes Service，為深度學習模型部署批次評分架構。 請依照此 [Github][deployment2] 存放庫中所述的步驟。
-
 
 <!-- links -->
 
