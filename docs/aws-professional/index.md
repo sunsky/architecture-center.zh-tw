@@ -1,16 +1,21 @@
 ---
-title: 適用於 AWS 專業人員的 Azure
+title: Azure for AWS 專業人員
 titleSuffix: Azure Architecture Center
 description: 了解 Microsoft Azure 帳戶、平台和服務的基本概念。 並了解 AWS 和 Azure 平台之間的金鑰相似度和差異。 利用您在 Azure 中的 AWS 體驗。
-keywords: 'AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws'
+keywords: AWS 專家, Azure 比較, AWS 比較, azure 與 aws 之間的差異, azure 與 aws
 author: lbrader
 ms.date: 09/19/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c61758494435f61814953ab5ba48d8fed1e709ab
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55897587"
 ---
-
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
 本文可協助 Amazon Web Services (AWS) 專家了解 Microsoft Azure 帳戶、平台和服務的基本概念。 其中也涵蓋 AWS 和 Azure 平台之間的主要相似度和差異。
@@ -97,7 +102,7 @@ Azure 提供數種方式來管理您的資源：
 
 在這些介面中，資源群組是 Azure 資源建立、部署或修改方式的核心。 這類似於「堆疊」在 CloudFormation 部署期間群組 AWS 資源所扮演的角色。
 
-這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具，例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/) 也會在 Azure 上提供。
+這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/) 也會在 Azure 上提供。
 
 <!-- markdownlint-disable MD024 -->
 
@@ -295,9 +300,9 @@ Azure 會透過其 [ExpressRoute](https://azure.microsoft.com/documentation/serv
 
 Azure 會提供與 AWS 關聯式資料庫服務 (RDS) 對等的幾種不同關聯式資料庫服務。
 
-- [SQL Database](/azure/sql-database/sql-database-technical-overview)
-- [適用於 MySQL 的 Azure 資料庫](/azure/mysql/overview)
-- [適用於 PostgreSQL 的 Azure 資料庫](/azure/postgresql/overview)
+- [SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+- [適用於 MySQL 的 Azure 資料庫](https://docs.microsoft.com/azure/mysql/overview)
+- [適用於 PostgreSQL 的 Azure 資料庫](https://docs.microsoft.com/azure/postgresql/overview)
 
 可以使用 Azure VM 執行個體部署諸如 [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)、[Oracle](https://azure.microsoft.com/campaigns/oracle/) 和 [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) 等其他資料庫引擎。
 
