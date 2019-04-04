@@ -3,7 +3,13 @@ title: Azure 參考架構
 description: Azure 上一般工作負載的參考架構實作指導方針。
 layout: LandingPage
 ms.topic: landing-page
-ms.date: 03/07/2019
+ms.date: 04/02/2019
+ms.openlocfilehash: 7c307c40a710fff7ff07e24570052411b7edd8bf
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887755"
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -40,26 +46,6 @@ ms.date: 03/07/2019
         </div>
     </a>
 </li>
-<!-- Training of Python scikit-learn models -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Python scikit-learn 模型的訓練</h3>
-                        <p>微調 scikit-learn Python 模型超參數的建議做法。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
 <!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -74,6 +60,26 @@ ms.date: 03/07/2019
                     <div class="cardText">
                         <h3>深入學習模型的 Batch 評分</h3>
                         <p>自動執行將類神經樣式套用至影片的批次工作。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Training of Python scikit-learn models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/training-python-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Python scikit-learn 模型的訓練</h3>
+                        <p>微調 scikit-learn Python 模型超參數的建議做法。</p>
                     </div>
                 </div>
             </div>
@@ -100,26 +106,6 @@ ms.date: 03/07/2019
         </div>
     </a>
 </li>
-<!-- Batch scoring of Spark models on Azure Databricks -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/databricks.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Azure Databricks 上的 Spark 模型批次評分</h3>
-                        <p>建置可調整的解決方案，使用 Azure Databricks 對 Apache Spark 分類模型進行批次評分。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
 <!-- Real-time scoring of Python and deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -140,6 +126,26 @@ ms.date: 03/07/2019
         </div>
     </a>
 </li>
+<!-- Batch scoring of R machine learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-R-models.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/logo-r.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>R 機器學習模型的批次評分</h3>
+                        <p>使用 Azure Batch 執行 R 模型的批次評分。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 <!-- Real-time scoring of R machine learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/realtime-scoring-r.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
@@ -154,6 +160,26 @@ ms.date: 03/07/2019
                     <div class="cardText">
                         <h3>R 機器學習模型的即時評分</h3>
                         <p>使用在 Azure Kubernetes Service (AKS) 中執行的 Microsoft Machine Learning Server 在 R 中實作即時預測服務。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring of Spark models on Azure Databricks -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/batch-scoring-databricks.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/databricks.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Azure Databricks 上的 Spark 模型批次評分</h3>
+                        <p>建置可調整的解決方案，使用 Azure Databricks 對 Apache Spark 分類模型進行批次評分。</p>
                     </div>
                 </div>
             </div>

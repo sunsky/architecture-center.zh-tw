@@ -3,14 +3,14 @@ title: 使用 Azure 監視器監視 Azure Databricks
 description: 在 Azure Log Analytics 中啟用 Azure Databricks 監視的 scala 程式庫
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 6d3d17b2e49919aea7bb08f59e19032c1c8bdafd
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 4544d3abc3264ec459a80ac1a61a912e6d30d6b2
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503260"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887687"
 ---
-# <a name="monitoring-azure-databricks-with-azure-monitor"></a>使用 Azure 監視器監視 Azure Databricks
+# <a name="monitoring-azure-databricks"></a>監視 Azure Databricks
 
 [Azure Databricks](/azure/azure-databricks/) 是一種快速、功能強大且以 [Apache Spark](https://spark.apache.org/) 為基礎的分析服務，可讓您輕鬆快速開發並部署巨量資料分析和人工智慧 (AI) 解決方案。 許多使用者在其 Azure Databricks 解決方案中利用筆記本的簡潔性。 對於需要更強大運算選項的使用者，Azure Databricks 會支援自訂應用程式程式碼的分散式執行。
 
