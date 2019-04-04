@@ -6,8 +6,13 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
+ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344524"
 ---
-
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虛擬資料中心和 Enterprise 控制平面
 
 Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還能遵循現有的安全性與網路原則。 IT 組織和營業單位在將企業工作負載部署到雲端時，必須在治理與開發人員敏捷度之間取得平衡。 Azure 虛擬資料中心提供模型來達成這項平衡且著重治理。

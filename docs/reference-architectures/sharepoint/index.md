@@ -8,8 +8,13 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
+ms.openlocfilehash: 0cce207dedd0eb42e29a152b3bb84acc2dca323a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344983"
 ---
-
 # <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>在 Azure 中執行高可用性 SharePoint Server 2016 伺服器陣列
 
 此參考架構會示範經過驗證的作法，也就是使用 MinRole 拓樸和 SQL Server Always On 可用性群組，在 Azure 上部署高可用性 SharePoint Server 2016 伺服器陣列。 SharePoint 伺服器陣列會部署在受保護且沒有網際網路對應端點或空間的虛擬網路。 [**部署這個解決方案**](#deploy-the-solution)。

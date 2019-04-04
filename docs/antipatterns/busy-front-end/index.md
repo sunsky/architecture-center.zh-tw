@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: f1ab728d68747856fb2586804d58d45c4ea4fcc1
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344490"
 ---
-
 # <a name="busy-front-end-antipattern"></a>忙碌前端反模式
 
 在大量背景執行緒上執行非同步工作，會讓資源的其他並行前景工作無資源可用，減少對於無法接受層級的回應時間。
