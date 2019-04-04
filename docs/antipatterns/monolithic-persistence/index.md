@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: e3d6fbb789e422af22ce54b0defd6bb73099f15a
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346326"
 ---
-
 # <a name="monolithic-persistence-antipattern"></a><span data-ttu-id="df7f7-103">整合的持續性反模式</span><span class="sxs-lookup"><span data-stu-id="df7f7-103">Monolithic Persistence antipattern</span></span>
 
 <span data-ttu-id="df7f7-104">將所有應用程式的資料放入單一資料存放區會降低效能，因為會造成資源爭用，或資料存放區不適合某些資料。</span><span class="sxs-lookup"><span data-stu-id="df7f7-104">Putting all of an application's data into a single data store can hurt performance, either because it leads to resource contention, or because the data store is not a good fit for some of the data.</span></span>

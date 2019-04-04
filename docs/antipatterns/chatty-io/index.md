@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: b21ef5f772eb4e2572833ab15085651ac3766a5e
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58344320"
 ---
-
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="07292-103">多對話 I/O 反模式</span><span class="sxs-lookup"><span data-stu-id="07292-103">Chatty I/O antipattern</span></span>
 
 <span data-ttu-id="07292-104">大量 I/O 要求的累積影響可能會在效能和回應能力上有明顯影響。</span><span class="sxs-lookup"><span data-stu-id="07292-104">The cumulative effect of a large number of I/O requests can have a significant impact on performance and responsiveness.</span></span>

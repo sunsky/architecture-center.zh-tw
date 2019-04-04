@@ -6,8 +6,13 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
+ms.openlocfilehash: be906106fb12c381d57ad40ae22e748dcff9722f
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58346071"
 ---
-
 # <a name="manage-identity-in-multitenant-applications"></a><span data-ttu-id="80c9a-103">管理多租用戶應用程式中的身分識別</span><span class="sxs-lookup"><span data-stu-id="80c9a-103">Manage identity in multitenant applications</span></span>
 
 <span data-ttu-id="80c9a-104">此系列文章會說明多租用戶使用 Azure AD 進行驗證和身分識別管理時的最佳做法。</span><span class="sxs-lookup"><span data-stu-id="80c9a-104">This series of articles describes best practices for multitenancy, when using Azure AD for authentication and identity management.</span></span>

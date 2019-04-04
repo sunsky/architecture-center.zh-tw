@@ -9,8 +9,13 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c8fe971e031825632c2bb157bfd23e15f56520a3
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343470"
 ---
-
 # <a name="cloud-design-patterns"></a><span data-ttu-id="e8256-104">雲端設計模式</span><span class="sxs-lookup"><span data-stu-id="e8256-104">Cloud Design Patterns</span></span>
 
 <span data-ttu-id="e8256-105">這些設計模式有助於在雲端中建置可靠、可擴充且安全的應用程式。</span><span class="sxs-lookup"><span data-stu-id="e8256-105">These design patterns are useful for building reliable, scalable, secure applications in the cloud.</span></span>

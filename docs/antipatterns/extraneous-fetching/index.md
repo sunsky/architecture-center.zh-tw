@@ -8,8 +8,13 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
+ms.openlocfilehash: c1172531b332854a6d4940c072b61cb3f6bcd7ba
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345102"
 ---
-
 # <a name="extraneous-fetching-antipattern"></a><span data-ttu-id="45be1-103">沒有直接關聯的擷取反模式</span><span class="sxs-lookup"><span data-stu-id="45be1-103">Extraneous Fetching antipattern</span></span>
 
 <span data-ttu-id="45be1-104">擷取超過商務作業所需的資料，會導致不必要的 I/O 額外負荷並且降低回應能力。</span><span class="sxs-lookup"><span data-stu-id="45be1-104">Retrieving more data than needed for a business operation can result in unnecessary I/O overhead and reduce responsiveness.</span></span>

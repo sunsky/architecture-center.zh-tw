@@ -4,8 +4,13 @@ ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.date: 08/30/2018
+ms.openlocfilehash: 651f59344e7785a8a23e7b56dd67b4c4a3044741
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58343725"
 ---
-
 # <a name="azure-application-architecture-guide"></a>Azure 應用程式架構指南
 
 指南會告訴您在 Azure 上設定可擴充、可復原和高可用性應用程式的結構化方法。 這是以我們與客戶合作後了解到的實證做法作為基礎。

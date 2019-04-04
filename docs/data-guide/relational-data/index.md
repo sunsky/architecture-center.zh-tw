@@ -1,13 +1,18 @@
 ---
 title: 關聯式資料
-description: null
+description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
+ms.openlocfilehash: d68bddcb75e5c8f786a7739e85de2645a2c3d641
+ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58345408"
 ---
-
 # <a name="traditional-relational-database-solutions"></a><span data-ttu-id="e43f3-102">傳統關聯式資料庫解決方案</span><span class="sxs-lookup"><span data-stu-id="e43f3-102">Traditional relational database solutions</span></span>
 
 <span data-ttu-id="e43f3-103">關聯式資料是使用關聯式模型建立模型的資料。</span><span class="sxs-lookup"><span data-stu-id="e43f3-103">Relational data is data modeled using the relational model.</span></span> <span data-ttu-id="e43f3-104">在此模型中，資料會顯示為 Tuple。</span><span class="sxs-lookup"><span data-stu-id="e43f3-104">In this model, data is expressed as tuples.</span></span> <span data-ttu-id="e43f3-105">*Tuple* 是一組屬性/值配對。</span><span class="sxs-lookup"><span data-stu-id="e43f3-105">A *tuple* is a set of attribute/value pairs.</span></span> <span data-ttu-id="e43f3-106">例如，Tuple 可能是 (itemid = 5, orderid = 1, item = "Chair", amount = 200.00)。</span><span class="sxs-lookup"><span data-stu-id="e43f3-106">For example, a tuple might be (itemid = 5, orderid = 1, item = "Chair", amount = 200.00).</span></span> <span data-ttu-id="e43f3-107">全部共用相同屬性的一組 Tuple，稱為*關聯*。</span><span class="sxs-lookup"><span data-stu-id="e43f3-107">A set of tuples that all share the same attributes is called a *relation*.</span></span>
