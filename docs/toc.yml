@@ -279,20 +279,26 @@ items:
     href: reference-architectures/index.md
   - name: AI
     items:
-    - name: 深入學習模型的分散式訓練
-      href: reference-architectures/ai/training-deep-learning.md
-    - name: Python scikit-learn 模型的訓練
-      href: reference-architectures/ai/training-python-models.md
-    - name: 深入學習模型的批次評分
-      href: reference-architectures/ai/batch-scoring-deep-learning.md
-    - name: Python 模型的批次評分
-      href: reference-architectures/ai/batch-scoring-python.md
+    - name: 訓練和評分深度學習模型和 Python 模型
+      items:
+      - name: 深入學習模型的分散式訓練
+        href: reference-architectures/ai/training-deep-learning.md
+      - name: 深入學習模型的批次評分
+        href: reference-architectures/ai/batch-scoring-deep-learning.md
+      - name: Python scikit-learn 模型的訓練
+        href: reference-architectures/ai/training-python-models.md
+      - name: Python 模型的批次評分
+        href: reference-architectures/ai/batch-scoring-python.md
+      - name: Python 和深度學習模型的即時評分
+        href: reference-architectures/ai/realtime-scoring-python.md
+    - name: 評分 R 模型
+      items:
+      - name: R 模型的批次評分
+        href: reference-architectures/ai/batch-scoring-R-models.md
+      - name: R 模型的即時評分
+        href: reference-architectures/ai/realtime-scoring-r.md
     - name: Azure Databricks 上的 Spark 模型批次評分
       href: reference-architectures/ai/batch-scoring-databricks.md
-    - name: Python 和深度學習模型的即時評分
-      href: reference-architectures/ai/realtime-scoring-python.md
-    - name: R 機器學習模型的即時評分
-      href: reference-architectures/ai/realtime-scoring-r.md
     - name: 交談式聊天機器人
       href: reference-architectures/ai/conversational-bot.md
     - name: 即時建議 API
@@ -497,6 +503,8 @@ items:
           href: data-guide/technology-choices/natural-language-processing.md
         - name: 管線協調流程
           href: data-guide/technology-choices/pipeline-orchestration-data-movement.md
+        - name: Azure 的 R 開發人員指南
+          href: data-guide/technology-choices/r-developers-guide.md
         - name: 即時訊息擷取
           href: data-guide/technology-choices/real-time-ingestion.md
         - name: 搜尋資料存放區
@@ -567,6 +575,8 @@ items:
       href: databricks-monitoring/application-logs.md
     - name: 使用儀表板將 Databricks 計量視覺化
       href: databricks-monitoring/dashboards.md
+    - name: 針對效能瓶頸進行疑難排解
+      href: databricks-monitoring/performance-troubleshooting.md
 - name: 設計檢閱架構
   items:
   - name: 針對復原而設計
@@ -861,9 +871,9 @@ items:
           href: cloud-adoption/decision-guides/software-defined-network/hub-spoke.md
       - name: 記錄和報告
         href: cloud-adoption/decision-guides/log-and-report/overview.md
-ms.openlocfilehash: 861170224f9575dc5e45d993678bda482b0ed944
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: 953c7cbdee185a88d8470199fb4ba92244adaa84
+ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503242"
+ms.lasthandoff: 04/03/2019
+ms.locfileid: "58887772"
