@@ -5,8 +5,13 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
+ms.openlocfilehash: 3c48ba77b7f97c6047f5d1441a22f2bd79ee0a3e
+ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 02/08/2019
+ms.locfileid: "55898284"
 ---
-
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
 <!-- markdownlint-disable MD033 -->
@@ -99,26 +104,6 @@ google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
                         <div class="cardText">
                             <h3>Azure 資料架構指南</h3>
                             <p>在 Microsoft Azure 上設計資料中心解決方案的結構化方式。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- HPC Topic Page -->
-    <li>
-        <a href="./topics/high-performance-computing/index.md">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/hpc-blue-multi.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Azure 上的高效能運算 (HPC)</h3>
-                            <p>在 Azure 上建置高效能運算 (HPC) 應用程式的設計指引和元件資訊。</p>
                         </div>
                     </div>
                 </div>
@@ -225,6 +210,26 @@ google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
             </div>
         </a>
     </li>
+    <!-- Azure Virtual Datacenter -->
+    <li>
+        <a href="./vdc/index.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/virtual-datacenter.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Azure 虛擬資料中心</h3>
+                            <p>組織在將企業工作負載部署到雲端時，必須在治理及開發人員敏捷度之間取得平衡。 Azure 虛擬資料中心提供模型來達成這項平衡且著重治理。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
         <!-- Azure for AWS Professionals -->
     <li>
         <a href="/azure/architecture/aws-professional">
@@ -259,26 +264,6 @@ google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
                         <div class="cardText">
                             <h3>效能反模式</h3>
                             <p>如何偵測及修正雲端應用程式中一些效能和延展性相關問題的原因。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Azure Virtual Datacenter -->
-    <li>
-        <a href="./vdc/index.md">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/virtual-datacenter.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Azure 虛擬資料中心</h3>
-                            <p>組織在將企業工作負載部署到雲端時，必須在治理及開發人員敏捷度之間取得平衡。 Azure 虛擬資料中心提供模型來達成這項平衡且著重治理。</p>
                         </div>
                     </div>
                 </div>
