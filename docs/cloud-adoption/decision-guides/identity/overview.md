@@ -22,9 +22,9 @@ ms.locfileid: "55900904"
 
 跳至：[判斷身分識別整合需求](#determine-identity-integration-requirements) | [雲端原生](#cloud-baseline) | [目錄同步作業](#directory-synchronization) | [雲端託管網域服務](#cloud-hosted-domain-services) | [Active Directory 同盟服務](#active-directory-federation-services) | [不斷演進的身分識別整合](#evolving-identity-integration) | [深入了解](#learn-more)
 
-在雲端環境中，有幾種方式可以管理身分識別，其成本和複雜度各有不同。 建構雲端式身分識別服務的關鍵因素是現有內部部署身分識別基礎結構所需整合層級。
+在雲端環境中，有幾種方式可以管理身分識別，其成本和複雜度各有不同。 建構雲端式身分識別服務時，內部部署身分識別現有的基礎結構所需要的整合層級即是關鍵因素之一。
 
-雲端式軟體即服務 (SaaS) 身分識別解決方案提供雲端資源基本層級的存取控制和身分識別管理。 但是，若您組織的 Active Directory (AD) 基礎結構具有複雜樹系結構或自訂組織單位 (OU)，您的雲端式工作負載可能需要將目錄複寫至雲端，以維持一組內部部署和雲端環境之間一致的身分識別、群組和角色。 如果全域解決方案需要目錄複寫，則複雜度可能會大幅增加。 此外，對相依於舊版驗證機制應用程式的支援可能需要網域服務雲端部署。
+雲端式軟體即服務 (SaaS) 身分識別解決方案提供雲端資源基本層級的存取控制和身分識別管理。 但是，若您組織的 Active Directory (AD) 基礎結構具有複雜樹系結構或自訂組織單位 (OU)，您的雲端式工作負載可能需要將目錄複寫至雲端，以維持一組內部部署和雲端環境之間一致的身分識別、群組和角色。 如果全域解決方案需要目錄複寫，則複雜度可能會大幅增加。 此外，若要支援那些相依於舊版驗證機制的應用程式，則可能需要在雲端中部署網域服務。
 
 ## <a name="determine-identity-integration-requirements"></a>判斷身分識別整合需求
 
@@ -40,7 +40,7 @@ ms.locfileid: "55900904"
 
 ### <a name="cloud-baseline"></a>雲端基準
 
-公用雲端平台提供原生的 IAM 系統，以授與使用者和群組管理功能的存取權。 如果您的組織缺乏重要內部部署身分識別解決方案，而您規劃要移轉工作負載，使其與雲端式驗證機制相容，則您應使用雲端原生的身分識別服務建立身分識別基礎結構。
+公用雲端平台提供原生的 IAM 系統，為使用者和群組授與管理功能的存取權。 如果您的組織缺乏重要內部部署身分識別解決方案，而您規劃要移轉工作負載，使其與雲端式驗證機制相容，則您應使用雲端原生的身分識別服務建立身分識別基礎結構。
 
 **雲端基準假設**。 使用純雲端原生身分識別基礎結構的假設如下：
 
@@ -54,7 +54,7 @@ ms.locfileid: "55900904"
 
 ### <a name="directory-synchronization"></a>目錄同步作業
 
-對於具有現有身分識別基礎結構的組織，目錄同步作業通常是保留現有使用者和存取管理的最佳解決方案，同時可提供所需的 IAM 功能來管理雲端資源。 此程序會持續複寫雲端和內部部署環境之間的目錄資訊，允許使用者單一登入 (SSO) 及整個組織一致的身分識別、角色和權限系統。
+對於具有現有身分識別基礎結構的組織，目錄同步作業通常是保留現有使用者和存取管理的最佳解決方案，同時可提供所需的 IAM 功能來管理雲端資源。 此程序會持續複寫雲端和內部部署環境之間的目錄資訊，允許使用者使用單一登入 (SSO)，並在整個組織內使用一致的身分識別、角色和權限系統。
 
 注意：採用 Office 365 的組織可能已經在內部部署 Active Directory 基礎結構和 Azure Active Directory 之間實作[目錄同步作業](/office365/enterprise/set-up-directory-synchronization)。
 
@@ -62,10 +62,10 @@ ms.locfileid: "55900904"
 
 - 您需要在雲端和內部部署 IT 基礎結構中維持一組通用的使用者帳戶和群組。
 - 您的內部部署身分識別服務支援雲端身分識別提供者複寫。
-- 您需要使用者存取雲端和內部部署身分識別提供者的 SSO 機制。
+- 您需要為同時存取雲端和內部部署身分識別提供者的使用者提供 SSO 機制。
 
 > [!TIP]
-> 任何相依於舊版驗證機制 (不受 Azure AD 等雲端式身分識別服務支援) 的雲端式工作負載仍將需要連線至提供這些服務之內部部署網域服務或雲端環境中的虛擬伺服器。 使用內部部署身分識別服務也會導入雲端和內部部署網路之間的連線相依性。
+> 任何相依於舊版驗證機制 (不受 Azure AD 等雲端式身分識別服務支援) 的雲端式工作負載仍將需要連線至提供這些服務的內部部署網域服務或雲端環境中的虛擬伺服器。 使用內部部署身分識別服務也會導入雲端和內部部署網路之間的連線相依性。
 
 ### <a name="cloud-hosted-domain-services"></a>雲端託管網域服務
 
@@ -73,7 +73,7 @@ ms.locfileid: "55900904"
 
 此類型部署涉及在雲端式虛擬網路中部署執行 Active Directory 的虛擬機器，以提供網域服務給雲端中的資源。 任何移轉至雲端網路的現有應用程式和服務應在稍加修改後可使用這些雲端託管目錄伺服器。
 
-很可能您的現有目錄和網域服務將在內部部署環境中繼續使用。 在此案例中，建議您也使用目錄同步作業，在雲端和內部部署環境中提供一組通用的使用者和角色。
+您現有的目錄和網域服務很可能會在內部部署環境中繼續使用。 在此案例中，建議您也使用目錄同步作業，在雲端和內部部署環境中提供一組通用的使用者和角色。
 
 **雲端託管網域服務假設**。 執行目錄移轉的假設如下：
 
@@ -85,7 +85,7 @@ ms.locfileid: "55900904"
 
 ### <a name="active-directory-federation-services"></a>Active Directory Federation Services
 
-身分識別同盟會在多個身分識別管理系統中建立信任關係，以允許通用的驗證和授權功能。 之後，您就能支援由您組織或您客戶或商務夥伴所管理之身分識別系統中跨多個網域的單一登入功能。
+身分識別同盟會在多個身分識別管理系統中建立信任關係，以允許通用的驗證和授權功能。 之後，您就能在自己的組織內，或者由您的客戶與商務夥伴所管理的身分識別系統中，跨網域地支援單一登入功能。
 
 Azure AD 支援使用 [Active Directory 同盟服務](/azure/active-directory/hybrid/how-to-connect-fed-whatis) (AD FS) 的內部部署 Active Directory 網域同盟。 參閱[將 AD FS 擴充至 Azure](../../../reference-architectures/identity/adfs.md) 此參考架構，查看其可以如何在 Azure 中實作。
 
@@ -100,7 +100,7 @@ Azure AD 支援使用 [Active Directory 同盟服務](/azure/active-directory/hy
 - [Azure AD](https://azure.microsoft.com/services/active-directory)。 Azure AD 提供雲端式身分識別服務。 讓您管理對於 Azure 資源的存取並控制身分識別管理、裝置註冊、使用者佈建、應用程式存取控制和資料保護。
 - [Azure AD Connect](/azure/active-directory/hybrid/whatis-hybrid-identity)。 Azure AD Connect 工具可讓您將 Azure AD 執行個體與現有身分識別管理解決方案連線，以允許雲端中現有目錄的同步作業。
 - [角色型存取控制](/azure/role-based-access-control/overview) (RBAC)。 Azure AD 提供 RBAC，可有效率且安全地管理在管理平面中的資源存取權。 工作和責任會組織成角色，然後使用者會被指派到這些角色。 RBAC 可讓您控制誰對於資源擁有存取權，以及使用者可以在該資源上執行哪些動作。
-- [Azure AD Privileged Identity Management](/azure/active-directory/privileged-identity-management/pim-configure) (PIM)。 PIM 會降低資源存取權限的曝光時間，並透過報告和警示提升他們使用的可見度。 它會限制使用者在 Just-In-Time (JIT) 狀態下行使其權限，或指派持續時間較短的權限，並在時間到達之後自動撤銷該權限。
+- [Azure AD Privileged Identity Management](/azure/active-directory/privileged-identity-management/pim-configure) (PIM)。 PIM 會降低資源存取權限的曝光時間，並透過報告和警示提升他們使用的可見度。 也會限制使用者在 Just-In-Time (JIT) 狀態下行使其權限，或指派持續時間較短的權限，並在時間到達之後自動撤銷該權限。
 - [整合內部部署 Active Directory 網域與 Azure Active Directory](../../../reference-architectures/identity/azure-ad.md)。 此參考架構提供內部部署 Active Directory 網域和 Azure AD 之間的目錄同步作業範例。
 - [將 Active Directory Domain Services (AD DS) 擴充至 Azure。](../../../reference-architectures/identity/adds-extend-domain.md) 此參考架構提供部署 AD DS 伺服器以擴充網域服務至雲端式資源的範例。
 - [將 Active Directory 同盟服務 (AD FS) 擴充至 Azure](../../../reference-architectures/identity/adfs.md)。 此參考架構設定 Active Directory 同盟服務 (AD FS) 以執行同盟驗證和 Azure AD 目錄授權。
