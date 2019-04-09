@@ -7,16 +7,16 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 026d22bb9cfdcb69b1a12294410af748e7af5c39
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 1a927beb23a2e45b509b2648a6bccce4c2ad242d
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480788"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068968"
 ---
 # <a name="designing-microservices-continuous-integration"></a>設計微服務：持續整合
 
-持續整合與持續傳遞 (CI/CD) 是透過微服務獲得成功的關鍵需求。 若沒有完善的 CI/CD 程序，您就無法達到微服務所承諾的靈活度。 微服務的某些 CI/CD 挑戰是來自於各種服務的多個程式碼基底及各式各樣的建置環境。 本章描述一些挑戰，並建議可解決問題的一些方法。
+持續整合與持續傳遞 (CI/CD) 是透過微服務獲得成功的關鍵需求。 若沒有完善的 CI/CD 程序，您就無法達到微服務所承諾的靈活度。 微服務的某些 CI/CD 挑戰是來自於各種服務的多個程式碼基底及各式各樣的建置環境。 本文章會說明所面臨的挑戰，並建議問題的一些方法。
 
 ![微服務的 CI/CD 圖](./images/ci-cd.png)
 
@@ -123,4 +123,4 @@ Canary 版本的管理比藍綠或輪流更新更複雜，因為您必須動態�
 
 微服務回應了此不斷變動的情勢。 將單體式應用程式分解成鬆散偶合的服務群組，我們可以控制每項服務的發行週期，並能夠頻繁更新，而不需要停機或重大變更。 微服務也有助於延展性、失敗隔離和復原。 同時，雲端平台可自動佈建計算資源、容器即服務，以及事件驅動的無伺服器環境，讓您更輕鬆地建置和執行微服務。
 
-但如我們所見，微服務架構也具有許多挑戰。 若要成功，您必須從堅實的設計著手。 您必須在分析網域、選擇技術、建立資料模型、設計 API，以及建立成熟的 DevOps 文化特性時深思熟慮。 我們希望這份指南以及隨附的[參考實作](https://github.com/mspnp/microservices-reference-implementation)，已協助您順利完成旅程。
+但如我們所見，微服務架構也具有許多挑戰。 若要成功，您必須從堅實的設計著手。 您必須在分析網域、選擇技術、建立資料模型、設計 API，以及建立成熟的 DevOps 文化特性時深思熟慮。 我們希望這份指南以及隨附的[參考實作](https://github.com/mspnp/microservices-reference-implementation/tree/v0.1.0-orig)，已協助您順利完成旅程。

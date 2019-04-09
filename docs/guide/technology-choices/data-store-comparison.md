@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: f7c19501b9f28db3892285b5f35a33f02edd87ab
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3fd3badd66edbe561bea88576bb80d9fc3e0bb79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242329"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068917"
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>選擇資料存放區的準則
 
@@ -61,7 +61,7 @@ Azure 支援許多類型的資料儲存體解決方案，每種解決方案各�
 
 - **區域可用性**。 針對受控服務，所有 Azure 區域都提供服務嗎嗎？ 您的解決方案需要裝載在特定的 Azure 區域嗎？
 
-- **可攜性**。 您的資料需要移轉至內部部署、外部資料中心或其他雲端主控環境嗎？
+- **可攜性**。 您的資料需要移轉到內部、 外部資料中心或其他雲端主控環境嗎？
 
 - **授權**。 您有專屬與 OSS 授權類型的喜好設定嗎？ 您可使用的授權類型是否有任何其他外部限制？
 

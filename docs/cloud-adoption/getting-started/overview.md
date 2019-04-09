@@ -4,15 +4,14 @@ titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
-description: 描述在採用 Azure 雲端技術中企業數位轉型的第一個階段概觀。
-author: petertaylor9999
-ms.date: 2/11/2019
-ms.openlocfilehash: bfa325ded8c39915ad4d495b4309b700abd71cc2
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+description: 提供在採用 Azure 的雲端技術的企業的數位轉型的第一個階段的概觀。
+ms.date: 02/11/2019
+ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898352"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068951"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>開始使用雲端採用架構
 
@@ -59,11 +58,11 @@ ms.locfileid: "55898352"
 
 ## <a name="step-3-identify-gaps-in-business-strategy"></a>步驟 3：找出商務策略的落差
 
-下一個步驟是讓雲端策略團隊列舉需要數位轉型解決方案的商務問題。 例如，企業可能會有硬體生命週期結束而需要更換的現有內部部署資料中心。 在另一個範例中，企業可能會遇到新功能和服務上市時間的困難，並可能會落後競爭。 這些間距代表貴企業數位轉型的「目標」。
+下一個步驟是讓雲端策略團隊列舉需要數位轉型解決方案的商務問題。 例如，企業可能需要更換的生命週期結束硬體與現有的內部部署資料中心。 在另一個範例中，企業可能會遇到新功能和服務上市時間的困難，並可能會落後競爭。 這些間距代表貴企業數位轉型的「目標」。
 
 商務策略中的間距可以分為下列類別：
 
-|類別|說明|
+|類別|描述|
 |-----|-----|
 |成本管理|代表企業支付技術方式的間距。|
 |控管|代表企業用來保護其資產，避免不當使用而造成成本過度使用、安全性問題或相容性問題的間距。 |
@@ -108,7 +107,7 @@ IT 部門人員可能會對其角色和職位覺得有點焦慮，因為他們�
 在數位轉型期間，每個小組應該在任何員工考量出現時加以擷取。 在擷取考量時，識別下列項目：
 
 * 考量的類型。 例如，背景工作角色可能可以因應數位轉型伴隨而來的工作職責變更。
-* 考量的影響 (如果未解決)。 例如，因應數位轉型可能會導致背景工作角色執行所需變更速度緩慢。
+* 如果不解決的問題影響。 例如，因應數位轉型可能會導致背景工作角色執行所需變更速度緩慢。
 * 解決考量所需具備的領域。 例如，如果 IT 部門中的背景工作角色都不願意獲取新的技能，最好具備 IT 專案關係人的領域來解決這個問題。 識別領域對於某些問題可能很清晰，而在這些情況下，您可能必須呈報領導主管。
 
 ### <a name="identify-gaps"></a>找出間距
