@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企業 – 有關治理 MVP 的其他技術細節
+title: CAF：大型企業 – 最佳做法的說明
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企業 – 有關治理 MVP 的其他技術細節
+description: 大型企業 – 最佳做法的說明
 author: BrianBlanchard
-ms.openlocfilehash: 50b0ae1ebb386d2f0b693a347d599ff29680a9cb
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900955"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068985"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>大型企業：最佳做法說明
 
@@ -38,7 +38,7 @@ ms.locfileid: "55900955"
 
 1. 尋求有關以下核心相依性的決策：身分識別、網路和加密。
 2. 判斷在強制執行公司原則時要使用的模式。
-3. 針對資源一致性、資源標記及記錄與報告專業領域，判斷適當的治理模式。
+3. 決定適當的控管模式資源一致性、 資源標記，以及記錄和報告等。
 4. 實作符合所選原則強制執行模式的治理工具，以套用相依性決策和治理決策。
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]
@@ -90,7 +90,7 @@ ms.locfileid: "55900955"
 
 **工程師訓練**：雲端治理小組提供兩個月的訓練課程，並且已為工程師建立兩段影片。 這兩種資源可協助工程師快速了解治理特性，以及如何執行部署。 小組正在新增訓練資產，以示範生產與非生產部署之間的差異，而這可協助工程師了解新原則如何影響採用。 這可以在沒有嚴格的強制遵循要求下，確保部署的一致性。
 
-**部署規劃**：在部署任何包含受保護資料的資產之前，雲端治理小組會負責檢閱部署指令碼，以驗證治理的一致性。 若現有小組使用先前已核准的部署，則會使用程式設計工具對其進行稽核。
+**部署規劃**：部署任何資產包含受保護的資料之前，雲端管理小組會負責檢閱部署指令碼來驗證控管的對齊方式。 若現有小組使用先前已核准的部署，則會使用程式設計工具對其進行稽核。
 
 **每月稽核和報告**：雲端治理小組會每月對所有雲端部署執行稽核，以驗證原則是否仍保持一致。 如果發現偏差，他們就會記下這些偏差，然後將其分享給雲端採用小組。 如果強制作業沒有造成業務中斷或資料流失的風險，就會自動強制執行原則。 在稽核結束時，雲端治理小組會為雲端策略小組和每個雲端採用小組編譯報告，以告知整體的原則遵循狀況。 報告也會儲存以便用於稽核和法律用途。
 
@@ -101,13 +101,13 @@ ms.locfileid: "55900955"
 如果為此治理旅程選擇的模式不符合讀者需求，以下是每個模式的替代方案：
 
 - [加密模式](../../../decision-guides/encryption/overview.md)
-- [身分識別模式](../../../decision-guides/identity/overview.md)
-- [記錄與報告模式](../../../decision-guides/log-and-report/overview.md)
-- [原則強制執行模式](../../../decision-guides/policy-enforcement/overview.md)
+- [識別模式](../../../decision-guides/identity/overview.md)
+- [記錄和報告模式](../../../decision-guides/log-and-report/overview.md)
+- [原則強制模式](../../../decision-guides/policy-enforcement/overview.md)
 - [資源一致性模式](../../../decision-guides/resource-consistency/overview.md)
 - [資源標記模式](../../../decision-guides/resource-tagging/overview.md)
 - [軟體定義網路模式](../../../decision-guides/software-defined-network/overview.md)
-- [訂用帳戶設計模式](../../../decision-guides/subscriptions/overview.md)
+- [訂用帳戶的設計模式](../../../decision-guides/subscriptions/overview.md)
 
 ## <a name="next-steps"></a>後續步驟
 

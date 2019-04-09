@@ -8,12 +8,12 @@ description: 如何建立雲端轉換的財務模型。
 author: BrianBlanchard
 ms.date: 12/10/2018
 ms.topic: guide
-ms.openlocfilehash: 4fe9b178962bf2cd6a79233278c73085237772f0
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1f3ed8a84b84ba577ad5e5db8b1becd318dc04a3
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55898199"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068866"
 ---
 # <a name="create-a-financial-model-for-cloud-transformation"></a>建立雲端轉換的財務模型
 
@@ -26,7 +26,7 @@ ms.locfileid: "55898199"
 ![投資報酬率 (ROI) 等於 (投資所得 – 投資成本)/投資成本](../_images/formula-roi.png)
 
 <!-- markdownlint-disable MD036 -->
-*ROI = (投資所得 &minus; 初始投資)/初始投資*
+<!--*ROI = (Gain from Investment &minus; Initial Investment) / Initial Investment*-->
 <!-- markdownlint-enable MD036 -->
 
 在下一節中，我們將逐步說明計算初始投資和投資所得 (盈餘) 所需的資料。
@@ -46,7 +46,7 @@ ms.locfileid: "55898199"
 ![投資所得等於收益差異 + 成本差異](../_images/formula-gain-from-investment.png)
 
 <!-- markdownlint-disable MD036 -->
-*投資所得 = 收益差異 + 成本差異*
+<!--*Gain from Investment = Revenue Deltas + Cost Deltas*-->
 <!-- markdownlint-enable MD036 -->
 
 各項目分述如下。
@@ -57,7 +57,7 @@ ms.locfileid: "55898199"
 
 ## <a name="cost-deltas"></a>成本差異
 
-成本差異是指因轉換而將增加或減少的金額。 有多個獨立變數可能會對成本差異造成影響。 盈餘主要取決於資本支出降低、成本規避、營運成本降低和折舊降低等硬性成本。 以下幾節將以範例說明應考量的成本差異。
+成本差異是指因轉換而將增加或減少的金額。 有數個獨立變數可能會影響成本的差異。 盈餘主要取決於資本支出降低、成本規避、營運成本降低和折舊降低等硬性成本。 以下幾節將以範例說明應考量的成本差異。
 
 ### <a name="depreciation-reductions-or-acceleration"></a>折舊縮減或加速
 
@@ -75,7 +75,7 @@ ms.locfileid: "55898199"
 
 企業營運所需的週期性費用，通常稱為營運費用 (OpEx)。 OpEx 類別的涵蓋範圍相當廣泛。 在大多數的會計模型中，此類別會包含軟體授權、裝載費用、電費、不動產租金、冷卻費用、營運所需的臨時員工、設備租金、更換零件、維護合約、維修服務、商務持續性/災害復原 (BC/DR) 服務，和其他多項不需經過資本支出核准的費用。
 
-在考量營運轉型流程時，此類別是可產生最大盈餘的區塊之一。 只要花時間詳盡列出此份清單，通常都可獲得效益。 請洽詢 CIO 和財務小組，確定所有營運成本都已納入會計帳目。
+此類別時，下列其中一個最大的盈餘區域考慮操作的轉換。 只要花時間詳盡列出此份清單，通常都可獲得效益。 請洽詢 CIO 和財務小組，確定所有營運成本都已納入會計帳目。
 
 ### <a name="cost-avoidance"></a>成本規避
 
@@ -95,7 +95,7 @@ ms.locfileid: "55898199"
 
 ### <a name="capital-expense-reductions-or-avoidance"></a>資本支出降低或規避
 
-資本支出 (CapEx) 與營運費用略有不同。 此類別通常由更新週期或資料中心擴充所驅動。 以新的高效能叢集裝載巨量資料解決方案或資料倉儲時，若要將其統合納入 CapEx 類別中，即屬於資料中心擴充的範例。 更常見的是基本更新週期。 有些公司採用嚴謹的硬體更新週期，亦即資產會以固定週期汰用和換新 (通常為每 3、5 或 8 年一次)。 這些週期通常會與資產租用週期或預測的設備使用期限一致。 在達到更新週期時，IT 即會提取 CapEx 以購買新設備。
+資本支出 (CapEx) 與營運費用略有不同。 此類別通常由更新週期或資料中心擴充所驅動。 以新的高效能叢集裝載巨量資料解決方案或資料倉儲時，若要將其統合納入 CapEx 類別中，即屬於資料中心擴充的範例。 更常見的是基本更新週期。 有些公司具有嚴謹的硬體，重新整理循環，意義資產已停用，並取代一般的循環 （通常每隔三、 五年或八年）。 這些週期通常會與資產租用週期或預測的設備使用期限一致。 在達到更新週期時，IT 即會提取 CapEx 以購買新設備。
 
 在更新週期通過核准並編入預算後，雲端轉換將有助於消除該成本。 若已規劃更新週期但尚未核准，雲端轉換將可產生 CapEx 成本規避的效果。 這兩個案例都會計入成本差異中。
 

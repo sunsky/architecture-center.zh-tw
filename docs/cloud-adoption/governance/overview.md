@@ -1,16 +1,19 @@
 ---
-title: CAF：雲端治理
-description: 雲端治理內容的簡介
+title: CAF：在 Microsoft 外，azure 中的控管
+ms.service: architecture-center
+ms.subservice: enterprise-cloud-adoption
+ms.custom: governance
+ms.date: 02/11/2019
+description: 在 Microsoft 外，azure 中的控管
 author: BrianBlanchard
-ms.date: 2/11/2019
-ms.openlocfilehash: 8a9701677eec913788ca72f86444a3600e170d07
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: ce407de0daa590e767382346692c80e0a113bb3c
+ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897366"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068832"
 ---
-# <a name="cloud-governance-in-the-microsoft-caf-for-azure"></a>Microsoft CAF for Azure 中的雲端治理
+# <a name="governance-in-the-microsoft-caf-for-azure"></a>在 Microsoft 外，azure 中的控管
 
 雲端為支援商務的技術建立新的架構。 這些新的架構也促使採用、管理和治理這些技術的方式有所改變。 自動程序會執行一行程式碼來終結並重新建立整個資料中心時，我們必須重新思考傳統方法。 對於治理也同樣如此。
 
@@ -29,17 +32,17 @@ CAF 的內容會影響企業的業務、技術和文化。 CAF 的這個部分�
 
 雲端架構設計師可引導並促使這些對象共同合作。 此系列指南的內容旨在協助雲端架構設計師促進與正確對象進行正確的對話，藉以推動必要的決策。 由雲端推動的業務轉型必須由雲端架構設計師居中協助指導整個業務和 IT 的決策。
 
-**本節中的雲端架構設計師專業化：** CAF 的每個部分代表雲端架構設計師角色的不同專業化或樣貌。 CAF 的這個部分專為熱衷於減輕或消除技術風險的雲端架構設計師所設計。 許多雲端服務提供者將這些專家稱為雲端監管人，我們則偏向稱為雲端守護者，或統稱為雲端治理小組。 在每個可採取動作的客戶程序中，這些文章呈現雲端治理小組的組成和角色如何隨時間而改變。
+**本節中的雲端架構設計師專業化：** CAF 的每個部分代表雲端架構設計師角色的不同專業化或樣貌。 本節中的外適合雲端架構設計人員懷有熱忱的緩和或降低技術的風險。 許多雲端服務提供者將這些專家稱為雲端監管人，我們則偏向稱為雲端守護者，或統稱為雲端治理小組。 在每個可採取動作的客戶程序中，這些文章呈現雲端治理小組的組成和角色如何隨時間而改變。
 
 ## <a name="using-this-guide"></a>使用本指南
 
 對於想要完全遵循本指南的讀者，此內容將有助於訂定與雲端實作並行的強大雲端治理策略。 本指南會引導讀者了解此類策略的理論和實作。
 
-如需快速了解 Azure 實作的理論和快速採用 Azure 實作，請先參閱[可採取動作的治理程序概觀](./journeys/overview.md)。 透過此指南，讀者可以從小規模開始，並在雲端採用過程中同時發展其治理需求。
+當機的理論和快速存取 Azure 實作課程，開始使用[概觀可操作的控管旅程](./journeys/overview.md)。 透過此指南，讀者可以從小規模開始，並在雲端採用過程中同時發展其治理需求。
 
 ## <a name="next-steps"></a>後續步驟
 
-檢閱可採取動作的治理程序。
+檢閱可操作的控管旅程圖。
 
 > [!div class="nextstepaction"]
-> [可採取動作的治理程序](./journeys/overview.md)
+> [可操作的控管旅程](./journeys/overview.md)
