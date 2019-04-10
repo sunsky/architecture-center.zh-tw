@@ -50,7 +50,7 @@ ms.locfileid: "58887948"
 
 [Azure Blob 儲存體][ blob]用來儲存輸入的資料、 預先定型的機器學習服務模型和預測的結果。 它提供非常符合成本效益的儲存體，需要這個工作負載的效能。
 
-[Azure Container Instances] [ aci]隨需提供無伺服器計算。 在此情況下，觸發程序產生之預測的批次作業的排程部署容器執行個體。 批次作業會觸發從 R 指令碼使用[doAzureParallel] [ doAzureParallel]封裝。 容器執行個體會自動關閉作業完成之後。
+[Azure Container Instances] [ aci]隨需提供無伺服器計算。 在此情況下，觸發程序產生之預測的批次作業的排程部署容器執行個體。 批次作業會觸發從 R 指令碼使用[doAzureParallel][doAzureParallel]封裝。 容器執行個體會自動關閉作業完成之後。
 
 [Azure Logic Apps] [ logic-apps]部署容器執行個體上的排程來觸發整個工作流程。 在 Logic Apps 中的 Azure Container Instances 連接器可讓部署觸發程序事件範圍的執行個體。
 
@@ -86,13 +86,13 @@ Azure Container Instances 提供無伺服器環境來執行排程器的容器。
 
 DoAzureParallel 套件會自動收集所有 stdout/stderr 中每個工作提交 Azure Batch 上的記錄的檔。 這些可於安裝時建立的儲存體帳戶中。 若要檢視它們，請使用儲存體瀏覽工具這類[Azure 儲存體總管][ storage-explorer]或 Azure 入口網站。
 
-若要在開發期間，快速偵錯的批次作業，列印在本機 R 工作階段使用的記錄檔[getJobFiles] [ getJobFiles] doAzureParallel 函式。
+若要在開發期間，快速偵錯的批次作業，列印在本機 R 工作階段使用的記錄檔[getJobFiles][getJobFiles] doAzureParallel 函式。
 
 ## <a name="cost-considerations"></a>成本考量
 
 在此參考架構中使用的計算資源是成本最高的元件。 此案例中，每當作業會觸發並關閉作業完成之後，就會建立一個固定大小的叢集。 只有當啟動、 執行，或正在關閉叢集節點時，即會產生費用。 這個方法很適合案例，其中要產生預測所需的計算資源保持相當穩定工作作業。
 
-在完成工作所需的計算數量無法事先知道的情況下，可能更適合使用自動調整。 使用此方法時，叢集的大小被相應增加或減少作業的大小而定。 Azure Batch 支援一組定義叢集中使用時，您可以設定自動調整公式[doAzureParallel] [ doAzureParallel] API。
+在完成工作所需的計算數量無法事先知道的情況下，可能更適合使用自動調整。 使用此方法時，叢集的大小被相應增加或減少作業的大小而定。 Azure Batch 支援一組定義叢集中使用時，您可以設定自動調整公式[doAzureParallel][doAzureParallel] API。
 
 某些情況下，作業之間的時間可能太短而無法關閉，並啟動叢集。 在這些情況下，請視執行作業之間的叢集。
 
@@ -100,7 +100,7 @@ Azure 批次和 doAzureParallel 支援低優先順序的 Vm 使用。 這些 Vm 
 
 ## <a name="deployment"></a>部署
 
-若要部署此參考架構，請依照下列所述的步驟[GitHub] [ github]存放庫。
+若要部署此參考架構，請依照下列所述的步驟[GitHub][github]存放庫。
 
 
 [0]: ./_images/batch-scoring-r-models.png
