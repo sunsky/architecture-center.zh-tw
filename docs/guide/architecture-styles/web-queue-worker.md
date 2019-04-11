@@ -3,17 +3,17 @@ title: Web-佇列-背景工作角色架構樣式
 titleSuffix: Azure Application Architecture Guide
 description: 說明 Azure 上 Web-佇列-背景工作角色架構的優點、挑戰和最佳做法。
 author: MikeWasson
-ms.date: 08/30/2018
+ms.date: 04/10/2019
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: b471d270af09df7ffd58dfdd49e7d03d05bfe582
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 974b8b8595d6d9333552c41dfe1f3f2af848d264
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244589"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480077"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Web-佇列-背景工作角色架構樣式
 
@@ -71,15 +71,15 @@ Web 和背景工作角色都是無狀態。 工作階段狀態可以儲存在分
 
 ![Web-佇列-背景工作角色架構樣式的實體圖](./images/web-queue-worker-physical.png)
 
-前端實作成 Azure App Service Web 應用程式，而背景工作角色實作為 WebJob。 Web 應用程式和 WebJob 都與提供 VM 執行個體的 App Service 方案相關聯。
+- 前端會實作為 Azure App Service web 應用程式，而背景工作角色實作為 Azure Functions 應用程式。 Web 應用程式和函式應用程式都提供 VM 執行個體的 App Service 方案相關聯。
 
-您可以使用 Azure 服務匯流排或 Azure 儲存體佇列來提供訊息佇列。 (圖中為 Azure 儲存體佇列。)
+- 您可以使用 Azure 服務匯流排或 Azure 儲存體佇列來提供訊息佇列。 (圖中為 Azure 儲存體佇列。)
 
-Azure Redis 快取會儲存工作階段狀態和其他需要低延遲存取的資料。
+- Azure Redis 快取會儲存工作階段狀態和其他需要低延遲存取的資料。
 
-Azure CDN 用於快取靜態內容，例如影像、CSS 或 HTML。
+- Azure CDN 用於快取靜態內容，例如影像、CSS 或 HTML。
 
-在儲存體方面，選擇最符合應用程式需求的儲存體技術。 您可以使用多個儲存體技術 (polyglot persistence)。 為了說明這個概念，圖中顯示 Azure SQL Database 和 Azure Cosmos DB。
+- 在儲存體方面，選擇最符合應用程式需求的儲存體技術。 您可以使用多個儲存體技術 (polyglot persistence)。 為了說明這個概念，圖中顯示 Azure SQL Database 和 Azure Cosmos DB。
 
 如需詳細資訊，請參閱 [App Service Web 應用程式參考架構][scalable-web-app]。
 
@@ -89,7 +89,7 @@ Azure CDN 用於快取靜態內容，例如影像、CSS 或 HTML。
 
 - 使用 App Service 內建的自動調整功能，相應放大 VM 的執行個體數目。 如果應用程式的負載有固定可預測的模式，使用依排程執行的自動調整。 如果負載無法預期，使用依計量執行的自動調整規則。
 
-- 請考慮將 Web 應用程式和 WebJob 放入不同的 App Service 方案。 這樣一來，它們裝載在不同的 VM 執行個體上，可以獨立調整。
+- 請考慮將 web 應用程式和函式應用程式放入個別的 App Service 方案。 如此一來，它們可以獨立調整。
 
 - 生產和測試請使用不同的 App Service 方案。 否則，如果您在生產和測試使用相同方案，表示您的測試會在生產環境的 VM 上執行。
 

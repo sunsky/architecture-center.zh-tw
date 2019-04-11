@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, seodec18
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-dotnet-webapp.svg
-ms.openlocfilehash: 0d6ac13fb357657a2ec5e6284abadb46d6926907
-ms.sourcegitcommit: 3b15d65e7c35a19506e562c444343f8467b6a073
-ms.translationtype: HT
+ms.openlocfilehash: f999b2ffdf234161f668887d5b2327ecf50f0e55
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "54908489"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480128"
 ---
 # <a name="design-a-cicd-pipeline-using-azure-devops"></a>使用 Azure DevOps 設計 CI/CD 管線
 
@@ -93,11 +93,11 @@ ms.locfileid: "54908489"
 
 ### <a name="walk-through"></a>逐步解說
 
-[Azure DevOps 專案](/azure/devops-project/azure-devops-project-github)會為您部署 App Service 方案、App Service 和 App Insights 資源，並為您設定 Azure DevOps 專案。
+[Azure DevOps Projects](/azure/devops-project/azure-devops-project-github)會部署 App Service 方案，App Service 和 App Insights 資源，以及為您設定的 Azure 管線的管線。
 
-一旦您部署 Azure DevOps 專案並完成建置後，請檢閱相關聯的程式碼變更、工作項目和測試結果。 您會發現並不會顯示測試結果，因為程式碼不包含任何要執行的測試。
+一旦您已使用 Azure DevOps 專案來設定管線，並在建置完成，檢閱相關聯的程式碼變更工作項目，與測試結果。 您會發現並不會顯示測試結果，因為程式碼不包含任何要執行的測試。
 
-專案會建立發行管線和持續部署觸發程序，並將我們的應用程式部署到開發環境。 在持續部署過程中，您可能會看到跨多個環境的版本。 發行可以跨兩個基礎結構 (使用如基礎結構即程式碼的技術)，還可部署所需的應用程式套件以及任何設定後工作。
+發行定義和持續部署觸發程序，我們應用程式部署到開發環境，則會建立管線。 在持續部署過程中，您可能會看到跨多個環境的版本。 發行可以跨兩個基礎結構 (使用如基礎結構即程式碼的技術)，還可部署所需的應用程式套件以及任何設定後工作。
 
 ## <a name="pricing"></a>價格
 
@@ -115,7 +115,7 @@ Azure DevOps 會按每個使用者的每月使用量來計費。 除了任何額
 - [Microsoft 的 DevOps - 如何使用 Azure DevOps][devops-microsoft]
 - [逐步教學課程：使用 Azure DevOps 進行 DevOps][devops-with-vsts]
 - [DevOps 檢查清單][devops-checklist]
-- [使用 Azure DevOps Project 建立適用於 .NET 的 CI/CD 管線][devops-project-create]
+- [適用於.NET 的 Azure DevOps Projects 建立 CI/CD 管線][devops-project-create]
 
 <!-- links -->
 

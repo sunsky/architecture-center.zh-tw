@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 87869d1b38d2b4a71cd5b604436e04deab993131
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: ed1811495e81965fa514ab66dcfa49d00d2a59f2
+ms.sourcegitcommit: bb75a25bd589a761c79e39f2ccdec4acc7d71d60
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420017"
+ms.lasthandoff: 04/11/2019
+ms.locfileid: "59480094"
 ---
 # <a name="naming-conventions-for-azure-resources"></a>Azure 資源的命名慣例
 
@@ -85,6 +85,7 @@ ms.locfileid: "58420017"
 |可用性設定組 |資源群組 |1-80 |不區分大小寫 |英數字元、底線和連字號 |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Tag |相關聯的實體 |512 (名稱)、256 (值) |不區分大小寫 |英數、特殊字元，但 `<`、`>`、`%`、`&`、`\`、`?`、`/` 除外。 請在[這裡](/azure/azure-resource-manager/resource-group-using-tags)參閱限制。 |`"key" : "value"` |`"department" : "Central IT"` |
 |Web 應用程式 |全域 |1-60 |不區分大小寫 |英數字元和連字號 |`<app_name>-<source-slot-name>` |`contoso-staging` |
+|API 管理 |全域 |1-50 |不區分大小寫 |英數字元和連字號 |`<apim-service-name>` |`contoso` |
 
 ### <a name="compute"></a>計算
 
@@ -100,7 +101,7 @@ ms.locfileid: "58420017"
 
 | 實體 | 影響範圍 | 長度 | 大小寫 | 有效字元 | 建議模式 | 範例 |
 | --- | --- | --- | --- | --- | --- | --- |
-|儲存體帳戶名稱 (資料) |全域 |3-24 |小寫 |英數字元 |`<globally unique name><number>` (使用函式來計算命名的儲存體帳戶的唯一 GUID) |`profxdata001` |
+|儲存體帳戶名稱 (資料) |全域 |3-24 |小寫 |英數字元 |`<globally unique name><number>` （使用函數來計算命名的儲存體帳戶的唯一 guid） |`profxdata001` |
 |儲存體帳戶名稱 (磁碟) |全域 |3-24 |小寫 |英數字元 |`<vm name without hyphens>st<number>` |`profxsql001st0` |
 | 容器名稱 |儲存體帳戶 |3-63 |小寫 |英數字元和連字號 |`<context>` |`logs` |
 |Blob 名稱 | 容器 |1-1024 |區分大小寫 |任何 URL 字元 |`<variable based on blob usage>` |`<variable based on blob usage>` |
@@ -191,7 +192,7 @@ Azure Resource Manager 支援使用任意文字字串來標記實體，以識別
 
 如需有關命名 Blob、容器和資料表的詳細資訊，請參閱以下清單：
 
-- [命名和參考容器、Blob 及中繼資料](https://msdn.microsoft.com/library/dd135715.aspx)
+- [命名和引用容器、Blob 和元数据](https://msdn.microsoft.com/library/dd135715.aspx)
 - [命名佇列和中繼資料](https://msdn.microsoft.com/library/dd179349.aspx)
 - [命名資料表](https://msdn.microsoft.com/library/azure/dd179338.aspx)
 
