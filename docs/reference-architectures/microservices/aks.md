@@ -7,20 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: 535c53faa810f74299e715a204e427c8919ce360
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.openlocfilehash: 3e93a036bdb7cdf9f4e49ae81887063624372a6b
+ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "59069019"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59533119"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Azure Kubernetes Service (AKS) 上的微服務架構
 
 此參考架構顯示部署至 Azure Kubernetes Service (AKS) 的微服務應用程式。 它會描述基本的 AKS 組態，可以是大多數部署的起點。 本文假設您已有 Kubernetes 的基本知識。 本文主要著重於在 AKS 上執行微服務架構的基礎結構與 DevOps 考量。 如需有關如何設計微服務的指引，請參閱[在 Azure 上建置微服務](../../microservices/index.md)。
 
-![GitHub 標誌](../../_images/github.png)這個架構的參考實作位於[GitHub](https://github.com/mspnp/microservices-reference-implementation)。
-
-
+![GitHub 標誌](../../_images/github.png)這個架構的參考實作位於[GitHub][ri]。
 
 ![AKS 參考架構](./_images/aks.png)
 
@@ -202,7 +200,7 @@ AKS 會整合這兩種 RBAC 機制。 建立 AKS 叢集時，您可以將其設�
 
 - 「Azure Kubernetes Service 叢集管理員角色」有權下載叢集管理員認證。 您應只將叢集管理員指派給此角色。
 
-- 「Azure Kubernetes Service 叢集使用者角色」有權下載叢集使用者認證。 您可以將非管理員的使用者指派給這個角色。 此角色不會在叢集內的 Kubernetes 資源上提供任何特定權限 &mdash; 此角色只能讓使用者連線至 API 伺服器。 
+- 「Azure Kubernetes Service 叢集使用者角色」有權下載叢集使用者認證。 您可以將非管理員的使用者指派給這個角色。 此角色不會在叢集內的 Kubernetes 資源上提供任何特定權限 &mdash; 此角色只能讓使用者連線至 API 伺服器。
 
 定義您的 RBAC 原則 (Kubernetes 和 Azure) 時，請考量您組織中的角色：
 
@@ -259,109 +257,18 @@ AKS 會整合這兩種 RBAC 機制。 建立 AKS 叢集時，您可以將其設�
 針對微服務架構，以下是強固 CI/CD 程序的一些目標：
 
 - 每個小組都可建置並部署獨立擁有的服務，而不會影響或干擾其他小組。
-
 - 將新版服務部署到生產環境之前，可先部署到開發/測試/QA 環境來進行驗證。 在每個階段上強制執行品質閘門 (Quality Gate)。
-
-- 部署新版服務時，前一版服務可並存。
-
+- 服務的新版本可以與舊版並存部署。
 - 有足夠的存取控制原則。
+- 適用於容器化工作負載，您可以信任的容器映像，部署到生產環境。
 
-- 您可以信任部署到生產環境的容器映像。
+若要深入了解所面臨的挑戰，請參閱[微服務架構的 CI/CD](../../microservices/ci-cd.md)。
 
-### <a name="isolation-of-environments"></a>環境隔離
+特定的建議和最佳作法，請參閱[在 Kubernetes 上的微服務的 CI/CD](../../microservices/ci-cd-kubernetes.md)。
 
-您部署服務時會用到多個環境，這些環境分別用於開發、煙霧測試 (Smoke Test)、整合測試、負載測試和最後的生產環境。 這些環境需要某種程度的隔離。 在 Kubernetes 中，您可以選擇實體隔離和邏輯隔離。 實體隔離表示部署到不同叢集。 邏輯隔離會使用命名空間和原則，如先前所述。
+## <a name="deploy-the-solution"></a>部署解決方案
 
-我們建議您建立專用的生產環境叢集，以及用於開發/測試環境的個別叢集。 使用邏輯隔離來區隔開發/測試叢集內的環境。 部署到開發/測試叢集的服務應一律不能存取保存商務資料的資料存放區。 
+若要部署此架構的參考實作，請依照下列中的步驟[GitHub 儲存機制][ri-deploy]。
 
-### <a name="helm"></a>Helm
-
-請考慮使用 Helm 來管理服務的建置和部署。 Helm 的部分功能有助於實現 CI/CD，包括：
-
-- 將特定微服務的所有 Kubernetes 物件組織到單一 Helm 圖表。
-- 將圖表部署為單一 helm 命令，而不是一系列的 kubectl 命令。
-- 使用語意化版本控制系統來追蹤更新和修訂，並且具有能夠復原到先前版本的功能。
-- 使用範本來避免許多檔案中的資訊重複，例如標籤和選取器。
-- 管理圖表之間的相依性。
-- 將圖表發佈至 Helm 存放庫，例如 Azure Container Registry，並將圖表與組建管線整合。
-
-如需有關使用 Container Registry 作為 Helm 存放庫的詳細資訊，請參閱[使用 Azure Container Registry 作為您應用程式圖表的 Helm 存放庫](/azure/container-registry/container-registry-helm-repos)。
-
-### <a name="cicd-workflow"></a>CI/CD 工作流程
-
-建立 CI/CD 工作流程之前，您必須知道如何結構化和管理程式碼基底。
-
-- 小組是使用不同的存放庫或使用 monorepo (單一存放庫)？
-- 您的分支策略是什麼？
-- 誰可以將程式碼推送至生產環境？ 有版本管理員角色嗎？
-
-雖然 monorepo 方法較受青睞，但這兩者都有優點和缺點。
-
-| &nbsp; | Monorepo | 多個存放庫 |
-|--------|----------|----------------|
-| **優點** | 程式碼共用<br/>可更輕鬆地將程式碼及工具標準化<br/>可更輕鬆地重構程式碼<br/>可搜尋性 - 程式碼的單一檢視<br/> | 每個小組有明確擁有權<br/>可能可減少合併衝突<br/>有助於強制分離微服務 |
-| **挑戰** | 共用程式碼的變更可能會影響多個微服務<br/>很可能會有合併衝突<br/>工具必須擴充為大型程式碼基底<br/>存取控制<br/>更複雜的部署程序 | 難以共用程式碼<br/>難以強制執行編碼標準<br/>相依性管理<br/>擴散的程式碼基底、不佳的探索能力<br/>缺少共用的基礎結構
-
-在本節中，我們會以下列假設提供可能的 CI/CD 工作流程：
-
-- 程式碼存放庫是 monorepo，包含根據微服務統整的資料夾。
-- 小組的分支策略是以[主幹型開發](https://trunkbaseddevelopment.com/)為基礎。
-- 小組會使用 [Azure Pipelines](/azure/devops/pipelines) 執行 CI/CD 程序。
-- 小組會在 Azure Container Registry 中使用[命名空間](/azure/container-registry/container-registry-best-practices#repository-namespaces)，以區隔核准用於生產環境的映像和仍在測試中的映像。
-
-在此範例中，開發人員正在研究稱為「遞送服務」的微服務。 (此名稱來自[此處](../../microservices/design/index.md#scenario)所述的參考實作。)在開發新功能的同時，開發人員會將程式碼簽入功能分支。
-
-![CI/CD 工作流程](./_images/aks-cicd-1.png)
-
-將認可推送至這個分支時會觸發微服務的 CI 組建。 依照慣例，功能分支會命名為 `feature/*`。 [組建定義檔](/azure/devops/pipelines/yaml-schema)包含依分支名稱和來源路徑篩選的觸發程序。 使用此方法，每個小組都可以有自己的組建管線。
-
-```yaml
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-    - feature/*
-
-    exclude:
-    - feature/experimental/*
-
-  paths:
-     include:
-     - /src/shipping/delivery/
-```
-
-此時在流程中，CI 組建會執行一些最基本的程式碼驗證：
-
-1. 建置程式碼
-1. 執行單元測試
-
-這邊的意思是要讓建置時間保持簡短，讓開發人員可以快速取得意見反應。 開發人員會在功能可合併到主體時開啟 PR。 這會觸發另一個 CI 組建，以執行一些額外的檢查：
-
-1. 建置程式碼
-1. 執行單元測試
-1. 建置執行階段容器映像
-1. 在映像上執行弱點掃描
-
-![CI/CD 工作流程](./_images/aks-cicd-2.png)
-
-> [!NOTE]
-> 在 Azure Repos 中，您可以定義[原則](/azure/devops/repos/git/branch-policies)來保護分支。 例如，原則可能需要成功的 CI 組建再加上核准者的簽核，才能合併至主體。
-
-在某個時間點，小組已準備好部署新版的「遞送」服務。 若要這樣做，版本管理員會使用以下命名模式，從主體中建立分支：`release/<microservice name>/<semver>`。 例如： `release/delivery/v1.0.2`。
-這會觸發執行上述所有步驟的完整 CI 組建，以及：
-
-1. 將 Docker 映像推送至 Azure Container Registry。 映像會以取自分支名稱的版本號碼來標記。
-2. 執行 `helm package` 即可封裝 Helm 圖表
-3. 執行 `az acr helm push` 可將 Helm 套件推送至 Container Registry。
-
-假如此組建成功完成，即會觸發使用 Azure Pipelines [發行管線](/azure/devops/pipelines/release/what-is-release-management)的部署程序。 此管線會有下列動作
-
-1. 執行 `helm upgrade`，將 Helm 圖表部署至 QA 環境。
-1. 將套件移到生產環境之前，核准者會先進行簽核。 請參閱[使用核准功能的發行部署控制](/azure/devops/pipelines/release/approvals/approvals)。
-1. 為 Azure Container Registry 中的生產命名空間重新標記 Docker 映像。 例如，如果目前的標記是 `myrepo.azurecr.io/delivery:v1.0.2`，則生產標記就會是 `myrepo.azurecr.io/prod/delivery:v1.0.2`。
-1. 執行 `helm upgrade`，將 Helm 圖表部署至生產環境。
-
-![CI/CD 工作流程](./_images/aks-cicd-3.png)
-
-請務必記住這些工作可以涵蓋在個別的微服務中 (即使是 monorepo 也一樣)，以便小組快速進行部署。 處理程序中有一些手動步驟：核准 PR、建立發行分支，以及將部署核准到生產叢集中。 這些步驟會透過原則來手動執行 &mdash; 如果組織想要的話，也可以將其完全自動化。
+[ri]: https://github.com/mspnp/microservices-reference-implementation
+[ri-deploy]: https://github.com/mspnp/microservices-reference-implementation/blob/master/deployment.md
