@@ -9,12 +9,12 @@ description: 在 CAF 中治理內容的概觀
 author: BrianBlanchard
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 1721e2ff7b4e7879637a7c09a40a5571b73c9ace
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: ddd7f5e4b7e79ebe2ddf87be7421b6c4691aced1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901039"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639864"
 ---
 # <a name="the-five-disciplines-of-cloud-governance"></a>雲端治理的五個專業領域
 
@@ -26,7 +26,7 @@ ms.locfileid: "55901039"
         <div class="cardPadding" style="padding-bottom:10px;">
             <div class="card" style="padding-bottom:10px;">
                 <div class="cardText" style="padding-left:0px;">
-對業務程序或技術平台進行的任何變更都會引進風險。 雲端治理小組 (其成員又稱雲端監管人) 負責降低這些風險，且對採用或創新工作造成最少的中斷。<br/><br/>CAF 治理模型藉由著重於<a href="#corporate-policy">公司原則的開發</a>和<a href="#disciplines-of-cloud-governance">雲端治理的專業領域</a>，來引導這些決策 (不論所選的雲端平台)。 <a href="#actionable-journeys">可操作的設計指南</a>使用 Azure 服務示範此模型。 本文是作為 CAF 治理模型五個專業領域的登陸頁面。
+對業務程序或技術平台進行的任何變更都會引進風險。 雲端治理小組 (其成員又稱雲端監管人) 負責降低這些風險，且對採用或創新工作造成最少的中斷。<br/><br/>咖控管模型引導這些決策 （不論所選擇的雲端平台） 上開發的公司原則並<a href="#disciplines-of-cloud-governance">專業領域的雲端治理</a>。 <a href="./journeys/overview.md">可採取動作的旅程</a>示範如何使用 Azure 服務此模型。 本文是作為 CAF 治理模型五個專業領域的登陸頁面。
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ ms.locfileid: "55901039"
                     <div class="cardText" style="padding-left:0px;">
 <img src="../_images/operational-transformation-govern-highres.png" alt="Diagram of the CAF governance model: Corporate policy and governance disciplines">
 <br>
-<i>圖 1.公司原則和五個雲端治理專業領域的視覺效果</i>
+<i>圖 1.公司原則和雲端管理五個專業領域的圖表</i>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ ms.locfileid: "55901039"
 
 ## <a name="disciplines-of-cloud-governance"></a>雲端治理的專業領域
 
-在每個雲端提供者之間，有共同的雲端治理專業領域，可作為指南以協助通知原則和對應工具鏈。 這些專業領域會引導有關自動化之適當層級、跨雲端服務提供者之公司原則執行的決策。
+在每個雲端提供者中，有可做為指引，協助通知原則並對齊工具鏈的通用控管專業領域。 這些專業領域會引導有關自動化之適當層級、跨雲端服務提供者之公司原則執行的決策。
 
 <!-- markdownlint-disable MD033 -->
 

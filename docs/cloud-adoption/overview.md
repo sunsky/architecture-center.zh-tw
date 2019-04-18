@@ -8,10 +8,10 @@ layout: LandingPage
 ms.topic: landing-page
 author: BrianBlanchard
 ms.openlocfilehash: cb5f5a61ad71d60e0e5805fd7e8d6bd78f893293
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068798"
 ---
 # <a name="microsoft-cloud-adoption-framework-for-azure"></a>適用於 Azure 的 Microsoft 雲端採用架構
@@ -41,4 +41,4 @@ CAF 的每個部分代表雲端架構設計師角色的不同專業化或樣貌�
 如果您的企業有使用 Azure 的經驗，並且正在尋求更詳細的指引和特定領域所需的最佳作法，請檢閱[控管概觀](./governance/overview.md)並[架構決策指南](./decision-guides/overview.md)。 更多區段會新增為 GA 版本方法。
 
 > [!div class="nextstepaction"]
-> [開始使用](./getting-started/overview.md)
+> [快速入門](./getting-started/overview.md)
