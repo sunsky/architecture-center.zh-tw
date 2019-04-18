@@ -7,16 +7,16 @@ ms.date: 12/07/2018
 ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 9b931337f7f0e5dc58f83701271c7d3491af5bfd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: f3d15d65aeab41977e6d30b8141baaa956da29d3
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248743"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640765"
 ---
 # <a name="publisher-subscriber-pattern"></a>發行者-訂閱者模式
 
-讓應用程式能夠非同步地向多個感興趣的取用者宣告事件，而不需要將傳送者與取用者結合。
+讓應用程式而不需要結合的寄件者到接收者以非同步方式宣告的事件至多個想要的取用者。
 
 **也稱為**：發佈/訂閱傳訊
 
@@ -88,7 +88,7 @@ ms.locfileid: "58248743"
 
 - **重複訊息。** 相同的訊息可能會傳送多次。 例如，傳送者有可能在張貼訊息後作業失敗。 然後，傳送者的新執行個體可能會啟動並重複傳訊。 傳訊基礎結構應根據訊息識別碼實作重複訊息偵測和移除 (也稱為刪除重複訊息)，以提供「最多一次」的訊息傳遞。
 
-- **訊息到期。** 訊息可能會有有限的存留期。 訊息若未在這段時間內處理，則可能不再具有相關性，而應予以捨棄。 傳送者可以在訊息的資料中指定到期時間。 接收者可以先檢查此資訊，再決定是否要執行與訊息相關聯的商務邏輯。
+- **訊息到期。** 訊息可能會有有限的存留期。 訊息若未在這段時間內處理，則可能不再具有相關性，而應予以捨棄。 寄件者可以指定到期時間，做為訊息中的資料的一部分。 接收者可以先檢查此資訊，再決定是否要執行與訊息相關聯的商務邏輯。
 
 - **訊息排程。** 訊息可能會暫時禁止傳送，而在特定日期和時間之前不會進行處理。 接收者在此時間之前應該不會收到訊息。
 
@@ -130,4 +130,4 @@ ms.locfileid: "58248743"
 
 - [觀察者模式](https://en.wikipedia.org/wiki/Observer_pattern)。 發佈-訂閱模式透過非同步傳訊將來自觀察者的主題分離，以觀察者模式作為其建置基礎。
 
-- [訊息代理程式模式](https://en.wikipedia.org/wiki/Message_broker)。 許多支援發佈-訂閱模式的傳訊子系統都會透過訊息代理程式進行實作。
+- [訊息代理程式模式](https://en.wikipedia.org/wiki/Message_broker)。 許多傳訊子系統支援發佈-訂閱模型可透過訊息代理程式會實作。

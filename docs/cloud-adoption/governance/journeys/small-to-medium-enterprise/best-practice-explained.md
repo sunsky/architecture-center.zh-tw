@@ -1,28 +1,28 @@
 ---
-title: CAF：中小型企業 – 有關治理 MVP 的其他技術細節
+title: CAF：小型至中型企業 – 最佳做法的說明
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 說明中小型企業 – 有關治理 MVP 的其他技術細節
+description: 小型至中型企業 – 最佳做法的說明
 author: BrianBlanchard
-ms.openlocfilehash: e726213459c8bee63e3cc77ab54868fe7196b3ac
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: b9b385be345098bf1b9e0e1cdce7fd3cceeb5523
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900872"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639575"
 ---
 # <a name="small-to-medium-enterprise-best-practice-explained"></a>中小型企業：最佳做法說明
 
 治理旅程會從一組最初的[公司原則](./initial-corporate-policy.md)開始。 這些原則會用來建立治理 MVP，以反映出[最佳做法](./overview.md)。
 
-在本文中，我們會討論建立治理 MVP 所需的策略概要。 治理 MVP 的核心在於[部署加速](../../deployment-acceleration/overview.md)的專業領域。 在此階段套用的工具和模式有助於累進式發展，而這是在未來擴展治理成效所需的。
+在本文中，我們會討論建立治理 MVP 所需的策略概要。 治理 MVP 的核心在於[部署加速](../../deployment-acceleration/overview.md)專業領域。 在此階段套用的工具和模式有助於累進式發展，而這是在未來擴大治理成效所需的。
 
 ## <a name="governance-mvp-cloud-adoption-foundation"></a>治理 MVP (雲端採用基礎)
 
-快速採用治理和公司原則是可行的，因為有一些簡單的原則和雲端控管工具。 在任何治理程序中都有要達成的三個雲端治理專業領域，而這些是第一個。 每一個項目都將以本文為基礎來展開。
+快速採用治理和公司原則是可行的，因為有一些簡單的原則和雲端控管工具。 這些都是接近控管處理序中的前三個專業領域。 每一個項目都將以本文為基礎來展開。
 
 為建立起點，本文將針對建立治理 MVP (所有採用的基礎) 所需的身分識別基準、安全性基準和部署加速，討論其背後的策略概要。
 
@@ -38,8 +38,8 @@ ms.locfileid: "55900872"
 
 1. 尋求有關以下核心相依性的決策：身分識別、網路和加密。
 2. 判斷在強制執行公司原則時要使用的模式。
-3. 針對資源一致性、資源標記及登入與報告專業領域，判斷適當的治理模式。
-4. 實作符合所選原則強制模式的治理工具，以套用相依性決策和治理決策。
+3. 決定適當的控管模式資源一致性、 資源標記，以及記錄和報告等。
+4. 實作符合所選原則強制執行模式的治理工具，以套用相依性決策和治理決策。
 
 [!INCLUDE [implementation-process](../../../../../includes/cloud-adoption/governance/implementation-process.md)]
 
@@ -92,9 +92,9 @@ Azure 訂用帳戶的模式已選擇為**應用程式類別**。
 
 **部署規劃**：在部署任何包含受保護資料的資產之前，雲端治理小組會檢閱部署指令碼，以驗證治理的一致性。 若現有小組使用先前已核准的部署，則會使用程式設計工具對其進行稽核。
 
-**每月稽核和報告**：雲端治理小組會每月對所有雲端部署執行稽核，以驗證原則是否仍保持一致。 如果發現偏差，他們就會記下這些偏差，然後將其分享給雲端採用小組。 如果強制作業沒有造成營運中斷或資料流失的風險，就會自動強制執行原則。 稽核結束後，雲端治理小組會編寫一份報告，以供雲端策略小組和每個雲端採用小組溝通原則的整體遵循程度。 報表也會儲存以便用於稽核和法律用途。
+**每月稽核和報告**：雲端治理小組會每月對所有雲端部署執行稽核，以驗證原則是否仍保持一致。 如果發現偏差，他們就會記下這些偏差，然後將其分享給雲端採用小組。 如果強制作業沒有造成業務中斷或資料流失的風險，就會自動強制執行原則。 在稽核結束時，雲端治理小組會為雲端策略小組和每個雲端採用小組編譯報告，以告知整體的原則遵循狀況。 報表也會儲存以便用於稽核和法律用途。
 
-**每季原則檢閱**：每一季，雲端治理小組和雲端策略小組都會檢閱稽核結果，並提出公司原則的變更建議。 這些建議之中，有許多是持續不斷改進的結果以及使用模式的觀察。 通過核准的原則變更會在後續的稽核循環期間整合至治理工具。
+**每季原則檢閱**：每一季，雲端治理小組和雲端策略小組都會檢閱稽核結果，並提出公司原則的變更建議。 這些建議之中，有許多是持續不斷改進的結果以及使用模式的觀察。 核准的原則變更會在後續的稽核週期內整合至治理工具中。
 
 ## <a name="alternative-patterns"></a>替代模式
 

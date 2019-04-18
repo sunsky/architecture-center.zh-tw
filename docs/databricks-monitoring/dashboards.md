@@ -1,16 +1,16 @@
 ---
-title: 使用儀表板，以視覺化方式檢視 Azure Databricks 計量
+title: 使用儀表板將 Azure Databricks 計量視覺化
 description: 如何部署 Grafana 儀表板來監視在 Azure Databricks 中的效能
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 36fcd93f6ca757e8e750d0fcbbdf0311c08560b0
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: a84203a9188848e6363a80ac455332e8f6a73cda
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887823"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640306"
 ---
-# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用儀表板，以視覺化方式檢視 Azure Databricks 計量
+# <a name="use-dashboards-to-visualize-azure-databricks-metrics"></a>使用儀表板將 Azure Databricks 計量視覺化
 
 本文說明如何設定 Grafana 儀表板來監視 Azure Databricks 作業的效能問題。
 
@@ -20,7 +20,7 @@ ms.locfileid: "58887823"
 
 ![儀表板的螢幕擷取畫面](./_images/dashboard-screenshot.png)
 
-## <a name="prequisites"></a>必要條件
+## <a name="prerequisites"></a>必要條件
 
 複製品[Github 儲存機制](https://github.com/mspnp/spark-monitoring)並[遵循的部署指示](./configure-cluster.md)建置和設定 Azure Databricks 文件庫，將記錄傳送至您的 Azure Log Analytics 工作區的 Azure 監視器記錄。
 
@@ -81,7 +81,7 @@ Grafana 是開放原始碼專案，您可以部署以視覺化方式檢視儲存
 
 1. 在 Azure 入口網站中，選取 VM，然後按一下**概觀**。
 1. 複製公用 IP 位址。
-1. 開啟網頁瀏覽器並瀏覽至下列 URL: `http://<IP addresss>:3000`。
+1. 開啟網頁瀏覽器並瀏覽至下列 URL: `http://<IP address>:3000`。
 1. 在 Grafana 登入畫面中，輸入**admin**使用者名稱，與使用 Grafana 密碼，從先前的步驟。
 1. 登入之後，選取**組態**（齒輪圖示）。
 1. 選取 **伺服器管理員**。
@@ -177,7 +177,7 @@ Grafana 是開放原始碼專案，您可以部署以視覺化方式檢視儲存
 
 ### <a name="streaming-throughputlatency"></a>串流的輸送量/延遲
 
-此 visualzation 與相關的結構化串流查詢相關聯的度量。 這些圖表顯示每秒的輸入資料列數目和每秒處理的資料列數目。 串流度量也都被表示每個應用程式。 處理結構化串流查詢，並在視覺效果表示產生 OnQueryProgress 事件時，會傳送這些計量資料流處理的時間量的延遲，以毫秒為單位，前往執行查詢批次。
+此視覺效果相關的結構化串流查詢相關聯的度量。 這些圖表顯示每秒的輸入資料列數目和每秒處理的資料列數目。 串流度量也都被表示每個應用程式。 處理結構化串流查詢，並在視覺效果表示產生 OnQueryProgress 事件時，會傳送這些計量資料流處理的時間量的延遲，以毫秒為單位，前往執行查詢批次。
 
 ### <a name="resource-consumption-per-executor"></a>每個執行程式的資源耗用量
 

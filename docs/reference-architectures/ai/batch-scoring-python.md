@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai, AI
-ms.openlocfilehash: b7607984bcf2c4bd046421aeb6e9d52dd8e7c18e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 9341b9e4c17025e9623902a6202076c352b237b9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887738"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640543"
 ---
 # <a name="batch-scoring-of-python-machine-learning-models-on-azure"></a>在 Azure 上的 Python 機器學習服務的批次評分模型
 
@@ -25,11 +25,12 @@ ms.locfileid: "58887738"
 **案例**：此解決方案可監視 IoT 設定中大量裝置的作業，這其中的每個裝置都會持續傳送感應器讀數。 我們假設每個裝置已與預先定型的異常偵測模型相關聯，而這些模型可用來預測一系列的量值 (在預先定義的時間間隔內彙總) 是否會對應到異常狀況。 在真實案例中，這可能是需要先進行篩選和彙總的感應器讀數資料流，然後才能用於訓練和即時評分。 為了方便起見，此解決方案會在執行評分作業時使用相同的資料檔案。
 
 此參考架構是針對根據排程觸發的工作負載而設計的。 處理程序包含下列步驟：
-1.  將擷取的感應器讀數傳送至 Azure 事件中樞。
-2.  執行資料流處理並儲存未經處理資料。
-3.  將資料傳送至已準備好開始工作的 Machine Learning 叢集。 叢集中的每個節點都會針對特定感應器執行評分作業。 
-4.  執行評分管線，這會使用 Machine Learning Python 指令碼平行執行評分作業。 系統會建立、發佈管線，並將其排定在預先定義的時間間隔上執行。
-5.  產生預測並將它們儲存在 Blob 儲存體中，供後續使用。
+
+1. 將擷取的感應器讀數傳送至 Azure 事件中樞。
+2. 執行資料流處理並儲存未經處理資料。
+3. 將資料傳送至已準備好開始工作的 Machine Learning 叢集。 叢集中的每個節點都會針對特定感應器執行評分作業。 
+4. 執行評分管線，這會使用 Machine Learning Python 指令碼平行執行評分作業。 系統會建立、發佈管線，並將其排定在預先定義的時間間隔上執行。
+5. 產生預測並將它們儲存在 Blob 儲存體中，供後續使用。
 
 ## <a name="architecture"></a>架構
 
@@ -66,7 +67,7 @@ ms.locfileid: "58887738"
 ## <a name="management-considerations"></a>管理考量
 
 - **監視作業**。 監視執行中作業的進度相當重要，但要監視叢集上的作用中節點可能很困難。 若要檢查叢集中節點的狀態，請使用 [Azure 入口網站][ portal]來管理[機器學習工作區][ml-workspace]。 如果節點狀態是非使用中或作業已失敗，則錯誤記錄會儲存在 Blob 儲存體中，您也可在 Pipelines 區段中存取錯誤記錄。 如需更多監視功能，您可以將記錄連線到 [Application Insights][app-insights]，或執行不同處理程序來對叢集和其作業狀態進行輪詢。
--   **記錄**。 Machine Learning 服務會將所有 stdout/stderr 記錄至相關聯的 Azure 儲存體帳戶。 若要輕鬆檢視記錄檔，請使用 [Azure 儲存體總管][explorer]之類的儲存體瀏覽工具。
+- **記錄**。 Machine Learning 服務會將所有 stdout/stderr 記錄至相關聯的 Azure 儲存體帳戶。 若要輕鬆檢視記錄檔，請使用 [Azure 儲存體總管][explorer]之類的儲存體瀏覽工具。
 
 ## <a name="cost-considerations"></a>成本考量
 
@@ -75,7 +76,6 @@ ms.locfileid: "58887738"
 對於不需要立即處理的工作，可設定自動調整公式，如此一來，預設狀態 (最小值) 就是零個節點的叢集。 使用此設定時，叢集一開始會有零個節點，並只在偵測到佇列中有作業時，才會相應增加。 如果批次評分程序一天只會發生幾次 (或更少)，則此設定可省下大量成本。
 
 自動調整可能不適合間距太近的批次作業。 啟動及關閉叢集所花費的時間也會產生成本，因此如果批次工作負載會在前一個作業結束後的幾分鐘內啟動，那麼讓叢集在作業之間持續運作可能比較符合成本效益。 這取決於評分程序是排定為高頻率執行 (例如每小時) 或低頻率執行 (例如一個月一次)。
-
 
 ## <a name="deployment"></a>部署
 

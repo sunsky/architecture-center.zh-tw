@@ -1,28 +1,26 @@
 ---
 title: 失敗模式分析
-description: 針對以 Azure 為基礎的雲端解決方案執行失敗模式分析的指導方針。
+description: 執行失敗模式分析以 Azure 為基礎的雲端解決方案的指導方針。
 author: MikeWasson
 ms.date: 05/07/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 6d0f58161c5b9d5922c21f24b1b1a50bab836bb1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 0d89570ca42aa087a9c18148b5a4019b6f348e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248065"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640967"
 ---
-# <a name="failure-mode-analysis"></a>失敗模式分析
-
-[!INCLUDE [header](../_includes/header.md)]
+# <a name="failure-mode-analysis-for-azure-applications"></a>Azure 應用程式的失敗模式分析
 
 失敗模式分析 (FMA) 是一項程序，可藉由識別系統中可能的失敗點，在系統中建置復原功能。 FMA 應該加入成為架構和設計階段的一部分，這樣您才能在系統中從頭建置失敗復原。
 
 以下是用來進行 FMA 的一般程序：
 
-1. 識別系統中的所有元件。 包含外部相依性，例如，作為身分識別提供者、第三方服務等等。
+1. 識別系統中的所有元件。 包含外部相依性，例如身分識別提供者、 第三方服務等等。
 2. 識別每個元件可能發生的潛在失敗。 單一元件可能會有多個失敗模式。 例如，您應該分開考慮讀取失敗和寫入失敗，因為其影響和可能的補救措施會不同。
 3. 根據每個失敗模式的整體風險來為這些模式訂定評等。 請考慮下列因素：
 
@@ -135,7 +133,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 - 使用機架感知部署，並將資料節點分散於所有容錯網域。
 - 利用本機仲裁一致性部署至多個區域。 如果發生非暫時性失敗，則容錯移轉至其他區域。
 
-**診斷**。 應用程式記錄檔
+**診斷**。 應用程式記錄
 
 ## <a name="cloud-service"></a>服務雲端
 
@@ -373,7 +371,7 @@ Application_End 記錄會捕捉到應用程式網域關閉 (軟程序當機)，�
 
 **復原**。 您可以使用取消權杖來偵測關閉情形。 當 Service Fabric 要求取消時，請盡快完成任何工作並結束  `RunAsync`。
 
-**診斷**。 應用程式記錄檔
+**診斷**。 應用程式記錄
 
 ## <a name="storage"></a>儲存體
 

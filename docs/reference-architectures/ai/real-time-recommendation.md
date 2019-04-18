@@ -7,18 +7,18 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: c4bfd6e92fc9c770a03a63355fc922d19ef27b7b
-ms.sourcegitcommit: f4ed242dff8b204cfd8ebebb7778f356a19f5923
-ms.translationtype: HT
+ms.openlocfilehash: c7e7423da11667c90d53247c2c5303a8fbd1a76a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "56224159"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640153"
 ---
 # <a name="build-a-real-time-recommendation-api-on-azure"></a>在 Azure 上建置即時建議 API
 
 此參考架構會示範如何使用 Azure Databricks 定型建議模型，並使用 Azure Cosmos DB、Azure Machine Learning 和 Azure Kubernetes Service (AKS) 將其部署為 API。 此架構可廣泛用在大部分的建議引擎案例，包括產品、電影和新聞的建議。
 
-此架構的參考實作可在 [GitHub](https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb) 上取得。
+此架構的參考實作可在 [GitHub][als-example] 上取得。
 
 ![用於定型電影建議的機器學習模型架構](./_images/recommenders-architecture.png)
 
@@ -92,14 +92,14 @@ ms.locfileid: "56224159"
 
 ## <a name="deploy-the-solution"></a>部署解決方案
 
-若要部署此架構，請先建立 Azure Databricks 環境來準備資料並定型建議模型：
+若要部署此架構，請遵循**Azure Databricks**中的指示[安裝程式文件][setup]。 簡單地說，指示會要求您必須：
 
 1. 建立 [Azure Databricks 工作區][workspace]。
 
-2. 在 Azure Databricks 中建立新叢集。 需要下列組態：
+1. 建立新叢集使用 Azure Databricks 中的下列組態：
 
     - 叢集模式：標準
-    - Databricks 執行階段版本：4.1 (包含 Apache Spark 2.3.0、Scala 2.11)
+    - Databricks 執行階段版本：4.3 （包含 Apache Spark 2.3.1，Scala 2.11）
     - Python 版本：3
     - 驅動程式類型：Standard\_DS3\_v2
     - 背景工作角色類型：Standard\_DS3\_v2 (按照需求決定最小值和最大值)
@@ -107,30 +107,27 @@ ms.locfileid: "56224159"
     - Spark 組態：(按照需求)
     - 環境變數：(按照需求)
 
-3. 複製本機電腦上的 [Microsoft Recommenders][github] 存放庫。
+1. 建立個人存取權杖內[Azure Databricks 工作區][workspace]。 請參閱 Azure Databricks 的驗證[文件][ adbauthentication]如需詳細資訊。
 
-4. 將 Recommender 資料夾的內容加入 Zip 檔：
+1. 複製品[Microsoft Recommender] [ github]存放庫到環境，您可以在其中執行指令碼 （例如本機電腦）。
 
-    ```console
-    cd Recommenders
-    zip -r Recommenders.zip
-    ```
+1. 請遵循**快速安裝**安裝程式指示[安裝相關的程式庫][ setup]在 Azure Databricks 上。
 
-5. 將 Recommender 程式庫連結至您的叢集，如下所示：
+1. 請遵循**快速安裝**安裝程式指示[準備運算化的 Azure Databricks][setupo16n]。
 
-    1. 在下一個功能表中，使用選項來匯入程式庫 (「若要匯入 jar 或 egg 之類的程式庫，請按這裡」)，然後按 [按一下這裡]。
+1. 匯入[ALS 電影運算化 notebook] [ als-example]到工作區。 登入您的 Azure Databricks 工作區之後，執行下列作業：
 
-    2. 在第一個下拉式功能表中，選取 [上傳 Python egg 或 PyPI] 選項。
+    a. 按一下 **首頁**工作區的左邊。
 
-    3. 選取 [將程式庫 egg 拖放至此以上傳]，並選取您剛才建立的 Recommenders.zip 檔案。
+    b. 以滑鼠右鍵按一下您的主目錄中的泛空白字元。 選取 [匯入]。
 
-    4. 選取 [建立程式庫] 來上傳 .zip 檔案，並使其可在您的工作區中使用。
+    c. 選取  **URL**，並將下列內容貼入的文字欄位： `https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb`
 
-    5. 在下一個功能表中，將程式庫連結至您的叢集。
+    d. 按一下 [匯入] 。
 
-6. 在您的工作區中，匯入 [ALS 電影操作化範例][als-example]。
+1. 開啟 Azure Databricks 中的 notebook，並將連接設定的叢集。
 
-7. 執行 ALS 電影操作化 Notebook 來建立所需資源，從而建立可提供指定使用者前 10 個電影建議的建議 API。
+1. 執行 notebook 建立建立建議 API 所需的 Azure 資源，提供指定使用者的前 10 個電影建議。
 
 ## <a name="related-architectures"></a>相關架構
 
@@ -139,9 +136,10 @@ ms.locfileid: "56224159"
 <!-- links -->
 [aci]: /azure/container-instances/container-instances-overview
 [aad]: /azure/active-directory-b2c/active-directory-b2c-overview
+[adbauthentication]: https://docs.azuredatabricks.net/api/latest/authentication.html#generate-a-token
 [aks]: /azure/aks/intro-kubernetes
 [als]: https://spark.apache.org/docs/latest/ml-collaborative-filtering.html
-[als-example]: https://github.com/Microsoft/Recommenders/blob/master/notebooks/04_operationalize/als_movie_o16n.ipynb
+[als-example]: https://github.com/Microsoft/Recommenders/blob/master/notebooks/05_operationalize/als_movie_o16n.ipynb
 [autoscaling]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html
 [autoscale]: https://docs.azuredatabricks.net/user-guide/clusters/sizing.html#autoscaling
 [availability]: /azure/architecture/checklist/availability
@@ -170,7 +168,8 @@ ms.locfileid: "56224159"
 [resiliency]: /azure/architecture/resiliency/
 [ru]: /azure/cosmos-db/request-units
 [sec-docs]: /azure/security/
-[setup]: https://github.com/Microsoft/Recommenders/blob/master/SETUP.md%60
+[setup]: https://github.com/Microsoft/Recommenders/blob/master/SETUP.md#repository-installation
+[setupo16n]: https://github.com/Microsoft/Recommenders/blob/master/SETUP.md#prepare-azure-databricks-for-operationalization
 [scale]: /azure/aks/tutorial-kubernetes-scale
 [sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_8/
 [vm-size]: /azure/virtual-machines/virtual-machines-linux-change-vm-size

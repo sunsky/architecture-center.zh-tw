@@ -1,16 +1,16 @@
 ---
-title: Azure Databricks 的應用程式記錄檔傳送給 Azure 監視器
+title: 傳送 Azure Databricks 應用程式記錄檔至 Azure 監視器
 description: 如何從 Azure Databricks 的自訂記錄檔和度量傳送給 Azure 監視器
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: 49c631687fb3e3bbd807ffbbb49d9c5f6526bfb4
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: ea67122d7871663e8aaf42b7af0043492f63b6b1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503378"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639178"
 ---
-# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>Azure Databricks 的應用程式記錄檔傳送給 Azure 監視器
+# <a name="send-azure-databricks-application-logs-to-azure-monitor"></a>傳送 Azure Databricks 應用程式記錄檔至 Azure 監視器
 
 這篇文章示範如何將應用程式記錄檔和度量傳送從 Azure Databricks [Log Analytics 工作區](/azure/azure-monitor/platform/manage-access)。 它會使用[Azure Databricks 監視程式庫](https://github.com/mspnp/spark-monitoring)，這是可在 GitHub 上取得。
 
@@ -92,7 +92,7 @@ Spark 會使用 Dropwizard 度量程式庫為基礎的可設定的計量系統�
     }
     ```
 
-1. 在您的程式碼所需的適當層級加入 Apache Spark 記錄檔訊息。 例如，使用`logDebug`傳送偵錯記錄檔 meesage 的方法。 如需詳細資訊，請參閱 <<c0> [ 記錄][ spark-logging] Spark 文件中。
+1. 在您的程式碼所需的適當層級加入 Apache Spark 記錄檔訊息。 例如，使用`logDebug`傳送偵錯記錄檔訊息的方法。 如需詳細資訊，請參閱 <<c0> [ 記錄][ spark-logging] Spark 文件中。
 
     ```Scala
     logTrace("Trace message")
@@ -137,7 +137,7 @@ SparkMetric_CL | where name_s contains "rowcounter" | limit 50
 部署效能監控儀表板隨附此程式碼程式庫，在生產 Azure Databricks 工作負載的效能問題進行疑難排解。
 
 > [!div class="nextstepaction"]
-> [使用儀表板，以視覺化方式檢視 Azure Databricks 計量](./dashboards.md)
+> [使用儀表板將 Azure Databricks 計量視覺化](./dashboards.md)
 
 <!-- links -->
 

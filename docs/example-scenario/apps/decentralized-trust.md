@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: csa-team
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-decentralized-trust.png
-ms.openlocfilehash: a3c497f91b3861bf02f05981ee92e578a22a14ca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 3bc75e59a4d391c74a0e606f9670c88509a3375b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246279"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640441"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Azure 上銀行間的分散式信任
 
@@ -72,8 +72,6 @@ ms.locfileid: "58246279"
 
 [Azure 監視器][ monitor]用來持續監視區塊鏈網路的問題，以確保可用性。 此案例中使用的區塊鏈解決方案範本部署成功時，系統就會傳送以 Azure 監視器為基礎的自訂監視儀表板連結給您。 此儀表板顯示的節點會報告過去 30 分鐘內的活動訊號，以及其他有用的統計資料。
 
-如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 區塊鏈的常見疑慮是區塊鏈在預先設定的時間量內可以包含的交易數目。 此案例使用權威證明，其可比工作量證明更妥善地管理這類延展性。 在權威證明&ndash;型網路中，共識參與者為已知且受到管理，使其更適合於彼此相識之組織聯盟的私密區塊鏈。 透過自訂儀表板，可以輕鬆地監視平均封鎖時間、每分鐘交易數和計算資源取用量等參數。 然後可根據規模需求來調整資源。
@@ -90,7 +88,7 @@ ms.locfileid: "58246279"
 
 以太坊 PoA 區塊鏈本身可提供某種程度的復原能力，因為驗證程式節點可以部署在不同的區域中。 Azure 具有全球超過 54 個區域的部署選項。 例如此案例中的區塊鏈可提供唯一和全新的合作可能性，以增加復原能力。 網路的復原能力不只是針對單一集中式對象，而是針對聯盟的所有成員提供。 以權威證明&ndash;為基礎的區塊鏈可讓網路復原變得更有規劃和審慎。
 
-如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需設計彈性的解決方案的一般指引，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="pricing"></a>價格
 
@@ -120,8 +118,6 @@ ms.locfileid: "58246279"
 [deploy]: https://portal.azure.com/?pub_source=email&pub_status=success#create/microsoft-azure-blockchain.azure-blockchain-ethereumethereum-poa-consortium
 [source]: https://github.com/vitoc/creditscoreblockchain
 [monitor]: /azure/monitoring-and-diagnostics/monitoring-overview-azure-monitor
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
 [vault]: https://azure.microsoft.com/services/key-vault/

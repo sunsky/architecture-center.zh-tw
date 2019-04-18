@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19, microservices
-ms.openlocfilehash: cc72f61003f4146fd65e501feebda0c0d1d27993
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 87a9dd31b6d935dd11a5a2a2950b6de11f337741
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245089"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639966"
 ---
 # <a name="microservices-architecture-style"></a>微服務架構樣式
 
@@ -71,7 +71,7 @@ ms.locfileid: "58245089"
 
 - **小型焦點小組**。 小組可以專注於一項服務。 每個服務的範圍越小，就能更容易了解程式碼基底，並讓新的小組成員容易跟上進展。
 
-- **錯誤隔離**。 如果服務停止運作，不必因此取出整個應用程式。 不過，這並非表示您可以不必付出代價就完成復原。 您仍需遵循復原功能的最佳做法和設計模式。 請參閱[為 Azure 設計復原應用程式][resiliency-overview]。
+- **錯誤隔離**。 如果服務停止運作，不必因此取出整個應用程式。 不過，這並非表示您可以不必付出代價就完成復原。 您仍需遵循復原功能的最佳做法和設計模式。 請參閱[設計可靠的 Azure 應用程式][resiliency-overview]。
 
 - **混合技術堆疊**。 小組可以挑選最適合其服務使用的技術。
 
@@ -113,7 +113,7 @@ ms.locfileid: "58245089"
 
 - 服務應該具有鬆散結合和高度功能一致性的特性。 可能會一起變更的功能應該一起封裝和部署。 如果這些功能分居不同服務，它們最後會緊密結合，因為對某項服務進行變更就會需要更新其他服務。 兩個服務之間對話過度可能是緊密結合和低一致性的徵兆。
 
-- 隔離失敗。 請使用復原策略來避免某個服務的失敗產生連鎖反應。 請參閱[恢復模式][resiliency-patterns]和[設計復原應用程式][resiliency-overview]。
+- 隔離失敗。 請使用復原策略來避免某個服務的失敗產生連鎖反應。 請參閱[恢復模式][ resiliency-patterns]並[設計可靠的應用程式][resiliency-overview]。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -121,5 +121,5 @@ ms.locfileid: "58245089"
 
 <!-- links -->
 
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [resiliency-patterns]: ../../patterns/category/resiliency.md

@@ -3,12 +3,12 @@ title: CAF：建立混合式雲端一致性
 description: 定義建立混合式雲端一致性的方法
 author: BrianBlanchard
 ms.date: 12/27/2018
-ms.openlocfilehash: 726ea56f52d68f6c9b0d1478d19a91c2b7f12fdd
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: d5cfc8565a97c0342b5dc200512308d4c795422a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901167"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639915"
 ---
 # <a name="create-hybrid-cloud-consistency"></a>建立混合式雲端一致性
 
@@ -18,7 +18,7 @@ ms.locfileid: "55901167"
 
 ## <a name="integrate-hybrid-cloud-consistency"></a>整合混合式雲端一致性
 
-使用混合式雲端解決方案可讓組織調整運算資源。 它也消除為了處理短期需求高峰而支出大規模資本的需求。 當業務變更而需要針對更敏感的資料或應用程式釋出本機資源時，取消佈建雲端資源更輕鬆、更快速且成本較低。 您只需要為組織暫時使用的那些資源付費，而不需要購買及維護額外資源。 這樣可減少可能長時間維持在閒置狀態的設備數量。 混合式雲端運算是「萬中選一」的平台，提供雲端運算的所有優勢：彈性、延展性及成本效益，並且把資料外洩的風險降到最低。
+使用混合式雲端解決方案可讓組織調整運算資源。 它也消除為了處理短期需求高峰而支出大規模資本的需求。 當業務變更而需要針對更敏感的資料或應用程式釋出本機資源時，取消佈建雲端資源更輕鬆、更快速且成本較低。 您只需要為組織暫時使用的那些資源付費，而不需要購買及維護額外資源。 這樣可減少可能長時間維持在閒置狀態的設備數量。 混合式雲端運算 「 最佳的可能效果 」 的平台，提供雲端運算的彈性、 延展性和成本效益; 的所有優點所有具有最低可能暴露的風險資料。
 
 ![建立跨身分識別、管理、安全性、資料、開發和 DevOps 的混合式雲端一致性](../../_images/hybrid-consistency.png)
 *圖 1.建立跨身分識別、管理、安全性、資料、開發和 DevOps 的混合式雲端一致性*
@@ -32,7 +32,7 @@ ms.locfileid: "55901167"
   
 從 Azure 的觀點來看，這些元件的範例包括：
 
-- Azure Active Directory (Azure AD)，能夠搭配內部部署 Azure AD 運作，提供所有使用者通用的身分識別。 跨內部部署和透過雲端的 SSO 可讓使用者輕鬆安全地存取需要的應用程式與資產。 系統管理員可以管理安全性和治理控制權，如此一來既有調整權限的彈性，讓使用者可存取所需項目，又不會影響使用者體驗。
+- Azure Active Directory (Azure AD)，能夠搭配內部部署 Azure AD 運作，提供所有使用者通用的身分識別。 跨內部部署和透過雲端的 SSO 可讓使用者輕鬆安全地存取需要的應用程式與資產。 系統管理員可以管理安全性和治理控制權，讓使用者可以存取功能所需，靈活地調整這些權限，而不會影響使用者體驗。
 - Azure 為雲端和內部部署基礎結構提供整合式管理和安全性服務，包括一組可用來監視、設定和保護混合式雲端的整合式工具。 這套全面性的管理方法，專門用來解決組織在考慮混合式雲端解決方案時所面臨的實際挑戰。
 - Azure 混合式雲端提供通用工具，確保對所有資料的存取都是安全、順暢且有效率的。 Azure 資料服務結合 Microsoft SQL Server，以建立一致的資料平台。 一致的混合式雲端模型可讓使用者處理作業和分析資料，針對資料倉儲、資料分析和資料視覺化，在內部部署和雲端中提供相同服務。
 - Microsoft Azure 雲端服務結合 Microsoft Azure Stack 內部部署，提供統一的開發和 DevOps。 跨雲端和內部部署的一致性表示您的 DevOps 小組可以建置在任一環境中執行的應用程式，且可輕鬆地部署到正確位置。 您也可以跨混合式方案重複使用範本，進一步簡化 DevOps 程序。
@@ -56,7 +56,7 @@ Azure Stack 透過兩種部署選項來提供現代化：
 
 ## <a name="azure-stack-one-cloud-ecosystem"></a>Azure Stack 單一雲端生態系統
 
-您可以利用完整的 Azure 生態系統來加速 Azure Stack 計畫：
+您可以使用完整的 Azure 生態系統，以加快 Azure Stack 計劃：
 
 - Azure 可確保大部分經過 Azure 認證的應用程式和服務將可在 Azure Stack 上運作。 數個 ISV (包括 Bitnami、Docker、Kmep Technologies、Pivotal Cloud Foundry、Red Hat Enterprise Linux 和 SUSE Linux) 都將它們的解決方案延伸到 Azure Stack。
 - 您可以選擇讓 Azure Stack 提供這些解決方案，並以完全受控服務的方式運作。 數個合作夥伴(包括 Tieto、Yourhosting、Revera、Pulsant 和 NTT) 在近期將會有跨 Azure 與 Azure Stack 的受控服務供應項目。 這些合作夥伴已透過雲端解決方案提供者 (雲端提供者) 方案獲得 Azure 提供的受控服務，而現在可擴充它們的供應項目以納入混合式解決方案。

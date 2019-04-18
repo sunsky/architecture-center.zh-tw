@@ -7,18 +7,21 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: aa5c2b4357ed53da9bebf4795fcbefb89afe0c78
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: a36d2b4c7bfd2b26d5e1de44ddd8005fbce4bdd2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54482555"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640850"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>設計微服務：擷取與工作流程
 
 微服務通常會有個工作流程需針對單一交易橫跨多個服務。 此工作流程必須很可靠；不能遺失交易，或讓交易處於部分完成狀態。 此外，控制傳入要求的擷取率也很重要。 許多小型服務彼此通訊時，突然出現一批傳入要求可能會淹沒服務間通訊。
 
 ![擷取工作流程圖](./images/ingestion-workflow.png)
+
+> [!NOTE]
+> 這篇文章根據呼叫的微服務的參考實作[無人機遞送應用程式](./design/index.md)。
 
 ## <a name="the-drone-delivery-workflow"></a>無人機遞送工作流程
 
@@ -83,7 +86,7 @@ ms.locfileid: "54482555"
 > [!NOTE]
 > 處理器主機並不是真的在「等候」，而是封鎖執行緒。 `ProcessEventsAsync` 方法是非同步的，因此在此方法即將完成時，處理器主機可以執行其他工作。 但是在方法傳回前，此方法並不會針對該分割區傳遞另一批訊息。
 
-在無人機應用程式中，系統可以平行處理一批訊息。 但是，等候整個批次完成仍可能造成效能瓶頸。 處理只能與批次中最慢的訊息一樣快速。 任何回應時間變化都可以形成「長尾」，其中有些緩慢回應會拖累整個系統。 我們的效能測試顯示我們並未使用此方法來達成我們的目標輸送量。 這「不」表示您應該避免使用事件處理器主機。 但如需高輸送量，請避免在 `ProcesssEventsAsync` 方法內進行任何長時間執行的工作。 以便快速地處理每個批次。
+在無人機應用程式中，系統可以平行處理一批訊息。 但是，等候整個批次完成仍可能造成效能瓶頸。 處理只能與批次中最慢的訊息一樣快速。 任何回應時間變化都可以形成「長尾」，其中有些緩慢回應會拖累整個系統。 我們的效能測試顯示我們並未使用此方法來達成我們的目標輸送量。 這「不」表示您應該避免使用事件處理器主機。 但如需高輸送量，請避免在 `ProcessEventsAsync` 方法內進行任何長時間執行的工作。 以便快速地處理每個批次。
 
 ### <a name="iothub-react"></a>IoTHub React
 
@@ -176,7 +179,7 @@ private static Flow<AkkaDelivery, MessageFromDevice, NotUsed> deliveryProcessor(
 
 ![顯示監督員微服務的圖表](./images/supervisor.png)
 
-## <a name="idempotent-vs-non-idempotent-operations"></a>冪等性與非冪等性作業
+## <a name="idempotent-versus-non-idempotent-operations"></a>具有等冪性與非冪等性作業
 
 為避免遺失任何要求，排程器服務必須保證所有訊息至少會處理一次。 如果用戶端正確進行檢查點檢查，則事件中樞可保證至少遞送一次。
 
@@ -239,9 +242,6 @@ public async Task<IActionResult> Put([FromBody]Delivery delivery, string id)
 ```
 
 預計大部分的要求會建立新的實體，所以此方法會樂觀地在存放庫物件上呼叫 `CreateAsync`，然後藉由更新資源來處理資源重複的例外狀況。
-
-> [!div class="nextstepaction"]
-> [API 閘道](./gateway.md)
 
 <!-- links -->
 

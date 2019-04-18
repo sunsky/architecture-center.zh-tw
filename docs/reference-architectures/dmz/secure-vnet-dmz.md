@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, networking
-ms.openlocfilehash: 2595352075c708e015a0f0c536be31ceb5614fcd
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 046ca8c9c67c2d8a77efc87c2106c79670bd153f
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245679"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640068"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>實作 Azure 和網際網路之間的 DMZ
 
@@ -95,13 +95,13 @@ ms.locfileid: "58245679"
 
 1. 瀏覽至參考架構 GitHub 存放庫的 `/dmz/secure-vnet-dmz` 資料夾。
 
-2. 執行以下命令：
+1. 執行以下命令：
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p onprem.json --deploy
     ```
 
-4. 執行以下命令：
+1. 執行以下命令：
 
     ```bash
     azbb -s <subscription_id> -g <resource_group_name> -l <region> -p secure-vnet-dmz.json --deploy

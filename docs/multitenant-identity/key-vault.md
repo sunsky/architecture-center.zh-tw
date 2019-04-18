@@ -8,12 +8,12 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 6aa8d33da0b2fd41fdc037bac28bca9f7ff09907
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 170a88863fef4b97e137d7fb047a9168d6463e01
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249413"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639949"
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>使用 Azure Key Vault 來保護應用程式的機密資訊
 
@@ -103,6 +103,7 @@ Surveys 應用程式會從下列位置載入組態設定：
     ```powershell
     .\Setup-KeyVault.ps1 -Subject <<subject>>
     ```
+
     針對 `Subject` 參數，輸入任何名稱，如「surveysapp」。 指令碼會產生自我簽署憑證，並將它儲存在「目前使用者/個人」憑證存放區。 指令碼的輸出是 JSON 片段。 複製這個值。
 
 2. 在 [Azure 入口網站][azure-portal]中，於入口網站右上角選取您的帳戶，以切換至 Surveys 應用程式註冊所在的目錄。
@@ -174,6 +175,7 @@ Surveys 應用程式會從下列位置載入組態設定：
     ```powershell
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true"
     ```
+
     其中
 
    * 金鑰保存庫名稱 = 您在上一個步驟中提供給金鑰保存庫的名稱。
@@ -214,6 +216,7 @@ Surveys 應用程式會從下列位置載入組態設定：
     //    config["AzureAd:ClientId"],
     //    config["AzureAd:ClientSecret"]);
     ```
+
 3. 在 Tailspin.Surveys.Web/Startup.cs 中，找出註冊 `ICredentialService` 的程式碼。 將使用 `CertificateCredentialService` 的程式行取消註解，然後將使用 `ClientCredentialService` 的程式行註解化：
 
     ```csharp
@@ -251,11 +254,11 @@ Surveys 應用程式會從下列位置載入組態設定：
 
 請將 [方括號] 中的項目更換為正確值。
 
-* `AzureAd:ClientId`：Surveys 應用程式的用戶端識別碼。
-* `AzureAd:ClientSecret`：在 Azure AD 中註冊問卷應用程式時產生的金鑰。
-* `AzureAd:WebApiResourceId`：當您在 Azure AD 建立 Surveys.WebAPI 應用程式時所指定的應用程式識別碼 URI。
-* `Asymmetric:CertificateThumbprint`：您先前在建立用戶端憑證時所取得的憑證指紋。
-* `KeyVault:Name`：金鑰保存庫的名稱。
+* `AzureAd:ClientId`:Surveys 應用程式的用戶端識別碼。
+* `AzureAd:ClientSecret`:在 Azure AD 中註冊問卷應用程式時產生的金鑰。
+* `AzureAd:WebApiResourceId`:當您在 Azure AD 建立 Surveys.WebAPI 應用程式時所指定的應用程式識別碼 URI。
+* `Asymmetric:CertificateThumbprint`:您先前在建立用戶端憑證時所取得的憑證指紋。
+* `KeyVault:Name`:金鑰保存庫的名稱。
 
 > [!NOTE]
 > `Asymmetric:ValidationRequired` 為 false，因為您先前建立的憑證並未由根憑證授權單位 (CA) 簽署。 在生產環境中，使用由根 CA 簽署的憑證，並將 `ValidationRequired` 設為 true。

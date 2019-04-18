@@ -7,29 +7,24 @@ ms.custom: governance
 ms.date: 02/11/2019
 description: 了解規劃 Azure 移轉時的資源一致性。
 author: rotycenh
-ms.openlocfilehash: 8170bfd09218a451e086a57e0631b7e567eb2b82
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 3159e4b7aeddfdd99261c0f68591998d741f3359
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900864"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640036"
 ---
 # <a name="caf-resource-consistency-decision-guide"></a>CAF：資源一致性決策指南
 
-Azure[訂用帳戶設計](../subscriptions/overview.md)可定義雲端資產的組織方式，這些雲端資產則與您組織的整體結構息息相關。 此外，您現有的 IT 管理標準和組織性原則的整合，則取決於部署及組織訂用帳戶內雲端資源的方式。
-
-可用來實作資源部署、分組及管理設計的工具會視雲端平台而異。 通常每個解決方案都會包含下列功能：
-
-- 訂用帳戶或帳戶層級以下的邏輯群組機制。
-- 以程式設計方式使用 API 部署資源的功能。
-- 建立標準化部署的範本。
-- 在訂用帳戶、帳戶和資源群組層級部署原則規則的功能。
+Azure[訂用帳戶設計](../subscriptions/overview.md)定義您組織您的雲端資產，相對於您的組織結構、 會計做法及工作負載需求的方式。 除了此結構的層級解決您組織的控管的原則需求，您的雲端資產之間必須能夠以一致的方式組織、 部署及管理訂用帳戶內的資源。
 
 ![規劃符合下列快速連結的資源一致性選項 (從最簡單到最複雜)](../../_images/discovery-guides/discovery-guide-resource-consistency.png)
 
 跳至：[基本群組](#basic-grouping) | [部署一致性](#deployment-consistency) | [原則一致性](#policy-consistency) | [階層式一致性](#hierarchical-consistency)  | [自動化的一致性](#automated-consistency)
 
-資源部署和群組決策主要取決於下列因素：移轉後的數位資產大小、不符合您現有訂用帳戶設計方式的業務或環境複雜度，或需要在部署資源之後持續強制執行治理。 更進階的資源群組設計需要執行更多工作，以確保能夠準確地分組，因此這會導致在變更管理和追蹤時需要更多時間。
+決定您的雲端資產資源一致性需求的層級主要取決於下列因素： 移轉後的數位資產的大小、 商務或不符合您現有的訂用帳戶內的整齊的環境需求設計方式或需要強制執行控管，經過一段時間後已部署資源。 
+
+這些因素會增加的重要性，確保一致的部署、 分組和管理雲端資源的優點變得更重要。 達到資源一致性，以符合日益增加的需求的更多進階程度需要更多自動化、 工具和一致性強制實行，所花費的努力，這會導致更多時間花在變更管理和追蹤。
 
 ## <a name="basic-grouping"></a>基本分組
 
@@ -42,11 +37,11 @@ Azure[訂用帳戶設計](../subscriptions/overview.md)可定義雲端資產的�
 
 ## <a name="deployment-consistency"></a>部署一致性
 
-大部分雲端平台皆建置在基本的資源群組機制之上，可提供系統以用於使用範本將資源部署至雲端環境。 您可以在部署工作負載時使用範本建立一致的組織和命名慣例，強制執行您資源部署和管理設計的各個層面。
+Azure 平台建置在基底的資源群組機制之上，為使用範本來將您的資源部署到雲端環境提供系統。 您可以在部署工作負載時使用範本建立一致的組織和命名慣例，強制執行您資源部署和管理設計的各個層面。
 
 [Azure Resource Manager 範本](/azure/azure-resource-manager/resource-group-overview#template-deployment)可讓您使用預先決定的組態和資源群組結構，以一致的狀態重複部署資源。 Resource Manager 範本可協助您定義一組標準作為部署基礎。
 
-例如，您可以使用標準範本部署，將包含兩個虛擬機器的 Web 伺服器工作負載，部署為結合負載平衡器的 Web 伺服器，以管理伺服器之間的流量。 然後只要需要新的 Web 伺服器工作負載，就可以重複使用此範本建立結構完全相同的部署，僅需變更涉及的部署名稱和 IP 位址。
+例如，您可以部署包含兩部虛擬機器做為 web 伺服器與發佈伺服器之間的流量負載平衡器結合的 web 伺服器工作負載的標準範本。 您可以重複使用此範本來建立組結構完全相同的虛擬機器和負載平衡器，每當需要這類工作負載，部署名稱和 IP 位址設定的變更只牽涉到。
 
 請注意，您也可以用程式設計方式部署這些範本，並將它們與您的 CI/CD 系統整合。
 
@@ -62,9 +57,9 @@ Azure[訂用帳戶設計](../subscriptions/overview.md)可定義雲端資產的�
 
 ## <a name="hierarchical-consistency"></a>階層式一致性
 
-當雲端資產的大小成長時，您可能需要支援比使用 Azure Enterprise 合約的企業/部門/帳戶/訂用帳戶階層時更複雜治理要求。 資源群組可讓您透過在資源群組層級套用 Azure 原則規則和存取控制，以在組織內支援額外的階層層級。
+資源群組可讓您支援額外的層級的階層內的訂用帳戶中，您的組織中套用 Azure 原則規則，並存取資源群組層級的控制項。 不過，當您的雲端資產的大小增加時，您可能需要支援跨訂用帳戶治理需求上低於使用 Azure Enterprise 合約的企業/部門/帳戶/訂用帳戶階層可支援更複雜。 
 
-[Azure 管理群組](../subscriptions/overview.md#management-groups)可在企業合約結構上重疊一個替代階層，藉此支援更複雜的組織性結構。 這可讓訂用帳戶和它們包含的資源支援妥善安排的存取控制和原則強制執行機制，以符合您的業務組織性需求。
+[Azure 的管理群組](../subscriptions/overview.md#management-groups)可讓您組織的訂用帳戶到更複雜的組織結構的群組訂用帳戶的替代的階層，以建立您的 enterprise 合約的結構。 這個替代的階層架構，可讓您跨多個訂用帳戶和其所包含的資源套用存取控制和原則強制執行機制。 管理群組階層可用來符合您的雲端資產訂用帳戶與 operations 或商務控管需求。 
 
 ## <a name="automated-consistency"></a>自動化的一致性
 

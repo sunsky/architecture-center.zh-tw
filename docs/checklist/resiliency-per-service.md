@@ -8,16 +8,16 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency, checklist
-ms.openlocfilehash: fbb7501a663c8b5e326b2b601685419c8e5a0806
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db42bd259bf71ef2ffa3e9efc5e4cd6ba2078e6b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54486908"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639694"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>特定 Azure 服務的復原檢查清單
 
-復原是指系統從失敗中復原並繼續運作的能力，且是[軟體品質要素](../guide/pillars.md)的其中一項。 每一種技術都有它自己的特定失敗模式，您必須在設計和實作應用程式時加以考量。 針對特定 Azure 服務使用此檢查清單來檢閱復原考量。 同時檢閱[一般復原檢查清單](./resiliency.md)。
+復原是指系統從失敗中復原並繼續運作的能力。 每一種技術都有它自己的特定失敗模式，您必須在設計和實作應用程式時加以考量。 針對特定 Azure 服務使用此檢查清單來檢閱復原考量。 如需有關如何設計復原應用程式的詳細資訊，請參閱 <<c0> [ 設計可靠的 Azure 應用程式](../reliability/index.md)。
 
 ## <a name="app-service"></a>App Service 方案
 
@@ -45,7 +45,7 @@ ms.locfileid: "54486908"
 
 **監視效能。** 使用 [New Relic](https://newrelic.com/) 或 [Application Insights](/azure/application-insights/app-insights-overview/) 等效能監視服務，來監視負載下的應用程式效能和行為。  效能監視可讓您即時深入解析應用程式。 它可讓您診斷問題並執行失敗的根本原因分析。
 
-## <a name="application-gateway"></a>應用程式閘道
+## <a name="application-gateway"></a>应用程序网关
 
 **佈建至少兩個執行個體。** 部署具有至少兩個執行個體的應用程式閘道。 單一執行個體為單一失敗點。 使用兩個或多個執行個體，可提供備援和延展性。 為了符合 [SLA](https://azure.microsoft.com/support/legal/sla/application-gateway) 的資格，您必須佈建兩個或更多中型或大型執行個體。
 
@@ -143,7 +143,7 @@ ms.locfileid: "54486908"
 
 **將每個應用程式層放在不同的可用性設定組中。** 在多層式架構應用程式中，請勿將不同層的 VM 放在相同的可用性設定組中。 可用性設定組中的 VM 會置於各個容錯網域 (FD) 與更新網域 (UD) 中。 不過，若要取得 FD 和 UD 的備援優勢，可用性設定組中的每個 VM 必須能夠處理相同的用戶端要求。
 
-**使用 Azure Site Recovery 複寫 VM。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的復原點目標 (RPO)。 您可以依需求執行不限次數的災害復原演練，而不會影響生產應用程式或進行中的複寫。 如需詳細資訊，請參閱[執行 Azure 的災害復原演練][site-recovery-test]。
+**使用 Azure Site Recovery 複寫 VM。** 使用 [Site Recovery][site-recovery] 複寫 Azure VM 時，所有 VM 磁碟會持續以非同步方式複寫至目標區域。 每隔幾分鐘就會建立一次復原點。 據此，您將獲得以分鐘為單位的復原點目標 (RPO)。 您可以執行災害復原演練，依您想，而不會影響生產應用程式或進行中的複寫次數。 如需詳細資訊，請參閱[執行 Azure 的災害復原演練][site-recovery-test]。
 
 **根據效能需求選擇正確的 VM 大小。** 將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和 IOPS 測量您的實際工作負載效能，並視需要調整大小。 這有助於確保應用程式如預期般在雲端環境中運作。 此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。
 

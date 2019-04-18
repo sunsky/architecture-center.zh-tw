@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: a895276a77c111e660f29397d250373bee53f29e
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: fd0ac254604470ba51ea00537490cfb22b224e80
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54480759"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640170"
 ---
 # <a name="secure-a-backend-web-api"></a>保護後端 Web API
 
@@ -47,7 +47,7 @@ Web API 不允許匿名要求，因此 Web 應用程式必須使用 OAuth 2 持�
 您可以採取兩種主要方式：
 
 * 委派的使用者識別。 Web 應用程式會驗證使用者的身分識別。
-* 應用程式識別碼。 Web 應用程式會使用 OAuth2 用戶端認證流程驗證其用戶端識別碼。
+* 應用程式識別碼。 Web 應用程式會驗證其用戶端識別碼，使用 OAuth 2 用戶端認證流程中。
 
 Tailspin 應用程式實作委派的使用者識別。 以下是兩者的主要差異：
 
@@ -116,7 +116,7 @@ public override async Task AuthorizationCodeReceived(AuthorizationCodeReceivedCo
 * `authorizationCode`。 您從 IDP 取得的驗證程式碼。
 * `clientId`。 Web 應用程式的用戶端識別碼。
 * `clientSecret`。 Web 應用程式的用戶端密碼。
-* `redirectUri`。 您針對 OpenID Connect 設定的重新導向 URI。 這是 IDP 使用權杖進行回呼的位置。
+* `redirectUri` 。 重新導向 URI 設定 OpenID Connect。 這是 IDP 使用權杖進行回呼的位置。
 * `resourceID`。 Web API 的應用程式識別碼 URI，當您在 Azure AD 中註冊 Web API 時所建立
 * `tokenCache`。 快取存取權杖的物件。 請參閱 [權杖快取]。
 
@@ -226,11 +226,11 @@ public override async Task TokenValidated(TokenValidatedContext context)
 
 如本範例所示，您也可以使用 **TokenValidated** 事件來修改宣告。 請記住，宣告直接來自 Azure AD。 如果 Web 應用程式修改它所取得的宣告，這些變更將不會顯示在 Web API 接收的持有人權杖中。 如需詳細資訊，請參閱[宣告轉換][claims-transformation]。
 
-## <a name="authorization"></a>Authorization
+## <a name="authorization"></a>授權
 
 如需授權的一般討論，請參閱[角色和資源型授權][Authorization]。
 
-JwtBearer 中介軟體會處理授權回應。 例如，若要將控制器動作限制在已驗證的使用者，請使用 **[Authorize]** 屬性，並指定 **JwtBearerDefaults.AuthenticationScheme** 作為驗證配置：
+JwtBearer 中介軟體會處理授權回應。 例如，若要限制控制器動作，以已驗證的使用者，請使用 **[Authorize]** 屬性，並指定**JwtBearerDefaults.AuthenticationScheme**做為驗證配置：
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

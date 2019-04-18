@@ -61,7 +61,6 @@
 </li>
 </ul>
 
-
 ## <a name="application-scenarios"></a>應用程式案例
 
 <ul  class="panelContent cardsG">
@@ -238,7 +237,6 @@
 </li>
 </ul>
 
-
 ## <a name="data-scenarios"></a>資料案例
 
 <ul  class="panelContent cardsG">
@@ -357,7 +355,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="infrastructure-scenarios"></a>基礎結構案例
 
@@ -515,4 +512,3 @@
     </a>
 </li>
 </ul>
-

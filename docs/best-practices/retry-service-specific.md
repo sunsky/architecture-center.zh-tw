@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: d99c63b9cb5f2ed7ffcd869b5b8ac7910b9dabe3
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: 170a38f6b8a6c107670561e63f236e43af948d7d
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487130"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641037"
 ---
 # <a name="retry-guidance-for-specific-services"></a>特定服務的重試指引
 
@@ -23,10 +23,10 @@ ms.locfileid: "54487130"
 
 下表摘要說明此指引中所述 Azure 服務的重試功能。
 
-| **服務** | **重試功能** | **原則組態** | **範圍** | **遙測功能** |
+| **服务** | **重試功能** | **原則組態** | **範圍** | **遙測功能** |
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |ADAL 程式庫原生 |內嵌至 ADAL 程式庫 |內部 |None |
-| **[Cosmos DB](#cosmos-db)** |服務原生 |不可設定 |全域 |TraceSource |
+| **[Cosmos DB](#cosmos-db)** |服務原生 |不可設定 |全局 |TraceSource |
 | **Data Lake Store** |用戶端原生 |不可設定 |個別作業 |None |
 | **[事件中樞](#event-hubs)** |用戶端原生 |程式設計 |用戶端 |None |
 | **[IoT 中樞](#iot-hub)** |用戶端 SDK 原生 |程式設計 |用戶端 |None |
@@ -67,8 +67,8 @@ Active Directory 驗證程式庫 (ADAL) 中有內建的 Azure Active Directory �
 
 | **內容** | **範例目標 E2E<br />最大延遲** | **重試策略** | **設定** | **值** | **運作方式** |
 | --- | --- | --- | --- | --- | --- |
-| 互動式、UI <br />或前景 |2 秒 |FixedInterval |重試計數<br />重試間隔<br />第一個快速重試 |3<br />500 毫秒<br />true |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
-| 背景或<br />批次 |60 秒 |ExponentialBackoff |重試計數<br />最小輪詢<br />最大輪詢<br />差異輪詢<br />第一個快速重試 |5<br />0 秒<br />60 秒<br />2 秒<br />false |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~2 秒<br />嘗試 3 - 延遲 ~6 秒<br />嘗試 4 - 延遲 ~14 秒<br />嘗試 5 - 延遲 ~30 秒 |
+| 互動式、UI <br />或前台 |2 秒 |FixedInterval |重試計數<br />重試間隔<br />第一個快速重試 |3<br />500 毫秒<br />true |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
+| 背景或<br />或批处理 |60 秒 |ExponentialBackoff |重試計數<br />最小輪詢<br />最大輪詢<br />差異輪詢<br />第一個快速重試 |5<br />0 秒<br />60 秒<br />2 秒<br />false |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~2 秒<br />嘗試 3 - 延遲 ~6 秒<br />嘗試 4 - 延遲 ~14 秒<br />嘗試 5 - 延遲 ~30 秒 |
 
 ### <a name="more-information"></a>詳細資訊
 
@@ -88,7 +88,7 @@ Cosmos DB 是完全受控的多模型資料庫，可支援無結構描述的 JSO
 
 下表顯示 `RetryOptions` 類別的預設設定。
 
-| 設定 | 預設值 | 說明 |
+| 設定 | 預設值 | 描述 |
 | --- | --- | --- |
 | MaxRetryAttemptsOnThrottledRequests |9 |如果要求因為 Cosmos DB 在用戶端上套用速率限制而失敗，重試次數的上限。 |
 | MaxRetryWaitTimeInSeconds |30 |最大重試時間 (秒)。 |
@@ -104,7 +104,7 @@ options.MaxRetryWaitTimeInSeconds = 15;
 
 ### <a name="telemetry"></a>遙測
 
-系統會透過 .NET **TraceSource**將重試嘗試記錄成非結構化的追蹤訊息。 您必須設定 **TraceListener** 來擷取事件，並將事件寫入適當的目的地記錄中。
+系統會透過 .NET **TraceSource**將重試嘗試記錄成非結構化的追蹤訊息。 必须配置 **TraceListener**，才能捕获事件并将这些事件写入合适的目标日志。
 
 例如，如果您將下列新增至您的 App.config 檔案，則會在與可執行檔相同位置的文字檔案中產生追蹤：
 
@@ -169,7 +169,7 @@ Azure Redis 快取是快速資料存取與低延遲性的快取服務，以普�
 
 本節中的指引以使用 StackExchange.Redis 用戶端來存取快取為基礎。 有關其他適合的用戶端清單，請參閱 [Redis 網站](https://redis.io/clients)，這些用戶端可能有不同的重試機制。
 
-請注意 StackExchange.Redis 用戶端透過單一連接使用多工。 建議用法是在應用程式啟動時建立用戶端的執行個體，並對快取的所有作業使用此執行個體。 基於這個理由，對快取只連接一次，且因此本節中指引的所有一切都與此初始連接的重試原則有關，不適用於存取快取的每個作業。
+請注意 StackExchange.Redis 用戶端透過單一連接使用多工。 建議用法是在應用程式啟動時建立用戶端的執行個體，並對快取的所有作業使用此執行個體。 基於這個理由，快取的連線只進行一次，而且因此所有的這一節中的指導方針與此初始連線的重試原則&mdash;，而不是用於存取快取每個作業。
 
 ### <a name="retry-mechanism"></a>重試機制
 
@@ -224,7 +224,7 @@ var conn = ConnectionMultiplexer.Connect("redis0:6380,redis1:6380,connectRetry=3
 > [!NOTE]
 > 針對同步作業，可以將 `SyncTimeout` 加入端對端延遲，但設定值過低可能會導致過多逾時。 請參閱[如何針對 Azure Redis 快取進行疑難排解][redis-cache-troubleshoot]。 一般來說，請避免使用同步作業，改為使用非同步作業。 如需詳細資訊，請參閱 [管線與多工器](https://github.com/StackExchange/StackExchange.Redis/blob/master/docs/PipelinesMultiplexers.md)。
 
-### <a name="retry-usage-guidance"></a>重試使用指引
+### <a name="retry-usage-guidance"></a>重试使用指南
 
 使用 Azure Redis 快取時請考慮下列指引：
 
@@ -594,12 +594,12 @@ SQL Database 在使用 ADO.NET 存取時，沒有內建的重試支援。 不過
 - 當使用連接共用時 (預設值)，有可能會從共用中選擇同一個連接，即使是在關閉並重新開啟連接後。 如果發生這種情況，則解決的技術是呼叫 **SqlConnection** 類別的 **ClearPool** 方法將連接標示為不可重複使用。 但只應在數次連接嘗試皆失敗後，及碰到與錯誤連接有關的特定類別暫時性錯誤時，如 SQL 逾時 (錯誤碼 -2)，才這麼做。
 - 如果資料存取程式碼使用交易做為起始的 **TransactionScope** 執行個體，則重試邏輯應重新開啟連接並啟動新的交易範圍。 基於這個原因，可以重試的程式碼區塊應包含交易的整個範圍。
 
-請考慮從重試作業的下列設定開始。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
+請考慮從重試作業的下列設定開始。 这些都是通用设置，要监视操作，并对值进行微调以适应自己的方案。
 
 | **內容** | **範例目標 E2E<br />最大延遲** | **重試策略** | **設定** | **值** | **運作方式** |
 | --- | --- | --- | --- | --- | --- |
-| 互動式、UI <br />或前景 |2 秒 |FixedInterval |重試計數<br />重試間隔<br />第一個快速重試 |3<br />500 毫秒<br />true |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
-| 背景<br />或批次 |30 秒 |ExponentialBackoff |重試計數<br />最小輪詢<br />最大輪詢<br />差異輪詢<br />第一個快速重試 |5<br />0 秒<br />60 秒<br />2 秒<br />false |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~2 秒<br />嘗試 3 - 延遲 ~6 秒<br />嘗試 4 - 延遲 ~14 秒<br />嘗試 5 - 延遲 ~30 秒 |
+| 互動式、UI <br />或前台 |2 秒 |FixedInterval |重試計數<br />重試間隔<br />第一個快速重試 |3<br />500 毫秒<br />true |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
+| 后台<br />或批次 |30 秒 |ExponentialBackoff |重試計數<br />最小輪詢<br />最大輪詢<br />差異輪詢<br />第一個快速重試 |5<br />0 秒<br />60 秒<br />2 秒<br />false |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~2 秒<br />嘗試 3 - 延遲 ~6 秒<br />嘗試 4 - 延遲 ~14 秒<br />嘗試 5 - 延遲 ~30 秒 |
 
 > [!NOTE]
 > 端對端延遲目標會假設服務連接的預設逾時值。 如果您指定較長的連接逾時值，則系統會為每個重試嘗試增加這段時間，來延長端對端延遲。
@@ -672,7 +672,7 @@ SQL Database 是託管的 SQL 資料庫，有各種大小，並以標準 (共用
   - SQL Database 的預設值 - 指數 (繼承自基底類別) 再加上 SQL Database 偵測邏輯。
 - 它會實作包含隨機的指數退避策略。
 - 內建的重試類別是可設定狀態，且非安全執行緒。 不過，在目前的作業完成之後可重複執行這些類別。
-- 如果超出指定的重試計數，則會以新的例外狀況包裝結果。 它不會冒出目前的例外狀況。
+- 如果超出指定的重試計數，則會以新的例外狀況包裝結果。 它不会加剧当前异常。
 
 ### <a name="policy-configuration"></a>原則組態
 
@@ -746,16 +746,16 @@ var blogs = await executionStrategy.ExecuteAsync(
 
 - 不建議將固定間隔策略搭配 Azure SQL Database 使用。 相反地，應使用指數退避策略，因為服務可能會過載，且延遲時間越長，復原所需的時間也越長。
 
-- 定義連接時，為連接與命令逾時選擇合適的值。 讓逾時以您的商務邏輯設計與直通測試為基礎。 您可能需要隨時間修改此值，因為資料量或商務程序會改變。 逾時值過短，會造成資料庫忙碌時連接永遠失敗。 逾時值過長，可能會因為在偵測失敗連接之前等待過久，而造成重試邏輯無法正確運作。 逾時值是端對端延遲的元件，雖然您無法輕易判斷儲存內容時會執行幾個命令。 您可以透過設定 **DbContext** 執行個體的 **CommandTimeout** 屬性，來變更預設逾時。
+- 定义连接时，为连接和命令超时选择合适的值。 讓逾時以您的商務邏輯設計與直通測試為基礎。 您可能需要隨時間修改此值，因為資料量或商務程序會改變。 逾時值過短，會造成資料庫忙碌時連接永遠失敗。 逾時值過長，可能會因為在偵測失敗連接之前等待過久，而造成重試邏輯無法正確運作。 逾時值是端對端延遲的元件，雖然您無法輕易判斷儲存內容時會執行幾個命令。 您可以透過設定 **DbContext** 執行個體的 **CommandTimeout** 屬性，來變更預設逾時。
 
 - Entity Framework 支援在組態檔中定義的重試組態。 不過，為了讓 Azure 有最大的彈性，您應該考慮在應用程式內以程式設計方式建立組態。 重試原則的特定參數 (例如重試次數與重試間隔) 可以儲存在服務組態檔中，並在執行階段用於建立適當的原則。 這會讓設定變更，而1不需要應用程式重新啟動。
 
 請考慮讓重試作業從下列設定開始。 您無法指定重試嘗試之間的延遲 (它是固定的，並產生成為指數序列)。 您可以只指定最大值，如此處所示，除非您建立自訂重試策略。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
 
-| **內容** | **範例目標 E2E<br />最大延遲** | **重試原則** | **設定** | **值** | **運作方式** |
+| **內容** | **範例目標 E2E<br />最大延遲** | **重試原則** | **设置** | **值** | **運作方式** |
 | --- | --- | --- | --- | --- | --- |
 | 互動式、UI <br />或前景 |2 秒 |指數 |MaxRetryCount<br />MaxDelay |3<br />750 毫秒 |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 750 毫秒<br />嘗試 3 - 延遲 750 毫秒 |
-| 背景<br /> 或批次 |30 秒 |指數 |MaxRetryCount<br />MaxDelay |5<br />12 秒 |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~1 秒<br />嘗試 3 - 延遲 ~3 秒<br />嘗試 4 - 延遲 ~7 秒<br />嘗試 5 - 延遲 12 秒 |
+| 背景<br /> 或批处理 |30 秒 |指數 |MaxRetryCount<br />MaxDelay |5<br />12 秒 |嘗試 1 - 延遲 0 秒<br />嘗試 2 - 延遲 ~1 秒<br />嘗試 3 - 延遲 ~3 秒<br />嘗試 4 - 延遲 ~7 秒<br />嘗試 5 - 延遲 12 秒 |
 
 > [!NOTE]
 > 端對端延遲目標會假設服務連接的預設逾時值。 如果您指定較長的連接逾時值，則系統會為每個重試嘗試增加這段時間，來延長端對端延遲。
@@ -955,7 +955,7 @@ var stats = await client.GetServiceStatsAsync(null, context);
 
 - 使用 Microsoft.WindowsAzure.Storage.RetryPolicies 命名空間的內建重試原則，此命名空間中的原則適合您的需求。 在大多數的狀況中，這些原則已經足夠。
 
-- 在批次作業、 背景工作或非互動式案例中使用 **ExponentialRetry** 原則。 在這些案例中，您通常會允許服務有更多的時間復原，藉此增加作業最後成功的機會。
+- 在批次作業、 背景工作或非互動式案例中使用 **ExponentialRetry** 原則。 在這些情況下，您通常可以允許更多時間來復原服務&mdash;藉此增加作業最後成功的機會。
 
 - 請考慮指定 **RequestOptions** 參數的 **MaximumExecutionTime** 屬性，以限制總執行時間，但在選擇逾時值時要考量到作業的類型與大小。
 
@@ -963,12 +963,12 @@ var stats = await client.GetServiceStatsAsync(null, context);
 
 - 如果您使用的是讀取權限異地備援儲存體 (RA-GRS)，您可以使用 **LocationMode** 指定如果主要存取失敗，重試嘗試將會存取存放區的次要唯讀複本。 不過使用這個選項時，若尚未完成從主要存放區複寫，則必須確定應用程式可以成功使用過時的資料。
 
-請考慮從重試作業的下列設定開始。 這些是一般用途設定，您應該監視作業並微調其值以符合您自己的需求。
+请考虑从下列重试操作设置入手。 这些都是通用设置，要监视操作，并对值进行微调以适应自己的方案。
 
-| **內容** | **範例目標 E2E<br />最大延遲** | **重試原則** | **設定** | **值** | **運作方式** |
+| **內容** | **範例目標 E2E<br />最大延遲** | **重試原則** | **设置** | **值** | **運作方式** |
 | --- | --- | --- | --- | --- | --- |
-| 互動式、UI <br />或前景 |2 秒 |線性 |maxAttempt<br />deltaBackoff |3<br />500 毫秒 |嘗試 1 - 延遲 500 毫秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
-| 背景<br />或批次 |30 秒 |指數 |maxAttempt<br />deltaBackoff |5<br />4 秒 |嘗試 1 - 延遲 ~3 毫秒<br />嘗試 2 - 延遲 ~7 秒<br />嘗試 3 - 延遲 ~15 毫秒 |
+| 互動式、UI <br />或前景 |2 秒 |线性 |maxAttempt<br />deltaBackoff |3<br />500 毫秒 |嘗試 1 - 延遲 500 毫秒<br />嘗試 2 - 延遲 500 毫秒<br />嘗試 3 - 延遲 500 毫秒 |
+| 后台<br />或批处理 |30 秒 |指數 |maxAttempt<br />deltaBackoff |5<br />4 秒 |嘗試 1 - 延遲 ~3 毫秒<br />嘗試 2 - 延遲 ~7 秒<br />嘗試 3 - 延遲 ~15 毫秒 |
 
 ### <a name="telemetry"></a>遙測
 
@@ -1074,7 +1074,7 @@ namespace RetryCodeSamples
   - 408 要求逾時
   - 429 要求太多
   - 500 內部伺服器錯誤
-  - 502 錯誤的閘道
+  - 502 错误的网关
   - 503 服務無法使用
   - 504 閘道逾時
 
@@ -1123,7 +1123,7 @@ namespace RetryCodeSamples
 
 ### <a name="transient-fault-handling-with-polly"></a>Polly 的暫時性錯誤處理
 
-[Polly][polly] 是程式庫，以程式設計方式處理重試和[斷路器](../patterns/circuit-breaker.md)策略。 Polly 專案是 [.NET Foundation][dotnet-foundation] 的成員。 當服務所在的用戶端本身不支援重試，Polly 是有效的替代方法，可以不必撰寫自訂重試程式碼，但有可能難以正確實作。 Polly 也可用來在錯誤發生時追蹤錯誤，讓您可以記錄重試。
+[Polly] [ polly]是程式庫來以程式設計方式處理重試並[斷路器](../patterns/circuit-breaker.md)策略。 Polly 專案是 [.NET Foundation][dotnet-foundation] 的成員。 當服務所在的用戶端本身不支援重試，Polly 是有效的替代方法，可以不必撰寫自訂重試程式碼，但有可能難以正確實作。 Polly 也可用來在錯誤發生時追蹤錯誤，讓您可以記錄重試。
 
 ### <a name="more-information"></a>詳細資訊
 

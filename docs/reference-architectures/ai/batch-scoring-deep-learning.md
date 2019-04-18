@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: a1c0701185c85f8e7bcbc183b32c4834529fc524
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 3459f7895b7b57833da5853a77b2641dc7c85a9e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887857"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639711"
 ---
 # <a name="batch-scoring-of-deep-learning-models-on-azure"></a>為 Azure 上的深度學習模型進行評分的批次
 
@@ -120,7 +120,7 @@ ms.locfileid: "58887857"
 
 ### <a name="logging-with-azure-machine-learning"></a>使用 Azure Machine Learning 來記錄
 
-Azure Machine Learing 會自動記錄相關 Blob 儲存體帳戶的所有 stdout/stderr。 除非另有指定，否則您的 Azure Machine Learning 工作區會自動佈建儲存體帳戶，並將您的記錄傾印至其中。 您也可以使用儲存體總管之類的儲存體瀏覽工具，其可讓您更輕鬆地瀏覽記錄檔。
+Azure Machine Learning 會自動會記錄所有 stdout/stderr，關聯的 blob 儲存體帳戶。 除非另有指定，否則您的 Azure Machine Learning 工作區會自動佈建儲存體帳戶，並將您的記錄傾印至其中。 您也可以使用儲存體總管之類的儲存體瀏覽工具，其可讓您更輕鬆地瀏覽記錄檔。
 
 ## <a name="cost-considerations"></a>成本考量
 

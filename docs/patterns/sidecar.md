@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 2b0e46a06f7fe47f281f726f73128db1d7dd1067
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 20a63cdd935f28cc47686238d34d654da2798985
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243559"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639592"
 ---
 # <a name="sidecar-pattern"></a>側車模式
 
@@ -46,7 +46,7 @@ ms.locfileid: "58243559"
 
 - 因為側車鄰近主要應用程式，當兩者之間進行通訊時，沒有明顯的延遲。
 
-- 即使應用程式不提供擴充性機制，您也可以在和主要應用程式相同的主機或子容器中將側車附加為處理序，以擴充應用程式功能。
+- 即使對於不提供擴充性機制的應用程式，您可以使用側車附加為自己的處理序，在相同的主機或子容器與主要應用程式擴充功能。
 
 側車模式通常與容器搭配使用，因而稱為側車容器或 Sidekick 容器。
 

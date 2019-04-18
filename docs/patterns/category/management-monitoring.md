@@ -1,7 +1,7 @@
 ---
 title: 管理與監視模式
 titleSuffix: Cloud Design Patterns
-description: 雲端應用程式會在遠端資料中心內執行，其中您沒有基礎結構或作業系統 (部份情況下) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
+description: 雲端應用程式會在遠端資料中心內執行，而您並沒有其基礎結構或作業系統 (有時候) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
 keywords: 設計模式
 author: dragon119
 ms.date: 06/23/2017
@@ -9,16 +9,16 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 587caf680a884cda208baec50ff914f6c7238b48
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2b141a39b17f97ece011e93ca2f05cf5d2baeeea
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242999"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641088"
 ---
 # <a name="management-and-monitoring-patterns"></a>管理與監視模式
 
-雲端應用程式會在遠端資料中心內執行，其中您沒有基礎結構或作業系統 (部份情況下) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
+雲端應用程式會在遠端資料中心內執行，而您並沒有其基礎結構或作業系統 (有時候) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。
 
 |                              模式                               |                                                              總結                                                              |
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|

@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: seodec18, Windows
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-regulated-multitier-app.png
-ms.openlocfilehash: 440d208b423703fe791dcbe2cad0609fef0e6508
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2e3bb28abf870a1ce358dd67efeb3f422b983651
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246219"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639932"
 ---
 # <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>使用 Azure 上的 Windows 虛擬機器建置安全的 Web 應用程式
 
@@ -67,8 +67,6 @@ ms.locfileid: "58246219"
 
 您可以將資料庫層設定為使用 Always On 可用性群組。 使用此 SQL Server 設定時，會使用最多八個次要資料庫來設定叢集內的一個主要資料庫。 如果主要資料庫發生問題，叢集就會容錯移轉至其中一個次要資料庫，讓應用程式能夠繼續使用。 如需詳細資訊，請參閱[適用於 SQL Server 的 Always On 可用性群組概觀][sqlalwayson-docs]。
 
-如需詳細的可用性指引，請參閱 Azure 架構中心內的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 此案例會使用前端和後端元件的虛擬機器擴展集。 使用擴展集時，執行前端應用程式層的 VM 執行個體數目可以視回應客戶需求，或根據定義的排程來自動調整。 如需詳細資訊，請參閱[使用虛擬機器擴展集自動調整概觀][vmssautoscale-docs]。
@@ -85,7 +83,7 @@ ms.locfileid: "58246219"
 
 此案例結合使用「可用性區域」和「虛擬機器擴展集」，會使用 Azure 應用程式閘道和負載平衡器。 這兩個網路元件會將流量散發至已連線的 VM 執行個體，並包含健康情況探查，可確保流量只會散發到狀況良好的 VM。 在主動被動組態中，會設定兩個應用程式閘道執行個體，並使用區域備援負載平衡器。 此設定會讓網路資源和應用程式有彈性地處理問題，否則會中斷流量並影響使用者存取。
 
-如需設計彈性案例的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需設計彈性的解決方案的一般指引，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
@@ -133,12 +131,10 @@ ms.locfileid: "58246219"
 [appgateway-docs]: /azure/application-gateway/overview
 [architecture]: ./media/architecture-regulated-multitier-app.png
 [autoscaling]: /azure/architecture/best-practices/auto-scaling
-[availability]: ../../checklist/availability.md
 [cloudwitness-docs]: /windows-server/failover-clustering/deploy-cloud-witness
 [loadbalancer-docs]: /azure/load-balancer/load-balancer-overview
 [nsg-docs]: /azure/virtual-network/security-overview
 [ntiersql-ra]: /azure/architecture/reference-architectures/n-tier/n-tier-sql-server
-[resiliency]: /azure/architecture/resiliency/
 [security]: /azure/security/
 [scalability]: /azure/architecture/checklist/scalability
 [scaleset-docs]: /azure/virtual-machine-scale-sets/overview

@@ -4,12 +4,12 @@ description: 使用 PaaS (平台即服務) 元件在 Azure 上建議的 IoT 應�
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: 5a4b104044f3e64ffdce98e3952201d397d41f33
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 04bff9419a30a3610d59e3ca8f27c004a0bcb2be
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344575"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641122"
 ---
 # <a name="azure-iot-reference-architecture"></a>Azure IoT 參考架構
 
@@ -124,7 +124,7 @@ IoT 中樞根據裝置識別碼自動分割裝置訊息。 特定裝置的所有
 監視系統開發應首先定義健全的作業、法規遵循和稽核要求。 收集的度量資訊可能包括：
 
 - 實體裝置、邊緣裝置和基礎結構元件報表組態變更。
-- 應用程式報表組態變更、安全性稽核記錄檔、要求率、回應時間、錯誤率和記憶體回收統計資料 (managed 語言)。
+- 應用程式報表組態變更、安全性稽核記錄、要求率、回應時間、錯誤率和記憶體回收統計資料 (managed 語言)。
 - 資料庫、持續性儲存區、快取報告查詢以及寫入效能、結構描述變更、安全性稽核記錄檔、鎖定或鎖死、索引效能、CPU、記憶體和磁碟使用量。
 - 受管理的服務 (IaaS、PaaS、SaaS 及 FaaS) 報告影響相依系統健康情況和效能的健康情況度量與組態變更。
 
@@ -136,13 +136,13 @@ IoT 中樞根據裝置識別碼自動分割裝置訊息。 特定裝置的所有
 
 ### <a name="logging"></a>記錄
 
-記錄系統是了解解決方案已執行哪些動作或活動、已發生失敗以及可提供協助修復這些失敗不可或缺的部分。 您可以分析記錄檔以協助了解和解決錯誤狀況、加強效能特性，並確保符合規範規則與規定。
+記錄系統是了解解決方案已執行哪些動作或活動、已發生失敗以及可提供協助修復這些失敗不可或缺的部分。 您可以分析記錄以協助了解和解決錯誤狀況、加強效能特性，並確保符合規範規則與規定。
 
 雖然純文字記錄對前期開發成本的影響較小，但對於剖析/讀取機器來說更具挑戰性。 我們建議使用結構化記錄，因為收集的資訊是電腦可剖析和人類可讀取的資訊。 結構化記錄會將環境的內容和中繼資料加入至記錄資訊。 在結構化日誌記錄中，屬性是格式化為一對索引鍵/值的第一類公民，或具有固定的結構描述，以增強搜尋和查詢功能。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需建議的架構和實作選擇的詳細討論，請參閱 [Microsoft Azure IoT 參考架構](http://aka.ms/iotrefarchitecture) (PDF)。
+- 如需建議的架構和實作選擇的詳細討論，請參閱 [Microsoft Azure IoT 參考架構](https://aka.ms/iotrefarchitecture) (PDF)。
 
 - 如需各種 Azure IoT 服務的詳細文件，請參閱 [Azure IoT 基礎](/azure/iot-fundamentals/)。
 

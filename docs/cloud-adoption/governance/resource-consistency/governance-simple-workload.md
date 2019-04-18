@@ -7,12 +7,12 @@ ms.custom: governance
 description: 設定 Azure 治理控制，讓使用者部署簡單工作負載的指導方針
 author: petertaylor9999
 ms.date: 02/11/2019
-ms.openlocfilehash: 0b6f16ee30ce3af8a533b6e153fbe318252c23e7
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 6bf2f15f706140955df29f7f372068c80ce1ad21
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246429"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640578"
 ---
 # <a name="governance-design-for-a-simple-workload"></a>簡單工作負載的治理設計
 
@@ -79,7 +79,7 @@ Azure **帳戶擁有者**會藉由指派[角色型存取控制 (RBAC)](/azure/ro
 內建**擁有者**角色會在訂用帳戶範圍內，將所有權限授與**工作負載擁有者**。
 
 > [!IMPORTANT]
-> Azure **帳戶擁有者**負責與訂用帳戶相關聯的財務承諾，但是**工作負載擁有者**具有相同的權限。 **帳戶擁有者**必須信任**工作負載擁有者**會在訂用帳戶預算內部署資源。
+> Azure**帳戶擁有者**負責支付相關聯的訂用帳戶，但**工作負載擁有者**具有相同的權限。 **帳戶擁有者**必須信任**工作負載擁有者**會在訂用帳戶預算內部署資源。
 
 管理範圍的下一個層級是**資源群組**層級。 資源群組是資源的邏輯容器。 在資源群組層級套用的作業會套用至群組中的所有資源。 此外，請務必注意，每個使用者的權限繼承自下一個層級以上，除非在該範圍明確變更。
 

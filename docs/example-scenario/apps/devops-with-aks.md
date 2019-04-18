@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-devops-with-aks.png
-ms.openlocfilehash: 89e50e67b2c933637442f0f01bf83ecc95743691
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 9be4f828c96c4ac321acf9d9719d0ef465fb35cf
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244029"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641173"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>容器型工作負載的 CI/CD 管線
 
@@ -70,8 +70,6 @@ ms.locfileid: "58244029"
 
 負載平衡器是 Azure Kubernetes Service 叢集的一部分，它會將應用程式流量散佈到執行應用程式的一或多個容器 (Pod)。 在 Kubernetes 中執行容器化應用程式的這個方法，會為您的客戶提供高可用性基礎結構。
 
-如需其他可用性主題，請參閱 Azure 架構中心內的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應用程式需求。 當您的應用程式增加時，您可以相應放大執行服務的 Kubernetes 節點數目。
@@ -82,7 +80,7 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 
 ### <a name="security"></a>安全性
 
-為了將攻擊量降至最低，此案例不會透過 HTTP 公開 Jenkins 虛擬機器執行個體。 針對需要您與 Jenkins 互動的任何管理工作，您使用 SSH 通道從本機機器建立安全的遠端連線。 Jenkins 和 Grafana 虛擬機器執行個體僅允許 SSH 公開金鑰驗證。 已停用密碼型登入。 如需詳細資訊，請參閱[在 Azure 上執行 Jenkins 伺服器](../../reference-architectures/jenkins/index.md)。
+為了將攻擊量降至最低，此案例不會透過 HTTP 公開 Jenkins 虛擬機器執行個體。 針對需要您與 Jenkins 互動的任何管理工作，您使用 SSH 通道從本機機器建立安全的遠端連線。 Jenkins 和 Grafana 虛擬機器執行個體僅允許 SSH 公開金鑰驗證。 已停用密碼型登入。 如需詳細資訊，請參閱[在 Azure 上執行 Jenkins 伺服器](./jenkins.md)。
 
 針對區隔認證和權限，此案例會使用專用的 Azure Active Directory (AD) 服務主體。 此服務主體的認證會在 Jenkins 中儲存為安全認證物件，因此它們不會直接公開，在指令碼或建置管線內也看不見。
 
@@ -92,7 +90,7 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 
 此案例會針對您的應用程式使用 Azure Kubernetes Service。 復原元件內建於 Kubernetes，這些元件會監視及重新啟動有問題的容器 (Pod)。 您的應用程式與多個執行中 Kubernetes 節點合併，可以容許 Pod 或節點無法使用。
 
-如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需設計彈性的解決方案的一般指引，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
@@ -147,7 +145,6 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 <!-- links -->
 [architecture]: ./media/architecture-devops-with-aks.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [docs-aci]: /azure/container-instances/container-instances-overview
 [docs-acr]: /azure/container-registry/container-registry-intro
 [docs-aks]: /azure/aks/intro-kubernetes
@@ -157,7 +154,6 @@ Azure Kubernetes Service 可讓您調整叢集節點數目，以符合您的應�
 [createsp]: /cli/azure/ad/sp#az-ad-sp-create
 [grafana]: https://grafana.com/
 [jenkins]: https://jenkins.io/
-[resiliency]: ../../resiliency/index.md
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [security]: /azure/security/
 [scalability]: ../../checklist/scalability.md

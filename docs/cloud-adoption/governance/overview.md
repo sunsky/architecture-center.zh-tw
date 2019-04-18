@@ -7,10 +7,10 @@ ms.date: 02/11/2019
 description: 在 Microsoft 外，azure 中的控管
 author: BrianBlanchard
 ms.openlocfilehash: ce407de0daa590e767382346692c80e0a113bb3c
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068832"
 ---
 # <a name="governance-in-the-microsoft-caf-for-azure"></a>在 Microsoft 外，azure 中的控管
@@ -45,4 +45,4 @@ CAF 的內容會影響企業的業務、技術和文化。 CAF 的這個部分�
 檢閱可操作的控管旅程圖。
 
 > [!div class="nextstepaction"]
-> [可操作的控管旅程](./journeys/overview.md)
+> [可採取動作的治理程序](./journeys/overview.md)

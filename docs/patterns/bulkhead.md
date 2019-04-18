@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 4ad221ae5e9bd51c6d304ba33b884f71c5081b16
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 2b881a6565693642b54d2cabe877853e15282b05
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244489"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640000"
 ---
 # <a name="bulkhead-pattern"></a>隔艙模式
 
@@ -98,7 +98,7 @@ spec:
 
 ## <a name="related-guidance"></a>相關的指引
 
-- [為 Azure 設計有彈性的應用程式](../resiliency/index.md)
+- [設計可靠的 Azure 應用程式](../reliability/index.md)
 - [斷路器模式](./circuit-breaker.md)
 - [重試模式](./retry.md)
 - [節流模式](./throttling.md)

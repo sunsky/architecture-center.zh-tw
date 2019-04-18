@@ -4,10 +4,10 @@ description: 說明與雲端轉換相關的商務風險？
 author: BrianBlanchard
 ms.date: 10/10/2018
 ms.openlocfilehash: 774a6703b353a3c670b3764505185aecb794784f
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068934"
 ---
 # <a name="evaluating-risk-tolerance"></a>評估風險承受度
@@ -93,7 +93,7 @@ ms.locfileid: "59068934"
 - 高度風險：加班，它會增加比較不可能企業可避免此風險的影響。
 - 衰退風險：風險為「中度」到「高度」。 不過，由 IT 或商務所採取的行動正在降低產生影響的機會。
 
-**判斷功能：**
+**判斷承受度：**
 
 上述的三個問題集合應該能提供足夠的資料以判斷初始的承受度。 風險和機率很低、 風險補救成本很高，商務時不太可能將心力投注在補救。 當風險和機率很高時，企業可能會考慮投資，只要成本不會超過的潛在風險。
 

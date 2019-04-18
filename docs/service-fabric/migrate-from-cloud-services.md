@@ -6,12 +6,12 @@ ms.date: 04/11/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: 66f1431f45a0c9accf3a8227fa8cbb5966568372
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: a1fc28737b194fe69e2ae094bd996d97363eb29c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248009"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641105"
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>將 Azure 雲端服務應用程式移轉至 Azure Service Fabric 
 
@@ -26,7 +26,6 @@ ms.locfileid: "58248009"
 - [Azure Service Fabric 概觀][sf-overview]
 - [為何要用微服務方式建置應用程式？][sf-why-microservices]
 
-
 ## <a name="about-the-surveys-application"></a>關於 Surveys 應用程式
 
 在 2012 年時，Patterns & Practices 群組針對《[Developing Multi-tenant Applications for the Cloud][tailspin-book]》一書建立了名為「Surveys」的應用程式。 本書說明 Tailspin 這家虛構公司所設計並實作的 Surveys 應用程式。
@@ -35,8 +34,8 @@ Surveys 是多租用戶應用程式，可讓客戶建立問卷。 客戶註冊�
 
 現在，Tailspin 想要使用 Azure 上所執行的 Service Fabric，將 Surveys 應用程式移往微服務架構。 由於該應用程式已部署為雲端服務應用程式，Tailspin 採用了多階段方式：
 
-1.  將雲端服務植入 Service Fabric，同時將應用程式的變更降至最低。
-2.  將 Service Fabric 的應用程式移往微服務架構，讓其獲得最佳效能。
+1. 將雲端服務植入 Service Fabric，同時將應用程式的變更降至最低。
+2. 將 Service Fabric 的應用程式移往微服務架構，讓其獲得最佳效能。
 
 本文會說明第一個階段。 之後的文章會說明第二個階段。 在真實世界的專案中，這兩個階段可能會重疊。 在移植到 Service Fabric 的同時，您也會開始重新設計應用程式的架構，使其能夠進入微服務。 之後，您可能會進一步改善架構，或許是將較大型的服務分割成眾多較小的服務。  
 
@@ -87,7 +86,6 @@ Service Fabric 可供各種 Microsoft 服務使用，包括 Azure SQL Database�
 | 自動調整 | [內建服務][cloud-service-autoscale] | 具有 VM 擴展集可供自動相應放大 |
 | Debugging | 本機模擬器 | 本機叢集 |
 
-
 \*具狀態服務會使用[可靠集合][sf-reliable-collections]來跨複本儲存狀態，讓所有讀取皆是在叢集節點的本機進行。 寫入會複寫到各個節點，以提供可靠性。 無狀態服務可以使用資料庫或其他外部儲存體而具有外部狀態。
 
 ** 背景工作角色也可以使用 OWIN 自我裝載 ASP.NET Web API。
@@ -123,7 +121,6 @@ Service Fabric 可供各種 Microsoft 服務使用，包括 Azure SQL Database�
 ![](./images/tailspin02.png)
 
 此架構刻意設計成非常類似原始應用程式。 不過，圖表中會隱藏一些重要差異。 在本文的其餘部分，我們會探討這些差異。 
-
 
 ## <a name="converting-the-cloud-service-roles-to-services"></a>將雲端服務角色轉換為服務
 
@@ -180,7 +177,7 @@ Service Fabric 可供各種 Microsoft 服務使用，包括 Azure SQL Database�
 
  雲端服務包含下列組態和套件檔案：
 
-| 檔案 | 說明 |
+| 檔案 | 描述 |
 |------|-------------|
 | 服務定義 (.csdef) | Azure 用來設定雲端服務的設定。 定義角色、端點、啟動工作和組態設定名稱。 |
 | 服務組態 (.cscfg) | 每一部署的設定，包括角色執行個體數目、端點連接埠號碼，以及組態設定的值。 
@@ -202,7 +199,7 @@ Application package
 
 Service Fabric 應用程式包含下列組態檔：
 
-| 檔案 | 位置 | 說明 |
+| 檔案 | 位置 | 描述 |
 |------|----------|-------------|
 | ApplicationManifest.xml | 應用程式套件 | 定義撰寫應用程式的服務。 |
 | ServiceManifest.xml | 服務套件| 說明一或多個服務。 |
@@ -215,7 +212,6 @@ Service Fabric 應用程式包含下列組態檔：
 1. 定義服務的 Setting.xml 檔案中的設定。
 2. 在應用程式資訊清單中，定義設定的覆寫。
 3. 將環境專屬設定放入應用程式參數檔案中。
-
 
 ## <a name="deploying-the-application"></a>部署應用程式
 
@@ -265,8 +261,8 @@ Service Fabric 叢集會部署到 [VM 擴展集][vm-scale-sets]。 擴展集是�
 
 若要實作這種方式：
 
-1.  在建立叢集時，請定義兩個以上的節點類型。 
-2.  對每個服務使用[放置條件約束][sf-placement-constraints]以將服務指派給某個節點類型。
+1. 在建立叢集時，請定義兩個以上的節點類型。 
+2. 對每個服務使用[放置條件約束][sf-placement-constraints]以將服務指派給某個節點類型。
 
 當您部署至 Azure 時，每個節點類型都會部署到不同的 VM 擴展集。 Service Fabric 叢集橫跨所有節點類型。 如需詳細資訊，請參閱 [Service Fabric 節點類型與虛擬機器調整集之間的關聯性][sf-node-types]。
 
@@ -281,7 +277,6 @@ Service Fabric 叢集會部署到 [VM 擴展集][vm-scale-sets]。 擴展集是�
 您可以在叢集中新增 VM，以將應用程式相應放大。 VM 擴展集支援使用自動調整規則，根據效能計數器來進行自動調整。 如需詳細資訊，請參閱[使用自動調整規則相應縮小或放大 Service Fabric 叢集][sf-auto-scale]。
 
 在叢集執行時，您應該將所有節點的記錄收集到集中位置。 如需詳細資訊，請參閱[使用 Azure 診斷收集記錄][sf-logs]。   
-
 
 ## <a name="conclusion"></a>結論
 

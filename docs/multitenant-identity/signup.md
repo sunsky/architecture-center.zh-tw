@@ -9,12 +9,12 @@ ms.subservice: reference-architecture
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: a1ec441b731ba7f2166f9115452b052ec944444f
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: eb4e65b20ec3339b633b65d2adad768e98d1bdbb
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245039"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640595"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>租用戶註冊和上線
 
@@ -63,7 +63,7 @@ ms.locfileid: "58245039"
 
 這些按鈕會在 `AccountController` 類別中叫用動作。
 
-`SignIn` 動作會傳回 **ChallegeResult**，這會使 OpenID Connect 中介軟體重新導向到驗證端點。 這是 ASP.NET Core 中觸發驗證的預設方式。
+`SignIn`動作會傳回**ChallengeResult**，這樣會使 OpenID Connect 的中介軟體重新導向至驗證端點。 這是 ASP.NET Core 中觸發驗證的預設方式。
 
 ```csharp
 [AllowAnonymous]
@@ -259,7 +259,7 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 以下是 Surveys 應用程式中整個註冊流程的摘要：
 
 1. 使用者按一下 [註冊]  按鈕。
-2. `AccountController.SignUp` 動作傳回查問結果。  驗證狀態包括 "signup" 值。
+2. `AccountController.SignUp`動作傳回查問結果。  驗證狀態包括 "signup" 值。
 3. 在 `RedirectToAuthenticationEndpoint` 事件中，加入 `admin_consent` 提示。
 4. OpenID Connect 中介軟體會重新導向到 Azure AD 與使用者驗證。
 5. 在 `AuthenticationValidated` 事件中，尋找 "signup" 狀態。

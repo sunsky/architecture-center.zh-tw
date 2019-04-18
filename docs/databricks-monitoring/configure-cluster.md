@@ -1,20 +1,20 @@
 ---
-title: 設定傳送至 Azure 監視器計量的 Azure Databricks
+title: 設定 Azure Databricks 以傳送計量至 Azure 監視器
 description: 若要啟用監視的計量和記錄資料，Azure Log Analytics 中的 scala 程式庫
 author: petertaylor9999
 ms.date: 03/26/2019
-ms.openlocfilehash: af6b6433f87964ac60c179ecf498e54129344126
-ms.sourcegitcommit: 9854bd27fb5cf92041bbfb743d43045cd3552a69
+ms.openlocfilehash: f2fc1fd19da661b74ddf032dd1d5153ce575345c
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/27/2019
-ms.locfileid: "58503379"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639881"
 ---
 <!-- markdownlint-disable MD040 -->
 
-# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>設定傳送至 Azure 監視器計量的 Azure Databricks
+# <a name="configure-azure-databricks-to-send-metrics-to-azure-monitor"></a>設定 Azure Databricks 以傳送計量至 Azure 監視器
 
-本文說明如何設定 Azure Databricks 叢集傳送至的計量[Log Analytics 工作區](/azure/azure-monitor/platform/manage-access)。 它會使用[Azure Databricks 監視程式庫](https://github.com/mspnp/spark-monitoring)，這是可在 GitHub 上取得。 了解 Java、 Scala 和 Maven 是 prerequisistes 建議。
+本文說明如何設定 Azure Databricks 叢集傳送至的計量[Log Analytics 工作區](/azure/azure-monitor/platform/manage-access)。 它會使用[Azure Databricks 監視程式庫](https://github.com/mspnp/spark-monitoring)，這是可在 GitHub 上取得。 了解 Java、 Scala 和 Maven 建議做為必要條件。
 
 ## <a name="about-the-azure-databricks-monitoring-library"></a>關於 Azure Databricks，監視程式庫
 

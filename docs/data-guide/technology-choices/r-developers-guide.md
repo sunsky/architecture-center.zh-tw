@@ -9,12 +9,12 @@ ms.devlang: R
 ms.topic: article
 ms.date: 03/19/2019
 ms.author: jepeach
-ms.openlocfilehash: a14c8ce76f78baa7274f22b939eb28cb025ef87e
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 7b263d0f49b3b41c9a25b5842de908d5e507780b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887959"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640476"
 ---
 # <a name="r-developers-guide-to-azure"></a>Azure 的 R 開發人員指南
 
@@ -38,7 +38,7 @@ Microsoft 已完全採用 R 程式設計語言作為資料科學家的頂級工�
 |[Azure Machine Learning Studio](#azure-machine-learning-studio)  |在 Azure 的機器學習實驗中執行自訂的 R 指令碼                      |
 |[Azure Batch](#azure-batch)                                      |提供各種不同選項，以便以經濟實惠的方式跨叢集中的許多節點執行 R 程式碼|
 |[Azure Notebooks](#azure-notebooks)                              |免費的雲端式 Jupyter Notebook 版本                  |
-|[連接字串](#azure-sql-database)                        |在 SQL Server 資料庫引擎內執行 R 指令碼                            |
+|[Azure SQL Database](#azure-sql-database)                        |在 SQL Server 資料庫引擎內執行 R 指令碼                            |
 
 ## <a name="data-science-virtual-machine"></a>資料科學虛擬機器
 
@@ -129,14 +129,13 @@ Azure Notebooks 的免費服務層是適用於小規模專案的可行選項，�
 
 雖然機器學習服務自 2016 年起就已成為內部部署 SQL Server 的一部分，但對於 Azure SQL Database 來說，這還是相當新的功能。  它目前是[有限預覽版](https://docs.microsoft.com/sql/advanced-analytics/what-s-new-in-sql-server-machine-learning-services?view=sql-server-2017#azure-sql-database-roadmap)，但將會持續發展。
 
-
 ### <a name="next-steps"></a>後續步驟
 
-* [在 Azure 上執行 R 程式碼使用 mrsdeploy](https://blog.revolutionanalytics.com/2017/03/running-your-r-code-azure.html)
-* [機器學習服務在雲端中的伺服器](https://docs.microsoft.com/machine-learning-server/install/machine-learning-server-in-the-cloud)
+* [在 Azure 上使用 mrsdeploy 執行 R 程式碼](https://blog.revolutionanalytics.com/2017/03/running-your-r-code-azure.html)
+* [雲端中的 Machine Learning Server](https://docs.microsoft.com/machine-learning-server/install/machine-learning-server-in-the-cloud)
 * [Machine Learning Server 和 Microsoft R 的其他資源](https://docs.microsoft.com/machine-learning-server/resources-more)
 * [Azure 上的 R](https://github.com/yueguoguo/r-on-azure) -概述套件、工具和搭配使用 R 與 Azure 的案例研究
 
 ---
 
-<sub>R 標誌&copy;R Foundation 2016，並可依據的條款[Creative Commons Attribution-sharealike 4.0 國際授權](https://creativecommons.org/licenses/by-sa/4.0/)。</sub>
+<sub>R 標誌是 &copy; 2016 The R Foundation，係依據 [Creative Commons Attribution-ShareAlike 4.0 國際授權](https://creativecommons.org/licenses/by-sa/4.0/)的條款來使用。</sub>

@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企業 – 大型企業中的多層治理
+title: CAF：大型企業 – 控管在大型企業中的多個圖層
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企業 – 大型企業中的多層治理
+description: 大型企業 – 控管在大型企業中的多個圖層
 author: BrianBlanchard
-ms.openlocfilehash: 42f4159ca0701c6a798f239359509a3e3b246c38
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 1a90f8007077df0ecefa8ec5d8c0dd6bfca9ccc7
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55901015"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641207"
 ---
 # <a name="multiple-layers-of-governance-in-large-enterprises"></a>大型企業中的多層治理
 
@@ -30,7 +30,7 @@ ms.locfileid: "55901015"
 
 大型成熟企業通常擁有專注於整個旅程中提到的專業領域的小組或員工。 這個旅程示範了將治理變成小組運動的一個方式。
 
-在許多大型企業中，雲端治理的專業領域可能會成為採用的阻礙物。 在整個企業開發身分識別、安全性、作業、部署和設定方面的雲端專業知識需要時間。 全面實作 IT 治理原則和 IT 安全性可能會使創新減緩數個月甚至數年。 必須創新的業務與必須保護現有資源的治理之間的平衡是很微妙的。
+在許多大型企業中，雲端管理五個專業領域可以採用的阻礙。 在整個企業開發身分識別、安全性、作業、部署和設定方面的雲端專業知識需要時間。 全面實作 IT 治理原則和 IT 安全性可能會使創新減緩數個月甚至數年。 必須創新的業務與必須保護現有資源的治理之間的平衡是很微妙的。
 
 雲端的固有功能可以移除創新的阻礙，但會增加風險。 在此治理旅程中，我們示範了範例公司建立護欄以降低風險的方式。 雲端治理小組並非處理保護環境所需的每個專業領域，而是率領風險型方式以治理可部署的內容，而其他小組則建置必要的雲端成熟度。 最重要的是，當每個小組到達雲端成熟度時，治理會全面地適用於其解決方案。 當每個小組都成熟並增添至整體解決方案時，雲端治理小組即可開啟階段大門，讓其他創新和採用蓬勃發展。
 
@@ -38,7 +38,7 @@ ms.locfileid: "55901015"
 
 ## <a name="requirements-to-supporting-such-a-team-sport"></a>支援這類小組運動的需求
 
-多層治理模型的第一個需求是了解治理階層。 回答下列問題有助於您了解一般的治理階層：
+多層治理模型的第一個需求是了解治理階層。 回答下列問題可協助您了解一般的控管階層：
 
 - 雲端帳戶處理 (雲端服務的計費) 在各營業單位之間如何配置？
 - 治理責任在公司 IT 與各個營業單位之間如何配置？

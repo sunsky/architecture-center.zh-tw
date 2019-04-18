@@ -3,18 +3,18 @@ title: 在 Azure 上加速數位映像式模型化
 titleSuffix: Azure Example Scenarios
 description: 使用 Avere 和 Agisoft PhotoScan 在 Azure 上加速數位映像式模型化
 author: adamboeglin
-ms.date: 1/11/2019
+ms.date: 01/11/2019
 ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: cat-team, Linux, HPC
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/architecture-image-modeling.png
-ms.openlocfilehash: 87b43347fb5f4baec0081a67c8b003dccd2fdf0d
-ms.sourcegitcommit: 14226018a058e199523106199be9c07f6a3f8592
-ms.translationtype: HT
+ms.openlocfilehash: 981d9f01ef12f75d9b292196f754f3a0affa791a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55483006"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640374"
 ---
 # <a name="accelerate-digital-image-based-modeling-on-azure"></a>在 Azure 上加速數位映像式模型化
 
@@ -50,7 +50,7 @@ ms.locfileid: "55483006"
 - [Avere vFXT](/azure/avere-vfxt/avere-vfxt-overview) 是檔案快取解決方案，其使用物件儲存體和傳統網路連接儲存裝置 (NAS) 將大型資料集的儲存體最佳化。 其中包括：
   - Avere Controller。 此 VM 會執行指令碼，以安裝 Avere vFXT 叢集並執行 Ubuntu 18.04 LTS。 此 VM 稍後可用於新增或移除叢集節點，以及終結叢集。
   - vFXT 叢集。 至少使用三部 VM，以 Avere OS 5.0.2.1 為基礎的每個 Avere vFXT 節點各使用一部 VM。 這些 VM 會形成 vFXT 叢集，而該叢集會連結到 Azure Blob 儲存體。
-- [Microsoft Active Directory 網域控制站](/windows/desktop/ad/active-directory-domain-services)可讓主機存取網域資源並提供 DNS 名稱解析。 Avere vFXT 會新增許多 A 記錄，例如 vFXT 叢集中的每筆 A 記錄都會指向每個 Avere vFXT 節點的 IP 位址。 在此設定中，所有 VM 都會使用循環配置資源模式來存取 vFXT 匯出。
+- [Microsoft Active Directory 網域控制站](/windows/desktop/ad/active-directory-domain-services)可讓主機存取網域資源並提供 DNS 名稱解析。 Avere vFXT 新增的記錄筆數&mdash;vFXT 叢集中的每個 A 記錄，例如指向 Avere vFXT 的每個節點的 IP 位址。 在此設定中，所有 VM 都會使用循環配置資源模式來存取 vFXT 匯出。
 - [其他 VM](/azure/virtual-machines/) 作為系統管理員用來存取排程器和處理節點的 Jumpbox。 Windows Jumpbox 是必要的，可允許系統管理員透過遠端桌面通訊協定存取前端節點。 第二個 Jumpbox 是選擇性的，其執行 Linux 以便管理背景工作節點。
 - [網路安全性群組](/azure/virtual-network/manage-network-security-group) (NSG) 會限制公用 IP 位址 (PIP) 的存取，以及允許連接埠 3389 和 22 存取連結到 Jumpbox 子網路的 VM。
 - [虛擬網路對等互連](/azure/virtual-network/virtual-network-peering-overview)會將 PhotoScan 虛擬網路連線至 Avere 虛擬網路。
@@ -71,7 +71,7 @@ ms.locfileid: "55483006"
 部署考量取決於所使用的應用程式和服務，但適用少數注意事項：
 
 - 建置高效能應用程式時，請使用 Azure 進階儲存體及[最佳化應用程式層](/azure/virtual-machines/windows/premium-storage-performance)。 使用 Azure Blob 儲存體[經常性存取層存取](/azure/storage/blobs/storage-blob-storage-tiers)將儲存體最佳化，以便頻繁存取。
-- 使用符合您的可用性和效能需求的儲存體[複寫選項](/azure/storage/common/storage-redundancy)。 在此範例中，Avere vFXT 已根據預設針對高可用性而設定，且具有本地備援儲存體 (LRS)。 為了平衡負載，此設定中的所有 VM 都會使用循環配置資源模式來存取 vFXT 匯出。
+- 使用儲存體[複寫選項](/azure/storage/common/storage-redundancy)符合您的可用性和效能需求。 在此範例中，Avere vFXT 已根據預設針對高可用性而設定，且具有本地備援儲存體 (LRS)。 為了平衡負載，此設定中的所有 VM 都會使用循環配置資源模式來存取 vFXT 匯出。
 - 如果後端儲存體將由 Windows 用戶端和 Linux 用戶端取用，請使用 Samba 伺服器支援 Windows 節點。 此範例案例 (以 BeeGFS 為基礎) 的[版本](https://github.com/paulomarquesc/beegfs-template)使用 Samba 來支援在 Windows 上執行的 HPC 工作負載 (PhotoScan) 排程器節點。 部署負載平衡器，其作用如同 DNS 循環配置資源的智慧代替物。
 - 使用最適合您的 [Windows](/azure/virtual-machines/windows/sizes-hpc) 或 [Linux](/azure/virtual-machines/linux/sizes?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 工作負載的 VM 類型，執行 HPC 應用程式。
 - 若要隔離 HPC 工作負載與儲存體資源，請將其各自部署在自己的虛擬網路中，然後使用虛擬網路[對等互連](/azure/virtual-network/virtual-network-peering-overview)來連接兩者。 對等互連會在不同虛擬網路中的資源之間建立低延遲、高頻寬的連線，且僅透過私人 IP 位址在 Microsoft 骨幹基礎結構中傳送流量。
@@ -91,7 +91,7 @@ ms.locfileid: "55483006"
 
 ## <a name="pricing"></a>價格
 
-執行此案例的成本因諸多因素而大不相同。  VM 的數目和大小，需要多少儲存體，以及完成作業所需的時間量將會決定您的成本。
+執行此案例的成本有極大差異多項因素。  VM 的數目和大小，需要多少儲存體，以及完成作業所需的時間量將會決定您的成本。
 
 [Azure 定價計算機](https://azure.com/e/42362ddfd2e245a28a8e78bc609c80f3)中以下的範例成本設定檔是以 Avere vFXT 和 PhotoScan 典型組態為基礎：
 

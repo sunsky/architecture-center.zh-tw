@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
-ms.openlocfilehash: 4fa57168c337b01c8e7d0fc86ba54fee59a7ae47
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.openlocfilehash: 72769cf078596f0312a1f4293205dda5a086ef41
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887948"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639898"
 ---
 # <a name="batch-scoring-of-r-machine-learning-models-on-azure"></a>在 Azure 批次計分的 R 機器學習服務模型
 
@@ -101,7 +101,6 @@ Azure 批次和 doAzureParallel 支援低優先順序的 Vm 使用。 這些 Vm 
 ## <a name="deployment"></a>部署
 
 若要部署此參考架構，請依照下列所述的步驟[GitHub][github]存放庫。
-
 
 [0]: ./_images/batch-scoring-r-models.png
 [1]: ./_images/sales-forecasts.png

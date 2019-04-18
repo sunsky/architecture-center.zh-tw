@@ -3,12 +3,12 @@ title: 大型主機移轉：迷思與事實
 description: 將應用程式從大型主機環境遷移至 Azure，這是經過實證、高度可用且可調整的基礎結構，適用於目前在大型主機上執行的系統。
 author: njray
 ms.date: 12/27/2018
-ms.openlocfilehash: bcad01ec044d2d802b055e328a9496aae7b33311
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: e56f5b1b7e502ac727b28e583105bdee1c9cecd8
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58241539"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640323"
 ---
 # <a name="mainframe-myths-and-facts"></a>大型主機迷思與事實
 
@@ -32,7 +32,7 @@ ms.locfileid: "58241539"
 
 ## <a name="myth-the-cloud-cannot-accommodate-mission-critical-applications-for-large-companies-such-as-financial-institutions"></a>迷思：雲端無法容納金融機構等大型公司的任務關鍵應用程式
 
-雖然有些雲端解決方案不適用的個案，但通常是因為該應用程式演算法無法分散。 這些範例是例外狀況，而不是規則。
+雖然可能有雲端解決方案完美其中一些隔離的執行個體，通常是因為無法發佈應用程式的演算法。 這些範例是例外狀況，而不是規則。
 
 ## <a name="summary"></a>總結
 

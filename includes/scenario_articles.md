@@ -3,25 +3,6 @@
 
 <ul  class="panelContent cardsC">
 <li style="display: flex; flex-direction: column;">
-    <a href="./ai/newsfeed-ingestion.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./ai/media/mass-ingestion-newsfeeds-architecture.png" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>大量擷取和分析 Azure 上的新聞摘要</h3>
-                        <p>建立一個僅使用 Azure 服務 (包括 Azure Cosmos DB 和 Azure 認知服務) 從 RSS 新聞摘要擷取和分析文字、影像、人氣和其他資料的管道。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
     <a href="./ai/commerce-chatbot.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
@@ -78,8 +59,26 @@
         </div>
     </a>
 </li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/newsfeed-ingestion.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./ai/media/mass-ingestion-newsfeeds-architecture.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>大量擷取和分析 Azure 上的新聞摘要</h3>
+                        <p>建立一個僅使用 Azure 服務 (包括 Azure Cosmos DB 和 Azure 認知服務) 從 RSS 新聞摘要擷取和分析文字、影像、人氣和其他資料的管道。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
 </ul>
-
 
 ## <a name="application-scenarios"></a>應用程式案例
 
@@ -218,6 +217,25 @@
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
+    <a href="./apps/jenkins.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./apps/media/architecture-jenkins.png" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>在 Azure 上執行 Jenkins 伺服器</h3>
+                        <p>建議的架構顯示如何在受到單一登入 (SSO) 保護的 Azure 上，部署和操作可調整的企業級 Jenkins 伺服器。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
     <a href="./apps/sap-dev-test.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
@@ -256,7 +274,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="data-scenarios"></a>資料案例
 
@@ -376,7 +393,6 @@
     </a>
 </li>
 </ul>
-
 
 ## <a name="infrastructure-scenarios"></a>基礎結構案例
 
@@ -534,4 +550,3 @@
     </a>
 </li>
 </ul>
-

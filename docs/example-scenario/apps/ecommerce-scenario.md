@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack
 social_image_url: /azure/architecture/example-scenario/apps/media/architecture-ecommerce-scenario.png
-ms.openlocfilehash: 989dec6afccbb836b61eb32e39904f43ffff65ac
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b10ffaafb6479fef89e6691a686c018ac6ce5632
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244009"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640748"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Azure 上的電子商務前端
 
@@ -103,7 +103,7 @@ Web 層和函式的其他選項包括：
 - 請考量利用[斷路器模式][circuit-breaker]，以在應用程式某部分無法使用時，提供柔性錯誤處理。
 - 檢閱[獲得復原的典型設計模式][design-patterns-resiliency]，並考量在適當時實作。
 - 您可以在 Azure 架構中心上找到一些 [App Service 的建議做法][resiliency-app-service]。
-- 請考量針對資料層使用作用中[異地複寫][sql-geo-replication]，針對映像和佇列使用[異地備援][storage-geo-redudancy] 儲存體。
+- 請考量針對資料層使用作用中[異地複寫][sql-geo-replication]，針對映像和佇列使用[異地備援][storage-geo-redundancy] 儲存體。
 - 如需關於[復原][resiliency]的深入討論，請參閱 Azure 架構中心的相關文章。
 
 ## <a name="deploy-the-scenario"></a>部署案例
@@ -162,4 +162,4 @@ Web 層和函式的其他選項包括：
 [secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [service-bus]: /azure/service-bus-messaging/
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
-[storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs
+[storage-geo-redundancy]: /azure/storage/common/storage-redundancy-grs

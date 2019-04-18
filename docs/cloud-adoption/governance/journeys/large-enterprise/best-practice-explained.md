@@ -8,10 +8,10 @@ ms.date: 02/11/2019
 description: 大型企業 – 最佳做法的說明
 author: BrianBlanchard
 ms.openlocfilehash: 2d52797f1c3541fab1c97d97d0438210d2e66f79
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068985"
 ---
 # <a name="large-enterprise-best-practice-explained"></a>大型企業：最佳做法說明
@@ -101,13 +101,13 @@ ms.locfileid: "59068985"
 如果為此治理旅程選擇的模式不符合讀者需求，以下是每個模式的替代方案：
 
 - [加密模式](../../../decision-guides/encryption/overview.md)
-- [識別模式](../../../decision-guides/identity/overview.md)
-- [記錄和報告模式](../../../decision-guides/log-and-report/overview.md)
-- [原則強制模式](../../../decision-guides/policy-enforcement/overview.md)
+- [身分識別模式](../../../decision-guides/identity/overview.md)
+- [記錄與報告模式](../../../decision-guides/log-and-report/overview.md)
+- [原則強制執行模式](../../../decision-guides/policy-enforcement/overview.md)
 - [資源一致性模式](../../../decision-guides/resource-consistency/overview.md)
 - [資源標記模式](../../../decision-guides/resource-tagging/overview.md)
 - [軟體定義網路模式](../../../decision-guides/software-defined-network/overview.md)
-- [訂用帳戶的設計模式](../../../decision-guides/subscriptions/overview.md)
+- [訂用帳戶設計模式](../../../decision-guides/subscriptions/overview.md)
 
 ## <a name="next-steps"></a>後續步驟
 

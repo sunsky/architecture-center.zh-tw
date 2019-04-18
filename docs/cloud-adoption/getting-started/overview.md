@@ -7,10 +7,10 @@ ms.custom: governance
 description: 提供在採用 Azure 的雲端技術的企業的數位轉型的第一個階段的概觀。
 ms.date: 02/11/2019
 ms.openlocfilehash: 29b02964b5f1cd09857a51c17cf94d6c64e05e88
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068951"
 ---
 # <a name="getting-started-with-the-cloud-adoption-framework"></a>開始使用雲端採用架構

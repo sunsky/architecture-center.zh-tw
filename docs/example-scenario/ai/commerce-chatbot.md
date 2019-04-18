@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/ai/media/architecture-commerce-chatbot.png
-ms.openlocfilehash: 48f85e7443bcd6149c8024d20fb50816c1a4df38
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c4859cb0e43603991e4f8e6a0311a28537f29f1a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245849"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640255"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Azure 上適用於預約旅館的交談聊天機器人
 
@@ -65,8 +65,6 @@ ms.locfileid: "58245849"
 
 此案例會使用 Azure SQL Database 來儲存客戶預約。 SQL Database 包括區域備援資料庫、容錯移轉群組和異地複寫。 如需詳細資訊，請參閱 [Azure SQL Database 可用性功能][sqlavailability-docs]。
 
-如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 此案例會使用 Azure App Service。 您可以使用 App Service，自動調整執行聊天機器人的執行個體數目。 這項功能可讓您的 Web 應用程式和聊天機器人掌握客戶需求。 如需自動調整規模的詳細資訊，請參閱 Azure 架構中心的[自動調整規模最佳做法][autoscaling]。
@@ -87,13 +85,13 @@ ms.locfileid: "58245849"
 
 為了監視應用程式的健康情況，此案例使用 Application Insights。 使用 Application Insights，您可以產生警示，並且針對會影響客戶體驗和聊天機器人可用性的效能問題做回應。 如需詳細資訊，請參閱 [Application Insights 是什麼？][appinsights-docs]
 
-如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需其他恢復功能 」 主題，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
 此案例可分為三個元件，讓您可以探索最著重的部分：
 
-- [基礎結構元件](#deploy-infrastructure-components)。 使用 Azure Resource Manger 範本來部署 App Service、Web 應用程式、Application Insights、儲存體帳戶及 SQL Server 和資料庫的核心基礎結構元件。
+- [基礎結構元件](#walk-through)。 使用 Azure Resource Manger 範本來部署 App Service、Web 應用程式、Application Insights、儲存體帳戶及 SQL Server 和資料庫的核心基礎結構元件。
 - [Web 應用程式聊天機器人](#deploy-web-app-chatbot)。 使用 Azure CLI 來部署具有 Bot 服務和 Language Understanding and Intelligent Services (LUIS) 應用程式的聊天機器人。
 - [範例 C# 聊天機器人應用程式](#deploy-chatbot-c-application-code)。 使用 Visual Studio 來檢閱範例旅館預訂 C# 應用程式程式碼，並且部署到 Azure 中的聊天機器人。
 
@@ -170,7 +168,6 @@ az bot create \
 [appservice-docs]: /azure/app-service/
 [architecture]: ./media/architecture-commerce-chatbot.png
 [autoscaling]: ../../best-practices/auto-scaling.md
-[availability]: ../../checklist/availability.md
 [botservice-docs]: /azure/bot-service/
 [cognitive-docs]: /azure/cognitive-services/
 [resiliency]: ../../resiliency/index.md

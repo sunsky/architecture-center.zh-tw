@@ -8,12 +8,12 @@ ms.topic: checklist
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: checklist
-ms.openlocfilehash: 1a000c811cce57cc9b1fcda84d0eb7e2a1312aca
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b08884d2a39550b56b4c1b52a418f6607eda00fe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243379"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640714"
 ---
 # <a name="devops-checklist"></a>DevOps 檢查清單
 
@@ -119,7 +119,7 @@ DevOps 是一種整合，將開發、品質保證和 IT 營運整合至統一的
 
 容器也會在應用程式與基礎作業系統之間建立抽象層，提供整個環境的一致性。 這個抽象層也可以從其他程序或在主機上執行的應用程式將容器隔離。
 
-**實作復原和自我修復。** 復原是應用程式從失敗中復原的能力。 復原的策略包括重試暫時性失敗，並且容錯移轉到次要執行個體或甚至是另一個區域。 如需詳細資訊，請參閱[為 Azure 設計復原應用程式][resiliency]。 檢測您的應用程式，讓問題可以立即回報，且您可以管理中斷或其他系統失敗。
+**實作復原和自我修復。** 復原是應用程式從失敗中復原的能力。 復原的策略包括重試暫時性失敗，並且容錯移轉到次要執行個體或甚至是另一個區域。 如需詳細資訊，請參閱 <<c0> [ 設計可靠的 Azure 應用程式](../reliability/index.md)。 檢測您的應用程式，讓問題可以立即回報，且您可以管理中斷或其他系統失敗。
 
 **具備作業手冊。** 作業手冊或「Runbook」會記錄作業人員維護系統所需的程序和管理資訊。 也會記錄任何作業案例和風險降低計畫，可能會在服務失敗或其他中斷期間執行。 在開發程序期間建立這份文件，並在往後將它保持在最新狀態。 這是即時文件，應該要定期檢閱、測試及改進。
 
@@ -158,7 +158,6 @@ DevOps 是一種整合，將開發、品質保證和 IT 營運整合至統一的
 [feature-toggles]: https://www.martinfowler.com/articles/feature-toggles.html
 [oms]: https://www.microsoft.com/cloud-platform/operations-management-suite
 [rbac]: /azure/active-directory/role-based-access-control-what-is
-[resiliency]: ../resiliency/index.md
 [resource-manager]: /azure/azure-resource-manager/
 [trunk-based]: https://trunkbaseddevelopment.com/
 [what-is-devops]: https://www.visualstudio.com/learn/what-is-devops/

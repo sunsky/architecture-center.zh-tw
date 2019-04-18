@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c736afced1b0478e8eb1a2694acc4d6a6f0c62fc
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 267d630d97a998c76a75a70191a77f9b74e801ef
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248723"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641054"
 ---
 # <a name="queue-based-load-leveling-pattern"></a>佇列型負載調節模式
 
@@ -67,8 +67,6 @@ Web 應用程式會將資料寫入外部資料存放區。 如果 Web 應用程�
 若要解決此問題，您可以使用佇列來調節應用程式執行個體與資料存放區之間的負載。 Azure Functions 應用程式會從佇列讀取訊息，並針對資料存放區執行讀取/寫入要求。 函式應用程式中的應用程式邏輯可以控制將要求傳遞給資料存放區的速率，以防止存放區超過負荷。 (否則，函式應用程式只會在後端重新引入相同的問題)。
 
 ![圖 3 - 使用佇列和函式應用程式來調節負載](./_images/queue-based-load-leveling-function.png)
-
-
 
 ## <a name="related-patterns-and-guidance"></a>相關的模式和指導方針
 

@@ -1,29 +1,29 @@
 ---
-title: 將 Active Directory Domain Services (AD DS) 擴充至 Azure
+title: 將您的內部部署 Active Directory 網域擴充至 Azure
 titleSuffix: Azure Reference Architectures
-description: 將您的內部部署 Active Directory 網域擴充至 Azure。
+description: 在 Azure 虛擬網路中部署 Active Directory 網域服務 (AD DS)。
 author: telmosampaio
 ms.date: 05/02/2018
 ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 67f23ae3676d0fb95ef484fa6dcb7a8bb92e0fa2
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: c617a0ceba900fc9cd78eff21aadf5c94f6b143b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58420000"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640340"
 ---
-# <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>將 Active Directory Domain Services (AD DS) 擴充至 Azure
+# <a name="extend-your-on-premises-active-directory-domain-to-azure"></a>將您的內部部署 Active Directory 網域擴充至 Azure
 
-此參考架構說明如何將 Active Directory 環境擴充至 Azure，以使用 Active Directory Domain Services (AD DS) 提供分散式驗證服務。 [**部署這個解決方案**](#deploy-the-solution)。
+此架構會示範如何將內部部署 Active Directory 網域擴充至 Azure，以提供分散式的驗證服務。 [**部署這個解決方案**](#deploy-the-solution)。
 
 ![使用 Active Directory 保護混合式網路架構的安全](./images/adds-extend-domain.png)
 
 下載這個架構的 [Visio 檔案][visio-download]。
 
-AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用程式或其他身分識別。 它可以裝載在內部部署環境，但如果您的應用程式部分裝載在內部部署環境且部分裝載在 Azure 中，則在 Azure 中複寫此功能可能更有效率。 如此可以減少將驗證和本機授權要求從雲端傳回執行內部部署之 AD DS 所造成的延遲。
+如果您的應用程式部分裝載在內部，而且部分在 Azure 中，它可能更有效率的方式複寫在 Azure 中的 Active Directory 網域服務 (AD DS)。 這可以減少將驗證要求從雲端傳回執行內部部署 AD DS 所造成的延遲。
 
 當內部部署網路與 Azure 虛擬網路透過 VPN 或 ExpressRoute 連線連接時，通常會使用這個架構。 此架構也支援雙向複寫，也就是說，您可以在內部部署或雲端上進行變更，而且這兩個來源會保持一致。 此架構的典型用途包括在內部部署與 Azure 之間散佈功能的混合式應用程式，以及使用 Active Directory 執行驗證的應用程式和服務。
 
@@ -48,7 +48,7 @@ AD DS 可用來驗證包含在安全性網域中的使用者、電腦、應用�
 
 根據預期的驗證要求量，決定您的 [VM 大小][vm-windows-sizes]需求。 針對在內部部署環境中裝載 AD DS 的電腦，使用其規格作為起點，以比對 Azure VM 的大小。 一旦部署之後，請根據 VM 上的實際負載，監視使用量並相應增加或減少。 如需有關調整 AD DS 網域控制站大小的詳細資訊，請參閱 [Active Directory Domain Services 的容量規劃][capacity-planning-for-adds]。
 
-建立個別的虛擬資料磁碟，以儲存 Active Directory 的資料庫、記錄檔和 SYSVOL。 請不要將這些項目儲存在與作業系統相同的磁碟上。 請注意，連線到 VM 的資料磁碟預設會使用即刻寫入快取。 不過，這種形式的快取可能會與 AD DS 的需求發生衝突。 因此，請將資料磁碟上的 [主機快取偏好設定] 設定設為 [無]。
+建立個別的虛擬資料磁碟，以儲存 Active Directory 的資料庫、記錄和 SYSVOL。 請不要將這些項目儲存在與作業系統相同的磁碟上。 請注意，連線到 VM 的資料磁碟預設會使用即刻寫入快取。 不過，這種形式的快取可能會與 AD DS 的需求發生衝突。 因此，請將資料磁碟上的 [主機快取偏好設定] 設定設為 [無]。
 
 至少將兩個執行 AD DS 的 VM 部署為網域控制站，並將其新增至[可用性設定組][availability-set]。
 

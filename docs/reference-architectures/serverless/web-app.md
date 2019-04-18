@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, serverless
-ms.openlocfilehash: 60af3df5bbb75d97d6ba797874c8b37319b2fad5
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: edf569b82a0a632e6ca048fee12c1dc61c039cd9
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54487384"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640799"
 ---
 # <a name="serverless-web-application-on-azure"></a>Azure 上的無伺服器 Web 應用程式
 
@@ -39,9 +39,6 @@ ms.locfileid: "54487384"
 此架構由下列元件組成：
 
 **Blob 儲存體**。 靜態 Web 內容 (例如 HTML、CSS 和 JavaScript 檔案) 會儲存在 Azure Blob 儲存體中，並且使用[靜態網站代管][static-hosting]來為用戶端提供服務。 透過 JavaScript 程式碼發生的所有動態互動，都會對後端 API 進行呼叫。 沒有伺服器端程式碼可用來轉譯網頁。 靜態網站代管支援索引文件和自訂 404 錯誤頁面。
-
-> [!NOTE]
-> 靜態網站代管目前處於[預覽][static-hosting-preview]狀態。
 
 **CDN**。 使用 [Azure 內容傳遞網路][cdn] (CDN) 快取內容，以降低延遲而且更快速傳遞內容，以及佈建 HTTPS 端點。
 
@@ -135,9 +132,9 @@ public static Task<IActionResult> Run(
 
 ## <a name="security-considerations"></a>安全性考量
 
-### <a name="authentication"></a>驗證
+### <a name="authentication"></a>Authentication
 
-參考實作中的 `GetStatus` API 會使用 Azure AD 來驗證要求。 Azure AD 支援 Open ID Connect 通訊協定，該通訊協定是以 OAuth 2 通訊協定為基礎所建置的驗證通訊協定。
+參考實作中的 `GetStatus` API 會使用 Azure AD 來驗證要求。 Azure AD 支援 OAuth 2 通訊協定為基礎的驗證通訊協定的 OpenID Connect 通訊協定。
 
 在此架構中，用戶端應用程式是在瀏覽器中執行的單頁應用程式 (SPA)。 這種類型的用戶端應用程式無法隱藏用戶端密碼或授權碼，因此隱含授與流程是適當的。 (請參閱[應該使用何種 OAuth 2.0 流程？][oauth-flow])。 以下是整體流程︰
 
@@ -162,7 +159,7 @@ public static Task<IActionResult> Run(
 
 在 API 中，使用[範圍][scopes]來為應用程式提供對使用者要求權限的精確控制。 例如，API 可能包含 `Read` 和 `Write` 範圍，而特定用戶端應用程式可能會要求使用者僅授權 `Read` 權限。
 
-### <a name="authorization"></a>Authorization
+### <a name="authorization"></a>授權
 
 在許多應用程式中，後端 API 必須檢查使用者是否具有執行指定動作的權限。 建議使用[宣告型授權][claims]，其中使用者的相關資訊是由識別提供者 (在此案例中是 Azure AD) 傳送，用來進行授權決策。
 
@@ -329,7 +326,7 @@ API 是服務與用戶端之間的合約。 在此架構中，API 合約會在 A
 [functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
-[microservices-domain-analysis]: ../../microservices/domain-analysis.md
+[microservices-domain-analysis]: ../../microservices/model/domain-analysis.md
 [monitor]: /azure/azure-monitor/overview
 [oauth-flow]: https://auth0.com/docs/api-auth/which-oauth-flow-to-use
 [partition-key]: /azure/cosmos-db/partition-data

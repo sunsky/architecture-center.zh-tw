@@ -7,12 +7,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat
-ms.openlocfilehash: 5219d08fce5cf09b075b6d7adfb73970e007ded4
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 34c21f4b5356dc0acbd5c2c85124300a6ed13c99
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248673"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640493"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Azure 上的 Web 應用程式監視
 
@@ -78,7 +78,7 @@ Azure 監視器、Application Insights 及 Log Analytics 全都會傳送[警示]
 
 Application Insights 會[限制][app-insights-limits]每秒可處理的要求數目。 如果您超過要求限制，則可能遇到訊息節流。 若要避免節流，請實作[篩選][message-filtering]或[取樣][message-sampling]，以降低資料速率
 
-不過，您所執行的應用程式的高可用性考量是開發人員的責任。 比方說，如需縮放的相關資訊，請參閱基本 Web 應用程式參考架構中的[延展性考量](#scalability-considerations)一節。 部署應用程式之後，您可以使用 Application Insights 設定測試來[監視其可用性][monitor its availability]。
+不過，您所執行的應用程式的高可用性考量是開發人員的責任。 比方說，如需縮放的相關資訊，請參閱基本 Web 應用程式參考架構中的[延展性考量](./basic-web-app.md#scalability-considerations)一節。 部署應用程式之後，您可以使用 Application Insights 設定測試來[監視其可用性][monitor its availability]。
 
 ### <a name="security"></a>安全性
 

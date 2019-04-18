@@ -1,17 +1,17 @@
 ---
 title: 在 Azure Resource Manager 範本中依條件部署資源
-description: 說明如何擴充 Azure Resource Manager 範本的功能，根據參數值條件部署資源。
+description: 說明如何擴充 Azure Resource Manager 範本，有條件地部署資源，以參數的值而定的功能。
 author: petertay
 ms.date: 10/30/2018
 ms.topic: article
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: f3d22c6437cdabcd93a781ecf7c99db5a570d7cf
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 437490b2998cfbcde4df13570831e34a776e7afe
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243799"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640204"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中依條件部署資源
 

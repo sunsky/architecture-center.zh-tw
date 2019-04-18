@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 281a2e9995d1d04aa9688e811e0d4ff8088fe30b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fdad7e9241ddd9c11c18e31a1fd2da5a163d05ac
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249703"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640510"
 ---
 # <a name="natural-language-processing"></a>自然語言處理
 
@@ -24,7 +24,7 @@ ms.locfileid: "58249703"
 NLP 可用來進行文件分類，例如，將文件標示為機密或垃圾郵件。 NLP 的輸出可用於後續的查詢處理或搜尋。 NLP 的另一項用途，是藉由識別文件中的實體來彙總文字。 這些實體也可用來為文件標記關鍵字，而讓您能夠根據內容進行搜尋和擷取。 實體可合併為主題，並以摘要說明每個文件中的重要主題。 偵測到的主題都可用來分類文件以供導覽，或根據選定的主題列舉相關文件。 NLP 的另一項用途是為文字進行情感評分，以評估文件的調性是正面還是負面的。 這些方法都用到許多來自於自然語言處理的技術，例如：
 
 - **權杖化工具**。 將文字分割成單字或片語。
-- **詞幹分析和詞形歸併還原**。 將單字正規化，使不同的形態會對應至具有相同意義的常態單字。 例如，"running" 和 "ran" 會對應至 "run"。
+- **詞幹分析和詞形歸併還原**。 正規化文字，使不同的形態會對應至具有相同意義的常態單字。 例如，"running" 和 "ran" 會對應至 "run"。
 - **實體擷取**。 識別文字中的主題。
 - **詞性偵測**。 將文字識別為動詞、名詞、分詞、動詞片語等等。
 - **文句界限偵測**。 偵測文字段落內的完整句子。

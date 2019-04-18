@@ -8,12 +8,12 @@ ms.topic: reference-architecture
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18, identity
-ms.openlocfilehash: 22a2a2042c85e70d0d5a523c9ecf72395a9e774c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 873b6a86da14e00d0a537f910d10922444cc1ded
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244389"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640731"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>將 Active Directory 同盟服務 (AD FS) 擴充至 Azure
 
@@ -126,7 +126,7 @@ AD FS 可在內部部署主控，但如果是當中有些組件實作在 Azure �
 
 AD FS 支援權杖轉換和增強指定。 Azure Active Directory 不提供這項功能。 利用 AD FS，當您設定信任關係時，可以：
 
-- 設定授權規則的宣告轉換。 例如，您可以將來自非 Microsoft 夥伴組織使用之表示法的群組安全性對應到 Active Directory DS 可在貴組織中授權的項目。
+- 設定授權規則的宣告轉換。 比方說，您可以將對應從表示為 Active Directory DS 可授權您組織中的非 Microsoft 夥伴組織所使用的群組安全性。
 - 將宣告從一種格式轉換成另一種格式。 例如，如果您的應用程式只支援 SAML 1.1 宣告，您可以從 SAML 2.0 對應到 SAML 1.1。
 
 ### <a name="ad-fs-monitoring"></a>AD FS 監視

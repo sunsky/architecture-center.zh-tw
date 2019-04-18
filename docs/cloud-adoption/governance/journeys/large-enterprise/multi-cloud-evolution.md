@@ -1,18 +1,18 @@
 ---
-title: CAF：大型企業 – 多重雲端演進
+title: CAF：大型企業-多重雲端發展
 titleSuffix: Microsoft Cloud Adoption Framework for Azure
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
 ms.custom: governance
 ms.date: 02/11/2019
-description: 大型企業 – 多重雲端演進
+description: 大型企業-多重雲端發展
 author: BrianBlanchard
-ms.openlocfilehash: 5ef29aa523c04ff93b2d4f983482f94654a4a039
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: 62a2fdd6e340c96494354f4f0cf2f78ab572c251
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55900988"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641139"
 ---
 # <a name="large-enterprise-multi-cloud-evolution"></a>大型企業：多重雲端演進
 
@@ -20,7 +20,7 @@ ms.locfileid: "55900988"
 
 Microsoft 意識到客戶會基於特定用途來採用多個雲端。 這個旅程圖中的虛構公司也不例外。 與 Azure 採用旅程圖並用，該企業成功收購了一家小型但互補的企業。 該企業正在不同的雲端提供者上執行其所有 IT 作業。
 
-本文將說明整合新組織時所產生的變化。 基於敘述的用途，我們假設這家公司已完成此客戶旅程圖中所概述的每一個治理演進。
+本文將說明整合新組織時所產生的變化。 基於敘述的目的，我們假設這家公司已完成此客戶旅程圖中所概述的每一個治理演進。
 
 ### <a name="evolution-of-the-current-state"></a>目前狀態的演進
 
@@ -58,7 +58,7 @@ Microsoft 意識到客戶會基於特定用途來採用多個雲端。 這個旅
 
 ## <a name="evolution-of-the-best-practices"></a>最佳做法的演進
 
-本文的這一節將推演治理 MVP 設計，以包含新的 Azure 原則和實作 Azure 成本管理。 這兩個設計變更將共同實現新的公司原則聲明。
+本文的這一節將發展治理 MVP 設計，以包含新的 Azure 原則和實作 Azure 成本管理。 這兩個設計變更將共同實現新的公司原則聲明。
 
 1. 連線網路：透過網路功能與 IT 安全性來執行 (由治理提供支援)
     1. 新增從 MPLS/租用線路提供者到新雲端的連線，將會整合網路。 新增路由表和防火牆設定，將控制環境之間的存取與流量。
@@ -82,7 +82,7 @@ Microsoft 意識到客戶會基於特定用途來採用多個雲端。 這個旅
 
 ## <a name="next-steps"></a>後續步驟
 
-在許多大型企業中，雲端治理的專業領域可能會成為採用的阻礙物。 下一篇文章將提供一些與使治理成為小組運動密切相關的想法，可協助確保雲端中的長期成功。
+在許多大型企業中，雲端管理五個專業領域可以採用的阻礙。 下一篇文章，有一些其他看法進行控管小組運動 」 以協助確保在雲端中的長期成功。
 
 > [!div class="nextstepaction"]
 > [多層治理](./multiple-layers-of-governance.md)

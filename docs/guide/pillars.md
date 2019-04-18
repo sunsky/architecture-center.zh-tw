@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 76870f58fc957f6d82f6dc176d1c538c795a7d20
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: d6eed98c6e224956942c45b52621ec02832be015
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58243059"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639757"
 ---
 # <a name="pillars-of-software-quality"></a>軟體品質的要素
 
@@ -76,8 +76,6 @@ ms.locfileid: "58243059"
 
 應用程式經常依賴多個服務。 一般情況下，服務發生停機的機率是各自獨立的。 例如，假設您的應用程式依賴兩個服務，這兩個服務各有 99.9% 的 SLA。 這兩個服務的複合 SLA 是 99.9% &times; 99.9% &asymp; 99.8%，也就是略低於每個服務本身的 SLA。
 
-請使用[可用性檢查清單][availability-checklist]，從可用性的角度檢視您的設計。
-
 ### <a name="availability-guidance"></a>可用性指導方針
 
 - [可用性的設計模式][availability-patterns]
@@ -104,11 +102,9 @@ ms.locfileid: "58243059"
 
 在為應用程式設計復原功能時，您必須了解您的可用性需求。 可接受多少停機時間？ 這是有一部分是成本的功能。 可能的停機時間會造成多少業務成本？ 您應該將多少成本投資於此應用程式的高可用性？
 
-請使用[復原功能檢查清單][resiliency-checklist]，從復原功能的角度檢視您的設計。
+### <a name="resiliency-guidance"></a>災害復原指導方針
 
-### <a name="resiliency-guidance"></a>復原指導
-
-- [為 Azure 設計有彈性的應用程式][resiliency]
+- [設計可靠的 Azure 應用程式][resiliency]
 - [災害復原的設計模式][resiliency-patterns]
 - 最佳做法：[暫時性錯誤的處理][transient-fault-handling]、[特定服務的重試指引][retry-service-specific]
 
@@ -173,7 +169,7 @@ ms.locfileid: "58243059"
 
 [dr-guidance]: ../resiliency/disaster-recovery-azure-applications.md
 [identity-ref-arch]: ../reference-architectures/identity/index.md
-[resiliency]: ../resiliency/index.md
+[resiliency]: ../reliability/index.md
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
@@ -205,7 +201,5 @@ ms.locfileid: "58243059"
 [transient-fault-handling]: ../best-practices/transient-faults.md
 
 <!-- checklist -->
-[availability-checklist]: ../checklist/availability.md
 [devops-checklist]: ../checklist/dev-ops.md
-[resiliency-checklist]: ../checklist/resiliency.md
 [scalability-checklist]: ../checklist/scalability.md

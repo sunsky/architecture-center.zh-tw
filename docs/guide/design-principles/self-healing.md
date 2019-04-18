@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 5e5af0be41fa892e490d556ef4286d5367144fd9
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 84bc6e5c8d78517e3dc1dc0ee8d250346a33ce43
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58249503"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641190"
 ---
 # <a name="design-for-self-healing"></a>自我修復設計
 
@@ -59,7 +59,7 @@ ms.locfileid: "58249503"
 
 **採用混沌工程**。 混沌工程延伸了錯誤植入的概念，它會在生產執行個體中隨機植入失敗或異常狀況。
 
-如需有結構地讓您的應用程式能夠自我修復，請參閱[設計具有復原功能的 Azure 應用程式][resiliency-overview]。
+結構化的方法，讓您的應用程式的自我修復，請參閱[設計適用於 Azure 的可靠應用程式][resiliency-overview]。
 
 <!-- links -->
 
@@ -67,7 +67,7 @@ ms.locfileid: "58249503"
 [compensating-transactions]: ../../patterns/compensating-transaction.md
 [leader-election]: ../../patterns/leader-election.md
 [load-level]: ../../patterns/queue-based-load-leveling.md
-[resiliency-overview]: ../../resiliency/index.md
+[resiliency-overview]: ../../reliability/index.md
 [retry]: ../../patterns/retry.md
 [throttle]: ../../patterns/throttling.md
 [transient-fault-handling]: ../../best-practices/transient-faults.md

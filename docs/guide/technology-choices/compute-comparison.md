@@ -8,12 +8,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seojan19
-ms.openlocfilehash: 2b6b9b941bf7a3c0136b71ecb65bfe4b4a59e07b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: c4ce7a5da196e0fcf8f85376439e53683432883e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245599"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640459"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>選擇 Azure 計算服務的準則
 
@@ -31,7 +31,7 @@ ms.locfileid: "58245599"
 | 狀態管理 | 無狀態或可設定狀態 | 無狀態 | 無狀態或可設定狀態 | 無狀態 | 無狀態或可設定狀態 | 無狀態 | 無狀態 |
 | Web 裝載 | 無從驗證 | 內建 | 無從驗證 | 不適用 | 無從驗證 | 無從驗證 | 否 |
 | 可以部署到專用的 VNet 嗎？ | 支援 | 支援 <a href="#note5"><sup>5</sup></a> | 支援 | 支援 <a href="#note5"><sup>5</sup></a> | [支援](/azure/aks/networking-overview) | 不支援 | 支援 |
-| 混合式連線 | 支援 | 支援 <a href="#note6"><sup>6</sup></a>  | 支援 | 支援 <a href="#node7"><sup>7</sup></a> | 支援 | 不支援 | 支援 |
+| 混合式連線 | 支援 | 支援 <a href="#note6"><sup>6</sup></a>  | 支援 | 支援 <a href="#note7"><sup>7</sup></a> | 支援 | 不支援 | 支援 |
 
 注意
 

@@ -7,10 +7,10 @@ ms.date: 02/11/2019
 description: 說明 Azure 上的雲端資源治理
 author: petertaylor9999
 ms.openlocfilehash: 0989a5aad8a6290cce07fd71771c690bbd615e0d
-ms.sourcegitcommit: 0a8a60d782facc294f7f78ec0e9033e3ee16bf4a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/08/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59068849"
 ---
 <!-- markdownlint-disable MD026 -->
@@ -42,4 +42,4 @@ RBAC 定義的角色和角色定義指派給該角色每一位使用者的功能
 既然您了解雲端資源管理的概念，深入了解如何在 Azure 中管理資源的存取。
 
 > [!div class="nextstepaction"]
-> [深入了解在 Azure 中的資源存取](azure-resource-access.md)
+> [深入了解 Azure 中的資源存取](azure-resource-access.md)

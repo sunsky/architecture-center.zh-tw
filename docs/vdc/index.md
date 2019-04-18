@@ -6,18 +6,19 @@ layout: LandingPage
 ms.topic: landing-page
 ms.service: architecture-center
 ms.subservice: enterprise-cloud-adoption
-ms.openlocfilehash: 57f28808d3c49c74bc010133c670a186206a4466
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f49640f4a994bf1cdca8029260fc95a5da323ff2
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344524"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640612"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Azure 虛擬資料中心和 Enterprise 控制平面
 
 Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還能遵循現有的安全性與網路原則。 IT 組織和營業單位在將企業工作負載部署到雲端時，必須在治理與開發人員敏捷度之間取得平衡。 Azure 虛擬資料中心提供模型來達成這項平衡且著重治理。
- 
+
 ## <a name="resources"></a>資源
+
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
@@ -58,6 +59,5 @@ Azure 虛擬資料中心能充分發揮 Azure 雲端平台的功能，同時還�
 以下四個元件促成 Azure 虛擬資料中心：身分識別、加密、軟體定義的網路功能及合規性 (包括記錄和報告)。
 
 在 Azure 虛擬資料中心模型中，您可以套用隔離原則、讓雲端更像您所知的實體資料中心，以及達到您所需的安全性和信任層級。 任何企業 IT 團隊認定可實現上述目標的四個元件：軟體定義的網路功能、加密、身分識別管理，以及 Azure 平台的基礎合規性標準和認證。 這四個元件是讓虛擬資料中心成為現有基礎結構投資之信任擴充的關鍵。
-
 
 請繼續閱讀 <a href="https://aka.ms/VDC/eBook">Azure 虛擬資料中心概念</a>電子書。

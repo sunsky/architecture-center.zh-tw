@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 9b6bef0fd803db5b488e93d246642d4e3681a94c
-ms.sourcegitcommit: 273e690c0cfabbc3822089c7d8bc743ef41d2b6e
-ms.translationtype: HT
+ms.openlocfilehash: dcbfa528a4fdd640b08b42904ceadb7a802b806e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/08/2019
-ms.locfileid: "55897757"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640918"
 ---
 # <a name="api-implementation"></a>API 實作
 
@@ -582,7 +582,7 @@ ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
 
-您也可以設定 `ServicePointManager` 類別的靜態 `Expect100Continue` 屬性，以針對所有後續建立的 [ServicePoint]](/dotnet/api/system.net.servicepoint) 物件指定此屬性的預設值。
+您也可以設定靜態`Expect100Continue`的屬性`ServicePointManager`類別，以指定此屬性的預設值，針對所有後續建立[ServicePoint](/dotnet/api/system.net.servicepoint)物件。
 
 ### <a name="support-pagination-for-requests-that-may-return-large-numbers-of-objects"></a>支援對可能傳回大量物件的要求進行分頁
 
@@ -650,7 +650,7 @@ Web API 也應提供一種機制，將處理的結果傳回給用戶端應用程
 
 HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入了 Connection:Keep-Alive 標頭，可讓用戶端應用程式向伺服器表示它可以使用相同的連線來傳送後續的要求，而不用開啟新的連線。 如果用戶端未在主機定義的期間內重複使用連線，連線就會自動關閉。 此行為是 HTTP 1.1 中 Azure 服務所使用的預設值，因此不需要在訊息中包含 Keep-alive 標頭。
 
-讓連接保持開啟可減少延遲和網路壅塞，有助於改善回應能力，但由於讓不必要的連接保持開啟過久，導致其他並行用戶端無法連接，可能不利於延展性。 如果用戶端應用程式是在行動裝置上執行，這也可能影響電池壽命；如果應用程式只偶而向伺服器發出要求，則讓連接保持開啟可能會導致電池更快耗盡。 若要使用 HTTP 1.1 確保連線不會持續，用戶端可以在訊息中包含 Connection:Close 標頭以覆寫預設行為。 同樣地，如果伺服器正在處理非常大量的用戶端，則可以在回應訊息中包含應關閉連線並儲存伺服器資源的 Connection:Close 標頭。
+讓連接保持開啟可減少延遲和網路壅塞，有助於改善回應能力，但由於讓不必要的連接保持開啟過久，導致其他並行用戶端無法連接，可能不利於延展性。 如果用戶端應用程式是在行動裝置上執行，這也可能影響電池壽命；如果應用程式只偶而向伺服器發出要求，則讓連接保持開啟可能會導致電池更快耗盡。 若要确保不使用 HTTP 1.1 建立永久连接，客户端可以在消息中包括 Connection:Close 标头以覆盖默认行为。 同樣地，如果伺服器正在處理非常大量的用戶端，則可以在回應訊息中包含應關閉連線並儲存伺服器資源的 Connection:Close 標頭。
 
 > [!NOTE]
 > 持續性 HTTP 連線純粹是選擇性功能，可減少與重複建立通訊通道相關聯的網路負荷。 Web API 和用戶端應用程式都不應該依賴持續性 HTTP 連線才可使用。 請勿使用持續性 HTTP 連線來實作 Comet 式通知系統；而是應該利用 TCP 層的通訊端 (或可用的 Websocket)。 最後請注意，如果用戶端應用程式透過 Proxy 與伺服器進行通訊，則 Keep-Alive 標頭的使用受限；只有與用戶端和 Proxy 的連線具持續性。
@@ -666,7 +666,7 @@ HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入�
 - 法規需求可能會託管所有要求和回應的記錄與稽核。
 - 為了確保可用性，有可能需要監視裝載 Web API 的伺服器健全狀況，並在必要時重新啟動。
 
-讓這些問題能與 Web API 實作的相關技術問題脫鉤，很有助益。 基於這個理由，請考慮建立 [façade](https://en.wikipedia.org/wiki/Facade_pattern)，以作為個別的程序來執行，然後讓其將要求路由到 Web API。 façade 可以提供管理作業，並將經過驗證的要求轉送給 Web API。 使用 façade 也會帶來許多功能上的優點，包括：
+讓這些問題能與 Web API 實作的相關技術問題脫鉤，很有助益。 基於這個理由，請考慮建立 [façade](https://en.wikipedia.org/wiki/Facade_pattern)，以作為個別的程序來執行，然後讓其將要求路由到 Web API。 façade 可以提供管理作業，並將經過驗證的要求轉送給 Web API。 使用 façade 还可以带来很多功能优势，包括：
 
 - 作為多個 Web API 的整合點。
 - 針對使用各種技術建置的用戶端，轉換訊息和轉譯通訊協定。
@@ -693,9 +693,9 @@ Web API 的本質帶來自己額外的需求，以便確認運作正常。 您�
 
 - 驗證要求和回應訊息的格式是否正確。 例如，如果 HTTP POST 要求包含新資源的資料 (採用 x-www-form-urlencoded 格式)，請確認對應的作業正確剖析資料、建立資源，並傳回包含新資源詳細資料的回應 (包括正確的 Location 標頭)。
 
-- 驗證回應訊息中的所有連結和 URI。 例如，HTTP POST 訊息應該會傳回新建資源的 URI。 所有 HATEOAS 連結都應該有效。
+- 驗證回應訊息中的所有連結和 URI。 例如，HTTP POST 訊息應該會傳回新建資源的 URI。 所有 HATEOAS 链接都应有效。
 
-- 確保每項作業都會針對不同的輸入組合傳回正確的狀態碼。 例如︰
+- 确保每个操作针对不同输入组合返回正确的状态代码。 例如︰
 
   - 如果查詢成功，則應傳回狀態碼 200 (確定)
   - 如果找不到資源，作業應傳回 HTTP 狀態碼 404 (找不到)。
@@ -708,7 +708,7 @@ Web API 的本質帶來自己額外的需求，以便確認運作正常。 您�
 
 - 測試查詢字串。 如果作業可採用選擇性參數 (例如分頁要求)，請測試不同組合和順序的參數。
 
-- 確認非同步作業順利完成。 如果 Web API 支援傳回大型二進位物件 (例如視訊或音訊) 之要求的串流處理，請確保在串流處理資料時不會封鎖用戶端要求。 如果 Web API 對長時間執行的資料修改作業進行輪詢，請確認作業在進行時正確回報其狀態。
+- 確認非同步作業順利完成。 如果 Web API 支援傳回大型二進位物件 (例如視訊或音訊) 之要求的串流處理，請確保在串流處理資料時不會封鎖用戶端要求。 如果 web API 實作輪詢長時間執行資料修改作業，請確認作業報告其狀態正常進行。
 
 您也應該建立和執行效能測試，檢查 Web API 在受限的情況下是否運作順利。 您可以使用 Visual Studio Ultimate，建置 Web 效能和負載測試專案。 如需詳細資訊，請參閱[在應用程式發行前執行效能測試](https://msdn.microsoft.com/library/dn250793.aspx)。
 

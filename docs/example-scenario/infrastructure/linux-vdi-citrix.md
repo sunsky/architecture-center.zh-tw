@@ -9,12 +9,12 @@ ms.service: architecture-center
 ms.subservice: example-scenario
 ms.custom: fasttrack, Linux
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/azure-citrix-sample-diagram.png
-ms.openlocfilehash: 77093cba0e5646146ec9de68655754d9ac1e5461
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: e59e785df80efc9de134d27664ba1581a61dd1d1
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58248483"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640272"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>使用 Citrix 的 Linux 虛擬桌面
 
@@ -71,7 +71,7 @@ ms.locfileid: "58248483"
 - [Azure SQL Database](/azure/sql-database/sql-database-technical-overview) 是關聯式資料庫即服務 (DBaaS)，它是根據最新穩定版本的 Microsoft SQL Server 資料庫引擎而建置。 它將用於裝載 Citrix 資料庫。
 - [ExpressRoute](/azure/expressroute/expressroute-introduction) 可讓您透過連線提供者所提供的私人連線，將內部部署網路延伸至 Microsoft 雲端。
 - [Active Directory Domain Services 使用於目錄服務和使用者驗證
-- [Azure 可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)可確保您在 Azure 上部署的 VM 會分散到叢集中多個各自獨立的硬體節點。 這麼做可以確保當 Azure 發生硬體或軟體故障時，受到影響的只會是一部分的 VM 子集，您整體的解決方案則會維持可用且正常運作。
+- [Azure 可用性設定組](/azure/virtual-machines/windows/tutorial-availability-sets)可確保您在 Azure 上部署的 Vm 會分散到叢集中的多個各自獨立的硬體節點。 這麼做可以確保當 Azure 發生硬體或軟體故障時，受到影響的只會是一部分的 VM 子集，您整體的解決方案則會維持可用且正常運作。
 - [Citrix ADC (NetScaler)](https://www.citrix.com/products/citrix-adc) 是一個應用程式傳遞控制站，可執行特定應用程式流量分析，進而以智慧方式散發、最佳化及保護 Web 應用程式的第 4 層 7 (L4–L7) 網路流量。
 - [Citrix Storefront](https://www.citrix.com/products/citrix-virtual-apps-and-desktops/citrix-storefront.html) 是一個企業應用程式存放區，可改善安全性並簡化部署，以及在任何平台上透過 Citrix Receiver 提供現代化、極為近乎原生的使用者體驗。 StoreFront 可讓您輕鬆地管理多網站和多版本的 Citrix 虛擬應用程式和桌面環境。
 - [Citrix License Server](https://www.citrix.com/buy/licensing/overview.html) 會管理 Citrix 產品的授權。

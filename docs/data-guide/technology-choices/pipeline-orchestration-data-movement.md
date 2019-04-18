@@ -6,12 +6,12 @@ ms.date: 02/12/2018
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
-ms.openlocfilehash: 76a101b76497ae2b2aacff973175bb0fe4703d9e
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 31f052cc22f039540c89759c55028c368be1d238
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245869"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640782"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a>在 Azure 中選擇資料管線協調流程技術
 
@@ -47,8 +47,8 @@ ms.locfileid: "58245869"
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 受控 | yes | 否 | yes |
-| 雲端式 | yes | 否 (本機) | yes |
+| 受控 | 是 | 否 | 是 |
+| 雲端式 | 是 | 否 (本機) | 是 |
 | 必要條件 | Azure 訂閱 | SQL Server  | Azure 訂用帳戶、HDInsight 叢集 |
 | 管理工具 | Azure 入口網站、PowerShell、CLI、.NET SDK | SSMS、PowerShell | Bash 殼層、Oozie REST API、Oozie Web UI |
 | 價格 | 依使用量付費 | 功能的授權/付費 | 除了執行 HDInsight 叢集以外不另收費用 |
@@ -57,22 +57,21 @@ ms.locfileid: "58245869"
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 複製資料 | yes | 是 | yes |
-| 自訂轉換 | yes | yes | 是 (MapReduce、Pig 和 Hive 作業) |
-| Azure Machine Learning 評分 | yes | 是 (使用指令碼) | 否 |
-| HDInsight (隨選) | yes | 否 | 否 |
-| Azure Batch | yes | 否 | 否 |
-| Pig、Hive、MapReduce | yes | 否 | yes |
-| Spark | yes | 否 | 否 |
-| 執行 SSIS 套件 | yes | 是 | 否 |
-| 控制流程 | yes | 是 | yes |
-| 存取內部部署資料 | yes | 是 | 否 |
+| 複製資料 | 是 | 是 | 是 |
+| 自訂轉換 | 是 | 是 | 是 (MapReduce、Pig 和 Hive 作業) |
+| Azure Machine Learning 評分 | 是 | 是 (使用指令碼) | 否 |
+| HDInsight (隨選) | 是 | 否 | 否 |
+| Azure Batch | 是 | 否 | 否 |
+| Pig、Hive、MapReduce | 是 | 否 | 是 |
+| Spark | 是 | 否 | 否 |
+| 執行 SSIS 套件 | 是 | 是 | 否 |
+| 控制流程 | 是 | 是 | 是 |
+| 存取內部部署資料 | 是 | 是 | 否 |
 
 ### <a name="scalability-capabilities"></a>延展性功能
 
 | | Azure Data Factory | SQL Server Integration Services (SSIS) | HDInsight 上的 Oozie
 | --- | --- | --- | --- |
-| 相應增加 | yes | 否 | 否 |
-| 相應放大 | yes | 否 | 是 (藉由將背景工作節點新增至叢集) |
-| 已針對巨量資料最佳化 | yes | 否 | yes |
-
+| 相應增加 | 是 | 否 | 否 |
+| 相應放大 | 是 | 否 | 是 (藉由將背景工作節點新增至叢集) |
+| 已針對巨量資料最佳化 | 是 | 否 | 是 |

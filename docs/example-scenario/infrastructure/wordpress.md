@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/infrastructure/media/secure-scalable-wordpress.png
-ms.openlocfilehash: 6032247dce0d090885bc560d963f1e714d91f69c
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: 4f347f91d5958fb83404856ec5d36d70a7ed0d19
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58244629"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640085"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>高擴充性且安全的 WordPress 網站
 
@@ -72,15 +72,13 @@ ms.locfileid: "58244629"
 
 此案例中的 VM 執行個體會部署於多個區域，其 WordPress 內容的資料會透過 RSYNC 在兩個區域間複寫，而 MariaDB 叢集則採用主從式複寫。
 
-如需其他可用性主題，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 此案例會在每個區域中使用兩個前端網頁伺服器叢集的虛擬機器擴展集。 使用擴展集時，執行前端應用程式層的 VM 執行個體數目可以視回應客戶需求，或根據定義的排程來自動調整。 如需詳細資訊，請參閱[使用虛擬機器擴展集自動調整概觀][docs-vmss-autoscale]。
 
 後端是可用性設定組中的 MariaDB 叢集。 如需詳細資訊，請參閱 [MariaDB 叢集教學課程][mariadb-tutorial]。
 
-如需其他延展性主題，請參閱 Azure Architecture Center 中的[延展性檢查清單][scalability]。
+如需其他擴充性主題，請參閱 [延展性檢查清單] [延展性] 在 Azure Architecture Center。
 
 ### <a name="security"></a>安全性
 
@@ -92,7 +90,7 @@ ms.locfileid: "58244629"
 
 此案例結合使用多個區域、資料複寫和虛擬機器擴展集，所以會使用 Azure 負載平衡器。 這些網路元件會將流量散發至已連線的 VM 執行個體，並包含健康情況探查，可確保流量只會散發到狀況良好的 VM。 上述所有網路元件都會透過 CDN 成為前端。 這會讓網路資源和應用程式有彈性地處理問題，否則會中斷流量並影響使用者存取。
 
-如需設計彈性案例的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需設計有彈性的案例的一般指引，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="pricing"></a>價格
 
@@ -112,6 +110,4 @@ ms.locfileid: "58244629"
 [docs-nsg]: /azure/virtual-network/security-overview
 [security]: /azure/security/
 [availability]: ../../checklist/availability.md
-[resiliency]: /azure/architecture/resiliency/
-[scalability]: /azure/architecture/checklist/scalability
 [pricing]: https://azure.com/e/a8c4809dab444c1ca4870c489fbb196b

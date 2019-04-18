@@ -6,12 +6,12 @@ ms.date: 07/21/2017
 ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
-ms.openlocfilehash: bdc2f4da6dd151cf395bee700e6a44e827c1e4f9
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b22a52b1dfcccc6253ba4ba418ed25523603283a
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58246129"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640816"
 ---
 # <a name="run-the-surveys-application"></a>執行問卷應用程式
 
@@ -227,10 +227,10 @@ Tailspin 是主控問卷應用程式的虛構公司。 Tailspin 使用 Azure AD 
 
     如下所示，取代角括弧中顯示的項目：
 
-    - `AzureAd:ClientId`：問卷應用程式的應用程式識別碼。
-    - `AzureAd:ClientSecret`：在 Azure AD 中註冊問卷應用程式時產生的金鑰。
-    - `AzureAd:WebApiResourceId`：當您在 Azure AD 建立 Surveys.WebAPI 應用程式時所指定的應用程式識別碼 URI。 其格式應該為 `https://<directory>.onmicrosoft.com/surveys.webapi`
-    - `Redis:Configuration`：從 Redis 快取的 DNS 名稱和主要存取金鑰建置這個字串。 例如，"tailspin.redis.cache.windows.net,password=2h5tBxxx,ssl=true"。
+    - `AzureAd:ClientId`:問卷應用程式的應用程式識別碼。
+    - `AzureAd:ClientSecret`:在 Azure AD 中註冊問卷應用程式時產生的金鑰。
+    - `AzureAd:WebApiResourceId`:當您在 Azure AD 建立 Surveys.WebAPI 應用程式時所指定的應用程式識別碼 URI。 其格式應該為 `https://<directory>.onmicrosoft.com/surveys.webapi`
+    - `Redis:Configuration`:從 Redis 快取的 DNS 名稱和主要存取金鑰建置這個字串。 例如，"tailspin.redis.cache.windows.net,password=2h5tBxxx,ssl=true"。
 
 4. 儲存更新後的 secrets.json 檔案。
 

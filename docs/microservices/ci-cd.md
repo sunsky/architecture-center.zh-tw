@@ -7,12 +7,12 @@ ms.topic: guide
 ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: microservices
-ms.openlocfilehash: f7f3f3d48087db51c40f134e3e4cf11ec58501bb
-ms.sourcegitcommit: d58e6b2b891c9c99e951c59f15fce71addcb96b1
+ms.openlocfilehash: c52ff3d0a330f564e5f7e9b0b07f0ba84c328c8b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59533085"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59639775"
 ---
 # <a name="cicd-for-microservices-architectures"></a>微服務架構的 CI/CD
 
@@ -64,7 +64,7 @@ ms.locfileid: "59533085"
 
 - **發行管理**。 每個小組應該能夠將更新部署到生產環境。 但這不表示每個小組成員都有權限這麼做。 不過，擁有集中的發行管理員角色可能會降低部署的速度。
 
-    **Migitation**:因此您的 CI/CD 程序愈加自動化和可靠，中央授權的需求就愈低。 儘管如此，您可能使用不同的原則來發行主要功能更新和次要錯誤修正。 分散管理並不表示零治理。
+    **降低風險**：因此您的 CI/CD 程序愈加自動化和可靠，中央授權的需求就愈低。 儘管如此，您可能使用不同的原則來發行主要功能更新和次要錯誤修正。 分散管理並不表示零治理。
 
 - **服務更新**。 當您將服務更新為新版本時，其不得中斷與其相依的其他服務。
 
@@ -74,7 +74,7 @@ ms.locfileid: "59533085"
 
 建立 CI/CD 工作流程之前，您必須知道如何結構化和管理程式碼基底。
 
-- 小組是使用不同的存放庫或使用 monorepo (單一存放庫)？
+- 小組是否使用不同的存放庫或 monorepo （單一儲存機制）？
 - 您的分支策略是什麼？
 - 誰可以將程式碼推送至生產環境？ 有版本管理員角色嗎？
 

@@ -8,12 +8,12 @@ ms.topic: example-scenario
 ms.service: architecture-center
 ms.subservice: example-scenario
 social_image_url: /azure/architecture/example-scenario/data/media/architecture-fraud-detection.png
-ms.openlocfilehash: b10838635cb592eb93d35ce745832c55a6daae8b
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: fc2222874b807a53b5e575973aa6dd4eca63fa3b
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58245789"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640037"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Azure 上的即時詐騙偵測
 
@@ -62,8 +62,6 @@ ms.locfileid: "58245789"
 
 「Azure 監視器」提供統一的使用者介面，可供您監視各個不同的 Azure 服務。 如需詳細資訊，請參閱[在 Microsoft Azure 中監視](/azure/monitoring-and-diagnostics/monitoring-overview)。 事件中樞和串流分析都與 Azure 監視器整合在一起。
 
-如需其他可用性考量，請參閱 Azure Architecture Center 中的[可用性檢查清單][availability]。
-
 ### <a name="scalability"></a>延展性
 
 此案例的元件是專為超大規模擷取與大量平行即時分析而設計。 Azure 事件中樞可高度調整，每秒可接收和處理數百萬個事件且低延遲。 事件中樞可以[自動相應增加](/azure/event-hubs/event-hubs-auto-inflate)輸送量單位數，來符合使用量需求。 Azure 串流分析可以分析來自許多來源的大量串流資料。 您可以藉由增加配置來執行串流作業的[串流單位](/azure/stream-analytics/stream-analytics-streaming-unit-consumption)數，以相應增加串流分析。
@@ -78,7 +76,7 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 
 ### <a name="resiliency"></a>災害復原
 
-如需設計彈性解決方案的一般指引，請參閱[為 Azure 設計有彈性的應用程式][resiliency]。
+如需設計彈性的解決方案的一般指引，請參閱[設計可靠的 Azure 應用程式](../../reliability/index.md)。
 
 ## <a name="deploy-the-scenario"></a>部署案例
 
@@ -111,7 +109,5 @@ Azure 事件中樞是以根據共用存取簽章 (SAS) 權杖和事件發行者�
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/
-[availability]: /azure/architecture/checklist/availability
 [scalability]: /azure/architecture/checklist/scalability
-[resiliency]: ../../resiliency/index.md
 [security]: /azure/security/

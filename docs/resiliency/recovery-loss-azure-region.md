@@ -7,16 +7,14 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-design-principles
 ms.custom: resiliency
-ms.openlocfilehash: 7f207bbc0bb0128126f9b828dc100d43553cb100
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
-ms.translationtype: HT
+ms.openlocfilehash: b58e8fa1cc4955f90e7171e17aaa70ac0cfb7b71
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58242709"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640561"
 ---
-[!INCLUDE [header](../_includes/header.md)]
-
-# <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Azure 復原技術指導：從全區域服務中斷復原
+# <a name="recover-from-a-region-wide-service-disruption"></a>從區域全面性服務中斷復原
 
 Azure 在實體和邏輯上劃分單位，稱為區域。 區域由一或多個非常接近的資料中心組成。
 
@@ -121,7 +119,7 @@ Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項
 
 ### <a name="service-bus"></a>服務匯流排
 
-Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](/azure/service-bus-messaging/service-bus-outages-disasters/)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](recovery-local-failures.md#other-azure-platform-services)。
+Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 但是，对于排队消息的持久性，也有一些注意事项。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](/azure/service-bus-messaging/service-bus-outages-disasters/)。
 
 ### <a name="app-service"></a>App Service 方案
 
@@ -129,7 +127,7 @@ Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此
 
 ### <a name="hdinsight"></a>HDInsight
 
-根據預設，與 HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。 HDInsight 要求 Hadoop 叢集處理 MapReduce 作業，以及包含要分析之資料的儲存體帳戶，必須並存於相同的區域。 假設您使用 Azure 儲存體可用的異地複寫功能，如果主要區域因為某些原因而無法再使用，您可以在已複寫資料的次要地區存取您的資料。 您可以在已複寫資料的區域建立新的 Hadoop 叢集，然後繼續處理資料。 關於其他可用性考量，請參閱 [HDInsight (可用性)](recovery-local-failures.md#other-azure-platform-services)。
+根據預設，與 HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。 HDInsight 要求 Hadoop 叢集處理 MapReduce 作業，以及包含要分析之資料的儲存體帳戶，必須並存於相同的區域。 假設您使用 Azure 儲存體可用的異地複寫功能，如果主要區域因為某些原因而無法再使用，您可以在已複寫資料的次要地區存取您的資料。 您可以在已複寫資料的區域建立新的 Hadoop 叢集，然後繼續處理資料。
 
 ### <a name="sql-reporting"></a>SQL Reporting
 
@@ -143,14 +141,14 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。 一�
 
 組態檔提供最快的方式在替代 Azure 區域中設定虛擬網路。 在主要 Azure 區域中設定虛擬網路之後，從目前網路 [匯出虛擬網路設定](/azure/virtual-network/virtual-networks-create-vnet-classic-portal/) 到網路組態檔。 萬一主要區域中斷運作，請從儲存的組態檔 [還原虛擬網路](/azure/virtual-network/virtual-networks-create-vnet-classic-portal/) 。 接著，設定其他雲端服務、虛擬機器或跨單位設定來使用新的虛擬網路。
 
-## <a name="checklists-for-disaster-recovery"></a>災害復原檢查清單
+## <a name="checklists-for-disaster-recovery"></a>灾难恢复清单
 
 ## <a name="cloud-services-checklist"></a>雲端服務檢查清單
 
 1. 檢閱此文件的＜雲端服務＞一節。
 2. 建立跨區域災害復原策略。
 3. 了解在替代區域保留容量的利弊取捨。
-4. 使用流量路由工具，例如 Azure 流量管理員。
+4. 使用流量路由工具，如 Azure 流量管理器。
 
 ## <a name="virtual-machines-checklist"></a>虛擬機器檢查清單
 
@@ -179,7 +177,7 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。 一�
 
 1. 檢閱此文件的＜服務匯流排＞一節。
 2. 在替代區域中設定服務匯流排命名空間。
-3. 針對跨區域訊息考慮採用自訂的複寫策略。
+3. 考虑自定义跨区域消息的复制策略。
 
 ## <a name="app-service-checklist"></a>App Service 檢查清單
 
