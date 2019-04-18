@@ -9,11 +9,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: seodec18
 ms.openlocfilehash: 3d109cb830b7dfc8c3d4de0e654f9d8667acf101
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887789"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59740454"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-databricks"></a>使用 Azure Databricks 建立串流處理管線
 

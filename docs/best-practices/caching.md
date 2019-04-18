@@ -8,12 +8,12 @@ ms.topic: best-practice
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: b93041d87ec1edde91724f6cf6374cb00b8a4941
-ms.sourcegitcommit: 1b50810208354577b00e89e5c031b774b02736e2
-ms.translationtype: HT
+ms.openlocfilehash: db97f2983d71f63b12e6e4b2f0070b1989b482c4
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "54488489"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641020"
 ---
 # <a name="caching"></a>快取
 
@@ -76,7 +76,7 @@ ms.locfileid: "54488489"
 
 請考慮快取經常讀取但很少修改的資料 (例如，讀取作業比例高於寫入作業比例的資料)。 不過，不建議您將快取用作授權的重要資訊存放區， 而是確定應用程式無法承受遺失的所有變更一律會儲存至永續性資料存放區 這表示，如果快取無法使用，您的應用程式還是可以使用資料存放區繼續執行作業，而您將不會遺失重要資訊。
 
-### <a name="determine-how-to-cache-data-effectively"></a>判斷如何有效率地快取資料
+### <a name="determine-how-to-cache-data-effectively"></a>确定如何有效缓存数据
 
 有效地使用快取的關鍵在於決定最適合快取的資料，以及最適合快取的時間。 資料會在應用程式第一次擷取時隨選新增至快取。 這表示應用程式僅需從資料存放區擷取一次資料，而後續存取可透過使用快取來滿足。
 
@@ -100,7 +100,7 @@ ms.locfileid: "54488489"
 
 當您在永續性資料存放區中儲存快速變更的資訊時，可能會造成系統過度負荷。 例如，假設有一個持續報告狀態或其他度量單位的裝置。 在快取資訊幾乎一律會過期的情況下，如果應用程式選擇不要快取此資料，則從資料存放區中儲存和擷取此資訊時相同的考量也適用； 而且在儲存和擷取此資料時，它可能已經變更。
 
-在這類情況下，請考慮在快取 (而非永續性資料存放區) 中直接儲存動態資訊的優點。 如果資料不重要且不需稽核，則遺失非經常性變更不會造成任何影響。
+在这种情况下，请考虑直接在缓存而不是永久性数据存储中存储动态信息的优点。 如果資料不重要且不需稽核，則遺失非經常性變更不會造成任何影響。
 
 ### <a name="manage-data-expiration-in-a-cache"></a>管理快取中的資料到期
 
@@ -144,7 +144,7 @@ ms.locfileid: "54488489"
 
 因此，應用程式必須準備好偵測快取服務的可用性，並在無法存取快取時回復為原始資料存放區。 [Circuit Breaker Pattern (斷路器模式)](../patterns/circuit-breaker.md) 在處理這種案例時相當實用。 提供快取的服務可以復原，而且當服務可供使用時，快取會在從原始資料存放區讀取資料時重新填入，並遵循下列策略，例如 [Cache-Aside Pattern (另行快取模式)](../patterns/cache-aside.md)。
 
-不過，如果應用程式在快取暫時無法使用時回復至原始資料存放區，則可能會影響系統延展性。 復原資料存放區時，原始資料存放區可能忙於處理資料要求，因而導致逾時和連接失敗。
+不過，如果應用程式就會回到原始的資料存放區暫時無法使用快取時，可能會影響系統延展性。 復原資料存放區時，原始資料存放區可能忙於處理資料要求，因而導致逾時和連接失敗。
 
 請考慮在應用程式的每個執行個體中實作本機私人快取，以及所有應用程式執行個體存取的共用快取。 當應用程式擷取項目時，可能會先檢查它的本機快取，再來是共用快取，最後則是原始資料存放區。 本機快取可以使用共用快取中的資料填入，或者如果共用快取無法使用，則可使用資料庫中的資料填入。
 
@@ -188,7 +188,7 @@ ms.locfileid: "54488489"
 
 為了在讀取和寫入資料時減少相關聯的過度負荷，在授與身分識別寫入和/或讀取快取的存取權之後，該身分識別就能使用快取中的任何資料。
 
-如果您需要限制快取資料子集的存取權，可執行下列其中一個動作：
+如果需要限制对缓存数据子集的访问权限，可以执行以下操作之一：
 
 - 將快取分割為分割區 (使用不同的快取伺服器)，並且僅授與身分識別應允許其使用之分割區的存取權。
 - 使用不同的金鑰來加密每個子集中的資料，並且僅向應該具有每個子集存取權的身分識別提供加密金鑰。 用戶端應用程式或許仍能擷取快取中的所有資料，但它只能夠解密具有金鑰的資料。
@@ -230,7 +230,7 @@ Redis 也提供叢集，其可讓您以透明方式在伺服器之間將資料�
 
 此外，叢集中的每一部伺服器都可以使用主要/下層複寫進行複寫。 這可確保整個叢集中每個節點的可用性 如需有關叢集和分區化的詳細資訊，請造訪 Redis 網站上的 [Redis 叢集教學課程頁面](https://redis.io/topics/cluster-tutorial)。
 
-### <a name="redis-memory-use"></a>Redis 記憶體使用
+### <a name="redis-memory-use"></a>Redis 内存使用
 
 Redis 快取的大小有限，其取決於主機電腦上可用的資源。 當您設定的 Redis 伺服器時，您可以指定伺服器可以使用的記憶體最大數量。 您也可以設定 Redis 快取中的索引鍵，使其具有到期時間，屆時會自動從快取中移除它。 此功能可協助避免記憶體內部快取中填滿老舊或過時的資料。
 
@@ -252,7 +252,7 @@ Redis 也支援非交易式批次要求。 用戶端用來將命令傳送到 Red
 
 Redis 純粹著重於提供資料的快速存取，並設計為在受信任的環境中執行，且僅能由受信任的用戶端存取。 Redis 支援以密碼驗證為基礎的有限安全性模型  (可完全移除驗證，但不建議這樣做)。
 
-所有已驗證的用戶端會共用相同的全域密碼，並存取相同資源。 如果您需要更完整的登入安全性，您必須在 Redis 伺服器之前實作自己的安全性層級，且所有用戶端要求應通過這個額外的層級。 Redis 不應直接向不受信任或未經驗證的用戶端公開。
+所有已经过身份验证的客户端共享同一个全局密码，并有权访问相同的资源。 如果您需要更完整的登入安全性，您必須在 Redis 伺服器之前實作自己的安全性層級，且所有用戶端要求應通過這個額外的層級。 Redis 不應直接向不受信任或未經驗證的用戶端公開。
 
 您可以透過停用命令或重新命名命令 (僅為有權限的用戶端提供新名稱) 來限制命令的存取。
 
@@ -279,7 +279,7 @@ Azure 入口網站包含便利的圖形化顯示，可讓您監視快取的效�
 
 您也可以監視 CPU、記憶體和快取的網路使用量。
 
-如需顯示如何建立及設定 Azure Redis 快取的進一步資訊和範例，請造訪 Redis 部落格上的 [瀏覽 Azure Redis 快取 (英文)](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/) 頁面。
+有关说明如何创建和配置 Azure Redis 缓存的更多信息和示例，请访问 Redis 博客上的 [浏览 Azure Redis 缓存](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/) 页。
 
 ## <a name="caching-session-state-and-html-output"></a>快取工作階段狀態和 HTML 輸出
 
@@ -297,7 +297,7 @@ Azure 入口網站包含便利的圖形化顯示，可讓您監視快取的效�
 > [!NOTE]
 > 請勿針對在 Azure 環境以外執行的 ASP.NET 應用程式使用 Azure Redis 快取的工作階段狀態供應器。 從 Azure 外部存取快取的延遲會消除快取資料的效能優勢。
 
-同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存透過 ASP.NET Web 應用程式所產生的 HTTP 回應。 使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間。 產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。 如需詳細資訊，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
+同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存透過 ASP.NET Web 應用程式所產生的 HTTP 回應。 使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間。 產生類似回應的應用程式執行個體可以使用快取，而不是重新產生此 HTML 輸出中的共用的輸出片段。 如需詳細資訊，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](/azure/redis-cache/cache-aspnet-output-cache-provider/)。
 
 ## <a name="building-a-custom-redis-cache"></a>建置自訂的 Redis 快取
 
@@ -335,7 +335,7 @@ Redis 支援以多種程式設計語言撰寫的用戶端應用程式。 如果�
 
 若要連接到 Redis 伺服器，您可以使用 `ConnectionMultiplexer` 類別的靜態 `Connect` 方法。 這個方法建立的連接適用於整個用戶端應用程式的存留期，而且相同的連接可供多個並行執行緒使用。 每次您執行 Redis 操作時請勿重新連接並中斷連接，因為這會降低效能。
 
-您可以指定連接參數，例如 Redis 主機的位址和密碼。 如果您使用 Azure Redis 快取，則密碼可能是針對 Azure Redis 快取使用 Azure 管理入口網站所產生的主要或次要索引鍵。
+可以指定连接参数，例如 Redis 主机的地址和密码。 如果您使用 Azure Redis 快取，則密碼可能是針對 Azure Redis 快取使用 Azure 管理入口網站所產生的主要或次要索引鍵。
 
 在您已連線到 Redis 伺服器之後，可以在作為快取的 Redis 資料庫上取得控制代碼。 Redis 連線提供 `GetDatabase` 方法來執行這項操作。 您可以使用 `StringGet` 和 `StringSet` 方法，從快取擷取項目並在快取中儲存資料。 這些方法預期索引鍵要做為參數使用，並傳回快取中具有相符值的項目 (`StringGet`)，或利用此索引鍵將項目新增至快取 (`StringSet`)。
 
@@ -651,7 +651,7 @@ Redis 集是共用單一索引鍵的多個項目集合。 您可以使用 SADD �
 
 下列程式碼片段顯示如何設定實用集合，以便用於快速儲存和擷取相關項目的集合。 此程式碼會使用本文稍早的＜實作 Redis 快取用戶端應用程式＞一節中所說明的 `BlogPost` 類型。
 
-`BlogPost` 物件包含四個欄位：識別碼、標題、排名分數和標記集合。 下方的第一個程式碼片段示範用於填入 `BlogPost` 物件之 C# 清單的範例資料：
+A`BlogPost`物件包含四個欄位&mdash;識別碼、 標題、 排名分數和標記的集合。 下方的第一個程式碼片段示範用於填入 `BlogPost` 物件之 C# 清單的範例資料：
 
 ```csharp
 List<string[]> tags = new List<string[]>
@@ -700,7 +700,7 @@ foreach (BlogPost post in posts)
     await cache.SetAddAsync(
         redisKey, post.Tags.Select(s => (RedisValue)s).ToArray());
 
-    // Now do the inverse so we can figure how which blog posts have a given tag
+    // Now do the inverse so we can figure out which blog posts have a given tag
     foreach (var tag in post.Tags)
     {
         await cache.SetAddAsync(string.Format(CultureInfo.InvariantCulture,

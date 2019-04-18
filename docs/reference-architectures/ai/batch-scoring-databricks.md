@@ -8,11 +8,11 @@ ms.service: architecture-center
 ms.subservice: reference-architecture
 ms.custom: azcat-ai
 ms.openlocfilehash: cba8d272ddbdbf2c2da94f68b288e9fb79be7de2
-ms.sourcegitcommit: 1a3cc91530d56731029ea091db1f15d41ac056af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/03/2019
-ms.locfileid: "58887806"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59740352"
 ---
 # <a name="batch-scoring-of-spark-machine-learning-models-on-azure-databricks"></a>在 Azure Databricks 上的 Spark 機器學習服務的批次評分模型
 
