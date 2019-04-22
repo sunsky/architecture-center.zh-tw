@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: f1ab728d68747856fb2586804d58d45c4ea4fcc1
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 4f94b181bd61b09c2ea79defe1c551402c1dc877
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58344490"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640952"
 ---
 # <a name="busy-front-end-antipattern"></a>忙碌前端反模式
 
@@ -193,7 +193,7 @@ CPU 和網路使用率也會顯示改善的效能。 CPU 使用率永遠不會�
 
 ![AppDynamics 計量顯示 WorkInBackground 控制器的 CPU 和網路使用率][AppDynamics-Metrics-Background-Requests]
 
-下圖顯示負載測試的結果。 為要求提供服務的整體數量相較於舊版測試大幅提升。
+下圖顯示負載測試的結果。 所處理的要求整體數量相較於舊版測試大幅提升。
 
 ![BackgroundImageProcessing 控制器的負載測試結果][Load-Test-Results-Background]
 

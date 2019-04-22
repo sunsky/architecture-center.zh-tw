@@ -9,12 +9,12 @@ ms.topic: design-pattern
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: c8fe971e031825632c2bb157bfd23e15f56520a3
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: f0cc64c555be092f9efb51e1f769c3668ce281af
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58343470"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641003"
 ---
 # <a name="cloud-design-patterns"></a>雲端設計模式
 
@@ -58,7 +58,7 @@ ms.locfileid: "58343470"
     <td style="width: 64px; vertical-align: middle;"><a href="./category/management-monitoring.md"><img src="_images/category/management-monitoring.svg" alt="Management and Monitoring" /></a></td>
     <td>
         <h3><a href="./category/management-monitoring.md">管理與監視</a></h3>
-        <p>雲端應用程式會在遠端資料中心內執行，其中您沒有基礎結構或作業系統 (部份情況下) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。</p>
+        <p>雲端應用程式會在遠端資料中心內執行，而您並沒有其基礎結構或作業系統 (有時候) 的完整控制權。 比起內部部署，這可能會讓管理和監視作業變得更困難。 應用程式必須公開執行階段資訊，讓系統管理員及操作員可以使用該資訊來管理及監視系統，以及支援變更商業需求和自訂，而不需要停止或重新部署應用程式。</p>
     </td>
 </tr>
 <tr>

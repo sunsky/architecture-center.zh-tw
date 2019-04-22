@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: architecture-center
 ms.subservice: cloud-fundamentals
 ms.custom: seodec18
-ms.openlocfilehash: 89434c0ce72b9f061e4b092354b1dcbaf683b7c6
-ms.sourcegitcommit: c053e6edb429299a0ad9b327888d596c48859d4a
+ms.openlocfilehash: 6e44953cccf39cc40be775f4043bcf8b1b890dae
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58346309"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59641156"
 ---
 # <a name="azure-for-aws-professionals"></a>適用於 AWS 專業人員的 Azure
 
@@ -102,7 +102,7 @@ Azure 提供數種方式來管理您的資源：
 
 在這些介面中，資源群組是 Azure 資源建立、部署或修改方式的核心。 這類似於「堆疊」在 CloudFormation 部署期間群組 AWS 資源所扮演的角色。
 
-這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具，例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/) 也會在 Azure 上提供。
+這些介面的語法和結構與其 AWS 對等項目不同，但可提供相當程度的功能。 此外，許多 AWS 上使用的第三方管理工具 (例如 [Hashicorp 的 Terraform](https://www.terraform.io/docs/providers/azurerm/) 和 [Netflix Spinnaker](https://www.spinnaker.io/)) 也會在 Azure 上提供。
 
 <!-- markdownlint-disable MD024 -->
 
@@ -157,7 +157,7 @@ Azure [異地備援儲存體](/azure/storage/common/storage-redundancy-grs)會�
 
 - [Azure 應用程式的高可用性](../resiliency/high-availability-azure-applications.md)
 
-- [Azure 應用程式的災害復原](../resiliency/disaster-recovery-azure-applications.md)
+- [Azure 應用程式的失敗及災害復原](../reliability/disaster-recovery.md)
 
 - [Azure 中 Linux 虛擬機器預定進行的維修](/azure/virtual-machines/linux/maintenance-and-updates)
 

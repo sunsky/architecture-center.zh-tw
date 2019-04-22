@@ -2,13 +2,15 @@
 
 2. 安裝 [Azure CLI 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest)。
 
-3. 安裝 [Azure 建置組塊](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks) npm 封裝。
+3. 安裝 [Node 和 NPM](https://nodejs.org/en/download/)
+
+4. 安裝 [Azure 建置組塊](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks) npm 封裝。
 
    ```bash
    npm install -g @mspnp/azure-building-blocks
    ```
 
-4. 從命令提示字元、Bash 提示字元或 PowerShell 提示字元中登入 Azure 帳戶，如下所示：
+5. 從命令提示字元、Bash 提示字元或 PowerShell 提示字元中登入 Azure 帳戶，如下所示：
 
    ```bash
    az login

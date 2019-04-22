@@ -5,12 +5,12 @@ layout: LandingPage
 ms.topic: landing-page
 ms.date: 09/28/2018
 google-site-verification: b-xRLveOzJ9oSOh37wgRTRB2lMOoFY8HiHf9_0DIawE
-ms.openlocfilehash: e247985aa92e1c2bf3cb4d43514f4d06250f1141
-ms.sourcegitcommit: 548374a0133f3caed3934fda6a380c76e6eaecea
+ms.openlocfilehash: d91e905f2309792cf96fe41fa2fdf56704b95d6e
+ms.sourcegitcommit: 579c39ff4b776704ead17a006bf24cd4cdc65edd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419966"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59640289"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -162,8 +162,8 @@ ms.locfileid: "58419966"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>針對復原而設計</h3>
-                            <p>了解如何設計具有復原功能的 Azure 應用程式。</p>
+                            <h3>設計可靠的 Azure 應用程式</h3>
+                            <p>了解如何將容錯和高可用性建置到您的 Azure 應用程式中。</p>
                         </div>
                     </div>
                 </div>
@@ -204,26 +204,6 @@ ms.locfileid: "58419966"
                         <div class="cardText">
                             <h3>雲端設計模式</h3>
                             <p>開發人員和解決方案架構設計人員的設計模式。 每個模式都會說明一個問題、可處理此問題的模式，以及以 Azure 為基礎的範例。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Checklists -->
-    <li>
-        <a href="/azure/architecture/checklist/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/checklist.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>設計檢閱清單</h3>
-                            <p>檢查清單可在設計過程中協助開發人員和解決方案架構設計人員。</p>
                         </div>
                     </div>
                 </div>
